@@ -9,13 +9,13 @@
             "placeholder": "Enter chips",
             "chips": [
                 {
-                    "id": "1123",
-                    "name": "baba",
+                    "id": "12345",
+                    "name": "chip-1",
                     "selected": true
                 },
                 {
-                    "id": "12354",
-                    "name": "deda"
+                    "id": "12346",
+                    "name": "chip-2"
                 }
             ],
             "removable": false,
