@@ -1,0 +1,49 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/AdaptiveCards/6f39aedce45864ae1067ed44a5551dc973790bb5/source/nodejs/typed-schema/schema/lib/Type.json",
+  "extends": "Input",
+  "description": "Allows a user to input a Chip.",
+  "properties": {
+    "chips": {
+      "type": "Input.Chip[]",
+      "description": "`Chip` options.",
+      "required": true
+    },
+    "isMultiSelect": {
+      "type": "boolean",
+      "description": "Allow multiple chips to be selected.",
+      "default": false
+    },
+    "style": {
+      "type": "ChoiceInputStyle"
+    },
+    "value": {
+      "type": "string",
+      "description": "The initial choice (or set of chips) that should be selected. For multi-select, specify a comma-separated string of values."
+    },
+    "placeholder": {
+      "type": "string",
+      "description": "Description of the input desired. Only visible when no selection has been made, the `style` is `compact` and `isMultiSelect` is `false`"
+    },
+    "color": {
+      "type": "string",
+      "description": "Material color palette of chip. Initial is 'primary'."      
+    },
+    "selectable": {
+      "type": "boolean",
+      "description": "Whether or not chips are selectable. Default is true."      
+    },
+    "removable": {
+      "type": "boolean",
+      "description": "Whether or not chips are removable. Default is true."      
+    },
+    "addOnBlur": {
+      "type": "boolean",
+      "description": "Whether or not the chipEnd event will be emitted when the input is blurred. Default is true."      
+    },
+    "wrap": {
+      "type": "boolean",
+      "description": "If `true`, allow text to wrap. Otherwise, text is clipped.",
+      "version": "1.2"
+    }
+  }
+}
