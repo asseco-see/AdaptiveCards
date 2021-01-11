@@ -887,14 +887,14 @@
         "selected"
       ]
     },
-    "Input.ChipSet": {
+    "Input.Chips": {
       "description": "Allows a user to input a Chip.",
       "properties": {
         "type": {
           "enum": [
-            "Input.ChipSet"
+            "Input.Chips"
           ],
-          "description": "Must be `Input.ChipSet`"
+          "description": "Must be `Input.Chips`"
         },
         "chips": {
           "type": "array",
@@ -902,14 +902,6 @@
             "$ref": "#/definitions/Input.Chip"
           },
           "description": "`Chip` options."
-        },
-        "isMultiSelect": {
-          "type": "boolean",
-          "description": "Allow multiple chips to be selected.",
-          "default": false
-        },
-        "style": {
-          "$ref": "#/definitions/ChoiceInputStyle"
         },
         "value": {
           "type": "string",
@@ -935,16 +927,10 @@
           "type": "boolean",
           "description": "Whether or not the chipEnd event will be emitted when the input is blurred. Default is true."
         },
-        "wrap": {
-          "type": "boolean",
-          "description": "If `true`, allow text to wrap. Otherwise, text is clipped.",
-          "version": "1.2"
-        },
         "id": {},
         "errorMessage": {},
         "isRequired": {},
         "label": {},
-        "appearance": {},
         "fallback": {},
         "height": {},
         "separator": {},
@@ -1029,7 +1015,6 @@
         "errorMessage": {},
         "isRequired": {},
         "label": {},
-        "appearance": {},
         "fallback": {},
         "height": {},
         "separator": {},
@@ -1077,7 +1062,6 @@
         "errorMessage": {},
         "isRequired": {},
         "label": {},
-        "appearance": {},
         "fallback": {},
         "height": {},
         "separator": {},
@@ -1122,7 +1106,6 @@
         "errorMessage": {},
         "isRequired": {},
         "label": {},
-        "appearance": {},
         "fallback": {},
         "height": {},
         "separator": {},
@@ -1160,11 +1143,6 @@
           "type": "string",
           "description": "Description of the input desired. Displayed when no text has been input."
         },
-        "checkDigit": {
-          "type": "string",
-          "description": "The initial value for this field.",
-          "version": "1.4"
-        },
         "regex": {
           "type": "string",
           "description": "Regular expression indicating the required format of this text input.",
@@ -1183,11 +1161,15 @@
           "type": "string",
           "description": "The initial value for this field."
         },
+        "checkDigit": {
+          "$ref": "#/definitions/InputTextCheckDigitAlgorithm",
+          "description": "The initial value for this field.",
+          "version": "1.3.1"
+        },
         "id": {},
         "errorMessage": {},
         "isRequired": {},
         "label": {},
-        "appearance": {},
         "fallback": {},
         "height": {},
         "separator": {},
@@ -1232,7 +1214,6 @@
         "errorMessage": {},
         "isRequired": {},
         "label": {},
-        "appearance": {},
         "fallback": {},
         "height": {},
         "separator": {},
@@ -1285,7 +1266,6 @@
         "errorMessage": {},
         "isRequired": {},
         "label": {},
-        "appearance": {},
         "fallback": {},
         "height": {},
         "separator": {},
@@ -1702,6 +1682,20 @@
         }
       ]
     },
+    "InputTextCheckDigitAlgorithm": {
+      "description": "Check digit algorithm",
+      "anyOf": [
+        {
+          "enum": [
+            "mod11",
+            "mod97"
+          ]
+        },
+        {
+          "pattern": "^([m|M][o|O][d|D][1|1][1|1])|([m|M][o|O][d|D][9|9][7|7])$"
+        }
+      ]
+    },
     "Spacing": {
       "description": "Specifies how much spacing. Hosts pick the exact pixel amounts for each of these.",
       "anyOf": [
@@ -1917,7 +1911,7 @@
           ],
           "allOf": [
             {
-              "$ref": "#/definitions/Input.ChipSet"
+              "$ref": "#/definitions/Input.Chips"
             }
           ]
         },
@@ -2159,7 +2153,7 @@
           ],
           "allOf": [
             {
-              "$ref": "#/definitions/Input.ChipSet"
+              "$ref": "#/definitions/Input.Chips"
             }
           ]
         },
@@ -2333,7 +2327,7 @@
           ],
           "allOf": [
             {
-              "$ref": "#/definitions/Input.ChipSet"
+              "$ref": "#/definitions/Input.Chips"
             }
           ]
         },
@@ -2451,7 +2445,7 @@
           ],
           "allOf": [
             {
-              "$ref": "#/definitions/Input.ChipSet"
+              "$ref": "#/definitions/Input.Chips"
             }
           ]
         },
@@ -2614,10 +2608,6 @@
           "type": "string",
           "description": "Label for this input",
           "version": "1.3"
-        },
-        "appearance": {
-          "type": "string",
-          "description": "Appearance of material chips input, the initial value is 'fill'."
         },
         "fallback": {
           "anyOf": [

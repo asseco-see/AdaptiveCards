@@ -8,14 +8,6 @@
       "description": "`Chip` options.",
       "required": true
     },
-    "isMultiSelect": {
-      "type": "boolean",
-      "description": "Allow multiple chips to be selected.",
-      "default": false
-    },
-    "style": {
-      "type": "ChoiceInputStyle"
-    },
     "value": {
       "type": "string",
       "description": "The initial choice (or set of chips) that should be selected. For multi-select, specify a comma-separated string of values."
@@ -39,11 +31,6 @@
     "addOnBlur": {
       "type": "boolean",
       "description": "Whether or not the chipEnd event will be emitted when the input is blurred. Default is true."      
-    },
-    "wrap": {
-      "type": "boolean",
-      "description": "If `true`, allow text to wrap. Otherwise, text is clipped.",
-      "version": "1.2"
     }
   }
 }

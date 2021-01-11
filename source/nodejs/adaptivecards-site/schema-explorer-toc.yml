@@ -29,7 +29,7 @@
   - Input.Toggle
   - Input.ChoiceSet
   - Input.Choice
-  - Input.ChipSet
+  - Input.Chips
   - Input.Chip
 - Types:
   - BackgroundImage

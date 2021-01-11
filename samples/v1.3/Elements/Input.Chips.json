@@ -1,0 +1,31 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+        {
+            "type": "Input.Chips",
+            "id": "chip",
+            "placeholder": "Enter chips",
+            "chips": [
+                {
+                    "id": "1123",
+                    "name": "baba",
+                    "selected": true
+                },
+                {
+                    "id": "12354",
+                    "name": "deda"
+                }
+            ],
+            "removable": false,
+            "color": "accent"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "OK"
+        }
+    ]
+}
