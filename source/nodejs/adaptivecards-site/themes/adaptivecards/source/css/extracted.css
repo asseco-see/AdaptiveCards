@@ -895,3 +895,8 @@ optgroup {
 	font-weight: normal;
 	font-style: normal;
 }
+
+.platform-logo {
+	max-height: 39px;
+	width: auto;
+}

@@ -15,6 +15,7 @@
 * [HorizontalAlignment](enums/horizontalalignment.md)
 * [ImageSize](enums/imagesize.md)
 * [ImageStyle](enums/imagestyle.md)
+* [InputTextCheckDigitAlgorithm](enums/inputtextcheckdigitalgorithm.md)
 * [InputTextStyle](enums/inputtextstyle.md)
 * [Orientation](enums/orientation.md)
 * [ShowCardActionMode](enums/showcardactionmode.md)

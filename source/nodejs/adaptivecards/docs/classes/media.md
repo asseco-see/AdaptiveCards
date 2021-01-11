@@ -143,7 +143,7 @@
 
 \+ **new Media**(): *[Media](media.md)*
 
-*Inherited from [SerializableObject](serializableobject.md).[constructor](serializableobject.md#constructor)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[constructor](hostcapabilities.md#constructor)*
 
 **Returns:** *[Media](media.md)*
 
@@ -207,7 +207,7 @@ ___
 
 • **maxVersion**: *[Version](version.md)* = Versions.v1_3
 
-*Inherited from [SerializableObject](serializableobject.md).[maxVersion](serializableobject.md#maxversion)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[maxVersion](hostcapabilities.md#maxversion)*
 
 ___
 
@@ -314,7 +314,7 @@ ___
 
 ▪ **onRegisterCustomProperties**? : *undefined | function*
 
-*Inherited from [SerializableObject](serializableobject.md).[onRegisterCustomProperties](serializableobject.md#static-optional-onregistercustomproperties)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[onRegisterCustomProperties](hostcapabilities.md#static-optional-onregistercustomproperties)*
 
 ___
 
@@ -702,7 +702,7 @@ ___
 
 ▸ **getCustomProperty**(`name`: string): *any*
 
-*Inherited from [SerializableObject](serializableobject.md).[getCustomProperty](serializableobject.md#getcustomproperty)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[getCustomProperty](hostcapabilities.md#getcustomproperty)*
 
 **Parameters:**
 
@@ -730,7 +730,7 @@ ___
 
 *Inherited from [CardElement](cardelement.md).[getDefaultSerializationContext](cardelement.md#protected-getdefaultserializationcontext)*
 
-*Overrides [SerializableObject](serializableobject.md).[getDefaultSerializationContext](serializableobject.md#protected-getdefaultserializationcontext)*
+*Overrides [HostCapabilities](hostcapabilities.md).[getDefaultSerializationContext](hostcapabilities.md#protected-getdefaultserializationcontext)*
 
 **Returns:** *[BaseSerializationContext](baseserializationcontext.md)*
 
@@ -886,7 +886,7 @@ ___
 
 ▸ **getSchema**(): *[SerializableObjectSchema](serializableobjectschema.md)*
 
-*Inherited from [SerializableObject](serializableobject.md).[getSchema](serializableobject.md#getschema)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[getSchema](hostcapabilities.md#getschema)*
 
 **Returns:** *[SerializableObjectSchema](serializableobjectschema.md)*
 
@@ -908,7 +908,7 @@ ___
 
 ▸ **getValue**(`property`: [PropertyDefinition](propertydefinition.md)): *any*
 
-*Inherited from [SerializableObject](serializableobject.md).[getValue](serializableobject.md#protected-getvalue)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[getValue](hostcapabilities.md#protected-getvalue)*
 
 **Parameters:**
 
@@ -924,7 +924,7 @@ ___
 
 ▸ **hasAllDefaultValues**(): *boolean*
 
-*Inherited from [SerializableObject](serializableobject.md).[hasAllDefaultValues](serializableobject.md#hasalldefaultvalues)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[hasAllDefaultValues](hostcapabilities.md#hasalldefaultvalues)*
 
 **Returns:** *boolean*
 
@@ -934,7 +934,7 @@ ___
 
 ▸ **hasDefaultValue**(`property`: [PropertyDefinition](propertydefinition.md)): *boolean*
 
-*Inherited from [SerializableObject](serializableobject.md).[hasDefaultValue](serializableobject.md#hasdefaultvalue)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[hasDefaultValue](hostcapabilities.md#hasdefaultvalue)*
 
 **Parameters:**
 
@@ -1234,7 +1234,7 @@ ___
 
 *Inherited from [CardElement](cardelement.md).[parse](cardelement.md#parse)*
 
-*Overrides [SerializableObject](serializableobject.md).[parse](serializableobject.md#parse)*
+*Overrides [HostCapabilities](hostcapabilities.md).[parse](hostcapabilities.md#parse)*
 
 **Parameters:**
 
@@ -1251,7 +1251,7 @@ ___
 
 ▸ **populateSchema**(`schema`: [SerializableObjectSchema](serializableobjectschema.md)): *void*
 
-*Inherited from [SerializableObject](serializableobject.md).[populateSchema](serializableobject.md#protected-populateschema)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[populateSchema](hostcapabilities.md#protected-populateschema)*
 
 **Parameters:**
 
@@ -1304,7 +1304,7 @@ ___
 
 ▸ **resetDefaultValues**(): *void*
 
-*Inherited from [SerializableObject](serializableobject.md).[resetDefaultValues](serializableobject.md#resetdefaultvalues)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[resetDefaultValues](hostcapabilities.md#resetdefaultvalues)*
 
 **Returns:** *void*
 
@@ -1314,7 +1314,7 @@ ___
 
 ▸ **setCustomProperty**(`name`: string, `value`: any): *void*
 
-*Inherited from [SerializableObject](serializableobject.md).[setCustomProperty](serializableobject.md#setcustomproperty)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[setCustomProperty](hostcapabilities.md#setcustomproperty)*
 
 **Parameters:**
 
@@ -1379,7 +1379,7 @@ ___
 
 ▸ **setValue**(`property`: [PropertyDefinition](propertydefinition.md), `value`: any): *void*
 
-*Inherited from [SerializableObject](serializableobject.md).[setValue](serializableobject.md#protected-setvalue)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[setValue](hostcapabilities.md#protected-setvalue)*
 
 **Parameters:**
 
@@ -1408,7 +1408,7 @@ ___
 
 *Inherited from [CardElement](cardelement.md).[shouldSerialize](cardelement.md#protected-shouldserialize)*
 
-*Overrides [SerializableObject](serializableobject.md).[shouldSerialize](serializableobject.md#protected-shouldserialize)*
+*Overrides [HostCapabilities](hostcapabilities.md).[shouldSerialize](hostcapabilities.md#protected-shouldserialize)*
 
 **Parameters:**
 
@@ -1424,7 +1424,7 @@ ___
 
 ▸ **toJSON**(`context?`: [BaseSerializationContext](baseserializationcontext.md)): *[PropertyBag](../README.md#propertybag) | undefined*
 
-*Inherited from [SerializableObject](serializableobject.md).[toJSON](serializableobject.md#tojson)*
+*Inherited from [HostCapabilities](hostcapabilities.md).[toJSON](hostcapabilities.md#tojson)*
 
 **Parameters:**
 
