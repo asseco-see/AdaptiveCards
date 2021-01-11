@@ -179,3 +179,8 @@ export enum ContainerFitStatus {
     Overflowing,
     FullyOutOfContainer
 }
+
+export enum InputTextCheckDigitAlgorithm {
+    Mod11,
+    Mod97
+}

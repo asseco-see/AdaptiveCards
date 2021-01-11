@@ -12,6 +12,7 @@ import { Versions, Version, property, BaseSerializationContext, SerializableObje
     NumProperty, PropertyBag, CustomProperty, PropertyDefinition } from "./serialization";
 import { CardObjectRegistry } from "./registry";
 import { Strings } from "./strings";
+import { mod11_2, mod97_10 } from "cdigit"
 
 export type CardElementHeight = "auto" | "stretch";
 
@@ -2658,7 +2659,8 @@ export class TextInput extends Input {
     static readonly placeholderProperty = new StringProperty(Versions.v1_0, "placeholder");
     static readonly styleProperty = new EnumProperty(Versions.v1_0, "style", Enums.InputTextStyle, Enums.InputTextStyle.Text);
     static readonly inlineActionProperty = new ActionProperty(Versions.v1_0, "inlineAction", [ "Action.ShowCard" ]);
-    static readonly regexProperty = new StringProperty(Versions.v1_3, "regex", true);
+	static readonly regexProperty = new StringProperty(Versions.v1_3, "regex", true);
+	static readonly checkDigitProperty = new EnumProperty(Versions.v1_4, "checkDigit", Enums.InputTextCheckDigitAlgorithm, undefined);
 
     @property(TextInput.valueProperty)
     defaultValue?: string;
@@ -2679,7 +2681,10 @@ export class TextInput extends Input {
     inlineAction?: Action;
 
     @property(TextInput.regexProperty)
-    regex?: string;
+	regex?: string;
+	
+	@property(TextInput.checkDigitProperty)
+    checkDigit?: Enums.InputTextCheckDigitAlgorithm;
 
     //#endregion
 
@@ -2807,6 +2812,15 @@ export class TextInput extends Input {
 
         if (this.regex) {
             return new RegExp(this.regex, "g").test(this.value);
+		}
+		
+		if (this.checkDigit !== undefined) {
+            switch (this.checkDigit) {
+                case Enums.InputTextCheckDigitAlgorithm.Mod11: return mod11_2.validate(this.value);
+                case Enums.InputTextCheckDigitAlgorithm.Mod97: return mod97_10.validate(this.value);
+                default:
+                    return true;
+            }
         }
 
         return true;
