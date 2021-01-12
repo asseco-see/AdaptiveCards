@@ -77,30 +77,30 @@
 			designer.sampleCatalogueUrl = "<%- config.root %>designer/sample-catalogue.json";
 			designer.bindingPreviewMode = ACDesigner.BindingPreviewMode.SampleData;
 			
-			let hostDocsButton = new ACDesigner.ToolbarButton(
-				"hostDocs",
-				"Host App Docs",
-				"acd-icon-storyboard",
-				function () {
-					window.open("https://docs.microsoft.com/en-us/adaptive-cards/resources/partners")
-				}
-			);
-			hostDocsButton.separator = false;
-			hostDocsButton.toolTip = "Learn more about the Host Apps";
-			designer.toolbar.insertElementAfter(hostDocsButton, ACDesigner.CardDesigner.ToolbarCommands.HostAppPicker);
+			// let hostDocsButton = new ACDesigner.ToolbarButton(
+			// 	"hostDocs",
+			// 	"Host App Docs",
+			// 	"acd-icon-storyboard",
+			// 	function () {
+			// 		window.open("https://docs.microsoft.com/en-us/adaptive-cards/resources/partners")
+			// 	}
+			// );
+			// hostDocsButton.separator = false;
+			// hostDocsButton.toolTip = "Learn more about the Host Apps";
+			// designer.toolbar.insertElementAfter(hostDocsButton, ACDesigner.CardDesigner.ToolbarCommands.HostAppPicker);
 
-			let templateDocsButton = new ACDesigner.ToolbarButton(
-				"templateDocs",
-				"Templating Docs",
-				"acd-icon-scopeTemplate",
-				function () {
-					appInsights.trackEvent({ name: "ViewedTemplatingDocs" }, { Origin: "Designer" });
-					window.open("https://docs.microsoft.com/en-us/adaptive-cards/templating/");
-				}
-			);
-			templateDocsButton.separator = false;
-			templateDocsButton.toolTip = "Learn more about Adaptive Cards templating";
-			designer.toolbar.insertElementAfter(templateDocsButton, "hostDocs");
+			// let templateDocsButton = new ACDesigner.ToolbarButton(
+			// 	"templateDocs",
+			// 	"Templating Docs",
+			// 	"acd-icon-scopeTemplate",
+			// 	function () {
+			// 		appInsights.trackEvent({ name: "ViewedTemplatingDocs" }, { Origin: "Designer" });
+			// 		window.open("https://docs.microsoft.com/en-us/adaptive-cards/templating/");
+			// 	}
+			// );
+			// templateDocsButton.separator = false;
+			// templateDocsButton.toolTip = "Learn more about Adaptive Cards templating";
+			// designer.toolbar.insertElementAfter(templateDocsButton, "hostDocs");
 
 			designer.toolbar.getElementById(ACDesigner.CardDesigner.ToolbarCommands.HostAppPicker).width = "auto";
 
@@ -109,7 +109,7 @@
 				"Feedback",
 				"acd-icon-feedback",
 				function () {
-					window.open("https://github.com/Microsoft/AdaptiveCards/issues/new?title="
+					window.open("https://github.com/asseco-see/adaptive-ui/issues/new?title="
 						+ encodeURIComponent("[Designer] [Your feedback title here]")
 						+ "&body=" + encodeURIComponent("[Your detailed feedback here]"))
 				}
