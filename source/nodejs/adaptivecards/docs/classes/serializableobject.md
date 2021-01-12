@@ -14,6 +14,8 @@
 
   ↳ [MediaSource](mediasource.md)
 
+  ↳ [Chip](chip.md)
+
   ↳ [Choice](choice.md)
 
   ↳ [HttpHeader](httpheader.md)

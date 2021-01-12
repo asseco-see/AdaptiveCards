@@ -147,6 +147,12 @@ export class ContainerStyle {
     static readonly Warning: "warning" = "warning";
 }
 
+export enum ChipInputColorSchema {
+    Primary = '#03a9f4',
+    Accent = '#ff9800',
+    Warn = '#f44336'
+}
+
 export enum ValidationPhase {
     Parse,
     ToJSON,

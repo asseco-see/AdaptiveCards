@@ -1121,6 +1121,8 @@ export class TextBlock extends BaseTextBlock {
     }
 }
 
+
+
 export class TextRun extends BaseTextBlock {
     //#region Schema
 
@@ -2647,6 +2649,274 @@ export abstract class Input extends CardElement implements IInput {
 
     get isInteractive(): boolean {
         return true;
+    }
+}
+
+
+export interface ChipData {
+    id: string
+    name: string;
+    selected: boolean;
+}
+
+//Configuration
+export class Chip extends SerializableObject {
+    static readonly idProperty = new StringProperty(Versions.v1_0, "id", true);
+    static readonly nameProperty = new StringProperty(Versions.v1_0, "name", true);
+    static readonly selectedProperty = new BoolProperty(Versions.v1_0, "selected", false);
+
+    protected getSchemaKey(): string {
+        return "chip"
+    }
+
+    @property(Chip.idProperty)
+    get id(): string {
+        return this.getValue(Chip.idProperty);
+    }
+
+    set id(value: string) {
+            this.setValue(Chip.idProperty, value);
+    }
+
+    @property(Chip.nameProperty)
+    get name(): string {
+        return this.getValue(Chip.nameProperty);
+    }
+
+    set name(value: string) {
+            this.setValue(Chip.nameProperty, value);
+    }
+
+    @property(Chip.selectedProperty)
+    get selected(): boolean {
+        return this.getValue(Chip.selectedProperty);
+    }
+
+    set selected(value: boolean) {
+            this.setValue(Chip.selectedProperty, value);
+    }
+  }
+
+//Extension
+export class ChipInput extends Input {
+
+    static readonly JsonTypeName = "Input.Chips";
+    static readonly selectedAttribute = 'data-selected';
+
+    //#region Schema
+
+    static readonly idProperty = new StringProperty(Versions.v1_0, "id", true);
+    static readonly colorProperty = new StringProperty(Versions.v1_0, "color", true);
+    static readonly removableProperty = new BoolProperty(Versions.v1_0, "removable", true);
+    static readonly placeholderProperty = new StringProperty(Versions.v1_0, "placeholder", true);
+    static readonly chipsProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "chips", Chip);
+
+    private _chipElements: HTMLElement[] = [];
+    private _input: HTMLElement;
+
+
+    isSet(): boolean {
+        return true;
+    }
+    get value(): any {
+        var value = this._chipElements.map(c => { 
+            return { 
+                id: c.id, 
+                name: c.innerText, 
+                selected: c.hasAttribute(ChipInput.selectedAttribute)
+            }
+        });
+
+        console.log(value);
+        return value;
+    }
+
+    @property(ChipInput.idProperty)
+    get id(): string {
+        return this.getValue(ChipInput.idProperty);
+    }
+
+    set id(value: string) {
+            this.setValue(ChipInput.idProperty, value);
+    }
+
+    @property(ChipInput.chipsProperty)
+    private _chips: Chip[] = [];
+
+    @property(ChipInput.colorProperty)
+    get color(): string {
+        return this.getValue(ChipInput.colorProperty);
+    }
+
+    set color(value: string) {
+        this.setValue(ChipInput.colorProperty, value);
+    }
+
+    @property(ChipInput.removableProperty)
+    get removable(): boolean {
+        return this.getValue(ChipInput.removableProperty);
+    }
+
+    set removable(value: boolean) {
+        this.setValue(ChipInput.removableProperty, value);
+    }
+
+    @property(ChipInput.placeholderProperty)
+    get placeholder(): string {
+        return this.getValue(ChipInput.placeholderProperty);
+    }
+
+    set placeholder(value: string) {
+        this.setValue(ChipInput.placeholderProperty, value);
+        
+    }
+
+    //#endregion
+
+    protected internalRender(): HTMLElement {
+
+        let element = document.createElement("div");
+
+        element.style.width = '100%';
+        element.style.marginTop = '10px';
+        this.addInput(element);
+        console.log(this._chips);
+        this._chips.forEach(chip => {
+            
+            this.addChip({id: chip.id, name: chip.name, selected: chip.selected}, element);
+        });
+
+        var hr = document.createElement('hr')
+        hr.style.color = '#dcdcdc';
+        hr.style.marginTop = '8px'
+        element.appendChild(hr);
+
+        return element;
+    }
+    
+    addInput(parent: HTMLElement) {
+
+        let input = document.createElement("input");
+
+        input.className = this.hostConfig.makeCssClassName("ac-input", "ac-textInput");
+        input.type = 'text';
+        input.placeholder = this.placeholder;
+        input.tabIndex = 0;
+        input.style.display = 'inline-block';
+        input.style.flex = "1 1 auto";
+        input.style.flexWrap = 'wrap';
+        input.style.border = 'none';
+        input.style.backgroundColor = 'transparent';
+        input.style.minWidth='120px';
+        input.style.outline='none';
+        input.style.fontSize='15px';
+        input.setAttribute("aria-label", this.placeholder);
+        input.onblur = () => {
+            input.value='';
+        };
+        input.onkeypress = (e) => 
+        {
+            if (e.keyCode == 13 && input.value) // enter pressed
+            { 
+                e.preventDefault();
+                e.cancelBubble = true;
+
+                this.addChip({id: input.value, name: input.value, selected: true}, parent);
+                input.value = ''
+            }
+        }
+        parent.appendChild(input);
+        this._input = input;
+    }
+
+    addChip(chip: ChipData, parent: HTMLElement) {
+
+        var chipEl = document.createElement("div");
+
+        chipEl.style.display='inline-block';
+        chipEl.style.marginRight='10px'
+        chipEl.style.padding='0 25px';
+        chipEl.style.height='30px';
+        chipEl.style.borderRadius='15px';
+        chipEl.style.fontSize='14px';
+        chipEl.style.lineHeight='30px';
+        chipEl.style.color= '#ffffff';
+        chipEl.style.marginBottom='8px'
+        chipEl.style.userSelect = 'none'
+        chipEl.style.paddingLeft='12px';
+        chipEl.style.paddingRight='12px';
+        chipEl.innerText=chip.name;
+        chipEl.id=chip.id;
+        if(chip.selected) {
+
+            chipEl.setAttribute(ChipInput.selectedAttribute, '');
+            chipEl.style.backgroundColor = this.getBgColor(this.color);
+        } else {
+            chipEl.style.backgroundColor = '#e0e0e0';
+            chipEl.style.color = '#353535';
+        }
+        chipEl.onclick = () => {
+
+            var selected = chipEl.hasAttribute(ChipInput.selectedAttribute);
+            selected ? chipEl.removeAttribute(ChipInput.selectedAttribute) : chipEl.setAttribute(ChipInput.selectedAttribute, '');;
+            chipEl.style.backgroundColor= !selected ? this.getBgColor(this.color) : '#e0e0e0'
+            chipEl.style.color= !selected ? '#ffffff': '#353535'
+        }
+
+        if(this.removable) {
+
+            var span = document.createElement('span');
+
+            span.style.paddingLeft = '4px';
+            span.style.paddingRight = '4px';
+            span.style.marginLeft = '10px';
+            span.style.minWidth = '30px';
+            span.style.color = '#888';
+            span.style.fontWeight = 'bold';
+            span.style.fontSize = '14px';
+            span.style.cursor = 'pointer';
+            span.innerText = '×';
+            span.style.backgroundColor = 'rgb(146, 146, 146, 0.4)';
+            span.style.borderRadius = '100px';
+            
+            span.onclick = () => {
+
+                parent.removeChild(chipEl)
+                this._chipElements.splice(this._chipElements.indexOf(chipEl), 1);
+            }
+
+            span.onmouseenter = () => {
+                span.style.backgroundColor = 'rgb(146, 146, 146, 0.7)';
+            }
+
+            span.onmouseleave = () => {
+                span.style.backgroundColor = 'rgb(146, 146, 146, 0.4)';
+            }
+
+            chipEl.appendChild(span)
+        }
+
+        parent.insertBefore(chipEl, this._input);
+        this._chipElements.push(chipEl);
+    }
+
+    getJsonTypeName(): string {
+        return ChipInput.JsonTypeName;
+    }
+
+    getBgColor(color: string): string {
+        switch(color){
+            default:
+            case 'accent':
+                return Enums.ChipInputColorSchema.Accent;
+            case 'primary':
+                return Enums.ChipInputColorSchema.Primary;
+            case 'warn':
+                return Enums.ChipInputColorSchema.Warn;
+        }
+    }
+    updateLayout(processChildren: boolean = true) {
+        super.updateLayout(processChildren);
     }
 }
 
@@ -6686,7 +6956,8 @@ export class GlobalRegistry {
         registry.register("Input.Time", TimeInput);
         registry.register("Input.Number", NumberInput);
         registry.register("Input.ChoiceSet", ChoiceSetInput);
-        registry.register("Input.Toggle", ToggleInput);
+		registry.register("Input.Toggle", ToggleInput);
+		registry.register("Input.Chips", ChipInput);
     }
 
     static populateWithDefaultActions(registry: CardObjectRegistry<Action>) {
@@ -6885,3 +7156,4 @@ export class SerializationContext extends BaseSerializationContext {
         this._actionRegistry = value;
     }
 }
+

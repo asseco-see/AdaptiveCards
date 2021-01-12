@@ -1,26 +1,12 @@
-[Adaptive Cards Javascript SDK](../README.md) › [Input](input.md)
+[Adaptive Cards Javascript SDK](../README.md) › [ChipInput](chipinput.md)
 
-# Class: Input
+# Class: ChipInput
 
 ## Hierarchy
 
-  ↳ [CardElement](cardelement.md)
+  ↳ [Input](input.md)
 
-  ↳ **Input**
-
-  ↳ [ChipInput](chipinput.md)
-
-  ↳ [TextInput](textinput.md)
-
-  ↳ [ToggleInput](toggleinput.md)
-
-  ↳ [ChoiceSetInput](choicesetinput.md)
-
-  ↳ [NumberInput](numberinput.md)
-
-  ↳ [DateInput](dateinput.md)
-
-  ↳ [TimeInput](timeinput.md)
+  ↳ **ChipInput**
 
 ## Implements
 
@@ -30,151 +16,163 @@
 
 ### Constructors
 
-* [constructor](input.md#constructor)
+* [constructor](chipinput.md#constructor)
 
 ### Properties
 
-* [_parent](input.md#protected-optional-_parent)
-* [_renderedElement](input.md#protected-optional-_renderedelement)
-* [customCssSelector](input.md#optional-customcssselector)
-* [errorMessage](input.md#optional-errormessage)
-* [height](input.md#height)
-* [horizontalAlignment](input.md#horizontalalignment)
-* [id](input.md#optional-id)
-* [isRequired](input.md#isrequired)
-* [label](input.md#optional-label)
-* [maxVersion](input.md#maxversion)
-* [onPreProcessPropertyValue](input.md#optional-onpreprocesspropertyvalue)
-* [onValueChanged](input.md#onvaluechanged)
-* [separator](input.md#separator)
-* [spacing](input.md#spacing)
-* [errorMessageProperty](input.md#static-readonly-errormessageproperty)
-* [heightProperty](input.md#static-readonly-heightproperty)
-* [horizontalAlignmentProperty](input.md#static-readonly-horizontalalignmentproperty)
-* [idProperty](input.md#static-readonly-idproperty)
-* [isRequiredProperty](input.md#static-readonly-isrequiredproperty)
-* [isVisibleProperty](input.md#static-readonly-isvisibleproperty)
-* [labelProperty](input.md#static-readonly-labelproperty)
-* [langProperty](input.md#static-readonly-langproperty)
-* [onRegisterCustomProperties](input.md#static-optional-onregistercustomproperties)
-* [requiresProperty](input.md#static-readonly-requiresproperty)
-* [separatorProperty](input.md#static-readonly-separatorproperty)
-* [spacingProperty](input.md#static-readonly-spacingproperty)
-* [typeNameProperty](input.md#static-readonly-typenameproperty)
+* [_parent](chipinput.md#protected-optional-_parent)
+* [_renderedElement](chipinput.md#protected-optional-_renderedelement)
+* [customCssSelector](chipinput.md#optional-customcssselector)
+* [errorMessage](chipinput.md#optional-errormessage)
+* [height](chipinput.md#height)
+* [horizontalAlignment](chipinput.md#horizontalalignment)
+* [isRequired](chipinput.md#isrequired)
+* [label](chipinput.md#optional-label)
+* [maxVersion](chipinput.md#maxversion)
+* [onPreProcessPropertyValue](chipinput.md#optional-onpreprocesspropertyvalue)
+* [onValueChanged](chipinput.md#onvaluechanged)
+* [separator](chipinput.md#separator)
+* [spacing](chipinput.md#spacing)
+* [JsonTypeName](chipinput.md#static-readonly-jsontypename)
+* [chipsProperty](chipinput.md#static-readonly-chipsproperty)
+* [colorProperty](chipinput.md#static-readonly-colorproperty)
+* [errorMessageProperty](chipinput.md#static-readonly-errormessageproperty)
+* [heightProperty](chipinput.md#static-readonly-heightproperty)
+* [horizontalAlignmentProperty](chipinput.md#static-readonly-horizontalalignmentproperty)
+* [idProperty](chipinput.md#static-readonly-idproperty)
+* [isRequiredProperty](chipinput.md#static-readonly-isrequiredproperty)
+* [isVisibleProperty](chipinput.md#static-readonly-isvisibleproperty)
+* [labelProperty](chipinput.md#static-readonly-labelproperty)
+* [langProperty](chipinput.md#static-readonly-langproperty)
+* [onRegisterCustomProperties](chipinput.md#static-optional-onregistercustomproperties)
+* [placeholderProperty](chipinput.md#static-readonly-placeholderproperty)
+* [removableProperty](chipinput.md#static-readonly-removableproperty)
+* [requiresProperty](chipinput.md#static-readonly-requiresproperty)
+* [selectedAttribute](chipinput.md#static-readonly-selectedattribute)
+* [separatorProperty](chipinput.md#static-readonly-separatorproperty)
+* [spacingProperty](chipinput.md#static-readonly-spacingproperty)
+* [typeNameProperty](chipinput.md#static-readonly-typenameproperty)
 
 ### Accessors
 
-* [allowCustomPadding](input.md#protected-allowcustompadding)
-* [defaultStyle](input.md#protected-defaultstyle)
-* [hasVisibleSeparator](input.md#hasvisibleseparator)
-* [hostConfig](input.md#hostconfig)
-* [index](input.md#index)
-* [inputControlContainerElement](input.md#protected-inputcontrolcontainerelement)
-* [isInline](input.md#isinline)
-* [isInteractive](input.md#isinteractive)
-* [isNullable](input.md#protected-isnullable)
-* [isStandalone](input.md#isstandalone)
-* [isVisible](input.md#isvisible)
-* [lang](input.md#lang)
-* [parent](input.md#parent)
-* [renderedElement](input.md#renderedelement)
-* [renderedInputControlElement](input.md#protected-renderedinputcontrolelement)
-* [requires](input.md#requires)
-* [separatorElement](input.md#separatorelement)
-* [separatorOrientation](input.md#protected-separatororientation)
-* [useDefaultSizing](input.md#protected-usedefaultsizing)
-* [value](input.md#value)
+* [allowCustomPadding](chipinput.md#protected-allowcustompadding)
+* [color](chipinput.md#color)
+* [defaultStyle](chipinput.md#protected-defaultstyle)
+* [hasVisibleSeparator](chipinput.md#hasvisibleseparator)
+* [hostConfig](chipinput.md#hostconfig)
+* [id](chipinput.md#id)
+* [index](chipinput.md#index)
+* [inputControlContainerElement](chipinput.md#protected-inputcontrolcontainerelement)
+* [isInline](chipinput.md#isinline)
+* [isInteractive](chipinput.md#isinteractive)
+* [isNullable](chipinput.md#protected-isnullable)
+* [isStandalone](chipinput.md#isstandalone)
+* [isVisible](chipinput.md#isvisible)
+* [lang](chipinput.md#lang)
+* [parent](chipinput.md#parent)
+* [placeholder](chipinput.md#placeholder)
+* [removable](chipinput.md#removable)
+* [renderedElement](chipinput.md#renderedelement)
+* [renderedInputControlElement](chipinput.md#protected-renderedinputcontrolelement)
+* [requires](chipinput.md#requires)
+* [separatorElement](chipinput.md#separatorelement)
+* [separatorOrientation](chipinput.md#protected-separatororientation)
+* [useDefaultSizing](chipinput.md#protected-usedefaultsizing)
+* [value](chipinput.md#value)
 
 ### Methods
 
-* [adjustRenderedElementSize](input.md#protected-adjustrenderedelementsize)
-* [applyPadding](input.md#protected-applypadding)
-* [asString](input.md#asstring)
-* [createPlaceholderElement](input.md#protected-createplaceholderelement)
-* [focus](input.md#focus)
-* [getActionAt](input.md#getactionat)
-* [getActionById](input.md#getactionbyid)
-* [getActionCount](input.md#getactioncount)
-* [getAllInputs](input.md#getallinputs)
-* [getAllLabelIds](input.md#protected-getalllabelids)
-* [getCustomProperty](input.md#getcustomproperty)
-* [getDefaultPadding](input.md#protected-getdefaultpadding)
-* [getDefaultSerializationContext](input.md#protected-getdefaultserializationcontext)
-* [getEffectivePadding](input.md#geteffectivepadding)
-* [getEffectiveStyle](input.md#geteffectivestyle)
-* [getEffectiveStyleDefinition](input.md#geteffectivestyledefinition)
-* [getElementById](input.md#getelementbyid)
-* [getForbiddenActionTypes](input.md#getforbiddenactiontypes)
-* [getHasBackground](input.md#protected-gethasbackground)
-* [getImmediateSurroundingPadding](input.md#getimmediatesurroundingpadding)
-* [getJsonTypeName](input.md#abstract-getjsontypename)
-* [getPadding](input.md#protected-getpadding)
-* [getParentContainer](input.md#getparentcontainer)
-* [getResourceInformation](input.md#getresourceinformation)
-* [getRootElement](input.md#getrootelement)
-* [getRootObject](input.md#getrootobject)
-* [getSchema](input.md#getschema)
-* [getSchemaKey](input.md#protected-getschemakey)
-* [getValue](input.md#protected-getvalue)
-* [hasAllDefaultValues](input.md#hasalldefaultvalues)
-* [hasDefaultValue](input.md#hasdefaultvalue)
-* [indexOf](input.md#indexof)
-* [internalParse](input.md#protected-internalparse)
-* [internalRender](input.md#protected-abstract-internalrender)
-* [internalToJSON](input.md#protected-internaltojson)
-* [internalValidateProperties](input.md#internalvalidateproperties)
-* [isAtTheVeryBottom](input.md#isattheverybottom)
-* [isAtTheVeryLeft](input.md#isattheveryleft)
-* [isAtTheVeryRight](input.md#isattheveryright)
-* [isAtTheVeryTop](input.md#isattheverytop)
-* [isBleeding](input.md#isbleeding)
-* [isBleedingAtBottom](input.md#isbleedingatbottom)
-* [isBleedingAtTop](input.md#isbleedingattop)
-* [isBottomElement](input.md#isbottomelement)
-* [isDesignMode](input.md#isdesignmode)
-* [isDisplayed](input.md#protected-isdisplayed)
-* [isFirstElement](input.md#isfirstelement)
-* [isHiddenDueToOverflow](input.md#ishiddenduetooverflow)
-* [isLastElement](input.md#islastelement)
-* [isLeftMostElement](input.md#isleftmostelement)
-* [isRightMostElement](input.md#isrightmostelement)
-* [isSet](input.md#abstract-isset)
-* [isTopElement](input.md#istopelement)
-* [isValid](input.md#isvalid)
-* [overrideInternalRender](input.md#protected-overrideinternalrender)
-* [parse](input.md#parse)
-* [populateSchema](input.md#protected-populateschema)
-* [preProcessPropertyValue](input.md#preprocesspropertyvalue)
-* [remove](input.md#remove)
-* [render](input.md#render)
-* [resetDefaultValues](input.md#resetdefaultvalues)
-* [resetValidationFailureCue](input.md#protected-resetvalidationfailurecue)
-* [setCustomProperty](input.md#setcustomproperty)
-* [setPadding](input.md#protected-setpadding)
-* [setParent](input.md#setparent)
-* [setShouldFallback](input.md#setshouldfallback)
-* [setValue](input.md#protected-setvalue)
-* [shouldFallback](input.md#shouldfallback)
-* [shouldSerialize](input.md#protected-shouldserialize)
-* [showValidationErrorMessage](input.md#protected-showvalidationerrormessage)
-* [toJSON](input.md#tojson)
-* [truncateOverflow](input.md#protected-truncateoverflow)
-* [undoOverflowTruncation](input.md#protected-undooverflowtruncation)
-* [updateInputControlAriaLabelledBy](input.md#protected-updateinputcontrolarialabelledby)
-* [updateLayout](input.md#updatelayout)
-* [validateProperties](input.md#validateproperties)
-* [validateValue](input.md#validatevalue)
-* [valueChanged](input.md#protected-valuechanged)
+* [addChip](chipinput.md#addchip)
+* [addInput](chipinput.md#addinput)
+* [adjustRenderedElementSize](chipinput.md#protected-adjustrenderedelementsize)
+* [applyPadding](chipinput.md#protected-applypadding)
+* [asString](chipinput.md#asstring)
+* [createPlaceholderElement](chipinput.md#protected-createplaceholderelement)
+* [focus](chipinput.md#focus)
+* [getActionAt](chipinput.md#getactionat)
+* [getActionById](chipinput.md#getactionbyid)
+* [getActionCount](chipinput.md#getactioncount)
+* [getAllInputs](chipinput.md#getallinputs)
+* [getAllLabelIds](chipinput.md#protected-getalllabelids)
+* [getBgColor](chipinput.md#getbgcolor)
+* [getCustomProperty](chipinput.md#getcustomproperty)
+* [getDefaultPadding](chipinput.md#protected-getdefaultpadding)
+* [getDefaultSerializationContext](chipinput.md#protected-getdefaultserializationcontext)
+* [getEffectivePadding](chipinput.md#geteffectivepadding)
+* [getEffectiveStyle](chipinput.md#geteffectivestyle)
+* [getEffectiveStyleDefinition](chipinput.md#geteffectivestyledefinition)
+* [getElementById](chipinput.md#getelementbyid)
+* [getForbiddenActionTypes](chipinput.md#getforbiddenactiontypes)
+* [getHasBackground](chipinput.md#protected-gethasbackground)
+* [getImmediateSurroundingPadding](chipinput.md#getimmediatesurroundingpadding)
+* [getJsonTypeName](chipinput.md#getjsontypename)
+* [getPadding](chipinput.md#protected-getpadding)
+* [getParentContainer](chipinput.md#getparentcontainer)
+* [getResourceInformation](chipinput.md#getresourceinformation)
+* [getRootElement](chipinput.md#getrootelement)
+* [getRootObject](chipinput.md#getrootobject)
+* [getSchema](chipinput.md#getschema)
+* [getSchemaKey](chipinput.md#protected-getschemakey)
+* [getValue](chipinput.md#protected-getvalue)
+* [hasAllDefaultValues](chipinput.md#hasalldefaultvalues)
+* [hasDefaultValue](chipinput.md#hasdefaultvalue)
+* [indexOf](chipinput.md#indexof)
+* [internalParse](chipinput.md#protected-internalparse)
+* [internalRender](chipinput.md#protected-internalrender)
+* [internalToJSON](chipinput.md#protected-internaltojson)
+* [internalValidateProperties](chipinput.md#internalvalidateproperties)
+* [isAtTheVeryBottom](chipinput.md#isattheverybottom)
+* [isAtTheVeryLeft](chipinput.md#isattheveryleft)
+* [isAtTheVeryRight](chipinput.md#isattheveryright)
+* [isAtTheVeryTop](chipinput.md#isattheverytop)
+* [isBleeding](chipinput.md#isbleeding)
+* [isBleedingAtBottom](chipinput.md#isbleedingatbottom)
+* [isBleedingAtTop](chipinput.md#isbleedingattop)
+* [isBottomElement](chipinput.md#isbottomelement)
+* [isDesignMode](chipinput.md#isdesignmode)
+* [isDisplayed](chipinput.md#protected-isdisplayed)
+* [isFirstElement](chipinput.md#isfirstelement)
+* [isHiddenDueToOverflow](chipinput.md#ishiddenduetooverflow)
+* [isLastElement](chipinput.md#islastelement)
+* [isLeftMostElement](chipinput.md#isleftmostelement)
+* [isRightMostElement](chipinput.md#isrightmostelement)
+* [isSet](chipinput.md#isset)
+* [isTopElement](chipinput.md#istopelement)
+* [isValid](chipinput.md#isvalid)
+* [overrideInternalRender](chipinput.md#protected-overrideinternalrender)
+* [parse](chipinput.md#parse)
+* [populateSchema](chipinput.md#protected-populateschema)
+* [preProcessPropertyValue](chipinput.md#preprocesspropertyvalue)
+* [remove](chipinput.md#remove)
+* [render](chipinput.md#render)
+* [resetDefaultValues](chipinput.md#resetdefaultvalues)
+* [resetValidationFailureCue](chipinput.md#protected-resetvalidationfailurecue)
+* [setCustomProperty](chipinput.md#setcustomproperty)
+* [setPadding](chipinput.md#protected-setpadding)
+* [setParent](chipinput.md#setparent)
+* [setShouldFallback](chipinput.md#setshouldfallback)
+* [setValue](chipinput.md#protected-setvalue)
+* [shouldFallback](chipinput.md#shouldfallback)
+* [shouldSerialize](chipinput.md#protected-shouldserialize)
+* [showValidationErrorMessage](chipinput.md#protected-showvalidationerrormessage)
+* [toJSON](chipinput.md#tojson)
+* [truncateOverflow](chipinput.md#protected-truncateoverflow)
+* [undoOverflowTruncation](chipinput.md#protected-undooverflowtruncation)
+* [updateInputControlAriaLabelledBy](chipinput.md#protected-updateinputcontrolarialabelledby)
+* [updateLayout](chipinput.md#updatelayout)
+* [validateProperties](chipinput.md#validateproperties)
+* [validateValue](chipinput.md#validatevalue)
+* [valueChanged](chipinput.md#protected-valuechanged)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new Input**(): *[Input](input.md)*
+\+ **new ChipInput**(): *[ChipInput](chipinput.md)*
 
 *Inherited from [HostCapabilities](hostcapabilities.md).[constructor](hostcapabilities.md#constructor)*
 
-**Returns:** *[Input](input.md)*
+**Returns:** *[ChipInput](chipinput.md)*
 
 ## Properties
 
@@ -206,6 +204,8 @@ ___
 
 • **errorMessage**? : *undefined | string*
 
+*Inherited from [Input](input.md).[errorMessage](input.md#optional-errormessage)*
+
 ___
 
 ###  height
@@ -228,25 +228,19 @@ ___
 
 ___
 
-### `Optional` id
-
-• **id**? : *undefined | string*
-
-*Implementation of [IInput](../interfaces/iinput.md).[id](../interfaces/iinput.md#optional-id)*
-
-*Inherited from [CardObject](cardobject.md).[id](cardobject.md#optional-id)*
-
-___
-
 ###  isRequired
 
 • **isRequired**: *boolean*
+
+*Inherited from [Input](input.md).[isRequired](input.md#isrequired)*
 
 ___
 
 ### `Optional` label
 
 • **label**? : *undefined | string*
+
+*Inherited from [Input](input.md).[label](input.md#optional-label)*
 
 ___
 
@@ -269,6 +263,8 @@ ___
 ###  onValueChanged
 
 • **onValueChanged**: *function*
+
+*Inherited from [Input](input.md).[onValueChanged](input.md#onvaluechanged)*
 
 #### Type declaration:
 
@@ -302,9 +298,29 @@ ___
 
 ___
 
+### `Static` `Readonly` JsonTypeName
+
+▪ **JsonTypeName**: *"Input.Chips"* = "Input.Chips"
+
+___
+
+### `Static` `Readonly` chipsProperty
+
+▪ **chipsProperty**: *[SerializableObjectCollectionProperty](serializableobjectcollectionproperty.md)‹›* = new SerializableObjectCollectionProperty(Versions.v1_0, "chips", Chip)
+
+___
+
+### `Static` `Readonly` colorProperty
+
+▪ **colorProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_0, "color", true)
+
+___
+
 ### `Static` `Readonly` errorMessageProperty
 
 ▪ **errorMessageProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_3, "errorMessage", true)
+
+*Inherited from [Input](input.md).[errorMessageProperty](input.md#static-readonly-errormessageproperty)*
 
 ___
 
@@ -337,15 +353,17 @@ ___
 
 ### `Static` `Readonly` idProperty
 
-▪ **idProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_0, "id")
+▪ **idProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_0, "id", true)
 
-*Inherited from [CardObject](cardobject.md).[idProperty](cardobject.md#static-readonly-idproperty)*
+*Overrides [CardObject](cardobject.md).[idProperty](cardobject.md#static-readonly-idproperty)*
 
 ___
 
 ### `Static` `Readonly` isRequiredProperty
 
 ▪ **isRequiredProperty**: *[BoolProperty](boolproperty.md)‹›* = new BoolProperty(Versions.v1_3, "isRequired", false)
+
+*Inherited from [Input](input.md).[isRequiredProperty](input.md#static-readonly-isrequiredproperty)*
 
 ___
 
@@ -360,6 +378,8 @@ ___
 ### `Static` `Readonly` labelProperty
 
 ▪ **labelProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_3, "label", true)
+
+*Inherited from [Input](input.md).[labelProperty](input.md#static-readonly-labelproperty)*
 
 ___
 
@@ -379,6 +399,18 @@ ___
 
 ___
 
+### `Static` `Readonly` placeholderProperty
+
+▪ **placeholderProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_0, "placeholder", true)
+
+___
+
+### `Static` `Readonly` removableProperty
+
+▪ **removableProperty**: *[BoolProperty](boolproperty.md)‹›* = new BoolProperty(Versions.v1_0, "removable", true)
+
+___
+
 ### `Static` `Readonly` requiresProperty
 
 ▪ **requiresProperty**: *[SerializableObjectProperty](serializableobjectproperty.md)‹›* = new SerializableObjectProperty(
@@ -388,6 +420,12 @@ ___
         new HostCapabilities())
 
 *Inherited from [CardObject](cardobject.md).[requiresProperty](cardobject.md#static-readonly-requiresproperty)*
+
+___
+
+### `Static` `Readonly` selectedAttribute
+
+▪ **selectedAttribute**: *"data-selected"* = "data-selected"
 
 ___
 
@@ -437,6 +475,24 @@ ___
 
 ___
 
+###  color
+
+• **get color**(): *string*
+
+**Returns:** *string*
+
+• **set color**(`value`: string): *void*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | string |
+
+**Returns:** *void*
+
+___
+
 ### `Protected` defaultStyle
 
 • **get defaultStyle**(): *string*
@@ -483,6 +539,28 @@ Name | Type |
 
 ___
 
+###  id
+
+• **get id**(): *string*
+
+*Overrides [CardObject](cardobject.md).[id](cardobject.md#optional-id)*
+
+**Returns:** *string*
+
+• **set id**(`value`: string): *void*
+
+*Overrides [CardObject](cardobject.md).[id](cardobject.md#optional-id)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | string |
+
+**Returns:** *void*
+
+___
+
 ###  index
 
 • **get index**(): *number*
@@ -496,6 +574,8 @@ ___
 ### `Protected` inputControlContainerElement
 
 • **get inputControlContainerElement**(): *HTMLElement*
+
+*Inherited from [Input](input.md).[inputControlContainerElement](input.md#protected-inputcontrolcontainerelement)*
 
 **Returns:** *HTMLElement*
 
@@ -515,6 +595,8 @@ ___
 
 • **get isInteractive**(): *boolean*
 
+*Inherited from [Input](input.md).[isInteractive](input.md#isinteractive)*
+
 *Overrides [CardElement](cardelement.md).[isInteractive](cardelement.md#isinteractive)*
 
 **Returns:** *boolean*
@@ -524,6 +606,8 @@ ___
 ### `Protected` isNullable
 
 • **get isNullable**(): *boolean*
+
+*Inherited from [Input](input.md).[isNullable](input.md#protected-isnullable)*
 
 **Returns:** *boolean*
 
@@ -595,6 +679,42 @@ ___
 
 ___
 
+###  placeholder
+
+• **get placeholder**(): *string*
+
+**Returns:** *string*
+
+• **set placeholder**(`value`: string): *void*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | string |
+
+**Returns:** *void*
+
+___
+
+###  removable
+
+• **get removable**(): *boolean*
+
+**Returns:** *boolean*
+
+• **set removable**(`value`: boolean): *void*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`value` | boolean |
+
+**Returns:** *void*
+
+___
+
 ###  renderedElement
 
 • **get renderedElement**(): *HTMLElement | undefined*
@@ -608,6 +728,8 @@ ___
 ### `Protected` renderedInputControlElement
 
 • **get renderedInputControlElement**(): *HTMLElement | undefined*
+
+*Inherited from [Input](input.md).[renderedInputControlElement](input.md#protected-renderedinputcontrolelement)*
 
 **Returns:** *HTMLElement | undefined*
 
@@ -657,9 +779,40 @@ ___
 
 • **get value**(): *any*
 
+*Overrides [Input](input.md).[value](input.md#value)*
+
 **Returns:** *any*
 
 ## Methods
+
+###  addChip
+
+▸ **addChip**(`chip`: [ChipData](../interfaces/chipdata.md), `parent`: HTMLElement): *void*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`chip` | [ChipData](../interfaces/chipdata.md) |
+`parent` | HTMLElement |
+
+**Returns:** *void*
+
+___
+
+###  addInput
+
+▸ **addInput**(`parent`: HTMLElement): *void*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`parent` | HTMLElement |
+
+**Returns:** *void*
+
+___
 
 ### `Protected` adjustRenderedElementSize
 
@@ -711,6 +864,8 @@ ___
 
 ▸ **focus**(): *void*
 
+*Inherited from [Input](input.md).[focus](input.md#focus)*
+
 **Returns:** *void*
 
 ___
@@ -761,6 +916,8 @@ ___
 
 ▸ **getAllInputs**(`processActions`: boolean): *[Input](input.md)[]*
 
+*Inherited from [Input](input.md).[getAllInputs](input.md#getallinputs)*
+
 *Overrides [CardElement](cardelement.md).[getAllInputs](cardelement.md#getallinputs)*
 
 **Parameters:**
@@ -777,7 +934,23 @@ ___
 
 ▸ **getAllLabelIds**(): *string[]*
 
+*Inherited from [Input](input.md).[getAllLabelIds](input.md#protected-getalllabelids)*
+
 **Returns:** *string[]*
+
+___
+
+###  getBgColor
+
+▸ **getBgColor**(`color`: string): *string*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`color` | string |
+
+**Returns:** *string*
 
 ___
 
@@ -905,11 +1078,11 @@ Name | Type | Default |
 
 ___
 
-### `Abstract` getJsonTypeName
+###  getJsonTypeName
 
 ▸ **getJsonTypeName**(): *string*
 
-*Inherited from [CardObject](cardobject.md).[getJsonTypeName](cardobject.md#abstract-getjsontypename)*
+*Overrides [CardObject](cardobject.md).[getJsonTypeName](cardobject.md#abstract-getjsontypename)*
 
 **Returns:** *string*
 
@@ -1062,13 +1235,13 @@ Name | Type |
 
 ___
 
-### `Protected` `Abstract` internalRender
+### `Protected` internalRender
 
-▸ **internalRender**(): *HTMLElement | undefined*
+▸ **internalRender**(): *HTMLElement*
 
-*Inherited from [CardElement](cardelement.md).[internalRender](cardelement.md#protected-abstract-internalrender)*
+*Overrides [CardElement](cardelement.md).[internalRender](cardelement.md#protected-abstract-internalrender)*
 
-**Returns:** *HTMLElement | undefined*
+**Returns:** *HTMLElement*
 
 ___
 
@@ -1092,6 +1265,8 @@ ___
 ###  internalValidateProperties
 
 ▸ **internalValidateProperties**(`context`: [ValidationResults](validationresults.md)): *void*
+
+*Inherited from [Input](input.md).[internalValidateProperties](input.md#internalvalidateproperties)*
 
 *Overrides [CardObject](cardobject.md).[internalValidateProperties](cardobject.md#internalvalidateproperties)*
 
@@ -1285,9 +1460,11 @@ Name | Type |
 
 ___
 
-### `Abstract` isSet
+###  isSet
 
 ▸ **isSet**(): *boolean*
+
+*Overrides [Input](input.md).[isSet](input.md#abstract-isset)*
 
 **Returns:** *boolean*
 
@@ -1313,6 +1490,8 @@ ___
 
 ▸ **isValid**(): *boolean*
 
+*Inherited from [Input](input.md).[isValid](input.md#isvalid)*
+
 **Returns:** *boolean*
 
 ___
@@ -1320,6 +1499,8 @@ ___
 ### `Protected` overrideInternalRender
 
 ▸ **overrideInternalRender**(): *HTMLElement | undefined*
+
+*Inherited from [Input](input.md).[overrideInternalRender](input.md#protected-overrideinternalrender)*
 
 *Overrides [CardElement](cardelement.md).[overrideInternalRender](cardelement.md#protected-overrideinternalrender)*
 
@@ -1412,6 +1593,8 @@ ___
 ### `Protected` resetValidationFailureCue
 
 ▸ **resetValidationFailureCue**(): *void*
+
+*Inherited from [Input](input.md).[resetValidationFailureCue](input.md#protected-resetvalidationfailurecue)*
 
 **Returns:** *void*
 
@@ -1531,6 +1714,8 @@ ___
 
 ▸ **showValidationErrorMessage**(): *void*
 
+*Inherited from [Input](input.md).[showValidationErrorMessage](input.md#protected-showvalidationerrormessage)*
+
 **Returns:** *void*
 
 ___
@@ -1581,6 +1766,8 @@ ___
 
 ▸ **updateInputControlAriaLabelledBy**(): *void*
 
+*Inherited from [Input](input.md).[updateInputControlAriaLabelledBy](input.md#protected-updateinputcontrolarialabelledby)*
+
 **Returns:** *void*
 
 ___
@@ -1589,7 +1776,7 @@ ___
 
 ▸ **updateLayout**(`processChildren`: boolean): *void*
 
-*Inherited from [CardElement](cardelement.md).[updateLayout](cardelement.md#updatelayout)*
+*Overrides [CardElement](cardelement.md).[updateLayout](cardelement.md#updatelayout)*
 
 **Parameters:**
 
@@ -1617,6 +1804,8 @@ ___
 
 *Implementation of [IInput](../interfaces/iinput.md)*
 
+*Inherited from [Input](input.md).[validateValue](input.md#validatevalue)*
+
 **Returns:** *boolean*
 
 ___
@@ -1624,5 +1813,7 @@ ___
 ### `Protected` valueChanged
 
 ▸ **valueChanged**(): *void*
+
+*Inherited from [Input](input.md).[valueChanged](input.md#protected-valuechanged)*
 
 **Returns:** *void*

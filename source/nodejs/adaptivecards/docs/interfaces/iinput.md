@@ -10,6 +10,7 @@
 
 ## Implemented by
 
+* [ChipInput](../classes/chipinput.md)
 * [ChoiceSetInput](../classes/choicesetinput.md)
 * [DateInput](../classes/dateinput.md)
 * [Input](../classes/input.md)
