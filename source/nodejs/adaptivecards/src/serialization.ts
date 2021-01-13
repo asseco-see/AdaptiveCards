@@ -886,7 +886,7 @@ export abstract class SerializableObject {
         return true;
     }
 
-    maxVersion: Version = Versions.v1_3;
+    maxVersion: Version = Versions.v1_4;
 
     constructor() {
         let s = this.getSchema();

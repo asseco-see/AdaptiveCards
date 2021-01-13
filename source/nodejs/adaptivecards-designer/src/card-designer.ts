@@ -582,7 +582,7 @@ export class CardDesigner extends Designer.DesignContext {
         }
     }
 
-    private _targetVersion: Adaptive.Version = Adaptive.Versions.v1_3;
+    private _targetVersion: Adaptive.Version = Adaptive.Versions.v1_4;
     private _fullScreenHandler = new FullScreenHandler();
     private _fullScreenButton: ToolbarButton;
     private _hostContainerChoicePicker: ToolbarChoicePicker;

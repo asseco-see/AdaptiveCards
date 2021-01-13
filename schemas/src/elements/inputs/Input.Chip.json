@@ -5,17 +5,20 @@
     "id": {
       "type": "string",
       "description": "Unique identifier for chip.",
-      "required": true
+      "required": true,
+      "version": "1.4"
     },
     "name": {
       "type": "string",
       "description": "Chip name.",
-      "required": true
+      "required": true,
+      "version": "1.4"
     },
     "selected": {
       "type": "boolean",
       "description": "Whether or not the chip is selected. Default value is false",
-      "required": true
+      "required": true,
+      "version": "1.4"
     }
   }
 }

@@ -12,7 +12,7 @@ import { Versions, Version, property, BaseSerializationContext, SerializableObje
     NumProperty, PropertyBag, CustomProperty, PropertyDefinition } from "./serialization";
 import { CardObjectRegistry } from "./registry";
 import { Strings } from "./strings";
-import { mod11_2, mod97_10 } from "cdigit"
+import { mod11_2, mod97_10, verhoeff } from "cdigit"
 
 export type CardElementHeight = "auto" | "stretch";
 
@@ -6957,7 +6957,7 @@ export class GlobalRegistry {
         registry.register("Input.Number", NumberInput);
         registry.register("Input.ChoiceSet", ChoiceSetInput);
 		registry.register("Input.Toggle", ToggleInput);
-		registry.register("Input.Chips", ChipInput);
+		registry.register("Input.Chips", ChipInput), Versions.v1_4;
     }
 
     static populateWithDefaultActions(registry: CardObjectRegistry<Action>) {
