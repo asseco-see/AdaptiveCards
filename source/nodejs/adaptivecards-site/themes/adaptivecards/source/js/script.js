@@ -51,7 +51,7 @@ $(function () {
 		"supportsInteractivity": true,
 		"fontTypes": {
 			"default": {
-				"fontFamily": "Segoe UI, Helvetica Neue, Helvetica, sans-serif",
+				"fontFamily": "Roboto, sans-serif",
 				"fontSizes": {
 					"small": 12,
 					"default": 14,
