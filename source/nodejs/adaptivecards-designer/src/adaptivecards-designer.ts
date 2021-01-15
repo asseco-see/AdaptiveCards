@@ -16,4 +16,5 @@ export const defaultMicrosoftHosts: containers.HostContainer[] = [
 	new containers.BotFrameworkContainer("Bot Framework Other Channels (Image render)", "containers/bf-image-container.css"),
 	new containers.CortanaClassicContainer("Cortana Skills (Classic)", "containers/cortana-classic-container.css"),
 	new containers.ToastContainer("Windows Notifications (Preview)", "containers/toast-container.css"),
+	new containers.AngularContainer("Angular (Preview)", "containers/angular-container.css"),
 ]
