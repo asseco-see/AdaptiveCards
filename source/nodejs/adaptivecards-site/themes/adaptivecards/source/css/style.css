@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "docons";
-  src: url("../content/fonts/docons.woff") format("woff");
+  font-family: "Roboto";
+  src: url("../content/fonts/roboto/Roboto-Regular.ttf") format("ttf");
 }
 
 html {
@@ -9,8 +9,7 @@ html {
 
 body {
   font-size: 14px;
-  font-family: segoe-ui_normal, Segoe UI, Segoe, Segoe WP, Helvetica Neue,
-    Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif;
   min-height: 100px;
 }
 
