@@ -1,9 +1,5 @@
 ---
 title: HostConfig for Adaptive Cards
-author: almedina-ms
-ms.author: almedina
-ms.date: 08/05/2020
-ms.topic: reference
 ---
 
 # What is HostConfig?
