@@ -130,9 +130,12 @@ export class SampleCatalogue {
         if (Array.isArray(input)) {
             entries = input;
         }
-        else {
-            entries = Array.isArray(input["entries"]) ? input["entries"] : null;
+        else if (Array.isArray(input["entries"])){
+            entries = input["entries"]
         }
+        else {
+            entries = Array.isArray(input["items"]) ? input["items"] : null;
+		}
 
         this._entries = [
             CatalogueEntry.createEmptyCardEntry()
@@ -141,15 +144,16 @@ export class SampleCatalogue {
         if (entries != null) {
             for (let entry of entries) {
                 if (typeof entry === "object") {
-                    let displayName = Adaptive.parseString(entry["displayName"]);
-                    let cardPayloadUrl = Adaptive.parseString(entry["cardPayloadUrl"]);
-
+                    console.log(`Url is ${this._url}`);
+                    let displayName = Adaptive.parseString(entry["displayName"]) ? Adaptive.parseString(entry["displayName"]) : Adaptive.parseString(entry["name"]);
+                    let cardPayloadUrl = Adaptive.parseString(entry["cardPayloadUrl"]) ? Adaptive.parseString(entry["cardPayloadUrl"]) :  `${this._url}/${displayName}/template`; //Adaptive.parseString(entry["cardPayloadUrl"]);
+                    let cardDataUrl = Adaptive.parseString(entry["dataSampleUrl"])? Adaptive.parseString(entry["dataSampleUrl"]): `${this._url}/${displayName}/data`;
                     if (displayName && cardPayloadUrl) {
                         this._entries.push(
                             new CatalogueEntry(
                                 displayName,
                                 cardPayloadUrl,
-                                Adaptive.parseString(entry["dataSampleUrl"])));
+                                cardDataUrl));
                     }
                 }
             }
@@ -169,7 +173,7 @@ export class SampleCatalogue {
                 if (this._entries.length === 0) {
                     this._entries = [ CatalogueEntry.createEmptyCardEntry() ];
                 }
-                
+
                 this.downloaded();
             };
             downloader.onSuccess = () => {

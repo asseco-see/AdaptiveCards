@@ -62,7 +62,8 @@ window.onload = function() {
     */
 
 	let designer = new ACDesigner.CardDesigner(ACDesigner.defaultMicrosoftHosts);
-	designer.sampleCatalogueUrl = window.location.origin + "/sample-catalogue.json";
+    designer.sampleCatalogueUrl = window.location.origin + "/sample-catalogue.json";
+    //designer.sampleCatalogueUrl = 'http://localhost:8080/alpha/screens/samples';
 	designer.attachTo(document.getElementById("designerRootHost"));
 
     /* Uncomment to test a custom palette item example
