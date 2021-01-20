@@ -601,7 +601,6 @@ export class CardDesigner extends Designer.DesignContext {
             this._versionChoicePicker.label = "Target version:"
             this._versionChoicePicker.alignment = ToolbarElementAlignment.Right;
             this._versionChoicePicker.separator = true;
-
             for (let i = 0; i < Shared.SupportedTargetVersions.length; i++) {
                 this._versionChoicePicker.choices.push(
                     {
@@ -628,7 +627,7 @@ export class CardDesigner extends Designer.DesignContext {
                         const newCardButton = this._newCardButton.renderedElement;
                         dialog.selectedSample.onDownloaded = () => {
                             try {
-                                let cardPayload = JSON.parse(dialog.selectedSample.cardPayload);
+                                let cardPayload = dialog.selectedSample.cardPayload;
 
                                 this.setCardPayload(cardPayload, true);
                             } catch {
@@ -637,7 +636,7 @@ export class CardDesigner extends Designer.DesignContext {
 
                             if (dialog.selectedSample.sampleData) {
                                 try {
-                                    let sampleDataPayload = JSON.parse(dialog.selectedSample.sampleData);
+                                    let sampleDataPayload = dialog.selectedSample.sampleData;
 
                                     this.setSampleDataPayload(sampleDataPayload);
                                     this.dataStructure = FieldDefinition.deriveFrom(sampleDataPayload);

@@ -85,30 +85,39 @@ module.exports = (env, argv) => {
 				filesToConcat: ['./node_modules/adaptivecards-controls/dist/adaptivecards-controls.css', './src/adaptivecards-designer.css']
 			}),
 			new CopyWebpackPlugin({
-				patterns: [{
-					from: 'src/containers/default/adaptivecards-defaulthost.css',
-					to: '.'
-				},
-				{
-					from: 'src/adaptivecards-designer.css',
-					to: '.',
-					flatten: true
-				},
-				{
-					from: 'src/containers/**/*.css',
-					to: 'containers/',
-					flatten: true
-				},
-				{
-					from: 'src/containers/**/*.png',
-					to: 'containers/',
-					flatten: true
-				},
-				{
-					from: 'src/containers/**/*.jpg',
-					to: 'containers/',
-					flatten: true
-				}],
+				patterns: [
+					{
+						from: 'configuration.json',
+						to: '.'
+					},
+					{
+						from: '../adaptivecards/dist/adaptivecards.min.js',
+						to: '.'
+					},
+					{
+						from: 'src/containers/default/adaptivecards-defaulthost.css',
+						to: '.'
+					},
+					{
+						from: 'src/adaptivecards-designer.css',
+						to: '.',
+						flatten: true
+					},
+					{
+						from: 'src/containers/**/*.css',
+						to: 'containers/',
+						flatten: true
+					},
+					{
+						from: 'src/containers/**/*.png',
+						to: 'containers/',
+						flatten: true
+					},
+					{
+						from: 'src/containers/**/*.jpg',
+						to: 'containers/',
+						flatten: true
+					}],
 				options: {
 					concurrency: 8
 				}

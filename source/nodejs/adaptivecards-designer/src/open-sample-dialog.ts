@@ -5,6 +5,8 @@ import * as ACData from "adaptivecards-templating";
 import * as Adaptive from "adaptivecards";
 import { Dialog } from "./dialog";
 import { Pic2Card } from "./pic2card";
+import { Pagination } from './pagination';
+import { TagList } from './tags';
 
 class CatalogueItem {
     onClick: (sender: CatalogueItem) => void;
@@ -47,7 +49,7 @@ class CatalogueItem {
         let displayNameElement = document.createElement("div");
         displayNameElement.className = "acd-open-sample-item-title";
         displayNameElement.id = newItemId;
-        displayNameElement.innerText = this.entry.displayName;
+        displayNameElement.innerText = this.entry.name;
 
         element.appendChild(thumbnailHost);
         element.appendChild(displayNameElement);
@@ -55,18 +57,18 @@ class CatalogueItem {
         this.entry.onDownloaded = (sender: CatalogueEntry) => {
             thumbnailHost.removeChild(spinner);
 
-            let success: boolean = sender.cardPayloadDownloaded;
+            let success: boolean = true;
 
             if (success) {
                 try {
-                    let cardPayload = JSON.parse(sender.cardPayload);
+                    let cardPayload = sender.cardPayload;
 
                     if (sender.sampleData) {
                         let template = new ACData.Template(cardPayload);
 
                         cardPayload = template.expand(
                             {
-                                $root: JSON.parse(sender.sampleData)
+                                $root: sender.sampleData
                             }
                         );
                     }
@@ -103,6 +105,7 @@ class CatalogueItem {
 export class OpenSampleDialog extends Dialog {
     private _renderedElement: HTMLElement;
     private _selectedSample: CatalogueEntry;
+    private selectedTags = [];
 
     private setContent(element: HTMLElement) {
         while (this._renderedElement.firstChild) {
@@ -148,10 +151,14 @@ export class OpenSampleDialog extends Dialog {
         renderedElement.setAttribute("role", "list");
 
         // add pic2card option only if pic2card service url configured
-        if(pic2cardService && pic2cardService !== '') {
+        if (pic2cardService && pic2cardService !== '') {
             renderedElement.appendChild(this.renderImageOption());
         }
-        
+
+        var divTags = document.createElement('div');
+        divTags.id = 'tag-picker';
+        renderedElement.appendChild(divTags);
+
         for (let entry of this.catalogue.entries) {
             let item = new CatalogueItem(entry);
             item.onClick = (sender: CatalogueItem) => {
@@ -162,6 +169,10 @@ export class OpenSampleDialog extends Dialog {
 
             renderedElement.appendChild(item.render());
         }
+
+        var div = document.createElement("div");
+        div.id = 'pagination';
+        renderedElement.appendChild(div);
 
         return renderedElement;
     }
@@ -175,11 +186,19 @@ export class OpenSampleDialog extends Dialog {
             <div class="acd-image-upload-title">Create from Image </div>
             <div class="acd-image-description">Upload your own image and convert it magically to an Adaptive card</div><input class="acd-try-now-button" value="Try Now" type="button" /></div></div><div class="acd-open-sample-item-title">Create from Image</div>`;
         imageOption.addEventListener("click", () => {
-            this._selectedSample = new CatalogueEntry("Create From Image (Preview)", "", "", pic2CardID);
+            this._selectedSample = new CatalogueEntry("Create From Image (Preview)", null, null, pic2CardID);
             this.close();
         });
 
         return imageOption;
+    }
+
+    protected onTagChoosen(selectedTags) {
+        this.selectedTags = selectedTags;
+        this.catalogue.loadPage(1, selectedTags);
+    }
+    protected onPageChange(page) {
+        this.catalogue.loadPage(page, this.selectedTags);
     }
 
     protected renderContent(): HTMLElement {
@@ -188,10 +207,14 @@ export class OpenSampleDialog extends Dialog {
 
         this.setContent(this.renderMessage("Loading sample catalogue, please wait...", true));
 
+
         this.catalogue.onDownloaded = (sender: SampleCatalogue) => {
             if (sender.isDownloaded) {
                 let catalogue = this.renderCatalogue();
                 this.setContent(catalogue);
+                new Pagination(this.catalogue.totalPages, this.catalogue.page, this.onPageChange.bind(this));
+                new TagList(this.catalogue.tags, this.selectedTags, this.onTagChoosen.bind(this));
+
 
                 // now set focus on the first card in the catalog (usually the Blank Card)
                 let firstChild = catalogue.firstElementChild as HTMLElement;

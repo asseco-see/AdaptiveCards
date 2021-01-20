@@ -5,6 +5,64 @@
     font-style: normal;
 }
 
+#pagination {
+    width: 100%;
+    text-align: center;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+#pagination a {
+    background: gray;
+    padding: 6px;
+    font-size: 24px;
+    border-radius: 8px;
+    margin-left: 5px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    min-width: 36px;
+}
+
+#pagination a.current {
+    background: black;
+}
+
+#tag-picker {
+    width: 100%;
+}
+
+
+#tag-picker ul {
+    list-style: none;
+    padding: 0px;
+    text-align:center;
+    width: 100%;
+}
+
+#tag-picker ul li {
+    cursor: pointer;
+    display: inline-block;
+    width: 100px;
+    background: grey;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    padding: 6px;
+    text-transform: capitalize;
+    margin-left: 8px;
+    margin-top: 8px;
+}
+
+#tag-picker ul li.selected {
+    background: black;
+}
+
 .acd-designer-root *::-webkit-scrollbar {
     width: 5px;
     height: 5px;
@@ -216,7 +274,7 @@
 .acd-open-sample-item-thumbnail {
     overflow: hidden;
     height: 100%;
-    min-height: 150px;
+    min-height: 450px;
     max-height: 400px;
     width: 100%;
     pointer-events: none;
