@@ -823,7 +823,7 @@
 }
 
 .acd-toolbar-button {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-weight: normal;
     padding: 10px;
@@ -947,7 +947,7 @@ a.default-ac-anchor:visited:active {
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 600;
     padding: 4px 10px 5px 10px;
@@ -1006,7 +1006,7 @@ a.default-ac-anchor:visited:active {
 }
 
 .default-ac-input {
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     color: black;
 }
