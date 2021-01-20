@@ -117,6 +117,11 @@ export class OpenSampleDialog extends Dialog {
         }
     }
 
+
+    open() {
+        this.catalogue.isDownloaded = false;
+        super.open();
+    }
     private renderMessage(message: string, showSpinner: boolean): HTMLElement {
         let messageHostElement = document.createElement("div");
         messageHostElement.style.display = "flex";
@@ -143,6 +148,8 @@ export class OpenSampleDialog extends Dialog {
 
         return messageHostElement;
     }
+
+
 
     private renderCatalogue(): HTMLElement {
         const pic2cardService = Pic2Card.pic2cardService !== '' ? Pic2Card.pic2cardService : process.env.PIC_TO_CARD_PREDICTION_API;
@@ -204,17 +211,16 @@ export class OpenSampleDialog extends Dialog {
     protected renderContent(): HTMLElement {
         this._renderedElement = document.createElement("div");
         this._renderedElement.style.overflow = "auto";
-
         this.setContent(this.renderMessage("Loading sample catalogue, please wait...", true));
-
-
         this.catalogue.onDownloaded = (sender: SampleCatalogue) => {
             if (sender.isDownloaded) {
                 let catalogue = this.renderCatalogue();
                 this.setContent(catalogue);
                 new Pagination(this.catalogue.totalPages, this.catalogue.page, this.onPageChange.bind(this));
                 var tagView = new TagList(this.catalogue.tags, this.selectedTags, this.onTagChoosen.bind(this));
-                tagView.scrollTo();
+                if (this.catalogue.page !== 1) {
+                    tagView.scrollTo();
+                }
 
                 // now set focus on the first card in the catalog (usually the Blank Card)
                 let firstChild = catalogue.firstElementChild as HTMLElement;

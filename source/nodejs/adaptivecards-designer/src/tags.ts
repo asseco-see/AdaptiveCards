@@ -15,7 +15,7 @@ export class TagList {
     }
 
     scrollTo() {
-        this.e.scrollIntoView();
+        this.e.scrollIntoView({behavior: 'smooth'});
     }
 
     onClick(e) {

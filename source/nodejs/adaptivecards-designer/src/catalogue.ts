@@ -523,6 +523,10 @@ export class SampleCatalogue {
         return this._isDownloaded;
     }
 
+    set isDownloaded(bool: boolean) {
+        this._isDownloaded = bool;
+    }
+
     get tags(): string[] {
         return this._tags;
     }

@@ -628,7 +628,6 @@ export class CardDesigner extends Designer.DesignContext {
                         dialog.selectedSample.onDownloaded = () => {
                             try {
                                 let cardPayload = dialog.selectedSample.cardPayload;
-
                                 this.setCardPayload(cardPayload, true);
                             } catch {
                                 alert("The sample could not be loaded.");
@@ -637,7 +636,6 @@ export class CardDesigner extends Designer.DesignContext {
                             if (dialog.selectedSample.sampleData) {
                                 try {
                                     let sampleDataPayload = dialog.selectedSample.sampleData;
-
                                     this.setSampleDataPayload(sampleDataPayload);
                                     this.dataStructure = FieldDefinition.deriveFrom(sampleDataPayload);
                                 } catch {
