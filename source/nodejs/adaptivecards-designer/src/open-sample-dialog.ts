@@ -213,8 +213,8 @@ export class OpenSampleDialog extends Dialog {
                 let catalogue = this.renderCatalogue();
                 this.setContent(catalogue);
                 new Pagination(this.catalogue.totalPages, this.catalogue.page, this.onPageChange.bind(this));
-                new TagList(this.catalogue.tags, this.selectedTags, this.onTagChoosen.bind(this));
-
+                var tagView = new TagList(this.catalogue.tags, this.selectedTags, this.onTagChoosen.bind(this));
+                tagView.scrollTo();
 
                 // now set focus on the first card in the catalog (usually the Blank Card)
                 let firstChild = catalogue.firstElementChild as HTMLElement;

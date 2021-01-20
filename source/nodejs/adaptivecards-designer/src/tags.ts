@@ -14,6 +14,10 @@ export class TagList {
         this.reRender();
     }
 
+    scrollTo() {
+        this.e.scrollIntoView();
+    }
+
     onClick(e) {
         var tag = e.target.innerHTML;
         if (this.selectedTags.indexOf(tag) !== -1) {

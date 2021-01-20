@@ -47,11 +47,17 @@ module.exports = (env, argv) => {
 		plugins: [
 			//new CleanWebpackPlugin(['dist']),
 			new CopyWebpackPlugin({
-				patterns: [{
+				patterns: [
+				{
 					from: 'node_modules/adaptivecards-designer/dist/containers/*',
 					to: 'containers/',
 					flatten: true
-				}]
+				},
+				{
+					from: '../adaptivecards-designer/configuration.json',
+					to: '.'
+				}
+				]
 			}),
 			new HtmlWebpackPlugin({
 				title: "Adaptive Cards Designer",
