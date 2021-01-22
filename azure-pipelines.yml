@@ -49,6 +49,10 @@ steps:
     echo -e "\nCOPY --chown=1001:0 .version /" >> $(dockerfilePath)
   displayName: 'COMMIT_tag_version'
 
+- script: |
+    ls -la source/nodejs/adaptivecards-site/public/node_modules/adaptivecards/dist
+  displayName: 'list_node_modules'
+
 - task: DockerAdvanced@0
   displayName: 'COMMIT_publish'
   inputs:
