@@ -45,6 +45,17 @@ steps:
       $(cacheVolumes)
 
 - task: DockerAdvanced@0
+  displayName: 'COMMIT_release'
+  inputs:
+    image: 'registry.see.asseco.com/tools/angular-module-builder:9.0'
+    dockerRegistryEndpoint: harbor
+    commands: |
+      cd source/nodejs/adaptivecards-site
+      npx lerna run release
+    volumes: |
+      $(cacheVolumes)
+
+- task: DockerAdvanced@0
   displayName: 'COMMIT_generate_version'
   inputs:
     image: 'registry.see.asseco.com/tools/image-tagger'
