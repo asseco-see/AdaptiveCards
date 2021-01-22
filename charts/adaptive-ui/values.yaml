@@ -17,7 +17,7 @@ replicaCount: 1
 ##
 image:
   registry: "registry.see.asseco.com"
-  repository: "platform/adaptive-cards"
+  repository: "platform/adaptive-ui"
   ## Tag
   ## ref: https://docs.docker.com/engine/reference/commandline/tag/
   ##
@@ -28,13 +28,7 @@ image:
   ##
   # pullSecrets:
   #   - myRegistryKeySecretName
-components-ui-material:
-  image:
-    tag: "latest-dev"
 
-components-ui-universal:
-  image:
-    tag: "latest-dev"
 ## Global container image parameters
 ## Please, note that this will override the image parameters, including dependencies, configured to use the global value
 ## Current available global container image parameters: imageRegistry and imagePullSecrets
@@ -63,7 +57,7 @@ hostname: "docs.see.asseco.com"
 env:
   audit:
     enabled: false
-  basePath: "/"
+  basePath: "/adaptive-ui"
 
 ## Ingress controller
 ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
@@ -71,9 +65,7 @@ env:
 ingress:
   enabled: true
   class: "nginx"
-  annotations:
-    certmanager.k8s.io/cluster-issuer: "letsencrypt-production"
-  secretName: "{{ .Release.Name }}-secret-tls"
+  secretName: "platform-docs-secret-tls"
   # extraPaths: |
   tls:
     enabled: true

@@ -12,7 +12,6 @@ metadata:
   {{- if .Values.global.ingress.sslOffloading }}
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
   {{- end }}
-    nginx.ingress.kubernetes.io/app-root: "/platform/"
     {{- include "helper.ingressAnnotations" . | nindent 4 }}
 spec:
 {{- if eq "true" ( include "helper.ingressTlsEnabled" . ) }}
