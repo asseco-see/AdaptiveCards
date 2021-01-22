@@ -1,0 +1,18 @@
+{{- if .Values.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "helper.fullname" . | quote }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "helper.metadataLabels" . | nindent 4 }}
+spec:
+  type: "ClusterIP"
+  ports:
+    - port: 80
+      targetPort: "http"
+      protocol: "TCP"
+      name: "http"
+  selector:
+    {{- include "helper.selectorLabels" . | nindent 4 }}
+{{- end -}}

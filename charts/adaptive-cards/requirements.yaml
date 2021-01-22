@@ -1,0 +1,6 @@
+dependencies:
+  # DIGITAL PLATFORM
+  ## HELPER
+  - name: "helper"
+    repository: "https://registry.see.asseco.com/chartrepo/charts-helper"
+    version: "1.0.0"
