@@ -19,7 +19,7 @@ pool: 'Digital'
 
 steps:
 - script: |
-    sed -i 's/root:\//root:\/adaptive-ui/g' source/nodejs/adaptivecards-site/_config.yml
+    sed -i 's/root: \//root: \/adaptive-ui/g' source/nodejs/adaptivecards-site/_config.yml
     cat source/nodejs/adaptivecards-site/_config.yml
   displayName: 'CHANGE_site_path_root'
 
