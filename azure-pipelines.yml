@@ -29,6 +29,10 @@ steps:
     volumes: |
       $(cacheVolumes)
 
+- script: |
+    sed -i 's/root:\//root:\/adaptive-ui/g' source/nodejs/adaptivecards-site/_config.yml
+  displayName: 'CHANGE_SITE_ROOT_PATH'
+
 - task: DockerAdvanced@0
   displayName: 'COMMIT_build'
   inputs:
