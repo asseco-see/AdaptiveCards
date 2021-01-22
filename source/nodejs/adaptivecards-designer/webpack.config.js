@@ -91,7 +91,7 @@ module.exports = (env, argv) => {
 						to: '.'
 					},
 					{
-						from: '../adaptivecards/dist/adaptivecards.min.js',
+						from: '../adaptivecards/dist/adaptivecards.js',
 						to: '.'
 					},
 					{
