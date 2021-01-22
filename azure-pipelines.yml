@@ -12,7 +12,7 @@ variables:
 
 - name: cacheVolumes
   value: |
-    /opt/cache/node_modules/adaptive_cards:/source/node_modules
+    /opt/cache/node_modules/adaptive-cards:/source/node_modules
 
 
 pool: 'Digital'
@@ -38,17 +38,6 @@ steps:
       cd source/nodejs
       npx lerna bootstrap
       npx lerna run build
-    volumes: |
-      $(cacheVolumes)
-
-- task: DockerAdvanced@0
-  displayName: 'COMMIT_release'
-  inputs:
-    image: 'registry.see.asseco.com/tools/angular-module-builder:9.0'
-    dockerRegistryEndpoint: harbor
-    commands: |
-      cd source/nodejs/adaptivecards-site
-      npx lerna run release
     volumes: |
       $(cacheVolumes)
 
