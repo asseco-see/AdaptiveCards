@@ -12,15 +12,13 @@ variables:
 
 - name: cacheVolumes
   value: |
-    /opt/cache/node_modules/adaptive-cards:/source/nodejs/node_modules
-
+    /opt/cache/node_modules/adaptive-cards:/source/source/nodejs/node_modules
 
 pool: 'Digital'
 
 steps:
 - script: |
     sed -i 's/root: \//root: \/adaptive-ui/g' source/nodejs/adaptivecards-site/_config.yml
-    cat source/nodejs/adaptivecards-site/_config.yml
   displayName: 'CHANGE_site_path_root'
 
 - task: DockerAdvanced@0
