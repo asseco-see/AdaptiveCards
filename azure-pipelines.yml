@@ -26,7 +26,6 @@ steps:
       cd source/nodejs
       npm install --no-progress --loglevel=warn
       npx lerna bootstrap
-      npx lerna run build
 
 - task: DockerAdvanced@0
   displayName: 'COMMIT_release'
@@ -35,17 +34,6 @@ steps:
     commands: |
       cd source/nodejs/adaptivecards-site
       npx lerna run release
-
-- script: |
-    ls -la source/nodejs/adaptivecards-site/public/node_modules/adaptivecards/dist
-    ls -la source/nodejs/adaptivecards/dist
-  displayName: 'list_node_modules'
-
-- script: |
-    cat source/nodejs/adaptivecards-site/public/node_modules/adaptivecards/dist/adaptivecards.9b64b6.js
-    cat source/nodejs/adaptivecards-site/public/node_modules/adaptivecards/dist/index.html
-  displayName: 'cat_js_output'
-
 
 - task: DockerAdvanced@0
   displayName: 'COMMIT_generate_version'
