@@ -30,7 +30,14 @@ steps:
 
 - script: |
     ls -la source/nodejs/adaptivecards-site/public/node_modules/adaptivecards/dist
+    ls -la source/nodejs/adaptivecards/dist
   displayName: 'list_node_modules'
+
+- script: |
+    cat source/nodejs/adaptivecards-site/public/node_modules/adaptivecards/dist/adaptivecards.9b64b6.js
+    cat source/nodejs/adaptivecards-site/public/node_modules/adaptivecards/dist/index.html
+  displayName: 'cat_js_output'
+
 
 - task: DockerAdvanced@0
   displayName: 'COMMIT_generate_version'
