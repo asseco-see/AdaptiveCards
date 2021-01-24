@@ -28,6 +28,14 @@ steps:
       npx lerna bootstrap
       npx lerna run build
 
+- task: DockerAdvanced@0
+  displayName: 'COMMIT_release'
+  inputs:
+    image: 'node:12-slim'
+    commands: |
+      cd source/nodejs/adaptivecards-site
+      npx lerna run release
+
 - script: |
     ls -la source/nodejs/adaptivecards-site/public/node_modules/adaptivecards/dist
     ls -la source/nodejs/adaptivecards/dist
