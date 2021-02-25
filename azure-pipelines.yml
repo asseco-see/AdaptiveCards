@@ -26,6 +26,7 @@ steps:
       cd source/nodejs
       npm install --no-progress --loglevel=warn
       npx lerna bootstrap
+      npx lerna run build
 
 - task: DockerAdvanced@0
   displayName: 'COMMIT_release'
@@ -33,7 +34,6 @@ steps:
     image: 'node:12-slim'
     commands: |
       cd source/nodejs/adaptivecards-site
-      npx lerna run build
       npx lerna run release
 
 - task: DockerAdvanced@0
