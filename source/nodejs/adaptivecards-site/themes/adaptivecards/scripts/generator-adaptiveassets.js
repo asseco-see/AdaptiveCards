@@ -15,7 +15,7 @@ var simpleAssets = [
 	"../adaptivecards/dist/*.*",
 	"node_modules/adaptive-expressions/lib/*.*",
 	"../adaptivecards-designer/dist/*.*",
-	"adaptivecards-templating/dist/*.*",
+	"node_modules/adaptivecards-templating/dist/*.*",
 	"node_modules/@fortawesome/fontawesome-free/css/all.min.css",
 	"node_modules/@fortawesome/fontawesome-free/webfonts/*.*",
 	"node_modules/highlightjs/highlight.pack.min.js",
