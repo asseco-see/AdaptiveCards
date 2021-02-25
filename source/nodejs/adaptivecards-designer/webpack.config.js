@@ -125,9 +125,14 @@ module.exports = (env, argv) => {
 		],
 		externals: {
 			///^monaco-editor/ // <-- NOT WORKING for some reason
+			"@asseco/adaptivecards": {
+				commonjs2: "@asseco/adaptivecards",
+				commonjs: "@asseco/adaptivecards",
+				root: "AdaptiveCards"
+			},
 			"adaptivecards": {
-				commonjs2: "adaptivecards",
-				commonjs: "adaptivecards",
+				commonjs2: "@asseco/adaptivecards",
+				commonjs: "@asseco/adaptivecards",
 				root: "AdaptiveCards"
 			},
 			"adaptive-expressions": {

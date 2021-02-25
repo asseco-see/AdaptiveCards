@@ -12,7 +12,7 @@ import {
     ShowCardActionMode,
     Orientation,
     ActionAlignment,
-} from "adaptivecards";
+} from "@asseco/adaptivecards";
 import * as skypeConfiguration from "../../../../../samples/HostConfig/skype.json";
 
 export class SkypeContainer extends HostContainer {

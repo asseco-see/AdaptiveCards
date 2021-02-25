@@ -35,6 +35,29 @@ steps:
       cd source/nodejs/adaptivecards-site
       npx lerna run release
 
+
+- task: DockerAdvanced@0
+  displayName: 'COMMIT_NPM_publish_adaptivecards'
+  inputs:
+    image: 'registry.see.asseco.com/tools/angular-module-builder:9.0'
+    dockerRegistryEndpoint: harbor
+    secureFile: npm-asee-dp-robot
+    commands: |
+      cp npm-asee-dp-robot /root/.npmrc
+      cd source/nodejs/adaptivecards
+      npm run publish
+      
+- task: DockerAdvanced@0
+  displayName: 'COMMIT_NPM_publish_adaptivecards_designer'
+  inputs:
+    image: 'registry.see.asseco.com/tools/angular-module-builder:9.0'
+    dockerRegistryEndpoint: harbor
+    secureFile: npm-asee-dp-robot
+    commands: |
+      cp npm-asee-dp-robot /root/.npmrc
+      cd source/nodejs/adaptivecards-designer
+      npm run publish
+
 - task: DockerAdvanced@0
   displayName: 'COMMIT_generate_version'
   inputs:

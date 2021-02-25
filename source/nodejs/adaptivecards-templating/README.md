@@ -47,7 +47,7 @@ Here is a simplistic "Hello World" example on how to use the library to generate
 
 ```typescript
 import * as ACData from "adaptivecards-templating";
-import * as AdaptiveCards from "adaptivecards";
+import * as AdaptiveCards from "@asseco/adaptivecards";
 
 // Define a template payload
 var templatePayload = {

@@ -1,5 +1,5 @@
 {
-	"name": "adaptivecards",
+	"name": "@asseco/adaptivecards",
 	"version": "2.1.0",
 	"description": "Adaptive Cards Javascript library for HTML Clients",
 	"author": "AdaptiveCards",
@@ -29,7 +29,9 @@
 		"dts": "dts-generator --prefix adaptivecards --project . --out dist/adaptivecards.d.ts",
 		"lint": "eslint src/*.ts",
 		"release": "npm run clean && concurrently \"npm:build\" \"webpack --mode=production\" \"npm:docs\" && concurrently \"npm:test\" \"npm:dts\"",
-		"docs": "npx typedoc"
+		"docs": "npx typedoc",
+		"publish": "npm version $(head -n 1 ../../../.version) && npm publish --registry https://devops.see.asseco.com/DIGITAL/_packaging/Asseco/npm/registry/ --loglevel warn"
+	
 	},
 	"repository": {
 		"type": "git",

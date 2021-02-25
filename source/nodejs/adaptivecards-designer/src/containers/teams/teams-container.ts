@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Adaptive from "adaptivecards";
+import * as Adaptive from "@asseco/adaptivecards";
 import { HostContainer } from "../host-container";
 import * as hostConfigLight from "../../hostConfigs/microsoft-teams-light.json";
 import * as hostConfigDark from "../../hostConfigs/microsoft-teams-dark.json";

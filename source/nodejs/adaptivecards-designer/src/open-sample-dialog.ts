@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { SampleCatalogue, CatalogueEntry } from "./catalogue";
 import * as ACData from "adaptivecards-templating";
-import * as Adaptive from "adaptivecards";
+import * as Adaptive from "@asseco/adaptivecards";
 import { Dialog } from "./dialog";
 import { Pic2Card } from "./pic2card";
 import { Pagination } from './pagination';

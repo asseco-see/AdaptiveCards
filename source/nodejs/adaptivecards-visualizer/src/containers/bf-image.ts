@@ -12,7 +12,7 @@ import {
     ShowCardActionMode,
     Orientation,
     ActionAlignment,
-} from "adaptivecards";
+} from "@asseco/adaptivecards";
 import * as renderToImageConfiguration from "../../../../../samples/HostConfig/render-to-image.json";
 
 export class BotFrameworkImageContainer extends HostContainer {

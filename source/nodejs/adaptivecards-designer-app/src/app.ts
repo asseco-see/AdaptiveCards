@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as monaco from "monaco-editor";
 import * as markdownit from "markdown-it";
-import * as ACDesigner from "adaptivecards-designer";
+import * as ACDesigner from "@asseco/adaptivecards-designer";
 import * as ACTemplating from "adaptivecards-templating";
-import "adaptivecards-designer/dist/adaptivecards-designer.css";
+import "../../adaptivecards-designer/dist/adaptivecards-designer.css";
 import "./app.css";
 
 // Uncomment below if you plan to use an empty hostContainers array
