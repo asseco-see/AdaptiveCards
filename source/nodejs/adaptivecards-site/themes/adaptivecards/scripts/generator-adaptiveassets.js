@@ -52,8 +52,8 @@ var customAssets = [
     },
 	{
         // designer module (hashing not working for CSS files; the designer expects certain filenames)
-        path: "node_modules/adaptivecards-designer/dist/containers/*.*",
-		dest: function (p) { return p; },
+        path: "../adaptivecards-designer/dist/containers/*.*",
+		dest: function (p) { return p.replace("../", "node_modules/"); },
 		noHash: true
 	},
 	{
