@@ -33,6 +33,7 @@ steps:
     image: 'node:12-slim'
     commands: |
       cd source/nodejs/adaptivecards-site
+      npx lerna run build
       npx lerna run release
 
 - task: DockerAdvanced@0
