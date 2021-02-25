@@ -14,8 +14,8 @@ var md5 = require("md5");
 var simpleAssets = [
 	"../adaptivecards/dist/*.*",
 	"node_modules/adaptive-expressions/lib/*.*",
-	"node_modules/adaptivecards-designer/dist/*.*",
-	"../adaptivecards-templating/dist/*.*",
+	"../adaptivecards-designer/dist/*.*",
+	"adaptivecards-templating/dist/*.*",
 	"node_modules/@fortawesome/fontawesome-free/css/all.min.css",
 	"node_modules/@fortawesome/fontawesome-free/webfonts/*.*",
 	"node_modules/highlightjs/highlight.pack.min.js",
@@ -106,7 +106,7 @@ hexo.extend.generator.register("generator-adaptiveassets", function (locals) {
 	simpleAssets.forEach(function(a) {
 		customAssets.push({
 			path: a,
-			dest: function(p) { return p; }
+			dest: function(p) { return p.replace("../", "node_modules/"); }
 		});
 	});
 
