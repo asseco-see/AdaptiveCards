@@ -35,7 +35,19 @@ steps:
       cd source/nodejs/adaptivecards-site
       npx lerna run release
 
+- task: DockerAdvanced@0
+  displayName: 'COMMIT_generate_version'
+  inputs:
+    image: 'registry.see.asseco.com/tools/image-tagger'
+    dockerRegistryEndpoint: harbor
+    envVars: |
+      TAGGER_VERSION=v2
+      GITHUB_TOKEN=$(githubToken)
 
+- script: |
+    echo -e "\nCOPY --chown=1001:0 .version /" >> $(dockerfilePath)
+  displayName: 'COMMIT_tag_version'
+  
 - task: DockerAdvanced@0
   displayName: 'COMMIT_NPM_publish_adaptivecards'
   inputs:
@@ -57,19 +69,6 @@ steps:
       cp npm-asee-dp-robot /root/.npmrc
       cd source/nodejs/adaptivecards-designer
       npm run publish
-
-- task: DockerAdvanced@0
-  displayName: 'COMMIT_generate_version'
-  inputs:
-    image: 'registry.see.asseco.com/tools/image-tagger'
-    dockerRegistryEndpoint: harbor
-    envVars: |
-      TAGGER_VERSION=v2
-      GITHUB_TOKEN=$(githubToken)
-
-- script: |
-    echo -e "\nCOPY --chown=1001:0 .version /" >> $(dockerfilePath)
-  displayName: 'COMMIT_tag_version'
 
 - task: DockerAdvanced@0
   displayName: 'COMMIT_publish'
