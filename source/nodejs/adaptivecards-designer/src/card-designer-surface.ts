@@ -337,8 +337,8 @@ export class CardDesignerSurface {
 			
 			if (!this._adaptiveUiWebImported) {
 				this._adaptiveUiWebImported = true;
-				import ('../node_modules/@asseco/adaptive-ui-web').then(()=> {
-					import ('../node_modules/@asseco/adaptive-ui-material-web').then(()=> {
+				import ('@asseco/adaptive-ui-web').then(()=> {
+					import ('@asseco/adaptive-ui-material-web').then(()=> {
 						let script = document.createElement('script');
 						script.type = 'text/javascript';
 						script.id = 'element-load-script';
