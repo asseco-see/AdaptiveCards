@@ -7,7 +7,7 @@ import { IPoint } from "./miscellaneous";
 import * as DesignerPeers from "./designer-peers";
 import * as ACData from "adaptivecards-templating";
 import * as Shared from "./shared";
-import { HostContainer } from "./containers";
+import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
 
 export enum BindingPreviewMode {
@@ -177,6 +177,8 @@ export class CardDesignerSurface {
 
     private _updateCount: number = 0;
 
+	private _adaptiveUiWebImported = false;
+	private _skippedCardCreationAfterWebImporting = false;
     private _card: Adaptive.AdaptiveCard;
     private _allPeers: Array<DesignerPeers.DesignerPeer> = [];
     private _rootPeer: DesignerPeers.DesignerPeer;
@@ -321,48 +323,96 @@ export class CardDesignerSurface {
             this.onCardValidated(allValidationEvents);
         }
 
-        let cardToRender = this.generateCardToRender(this.isPreviewMode);
+		if (this.context.hostContainer instanceof AngularContainer && this.isPreviewMode) {
+			let asCard = document.createElement("div");
+			let template = new ACData.Template(this.card.toJSON(this._serializationContext));
+			let context = { $root: this.context.sampleData };
+			let definition = template.expand(context);
+			asCard['definition'] = definition;
+			asCard.id = 'asseco-as-card-container'
+			if (this.fixedHeightCard) {
+				asCard.style.height = "100%";
+			}
+			this._cardHost.appendChild(asCard);
+			
+			if (!this._adaptiveUiWebImported) {
+				this._adaptiveUiWebImported = true;
+				import ('../node_modules/@asseco/adaptive-ui-web').then(()=> {
+					import ('../node_modules/@asseco/adaptive-ui-material-web').then(()=> {
+						let script = document.createElement('script');
+						script.type = 'text/javascript';
+						script.id = 'element-load-script';
+						script.innerText = 'document.addEventListener("AdaptiveScreenLoaded", function () {\
+							AdaptiveScreen.loadComponentsUiPack().then(() => {\
+								let asCardContainer = document.getElementById("asseco-as-card-container");\
+								let asCard = document.createElement("asseco-as-card");\
+								asCard.definition = asCardContainer.definition;\
+								asCardContainer.appendChild(asCard);\
+								});\
+							});';
+						this._cardHost.appendChild(script);
+					});
+				});
+			}
+			else {
+				if (this._skippedCardCreationAfterWebImporting) {
+					let script = document.createElement('script');
+					script.type = 'text/javascript';
+					script.innerText = '\
+							var asCardContainer = document.getElementById("asseco-as-card-container");\
+							var asCard = document.createElement("asseco-as-card");\
+							asCard.definition = asCardContainer.definition;\
+							asCardContainer.appendChild(asCard);';
+					this._cardHost.appendChild(script);
+				}
+				else {
+					this._skippedCardCreationAfterWebImporting = true;
+				}
+			}
+			
+		}
+		else {
+			let cardToRender = this.generateCardToRender(this.isPreviewMode);
+			if (this.isPreviewMode) {
+				cardToRender.onExecuteAction = (action: Adaptive.Action) => {
+					let message: string = "Action executed\n";
+					message += "    Title: " + action.title + "\n";
 
-        if (this.isPreviewMode) {
-            cardToRender.onExecuteAction = (action: Adaptive.Action) => {
-                let message: string = "Action executed\n";
-                message += "    Title: " + action.title + "\n";
+					if (action instanceof Adaptive.OpenUrlAction) {
+						message += "    Type: OpenUrl\n";
+						message += "    Url: " + action.url + "\n";
+					}
+					else if (action instanceof Adaptive.SubmitAction) {
+						message += "    Type: Submit";
+						message += "    Data: " + JSON.stringify(action.data);
+					}
+					else if (action instanceof Adaptive.HttpAction) {
+						message += "    Type: Http\n";
+						message += "    Url: " + action.url + "\n";
+						message += "    Method: " + action.method + "\n";
+						message += "    Headers:\n";
 
-                if (action instanceof Adaptive.OpenUrlAction) {
-                    message += "    Type: OpenUrl\n";
-                    message += "    Url: " + action.url + "\n";
-                }
-                else if (action instanceof Adaptive.SubmitAction) {
-                    message += "    Type: Submit";
-                    message += "    Data: " + JSON.stringify(action.data);
-                }
-                else if (action instanceof Adaptive.HttpAction) {
-                    message += "    Type: Http\n";
-                    message += "    Url: " + action.url + "\n";
-                    message += "    Method: " + action.method + "\n";
-                    message += "    Headers:\n";
+						for (let header of action.headers) {
+							message += "        " + header.name + ": " + header.value + "\n";
+						}
 
-                    for (let header of action.headers) {
-                        message += "        " + header.name + ": " + header.value + "\n";
-                    }
+						message += "    Body: " + action.body + "\n";
+					}
+					else {
+						message += "    Type: <unknown>";
+					}
 
-                    message += "    Body: " + action.body + "\n";
-                }
-                else {
-                    message += "    Type: <unknown>";
-                }
+					alert(message);
+				};
+			}
+			let renderedCard = cardToRender.render();
 
-                alert(message);
-            };
-        }
+			if (this.fixedHeightCard) {
+				renderedCard.style.height = "100%";
 
-        let renderedCard = cardToRender.render();
-
-        if (this.fixedHeightCard) {
-            renderedCard.style.height = "100%";
-
-        }
-        this._cardHost.appendChild(renderedCard);
+			}
+			this._cardHost.appendChild(renderedCard);
+		}
     }
 
     private addPeer(peer: DesignerPeers.DesignerPeer) {
@@ -683,7 +733,6 @@ export class CardDesignerSurface {
         this._allPeers = [];
 
         this.setSelectedPeer(null);
-
         this.renderCard();
 
         this._rootPeer = CardDesignerSurface.cardElementPeerRegistry.createPeerInstance(this, null, this.card);
@@ -730,7 +779,6 @@ export class CardDesignerSurface {
         this._serializationContext.clearEvents();
 
         this.card.parse(payload, this._serializationContext);
-
         this.render();
     }
 
@@ -750,8 +798,13 @@ export class CardDesignerSurface {
     updateLayout(isFullRefresh: boolean = true) {
         if (!this.isPreviewMode) {
             for (var i = 0; i < this._allPeers.length; i++) {
+				try {
                 this._allPeers[i].updateLayout();
-            }
+            	}
+				catch(e) {
+					// console.warn(e);
+				}
+			}
 
             this.updatePeerCommandsLayout();
 

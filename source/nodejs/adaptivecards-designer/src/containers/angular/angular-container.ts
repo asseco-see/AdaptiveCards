@@ -5,7 +5,7 @@ import { HostContainer } from "../host-container";
 import * as hostConfig from "../../hostConfigs/angular.json";
 
 export class AngularContainer extends HostContainer {
-    public renderTo(hostElement: HTMLElement) {
+	public renderTo(hostElement: HTMLElement) {
         this.cardHost.classList.add("angularOuterContainer");
 
         let frame = document.createElement("div");

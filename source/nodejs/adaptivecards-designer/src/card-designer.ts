@@ -304,8 +304,13 @@ export class CardDesigner extends Designer.DesignContext {
 
         let wasInPreviewMode = this._designerSurface ? this._designerSurface.isPreviewMode : false;
 
-        this._designerSurface = new Designer.CardDesignerSurface(this);
-        this._designerSurface.fixedHeightCard = this.hostContainer.isFixedHeight;
+		try {
+        	this._designerSurface = new Designer.CardDesignerSurface(this);
+		}
+		catch (e) {
+			console.error(e);
+		}
+		this._designerSurface.fixedHeightCard = this.hostContainer.isFixedHeight;
         this._designerSurface.onSelectedPeerChanged = (peer: DesignerPeers.DesignerPeer) => {
             this.buildPropertySheet(peer);
         };
@@ -1013,6 +1018,8 @@ export class CardDesigner extends Designer.DesignContext {
                 '</div>' +
                 '<div id="rightCollapsedPaneTabHost" class="acd-verticalCollapsedTabContainer acd-dockedRight" style="border-left: 1px solid #D2D2D2;"></div>' +
             '</div>';
+			
+
 
         this.toolbar.attachTo(document.getElementById("toolbarHost"));
 
