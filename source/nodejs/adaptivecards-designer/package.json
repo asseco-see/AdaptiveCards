@@ -12,8 +12,8 @@
 		"microsoft",
 		"bot"
 	],
-	"main": "lib/adaptivecards-designer.js",
-	"types": "lib/adaptivecards-designer.d.ts",
+	"main": "lib/adaptivecards-designer/src/adaptivecards-designer.js",
+	"types": "lib/adaptivecards-designer/src/adaptivecards-designer.d.ts",
 	"files": [
 		"lib",
 		"dist",
