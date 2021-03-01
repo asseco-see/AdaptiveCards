@@ -194,6 +194,7 @@ export class CardDesignerSurface {
     private _isPreviewMode: boolean = false;
     private _dragVisual?: HTMLElement;
 
+	static readonly webComponentCardRenderCode = 'var asCardContainer = document.getElementById("asseco-as-card-container"); var asCard = document.createElement("asseco-as-card");	asCard.definition = asCardContainer.definition;	asCardContainer.appendChild(asCard);'; 
     private updatePeerCommandsLayout() {
         if (this._selectedPeer) {
             let peerRect = this._selectedPeer.getBoundingRect();
@@ -342,14 +343,11 @@ export class CardDesignerSurface {
 						let script = document.createElement('script');
 						script.type = 'text/javascript';
 						script.id = 'element-load-script';
-						script.innerText = 'document.addEventListener("AdaptiveScreenLoaded", function () {\
-							AdaptiveScreen.loadComponentsUiPack().then(() => {\
-								let asCardContainer = document.getElementById("asseco-as-card-container");\
-								let asCard = document.createElement("asseco-as-card");\
-								asCard.definition = asCardContainer.definition;\
-								asCardContainer.appendChild(asCard);\
-								});\
-							});';
+						script.innerText = '\
+							if (!window["AdaptiveScreen"]) {\
+								document.addEventListener("AdaptiveScreenLoaded", function () {\
+								AdaptiveScreen.loadComponentsUiPack().then(() => {' + CardDesignerSurface.webComponentCardRenderCode +  '}); });\
+							} else {' + CardDesignerSurface.webComponentCardRenderCode + '}';
 						this._cardHost.appendChild(script);
 					});
 				});
@@ -358,11 +356,7 @@ export class CardDesignerSurface {
 				if (this._skippedCardCreationAfterWebImporting) {
 					let script = document.createElement('script');
 					script.type = 'text/javascript';
-					script.innerText = '\
-							var asCardContainer = document.getElementById("asseco-as-card-container");\
-							var asCard = document.createElement("asseco-as-card");\
-							asCard.definition = asCardContainer.definition;\
-							asCardContainer.appendChild(asCard);';
+					script.innerText = CardDesignerSurface.webComponentCardRenderCode;
 					this._cardHost.appendChild(script);
 				}
 				else {

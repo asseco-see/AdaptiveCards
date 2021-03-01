@@ -35,8 +35,8 @@
 		"publish": "npm version $(head -n 1 ../../../.version) && npm publish --registry https://devops.see.asseco.com/DIGITAL/_packaging/Asseco/npm/registry/ --loglevel warn"
 	},
 	"dependencies": {
-		"@asseco/adaptive-ui-web": "^0.1.0-20.dev.20210224.13.sha-0eda10",
-		"@asseco/adaptive-ui-material-web": "^0.1.0-20.dev.20210224.13.sha-0eda10",
+		"@asseco/adaptive-ui-web": "^0.1.0-20.dev.20210226.1.sha-bcc1db",
+		"@asseco/adaptive-ui-material-web": "^0.1.0-20.dev.20210226.1.sha-bcc1db",
 		"adaptivecards-controls": "^0.4.0",
 		"clipboard": "^2.0.1"
 	},
