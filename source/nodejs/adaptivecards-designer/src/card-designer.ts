@@ -835,12 +835,8 @@ export class CardDesigner extends Designer.DesignContext {
 
     private updateSampleData() {
         try {
-            if (this.language === "json"){
-                this._sampleData = JSON.parse(this.getCurrentCardEditorPayload());
-            }
-            else {
-                this._sampleData = JSON.parse(JSON.stringify( yaml.load(this.getCurrentCardEditorPayload())));
-            }
+            this._sampleData = JSON.parse(this.getCurrentSampleDataEditorPayload());
+
             this.scheduleUpdateCardFromJson();
         }
         catch {
