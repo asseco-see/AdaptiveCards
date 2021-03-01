@@ -511,7 +511,6 @@ export class SampleCatalogue {
             && "pathname" in window.location
             && "host" in window.location) {
           let absoluteUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-          console.log(absoluteUrl);
           return absoluteUrl;
         }
         return null;

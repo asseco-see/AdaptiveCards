@@ -373,7 +373,12 @@ export class CardDesigner extends Designer.DesignContext {
             }
         };
         this._designerSurface.onStartDrag = (sender: Designer.CardDesignerSurface) => {
-            this._startDragPayload = JSON.parse(this.getCurrentCardEditorPayload());
+            if (this.language === "json"){
+                this._startDragPayload = JSON.parse(this.getCurrentCardEditorPayload());
+            }
+            else{
+                this._startDragPayload = JSON.parse(JSON.stringify( yaml.load(this.getCurrentCardEditorPayload())));
+            }
         };
         this._designerSurface.onEndDrag = (sender: Designer.CardDesignerSurface, wasCancelled: boolean) => {
             if (wasCancelled) {
@@ -547,7 +552,12 @@ export class CardDesigner extends Designer.DesignContext {
 
             if (addToUndoStack) {
                 try {
-                    this.addToUndoStack(JSON.parse(currentEditorPayload));
+                    if (this.language === "json"){
+                        this.addToUndoStack(JSON.parse(this.getCurrentCardEditorPayload()));
+                    }
+                    else {
+                        this.addToUndoStack(JSON.parse(JSON.stringify( yaml.load(this.getCurrentCardEditorPayload()))));
+                    }
                 }
                 catch {
                     // Swallow the parse error
@@ -825,8 +835,12 @@ export class CardDesigner extends Designer.DesignContext {
 
     private updateSampleData() {
         try {
-            this._sampleData = JSON.parse(this.getCurrentSampleDataEditorPayload());
-
+            if (this.language === "json"){
+                this._sampleData = JSON.parse(this.getCurrentCardEditorPayload());
+            }
+            else {
+                this._sampleData = JSON.parse(JSON.stringify( yaml.load(this.getCurrentCardEditorPayload())));
+            }
             this.scheduleUpdateCardFromJson();
         }
         catch {
