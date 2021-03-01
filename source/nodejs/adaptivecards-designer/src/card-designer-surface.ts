@@ -180,7 +180,6 @@ export class CardDesignerSurface {
     private _updateCount: number = 0;
 
 	private _adaptiveUiWebImported = false;
-	private _skippedCardCreationAfterWebImporting = false;
     private _card: Adaptive.AdaptiveCard;
     private _allPeers: Array<DesignerPeers.DesignerPeer> = [];
     private _rootPeer: DesignerPeers.DesignerPeer;
@@ -196,7 +195,7 @@ export class CardDesignerSurface {
     private _isPreviewMode: boolean = false;
     private _dragVisual?: HTMLElement;
 
-	static readonly webComponentCardRenderCode = 'var asCardContainer = document.getElementById("asseco-as-card-container"); var asCard = document.createElement("asseco-as-card");	asCard.definition = asCardContainer.definition;	asCardContainer.appendChild(asCard);';
+	static readonly webComponentCardRenderCode = 'if (!document.getElementById("asseco-as-card-root")) { var asCardContainer = document.getElementById("asseco-as-card-container"); var asCardRoot = document.createElement("div"); asCardRoot.id = "asseco-as-card-root"; var asCard = document.createElement("asseco-as-card"); asCard.definition = asCardContainer.definition; asCardRoot.appendChild(asCard); asCardContainer.appendChild(asCardRoot);}';
     private updatePeerCommandsLayout() {
         if (this._selectedPeer) {
             let peerRect = this._selectedPeer.getBoundingRect();
@@ -313,7 +312,6 @@ export class CardDesignerSurface {
 
     private renderCard() {
         this._cardHost.innerHTML = "";
-
         if (this.onCardValidated) {
             let allValidationEvents: Adaptive.IValidationEvent[] = [];
 
@@ -337,34 +335,36 @@ export class CardDesignerSurface {
 				asCard.style.height = "100%";
 			}
 			this._cardHost.appendChild(asCard);
+			
+			var script = document.createElement("script");
+			script.type = 'text/javascript';
+			script.id = 'element-load-script';
+			script.innerText = '\
+				if (!window["AdaptiveScreen"]) {\
+					document.addEventListener("AdaptiveScreenLoaded", function () {\
+					AdaptiveScreen.loadComponentsUiPack().then(() => {' + CardDesignerSurface.webComponentCardRenderCode +  '}); });\
+				} else {' + CardDesignerSurface.webComponentCardRenderCode + '}';
+			this._cardHost.appendChild(script);
 
 			if (!this._adaptiveUiWebImported) {
 				this._adaptiveUiWebImported = true;
 				import ('@asseco/adaptive-ui-web').then(()=> {
 					import ('@asseco/adaptive-ui-material-web').then(()=> {
-						let script = document.createElement('script');
-						script.type = 'text/javascript';
-						script.id = 'element-load-script';
-						script.innerText = '\
-							if (!window["AdaptiveScreen"]) {\
-								document.addEventListener("AdaptiveScreenLoaded", function () {\
-								AdaptiveScreen.loadComponentsUiPack().then(() => {' + CardDesignerSurface.webComponentCardRenderCode +  '}); });\
-							} else {' + CardDesignerSurface.webComponentCardRenderCode + '}';
-						this._cardHost.appendChild(script);
+						
 					});
 				});
 			}
-			else {
-				if (this._skippedCardCreationAfterWebImporting) {
-					let script = document.createElement('script');
-					script.type = 'text/javascript';
-					script.innerText = CardDesignerSurface.webComponentCardRenderCode;
-					this._cardHost.appendChild(script);
-				}
-				else {
-					this._skippedCardCreationAfterWebImporting = true;
-				}
-			}
+			// else {
+			// 	if (this._skippedCardCreationAfterWebImporting) {
+			// 		let script = document.createElement('script');
+			// 		script.type = 'text/javascript';
+			// 		script.innerText = CardDesignerSurface.webComponentCardRenderCode;
+			// 		this._cardHost.appendChild(script);
+			// 	}
+			// 	else {
+			// 		this._skippedCardCreationAfterWebImporting = true;
+			// 	}
+			// }
 
 		}
 		else {
@@ -562,7 +562,6 @@ export class CardDesignerSurface {
 
         this._cardHost = document.createElement("div");
         this._cardHost.style.height = "100%";
-
         rootElement.appendChild(this._cardHost);
 
         this._designerSurface = document.createElement("div");
