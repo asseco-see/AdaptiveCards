@@ -24,6 +24,8 @@ import * as Shared from "./shared";
 import { TreeView } from "./tree-view";
 import { SampleCatalogue } from "./catalogue";
 import { HelpDialog } from "./help-dialog";
+import * as yaml from 'js-yaml';
+
 
 export class CardDesigner extends Designer.DesignContext {
     private static internalProcessMarkdown(text: string, result: Adaptive.IMarkdownProcessingResult) {
@@ -69,13 +71,16 @@ export class CardDesigner extends Designer.DesignContext {
     private _bindingPreviewMode: Designer.BindingPreviewMode = Designer.BindingPreviewMode.NoPreview;
     private _customPeletteItems: CustomPaletteItem[];
     private _sampleCatalogue: SampleCatalogue = new SampleCatalogue();
+    private _language: string = "json";
+    private _previousLanguage: string = "json";
+
 
     private togglePreview() {
         this._designerSurface.isPreviewMode = !this._designerSurface.isPreviewMode;
 
         if (this._designerSurface.isPreviewMode) {
             this._togglePreviewButton.toolTip = "Return to Design mode";
-            this._designerSurface.setCardPayloadAsString(this.getCurrentCardEditorPayload());
+            this._designerSurface.setCardPayloadAsString(this.getCurrentCardEditorPayload(), this._language);
         }
         else {
             this._togglePreviewButton.toolTip = "Switch to Preview mode";
@@ -414,6 +419,11 @@ export class CardDesigner extends Designer.DesignContext {
         }
     }
 
+    private languageChanged() {
+        let cardPayload = this.designerSurface.getCardPayloadAsObject();
+        // ToDo: try to convert to selected language
+    }
+
     private updateToolboxLayout(toolbox: Toolbox, hostPanelRect: ClientRect | DOMRect) {
         if (toolbox) {
             let jsonEditorHeaderRect = toolbox.getHeaderBoundingRect();
@@ -472,8 +482,14 @@ export class CardDesigner extends Designer.DesignContext {
                 if (payload.hasOwnProperty("version")) {
                     payload["version"] = this.targetVersion.toString();
                 }
-
-                this._cardEditor.setValue(JSON.stringify(payload, null, 4));
+                if (this._language == "json")
+                {
+                    this._cardEditor.setValue(JSON.stringify(payload, null, 4));
+                }
+                else
+                {
+                    this._cardEditor.setValue(yaml.dump(payload));
+                }
                 this.updateCardFromJson(addToUndoStack);
             }
             finally {
@@ -539,7 +555,7 @@ export class CardDesigner extends Designer.DesignContext {
             }
 
             if (!this._preventCardUpdate) {
-                this.designerSurface.setCardPayloadAsString(currentEditorPayload);
+                this.designerSurface.setCardPayloadAsString(currentEditorPayload, this._language);
 
                 this.cardPayloadChanged();
             }
@@ -592,6 +608,7 @@ export class CardDesigner extends Designer.DesignContext {
     private _fullScreenButton: ToolbarButton;
     private _hostContainerChoicePicker: ToolbarChoicePicker;
     private _versionChoicePicker: ToolbarChoicePicker;
+    private _languageChoicePicker: ToolbarChoicePicker;
     private _undoButton: ToolbarButton;
     private _redoButton: ToolbarButton;
     private _newCardButton: ToolbarButton;
@@ -615,6 +632,23 @@ export class CardDesigner extends Designer.DesignContext {
             }
 
             this.toolbar.addElement(this._versionChoicePicker);
+        }
+
+        if (Shared.GlobalSettings.showLanguagePicker) {
+            this._languageChoicePicker = new ToolbarChoicePicker(CardDesigner.ToolbarCommands.LanguagePicker);
+            this._languageChoicePicker.label = "Format:"
+            this._languageChoicePicker.alignment = ToolbarElementAlignment.Right;
+            this._languageChoicePicker.separator = true;
+            for (let i = 0; i < Shared.SupportedLanguages.length; i++) {
+                this._languageChoicePicker.choices.push(
+                    {
+                        name: Shared.SupportedLanguages[i],
+                        value: Shared.SupportedLanguages[i]
+                    });
+            }
+
+
+            this.toolbar.addElement(this._languageChoicePicker);
         }
 
         this._newCardButton = new ToolbarButton(
@@ -920,7 +954,7 @@ export class CardDesigner extends Designer.DesignContext {
             {
                 folding: true,
                 fontSize: 13.5,
-                language: 'json',
+                language: this._language,
                 minimap: {
                     enabled: true
                 }
@@ -945,7 +979,7 @@ export class CardDesigner extends Designer.DesignContext {
                 {
                     folding: true,
                     fontSize: 13.5,
-                    language: 'json',
+                    language: this._language,
                     minimap: {
                         enabled: false
                     }
@@ -1018,7 +1052,7 @@ export class CardDesigner extends Designer.DesignContext {
                 '</div>' +
                 '<div id="rightCollapsedPaneTabHost" class="acd-verticalCollapsedTabContainer acd-dockedRight" style="border-left: 1px solid #D2D2D2;"></div>' +
             '</div>';
-			
+
 
 
         this.toolbar.attachTo(document.getElementById("toolbarHost"));
@@ -1027,6 +1061,32 @@ export class CardDesigner extends Designer.DesignContext {
             this._versionChoicePicker.selectedIndex = Shared.SupportedTargetVersions.indexOf(this.targetVersion);
             this._versionChoicePicker.onChanged = (sender: ToolbarChoicePicker) => {
                 this.targetVersion = Shared.SupportedTargetVersions[parseInt(this._versionChoicePicker.value)];
+            }
+        }
+
+        if (this._languageChoicePicker) {
+            this._languageChoicePicker.selectedIndex = Shared.SupportedLanguages.indexOf(this._language);
+            this._languageChoicePicker.onChanged = (sender: ToolbarChoicePicker) => {
+                this._previousLanguage = this._language;
+                this._language = this._languageChoicePicker.value;
+                let originalPayload = this.getCurrentCardEditorPayload()
+                if (this.language === "json" && this._previousLanguage === 'yaml')
+                {
+                    //..convert YAML to JSON
+                    let obj = yaml.load(originalPayload);
+                    this._cardEditor.setValue(JSON.stringify(obj, null, 4));
+                    var model = this._cardEditor.getModel();
+                    window["monaco"].editor.setModelLanguage(model, this.language)
+
+                }
+                else if (this.language === "yaml" && this._previousLanguage === 'json')
+                {
+                    //..convert JSON to YAML
+                    let obj = JSON.parse(originalPayload)
+                    this._cardEditor.setValue(yaml.dump(obj));
+                    var model = this._cardEditor.getModel();
+                    window["monaco"].editor.setModelLanguage(model, "yaml")
+                }
             }
         }
 
@@ -1233,6 +1293,19 @@ export class CardDesigner extends Designer.DesignContext {
         }
     }
 
+    get language(): string {
+        return this._language;
+    }
+
+    set language(value: string) {
+        try {
+            this._language = value;
+        }
+        finally {
+
+        }
+    }
+
     get dataStructure(): FieldDefinition {
         return this._dataStructure;
     }
@@ -1346,5 +1419,6 @@ export module CardDesigner {
         static readonly CopyJSON = "__copyJsonButton";
         static readonly TogglePreview = "__togglePreviewButton";
         static readonly Help = "__helpButton";
+        static readonly LanguagePicker = "__languagePicker";
     }
 }

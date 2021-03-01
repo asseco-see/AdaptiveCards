@@ -8,6 +8,7 @@ export class GlobalSettings {
     static showVersionPicker: boolean = true;
     static selectedHostContainerControlsTargetVersion: boolean = true;
     static showTargetVersionMismatchWarning: boolean = true;
+    static showLanguagePicker: boolean = true;
 }
 
 export var SupportedTargetVersions: Adaptive.Version[] = [
@@ -16,4 +17,9 @@ export var SupportedTargetVersions: Adaptive.Version[] = [
     Adaptive.Versions.v1_2,
     Adaptive.Versions.v1_3,
     Adaptive.Versions.v1_4
+];
+
+export var SupportedLanguages: string[] = [
+    "json",
+    "yaml"
 ];

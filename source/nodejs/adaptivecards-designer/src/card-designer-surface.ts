@@ -9,6 +9,7 @@ import * as ACData from "adaptivecards-templating";
 import * as Shared from "./shared";
 import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
+import * as yaml from 'js-yaml';
 
 export enum BindingPreviewMode {
     NoPreview,
@@ -166,6 +167,7 @@ class DragHandle extends DraggableElement {
 export abstract class DesignContext {
     abstract get hostContainer(): HostContainer;
     abstract get targetVersion(): Adaptive.Version;
+    abstract get language(): string;
     abstract get dataStructure(): FieldDefinition;
     abstract get bindingPreviewMode(): BindingPreviewMode;
     abstract get sampleData(): any;
@@ -194,7 +196,7 @@ export class CardDesignerSurface {
     private _isPreviewMode: boolean = false;
     private _dragVisual?: HTMLElement;
 
-	static readonly webComponentCardRenderCode = 'var asCardContainer = document.getElementById("asseco-as-card-container"); var asCard = document.createElement("asseco-as-card");	asCard.definition = asCardContainer.definition;	asCardContainer.appendChild(asCard);'; 
+	static readonly webComponentCardRenderCode = 'var asCardContainer = document.getElementById("asseco-as-card-container"); var asCard = document.createElement("asseco-as-card");	asCard.definition = asCardContainer.definition;	asCardContainer.appendChild(asCard);';
     private updatePeerCommandsLayout() {
         if (this._selectedPeer) {
             let peerRect = this._selectedPeer.getBoundingRect();
@@ -335,7 +337,7 @@ export class CardDesignerSurface {
 				asCard.style.height = "100%";
 			}
 			this._cardHost.appendChild(asCard);
-			
+
 			if (!this._adaptiveUiWebImported) {
 				this._adaptiveUiWebImported = true;
 				import ('@asseco/adaptive-ui-web').then(()=> {
@@ -363,7 +365,7 @@ export class CardDesignerSurface {
 					this._skippedCardCreationAfterWebImporting = true;
 				}
 			}
-			
+
 		}
 		else {
 			let cardToRender = this.generateCardToRender(this.isPreviewMode);
@@ -776,12 +778,28 @@ export class CardDesignerSurface {
         this.render();
     }
 
-    setCardPayloadAsString(payload: string) {
-        try {
-            this.setCardPayloadAsObject(JSON.parse(payload));
-        }
-        catch (e) {
-            console.warn("Invalid JSON string. " + e);
+    setCardPayloadAsString(payload: string, language: string) {
+        switch (language)
+        {
+            case "json":
+                try {
+                    this.setCardPayloadAsObject(JSON.parse(payload));
+                }
+                catch (e) {
+                    console.warn("Invalid JSON payload string. " + e);
+                }
+                break;
+            case "yaml":
+                try {
+                    this.setCardPayloadAsObject(JSON.parse(JSON.stringify(yaml.load(payload))));
+                }
+                catch (e) {
+                    console.warn("Invalid Yaml payload string. " + e);
+                }
+                break;
+            default:
+                console.warn("Not supported payload string. ");
+                break;
         }
     }
 
