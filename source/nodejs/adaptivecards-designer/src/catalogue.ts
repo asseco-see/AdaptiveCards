@@ -504,8 +504,20 @@ export class SampleCatalogue {
         }
     }
 
+    public getCurrentAbsoluteSiteUrl(): string {
+        if (window
+            && "location" in window
+            && "protocol" in window.location
+            && "pathname" in window.location
+            && "host" in window.location) {
+          let absoluteUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+          console.log(absoluteUrl);
+          return absoluteUrl;
+        }
+        return null;
+    }
     download() {
-        let downloadConfig = new Downloader('configuration.json');
+        let downloadConfig = new Downloader( this.getCurrentAbsoluteSiteUrl() + 'configuration.json');
         downloadConfig.download();
         downloadConfig.onSuccess = () => {
             if (downloadConfig.data) {
