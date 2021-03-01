@@ -13,10 +13,10 @@ import { OpenImageDialog } from "./open-image-dialog";
 import { FullScreenHandler } from "./fullscreen-handler";
 import { Toolbar, ToolbarButton, ToolbarChoicePicker, ToolbarElementAlignment } from "./toolbar";
 import { IPoint, Utils, defaultHostConfig } from "./miscellaneous";
-import { BasePaletteItem, ElementPaletteItem, DataPaletteItem, CustomPaletteItem } from "./tool-palette";
+import { BasePaletteItem, ElementPaletteItem, CustomPaletteItem } from "./tool-palette";
 import { DefaultContainer } from "./containers/default/default-container";
 import { SidePanel, SidePanelAlignment } from "./side-panel";
-import { Toolbox, IToolboxCommand } from "./tool-box";
+import { Toolbox } from "./tool-box";
 import { FieldDefinition } from "./data";
 import { DataTreeItem } from "./data-treeitem";
 import { Strings } from "./strings";
@@ -73,7 +73,7 @@ export class CardDesigner extends Designer.DesignContext {
     private _sampleCatalogue: SampleCatalogue = new SampleCatalogue();
     private _language: string = "json";
     private _previousLanguage: string = "json";
-
+	private _customToolboxes: Toolbox[] = [];
 
     private togglePreview() {
         this._designerSurface.isPreviewMode = !this._designerSurface.isPreviewMode;
@@ -1193,6 +1193,12 @@ export class CardDesigner extends Designer.DesignContext {
             treeViewPanel.addToolbox(this._dataToolbox);
         }
 
+		if (this._customToolboxes.length > 0) {
+			this._customToolboxes.forEach(toolbox => {
+				treeViewPanel.addToolbox(toolbox);
+			});
+		}
+
         treeViewPanel.attachTo(document.getElementById("treeViewPanel"));
 
         this._designerHostElement = document.getElementById("designerHost");
@@ -1205,6 +1211,10 @@ export class CardDesigner extends Designer.DesignContext {
 
         this.recreateDesignerSurface();
     }
+
+	public addToolbox(toolbox: Toolbox): void {
+		this._customToolboxes.push(toolbox);
+	}
 
     clearUndoStack() {
         this._undoStack = [];

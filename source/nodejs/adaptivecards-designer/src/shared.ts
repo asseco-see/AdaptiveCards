@@ -1,5 +1,4 @@
 import * as Adaptive from "@asseco/adaptivecards";
-import { Version } from "@asseco/adaptivecards";
 
 export class GlobalSettings {
     static enableDataBindingSupport: boolean = false;
