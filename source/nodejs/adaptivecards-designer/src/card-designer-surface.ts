@@ -195,7 +195,7 @@ export class CardDesignerSurface {
 	private _isPreviewMode: boolean = false;
 	private _dragVisual?: HTMLElement;
 
-	private _onRenderAngular?: (htmlElement: HTMLElement, definition) => void;
+	private static _onRenderAngular?: (htmlElement: HTMLElement, definition) => void;
 
 	set onRenderAngular(data: (htmlElement: HTMLElement, definition) => void) {
 		this._onRenderAngular = data;
