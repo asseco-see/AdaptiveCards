@@ -198,7 +198,7 @@ export class CardDesignerSurface {
 	private static _onRenderAngular?: (htmlElement: HTMLElement, definition) => void;
 
 	set onRenderAngular(data: (htmlElement: HTMLElement, definition) => void) {
-		this._onRenderAngular = data;
+		CardDesignerSurface._onRenderAngular = data;
 	}
 
 	static readonly webComponentCardRenderCode = 'if (!document.getElementById("asseco-as-card-root")) { var asCardContainer = document.getElementById("asseco-as-card-container"); var asCardRoot = document.createElement("div"); asCardRoot.id = "asseco-as-card-root"; var asCard = document.createElement("asseco-as-card"); asCard.definition = asCardContainer.definition; asCardRoot.appendChild(asCard); asCardContainer.appendChild(asCardRoot);}';
@@ -343,8 +343,8 @@ export class CardDesignerSurface {
 			}
 			this._cardHost.appendChild(asCard);
 
-			if (this._onRenderAngular) {
-				this._onRenderAngular(asCard, definition);
+			if (CardDesignerSurface._onRenderAngular) {
+				CardDesignerSurface._onRenderAngular(asCard, definition);
 			} else {
 				var script = document.createElement("script");
 				script.type = 'text/javascript';
