@@ -663,7 +663,7 @@ export class CardDesigner extends Designer.DesignContext {
 
         this._newCardButton = new ToolbarButton(
             CardDesigner.ToolbarCommands.NewCard,
-            "New card",
+            "New",
             "acd-icon-newCard",
             (sender: ToolbarButton) => {
                 let dialog = new OpenSampleDialog(this._sampleCatalogue);
@@ -715,7 +715,7 @@ export class CardDesigner extends Designer.DesignContext {
         if (this._hostContainers && this._hostContainers.length > 0) {
             this._hostContainerChoicePicker = new ToolbarChoicePicker(CardDesigner.ToolbarCommands.HostAppPicker);
             this._hostContainerChoicePicker.separator = true;
-            this._hostContainerChoicePicker.label = "Select host app:"
+            this._hostContainerChoicePicker.label = "Host app:"
             this._hostContainerChoicePicker.width = 350;
 
             for (let i = 0; i < this._hostContainers.length; i++) {
@@ -761,14 +761,14 @@ export class CardDesigner extends Designer.DesignContext {
 
         this._copyJSONButton = new ToolbarButton(
             CardDesigner.ToolbarCommands.CopyJSON,
-            "Copy card payload",
+            "Copy card",
             "acd-icon-copy");
         this._copyJSONButton.toolTip = "Copy the generated JSON payload of the card (template bound with data) to the clipboard. To copy only the template payload, use the Card Payload Editor.";
         this.toolbar.addElement(this._copyJSONButton);
 
         this._togglePreviewButton = new ToolbarButton(
             CardDesigner.ToolbarCommands.TogglePreview,
-            "Preview mode",
+            "Preview",
             "acd-icon-preview",
             (sender: ToolbarButton) => { this.togglePreview(); });
         this._togglePreviewButton.separator = true;
