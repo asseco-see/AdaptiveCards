@@ -630,7 +630,7 @@ export class CardDesigner extends Designer.DesignContext {
     private prepareToolbar() {
         if (Shared.GlobalSettings.showVersionPicker) {
             this._versionChoicePicker = new ToolbarChoicePicker(CardDesigner.ToolbarCommands.VersionPicker);
-            this._versionChoicePicker.label = "Target version:"
+            this._versionChoicePicker.label = "Version:"
             this._versionChoicePicker.alignment = ToolbarElementAlignment.Right;
             this._versionChoicePicker.separator = true;
             for (let i = 0; i < Shared.SupportedTargetVersions.length; i++) {
