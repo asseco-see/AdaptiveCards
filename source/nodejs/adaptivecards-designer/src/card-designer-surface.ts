@@ -338,7 +338,7 @@ static readonly webComponentCardRenderCode = 'if (!document.getElementById("asse
 			let definition = template.expand(context);
 
 			asCard['definition'] = definition;
-			asCard['hostConfig'] = this.context.hostContainer.getHostConfig();
+			asCard['hostConfig'] = this.context.hostContainer.getRawHostConfig();
 			asCard.id = 'asseco-as-card-container';
 			if (this.fixedHeightCard) {
 				asCard.style.height = "100%";

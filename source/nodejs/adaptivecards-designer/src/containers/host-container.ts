@@ -55,6 +55,10 @@ export abstract class HostContainer {
         return new HostConfig(hostConfig);
     }
 
+	public getRawHostConfig(): any {
+		return hostConfig;
+	}
+
     supportsActionBar: boolean = false;
 
     get cardHost(): HTMLElement {
