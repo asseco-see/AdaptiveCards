@@ -201,7 +201,8 @@ export class CardDesignerSurface {
 		CardDesignerSurface._onRenderAngular = data;
 	}
 
-	static readonly webComponentCardRenderCode = 'if (!document.getElementById("asseco-as-card-root")) { var asCardContainer = document.getElementById("asseco-as-card-container"); var asCardRoot = document.createElement("div"); asCardRoot.id = "asseco-as-card-root"; var asCard = document.createElement("asseco-as-card"); asCard.definition = asCardContainer.definition; asCardRoot.appendChild(asCard); asCardContainer.appendChild(asCardRoot);}';
+static readonly webComponentCardRenderCode = 'if (!document.getElementById("asseco-as-card-root")) { var asCardContainer = document.getElementById("asseco-as-card-container"); var asCardRoot = document.createElement("div"); asCardRoot.id = "asseco-as-card-root"; var asCard = document.createElement("asseco-as-card");\
+	asCard.hostConfig = asCardContainer.hostConfig; asCard.definition = asCardContainer.definition; asCardRoot.appendChild(asCard); asCardContainer.appendChild(asCardRoot); asCardContainer.definition = null; asCardContainer.hostConfig = null; }';
 	private updatePeerCommandsLayout() {
 		if (this._selectedPeer) {
 			let peerRect = this._selectedPeer.getBoundingRect();
@@ -337,7 +338,8 @@ export class CardDesignerSurface {
 			let definition = template.expand(context);
 
 			asCard['definition'] = definition;
-			asCard.id = 'asseco-as-card-container'
+			asCard['hostConfig'] = this.context.hostContainer.getHostConfig();
+			asCard.id = 'asseco-as-card-container';
 			if (this.fixedHeightCard) {
 				asCard.style.height = "100%";
 			}
