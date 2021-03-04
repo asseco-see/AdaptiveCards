@@ -2732,13 +2732,7 @@ export class ChipInput extends Input {
     }
 
     @property(ChipInput.idProperty)
-    get id(): string {
-        return this.getValue(ChipInput.idProperty);
-    }
-
-    set id(value: string) {
-            this.setValue(ChipInput.idProperty, value);
-    }
+	id?: string;
 
     @property(ChipInput.chipsProperty)
     private _chips: Chip[] = [];
