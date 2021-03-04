@@ -42,7 +42,7 @@ export class CardDesigner extends Designer.DesignContext {
 
 	static onProcessMarkdown: (text: string, result: Adaptive.IMarkdownProcessingResult) => void = null;
 
-	public catalogueBaseUrl: string;
+	static catalogueBaseUrl: string;
 	private static MAX_UNDO_STACK_SIZE = 50;
 
 	private _isAttached: boolean = false;
@@ -663,7 +663,7 @@ export class CardDesigner extends Designer.DesignContext {
 			"New",
 			"acd-icon-newCard",
 			(sender: ToolbarButton) => {
-				this._sampleCatalogue.sampleBaseUrl = this.catalogueBaseUrl;
+				this._sampleCatalogue.sampleBaseUrl = CardDesigner.catalogueBaseUrl;
 				let dialog = new OpenSampleDialog(this._sampleCatalogue);
 				dialog.title = "Pick a sample as a starting point";
 				dialog.closeButton.caption = "Cancel";
