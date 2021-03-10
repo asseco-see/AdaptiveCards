@@ -294,5 +294,3 @@ twp.json
 
 # Android 
 **/.cxx/*
-package-lock.json
-source/nodejs/adaptivecards-site/package-lock.json
