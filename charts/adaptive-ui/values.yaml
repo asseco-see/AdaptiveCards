@@ -21,7 +21,7 @@ image:
   ## Tag
   ## ref: https://docs.docker.com/engine/reference/commandline/tag/
   ##
-  tag: "latest-dev-extensions"
+  tag: "latest-dev0"
   ## Optionally specify an array of imagePullSecrets.
   ## Secrets must be manually created in the namespace.
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
