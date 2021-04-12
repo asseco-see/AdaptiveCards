@@ -54,7 +54,7 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_NPM_publish_adaptivecards'
   inputs:
-    image: 'registry.see.asseco.com/tools/angular-module-builder:9.0'
+    image: 'registry.see.asseco.com/tools/angular-module-builder:11.0'
     dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
     commands: |
@@ -65,7 +65,7 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_NPM_publish_adaptivecards_designer'
   inputs:
-    image: 'registry.see.asseco.com/tools/angular-module-builder:9.0'
+    image: 'registry.see.asseco.com/tools/angular-module-builder:11.0'
     dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
     commands: |
