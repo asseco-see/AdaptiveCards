@@ -26,7 +26,7 @@
 
 	<% if(is_current("visualizer")) { %>
 		<%- hashed_asset("css/w3.css") %>
-		<%- hashed_asset("visualizer/css/visualizer.css") %>
+		<%- hashed_asset("visualizer/css/visualizer.css") %>	
 	<% } else if(!is_current("designer")) { %>
 		<%- hashed_asset("node_modules/@fortawesome/fontawesome-free/css/all.min.css") %>
 		<%- hashed_asset("node_modules/highlightjs/styles/default.css") %>
@@ -37,6 +37,9 @@
 		<%- hashed_asset("css/style.css") %>
 	<% } %>
 
+	<% if(is_current("host-config")) { %>
+		<%- hashed_asset("css/host-config.css") %>
+	<% } %>
 
 	<%- hashed_asset("node_modules/jquery/dist/jquery.min.js") %>
 
