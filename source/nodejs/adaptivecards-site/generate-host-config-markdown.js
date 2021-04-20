@@ -17,6 +17,7 @@ const tableHeader =
 
 const newLine = '\n';
 const lineBreak = newLine + '<br/>' + newLine;
+const hyperlinkPrefix = '/platform/adaptive-cards/host-config';
 
 try {
 	const hostConfig = require('../../../schemas/host-config.json');
@@ -30,14 +31,14 @@ try {
 	const bodyMarkdown = [];
 	
 	//Merge host config
-	const extensions = schemaBuilderUtilities.loadExtendedDefinitions('../../../schemas/extensions/')
+	const extensions = schemaBuilderUtilities.loadExtendedDefinitions('../../../schemas/extensions/');
 	for (const extension of extensions) {
 		mergeHostConfigWithExtension(hostConfig, extension);
 	}
 
 	for (const defName in hostConfig.definitions) {
 		const def = hostConfig.definitions[defName];
-		headerMarkdown.push(`   * [\`${defName}\`](/host-config/#schema-${defName.toLocaleLowerCase()}) - ${def.description}`)
+		headerMarkdown.push(`   * [\`${defName}\`](${hyperlinkPrefix}/#schema-${defName.toLocaleLowerCase()}) - ${def.description}`)
 		
 		bodyMarkdown.push(`<a name="schema-${defName.toLocaleLowerCase()}"></a>`);
 		bodyMarkdown.push(`## ${defName}`); 
