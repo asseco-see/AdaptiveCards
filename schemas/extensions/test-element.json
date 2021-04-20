@@ -1,53 +1,20 @@
 {
-    "id": "chipinput",
+    "id": "test",
     "version": "0.1",
-    "elementPrefix": "aseeco",
+    "elementPrefix": "dp",
     "propertyPrefix": "",
     "supports": {
         "javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
     },
     "contributes": {
         "definitions": {
-            "Input.Chip": {
-                "description": "Describes a chip for use in a ChipSet.",
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": ["Input.Chip"],
-                        "description": "Must be `Input.Chip`"
-                    },
-                    "id": {
-                        "type": "string",
-                        "description": "Unique identifier for chip.",
-                        "version": "0.1"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Chip name.",
-                        "version": "0.1"
-                    },
-                    "selected": {
-                        "type": "boolean",
-                        "description": "Whether or not the chip is selected. Default value is false",
-                        "version": "0.1"
-                    }
-                },
-                "type": "object",
-                "additionalProperties": false,
-                "required": ["id", "name", "selected"]
-            },
-            "Input.Chips": {
+            "Test": {
                 "description": "Allows a user to input a Chip.",
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["Input.Chips"],
-                        "description": "Must be `Input.Chips`"
-                    },
-                    "chips": {
-                        "type": "Input.Chip[]",
-                        "description": "`Chip` options.",
-                        "version": "0.1"
+                        "enum": ["Test"],
+                        "description": "Must be `Test`"
                     },
                     "value": {
                         "type": "string",
@@ -83,7 +50,7 @@
                 "type": "object",
                 "additionalProperties": false,
                 "required": ["chips"],
-                "extends": "Input"
+                "extends": "Element"
             }
         }
     }
