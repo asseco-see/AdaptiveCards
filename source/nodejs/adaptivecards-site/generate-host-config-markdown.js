@@ -55,8 +55,8 @@ try {
 			}
 
 			const propRequired = propSchema.required ? 'Yes' : 'No';
-			const propDescription = propSchema.description ?? '';
-			const propVersion = propSchema.version ?? '1.0';
+			const propDescription = propSchema.description ? propSchema.description : '';
+			const propVersion = propSchema.version ? propSchema.version : '1.0';
 
 			bodyMarkdown.push(`|**${propName}**|\`${propType}\`|${propRequired}|${propDescription}|${propVersion}`);
 		}
