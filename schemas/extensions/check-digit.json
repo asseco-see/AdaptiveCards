@@ -1,5 +1,5 @@
 {
-    "id": "textinput-checkdigit-extension",
+    "id": "check-digit",
     "version": "0.1",
     "elementPrefix": "",
     "propertyPrefix": "asseco",
@@ -8,25 +8,20 @@
     },
     "contributes": {
 	    "definitions": {
-			"InputTextCheckDigitAlgorithm": {
-			  "description": "Check digit algorithm",
-			  "anyOf": [
-				{
-				  "enum": [
-					"mod11",
-					"mod97"
-				  ]
-				},
-				{
-				  "pattern": "^([m|M][o|O][d|D][1|1][1|1])|([m|M][o|O][d|D][9|9][7|7])$"
-				}
-			  ]
+			"CheckDigitAlgorithm": {
+				"classType": "Enum",
+				"description": "Description.",
+				"values": [
+				  "mod11",
+				  "mod97"
+				]
 		    },
             "Input.Text": {
                 "properties": {
                       "checkDigit": {
-						  "$ref": "#/definitions/InputTextCheckDigitAlgorithm",
-						  "description": "The initial value for this field."
+						  "type": "CheckDigitAlgorithm",
+						  "description": "The initial value for this field.",
+						  "version": "0.1"
 					  }
                 }
             }
