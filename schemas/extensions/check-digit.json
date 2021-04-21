@@ -10,7 +10,7 @@
 	    "definitions": {
 			"CheckDigitAlgorithm": {
 				"classType": "Enum",
-				"description": "Description.",
+				"type": "CheckDigitAlgorithm",
 				"values": [
 				  "mod11",
 				  "mod97"

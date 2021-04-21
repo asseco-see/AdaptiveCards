@@ -13,41 +13,41 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["Input.Chip"],
                         "description": "Must be `Input.Chip`"
                     },
                     "id": {
                         "type": "string",
                         "description": "Unique identifier for chip.",
-                        "version": "0.1"
+                        "version": "0.1",
+						"required": true
                     },
                     "name": {
                         "type": "string",
                         "description": "Chip name.",
-                        "version": "0.1"
+                        "version": "0.1",
+						"required": true
                     },
                     "selected": {
                         "type": "boolean",
                         "description": "Whether or not the chip is selected. Default value is false",
-                        "version": "0.1"
+                        "version": "0.1",
+						"required": true
                     }
-                },
-                "type": "object",
-                "additionalProperties": false,
-                "required": ["id", "name", "selected"]
+                }
             },
             "Input.Chips": {
                 "description": "Allows a user to input a Chip.",
+				"extends": "Input",
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["Input.Chips"],
                         "description": "Must be `Input.Chips`"
                     },
                     "chips": {
                         "type": "Input.Chip[]",
                         "description": "`Chip` options.",
-                        "version": "0.1"
+                        "version": "0.1",
+						"required": true
                     },
                     "value": {
                         "type": "string",
@@ -79,11 +79,7 @@
                         "description": "Whether or not the chipEnd event will be emitted when the input is blurred. Default is true.",
                         "version": "0.1"
                     }
-                },
-                "type": "object",
-                "additionalProperties": false,
-                "required": ["chips"],
-                "extends": "Input"
+                }
             }
         }
     }
