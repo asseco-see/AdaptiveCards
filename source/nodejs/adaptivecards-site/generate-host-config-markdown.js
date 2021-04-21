@@ -39,8 +39,8 @@ try {
 
 	for (const defName in hostConfig.definitions) {
 		const def = hostConfig.definitions[defName];
-		// headerMarkdown.push(`   * [\`${defName}\`](${hyperlinkPrefix}/#schema-${defName.toLocaleLowerCase()}) - ${def.description}`)
-		headerMarkdown.push(`   * \`${defName}\` - ${def.description}`)
+		headerMarkdown.push(`   * [\`${defName}\`](${hyperlinkPrefix}/#schema-${defName.toLocaleLowerCase()}) - ${def.description}`)
+		//headerMarkdown.push(`   * \`${defName}\` - ${def.description}`)
 		
 		bodyMarkdown.push(`<a name="schema-${defName.toLocaleLowerCase()}"></a>`);
 		bodyMarkdown.push(`## ${defName}`); 
