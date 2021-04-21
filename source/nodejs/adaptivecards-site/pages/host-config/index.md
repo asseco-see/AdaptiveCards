@@ -9,27 +9,28 @@ See a sample [HostConfig.json](https://github.com/Microsoft/AdaptiveCards/blob/m
 
 ---
 
-   * [`ActionsConfig`](/host-config/#schema-actionsconfig) - Options for `Action`s
-   * [`AdaptiveCardConfig`](/host-config/#schema-adaptivecardconfig) - Toplevel options for `AdaptiveCards`
-   * [`ContainerStyleConfig`](/host-config/#schema-containerstyleconfig) - Controls styling of a container
-   * [`ContainerStylesConfig`](/host-config/#schema-containerstylesconfig) - Controls styling for default and emphasis containers
-   * [`ErrorMessageConfig`](/host-config/#schema-errormessageconfig) - Controls styling for input error messages
-   * [`FactSetConfig`](/host-config/#schema-factsetconfig) - Controls the display of `FactSet`s
-   * [`FontColorConfig`](/host-config/#schema-fontcolorconfig) - undefined
-   * [`FontSizesConfig`](/host-config/#schema-fontsizesconfig) - Controls font size metrics for different text styles
-   * [`FontWeightsConfig`](/host-config/#schema-fontweightsconfig) - Controls font weight metrics
-   * [`ForegroundColorsConfig`](/host-config/#schema-foregroundcolorsconfig) - Controls various font colors
-   * [`ImageSetConfig`](/host-config/#schema-imagesetconfig) - Controls how `ImageSet`s are displayed
-   * [`ImageSizesConfig`](/host-config/#schema-imagesizesconfig) - Controls `Image` sizes
-   * [`InputsConfig`](/host-config/#schema-inputsconfig) - Controls display and behavior of Input types
-   * [`InputLabelConfig`](/host-config/#schema-inputlabelconfig) - Controls display of input labels
-   * [`LabelConfig`](/host-config/#schema-labelconfig) - Controls display of input labels
-   * [`MediaConfig`](/host-config/#schema-mediaconfig) - Controls the display and behavior of `Media` elements
-   * [`SeparatorConfig`](/host-config/#schema-separatorconfig) - Controls how separators are displayed
-   * [`ShowCardConfig`](/host-config/#schema-showcardconfig) - Controls behavior and styling of `Action.ShowCard`
-   * [`SpacingsConfig`](/host-config/#schema-spacingsconfig) - Controls how elements are to be laid out
-   * [`TextBlockConfig`](/host-config/#schema-textblockconfig) - Parameters controlling the display of text
-   * [`TextinputCheckdigitExtensionConfig`](/host-config/#schema-textinputcheckdigitextensionconfig) - Parameters controlling the textinput-checkdigit-extension
+   * `ActionsConfig` - Options for `Action`s
+   * `AdaptiveCardConfig` - Toplevel options for `AdaptiveCards`
+   * `ContainerStyleConfig` - Controls styling of a container
+   * `ContainerStylesConfig` - Controls styling for default and emphasis containers
+   * `ErrorMessageConfig` - Controls styling for input error messages
+   * `FactSetConfig` - Controls the display of `FactSet`s
+   * `FontColorConfig` - undefined
+   * `FontSizesConfig` - Controls font size metrics for different text styles
+   * `FontWeightsConfig` - Controls font weight metrics
+   * `ForegroundColorsConfig` - Controls various font colors
+   * `ImageSetConfig` - Controls how `ImageSet`s are displayed
+   * `ImageSizesConfig` - Controls `Image` sizes
+   * `InputsConfig` - Controls display and behavior of Input types
+   * `InputLabelConfig` - Controls display of input labels
+   * `LabelConfig` - Controls display of input labels
+   * `MediaConfig` - Controls the display and behavior of `Media` elements
+   * `SeparatorConfig` - Controls how separators are displayed
+   * `ShowCardConfig` - Controls behavior and styling of `Action.ShowCard`
+   * `SpacingsConfig` - Controls how elements are to be laid out
+   * `TextBlockConfig` - Parameters controlling the display of text
+   * `ExtensionsConfig` - Host Configuration for renderer extensions
+   * `CheckDigitConfig` - Parameters controlling the check-digit
 
 
 <br/>
@@ -75,6 +76,7 @@ Toplevel options for `AdaptiveCards`
 |**separator**|`SeparatorConfig`|No|Controls how separators are displayed|1.0
 |**media**|`MediaConfig`|No|Controls the display and behavior of `Media` elements|1.1
 |**inputs**|`InputsConfig`|No|Controls display and behavior of Input types|1.3
+|**extensions**|`ExtensionsConfig`|No|Host Configuration for renderer extensions|1.0
 
 <br/>
 
@@ -320,9 +322,20 @@ Parameters controlling the display of text
 
 <br/>
 
-<a name="schema-textinputcheckdigitextensionconfig"></a>
-## TextinputCheckdigitExtensionConfig
-Parameters controlling the textinput-checkdigit-extension
+<a name="schema-extensionsconfig"></a>
+## ExtensionsConfig
+Host Configuration for renderer extensions
+
+
+|Property|Type|Required|Description|Version|
+|--------|----|--------|-----------|-------|
+|**checkDigit**|`CheckDigitConfig`|No|Parameters controlling the check-digit|1.0
+
+<br/>
+
+<a name="schema-checkdigitconfig"></a>
+## CheckDigitConfig
+Parameters controlling the check-digit
 
 
 |Property|Type|Required|Description|Version|

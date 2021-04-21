@@ -21,6 +21,13 @@ const hyperlinkPrefix = '/platform/adaptive-cards/host-config';
 
 try {
 	const hostConfig = require('../../../schemas/host-config.json');
+
+	//Merge host config
+	const extensions = schemaBuilderUtilities.loadExtendedDefinitions('../../../schemas/extensions/');
+	for (const extension of extensions) {
+		mergeHostConfigWithExtension(hostConfig, extension);
+	}
+
 	if (hostConfig.definitions['AdaptiveCardConfig'] && hostConfig.properties) {
 		for(const propName in hostConfig.properties) {
 			hostConfig.definitions['AdaptiveCardConfig'].properties[propName] = hostConfig.properties[propName];
@@ -29,16 +36,11 @@ try {
 
 	const headerMarkdown = [];
 	const bodyMarkdown = [];
-	
-	//Merge host config
-	const extensions = schemaBuilderUtilities.loadExtendedDefinitions('../../../schemas/extensions/');
-	for (const extension of extensions) {
-		mergeHostConfigWithExtension(hostConfig, extension);
-	}
 
 	for (const defName in hostConfig.definitions) {
 		const def = hostConfig.definitions[defName];
-		headerMarkdown.push(`   * [\`${defName}\`](${hyperlinkPrefix}/#schema-${defName.toLocaleLowerCase()}) - ${def.description}`)
+		// headerMarkdown.push(`   * [\`${defName}\`](${hyperlinkPrefix}/#schema-${defName.toLocaleLowerCase()}) - ${def.description}`)
+		headerMarkdown.push(`   * \`${defName}\` - ${def.description}`)
 		
 		bodyMarkdown.push(`<a name="schema-${defName.toLocaleLowerCase()}"></a>`);
 		bodyMarkdown.push(`## ${defName}`); 
@@ -116,6 +118,7 @@ function mergeHostConfigWithExtension(schema, extension) {
         console.error('Extension Id is invalid');
         return;
     }
+
     hostConfigDefinitionName += 'Config';
 
     if (!schema.properties) {
@@ -123,12 +126,24 @@ function mergeHostConfigWithExtension(schema, extension) {
         return;
     }
 
-    if (schema.properties[hostConfigPropertyName]) {
+    if (schema.properties.extensions && schema.properties.extensions[hostConfigPropertyName]) {
         console.error(`Host config schema already contains ${hostConfigPropertyName} property`);
         return;
     }
 
-    schema.properties[hostConfigPropertyName] = {
+	if (!schema.properties.extensions) {
+		schema.properties.extensions = {
+			'$ref' : '#/definitions/ExtensionsConfig'
+		};
+
+		schema.definitions.ExtensionsConfig = {
+			type: 'object',
+			description: 'Host Configuration for renderer extensions',
+			properties: {}
+		};
+	}
+
+    schema.definitions.ExtensionsConfig.properties[hostConfigPropertyName] = {
         '$ref': `#/definitions/${hostConfigDefinitionName}`,
     };
 
