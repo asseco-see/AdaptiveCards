@@ -9,28 +9,28 @@ See a sample [HostConfig.json](https://github.com/Microsoft/AdaptiveCards/blob/m
 
 ---
 
-   * `ActionsConfig` - Options for `Action`s
-   * `AdaptiveCardConfig` - Toplevel options for `AdaptiveCards`
-   * `ContainerStyleConfig` - Controls styling of a container
-   * `ContainerStylesConfig` - Controls styling for default and emphasis containers
-   * `ErrorMessageConfig` - Controls styling for input error messages
-   * `FactSetConfig` - Controls the display of `FactSet`s
-   * `FontColorConfig` - undefined
-   * `FontSizesConfig` - Controls font size metrics for different text styles
-   * `FontWeightsConfig` - Controls font weight metrics
-   * `ForegroundColorsConfig` - Controls various font colors
-   * `ImageSetConfig` - Controls how `ImageSet`s are displayed
-   * `ImageSizesConfig` - Controls `Image` sizes
-   * `InputsConfig` - Controls display and behavior of Input types
-   * `InputLabelConfig` - Controls display of input labels
-   * `LabelConfig` - Controls display of input labels
-   * `MediaConfig` - Controls the display and behavior of `Media` elements
-   * `SeparatorConfig` - Controls how separators are displayed
-   * `ShowCardConfig` - Controls behavior and styling of `Action.ShowCard`
-   * `SpacingsConfig` - Controls how elements are to be laid out
-   * `TextBlockConfig` - Parameters controlling the display of text
-   * `ExtensionsConfig` - Host Configuration for renderer extensions
-   * `CheckDigitConfig` - Parameters controlling the check-digit
+   * [`ActionsConfig`](/platform/adaptive-cards/host-config/#schema-actionsconfig) - Options for `Action`s
+   * [`AdaptiveCardConfig`](/platform/adaptive-cards/host-config/#schema-adaptivecardconfig) - Toplevel options for `AdaptiveCards`
+   * [`ContainerStyleConfig`](/platform/adaptive-cards/host-config/#schema-containerstyleconfig) - Controls styling of a container
+   * [`ContainerStylesConfig`](/platform/adaptive-cards/host-config/#schema-containerstylesconfig) - Controls styling for default and emphasis containers
+   * [`ErrorMessageConfig`](/platform/adaptive-cards/host-config/#schema-errormessageconfig) - Controls styling for input error messages
+   * [`FactSetConfig`](/platform/adaptive-cards/host-config/#schema-factsetconfig) - Controls the display of `FactSet`s
+   * [`FontColorConfig`](/platform/adaptive-cards/host-config/#schema-fontcolorconfig) - undefined
+   * [`FontSizesConfig`](/platform/adaptive-cards/host-config/#schema-fontsizesconfig) - Controls font size metrics for different text styles
+   * [`FontWeightsConfig`](/platform/adaptive-cards/host-config/#schema-fontweightsconfig) - Controls font weight metrics
+   * [`ForegroundColorsConfig`](/platform/adaptive-cards/host-config/#schema-foregroundcolorsconfig) - Controls various font colors
+   * [`ImageSetConfig`](/platform/adaptive-cards/host-config/#schema-imagesetconfig) - Controls how `ImageSet`s are displayed
+   * [`ImageSizesConfig`](/platform/adaptive-cards/host-config/#schema-imagesizesconfig) - Controls `Image` sizes
+   * [`InputsConfig`](/platform/adaptive-cards/host-config/#schema-inputsconfig) - Controls display and behavior of Input types
+   * [`InputLabelConfig`](/platform/adaptive-cards/host-config/#schema-inputlabelconfig) - Controls display of input labels
+   * [`LabelConfig`](/platform/adaptive-cards/host-config/#schema-labelconfig) - Controls display of input labels
+   * [`MediaConfig`](/platform/adaptive-cards/host-config/#schema-mediaconfig) - Controls the display and behavior of `Media` elements
+   * [`SeparatorConfig`](/platform/adaptive-cards/host-config/#schema-separatorconfig) - Controls how separators are displayed
+   * [`ShowCardConfig`](/platform/adaptive-cards/host-config/#schema-showcardconfig) - Controls behavior and styling of `Action.ShowCard`
+   * [`SpacingsConfig`](/platform/adaptive-cards/host-config/#schema-spacingsconfig) - Controls how elements are to be laid out
+   * [`TextBlockConfig`](/platform/adaptive-cards/host-config/#schema-textblockconfig) - Parameters controlling the display of text
+   * [`ExtensionsConfig`](/platform/adaptive-cards/host-config/#schema-extensionsconfig) - Host Configuration for renderer extensions
+   * [`CheckDigitConfig`](/platform/adaptive-cards/host-config/#schema-checkdigitconfig) - Parameters controlling the check-digit
 
 
 <br/>
@@ -343,3 +343,11 @@ Parameters controlling the check-digit
 |**registries**|`array`|No|The list of registries to lookup templates|0.1
 
 <br/>
+
+<br/>
+<script>
+var hrefs = document.querySelectorAll('a');
+hrefs.forEach(href => {
+	href.setAttribute('target', '_parent');
+})
+</script>

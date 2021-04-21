@@ -19,6 +19,13 @@ const newLine = '\n';
 const lineBreak = newLine + '<br/>' + newLine;
 const hyperlinkPrefix = '/platform/adaptive-cards/host-config';
 
+const hrefModifyScript = `<script>
+var hrefs = document.querySelectorAll('a');
+hrefs.forEach(href => {
+	href.setAttribute('target', '_parent');
+})
+</script>`;
+
 try {
 	const hostConfig = require('../../../schemas/host-config.json');
 
@@ -68,7 +75,7 @@ try {
 	}
 
 	headerMarkdown.push(newLine);
-	let result = documentHeader  + newLine + headerMarkdown.join(newLine) + lineBreak + newLine + bodyMarkdown.join(newLine); 
+	let result = documentHeader  + newLine + headerMarkdown.join(newLine) + lineBreak + newLine + bodyMarkdown.join(newLine) + lineBreak + hrefModifyScript; 
 	fs.writeFileSync('./pages/host-config/index.md', result);
 
 } catch (err) {
