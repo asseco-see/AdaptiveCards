@@ -10,7 +10,6 @@ variables:
 - name: dockerfilePath
   value: 'Dockerfile'
 
-
 pool: 'Digital'
 
 steps:
@@ -83,13 +82,23 @@ steps:
     dockerRegistryEndpoint: harbor
 
 - task: DockerAdvanced@0
-  displayName: 'ACCEPTANCE_setup_environment'
+  displayName: 'COMMIT_publish_chart'
   inputs:
-    image: 'alpine/helm'
-    commands: |
-      export CI_BUILD_TAG=$(cat .version)
-      helm upgrade --install adaptive-ui --namespace platform-docs charts/adaptive-ui --set image.tag=$CI_BUILD_TAG --kubeconfig k8s-asee-dp-robot --atomic
-    secureFile: k8s-asee-dp-robot
+    image: 'registry.see.asseco.com/tools/helm-asseco-deploy'
+    dockerRegistryEndpoint: harbor
+    envVars: |
+      HARBOR_URL=$(harborUrl)
+      HARBOR_USERNAME=$(harborUsername)
+      HARBOR_PASSWORD=$(harborPassword)
+
+# - task: DockerAdvanced@0
+#   displayName: 'ACCEPTANCE_setup_environment'
+#   inputs:
+#     image: 'alpine/helm'
+#     commands: |
+#       export CI_BUILD_TAG=$(cat .version)
+#       helm upgrade --install adaptive-ui --namespace platform-docs charts/adaptive-ui --set image.tag=$CI_BUILD_TAG --kubeconfig k8s-asee-dp-robot --atomic
+#     secureFile: k8s-asee-dp-robot
 
 - script: |
     IFS=',' read -a tags <<< $(cat .tags)
@@ -99,3 +108,21 @@ steps:
     done
   displayName: 'COMMIT_cleanup'
   condition: always()
+
+- script: |
+    echo -e "adaptive-ui" >> .name
+  displayName: 'CD_PREPARATION_SERVICE_NAME'
+
+- task: CopyFiles@2
+  displayName: 'CD_PREPARATION_COPY'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: |
+      .version
+      .name
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'CD_PREPARATION_BUILD_ARTIFACTS'
+  inputs:
+    ArtifactName: 'CD_Data'
