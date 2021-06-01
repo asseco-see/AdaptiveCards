@@ -266,6 +266,7 @@ paket-files/
 dirs*
 sources*
 build*
+!**/build.yaml
 **/objfre/*
 **/objchk/*
 makefile.inc
