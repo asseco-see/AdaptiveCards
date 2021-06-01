@@ -1,251 +1,100 @@
-## Service status
-##
-enabled: true
+###########################
+### BASIC CONFIGURATION ###
+###########################
 
-## Workload controller kind
-## Choose between Deployment and StatefulSet
-## ref: https://kubernetes.io/docs/concepts/workloads/
-# workloadKind: "Deployment"
-
-## Number of replicas
-## ref: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
-## 
+### SCALING
 replicaCount: 1
 
-## Container image parameters
-## ref: https://docs.docker.com/engine/reference/commandline/pull/
-##
-image:
-  registry: "registry.see.asseco.com"
-  repository: "platform/adaptive-ui"
-  ## Tag
-  ## ref: https://docs.docker.com/engine/reference/commandline/tag/
-  ##
-  tag: "latest-dev0"
-  ## Optionally specify an array of imagePullSecrets.
-  ## Secrets must be manually created in the namespace.
-  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-  ##
-  # pullSecrets:
-  #   - myRegistryKeySecretName
+### SECURITY
+masterPassword: ""
 
-## Global container image parameters
-## Please, note that this will override the image parameters, including dependencies, configured to use the global value
-## Current available global container image parameters: imageRegistry and imagePullSecrets
-##
-global:
-  customCA: {}
-  ingress:
-    version: "0.30.0"
-    tls: {}
-  env:
-    proxy: {}
-  registry: {}
-  autoscaling: {}
-  livenessProbe: {}
-  readinessProbe: {}
-  securityContext: {}
-  # imageRegistry: myRegistryName
-  # imagePullSecrets:
-  #   - myRegistryKeySecretName
+### CONTAINER REGISTRY
+imageRegistryUsername: ""
+imageRegistryPassword: ""
 
-## Ingress controller hostname
-##
-hostname: "docs.see.asseco.com"
+### INGRESS
+ingressHost: ""
 
-## Container environment variables
-env:
-  audit:
-    enabled: false
-  basePath: "/adaptive-ui"
+### SERVICE SPECIFIC VARIABLES
+### END SERVICE SPECIFIC VARIABLES
 
-## Ingress controller
-## ref: https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
-##
-ingress:
-  enabled: true
-  class: "nginx"
-  secretName: "platform-docs-secret-tls"
-  # extraPaths: |
-  tls:
-    enabled: true
-    # certificate: ""
-    # key: ""
+##############################
+### ADVANCED CONFIGURATION ###
+##############################
 
-## Configure resource requests and limits
-## ref: http://kubernetes.io/docs/user-guide/compute-resources/
-##
-resources:
-  limits:
-    # cpu: "100m"
-    memory: "128Mi"
-  requests:
-    cpu: "20m"
-    memory: "32Mi"
+### SECURITY
+corsAllowedOrigins:
+- "*"
+containerSecurityContextRunAsUser: "1001"
+podSecurityContextFSGroup: "1001"
 
-## Configure extra options for liveness and readiness probes
-## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
-##
-livenessProbe:
-  enabled: false
-  initialDelaySeconds: 9
-  periodSeconds: 11
-  timeoutSeconds: 5
-  failureThreshold: 6
-  successThreshold: 1
-readinessProbe:
-  enabled: false
-  initialDelaySeconds: 7
-  periodSeconds: 13
-  timeoutSeconds: 5
-  failureThreshold: 6
-  successThreshold: 1
+### CONTAINER REGISTRY
+imageRegistry: "registry.see.asseco.com"
+imageRepository: "platform/adaptive-ui"
+imageTag: "latest-dev"
+imagePullExistingSecrets: []
+imagePullPolicy: ""
+genericImageRepository: "platform/generic"
+genericImageTag: "3"
 
-## Horizontal Pod Autoscaler
-## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
-##
-autoscaling: {}
-  # enabled: true
-  # minReplicas: 1
-  # maxReplicas: 3
-  # targetCPUUtilizationPercentage: 70
-  # targetMemoryUtilizationPercentage: 80
+### INGRESS
+ingressPaths:
+- "/adaptive-ui"
+ingressType: "nginx"
+ingressClass: "nginx"
+ingressAnnotations: {}
+ingressTlsEnabled: true
+ingressTlsOffloaded: false
+ingressExistingTlsSecret: ""
+ingressTlsServerCertificate: ""
+ingressTlsServerKey: ""
 
-## Optional duration in seconds the pod needs to terminate gracefully.
-## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods
-##
-terminationGracePeriodSeconds: 30
+### TRUSTED CERTIFICATES
+trustedCA: ""
+trustedCAExistingSecret: ""
 
-## Pod Security Context
-## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
-##
-securityContext: {}
-  # enabled: true
-  # fsGroup: "1001"
-  # runAsUser: "1001"
-  # extra: |
+### DEPENDENCIES
+dependencies: []
 
-## Node selector and tolerations for pod assignment
-## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
-## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#taints-and-tolerations-beta-feature
-##
-# nodeSelector: {"kubernetes.io/arch": "amd64"}
-# tolerations: []
+### HARDWARE RESOURCES
+memoryRequest: "128Mi"
+memoryLimit: "256Mi"
+cpuRequest: "50m"
+# cpuLimit: 2
+genericMemoryRequest: "16Mi"
+genericMemoryLimit: "64Mi"
+genericCpuRequest: "50m"
+# genericCpuLimit: "200m"
 
-## Use an alternate scheduler, e.g. "stork".
-## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
-##
-# schedulerName: ""
+### COMMUNICATION
+environmentName: ""
+clusterDomain: "cluster.local"
+serviceType: "ClusterIP"
+# serviceNodePort: 0
 
-## Pod anti-affinity
-## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
-##
-antiAffinity: "soft"
+### SCHEDULING
+podAntiAffinity: "soft"
+nodeSelector: {}
+tolerations: []
 
-## Pod annotations
-## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-##
-# podAnnotations: {}
+### ROLLOUT STRATEGY
+deploymentStrategy: "RollingUpdate"
+deploymentRollingUpdateMaxUnavailable: "25%"
+deploymentRollingUpdateMaxSurge: "25%"
 
-## Additional pod labels
-## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-##
-# podLabels: {}
+### CORE
+extraSelectorLabels: {}
+extraVariables: []
+timezone: "UTC"
+nameOverride: ""
+fullnameOverride: ""
+startupPath: "/app"
+capabilitiesKubeVersion: ""
 
-## Pod Priority Class
-## ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
-##
-# priorityClassName: ""
-
-## Update strategy, can be set to Recreate or RollingUpdate by default.
-## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
-##
-deployment:
-  strategy: "RollingUpdate"
-  ## Rolling Update Deployment
-  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment
-  ##
-  # rollingUpdate:
-  #    maxUnavailable: ""
-  #    maxSurge: ""
-
-## Update strategy, can be set to RollingUpdate or OnDelete by default.
-## https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/#updating-statefulsets
-##
-statefulset:
-  updateStrategy: "RollingUpdate"
-  ## Partition update strategy
-  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#partitions
-  ##
-  # rollingUpdatePartition: 0
-  ## Pod management policy
-  ## https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#pod-management-policies
-  ##
-  podManagementPolicy: "OrderedReady"
-
-## Network Policy
-## https://kubernetes.io/docs/concepts/services-networking/network-policies/
-##
-networkPolicy: {}
-  ## Enable creation of NetworkPolicy resources.
-  # enabled: false
-
-  ## The Policy model to apply. When set to false, only pods with the correct
-  ## label will have network access to the port Service is listening
-  ## on. When true, Service will accept connections from any source
-  ## (with the correct destination port).
-  ##
-  # allowExternal: false
-
-## Additional arguments for container
-## ref: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/
-##
-# extraArgs: |
-#   - "--mode=demo"
-#   - "--arg=value"
-
-## Additional command for container
-## ref: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/
-##
-# extraCommand: |
-#   - "sh"
-#   - "-c"
-#   - "'echo Execute this command'"
-
-## Additional environment variables for container
-## ref: https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
-##
-# extraEnvs: |
-#   - name: "DEMO"
-#     value: "true"
-#   - name: "SOME_API_SERVICE_URL"
-#     value: "http://hostname/v1/some-api"
-
-## Additional volumes for container
-## ref: https://kubernetes.io/docs/concepts/storage/volumes/
-##
-# extraVolumes: |
-#   - name: {{ .Release.Name }}-additional-volume
-#     configMap:
-#       name: {{ .Release.Name }}-additional-setting
-# extraVolumeMounts: |
-#   - name: {{ .Release.Name }}-additional-volume
-#     mountPath: "/app/additional/setting.json"
-#     subPath: "setting.json"
-#     readOnly: true
-
-## Additional init containers
-## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
-##
-# extraInitContainers: |
-#   - name: do-something
-#     image: busybox
-#     command: ['do', 'something']
-
-## Additional workload specification
-##
-# extraWorkloadSpec: |
-#   dnsConfig:
-#     options:
-#       - name: ndots
-#         value: "1"
+### SERVICE SPECIFIC VARIABLES
+proxyIngressType: "nginx"
+proxyIngressClass: "nginx"
+proxyIngressAnnotations: {}
+proxyIngressServiceName: "traefik"
+proxyIngressServicePort: "websecure"
+### END SERVICE SPECIFIC VARIABLES

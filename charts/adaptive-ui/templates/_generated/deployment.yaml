@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "asee.trait.core.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    reloader.stakater.com/auto: "true"
+  labels:
+    {{- include "asee.trait.core.metadata-labels" . | nindent 4 }}
+spec:
+  replicas: {{ default 1 .Values.replicaCount }}
+  {{- include "asee.trait.rollout-strategy" . | nindent 2 }}
+  selector:
+    matchLabels:
+      {{- include "asee.trait.core.selector-labels" . | nindent 6 }}
+      {{- include "asee.trait.core.extra-selector-labels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "asee.trait.core.selector-labels" . | nindent 8 }}
+        {{- include "asee.trait.core.extra-selector-labels" . | nindent 8 }}
+    spec:
+      {{- include "asee.trait.container-registry.image.pull-secrets" . | nindent 6 }}
+      {{- include "asee.trait.security.pod.security-context" . | nindent 6 }}
+      {{- include "asee.trait.scheduling" . | nindent 6 }}
+      initContainers:
+      {{- include "asee.adaptive-ui.513iuibv.extension.deployment.pod.init-containers" . | nindent 6 }}
+      {{- include "asee.trait.dependencies.wait-for-init-container" . | nindent 6 }}
+      volumes:
+      {{- include "asee.trait.trusted-certificates.volume" . | nindent 6 }}
+      {{- include "asee.adaptive-ui.513iuibv.extension.deployment.pod.volumes" . | nindent 6 }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ include "asee.trait.container-registry.image" . }}
+        imagePullPolicy: {{ include "asee.trait.container-registry.image.pull-policy" . }}
+        {{- include "asee.trait.security.container.security-context" . | nindent 8 }}
+        env:
+        {{- include "asee.trait.core.variables" . | nindent 8 }}
+        {{- include "asee.trait.communication.variables" . | nindent 8 }}
+        {{- include "asee.trait.security.variables" . | nindent 8 }}
+        {{- include "asee.trait.core.extra-variables" . | nindent 8 }}
+        {{- include "asee.adaptive-ui.513iuibv.extension.deployment.pod.container.variables" . | nindent 8 }}
+        ports:
+        - name: http
+          containerPort: 8080
+        {{- include "asee.adaptive-ui.513iuibv.extension.deployment.pod.container.ports" . | nindent 8 }}
+        {{- include "asee.trait.hardware-resources" . | nindent 8 }}
+        volumeMounts:
+        {{- include "asee.trait.trusted-certificates.volume-mount" . | nindent 8 }}
+        {{- include "asee.adaptive-ui.513iuibv.extension.deployment.pod.container.volume-mounts" . | nindent 8 }}
+      {{- include "asee.adaptive-ui.513iuibv.extension.deployment.pod.spec" . | nindent 6 }}

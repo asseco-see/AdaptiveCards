@@ -1,0 +1,4 @@
+{{- if .Values.ingressHost -}}
+Environment URL: {{ include "asee.trait.ingress.access-url" . }}
+{{- end -}}
+{{- include "asee.trait.container-registry.rolling-tag" . }}

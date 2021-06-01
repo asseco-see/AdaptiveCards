@@ -1,0 +1,20 @@
+Version: "0.2.4"
+Answers:
+  Name: "adaptive-ui"
+  Description: "Adaptive UI documentation website"
+  Traits:
+  - "Ingress"
+  BasePath:
+  - "/adaptive-ui"
+  Repository: "platform/adaptive-ui"
+Hashes:
+  build.yaml: "43395F36F130F71A3C820501AF0F0BE6"
+  Chart.yaml: "EDA8192A61E8A1A89D969CA2072B78B1"
+  templates#_generated#deployment.yaml: "F6DFED0DBB278A68EFCFD2E7350B9B8E"
+  templates#_generated#ingress.yaml: "640CA60DFD22D12A34F8452348E046E4"
+  templates#_generated#service.yaml: "58CBD3AF59D4C28F0519F45002CD17E1"
+  templates#_generated#secrets#container-registry.yaml: "1ABF573000222BB7D18D3C26674DF07D"
+  templates#_generated#secrets#ingress-tls.yaml: "E2B465C8DF4F94F14B17FA66FE933C30"
+  templates#_generated#secrets#trusted-certificates.yaml: "4084CA49416569A3ECDFBD8BB8C50227"
+GeneratedId: "513iuibv"
+CompatibleTemplatesVersion: "^0"
