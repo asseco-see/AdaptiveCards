@@ -110,7 +110,7 @@ steps:
   condition: always()
 
 - script: |
-    echo -e "adaptive-ui" >> .name
+    echo -e "adaptive-ui-cards" >> .name
   displayName: 'CD_PREPARATION_SERVICE_NAME'
 
 - task: CopyFiles@2
