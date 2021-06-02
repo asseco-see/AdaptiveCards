@@ -91,15 +91,6 @@ steps:
       HARBOR_USERNAME=$(harborUsername)
       HARBOR_PASSWORD=$(harborPassword)
 
-# - task: DockerAdvanced@0
-#   displayName: 'ACCEPTANCE_setup_environment'
-#   inputs:
-#     image: 'alpine/helm'
-#     commands: |
-#       export CI_BUILD_TAG=$(cat .version)
-#       helm upgrade --install adaptive-ui --namespace platform-docs charts/adaptive-ui --set image.tag=$CI_BUILD_TAG --kubeconfig k8s-asee-dp-robot --atomic
-#     secureFile: k8s-asee-dp-robot
-
 - script: |
     IFS=',' read -a tags <<< $(cat .tags)
     for tag in "${tags[@]}"
