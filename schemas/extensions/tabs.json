@@ -1,0 +1,91 @@
+{
+  "id": "tabs",
+  "version": "0.1",
+  "elementPrefix": "dp",
+  "propertyPrefix": "",
+  "supports": {
+    "javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+  },
+  "contributes": {
+    "definitions": {
+      "Tab": {
+        "description": "Defines a container that is part of a TabSet.",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Tab"
+            ],
+            "description": "Must be `Tab`",
+            "required": true
+          },
+          "items": {
+            "type": "Element[]",
+            "description": "Content of the Tab.",
+            "version": "0.1",
+            "required": true
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the Tab.",
+            "version": "0.1",
+            "required": true
+          },
+          "id": {
+            "type": "string",
+            "description": "A unique identifier associated with the element.",
+            "version": "0.1"
+          },
+          "spacing": {
+            "type": "Spacing",
+            "description": "Controls the amount of spacing between this element and the preceding element.",
+            "version": "0.1"
+          },
+          "separator": {
+            "type": "boolean",
+            "description": "When true, draw a separating line at the top of the element.",
+            "version": "0.1"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TabSet": {
+        "description": "TabSet allows to display content through various tabs.",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "TabSet"
+            ],
+            "description": "Must be `TabSet`",
+            "required": true
+          },
+          "tabs": {
+            "type": "Tab[]",
+            "description": "The array of Tabs to divide content.",
+            "version": "0.1"
+          },
+          "id": {
+            "type": "string",
+            "description": "A unique identifier associated with the element.",
+            "version": "0.1",
+            "required": true
+          },
+          "spacing": {
+            "type": "Spacing",
+            "description": "Controls the amount of spacing between this element and the preceding element.",
+            "version": "0.1"
+          },
+          "separator": {
+            "type": "boolean",
+            "description": "When true, draw a separating line at the top of the element.",
+            "version": "0.1"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      }
+    }
+  }
+}
