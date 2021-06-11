@@ -81,10 +81,37 @@
             "type": "boolean",
             "description": "When true, draw a separating line at the top of the element.",
             "version": "0.1"
+          },
+          "color": {
+            "type": "Colors",
+            "description": "Controls the color of TabSet elements.",
+            "version": "0.1"
+          },
+          "backgroundColor": {
+            "type": "Colors",
+            "description": "Controls the background color of TabSet elements.",
+            "version": "0.1"
+          },
+          "selectedTab": {
+            "type": "number",
+            "description": "Determines selected tab for TabSet element.",
+            "version": "0.1"
           }
         },
         "type": "object",
         "additionalProperties": false
+      }
+    }
+  },
+  "hostConfig": {
+    "properties": {
+      "bottomHeaderPosition": {
+        "type": "boolean",
+        "description": "Position of tabs header."
+      },
+      "animationDuration": {
+        "type": "string",
+        "description": "Animation duration."
       }
     }
   }
