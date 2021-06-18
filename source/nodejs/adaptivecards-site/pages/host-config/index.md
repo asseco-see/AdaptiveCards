@@ -31,6 +31,7 @@ See a sample [HostConfig.json](https://github.com/Microsoft/AdaptiveCards/blob/m
    * [`TextBlockConfig`](/platform/adaptive-cards/host-config/#schema-textblockconfig) - Parameters controlling the display of text
    * [`ExtensionsConfig`](/platform/adaptive-cards/host-config/#schema-extensionsconfig) - Host Configuration for renderer extensions
    * [`CheckDigitConfig`](/platform/adaptive-cards/host-config/#schema-checkdigitconfig) - Parameters controlling the check-digit
+   * [`TabsConfig`](/platform/adaptive-cards/host-config/#schema-tabsconfig) - Parameters controlling the tabs
 
 
 <br/>
@@ -330,6 +331,7 @@ Host Configuration for renderer extensions
 |Property|Type|Required|Description|Version|
 |--------|----|--------|-----------|-------|
 |**checkDigit**|`CheckDigitConfig`|No|Parameters controlling the check-digit|1.0
+|**tabs**|`TabsConfig`|No|Parameters controlling the tabs|1.0
 
 <br/>
 
@@ -341,6 +343,18 @@ Parameters controlling the check-digit
 |Property|Type|Required|Description|Version|
 |--------|----|--------|-----------|-------|
 |**registries**|`array`|No|The list of registries to lookup templates|0.1
+
+<br/>
+
+<a name="schema-tabsconfig"></a>
+## TabsConfig
+Parameters controlling the tabs
+
+
+|Property|Type|Required|Description|Version|
+|--------|----|--------|-----------|-------|
+|**bottomHeaderPosition**|`boolean`|No|Position of tabs header.|0.1
+|**animationDuration**|`string`|No|Animation duration.|0.1
 
 <br/>
 

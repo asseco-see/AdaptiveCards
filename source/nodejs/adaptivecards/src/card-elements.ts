@@ -12,7 +12,7 @@ import { Versions, Version, property, BaseSerializationContext, SerializableObje
     NumProperty, PropertyBag, CustomProperty, PropertyDefinition } from "./serialization";
 import { CardObjectRegistry } from "./registry";
 import { Strings } from "./strings";
-import { mod11_2, mod97_10, verhoeff } from "cdigit"
+import { mod11_2, mod97_10 } from "cdigit";
 
 export type CardElementHeight = "auto" | "stretch";
 
