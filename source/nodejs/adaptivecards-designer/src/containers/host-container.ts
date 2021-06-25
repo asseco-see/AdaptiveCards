@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalSettings, GlobalRegistry, CardObjectRegistry, CardElement, Action, HostConfig, SerializationContext, Version, Versions } from "@asseco/adaptivecards";
+import {
+    GlobalSettings, GlobalRegistry,
+    CardElement, Action, HostConfig, SerializationContext, Version, Versions, CardObjectRegistry
+} from "@asseco/adaptivecards";
 import * as hostConfig from "../hostConfigs/sample.json";
 
 export abstract class HostContainer {
@@ -31,7 +34,7 @@ export abstract class HostContainer {
     }
 
     public createSerializationContext(targetVersion: Version): SerializationContext {
-        let context = new SerializationContext(targetVersion);
+        const context = new SerializationContext(targetVersion);
         context.setElementRegistry(this.elementsRegistry);
         context.setActionRegistry(this.actionsRegistry);
 
@@ -55,9 +58,9 @@ export abstract class HostContainer {
         return new HostConfig(hostConfig);
     }
 
-	public getRawHostConfig(): any {
-		return hostConfig;
-	}
+    public getRawHostConfig(): any {
+        return hostConfig;
+    }
 
     supportsActionBar: boolean = false;
 

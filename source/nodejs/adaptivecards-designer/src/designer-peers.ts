@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Adaptive  from "@asseco/adaptivecards";
-import * as Controls  from "adaptivecards-controls";
+import * as Adaptive from "@asseco/adaptivecards";
+import * as Controls from "adaptivecards-controls";
 import { DraggableElement } from "./draggable-element";
 import { PeerCommand } from "./peer-command";
 import { CardDesignerSurface, DesignContext } from "./card-designer-surface";
@@ -9,6 +9,7 @@ import { DesignerPeerTreeItem } from "./designer-peer-treeitem";
 import { Rect, IPoint } from "./miscellaneous";
 import { GlobalSettings } from "./shared";
 import { FieldPicker } from "./field-picker";
+import { Input } from "adaptivecards";
 
 export abstract class DesignerPeerInplaceEditor {
     onClose: (applyChanges: boolean) => void;
@@ -38,7 +39,7 @@ export class DesignerPeerRegistrationBase {
     }
 }
 
-export class DesignerPeerRegistration<TSource, TPeer> extends DesignerPeerRegistrationBase{
+export class DesignerPeerRegistration<TSource, TPeer> extends DesignerPeerRegistrationBase {
     readonly sourceType: TSource;
 
     peerType: TPeer;
@@ -65,7 +66,6 @@ export class PropertySheetCategory {
 
     render(container: Adaptive.Container, context: PropertySheetContext, displayCategoryName: boolean) {
         let entriesToRender: PropertySheetEntry[] = [];
-
         for (let entry of this._entries) {
             if (Adaptive.isVersionLessOrEqual(entry.targetVersion, context.designContext.targetVersion)) {
                 entriesToRender.push(entry);
@@ -133,7 +133,6 @@ export class PropertySheet {
 
             this._categories[categoryName] = category;
         }
-
         category.add(...entries);
     }
 
@@ -444,7 +443,7 @@ export class ContainerStylePropertyEditor extends ChoicePropertyEditor {
         }
     }
 
-    constructor(readonly targetVersion: Adaptive.TargetVersion,readonly propertyName: string, readonly label: string) {
+    constructor(readonly targetVersion: Adaptive.TargetVersion, readonly propertyName: string, readonly label: string) {
         super(
             targetVersion,
             propertyName,
@@ -1891,7 +1890,7 @@ export class ColumnSetPeer extends TypedCardElementPeer<Adaptive.ColumnSet> {
 }
 
 export class ContainerPeer extends TypedCardElementPeer<Adaptive.Container> {
-    static readonly selectActionProperty = new ActionPropertyEditor(Adaptive.Versions.v1_1, "selectAction", "Action type", [ Adaptive.ShowCardAction.JsonTypeName ], true);
+    static readonly selectActionProperty = new ActionPropertyEditor(Adaptive.Versions.v1_1, "selectAction", "Action type", [Adaptive.ShowCardAction.JsonTypeName], true);
     static readonly minHeightProperty = new NumberPropertyEditor(Adaptive.Versions.v1_2, "minPixelHeight", "Minimum height in pixels");
     static readonly verticalContentAlignmentProperty = new EnumPropertyEditor(Adaptive.Versions.v1_1, "verticalContentAlignment", "Vertical content alignment", Adaptive.VerticalAlignment);
     static readonly styleProperty = new ContainerStylePropertyEditor(Adaptive.Versions.v1_0, "style", "Style");
@@ -2133,7 +2132,8 @@ export class ImagePeer extends TypedCardElementPeer<Adaptive.Image> {
 
                 propertySheet.add(
                     PropertySheetCategory.SelectionAction,
-                    new SubPropertySheetEntry(Adaptive.Versions.v1_0, this.cardElement.selectAction, subPropertySheet));            }
+                    new SubPropertySheetEntry(Adaptive.Versions.v1_0, this.cardElement.selectAction, subPropertySheet));
+            }
         }
     }
 }
@@ -2261,7 +2261,7 @@ export class TextInputPeer extends InputPeer<Adaptive.TextInput> {
     static readonly isMultilineProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "isMultiline", "Multi-line", true);
     static readonly styleProperty = new EnumPropertyEditor(Adaptive.Versions.v1_0, "style", "Style", Adaptive.InputTextStyle);
     static readonly maxLengthProperty = new NumberPropertyEditor(Adaptive.Versions.v1_0, "maxLength", "Maximum length");
-    static readonly inlineActionProperty = new ActionPropertyEditor(Adaptive.Versions.v1_2, "inlineAction", "Action type", [ Adaptive.ShowCardAction.JsonTypeName ], true);
+    static readonly inlineActionProperty = new ActionPropertyEditor(Adaptive.Versions.v1_2, "inlineAction", "Action type", [Adaptive.ShowCardAction.JsonTypeName], true);
     static readonly regexProperty = new StringPropertyEditor(Adaptive.Versions.v1_3, "regex", "Pattern");
 
 
@@ -2433,7 +2433,7 @@ export class ChoiceSetInputPeer extends InputPeer<Adaptive.ChoiceSetInput> {
             ChoiceSetInputPeer.choicesProperty);
     }
 
-    initializeCardElement() {
+    finitializeCardElement() {
         this.cardElement.placeholder = "Placeholder text";
 
         this.cardElement.choices.push(
@@ -2442,6 +2442,180 @@ export class ChoiceSetInputPeer extends InputPeer<Adaptive.ChoiceSetInput> {
         );
     }
 }
+
+// BORO EXTENSION PEERS 
+export class GenericInputPeer extends InputPeer<Adaptive.GenericInput> {
+	[name:string]: any
+    static readonly placeholderProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "placeholder", "Placeholder");
+
+	initializeCardElement() {
+        super.initializeCardElement();
+
+        this.cardElement['placeholder'] = "Placeholder text";
+    }
+    populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
+        super.populatePropertySheet(propertySheet, defaultCategory);
+
+        propertySheet.add(
+            defaultCategory,
+            TextInputPeer.placeholderProperty,
+            TextInputPeer.isMultilineProperty);
+
+        if (!this.cardElement.isMultiline) {
+            propertySheet.add(
+                PropertySheetCategory.DefaultCategory,
+                TextInputPeer.styleProperty);
+        }
+
+        propertySheet.add(
+            PropertySheetCategory.InlineAction,
+            TextInputPeer.inlineActionProperty);
+
+        if (this.cardElement.inlineAction) {
+            let inlineActionPeer = CardDesignerSurface.actionPeerRegistry.createPeerInstance(this.designerSurface, null, this.cardElement.inlineAction);
+            inlineActionPeer.onChanged = (sender: DesignerPeer, updatePropertySheet: boolean) => { this.changed(updatePropertySheet); };
+
+            let subPropertySheet = new PropertySheet(false);
+            inlineActionPeer.populatePropertySheet(subPropertySheet, PropertySheetCategory.InlineAction);
+
+            subPropertySheet.remove(ActionPeer.styleProperty);
+
+            propertySheet.add(
+                PropertySheetCategory.InlineAction,
+                new SubPropertySheetEntry(Adaptive.Versions.v1_2, this.cardElement.inlineAction, subPropertySheet));
+        }
+
+        propertySheet.add(
+            defaultCategory,
+            TextInputPeer.maxLengthProperty,
+            TextInputPeer.defaultValueProperty);
+
+        propertySheet.add(
+            PropertySheetCategory.Validation,
+            TextInputPeer.regexProperty);
+    }
+}
+
+
+export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.GenericContainer> {
+    protected isContainer(): boolean {
+        return true;
+    }
+
+    protected internalAddCommands(context: DesignContext, commands: Array<PeerCommand>) {
+        super.internalAddCommands(context, commands);
+
+        commands.push(
+            new PeerCommand(
+                {
+                    name: "Add a column",
+                    iconClass: "acd-icon-addColumn",
+                    isPromotable: true,
+                    execute: (command: PeerCommand, clickedElement: HTMLElement) => {
+                        var column = new Adaptive.Column();
+                        column.width = "stretch";
+
+                        this.cardElement.addColumn(column);
+
+                        this.insertChild(CardDesignerSurface.cardElementPeerRegistry.createPeerInstance(this.designerSurface, this, column));
+                    }
+                })
+        );
+    }
+
+    protected internalGetTreeItemText(): string {
+        let columnCount = this.cardElement.getItemCount();
+
+        switch (columnCount) {
+            case 0:
+                return "No column";
+            case 1:
+                return "1 column";
+            default:
+                return columnCount + " columns";
+        }
+    }
+
+    populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
+        super.populatePropertySheet(propertySheet, defaultCategory);
+
+        propertySheet.add(
+            defaultCategory,
+            ContainerPeer.minHeightProperty,
+            ContainerPeer.styleProperty,
+            ContainerPeer.bleedProperty);
+
+        propertySheet.add(
+            PropertySheetCategory.SelectionAction,
+            ContainerPeer.selectActionProperty);
+
+        if (this.cardElement.selectAction) {
+            let selectActionPeer = CardDesignerSurface.actionPeerRegistry.createPeerInstance(this.designerSurface, null, this.cardElement.selectAction);
+            selectActionPeer.onChanged = (sender: DesignerPeer, updatePropertySheet: boolean) => { this.changed(updatePropertySheet); };
+
+            let subPropertySheet = new PropertySheet(false);
+            selectActionPeer.populatePropertySheet(subPropertySheet, PropertySheetCategory.SelectionAction);
+
+            subPropertySheet.remove(
+                ActionPeer.iconUrlProperty,
+                ActionPeer.styleProperty);
+
+            propertySheet.add(
+                PropertySheetCategory.SelectionAction,
+                new SubPropertySheetEntry(Adaptive.Versions.v1_0, this.cardElement.selectAction, subPropertySheet));
+        }
+    }
+
+    canDrop(peer: DesignerPeer) {
+        return true;
+    }
+}
+
+// export class ChipInputPeer extends InputPeer<Adaptive.ChipInput> {
+//     static readonly defaultValueProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "defaultValue", "Default value");
+//     static readonly placeholderProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "placeholder", "Placeholder");
+//     static readonly isMultiselectProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "isMultiSelect", "Allow multi selection");
+//     static readonly isCompactProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "isCompact", "Compact style");
+//     static readonly wrapProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_2, "wrap", "Wrap");
+//     static readonly chipsProperty = new NameValuePairPropertyEditor(
+//         Adaptive.Versions.v1_0,
+//         "chips",
+//         "title",
+//         "value",
+//         (name: string, value: string) => { return new Adaptive.Chip(); },
+//         "Title",
+//         "Value",
+//         "Add a new chip",
+//         "This Chips is empty");
+
+//     populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
+//         super.populatePropertySheet(propertySheet, defaultCategory);
+
+//         propertySheet.add(
+//             defaultCategory,
+//             ChipInputPeer.placeholderProperty,
+//             ChipInputPeer.isMultiselectProperty,
+//             ChipInputPeer.isCompactProperty,
+//             ChipInputPeer.defaultValueProperty);
+
+//         propertySheet.add(
+//             PropertySheetCategory.LayoutCategory,
+//             ToggleInputPeer.wrapProperty);
+
+//         propertySheet.add(
+//             "Chips",
+//             ChipInputPeer.chipsProperty);
+//     }
+
+//     initializeCardElement() {
+//         this.cardElement.placeholder = "Placeholder text";
+
+//         this.cardElement._chips.push(
+//             new Adaptive.Chip("boro"),
+//             new Adaptive.Chip("car")
+//         );
+//     }
+// }
 
 class TextBlockPeerInplaceEditor extends CardElementPeerInplaceEditor<Adaptive.TextBlock> {
     private _renderedElement: HTMLTextAreaElement;
@@ -2467,12 +2641,12 @@ class TextBlockPeerInplaceEditor extends CardElementPeerInplaceEditor<Adaptive.T
         this._renderedElement.onkeydown = (e) => {
             switch (e.key) {
                 case Controls.Constants.keys.escape:
-                   this.close(false);
+                    this.close(false);
 
-                   e.preventDefault();
-                   e.cancelBubble = true;
+                    e.preventDefault();
+                    e.cancelBubble = true;
 
-                   break;
+                    break;
                 case Controls.Constants.keys.enter:
                     this.close(true);
 

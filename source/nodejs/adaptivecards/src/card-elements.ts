@@ -1,15 +1,19 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Enums from "./enums";
-import { PaddingDefinition, GlobalSettings, SizeAndUnit,SpacingDefinition,
-    Dictionary, StringWithSubstitutions, ContentTypes, IInput, IResourceInformation } from "./shared";
+import {
+    PaddingDefinition, GlobalSettings, SizeAndUnit, SpacingDefinition,
+    Dictionary, StringWithSubstitutions, ContentTypes, IInput, IResourceInformation
+} from "./shared";
 import * as Utils from "./utils";
 import { HostConfig, defaultHostConfig, BaseTextDefinition, FontTypeDefinition, ColorSetDefinition, TextColorDefinition, ContainerStyleDefinition } from "./host-config";
 import * as TextFormatters from "./text-formatters";
 import { CardObject, ValidationResults } from "./card-object";
-import { Versions, Version, property, BaseSerializationContext, SerializableObject, SerializableObjectSchema, StringProperty,
+import {
+    Versions, Version, property, BaseSerializationContext, SerializableObject, SerializableObjectSchema, StringProperty,
     BoolProperty, ValueSetProperty, EnumProperty, SerializableObjectCollectionProperty, SerializableObjectProperty, PixelSizeProperty,
-    NumProperty, PropertyBag, CustomProperty, PropertyDefinition } from "./serialization";
+    NumProperty, PropertyBag, CustomProperty, PropertyDefinition
+} from "./serialization";
 import { CardObjectRegistry } from "./registry";
 import { Strings } from "./strings";
 import { mod11_2, mod97_10 } from "cdigit";
@@ -120,19 +124,19 @@ export abstract class CardElement extends CardObject {
             },
             this.separatorOrientation);
 
-            if (GlobalSettings.alwaysBleedSeparators && renderedSeparator && this.separatorOrientation == Enums.Orientation.Horizontal) {
-                // Adjust separator's margins if the option to always bleed separators is turned on
-                let parentContainer = this.getParentContainer();
+        if (GlobalSettings.alwaysBleedSeparators && renderedSeparator && this.separatorOrientation == Enums.Orientation.Horizontal) {
+            // Adjust separator's margins if the option to always bleed separators is turned on
+            let parentContainer = this.getParentContainer();
 
-                if (parentContainer && parentContainer.getEffectivePadding()) {
-                    let parentPhysicalPadding = this.hostConfig.paddingDefinitionToSpacingDefinition(parentContainer.getEffectivePadding());
+            if (parentContainer && parentContainer.getEffectivePadding()) {
+                let parentPhysicalPadding = this.hostConfig.paddingDefinitionToSpacingDefinition(parentContainer.getEffectivePadding());
 
-                    renderedSeparator.style.marginLeft = "-" + parentPhysicalPadding.left + "px";
-                    renderedSeparator.style.marginRight = "-" + parentPhysicalPadding.right + "px";
-                }
+                renderedSeparator.style.marginLeft = "-" + parentPhysicalPadding.left + "px";
+                renderedSeparator.style.marginRight = "-" + parentPhysicalPadding.right + "px";
             }
+        }
 
-            return renderedSeparator;
+        return renderedSeparator;
     }
 
     private updateRenderedElementVisibility() {
@@ -611,7 +615,6 @@ export abstract class CardElement extends CardObject {
         return <CardElement>this._parent;
     }
 }
-
 export class ActionProperty extends PropertyDefinition {
     parse(sender: SerializableObject, source: PropertyBag, context: SerializationContext): Action | undefined {
         let parent = <CardElement>sender;
@@ -665,7 +668,7 @@ export abstract class BaseTextBlock extends CardElement {
         Versions.v1_2,
         "fontType",
         Enums.FontType);
-    static readonly selectActionProperty = new ActionProperty(Versions.v1_1, "selectAction", [ "Action.ShowCard" ]);
+    static readonly selectActionProperty = new ActionProperty(Versions.v1_1, "selectAction", ["Action.ShowCard"]);
 
     protected populateSchema(schema: SerializableObjectSchema) {
         super.populateSchema(schema);
@@ -1606,7 +1609,7 @@ export class Image extends CardElement {
         Enums.Size.Auto);
     static readonly pixelWidthProperty = new ImageDimensionProperty(Versions.v1_1, "width", "pixelWidth");
     static readonly pixelHeightProperty = new ImageDimensionProperty(Versions.v1_1, "height", "pixelHeight", CardElement.heightProperty);
-    static readonly selectActionProperty = new ActionProperty(Versions.v1_1, "selectAction", [ "Action.ShowCard" ]);
+    static readonly selectActionProperty = new ActionProperty(Versions.v1_1, "selectAction", ["Action.ShowCard"]);
 
     protected populateSchema(schema: SerializableObjectSchema) {
         super.populateSchema(schema);
@@ -1828,7 +1831,7 @@ export class Image extends CardElement {
 export abstract class CardElementContainer extends CardElement {
     //#region Schema
 
-    static readonly selectActionProperty = new ActionProperty(Versions.v1_1, "selectAction", [ "Action.ShowCard" ]);
+    static readonly selectActionProperty = new ActionProperty(Versions.v1_1, "selectAction", ["Action.ShowCard"]);
 
     protected populateSchema(schema: SerializableObjectSchema) {
         super.populateSchema(schema);
@@ -2206,8 +2209,7 @@ export class Media extends CardElement {
         }
     }
 
-    private handlePlayButtonInvoke(event: UIEvent) : void
-    {
+    private handlePlayButtonInvoke(event: UIEvent): void {
         if (this.hostConfig.media.allowInlinePlayback) {
             event.preventDefault();
             event.cancelBubble = true;
@@ -2642,7 +2644,7 @@ export abstract class Input extends CardElement implements IInput {
     }
 
     getAllInputs(processActions: boolean = true): Input[] {
-        return [ this ];
+        return [this];
     }
 
     abstract get value(): any;
@@ -2652,267 +2654,286 @@ export abstract class Input extends CardElement implements IInput {
     }
 }
 
+export class GenericInput extends Input{
+	[name: string]: any;
 
-export interface ChipData {
-    id: string
-    name: string;
-    selected: boolean;
+	constructor() {
+		super();
+	}
+	isSet(): boolean {
+		return true;
+	}
+	get value(): any {
+		return '123';
+	}
+	public internalRender(): HTMLElement | undefined {
+		return document.createElement("div");
+	}
+	getJsonTypeName(): string {
+		return 'sample';
+	}
 }
 
-//Configuration
-export class Chip extends SerializableObject {
-    static readonly idProperty = new StringProperty(Versions.v1_0, "id", true);
-    static readonly nameProperty = new StringProperty(Versions.v1_0, "name", true);
-    static readonly selectedProperty = new BoolProperty(Versions.v1_0, "selected", false);
-
-    protected getSchemaKey(): string {
-        return "chip"
-    }
-
-    @property(Chip.idProperty)
-    get id(): string {
-        return this.getValue(Chip.idProperty);
-    }
-
-    set id(value: string) {
-            this.setValue(Chip.idProperty, value);
-    }
-
-    @property(Chip.nameProperty)
-    get name(): string {
-        return this.getValue(Chip.nameProperty);
-    }
-
-    set name(value: string) {
-            this.setValue(Chip.nameProperty, value);
-    }
-
-    @property(Chip.selectedProperty)
-    get selected(): boolean {
-        return this.getValue(Chip.selectedProperty);
-    }
-
-    set selected(value: boolean) {
-            this.setValue(Chip.selectedProperty, value);
-    }
-  }
-
-//Extension
-export class ChipInput extends Input {
-
-    static readonly JsonTypeName = "Input.Chips";
-    static readonly selectedAttribute = 'data-selected';
-
-    //#region Schema
-
-    static readonly idProperty = new StringProperty(Versions.v1_0, "id", true);
-    static readonly colorProperty = new StringProperty(Versions.v1_0, "color", true);
-    static readonly removableProperty = new BoolProperty(Versions.v1_0, "removable", true);
-    static readonly placeholderProperty = new StringProperty(Versions.v1_0, "placeholder", true);
-    static readonly chipsProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "chips", Chip);
-
-    private _chipElements: HTMLElement[] = [];
-    private _input: HTMLElement;
-
-
-    isSet(): boolean {
-        return true;
-    }
-    get value(): any {
-        var value = this._chipElements.map(c => { 
-            return { 
-                id: c.id, 
-                name: c.innerText, 
-                selected: c.hasAttribute(ChipInput.selectedAttribute)
-            }
-        });
-
-        console.log(value);
-        return value;
-    }
-
-    @property(ChipInput.idProperty)
-	id?: string;
-
-    @property(ChipInput.chipsProperty)
-    private _chips: Chip[] = [];
-
-    @property(ChipInput.colorProperty)
-    get color(): string {
-        return this.getValue(ChipInput.colorProperty);
-    }
-
-    set color(value: string) {
-        this.setValue(ChipInput.colorProperty, value);
-    }
-
-    @property(ChipInput.removableProperty)
-    get removable(): boolean {
-        return this.getValue(ChipInput.removableProperty);
-    }
-
-    set removable(value: boolean) {
-        this.setValue(ChipInput.removableProperty, value);
-    }
-
-    @property(ChipInput.placeholderProperty)
-    get placeholder(): string {
-        return this.getValue(ChipInput.placeholderProperty);
-    }
-
-    set placeholder(value: string) {
-        this.setValue(ChipInput.placeholderProperty, value);
-        
-    }
-
-    //#endregion
-
-    protected internalRender(): HTMLElement {
-
-        let element = document.createElement("div");
-
-        element.style.width = '100%';
-        element.style.marginTop = '10px';
-        this.addInput(element);
-        console.log(this._chips);
-        this._chips.forEach(chip => {
-            
-            this.addChip({id: chip.id, name: chip.name, selected: chip.selected}, element);
-        });
-
-        var hr = document.createElement('hr')
-        hr.style.color = '#dcdcdc';
-        hr.style.marginTop = '8px'
-        element.appendChild(hr);
-
-        return element;
+export class GenericSerializableObject extends SerializableObject{
+	[name: string]: any;
+    
+    constructor(){
+        super();
     }
     
-    addInput(parent: HTMLElement) {
-
-        let input = document.createElement("input");
-
-        input.className = this.hostConfig.makeCssClassName("ac-input", "ac-textInput");
-        input.type = 'text';
-        input.placeholder = this.placeholder;
-        input.tabIndex = 0;
-        input.style.display = 'inline-block';
-        input.style.flex = "1 1 auto";
-        input.style.flexWrap = 'wrap';
-        input.style.border = 'none';
-        input.style.backgroundColor = 'transparent';
-        input.style.minWidth='120px';
-        input.style.outline='none';
-        input.style.fontSize='15px';
-        input.setAttribute("aria-label", this.placeholder);
-        input.onblur = () => {
-            input.value='';
-        };
-        input.onkeypress = (e) => 
-        {
-            if (e.keyCode == 13 && input.value) // enter pressed
-            { 
-                e.preventDefault();
-                e.cancelBubble = true;
-
-                this.addChip({id: input.value, name: input.value, selected: true}, parent);
-                input.value = ''
-            }
-        }
-        parent.appendChild(input);
-        this._input = input;
-    }
-
-    addChip(chip: ChipData, parent: HTMLElement) {
-
-        var chipEl = document.createElement("div");
-
-        chipEl.style.display='inline-block';
-        chipEl.style.marginRight='10px'
-        chipEl.style.padding='0 25px';
-        chipEl.style.height='30px';
-        chipEl.style.borderRadius='15px';
-        chipEl.style.fontSize='14px';
-        chipEl.style.lineHeight='30px';
-        chipEl.style.color= '#ffffff';
-        chipEl.style.marginBottom='8px'
-        chipEl.style.userSelect = 'none'
-        chipEl.style.paddingLeft='12px';
-        chipEl.style.paddingRight='12px';
-        chipEl.innerText=chip.name;
-        chipEl.id=chip.id;
-        if(chip.selected) {
-
-            chipEl.setAttribute(ChipInput.selectedAttribute, '');
-            chipEl.style.backgroundColor = this.getBgColor(this.color);
-        } else {
-            chipEl.style.backgroundColor = '#e0e0e0';
-            chipEl.style.color = '#353535';
-        }
-        chipEl.onclick = () => {
-
-            var selected = chipEl.hasAttribute(ChipInput.selectedAttribute);
-            selected ? chipEl.removeAttribute(ChipInput.selectedAttribute) : chipEl.setAttribute(ChipInput.selectedAttribute, '');;
-            chipEl.style.backgroundColor= !selected ? this.getBgColor(this.color) : '#e0e0e0'
-            chipEl.style.color= !selected ? '#ffffff': '#353535'
-        }
-
-        if(this.removable) {
-
-            var span = document.createElement('span');
-
-            span.style.paddingLeft = '4px';
-            span.style.paddingRight = '4px';
-            span.style.marginLeft = '10px';
-            span.style.minWidth = '30px';
-            span.style.color = '#888';
-            span.style.fontWeight = 'bold';
-            span.style.fontSize = '14px';
-            span.style.cursor = 'pointer';
-            span.innerText = '×';
-            span.style.backgroundColor = 'rgb(146, 146, 146, 0.4)';
-            span.style.borderRadius = '100px';
-            
-            span.onclick = () => {
-
-                parent.removeChild(chipEl)
-                this._chipElements.splice(this._chipElements.indexOf(chipEl), 1);
-            }
-
-            span.onmouseenter = () => {
-                span.style.backgroundColor = 'rgb(146, 146, 146, 0.7)';
-            }
-
-            span.onmouseleave = () => {
-                span.style.backgroundColor = 'rgb(146, 146, 146, 0.4)';
-            }
-
-            chipEl.appendChild(span)
-        }
-
-        parent.insertBefore(chipEl, this._input);
-        this._chipElements.push(chipEl);
-    }
-
-    getJsonTypeName(): string {
-        return ChipInput.JsonTypeName;
-    }
-
-    getBgColor(color: string): string {
-        switch(color){
-            default:
-            case 'accent':
-                return Enums.ChipInputColorSchema.Accent;
-            case 'primary':
-                return Enums.ChipInputColorSchema.Primary;
-            case 'warn':
-                return Enums.ChipInputColorSchema.Warn;
-        }
-    }
-    updateLayout(processChildren: boolean = true) {
-        super.updateLayout(processChildren);
+    public getSchemaKey(): string {
+       return 'sample';
     }
 }
+//Extension
+
+// export interface ChipData {
+//     id: string
+//     name: string;
+//     selected: boolean;
+// }
+
+// export class Chip extends SerializableObject {
+//     static readonly idProperty = new StringProperty(Versions.v1_0, "id", true);
+//     static readonly nameProperty = new StringProperty(Versions.v1_0, "name", true);
+//     static readonly selectedProperty = new BoolProperty(Versions.v1_0, "selected", false);
+//     @property(Chip.idProperty)
+//     public id?: string;
+
+//     @property(Chip.nameProperty)
+//     public name?: string;
+
+//     @property(Chip.selectedProperty)
+//     public selected?: boolean;
+
+
+//     protected getSchemaKey(): string {
+//         return "chip"
+//     }
+
+//     constructor(name?: string, selected?: boolean) {
+//         super();
+
+//         this.name = name;
+//         this.selected = selected;
+//     }
+// }
+
+// export class ChipInput extends Input {
+
+//     static readonly JsonTypeName = "Input.Chips";
+//     static readonly selectedAttribute = 'data-selected';
+
+//     //#region Schema
+
+//     static readonly idProperty = new StringProperty(Versions.v1_0, "id", true);
+//     static readonly colorProperty = new StringProperty(Versions.v1_0, "color", true);
+//     static readonly removableProperty = new BoolProperty(Versions.v1_0, "removable", true);
+//     static readonly placeholderProperty = new StringProperty(Versions.v1_0, "placeholder", true);
+//     static readonly chipsProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "chips", Chip);
+
+//     private _chipElements: HTMLElement[] = [];
+//     private _input: HTMLElement;
+
+
+//     isSet(): boolean {
+//         return true;
+//     }
+//     get value(): any {
+//         var value = this._chipElements.map(c => {
+//             return {
+//                 id: c.id,
+//                 name: c.innerText,
+//                 selected: c.hasAttribute(ChipInput.selectedAttribute)
+//             }
+//         });
+
+//         console.log(value);
+//         return value;
+//     }
+
+//     @property(ChipInput.idProperty)
+//     id?: string;
+
+//     @property(ChipInput.chipsProperty)
+//     _chips: Chip[] = [];
+
+//     @property(ChipInput.colorProperty)
+//     get color(): string {
+//         return this.getValue(ChipInput.colorProperty);
+//     }
+
+//     set color(value: string) {
+//         this.setValue(ChipInput.colorProperty, value);
+//     }
+
+//     @property(ChipInput.removableProperty)
+//     get removable(): boolean {
+//         return this.getValue(ChipInput.removableProperty);
+//     }
+
+//     set removable(value: boolean) {
+//         this.setValue(ChipInput.removableProperty, value);
+//     }
+
+//     @property(ChipInput.placeholderProperty)
+//     get placeholder(): string {
+//         return this.getValue(ChipInput.placeholderProperty);
+//     }
+
+//     set placeholder(value: string) {
+//         this.setValue(ChipInput.placeholderProperty, value);
+
+//     }
+
+//     //#endregion
+
+//     protected internalRender(): HTMLElement {
+
+//         let element = document.createElement("div");
+
+//         element.style.width = '100%';
+//         element.style.marginTop = '10px';
+//         this.addInput(element);
+//         console.log(this._chips);
+//         this._chips.forEach(chip => {
+//             const chipData: any = { id: chip.id, name: chip.name, selected: chip.selected };
+
+//             this.addChip(chipData, element);
+//         });
+
+//         var hr = document.createElement('hr')
+//         hr.style.color = '#dcdcdc';
+//         hr.style.marginTop = '8px'
+//         element.appendChild(hr);
+
+//         return element;
+//     }
+
+//     addInput(parent: HTMLElement) {
+
+//         let input = document.createElement("input");
+
+//         input.className = this.hostConfig.makeCssClassName("ac-input", "ac-textInput");
+//         input.type = 'text';
+//         input.placeholder = this.placeholder;
+//         input.tabIndex = 0;
+//         input.style.display = 'inline-block';
+//         input.style.flex = "1 1 auto";
+//         input.style.flexWrap = 'wrap';
+//         input.style.border = 'none';
+//         input.style.backgroundColor = 'transparent';
+//         input.style.minWidth = '120px';
+//         input.style.outline = 'none';
+//         input.style.fontSize = '15px';
+//         input.setAttribute("aria-label", this.placeholder);
+//         input.onblur = () => {
+//             input.value = '';
+//         };
+//         input.onkeypress = (e) => {
+//             if (e.keyCode == 13 && input.value) // enter pressed
+//             {
+//                 e.preventDefault();
+//                 e.cancelBubble = true;
+//                 const chipData: ChipData = { id: input.value, name: input.value, selected: true }
+//                 this.addChip(chipData, parent);
+//                 input.value = ''
+//             }
+//         }
+//         parent.appendChild(input);
+//         this._input = input;
+//     }
+
+//     addChip(chip: ChipData, parent: HTMLElement) {
+
+//         var chipEl = document.createElement("div");
+
+//         chipEl.style.display = 'inline-block';
+//         chipEl.style.marginRight = '10px'
+//         chipEl.style.padding = '0 25px';
+//         chipEl.style.height = '30px';
+//         chipEl.style.borderRadius = '15px';
+//         chipEl.style.fontSize = '14px';
+//         chipEl.style.lineHeight = '30px';
+//         chipEl.style.color = '#ffffff';
+//         chipEl.style.marginBottom = '8px'
+//         chipEl.style.userSelect = 'none'
+//         chipEl.style.paddingLeft = '12px';
+//         chipEl.style.paddingRight = '12px';
+//         chipEl.innerText = chip.name;
+//         chipEl.id = chip.id;
+//         if (chip.selected) {
+
+//             chipEl.setAttribute(ChipInput.selectedAttribute, '');
+//             chipEl.style.backgroundColor = this.getBgColor(this.color);
+//         } else {
+//             chipEl.style.backgroundColor = '#e0e0e0';
+//             chipEl.style.color = '#353535';
+//         }
+//         chipEl.onclick = () => {
+
+//             var selected = chipEl.hasAttribute(ChipInput.selectedAttribute);
+//             selected ? chipEl.removeAttribute(ChipInput.selectedAttribute) : chipEl.setAttribute(ChipInput.selectedAttribute, '');;
+//             chipEl.style.backgroundColor = !selected ? this.getBgColor(this.color) : '#e0e0e0'
+//             chipEl.style.color = !selected ? '#ffffff' : '#353535'
+//         }
+
+//         if (this.removable) {
+
+//             var span = document.createElement('span');
+
+//             span.style.paddingLeft = '4px';
+//             span.style.paddingRight = '4px';
+//             span.style.marginLeft = '10px';
+//             span.style.minWidth = '30px';
+//             span.style.color = '#888';
+//             span.style.fontWeight = 'bold';
+//             span.style.fontSize = '14px';
+//             span.style.cursor = 'pointer';
+//             span.innerText = '×';
+//             span.style.backgroundColor = 'rgb(146, 146, 146, 0.4)';
+//             span.style.borderRadius = '100px';
+
+//             span.onclick = () => {
+
+//                 parent.removeChild(chipEl)
+//                 this._chipElements.splice(this._chipElements.indexOf(chipEl), 1);
+//             }
+
+//             span.onmouseenter = () => {
+//                 span.style.backgroundColor = 'rgb(146, 146, 146, 0.7)';
+//             }
+
+//             span.onmouseleave = () => {
+//                 span.style.backgroundColor = 'rgb(146, 146, 146, 0.4)';
+//             }
+
+//             chipEl.appendChild(span)
+//         }
+
+//         parent.insertBefore(chipEl, this._input);
+//         this._chipElements.push(chipEl);
+//     }
+
+//     getJsonTypeName(): string {
+//         return ChipInput.JsonTypeName;
+//     }
+
+//     getBgColor(color: string): string {
+//         switch (color) {
+//             default:
+//             case 'accent':
+//                 return Enums.ChipInputColorSchema.Accent;
+//             case 'primary':
+//                 return Enums.ChipInputColorSchema.Primary;
+//             case 'warn':
+//                 return Enums.ChipInputColorSchema.Warn;
+//         }
+//     }
+//     updateLayout(processChildren: boolean = true) {
+//         super.updateLayout(processChildren);
+//     }
+// }
 
 export class TextInput extends Input {
     //#region Schema
@@ -2922,9 +2943,9 @@ export class TextInput extends Input {
     static readonly isMultilineProperty = new BoolProperty(Versions.v1_0, "isMultiline", false);
     static readonly placeholderProperty = new StringProperty(Versions.v1_0, "placeholder");
     static readonly styleProperty = new EnumProperty(Versions.v1_0, "style", Enums.InputTextStyle, Enums.InputTextStyle.Text);
-    static readonly inlineActionProperty = new ActionProperty(Versions.v1_0, "inlineAction", [ "Action.ShowCard" ]);
-	static readonly regexProperty = new StringProperty(Versions.v1_3, "regex", true);
-	static readonly checkDigitProperty = new EnumProperty(Versions.v1_4, "checkDigit", Enums.InputTextCheckDigitAlgorithm, undefined);
+    static readonly inlineActionProperty = new ActionProperty(Versions.v1_0, "inlineAction", ["Action.ShowCard"]);
+    static readonly regexProperty = new StringProperty(Versions.v1_3, "regex", true);
+    static readonly checkDigitProperty = new EnumProperty(Versions.v1_4, "checkDigit", Enums.InputTextCheckDigitAlgorithm, undefined);
 
     @property(TextInput.valueProperty)
     defaultValue?: string;
@@ -2945,9 +2966,9 @@ export class TextInput extends Input {
     inlineAction?: Action;
 
     @property(TextInput.regexProperty)
-	regex?: string;
-	
-	@property(TextInput.checkDigitProperty)
+    regex?: string;
+
+    @property(TextInput.checkDigitProperty)
     checkDigit?: Enums.InputTextCheckDigitAlgorithm;
 
     //#endregion
@@ -3076,9 +3097,9 @@ export class TextInput extends Input {
 
         if (this.regex) {
             return new RegExp(this.regex, "g").test(this.value);
-		}
-		
-		if (this.checkDigit !== undefined) {
+        }
+
+        if (this.checkDigit !== undefined) {
             switch (this.checkDigit) {
                 case Enums.InputTextCheckDigitAlgorithm.Mod11: return mod11_2.validate(this.value);
                 case Enums.InputTextCheckDigitAlgorithm.Mod97: return mod97_10.validate(this.value);
@@ -3466,7 +3487,7 @@ export class ChoiceSetInput extends Input {
                 return this.renderCompoundInput(
                     "ac-choiceSetInput-expanded",
                     "radio",
-                    this.defaultValue ? [ this.defaultValue ] : undefined);
+                    this.defaultValue ? [this.defaultValue] : undefined);
             }
             else {
                 // Render as a combo box
@@ -4215,7 +4236,7 @@ export class SubmitAction extends Action {
             if (value !== undefined && typeof value === "string") {
                 return value === "none" ? "none" : "auto";
             }
-            
+
             return undefined;
         },
         (sender: SerializableObject, property: PropertyDefinition, target: PropertyBag, value: string | undefined, context: BaseSerializationContext) => {
@@ -4313,7 +4334,7 @@ export class OpenUrlAction extends Action {
         return OpenUrlAction.JsonTypeName;
     }
 
-    getAriaRole() : string {
+    getAriaRole(): string {
         return "link";
     }
 
@@ -4443,7 +4464,7 @@ export class ToggleVisibilityAction extends Action {
     }
 }
 
-class StringWithSubstitutionProperty extends PropertyDefinition  {
+class StringWithSubstitutionProperty extends PropertyDefinition {
     parse(sender: SerializableObject, source: PropertyBag, context: BaseSerializationContext): StringWithSubstitutions {
         let result = new StringWithSubstitutions();
         result.set(Utils.parseString(source[this.name]));
@@ -5431,7 +5452,7 @@ export abstract class StylableCardElementContainer extends CardElementContainer 
     }
 
     isBleeding(): boolean {
-		return (this.getHasBackground() || this.hostConfig.alwaysAllowBleed) && this.getBleed();
+        return (this.getHasBackground() || this.hostConfig.alwaysAllowBleed) && this.getBleed();
     }
 
     internalValidateProperties(context: ValidationResults) {
@@ -5465,6 +5486,39 @@ export abstract class StylableCardElementContainer extends CardElementContainer 
         let effectiveStyle = this.style;
 
         return effectiveStyle ? effectiveStyle : super.getEffectiveStyle();
+    }
+}
+
+export class GenericContainer extends StylableCardElementContainer{
+	[name: string]: any;
+
+	constructor() {
+		super();
+	}
+    getItemCount(): number {
+        return 1;
+    }
+    getItemAt(index: number): CardElement {
+       return {} as CardElement;
+    }
+    getFirstVisibleRenderedItem(): CardElement | undefined {
+        return undefined;
+    }
+    getLastVisibleRenderedItem(): CardElement | undefined {
+        return undefined;
+    }
+    removeItem(item: CardElement): boolean {
+        return true;
+    }
+    public internalRender(): HTMLElement | undefined {	
+        return document.createElement("div");
+    }
+    getJsonTypeName(): string {
+        return 'generic-container';
+    }
+    
+    getActionCount(): number {
+        return 0;
     }
 }
 
@@ -6931,6 +6985,8 @@ class InlineAdaptiveCard extends AdaptiveCard {
     }
 }
 
+export const genericList: any[] = [];
+
 export class GlobalRegistry {
     static populateWithDefaultElements(registry: CardObjectRegistry<CardElement>) {
         registry.clear();
@@ -6950,9 +7006,73 @@ export class GlobalRegistry {
         registry.register("Input.Time", TimeInput);
         registry.register("Input.Number", NumberInput);
         registry.register("Input.ChoiceSet", ChoiceSetInput);
-		registry.register("Input.Toggle", ToggleInput);
-		registry.register("Input.Chips", ChipInput), Versions.v1_4;
+        registry.register("Input.Toggle", ToggleInput);
+        // BORO HERE LOAD EXTENSIONS
+        for (let i = 0; i < 3; i++) {
+		const someClass = class GenericInput extends Input {
+        	[name: string]: any;
+            constructor() {
+                super();
+            }
+            isSet(): boolean {
+                return true;
+            }
+            get value(): any {
+                return '123';
+            }
+            public internalRender(): HTMLElement | undefined {
+                return document.createElement("div");
+            }
+            getJsonTypeName(): string {
+                return 'Input.GenericInput' + i;
+            }
+        };
+		someClass.prototype.labelProperty =  new StringProperty(Versions.v1_3, "label", true);
+		someClass.prototype.valueProperty = new StringProperty(Versions.v1_0, "value");
+		if(i == 1){
+        someClass.prototype.maxLengthProperty = new NumProperty(Versions.v1_0, "maxLength");
+		someClass.prototype.isMultilineProperty = new BoolProperty(Versions.v1_0, "isMultiline", false);
+		someClass.prototype.placeholderProperty = new StringProperty(Versions.v1_0, "placeholder");
+        }
+		someClass.prototype.styleProperty = new EnumProperty(Versions.v1_0, "style", Enums.InputTextStyle, Enums.InputTextStyle.Text);
+		someClass.prototype.inlineActionProperty = new ActionProperty(Versions.v1_0, "inlineAction", ["Action.ShowCard"]);
+		someClass.prototype.regexProperty = new StringProperty(Versions.v1_3, "regex", true);
+		someClass.prototype.checkDigitProperty = new EnumProperty(Versions.v1_4, "checkDigit", Enums.InputTextCheckDigitAlgorithm, undefined);
+        genericList.push(someClass);
+        registry.register("Input.GenericInput" + i, someClass, Versions.v1_4);
+        }
+    //     registry.register("Input.GenericInput"+i, someClass, Versions.v1_4);
+    //    }
+        // ADD TAB
+        const Tab = GenericSerializableObject;
+        Tab.prototype.idProperty = new StringProperty(Versions.v1_0, "id", true);
+        Tab.prototype.nameProperty  = new StringProperty(Versions.v1_0, "name", true);
+        Tab.prototype.titleProperty  = new StringProperty(Versions.v1_0, "title", true);
+        Tab.prototype.alignTabsProperty = new StringProperty(Versions.v1_0, "alignTabs", false);
+        Tab.prototype.selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab", false);
+        Tab.prototype.getSchemaKey = function() {
+            return "tab";
+        };
+        Tab.prototype.constructor = function(name?: string, selectedTab?: number) {
+            Tab.prototype.super();
+                this.name = name;
+                this.selectedTab = selectedTab;
+        };
+        // ADD TAB SET 
+        const TabSet = GenericContainer;
+        TabSet.prototype.JsonTypeName = "TabSet";
+        TabSet.prototype.styleProperty = 'default';
+        TabSet.prototype.tab = [];
+        TabSet.prototype.selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab", true);
+        TabSet.prototype.colorProperty  = new StringProperty(Versions.v1_0, "color", true);
+        TabSet.prototype.getJsonTypeName = function() {
+          return 'TabSet';
+        };
+        // console.log(genericList[0]);
+        // console.log(TabSet);
+        registry.register("TabSet", TabSet, Versions.v1_4);
     }
+
 
     static populateWithDefaultActions(registry: CardObjectRegistry<Action>) {
         registry.clear();
@@ -7083,6 +7203,7 @@ export class SerializationContext extends BaseSerializationContext {
             [], // Forbidden types not supported for elements for now
             allowFallback,
             (typeName: string) => {
+                // BORO
                 return this.elementRegistry.createInstance(typeName, this.targetVersion);
             },
             (typeName: string, errorType: TypeErrorType) => {

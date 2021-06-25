@@ -10,6 +10,8 @@ import * as Shared from "./shared";
 import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
 import * as yaml from 'js-yaml';
+import { ActionPeer, ActionPropertyEditor, BooleanPropertyEditor, DesignerPeer, EnumPropertyEditor,  InputPeer,  NumberPropertyEditor, PropertySheet, PropertySheetCategory, StringPropertyEditor, SubPropertySheetEntry, TextInputPeer } from "./designer-peers";
+import { ActionProperty, BoolProperty, EnumProperty, NumProperty, StringProperty, Versions } from "@asseco/adaptivecards";
 
 export enum BindingPreviewMode {
 	NoPreview,
@@ -61,14 +63,13 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 
 	findTypeRegistration(sourceType: TSource): DesignerPeers.DesignerPeerRegistration<TSource, TPeer> {
 		for (var i = 0; i < this._items.length; i++) {
-			if (this._items[i].sourceType === sourceType) {
+			if (this._items[i].sourceType == sourceType || (this._items[i].sourceType as any).name === (sourceType as any).name) {
 				return this._items[i];
 			}
 		}
-
 		return null;
 	}
-
+	// BORO REGISTRATION OF THE PEERS
 	registerPeer(sourceType: TSource, peerType: TPeer, category: string, iconClass: string = null) {
 		var registrationInfo = this.findTypeRegistration(sourceType);
 
@@ -96,7 +97,6 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 		}
 	}
 }
-
 export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementType, CardElementPeerType> {
 	reset() {
 		this.clear();
@@ -120,11 +120,71 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 		this.registerPeer(Adaptive.ToggleInput, DesignerPeers.ToggleInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputToggle");
 		this.registerPeer(Adaptive.NumberInput, DesignerPeers.NumberInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputNumber");
 		this.registerPeer(Adaptive.ChoiceSetInput, DesignerPeers.ChoiceSetInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputChoiceSet");
+		console.log(Adaptive.ChoiceSetInput);
+		// BORO HERE ADD NEW EXTENSION
+		console.log(Adaptive.genericList);
+		for (let i = 0; i < 3; i++) {
+			const someClass = class GenericInputPeer extends InputPeer<Adaptive.GenericInput> {
+				[name:string]: any
+				static readonly placeholderProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "placeholder", "Placeholder");
+			
+				initializeCardElement() {
+					super.initializeCardElement();
+			
+					this.cardElement['placeholder'] = "Placeholder text";
+				}
+				populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
+					super.populatePropertySheet(propertySheet, defaultCategory);
+			
+					propertySheet.add(
+						defaultCategory,
+						TextInputPeer.placeholderProperty,
+						TextInputPeer.isMultilineProperty);
+			
+					if (!this.cardElement.isMultiline) {
+						propertySheet.add(
+							PropertySheetCategory.DefaultCategory,
+							TextInputPeer.styleProperty);
+					}
+			
+					propertySheet.add(
+						PropertySheetCategory.InlineAction,
+						TextInputPeer.inlineActionProperty);
+			
+					if (this.cardElement.inlineAction) {
+						let inlineActionPeer = CardDesignerSurface.actionPeerRegistry.createPeerInstance(this.designerSurface, null, this.cardElement.inlineAction);
+						inlineActionPeer.onChanged = (sender: DesignerPeer, updatePropertySheet: boolean) => { this.changed(updatePropertySheet); };
+			
+						let subPropertySheet = new PropertySheet(false);
+						inlineActionPeer.populatePropertySheet(subPropertySheet, PropertySheetCategory.InlineAction);
+			
+						subPropertySheet.remove(ActionPeer.styleProperty);
+			
+						propertySheet.add(
+							PropertySheetCategory.InlineAction,
+							new SubPropertySheetEntry(Adaptive.Versions.v1_2, this.cardElement.inlineAction, subPropertySheet));
+					}
+			
+					propertySheet.add(
+						defaultCategory,
+						TextInputPeer.maxLengthProperty,
+						TextInputPeer.defaultValueProperty);
+			
+					propertySheet.add(
+						PropertySheetCategory.Validation,
+						TextInputPeer.regexProperty);
+				}
+			}
+			const someClass2 = DesignerPeers.GenericInputPeer;
+		    this.registerPeer(Adaptive.genericList[i], someClass2, DesignerPeerCategory.Inputs, "acd-icon-inputGeneric");
+		}
+		// // Tab
+		const tab = DesignerPeers.GenericContainerPeer;
+		this.registerPeer(Adaptive.GenericContainer, tab, DesignerPeerCategory.Containers, "acd-icon-containerGeneric");
 	}
 
 	createPeerInstance(designerSurface: CardDesignerSurface, parent: DesignerPeers.DesignerPeer, cardElement: Adaptive.CardElement): DesignerPeers.CardElementPeer {
 		var registrationInfo = this.findTypeRegistration((<any>cardElement).constructor);
-
 		var peer = registrationInfo ? new registrationInfo.peerType(parent, designerSurface, registrationInfo, cardElement) : new DesignerPeers.CardElementPeer(parent, designerSurface, this.defaultRegistration, cardElement);
 
 		return peer;
@@ -201,7 +261,7 @@ export class CardDesignerSurface {
 		CardDesignerSurface._onRenderAngular = data;
 	}
 
-static readonly webComponentCardRenderCode = 'if (!document.getElementById("asseco-as-card-root")) { var asCardContainer = document.getElementById("asseco-as-card-container"); var asCardRoot = document.createElement("div"); asCardRoot.id = "asseco-as-card-root"; var asCard = document.createElement("asseco-as-card");\
+	static readonly webComponentCardRenderCode = 'if (!document.getElementById("asseco-as-card-root")) { var asCardContainer = document.getElementById("asseco-as-card-container"); var asCardRoot = document.createElement("div"); asCardRoot.id = "asseco-as-card-root"; var asCard = document.createElement("asseco-as-card");\
 	asCard.hostConfig = asCardContainer.hostConfig; asCard.definition = asCardContainer.definition; asCardRoot.appendChild(asCard); asCardContainer.appendChild(asCardRoot); asCardContainer.definition = null; asCardContainer.hostConfig = null; }';
 	private updatePeerCommandsLayout() {
 		if (this._selectedPeer) {
@@ -362,7 +422,9 @@ static readonly webComponentCardRenderCode = 'if (!document.getElementById("asse
 					this._adaptiveUiWebImported = true;
 					import('@asseco/adaptive-ui-web').then(() => {
 						import('@asseco/adaptive-ui-material-web').then(() => {
-
+							// import('@asseco/adaptive-ui-extensions').then(() => {
+							// 	console.log('BUREEEK SA SIRROM NIJE BUUREEEEK');
+							// });
 						});
 					});
 				}

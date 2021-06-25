@@ -24,8 +24,7 @@ import * as Shared from "./shared";
 import { TreeView } from "./tree-view";
 import { SampleCatalogue } from "./catalogue";
 import { HelpDialog } from "./help-dialog";
-import * as yaml from 'js-yaml';
-
+import * as yaml from "js-yaml";
 
 export class CardDesigner extends Designer.DesignContext {
 	private static internalProcessMarkdown(text: string, result: Adaptive.IMarkdownProcessingResult) {
@@ -102,7 +101,7 @@ export class CardDesigner extends Designer.DesignContext {
 					'</div>';
 			}
 			else {
-				let treeView = new TreeView(this.designerSurface.rootPeer.treeItem);
+				const treeView = new TreeView(this.designerSurface.rootPeer.treeItem);
 
 				this._treeViewToolbox.content.appendChild(treeView.render());
 			}
@@ -176,6 +175,7 @@ export class CardDesigner extends Designer.DesignContext {
 			this._draggedElement.style.left = this._currentMousePosition.x + "px";
 			this._draggedElement.style.top = this._currentMousePosition.y + "px";
 
+
 			document.body.appendChild(this._draggedElement);
 		}
 
@@ -190,18 +190,22 @@ export class CardDesigner extends Designer.DesignContext {
 		this._toolPaletteToolbox.content.innerHTML = "";
 
 		let categorizedTypes: object = {};
-
+		console.log('count', this.hostContainer.elementsRegistry.getItemCount());
+		console.log('bfrl', this.hostContainer.elementsRegistry.getItemAt(15));
+		console.log('last', this.hostContainer.elementsRegistry.getItemAt(16));
+		console.log('last', this.hostContainer.elementsRegistry.getItemAt(17));
+		console.log('elRegistry count', this.hostContainer.elementsRegistry);
 		for (let i = 0; i < this.hostContainer.elementsRegistry.getItemCount(); i++) {
 			let registration = this.hostContainer.elementsRegistry.getItemAt(i);
-
+			// BORO HERE DO SOMETHING
+			console.log('registration', registration);
 			if (registration.schemaVersion.compareTo(this.targetVersion) <= 0) {
 				let peerRegistration = Designer.CardDesignerSurface.cardElementPeerRegistry.findTypeRegistration(registration.objectType);
-
 				if (peerRegistration) {
 					if (!categorizedTypes.hasOwnProperty(peerRegistration.category)) {
 						categorizedTypes[peerRegistration.category] = [];
 					}
-
+					console.log(registration);
 					let paletteItem = new ElementPaletteItem(
 						registration,
 						peerRegistration
@@ -513,7 +517,7 @@ export class CardDesigner extends Designer.DesignContext {
 			this._preventCardUpdate = true;
 
 			if (!this.preventJsonUpdate && this._isMonacoEditorLoaded) {
-				let cardPayload = this._designerSurface.getCardPayloadAsObject();
+				let cardPayload  = this._designerSurface.getCardPayloadAsObject();
 
 				this.setCardPayload(cardPayload, addToUndoStack);
 			}
@@ -546,7 +550,6 @@ export class CardDesigner extends Designer.DesignContext {
 			this.preventJsonUpdate = true;
 
 			let currentEditorPayload = this.getCurrentCardEditorPayload();
-
 			if (addToUndoStack) {
 				try {
 					if (this.language === "json") {
@@ -557,6 +560,7 @@ export class CardDesigner extends Designer.DesignContext {
 					}
 				}
 				catch {
+					console.log('catch');
 					// Swallow the parse error
 				}
 			}
@@ -833,7 +837,7 @@ export class CardDesigner extends Designer.DesignContext {
 
 	private updateSampleData() {
 		try {
-			this._sampleData = JSON.parse(this.getCurrentSampleDataEditorPayload());
+			this._sampleData = { id: 'baba'}; //JSON.parse(this.getCurrentSampleDataEditorPayload());
 
 			this.scheduleUpdateCardFromJson();
 		}
