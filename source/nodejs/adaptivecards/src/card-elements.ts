@@ -5492,6 +5492,10 @@ export abstract class StylableCardElementContainer extends CardElementContainer 
 export class GenericContainer extends StylableCardElementContainer{
     [name: string]: any;
 
+    // static readonly selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab");
+    // @property(GenericContainer.selectedTabProperty)
+    // selectedTab?: number;
+
     constructor() {
         super();
     }
@@ -5514,6 +5518,7 @@ export class GenericContainer extends StylableCardElementContainer{
     public internalRender(): HTMLElement | undefined {
         return document.createElement("div");
     }
+
     getJsonTypeName(): string {
         return 'generic-container';
     }
@@ -7090,21 +7095,27 @@ export class GlobalRegistry {
             const definition = definitions[definitionKey].properties;
             if (definitions[definitionKey].extends){
                 const extensionObject = GenericContainer;
-                extensionObject.prototype.JsonTypeName = definitionKey;
+                //extensionObject.prototype.JsonTypeName = definitionKey;
                 extensionObject.prototype.getJsonTypeName = function() {
                     return definitionKey;
                 };
                 for (let key of Object.keys(definition)) {
                     // add properties
                     if (definition[key].type === "string") {
-                        extensionObject.prototype[key+'Property'] = new StringProperty(Versions.v1_0, key, true);
+                        extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
+                        let decorator = property(new StringProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key)
                     }
-                    if (definition[key].type === "number") {
-                        extensionObject.prototype[key+'Property'] = new NumProperty(Versions.v1_0, key, true);
+                    else if (definition[key].type === "number") {
+                        extensionObject.prototype[key+"Property"] = new NumProperty(Versions.v1_0, key);
+                        let decorator = property(new NumProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key)
                     }
-                    // extensionObject.prototype.styleProperty = 'default';
-                    // extensionObject.prototype.tab = [];
-                    // extensionObject.prototype.colorProperty  = new StringProperty(Versions.v1_0, "color", true);
+                    else{
+                        extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
+                        let decorator = property(new StringProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key)
+                    }
                 }
                 genericList.push(extensionObject);
                 registry.register(definitionKey, extensionObject, Versions.v1_4);
@@ -7116,18 +7127,21 @@ export class GlobalRegistry {
                 };
 
                 for (let key of Object.keys(definition)) {
-                    // add properties
                     if (definition[key].type === "string") {
-                        extensionObject.prototype[key+'Property'] = new StringProperty(Versions.v1_0, key, true);
+                        extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
+                        let decorator = property(new StringProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key)
                     }
-                    if (definition[key].type === "number") {
-                        extensionObject.prototype[key+'Property'] = new NumProperty(Versions.v1_0, key, true);
+                    else if (definition[key].type === "number") {
+                        extensionObject.prototype[key+"Property"] = new NumProperty(Versions.v1_0, key);
+                        let decorator = property(new NumProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key)
                     }
-                    // extensionObject.prototype.idProperty = new StringProperty(Versions.v1_0, "id", true);
-                    // extensionObject.prototype.nameProperty  = new StringProperty(Versions.v1_0, "name", true);
-                    // extensionObject.prototype.titleProperty  = new StringProperty(Versions.v1_0, "title", true);
-                    // extensionObject.prototype.alignTabsProperty = new StringProperty(Versions.v1_0, "alignTabs", false);
-                    // extensionObject.prototype.selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab", false);
+                    else{
+                        extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
+                        let decorator = property(new StringProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key)
+                    }
                 }
             }
         }

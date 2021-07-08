@@ -750,8 +750,9 @@ export class SerializableObjectSchema {
 export function property(property: PropertyDefinition) {
     return function(target: any, propertyKey: string) {
         let descriptor = Object.getOwnPropertyDescriptor(target, propertyKey) || {};
-
         if (!descriptor.get && !descriptor.set) {
+            delete descriptor.value;
+            delete descriptor.writable;
             descriptor.get = function(this: SerializableObject) { return this.getValue(property); };
             descriptor.set = function(this: SerializableObject, value: any) { this.setValue(property, value); };
 
@@ -791,6 +792,22 @@ export abstract class SerializableObject {
             catch {
                 // If a property happens to have a getter function and
                 // it throws an exception, we need to catch it here
+            }
+        }
+        if (this._propertyBag)
+        {
+            for (let propertyName in Object.getPrototypeOf(this)) {
+                try {
+                    let propertyValue = Object.getPrototypeOf(this)[propertyName];
+
+                    if (propertyValue instanceof PropertyDefinition) {
+                        properties.push(propertyValue);
+                    }
+                }
+                catch {
+                    // If a property happens to have a getter function and
+                    // it throws an exception, we need to catch it here
+                }
             }
         }
 
@@ -866,6 +883,7 @@ export abstract class SerializableObject {
 
     protected internalToJSON(target: PropertyBag, context: BaseSerializationContext) {
         let s = this.getSchema();
+        console.log(this, s);
         let serializedProperties: string[] = [];
 
         for (let i = 0; i < s.getCount(); i++) {

@@ -2557,9 +2557,8 @@ export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.GenericC
             PropertySheetCategory.SelectionAction,
             ContainerPeer.selectActionProperty);
         console.log("Card element", this.cardElement);
-        for (const key of Object.keys(this.cardElement.__proto__))
-        {
-            const value = this.cardElement.__proto__[key];
+        for (const key of Object.keys(Object.getPrototypeOf(this.cardElement))) {
+            const value = Object.getPrototypeOf(this.cardElement)[key];
             if (value instanceof PropertyDefinition) {
                 if (value instanceof NumProperty) {
                     propertySheet.add(defaultCategory, new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
@@ -2569,21 +2568,6 @@ export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.GenericC
                     propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
                 }
             }
-        }
-        if (this.cardElement.selectAction) {
-            let selectActionPeer = CardDesignerSurface.actionPeerRegistry.createPeerInstance(this.designerSurface, null, this.cardElement.selectAction);
-            selectActionPeer.onChanged = (sender: DesignerPeer, updatePropertySheet: boolean) => { this.changed(updatePropertySheet); };
-
-            let subPropertySheet = new PropertySheet(false);
-            selectActionPeer.populatePropertySheet(subPropertySheet, PropertySheetCategory.SelectionAction);
-
-            subPropertySheet.remove(
-                ActionPeer.iconUrlProperty,
-                ActionPeer.styleProperty);
-
-            propertySheet.add(
-                PropertySheetCategory.SelectionAction,
-                new SubPropertySheetEntry(Adaptive.Versions.v1_0, this.cardElement.selectAction, subPropertySheet));
         }
     }
 

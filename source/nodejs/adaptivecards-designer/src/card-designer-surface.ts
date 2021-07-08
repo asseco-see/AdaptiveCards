@@ -11,7 +11,7 @@ import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
 import * as yaml from 'js-yaml';
 import { ActionPeer, ActionPropertyEditor, BooleanPropertyEditor, DesignerPeer, EnumPropertyEditor,  InputPeer,  NumberPropertyEditor, PropertySheet, PropertySheetCategory, StringPropertyEditor, SubPropertySheetEntry, TextInputPeer } from "./designer-peers";
-import { ActionProperty, BoolProperty, EnumProperty, GenericContainer, NumProperty, StringProperty, Versions } from "@asseco/adaptivecards";
+import { ActionProperty, BoolProperty, EnumProperty, GenericContainer, NumProperty, property, StringProperty, Versions } from "@asseco/adaptivecards";
 import * as extension from "./extensions/tabs.json";
 export enum BindingPreviewMode {
     NoPreview,
@@ -121,38 +121,45 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
         this.registerPeer(Adaptive.NumberInput, DesignerPeers.NumberInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputNumber");
         this.registerPeer(Adaptive.ChoiceSetInput, DesignerPeers.ChoiceSetInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputChoiceSet");
 
+        // BORO HERE ADD NEW EXTENSION
+        console.log("CardElementPeerRegistry", Adaptive.genericList);
+        for (let i = 0; i < Adaptive.genericList.length; i++) {
+            const genericInputPeer = DesignerPeers.GenericInputPeer;
+		    this.registerPeer(Adaptive.genericList[i], genericInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputGeneric");
+        }
+
         const definitions = extension.contributes.definitions;
         for (const definitionKey of Object.keys(definitions)) {
             const definition = definitions[definitionKey].properties;
             if (definitions[definitionKey].extends){
                 const extensionObject = GenericContainer;
-                extensionObject.prototype.JsonTypeName = definitionKey;
+                // extensionObject.prototype.JsonTypeName = definitionKey;
                 extensionObject.prototype.getJsonTypeName = function() {
                     return definitionKey;
                 };
                 for (const key of Object.keys(definition)) {
-                    // add properties
                     if (definition[key].type === "string") {
-                        extensionObject[key] = "";
+                        extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
+                        let decorator = property(new StringProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key)
                     }
                     else if (definition[key].type === "number") {
-                        extensionObject[key] = 0;
+                        extensionObject.prototype[key+"Property"] = new NumProperty(Versions.v1_0, key);
+                        let decorator = property(new NumProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key)
+                    }
+                    else{
+                        extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
+                        let decorator = property(new StringProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key)
                     }
                     // extensionObject.prototype.styleProperty = 'default';
                     // extensionObject.prototype.tab = [];
                     // extensionObject.prototype.colorProperty  = new StringProperty(Versions.v1_0, "color", true);
                 }
                 // eslint-disable-next-line max-len
-                console.log("GenericContainer:", extensionObject);
                 this.registerPeer(extensionObject, DesignerPeers.GenericContainerPeer, DesignerPeerCategory.Containers, "acd-icon-containerGeneric");
             }
-        }
-
-        // BORO HERE ADD NEW EXTENSION
-        console.log("CardElementPeerRegistry", Adaptive.genericList);
-        for (let i = 0; i < Adaptive.genericList.length; i++) {
-            const genericInputPeer = DesignerPeers.GenericInputPeer;
-		    this.registerPeer(Adaptive.genericList[i], genericInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputGeneric");
         }
         // // Tab
         //const tab = DesignerPeers.GenericContainerPeer;
