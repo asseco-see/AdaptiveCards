@@ -190,22 +190,14 @@ export class CardDesigner extends Designer.DesignContext {
 		this._toolPaletteToolbox.content.innerHTML = "";
 
 		let categorizedTypes: object = {};
-		console.log('count', this.hostContainer.elementsRegistry.getItemCount());
-		console.log('bfrl', this.hostContainer.elementsRegistry.getItemAt(15));
-		console.log('last', this.hostContainer.elementsRegistry.getItemAt(16));
-		console.log('last', this.hostContainer.elementsRegistry.getItemAt(17));
-		console.log('elRegistry count', this.hostContainer.elementsRegistry);
 		for (let i = 0; i < this.hostContainer.elementsRegistry.getItemCount(); i++) {
 			let registration = this.hostContainer.elementsRegistry.getItemAt(i);
-			// BORO HERE DO SOMETHING
-			console.log('registration', registration);
 			if (registration.schemaVersion.compareTo(this.targetVersion) <= 0) {
 				let peerRegistration = Designer.CardDesignerSurface.cardElementPeerRegistry.findTypeRegistration(registration.objectType);
 				if (peerRegistration) {
 					if (!categorizedTypes.hasOwnProperty(peerRegistration.category)) {
 						categorizedTypes[peerRegistration.category] = [];
 					}
-					console.log(registration);
 					let paletteItem = new ElementPaletteItem(
 						registration,
 						peerRegistration

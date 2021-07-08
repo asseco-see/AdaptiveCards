@@ -9,7 +9,8 @@ import { DesignerPeerTreeItem } from "./designer-peer-treeitem";
 import { Rect, IPoint } from "./miscellaneous";
 import { GlobalSettings } from "./shared";
 import { FieldPicker } from "./field-picker";
-import { Input } from "adaptivecards";
+import { Input, PropertyDefinition } from "adaptivecards";
+import { NumProperty, StringProperty } from "@asseco/adaptivecards";
 
 export abstract class DesignerPeerInplaceEditor {
     onClose: (applyChanges: boolean) => void;
@@ -1412,10 +1413,15 @@ export class CardElementPeer extends DesignerPeer {
                 this.insertChild(CardDesignerSurface.cardElementPeerRegistry.createPeerInstance(this.designerSurface, this, cardElement.getItemAt(i)));
             }
         }
-
-        for (var i = 0; i < this.cardElement.getActionCount(); i++) {
-            this.insertChild(CardDesignerSurface.actionPeerRegistry.createPeerInstance(this.designerSurface, this, cardElement.getActionAt(i)));
+        try{
+            for (var i = 0; i < this.cardElement.getActionCount(); i++) {
+                this.insertChild(CardDesignerSurface.actionPeerRegistry.createPeerInstance(this.designerSurface, this, cardElement.getActionAt(i)));
+            }
         }
+        catch(e){
+            console.warn(e);
+        }
+        
     }
 
     getTreeItemText(): string {
@@ -2433,7 +2439,7 @@ export class ChoiceSetInputPeer extends InputPeer<Adaptive.ChoiceSetInput> {
             ChoiceSetInputPeer.choicesProperty);
     }
 
-    finitializeCardElement() {
+    initializeCardElement() {
         this.cardElement.placeholder = "Placeholder text";
 
         this.cardElement.choices.push(
@@ -2466,6 +2472,8 @@ export class GenericInputPeer extends InputPeer<Adaptive.GenericInput> {
                 PropertySheetCategory.DefaultCategory,
                 TextInputPeer.styleProperty);
         }
+
+
 
         propertySheet.add(
             PropertySheetCategory.InlineAction,
@@ -2502,26 +2510,26 @@ export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.GenericC
         return true;
     }
 
-    protected internalAddCommands(context: DesignContext, commands: Array<PeerCommand>) {
-        super.internalAddCommands(context, commands);
+    // protected internalAddCommands(context: DesignContext, commands: Array<PeerCommand>) {
+    //     super.internalAddCommands(context, commands);
 
-        commands.push(
-            new PeerCommand(
-                {
-                    name: "Add a column",
-                    iconClass: "acd-icon-addColumn",
-                    isPromotable: true,
-                    execute: (command: PeerCommand, clickedElement: HTMLElement) => {
-                        var column = new Adaptive.Column();
-                        column.width = "stretch";
+    //     commands.push(
+    //         new PeerCommand(
+    //             {
+    //                 name: "Add a column",
+    //                 iconClass: "acd-icon-addColumn",
+    //                 isPromotable: true,
+    //                 execute: (command: PeerCommand, clickedElement: HTMLElement) => {
+    //                     var column = new Adaptive.Column();
+    //                     column.width = "stretch";
+    //                     console.log(this.cardElement);
+    //                     this.cardElement.addColumn(column);
 
-                        this.cardElement.addColumn(column);
-
-                        this.insertChild(CardDesignerSurface.cardElementPeerRegistry.createPeerInstance(this.designerSurface, this, column));
-                    }
-                })
-        );
-    }
+    //                     this.insertChild(CardDesignerSurface.cardElementPeerRegistry.createPeerInstance(this.designerSurface, this, column));
+    //                 }
+    //             })
+    //     );
+    // }
 
     protected internalGetTreeItemText(): string {
         let columnCount = this.cardElement.getItemCount();
@@ -2548,7 +2556,20 @@ export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.GenericC
         propertySheet.add(
             PropertySheetCategory.SelectionAction,
             ContainerPeer.selectActionProperty);
-
+        console.log("Card element", this.cardElement);
+        for (const key of Object.keys(this.cardElement.__proto__))
+        {
+            const value = this.cardElement.__proto__[key];
+            if (value instanceof PropertyDefinition) {
+                if (value instanceof NumProperty) {
+                    propertySheet.add(defaultCategory, new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
+                } else if (value instanceof StringProperty) {
+                    propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
+                } else {
+                    propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
+                }
+            }
+        }
         if (this.cardElement.selectAction) {
             let selectActionPeer = CardDesignerSurface.actionPeerRegistry.createPeerInstance(this.designerSurface, null, this.cardElement.selectAction);
             selectActionPeer.onChanged = (sender: DesignerPeer, updatePropertySheet: boolean) => { this.changed(updatePropertySheet); };

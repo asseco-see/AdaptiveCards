@@ -2655,34 +2655,34 @@ export abstract class Input extends CardElement implements IInput {
 }
 
 export class GenericInput extends Input{
-	[name: string]: any;
+    [name: string]: any;
 
-	constructor() {
-		super();
-	}
-	isSet(): boolean {
-		return true;
-	}
-	get value(): any {
-		return '123';
-	}
-	public internalRender(): HTMLElement | undefined {
-		return document.createElement("div");
-	}
-	getJsonTypeName(): string {
-		return 'sample';
-	}
+    constructor() {
+        super();
+    }
+    isSet(): boolean {
+        return true;
+    }
+    get value(): any {
+        return '123';
+    }
+    public internalRender(): HTMLElement | undefined {
+        return document.createElement("div");
+    }
+    getJsonTypeName(): string {
+        return 'sample';
+    }
 }
 
 export class GenericSerializableObject extends SerializableObject{
-	[name: string]: any;
-    
+    [name: string]: any;
+
     constructor(){
         super();
     }
-    
+
     public getSchemaKey(): string {
-       return 'sample';
+        return 'sample';
     }
 }
 //Extension
@@ -5490,16 +5490,16 @@ export abstract class StylableCardElementContainer extends CardElementContainer 
 }
 
 export class GenericContainer extends StylableCardElementContainer{
-	[name: string]: any;
+    [name: string]: any;
 
-	constructor() {
-		super();
-	}
+    constructor() {
+        super();
+    }
     getItemCount(): number {
-        return 1;
+        return 0;
     }
     getItemAt(index: number): CardElement {
-       return {} as CardElement;
+        return {} as CardElement;
     }
     getFirstVisibleRenderedItem(): CardElement | undefined {
         return undefined;
@@ -5510,13 +5510,14 @@ export class GenericContainer extends StylableCardElementContainer{
     removeItem(item: CardElement): boolean {
         return true;
     }
-    public internalRender(): HTMLElement | undefined {	
+
+    public internalRender(): HTMLElement | undefined {
         return document.createElement("div");
     }
     getJsonTypeName(): string {
         return 'generic-container';
     }
-    
+
     getActionCount(): number {
         return 0;
     }
@@ -7007,72 +7008,71 @@ export class GlobalRegistry {
         registry.register("Input.Number", NumberInput);
         registry.register("Input.ChoiceSet", ChoiceSetInput);
         registry.register("Input.Toggle", ToggleInput);
-        // BORO HERE LOAD EXTENSIONS
-        for (let i = 0; i < 3; i++) {
-		const someClass = class GenericInput extends Input {
-        	[name: string]: any;
-            constructor() {
-                super();
-            }
-            isSet(): boolean {
-                return true;
-            }
-            get value(): any {
-                return '123';
-            }
-            public internalRender(): HTMLElement | undefined {
-                return document.createElement("div");
-            }
-            getJsonTypeName(): string {
-                return 'Input.GenericInput' + i;
-            }
-        };
-		someClass.prototype.labelProperty =  new StringProperty(Versions.v1_3, "label", true);
-		someClass.prototype.valueProperty = new StringProperty(Versions.v1_0, "value");
-		if(i == 1){
-        someClass.prototype.maxLengthProperty = new NumProperty(Versions.v1_0, "maxLength");
-		someClass.prototype.isMultilineProperty = new BoolProperty(Versions.v1_0, "isMultiline", false);
-		someClass.prototype.placeholderProperty = new StringProperty(Versions.v1_0, "placeholder");
-        }
-		someClass.prototype.styleProperty = new EnumProperty(Versions.v1_0, "style", Enums.InputTextStyle, Enums.InputTextStyle.Text);
-		someClass.prototype.inlineActionProperty = new ActionProperty(Versions.v1_0, "inlineAction", ["Action.ShowCard"]);
-		someClass.prototype.regexProperty = new StringProperty(Versions.v1_3, "regex", true);
-		someClass.prototype.checkDigitProperty = new EnumProperty(Versions.v1_4, "checkDigit", Enums.InputTextCheckDigitAlgorithm, undefined);
-        genericList.push(someClass);
-        registry.register("Input.GenericInput" + i, someClass, Versions.v1_4);
-        }
-    //     registry.register("Input.GenericInput"+i, someClass, Versions.v1_4);
-    //    }
-        // ADD TAB
-        const Tab = GenericSerializableObject;
-        Tab.prototype.idProperty = new StringProperty(Versions.v1_0, "id", true);
-        Tab.prototype.nameProperty  = new StringProperty(Versions.v1_0, "name", true);
-        Tab.prototype.titleProperty  = new StringProperty(Versions.v1_0, "title", true);
-        Tab.prototype.alignTabsProperty = new StringProperty(Versions.v1_0, "alignTabs", false);
-        Tab.prototype.selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab", false);
-        Tab.prototype.getSchemaKey = function() {
-            return "tab";
-        };
-        Tab.prototype.constructor = function(name?: string, selectedTab?: number) {
-            Tab.prototype.super();
-                this.name = name;
-                this.selectedTab = selectedTab;
-        };
-        // ADD TAB SET 
-        const TabSet = GenericContainer;
-        TabSet.prototype.JsonTypeName = "TabSet";
-        TabSet.prototype.styleProperty = 'default';
-        TabSet.prototype.tab = [];
-        TabSet.prototype.selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab", true);
-        TabSet.prototype.colorProperty  = new StringProperty(Versions.v1_0, "color", true);
-        TabSet.prototype.getJsonTypeName = function() {
-          return 'TabSet';
-        };
-        // console.log(genericList[0]);
-        // console.log(TabSet);
-        registry.register("TabSet", TabSet, Versions.v1_4);
-    }
 
+        // BORO HERE LOAD EXTENSIONS
+        for (let i = 0; i < 2; i++) {
+            const someClass = class GenericInput extends Input {
+                [name: string]: any;
+                constructor() {
+                    super();
+                }
+                isSet(): boolean {
+                    return true;
+                }
+                get value(): any {
+                    return '123';
+                }
+                public internalRender(): HTMLElement | undefined {
+                    return document.createElement("div");
+                }
+                getJsonTypeName(): string {
+                    return 'Input.GenericInput' + i;
+                }
+            };
+            someClass.prototype.labelProperty =  new StringProperty(Versions.v1_3, "label", true);
+            someClass.prototype.valueProperty = new StringProperty(Versions.v1_0, "value");
+            if(i == 1){
+                someClass.prototype.maxLengthProperty = new NumProperty(Versions.v1_0, "maxLength");
+                someClass.prototype.isMultilineProperty = new BoolProperty(Versions.v1_0, "isMultiline", false);
+                someClass.prototype.placeholderProperty = new StringProperty(Versions.v1_0, "placeholder");
+            }
+            someClass.prototype.styleProperty = new EnumProperty(Versions.v1_0, "style", Enums.InputTextStyle, Enums.InputTextStyle.Text);
+            someClass.prototype.inlineActionProperty = new ActionProperty(Versions.v1_0, "inlineAction", ["Action.ShowCard"]);
+            someClass.prototype.regexProperty = new StringProperty(Versions.v1_3, "regex", true);
+            someClass.prototype.checkDigitProperty = new EnumProperty(Versions.v1_4, "checkDigit", Enums.InputTextCheckDigitAlgorithm, undefined);
+            genericList.push(someClass);
+            registry.register("Input.GenericInput" + i, someClass, Versions.v1_4);
+        }
+        // ADD TAB
+        // const Tab = GenericSerializableObject;
+        // Tab.prototype.idProperty = new StringProperty(Versions.v1_0, "id", true);
+        // Tab.prototype.nameProperty  = new StringProperty(Versions.v1_0, "name", true);
+        // Tab.prototype.titleProperty  = new StringProperty(Versions.v1_0, "title", true);
+        // Tab.prototype.alignTabsProperty = new StringProperty(Versions.v1_0, "alignTabs", false);
+        // Tab.prototype.selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab", false);
+        // Tab.prototype.getSchemaKey = function() {
+        //     return "tab";
+        // };
+        // Tab.prototype.constructor = function(name?: string, selectedTab?: number) {
+        //     Tab.prototype.super();
+        //         this.name = name;
+        //         this.selectedTab = selectedTab;
+        // };
+
+        // // ADD TAB SET
+        // const TabSet = GenericContainer;
+        // TabSet.prototype.JsonTypeName = "TabSet";
+        // TabSet.prototype.styleProperty = 'default';
+        // TabSet.prototype.tab = [];
+        // TabSet.prototype.selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab", true);
+        // TabSet.prototype.colorProperty  = new StringProperty(Versions.v1_0, "color", true);
+        // TabSet.prototype.getJsonTypeName = function() {
+        //     return 'TabSet';
+        // };
+        // // console.log(genericList[0]);
+        // // console.log(TabSet);
+        // registry.register("TabSet", TabSet, Versions.v1_4);
+    }
 
     static populateWithDefaultActions(registry: CardObjectRegistry<Action>) {
         registry.clear();
@@ -7081,6 +7081,90 @@ export class GlobalRegistry {
         registry.register(SubmitAction.JsonTypeName, SubmitAction);
         registry.register(ShowCardAction.JsonTypeName, ShowCardAction);
         registry.register(ToggleVisibilityAction.JsonTypeName, ToggleVisibilityAction, Versions.v1_2);
+    }
+
+    static populateWithExtension(registry: CardObjectRegistry<CardElement>, extension: any) {
+        const definitions = extension.contributes.definitions;
+        // console.log("Extension definitions:", definitions)
+        for (let definitionKey of Object.keys(definitions)) {
+            const definition = definitions[definitionKey].properties;
+            if (definitions[definitionKey].extends){
+                const extensionObject = GenericContainer;
+                extensionObject.prototype.JsonTypeName = definitionKey;
+                extensionObject.prototype.getJsonTypeName = function() {
+                    return definitionKey;
+                };
+                for (let key of Object.keys(definition)) {
+                    // add properties
+                    if (definition[key].type === "string") {
+                        extensionObject.prototype[key+'Property'] = new StringProperty(Versions.v1_0, key, true);
+                    }
+                    if (definition[key].type === "number") {
+                        extensionObject.prototype[key+'Property'] = new NumProperty(Versions.v1_0, key, true);
+                    }
+                    // extensionObject.prototype.styleProperty = 'default';
+                    // extensionObject.prototype.tab = [];
+                    // extensionObject.prototype.colorProperty  = new StringProperty(Versions.v1_0, "color", true);
+                }
+                genericList.push(extensionObject);
+                registry.register(definitionKey, extensionObject, Versions.v1_4);
+            }
+            else {
+                const extensionObject = GenericSerializableObject;
+                extensionObject.prototype.getSchemaKey = function() {
+                    return definitionKey;
+                };
+
+                for (let key of Object.keys(definition)) {
+                    // add properties
+                    if (definition[key].type === "string") {
+                        extensionObject.prototype[key+'Property'] = new StringProperty(Versions.v1_0, key, true);
+                    }
+                    if (definition[key].type === "number") {
+                        extensionObject.prototype[key+'Property'] = new NumProperty(Versions.v1_0, key, true);
+                    }
+                    // extensionObject.prototype.idProperty = new StringProperty(Versions.v1_0, "id", true);
+                    // extensionObject.prototype.nameProperty  = new StringProperty(Versions.v1_0, "name", true);
+                    // extensionObject.prototype.titleProperty  = new StringProperty(Versions.v1_0, "title", true);
+                    // extensionObject.prototype.alignTabsProperty = new StringProperty(Versions.v1_0, "alignTabs", false);
+                    // extensionObject.prototype.selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab", false);
+                }
+            }
+        }
+
+        for (let i = 5; i < 6; i++) {
+            const someClass = class GenericInput extends Input {
+                [name: string]: any;
+                constructor() {
+                    super();
+                }
+                isSet(): boolean {
+                    return true;
+                }
+                get value(): any {
+                    return '123';
+                }
+                public internalRender(): HTMLElement | undefined {
+                    return document.createElement("div");
+                }
+                getJsonTypeName(): string {
+                    return 'Input.GenericInput' + i;
+                }
+            };
+            someClass.prototype.labelProperty =  new StringProperty(Versions.v1_3, "label", true);
+            someClass.prototype.valueProperty = new StringProperty(Versions.v1_0, "value");
+            if(i == 1){
+                someClass.prototype.maxLengthProperty = new NumProperty(Versions.v1_0, "maxLength");
+                someClass.prototype.isMultilineProperty = new BoolProperty(Versions.v1_0, "isMultiline", false);
+                someClass.prototype.placeholderProperty = new StringProperty(Versions.v1_0, "placeholder");
+            }
+            someClass.prototype.styleProperty = new EnumProperty(Versions.v1_0, "style", Enums.InputTextStyle, Enums.InputTextStyle.Text);
+            someClass.prototype.inlineActionProperty = new ActionProperty(Versions.v1_0, "inlineAction", ["Action.ShowCard"]);
+            someClass.prototype.regexProperty = new StringProperty(Versions.v1_3, "regex", true);
+            someClass.prototype.checkDigitProperty = new EnumProperty(Versions.v1_4, "checkDigit", Enums.InputTextCheckDigitAlgorithm, undefined);
+            genericList.push(someClass);
+            registry.register("Input.GenericInput" + i, someClass, Versions.v1_4);
+        }
     }
 
     static readonly elements = new CardObjectRegistry<CardElement>();

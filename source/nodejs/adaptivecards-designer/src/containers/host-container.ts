@@ -5,6 +5,7 @@ import {
     CardElement, Action, HostConfig, SerializationContext, Version, Versions, CardObjectRegistry
 } from "@asseco/adaptivecards";
 import * as hostConfig from "../hostConfigs/sample.json";
+import * as extension from "../extensions/tabs.json";
 
 export abstract class HostContainer {
     private _cardHost: HTMLElement;
@@ -23,6 +24,7 @@ export abstract class HostContainer {
 
         GlobalRegistry.populateWithDefaultElements(this._elementsRegistry);
         GlobalRegistry.populateWithDefaultActions(this._actionsRegistry);
+        GlobalRegistry.populateWithExtension(this._elementsRegistry, extension);
     }
 
     abstract renderTo(hostElement: HTMLElement);
