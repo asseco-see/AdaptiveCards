@@ -10,7 +10,7 @@ import { Rect, IPoint } from "./miscellaneous";
 import { GlobalSettings } from "./shared";
 import { FieldPicker } from "./field-picker";
 import { Input, PropertyDefinition } from "adaptivecards";
-import { NumProperty, StringProperty } from "@asseco/adaptivecards";
+import { BoolProperty, NumProperty, StringProperty } from "@asseco/adaptivecards";
 
 export abstract class DesignerPeerInplaceEditor {
     onClose: (applyChanges: boolean) => void;
@@ -2556,7 +2556,6 @@ export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.GenericC
         propertySheet.add(
             PropertySheetCategory.SelectionAction,
             ContainerPeer.selectActionProperty);
-        console.log("Card element", this.cardElement);
         for (const key of Object.keys(Object.getPrototypeOf(this.cardElement))) {
             const value = Object.getPrototypeOf(this.cardElement)[key];
             if (value instanceof PropertyDefinition) {
@@ -2564,6 +2563,8 @@ export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.GenericC
                     propertySheet.add(defaultCategory, new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
                 } else if (value instanceof StringProperty) {
                     propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
+                } else if (value instanceof BoolProperty) {
+                    propertySheet.add(defaultCategory, new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
                 } else {
                     propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
                 }

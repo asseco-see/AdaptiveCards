@@ -883,7 +883,6 @@ export abstract class SerializableObject {
 
     protected internalToJSON(target: PropertyBag, context: BaseSerializationContext) {
         let s = this.getSchema();
-        console.log(this, s);
         let serializedProperties: string[] = [];
 
         for (let i = 0; i < s.getCount(); i++) {
