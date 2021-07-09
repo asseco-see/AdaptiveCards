@@ -7094,7 +7094,11 @@ export class GlobalRegistry {
         for (let definitionKey of Object.keys(definitions)) {
             const definition = definitions[definitionKey].properties;
             if (definitions[definitionKey].extends){
-                const extensionObject = GenericContainer;
+                const extensionObject = class ExtensionClass extends GenericContainer {};
+				Object.defineProperty(extensionObject, 'name', {
+					value: definitionKey,
+					writable: true
+				  });
                 //extensionObject.prototype.JsonTypeName = definitionKey;
                 extensionObject.prototype.getJsonTypeName = function() {
                     return definitionKey;
@@ -7109,6 +7113,11 @@ export class GlobalRegistry {
                     else if (definition[key].type === "number") {
                         extensionObject.prototype[key+"Property"] = new NumProperty(Versions.v1_0, key);
                         let decorator = property(new NumProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key)
+                    }
+					else if (definition[key].type === "boolean") {
+                        extensionObject.prototype[key+"Property"] = new BoolProperty(Versions.v1_0, key);
+                        let decorator = property(new BoolProperty(Versions.v1_0, key));
                         decorator(extensionObject.prototype, key)
                     }
                     else{

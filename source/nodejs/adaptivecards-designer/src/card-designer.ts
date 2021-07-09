@@ -25,6 +25,7 @@ import { TreeView } from "./tree-view";
 import { SampleCatalogue } from "./catalogue";
 import { HelpDialog } from "./help-dialog";
 import * as yaml from "js-yaml";
+import { ExtensionLoader } from "./extension-loader";
 
 export class CardDesigner extends Designer.DesignContext {
 	private static internalProcessMarkdown(text: string, result: Adaptive.IMarkdownProcessingResult) {
@@ -1022,6 +1023,11 @@ export class CardDesigner extends Designer.DesignContext {
 		styleSheetLinkElement.rel = "stylesheet";
 		styleSheetLinkElement.type = "text/css";
 		styleSheetLinkElement.href = Utils.joinPaths(this._assetPath, "adaptivecards-designer.css");
+
+		const extensionLoader = ExtensionLoader.Instance;
+		extensionLoader.getExtensions().then(() => {
+			this.buildPalette();
+		});
 
 		document.getElementsByTagName("head")[0].appendChild(styleSheetLinkElement);
 

@@ -24,9 +24,10 @@ export abstract class HostContainer {
 
         GlobalRegistry.populateWithDefaultElements(this._elementsRegistry);
         GlobalRegistry.populateWithDefaultActions(this._actionsRegistry);
+
 		const extensionLoader = ExtensionLoader.Instance;
 		extensionLoader.getExtensions().then(extensions => {
-			extensions.filter(e => e.id === 'tabs').forEach(extension => GlobalRegistry.populateWithExtension(this._elementsRegistry, extension));
+			extensions.forEach(extension => GlobalRegistry.populateWithExtension(this._elementsRegistry, extension));
 		});
     }
 
