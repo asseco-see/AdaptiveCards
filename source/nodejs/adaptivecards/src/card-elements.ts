@@ -5489,7 +5489,7 @@ export abstract class StylableCardElementContainer extends CardElementContainer 
     }
 }
 
-export class GenericContainer extends StylableCardElementContainer{
+export class GenericContainer extends CardElement{
     [name: string]: any;
 
     // static readonly selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab");
@@ -7044,7 +7044,7 @@ export class GlobalRegistry {
             someClass.prototype.styleProperty = new EnumProperty(Versions.v1_0, "style", Enums.InputTextStyle, Enums.InputTextStyle.Text);
             someClass.prototype.inlineActionProperty = new ActionProperty(Versions.v1_0, "inlineAction", ["Action.ShowCard"]);
             someClass.prototype.regexProperty = new StringProperty(Versions.v1_3, "regex", true);
-            someClass.prototype.checkDigitProperty = new EnumProperty(Versions.v1_4, "checkDigit", Enums.InputTextCheckDigitAlgorithm, undefined);
+            // someClass.prototype.checkDigitProperty = new EnumProperty(Versions.v1_4, "checkDigit", Enums.InputTextCheckDigitAlgorithm, undefined);
             genericList.push(someClass);
             registry.register("Input.GenericInput" + i, someClass, Versions.v1_4);
         }
@@ -7093,100 +7093,68 @@ export class GlobalRegistry {
         // console.log("Extension definitions:", definitions)
         for (let definitionKey of Object.keys(definitions)) {
             const definition = definitions[definitionKey].properties;
-            if (definitions[definitionKey].extends){
-                const extensionObject = class ExtensionClass extends GenericContainer {};
-				Object.defineProperty(extensionObject, 'name', {
-					value: definitionKey,
-					writable: true
-				  });
-                //extensionObject.prototype.JsonTypeName = definitionKey;
-                extensionObject.prototype.getJsonTypeName = function() {
-                    return definitionKey;
-                };
-                for (let key of Object.keys(definition)) {
-                    // add properties
-                    if (definition[key].type === "string") {
-                        extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
-                        let decorator = property(new StringProperty(Versions.v1_0, key));
-                        decorator(extensionObject.prototype, key)
+            if (definition) {
+                if (definitions[definitionKey].extends) {
+                    const extensionObject = class ExtensionClass extends GenericContainer { };
+                    Object.defineProperty(extensionObject, 'name', {
+                        value: definitionKey,
+                        writable: true
+                    });
+                    //extensionObject.prototype.JsonTypeName = definitionKey;
+                    extensionObject.prototype.getJsonTypeName = function () {
+                        return definitionKey;
+                    };
+                    for (let key of Object.keys(definition)) {
+                        // add properties
+                        if (definition[key].type === "string") {
+                            extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+                            let decorator = property(new StringProperty(Versions.v1_0, key));
+                            decorator(extensionObject.prototype, key)
+                        }
+                        else if (definition[key].type === "number") {
+                            extensionObject.prototype[key + "Property"] = new NumProperty(Versions.v1_0, key);
+                            let decorator = property(new NumProperty(Versions.v1_0, key));
+                            decorator(extensionObject.prototype, key)
+                        }
+                        else if (definition[key].type === "boolean") {
+                            extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
+                            let decorator = property(new BoolProperty(Versions.v1_0, key));
+                            decorator(extensionObject.prototype, key)
+                        }
+                        else {
+                            extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+                            let decorator = property(new StringProperty(Versions.v1_0, key));
+                            decorator(extensionObject.prototype, key)
+                        }
                     }
-                    else if (definition[key].type === "number") {
-                        extensionObject.prototype[key+"Property"] = new NumProperty(Versions.v1_0, key);
-                        let decorator = property(new NumProperty(Versions.v1_0, key));
-                        decorator(extensionObject.prototype, key)
-                    }
-					else if (definition[key].type === "boolean") {
-                        extensionObject.prototype[key+"Property"] = new BoolProperty(Versions.v1_0, key);
-                        let decorator = property(new BoolProperty(Versions.v1_0, key));
-                        decorator(extensionObject.prototype, key)
-                    }
-                    else{
-                        extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
-                        let decorator = property(new StringProperty(Versions.v1_0, key));
-                        decorator(extensionObject.prototype, key)
-                    }
+                    genericList.push(extensionObject);
+                    registry.register(definitionKey, extensionObject, Versions.v1_4);
                 }
-                genericList.push(extensionObject);
-                registry.register(definitionKey, extensionObject, Versions.v1_4);
-            }
-            else {
-                const extensionObject = GenericSerializableObject;
-                extensionObject.prototype.getSchemaKey = function() {
-                    return definitionKey;
-                };
+                else {
+                    const extensionObject = GenericSerializableObject;
+                    extensionObject.prototype.getSchemaKey = function () {
+                        return definitionKey;
+                    };
 
-                for (let key of Object.keys(definition)) {
-                    if (definition[key].type === "string") {
-                        extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
-                        let decorator = property(new StringProperty(Versions.v1_0, key));
-                        decorator(extensionObject.prototype, key)
-                    }
-                    else if (definition[key].type === "number") {
-                        extensionObject.prototype[key+"Property"] = new NumProperty(Versions.v1_0, key);
-                        let decorator = property(new NumProperty(Versions.v1_0, key));
-                        decorator(extensionObject.prototype, key)
-                    }
-                    else{
-                        extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
-                        let decorator = property(new StringProperty(Versions.v1_0, key));
-                        decorator(extensionObject.prototype, key)
+                    for (let key of Object.keys(definition)) {
+                        if (definition[key].type === "string") {
+                            extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+                            let decorator = property(new StringProperty(Versions.v1_0, key));
+                            decorator(extensionObject.prototype, key)
+                        }
+                        else if (definition[key].type === "number") {
+                            extensionObject.prototype[key + "Property"] = new NumProperty(Versions.v1_0, key);
+                            let decorator = property(new NumProperty(Versions.v1_0, key));
+                            decorator(extensionObject.prototype, key)
+                        }
+                        else {
+                            extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+                            let decorator = property(new StringProperty(Versions.v1_0, key));
+                            decorator(extensionObject.prototype, key)
+                        }
                     }
                 }
             }
-        }
-
-        for (let i = 5; i < 6; i++) {
-            const someClass = class GenericInput extends Input {
-                [name: string]: any;
-                constructor() {
-                    super();
-                }
-                isSet(): boolean {
-                    return true;
-                }
-                get value(): any {
-                    return '123';
-                }
-                public internalRender(): HTMLElement | undefined {
-                    return document.createElement("div");
-                }
-                getJsonTypeName(): string {
-                    return 'Input.GenericInput' + i;
-                }
-            };
-            someClass.prototype.labelProperty =  new StringProperty(Versions.v1_3, "label", true);
-            someClass.prototype.valueProperty = new StringProperty(Versions.v1_0, "value");
-            if(i == 1){
-                someClass.prototype.maxLengthProperty = new NumProperty(Versions.v1_0, "maxLength");
-                someClass.prototype.isMultilineProperty = new BoolProperty(Versions.v1_0, "isMultiline", false);
-                someClass.prototype.placeholderProperty = new StringProperty(Versions.v1_0, "placeholder");
-            }
-            someClass.prototype.styleProperty = new EnumProperty(Versions.v1_0, "style", Enums.InputTextStyle, Enums.InputTextStyle.Text);
-            someClass.prototype.inlineActionProperty = new ActionProperty(Versions.v1_0, "inlineAction", ["Action.ShowCard"]);
-            someClass.prototype.regexProperty = new StringProperty(Versions.v1_3, "regex", true);
-            someClass.prototype.checkDigitProperty = new EnumProperty(Versions.v1_4, "checkDigit", Enums.InputTextCheckDigitAlgorithm, undefined);
-            genericList.push(someClass);
-            registry.register("Input.GenericInput" + i, someClass, Versions.v1_4);
         }
     }
 

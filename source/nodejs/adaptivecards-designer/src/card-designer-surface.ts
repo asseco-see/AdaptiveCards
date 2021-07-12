@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Adaptive from "@asseco/adaptivecards";
@@ -129,6 +130,12 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 		    this.registerPeer(Adaptive.genericList[i], genericInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputGeneric");
         }
 
+        // Input.Text not TextInput        
+        // let inputText = this._items.find(a=>a.sourceType.name ==="TextInput");
+        // if (inputText){            
+        //     inputText.peerType["extensions"] = [];
+        //     inputText.peerType["extensions"].push(new EnumPropertyEditor(Adaptive.Versions.v1_0, "checkDigit", "Check digit", Adaptive.InputTextCheckDigitAlgorithm));
+        // }
 		const extensionLoader = ExtensionLoader.Instance;
 		extensionLoader.getExtensions().then(extensions => {
 			extensions.forEach(extension => {
@@ -166,16 +173,42 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 								let decorator = property(new StringProperty(Versions.v1_0, key));
 								decorator(extensionObject.prototype, key)
 							}
-							// extensionObject.prototype.styleProperty = 'default';
-							// extensionObject.prototype.tab = [];
-							// extensionObject.prototype.colorProperty  = new StringProperty(Versions.v1_0, "color", true);
 						}
 						// eslint-disable-next-line max-len
 						this.registerPeer(extensionObject, DesignerPeers.GenericContainerPeer, DesignerPeerCategory.Containers, "acd-icon-containerGeneric");
 					}
+                    else{
+                        let element = this._items.find(a=>a.sourceType.prototype.getJsonTypeName() == definitionKey);
+                        if (element)
+                        {                            
+                            element.peerType["extensions"] = [];
+                            
+                            for (const key in definition) {
+                                if (Object.prototype.hasOwnProperty.call(definition, key)) {
+                                    const extension = definition[key];
+                                    switch (extension.type){
+                                        case "string":
+                                            element.peerType["extensions"].push(new StringPropertyEditor(Adaptive.Versions.v1_0, key, key, true));        
+                                            break;
+                                        case "number":
+                                            element.peerType["extensions"].push(new NumberPropertyEditor(Adaptive.Versions.v1_0, key, key));        
+                                            break;
+                                        case "boolean":
+                                            element.peerType["extensions"].push(new BooleanPropertyEditor(Adaptive.Versions.v1_0, key, key));                                                    
+                                            break;
+                                        default:
+                                            //element.peerType["extensions"].push(new StringPropertyEditor(Adaptive.Versions.v1_0, key, key, true));        
+                                            element.peerType["extensions"].push(new EnumPropertyEditor(Adaptive.Versions.v1_0, "checkDigit", "Check digit", Adaptive.InputTextCheckDigitAlgorithm));
+                                            break;
+                                    }
+                                }
+                            }
+                        }
+                    }
 				}
 			});
 		});
+        console.log(this)
 
         
         // // Tab

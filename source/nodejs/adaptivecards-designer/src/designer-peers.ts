@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Adaptive from "@asseco/adaptivecards";
@@ -33,8 +34,7 @@ export abstract class CardElementPeerInplaceEditor<TCardElement extends Adaptive
 export class DesignerPeerRegistrationBase {
     readonly category: string;
     readonly iconClass: string;
-
-    constructor(category: string, iconClass: string = null) {
+        constructor(category: string, iconClass: string = null) {
         this.category = category;
         this.iconClass = iconClass;
     }
@@ -1582,6 +1582,17 @@ export class CardElementPeer extends DesignerPeer {
             CardElementPeer.separatorProperty,
             CardElementPeer.horizontalAlignmentProperty,
             CardElementPeer.heightProperty);
+
+        // add extensions
+        const peerTypeExtensions: any = this.registration;
+        if (peerTypeExtensions.peerType.extensions){
+            for (const key in peerTypeExtensions.peerType.extensions) {
+                if (Object.prototype.hasOwnProperty.call(peerTypeExtensions.peerType.extensions, key)) {
+                    const element = peerTypeExtensions.peerType.extensions[key];
+                    propertySheet.add(defaultCategory, element);
+                }
+            }
+        }
     }
 
     get cardElement(): Adaptive.CardElement {
@@ -2269,7 +2280,7 @@ export class TextInputPeer extends InputPeer<Adaptive.TextInput> {
     static readonly maxLengthProperty = new NumberPropertyEditor(Adaptive.Versions.v1_0, "maxLength", "Maximum length");
     static readonly inlineActionProperty = new ActionPropertyEditor(Adaptive.Versions.v1_2, "inlineAction", "Action type", [Adaptive.ShowCardAction.JsonTypeName], true);
     static readonly regexProperty = new StringPropertyEditor(Adaptive.Versions.v1_3, "regex", "Pattern");
-
+    
 
     populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
         super.populatePropertySheet(propertySheet, defaultCategory);
@@ -2277,7 +2288,8 @@ export class TextInputPeer extends InputPeer<Adaptive.TextInput> {
         propertySheet.add(
             defaultCategory,
             TextInputPeer.placeholderProperty,
-            TextInputPeer.isMultilineProperty);
+            TextInputPeer.isMultilineProperty
+        );
 
         if (!this.cardElement.isMultiline) {
             propertySheet.add(
@@ -2300,7 +2312,7 @@ export class TextInputPeer extends InputPeer<Adaptive.TextInput> {
 
             propertySheet.add(
                 PropertySheetCategory.InlineAction,
-                new SubPropertySheetEntry(Adaptive.Versions.v1_2, this.cardElement.inlineAction, subPropertySheet));
+                new SubPropertySheetEntry(Adaptive.Versions.v1_2, this.cardElement.inlineAction, subPropertySheet));            
         }
 
         propertySheet.add(
@@ -2311,6 +2323,8 @@ export class TextInputPeer extends InputPeer<Adaptive.TextInput> {
         propertySheet.add(
             PropertySheetCategory.Validation,
             TextInputPeer.regexProperty);
+
+
     }
 
     initializeCardElement() {
@@ -2505,7 +2519,7 @@ export class GenericInputPeer extends InputPeer<Adaptive.GenericInput> {
 }
 
 
-export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.GenericContainer> {
+export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.CardElement> {
     protected isContainer(): boolean {
         return true;
     }
@@ -2531,18 +2545,18 @@ export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.GenericC
     //     );
     // }
 
-    protected internalGetTreeItemText(): string {
-        let columnCount = this.cardElement.getItemCount();
+    // protected internalGetTreeItemText(): string {
+    //     let columnCount = this.cardElement.getItemCount();
 
-        switch (columnCount) {
-            case 0:
-                return "No column";
-            case 1:
-                return "1 column";
-            default:
-                return columnCount + " columns";
-        }
-    }
+    //     switch (columnCount) {
+    //         case 0:
+    //             return "No column";
+    //         case 1:
+    //             return "1 column";
+    //         default:
+    //             return columnCount + " columns";
+    //     }
+    // }
 
     populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
         super.populatePropertySheet(propertySheet, defaultCategory);
@@ -2556,6 +2570,7 @@ export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.GenericC
         propertySheet.add(
             PropertySheetCategory.SelectionAction,
             ContainerPeer.selectActionProperty);
+
         for (const key of Object.keys(Object.getPrototypeOf(this.cardElement))) {
             const value = Object.getPrototypeOf(this.cardElement)[key];
             if (value instanceof PropertyDefinition) {
