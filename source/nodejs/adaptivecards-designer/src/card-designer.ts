@@ -25,7 +25,7 @@ import { TreeView } from "./tree-view";
 import { SampleCatalogue } from "./catalogue";
 import { HelpDialog } from "./help-dialog";
 import * as yaml from "js-yaml";
-import { ExtensionLoader } from "./extension-loader";
+import { ExtensionRegistry } from "./extension-loader";
 
 export class CardDesigner extends Designer.DesignContext {
 	private static internalProcessMarkdown(text: string, result: Adaptive.IMarkdownProcessingResult) {
@@ -510,7 +510,7 @@ export class CardDesigner extends Designer.DesignContext {
 			this._preventCardUpdate = true;
 
 			if (!this.preventJsonUpdate && this._isMonacoEditorLoaded) {
-				let cardPayload  = this._designerSurface.getCardPayloadAsObject();
+				let cardPayload = this._designerSurface.getCardPayloadAsObject();
 
 				this.setCardPayload(cardPayload, addToUndoStack);
 			}
@@ -830,7 +830,7 @@ export class CardDesigner extends Designer.DesignContext {
 
 	private updateSampleData() {
 		try {
-			this._sampleData = { id: 'baba'}; //JSON.parse(this.getCurrentSampleDataEditorPayload());
+			this._sampleData = { id: 'baba' }; //JSON.parse(this.getCurrentSampleDataEditorPayload());
 
 			this.scheduleUpdateCardFromJson();
 		}
@@ -1024,8 +1024,8 @@ export class CardDesigner extends Designer.DesignContext {
 		styleSheetLinkElement.type = "text/css";
 		styleSheetLinkElement.href = Utils.joinPaths(this._assetPath, "adaptivecards-designer.css");
 
-		const extensionLoader = ExtensionLoader.Instance;
-		extensionLoader.getExtensions().then(() => {
+		this.buildPalette();
+		ExtensionRegistry.subscribe(() => {
 			this.buildPalette();
 		});
 

@@ -11,9 +11,9 @@ import * as Shared from "./shared";
 import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
 import * as yaml from 'js-yaml';
-import { ActionPeer, ActionPropertyEditor, BooleanPropertyEditor, DesignerPeer, EnumPropertyEditor,  InputPeer,  NumberPropertyEditor, PropertySheet, PropertySheetCategory, StringPropertyEditor, SubPropertySheetEntry, TextInputPeer } from "./designer-peers";
+import { ActionPeer, ActionPropertyEditor, BooleanPropertyEditor, DesignerPeer, EnumPropertyEditor, InputPeer, NumberPropertyEditor, PropertySheet, PropertySheetCategory, StringPropertyEditor, SubPropertySheetEntry, TextInputPeer } from "./designer-peers";
 import { ActionProperty, BoolProperty, EnumProperty, GenericContainer, NumProperty, property, StringProperty, Versions } from "@asseco/adaptivecards";
-import { ExtensionLoader } from "./extension-loader";
+import { ExtensionRegistry } from "./extension-loader";
 
 export enum BindingPreviewMode {
     NoPreview,
@@ -76,17 +76,17 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
         var registrationInfo = this.findTypeRegistration(sourceType);
 
         if (registrationInfo != null) {
-            registrationInfo.peerType = peerType;
+            console.log("Calling unregisterPeer for:", registrationInfo.sourceType);
+            this.unregisterPeer(registrationInfo.sourceType);
         }
-        else {
-            registrationInfo = new DesignerPeers.DesignerPeerRegistration<TSource, TPeer>(
-                sourceType,
-                peerType,
-                category,
-                iconClass);
 
-            this._items.push(registrationInfo);
-        }
+        registrationInfo = new DesignerPeers.DesignerPeerRegistration<TSource, TPeer>(
+            sourceType,
+            peerType,
+            category,
+            iconClass);
+
+        this._items.push(registrationInfo);
     }
 
     unregisterPeer(sourceType: TSource) {
@@ -100,6 +100,76 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
     }
 }
 export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementType, CardElementPeerType> {
+
+    loadExtension(value: any) {
+        const definitions = value.contributes.definitions;
+        for (const definitionKey of Object.keys(definitions)) {
+            const definition = definitions[definitionKey].properties;
+            if (definitions[definitionKey].extends) {
+                const extensionObject = class ExtensionClass extends GenericContainer { };
+                // extensionObject.prototype.JsonTypeName = definitionKey;
+                extensionObject.prototype.getJsonTypeName = function () {
+                    return definitionKey;
+                };
+                Object.defineProperty(extensionObject, "name", {
+                    value: definitionKey,
+                    writable: true
+                });
+                for (const key of Object.keys(definition)) {
+                    if (definition[key].type === "string") {
+                        extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+                        const decorator = property(new StringProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key);
+                    }
+                    else if (definition[key].type === "number") {
+                        extensionObject.prototype[key + "Property"] = new NumProperty(Versions.v1_0, key);
+                        const decorator = property(new NumProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key);
+                    }
+                    else if (definition[key].type === "boolean") {
+                        extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
+                        const decorator = property(new BoolProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key);
+                    }
+                    else {
+                        extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+                        const decorator = property(new StringProperty(Versions.v1_0, key));
+                        decorator(extensionObject.prototype, key);
+                    }
+                }
+                // eslint-disable-next-line max-len
+                this.registerPeer(extensionObject, DesignerPeers.GenericContainerPeer, DesignerPeerCategory.Containers, "acd-icon-containerGeneric");
+            }
+            else {
+                const element = this._items.find(a => a.sourceType.prototype.getJsonTypeName() == definitionKey);
+                if (element) {
+                    const peerType = element.peerType as any;
+                    peerType.extensions = [];
+
+                    for (const key in definition) {
+                        if (Object.prototype.hasOwnProperty.call(definition, key)) {
+                            const extension = definition[key];
+                            switch (extension.type) {
+                                case "string":
+                                    peerType.push(new StringPropertyEditor(Adaptive.Versions.v1_0, key, key, true));
+                                    break;
+                                case "number":
+                                    peerType.push(new NumberPropertyEditor(Adaptive.Versions.v1_0, key, key));
+                                    break;
+                                case "boolean":
+                                    peerType.push(new BooleanPropertyEditor(Adaptive.Versions.v1_0, key, key));
+                                    break;
+                                default:
+                                    //element.peerType["extensions"].push(new StringPropertyEditor(Adaptive.Versions.v1_0, key, key, true));        
+                                    peerType.push(new EnumPropertyEditor(Adaptive.Versions.v1_0, "checkDigit", "Check digit", Adaptive.InputTextCheckDigitAlgorithm));
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     reset() {
         this.clear();
 
@@ -127,7 +197,7 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
         console.log("CardElementPeerRegistry", Adaptive.genericList);
         for (let i = 0; i < Adaptive.genericList.length; i++) {
             const genericInputPeer = DesignerPeers.GenericInputPeer;
-		    this.registerPeer(Adaptive.genericList[i], genericInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputGeneric");
+            this.registerPeer(Adaptive.genericList[i], genericInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputGeneric");
         }
 
         // Input.Text not TextInput        
@@ -136,81 +206,13 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
         //     inputText.peerType["extensions"] = [];
         //     inputText.peerType["extensions"].push(new EnumPropertyEditor(Adaptive.Versions.v1_0, "checkDigit", "Check digit", Adaptive.InputTextCheckDigitAlgorithm));
         // }
-		const extensionLoader = ExtensionLoader.Instance;
-		extensionLoader.getExtensions().then(extensions => {
-			extensions.forEach(extension => {
-				const definitions = extension.contributes.definitions;
-				for (const definitionKey of Object.keys(definitions)) {
-					const definition = definitions[definitionKey].properties;
-					if (definitions[definitionKey].extends){
-						const extensionObject = class ExtensionClass extends GenericContainer {};
-						// extensionObject.prototype.JsonTypeName = definitionKey;
-						extensionObject.prototype.getJsonTypeName = function() {
-							return definitionKey;
-						};
-						Object.defineProperty(extensionObject, 'name', {
-							value: definitionKey,
-							writable: true
-						  });
-						for (const key of Object.keys(definition)) {
-							if (definition[key].type === "string") {
-								extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
-								let decorator = property(new StringProperty(Versions.v1_0, key));
-								decorator(extensionObject.prototype, key)
-							}
-							else if (definition[key].type === "number") {
-								extensionObject.prototype[key+"Property"] = new NumProperty(Versions.v1_0, key);
-								let decorator = property(new NumProperty(Versions.v1_0, key));
-								decorator(extensionObject.prototype, key)
-							}
-							else if (definition[key].type === "boolean") {
-								extensionObject.prototype[key+"Property"] = new BoolProperty(Versions.v1_0, key);
-								let decorator = property(new BoolProperty(Versions.v1_0, key));
-								decorator(extensionObject.prototype, key)
-							}
-							else{
-								extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
-								let decorator = property(new StringProperty(Versions.v1_0, key));
-								decorator(extensionObject.prototype, key)
-							}
-						}
-						// eslint-disable-next-line max-len
-						this.registerPeer(extensionObject, DesignerPeers.GenericContainerPeer, DesignerPeerCategory.Containers, "acd-icon-containerGeneric");
-					}
-                    else{
-                        let element = this._items.find(a=>a.sourceType.prototype.getJsonTypeName() == definitionKey);
-                        if (element)
-                        {                            
-                            element.peerType["extensions"] = [];
-                            
-                            for (const key in definition) {
-                                if (Object.prototype.hasOwnProperty.call(definition, key)) {
-                                    const extension = definition[key];
-                                    switch (extension.type){
-                                        case "string":
-                                            element.peerType["extensions"].push(new StringPropertyEditor(Adaptive.Versions.v1_0, key, key, true));        
-                                            break;
-                                        case "number":
-                                            element.peerType["extensions"].push(new NumberPropertyEditor(Adaptive.Versions.v1_0, key, key));        
-                                            break;
-                                        case "boolean":
-                                            element.peerType["extensions"].push(new BooleanPropertyEditor(Adaptive.Versions.v1_0, key, key));                                                    
-                                            break;
-                                        default:
-                                            //element.peerType["extensions"].push(new StringPropertyEditor(Adaptive.Versions.v1_0, key, key, true));        
-                                            element.peerType["extensions"].push(new EnumPropertyEditor(Adaptive.Versions.v1_0, "checkDigit", "Check digit", Adaptive.InputTextCheckDigitAlgorithm));
-                                            break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-				}
-			});
-		});
-        console.log(this)
+        ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
+            this.loadExtension(value);
+        });
+        ExtensionRegistry.subscribe((schema) => {
+            this.loadExtension(schema);
+        });
 
-        
         // // Tab
         //const tab = DesignerPeers.GenericContainerPeer;
         //this.registerPeer(Adaptive.GenericContainer, tab, DesignerPeerCategory.Containers, "acd-icon-containerGeneric");
@@ -453,13 +455,13 @@ export class CardDesignerSurface {
 
                 if (!this._adaptiveUiWebImported) {
                     this._adaptiveUiWebImported = true;
-					import('@asseco/adaptive-ui-web').then(() => {
-						import('@asseco/adaptive-ui-material-web').then(() => {
-						    // import('@asseco/adaptive-ui-extensions').then(() => {
-						    // 	console.log('BUREEEK SA SIRROM NIJE BUUREEEEK');
-						    // });
-						});
-					});
+                    import('@asseco/adaptive-ui-web').then(() => {
+                        import('@asseco/adaptive-ui-material-web').then(() => {
+                            // import('@asseco/adaptive-ui-extensions').then(() => {
+                            // 	console.log('BUREEEK SA SIRROM NIJE BUUREEEEK');
+                            // });
+                        });
+                    });
                 }
             }
 
@@ -962,16 +964,16 @@ export class CardDesignerSurface {
 
             this._dropTarget.renderedElement.classList.remove("dragover");
 
-			this._dragVisual?.parentNode.removeChild(this._dragVisual);
-			this._dragVisual = undefined;
+            this._dragVisual?.parentNode.removeChild(this._dragVisual);
+            this._dragVisual = undefined;
 
-			this.setDraggedPeer(null);
+            this.setDraggedPeer(null);
 
-			if (this.onEndDrag) {
-			    this.onEndDrag(this, wasCancelled);
-			}
+            if (this.onEndDrag) {
+                this.onEndDrag(this, wasCancelled);
+            }
 
-			this._designerSurface.classList.remove("dragging");
+            this._designerSurface.classList.remove("dragging");
         }
     }
 
