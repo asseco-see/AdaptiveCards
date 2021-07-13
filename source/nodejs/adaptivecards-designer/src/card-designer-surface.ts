@@ -123,11 +123,7 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
         this.registerPeer(Adaptive.NumberInput, DesignerPeers.NumberInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputNumber");
         this.registerPeer(Adaptive.ChoiceSetInput, DesignerPeers.ChoiceSetInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputChoiceSet");
 
-		this.registerPeer(Adaptive.Tab, DesignerPeers.TabPeer, DesignerPeerCategory.Elements, "acd-icon-tab");
-		this.registerPeer(Adaptive.TabSet, DesignerPeers.TabSetPeer, DesignerPeerCategory.Elements, "acd-icon-tabSet");
-
         // BORO HERE ADD NEW EXTENSION
-<<<<<<< HEAD
         console.log("CardElementPeerRegistry", Adaptive.genericList);
         for (let i = 0; i < Adaptive.genericList.length; i++) {
             const genericInputPeer = DesignerPeers.GenericInputPeer;
@@ -213,61 +209,6 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 			});
 		});
         console.log(this)
-=======
-        // console.log("CardElementPeerRegistry", Adaptive.genericList);
-        // for (let i = 0; i < Adaptive.genericList.length; i++) {
-        //     const genericInputPeer = DesignerPeers.GenericInputPeer;
-		//     this.registerPeer(Adaptive.genericList[i], genericInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputGeneric");
-        // }
-
-		// const extensionLoader = ExtensionLoader.Instance;
-		// extensionLoader.getExtensions().then(extensions => {
-		// 	extensions.forEach(extension => {
-		// 		const definitions = extension.contributes.definitions;
-		// 		for (const definitionKey of Object.keys(definitions)) {
-		// 			const definition = definitions[definitionKey].properties;
-		// 			if (definitions[definitionKey].extends){
-		// 				const extensionObject = class ExtensionClass extends GenericContainer {};
-		// 				// extensionObject.prototype.JsonTypeName = definitionKey;
-		// 				extensionObject.prototype.getJsonTypeName = function() {
-		// 					return definitionKey;
-		// 				};
-		// 				Object.defineProperty(extensionObject, 'name', {
-		// 					value: definitionKey,
-		// 					writable: true
-		// 				  });
-		// 				for (const key of Object.keys(definition)) {
-		// 					if (definition[key].type === "string") {
-		// 						extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
-		// 						let decorator = property(new StringProperty(Versions.v1_0, key));
-		// 						decorator(extensionObject.prototype, key)
-		// 					}
-		// 					else if (definition[key].type === "number") {
-		// 						extensionObject.prototype[key+"Property"] = new NumProperty(Versions.v1_0, key);
-		// 						let decorator = property(new NumProperty(Versions.v1_0, key));
-		// 						decorator(extensionObject.prototype, key)
-		// 					}
-		// 					else if (definition[key].type === "boolean") {
-		// 						extensionObject.prototype[key+"Property"] = new BoolProperty(Versions.v1_0, key);
-		// 						let decorator = property(new BoolProperty(Versions.v1_0, key));
-		// 						decorator(extensionObject.prototype, key)
-		// 					}
-		// 					else{
-		// 						extensionObject.prototype[key+"Property"] = new StringProperty(Versions.v1_0, key);
-		// 						let decorator = property(new StringProperty(Versions.v1_0, key));
-		// 						decorator(extensionObject.prototype, key)
-		// 					}
-		// 					// extensionObject.prototype.styleProperty = 'default';
-		// 					// extensionObject.prototype.tab = [];
-		// 					// extensionObject.prototype.colorProperty  = new StringProperty(Versions.v1_0, "color", true);
-		// 				}
-		// 				// eslint-disable-next-line max-len
-		// 				this.registerPeer(extensionObject, DesignerPeers.GenericContainerPeer, DesignerPeerCategory.Containers, "acd-icon-containerGeneric");
-		// 			}
-		// 		}
-		// 	});
-		// });
->>>>>>> f1d094664... Export DesignerPeerCategory
 
         
         // // Tab
