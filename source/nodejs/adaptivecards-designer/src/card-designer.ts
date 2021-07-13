@@ -1017,6 +1017,24 @@ export class CardDesigner extends Designer.DesignContext {
 		this.updateJsonFromCard(true);
 	}
 
+	loadCss() {
+		ExtensionRegistry.customCss.forEach((value: string, key: string) => {
+			const id = "designerCss" + key;
+			const element = document.getElementById(id);
+			if (!element) {
+				let style = document.createElement("style");
+				if ((style as any).styleSheet) {
+					// This is required for IE8 and below.
+					(style as any).styleSheet.cssText = value;
+				} else {
+					style.appendChild(document.createTextNode(value));
+				}
+				style.id = id;
+				document.getElementsByTagName("head")[0].appendChild(style);
+			}
+		});
+	}
+
 	attachTo(root: HTMLElement) {
 		let styleSheetLinkElement = document.createElement("link");
 		styleSheetLinkElement.id = "__ac-designer";
@@ -1028,6 +1046,12 @@ export class CardDesigner extends Designer.DesignContext {
 		ExtensionRegistry.subscribe(() => {
 			this.buildPalette();
 		});
+
+		this.loadCss();
+		ExtensionRegistry.subscribeCss(() => {
+			this.loadCss();
+		});
+
 
 		document.getElementsByTagName("head")[0].appendChild(styleSheetLinkElement);
 
