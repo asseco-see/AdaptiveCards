@@ -65,7 +65,9 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 
 	findTypeRegistration(sourceType: TSource): DesignerPeers.DesignerPeerRegistration<TSource, TPeer> {
 		for (var i = 0; i < this._items.length; i++) {
-			if (this._items[i].sourceType == sourceType || (this._items[i].sourceType as any).name === (sourceType as any).name) {
+	
+			if (this._items[i].sourceType == sourceType
+				 || (this._items[i].sourceType as any).prototype.getJsonTypeName() === (sourceType as any).prototype.getJsonTypeName()) {
 				return this._items[i];
 			}
 		}
