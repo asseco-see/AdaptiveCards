@@ -5516,7 +5516,18 @@ export class GenericContainer extends CardElement{
     }
 
     public internalRender(): HTMLElement | undefined {
-        return document.createElement("div");
+        const element = document.createElement("div");
+        element.className = this.hostConfig.makeCssClassName("ac-genericElement");
+        element.style.display = "flex";
+        element.style.width = "100%";
+        element.style.height = "50px";
+        element.style.backgroundColor = "white";
+        element.style.justifyContent = "center";
+        element.style.alignItems = "center";
+        element.style.border = "1px solid #0063c2";
+        element.style.fontWeight = "bold";
+        element.innerText = this.getJsonTypeName();
+        return element;
     }
 
     getJsonTypeName(): string {

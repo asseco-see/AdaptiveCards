@@ -3,7 +3,6 @@ export class ExtensionConfig {
 	url: string;
 	extensionsToLoad: string[];
 }
-
 export class ExtensionRegistry {
 	static extensionsRegistry: Map<string, object> = new Map<string, any>();
 	static subscriptions = [];
@@ -17,3 +16,5 @@ export class ExtensionRegistry {
 		this.subscriptions.forEach((x) => x(schema));
 	}
 }
+
+window['extensionLoader'] = ExtensionRegistry;
