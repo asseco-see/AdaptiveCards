@@ -26,6 +26,7 @@ import { SampleCatalogue } from "./catalogue";
 import { HelpDialog } from "./help-dialog";
 import * as yaml from "js-yaml";
 import { ExtensionRegistry } from "./extension-loader";
+import { CustomCardElementRegistry } from "@asseco/adaptivecards";
 
 export class CardDesigner extends Designer.DesignContext {
 	private static internalProcessMarkdown(text: string, result: Adaptive.IMarkdownProcessingResult) {
@@ -1044,6 +1045,10 @@ export class CardDesigner extends Designer.DesignContext {
 
 		this.buildPalette();
 		ExtensionRegistry.subscribe(() => {
+			this.buildPalette();
+		});
+
+		CustomCardElementRegistry.subscribe(() => {
 			this.buildPalette();
 		});
 
