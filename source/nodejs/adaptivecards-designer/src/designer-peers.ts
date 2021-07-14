@@ -10,7 +10,7 @@ import { DesignerPeerTreeItem } from "./designer-peer-treeitem";
 import { Rect, IPoint } from "./miscellaneous";
 import { GlobalSettings } from "./shared";
 import { FieldPicker } from "./field-picker";
-import { Input, PropertyDefinition } from "adaptivecards";
+import { Input, PropertyDefinition } from "@asseco/adaptivecards";
 import { BoolProperty, NumProperty, StringProperty } from "@asseco/adaptivecards";
 
 export abstract class DesignerPeerInplaceEditor {
