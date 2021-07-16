@@ -5508,7 +5508,7 @@ export class GenericInput extends Input {
 		element.style.alignItems = "center";
 		element.style.border = "1px solid #0063c2";
 		element.style.fontWeight = "bold";
-		element.innerText = this.getJsonTypeName();
+		element.innerText = this.getJsonTypeName() + this.id ? ' - ' + this.id: '';
 		return element;
 	}
 
@@ -5558,7 +5558,7 @@ export class GenericContainer extends CardElement {
 		element.style.alignItems = "center";
 		element.style.border = "1px solid #0063c2";
 		element.style.fontWeight = "bold";
-		element.innerText = this.getJsonTypeName();
+		element.innerText = this.getJsonTypeName() + this.id ? ' - ' + this.id: '';
 		return element;
 	}
 
