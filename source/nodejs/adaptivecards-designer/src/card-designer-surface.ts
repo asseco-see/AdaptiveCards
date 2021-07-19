@@ -159,9 +159,40 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 						decorator(extensionObject.prototype, key);
 					}
 					else {
-						extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
-						const decorator = property(new StringProperty(Versions.v1_0, key));
-						decorator(extensionObject.prototype, key);
+						const foundType = definitions[definition[key].type];
+						const commonType = Adaptive[definition[key].type];
+
+						if (foundType && foundType.classType === 'Enum') {
+							const enumObject = {};
+							for (let i = 0; i < foundType.values.length; i++) {
+								enumObject[i] = foundType.values[i];
+								enumObject[foundType.values[i]] = i;
+							}
+
+							const defaultEnumValue = definition[key].default;
+
+							extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[defaultEnumValue]);
+							const decorator = property(extensionObject.prototype[key + "Property"]);
+							decorator(extensionObject.prototype, key);
+						} else if (commonType) {			
+							const keys = Object.keys(commonType);
+							const numbers = keys.filter(Number);
+							const values = keys.filter(k => numbers.indexOf(k) === -1);
+
+							const enumObject = {};
+							for (let i = 0; i < values.length; i++) {
+								enumObject[i] = values[i];
+								enumObject[values[i]] = i;
+							}
+
+							extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[enumObject[0]]);
+							const decorator = property(extensionObject.prototype[key + "Property"]);
+							decorator(extensionObject.prototype, key);
+						} else {
+							extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+							const decorator = property(new StringProperty(Versions.v1_0, key));
+							decorator(extensionObject.prototype, key);
+						}
 					}
 				}
 				// eslint-disable-next-line max-len

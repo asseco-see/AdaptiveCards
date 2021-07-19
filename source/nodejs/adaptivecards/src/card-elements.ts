@@ -5508,6 +5508,13 @@ export class GenericInput extends Input {
 		element.style.alignItems = "center";
 		element.style.border = "1px solid #0063c2";
 		element.style.fontWeight = "bold";
+
+		const style = (this as any).style;
+		if (style && style !== 0) {
+			element.style.backgroundColor = style === 1 ? '#0078D7' : '#E50000';
+			element.style.color = 'white';
+		}
+
 		element.innerText = this.getJsonTypeName() + (this.id ? ' - ' + this.id: '');
 		return element;
 	}
@@ -5558,6 +5565,13 @@ export class GenericContainer extends CardElement {
 		element.style.alignItems = "center";
 		element.style.border = "1px solid #0063c2";
 		element.style.fontWeight = "bold";
+
+		const style = (this as any).style;
+		if (style && style !== 0) {
+			element.style.backgroundColor = style === 1 ? '#0078D7' : '#E50000';
+			element.style.color = 'white';
+		}
+
 		element.innerText = this.getJsonTypeName() + (this.id ? ' - ' + this.id: '');
 		return element;
 	}
@@ -7112,9 +7126,40 @@ export class GlobalRegistry {
 							decorator(extensionObject.prototype, key)
 						}
 						else {
-							extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
-							let decorator = property(new StringProperty(Versions.v1_0, key));
-							decorator(extensionObject.prototype, key)
+							const foundType = definitions[definition[key].type];
+							const commonType = (Enums as any)[definition[key].type];
+
+							if (foundType && foundType.classType === 'Enum') {
+								const enumObject: any = {};
+								for (let i = 0; i < foundType.values.length; i++) {
+									enumObject[i] = foundType.values[i];
+									enumObject[foundType.values[i]] = i;
+								}
+
+								const defaultEnumValue = definition[key].default;
+
+								extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[defaultEnumValue]);
+								const decorator = property(extensionObject.prototype[key + "Property"]);
+								decorator(extensionObject.prototype, key);
+							} else if (commonType) {
+								const keys = Object.keys(commonType);
+								const numbers = keys.filter(Number);
+								const values = keys.filter(k => numbers.indexOf(k) === -1);
+	
+								const enumObject: any = {};
+								for (let i = 0; i < keys.length; i++) {
+									enumObject[i] = keys[i];
+									enumObject[keys[i]] = i;
+								}
+	
+								extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[enumObject[0]]);
+								const decorator = property(extensionObject.prototype[key + "Property"]);
+								decorator(extensionObject.prototype, key);
+							} else {
+								extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+								let decorator = property(new StringProperty(Versions.v1_0, key));
+								decorator(extensionObject.prototype, key)
+							}
 						}
 					}
 					genericList.push(extensionObject);

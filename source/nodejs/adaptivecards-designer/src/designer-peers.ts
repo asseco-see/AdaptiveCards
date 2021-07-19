@@ -10,7 +10,7 @@ import { DesignerPeerTreeItem } from "./designer-peer-treeitem";
 import { Rect, IPoint } from "./miscellaneous";
 import { GlobalSettings } from "./shared";
 import { FieldPicker } from "./field-picker";
-import { Input, PropertyDefinition } from "@asseco/adaptivecards";
+import { EnumProperty, Input, PropertyDefinition } from "@asseco/adaptivecards";
 import { BoolProperty, NumProperty, StringProperty } from "@asseco/adaptivecards";
 
 export abstract class DesignerPeerInplaceEditor {
@@ -2484,6 +2484,8 @@ export class GenericInputPeer extends InputPeer<Adaptive.GenericInput> {
 					propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
 				} else if (value instanceof BoolProperty) {
 					propertySheet.add(defaultCategory, new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
+				} else if (value instanceof EnumProperty) {
+					propertySheet.add(defaultCategory, new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType));
 				} else {
 					propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
 				}
@@ -2554,6 +2556,8 @@ export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.CardElem
 					propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
 				} else if (value instanceof BoolProperty) {
 					propertySheet.add(defaultCategory, new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
+				} else if (value instanceof EnumProperty) {
+					propertySheet.add(defaultCategory, new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType));
 				} else {
 					propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
 				}
