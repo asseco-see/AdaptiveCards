@@ -12,7 +12,7 @@ import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
 import * as yaml from 'js-yaml';
 import { BooleanPropertyEditor, EnumPropertyEditor, NumberPropertyEditor, StringPropertyEditor } from "./designer-peers";
-import { BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, StringProperty, Versions } from "@asseco/adaptivecards";
+import { BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, PropertyDefinition, StringProperty, Versions } from "@asseco/adaptivecards";
 import { ExtensionRegistry } from "./extension-loader";
 import { extractionElementsAndActionsFromExtension } from "./utils";
 
@@ -78,133 +78,153 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 	loadExtension(definitions: any) {
 		for (const definitionKey of Object.keys(definitions)) {
 			const definition = definitions[definitionKey].properties;
-			if (definitions[definitionKey].extends) {
-				const extendsVar = definitions[definitionKey].extends;
-				const type = extendsVar && extendsVar.toLowerCase();
-				let extensionObject: any = null;
-				let category = DesignerPeerCategory.Elements;
-				let containerPeer: any = null;
-				let icon = '';
-				switch (type) {
-					case 'input':
-						extensionObject = class ExtensionClass extends GenericInput { }
-						category = DesignerPeerCategory.Inputs;
-						icon = 'acd-icon-inputText';
-						containerPeer = DesignerPeers.GenericInputPeer;
-						break;
-					case 'container':
-						category = DesignerPeerCategory.Containers;
-						extensionObject = class ExtensionClass extends GenericContainer { };
-						icon = 'acd-icon-container';
-						containerPeer = DesignerPeers.GenericContainerPeer;
-						break;
-					case 'element':
-						category = DesignerPeerCategory.Elements;
-						extensionObject = class ExtensionClass extends GenericContainer { };
-						icon = 'acd-icon-richTextBlock';
-						containerPeer = DesignerPeers.GenericContainerPeer;
-						break;
-					case 'action':
-						category = DesignerPeerCategory.Actions;
-						extensionObject = class ExtensionClass extends GenericAction { };
-						icon = 'acd-icon-actionHttp';
-						containerPeer = DesignerPeers.GenericActionPeer;
-						break;
+			if (!definition) {
+				continue;
+			}
+
+			const existingElement = this._items.find(item => !item.sourceType['ac_isExtension'] &&  (item.sourceType as any).prototype.getJsonTypeName() === definitionKey);
+			if (existingElement) {
+				this.addProperties(definitions, definition, existingElement.sourceType);
+
+				if (!(existingElement.peerType as any).extensions) {
+					(existingElement.peerType as any).extensions = {};
 				}
-				extensionObject.prototype.getJsonTypeName = function () {
-					return definitionKey;
-				};
-				Object.defineProperty(extensionObject, "name", {
-					value: definitionKey,
-					writable: true
-				});
-				for (const key of Object.keys(definition)) {
-					if (definition[key].type === "string") {
-						extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
-						const decorator = property(new StringProperty(Versions.v1_0, key));
-						decorator(extensionObject.prototype, key);
-					}
-					else if (definition[key].type === "number") {
-						extensionObject.prototype[key + "Property"] = new NumProperty(Versions.v1_0, key);
-						const decorator = property(new NumProperty(Versions.v1_0, key));
-						decorator(extensionObject.prototype, key);
-					}
-					else if (definition[key].type === "boolean") {
-						extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
-						const decorator = property(new BoolProperty(Versions.v1_0, key));
-						decorator(extensionObject.prototype, key);
-					}
-					else {
-						const foundType = definitions[definition[key].type];
-						const commonType = Adaptive[definition[key].type];
 
-						if (foundType && foundType.classType === 'Enum') {
-							const enumObject = {};
-							for (let i = 0; i < foundType.values.length; i++) {
-								enumObject[i] = foundType.values[i];
-								enumObject[foundType.values[i]] = i;
-							}
-
-							const defaultEnumValue = definition[key].default;
-
-							extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[defaultEnumValue]);
-							const decorator = property(extensionObject.prototype[key + "Property"]);
-							decorator(extensionObject.prototype, key);
-						} else if (commonType) {			
-							const keys = Object.keys(commonType);
-							const numbers = keys.filter(Number);
-							const values = keys.filter(k => numbers.indexOf(k) === -1 && k !== '0');
-
-							const enumObject = {};
-							for (let i = 0; i < values.length; i++) {
-								enumObject[i] = values[i];
-								enumObject[values[i]] = i;
-							}
-
-							const defaultEnumValue = definition[key].default ? definition[key].default.toLowerCase() : definition[key].default;
-							const foundValue = keys.find(k => k.toLowerCase() === defaultEnumValue);
-							const initialValue = foundValue ? enumObject[foundValue] : enumObject[enumObject[0]];
-
-							extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
-							const decorator = property(extensionObject.prototype[key + "Property"]);
-							decorator(extensionObject.prototype, key);
+				const keys = Object.keys((existingElement.sourceType as any).prototype).filter(k => k.endsWith('Property'));
+				for (const key of keys) {
+					const value = (existingElement.sourceType as any).prototype[key];
+					if (value instanceof PropertyDefinition) {
+						if (value instanceof NumProperty) {
+							(existingElement.peerType as any).extensions[key] = new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+						} else if (value instanceof StringProperty) {
+							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+						} else if (value instanceof BoolProperty) {
+							(existingElement.peerType as any).extensions[key] = new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+						} else if (value instanceof EnumProperty) {
+							(existingElement.peerType as any).extensions[key] =new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType);
 						} else {
-							extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
-							const decorator = property(new StringProperty(Versions.v1_0, key));
-							decorator(extensionObject.prototype, key);
+							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
 						}
 					}
 				}
-				// eslint-disable-next-line max-len
+				continue;
+			}
 
-				this.registerPeer(extensionObject, containerPeer, category, icon);
+			let extendsVar = definitions[definitionKey].extends;
+
+			if (!extendsVar) {
+				if (definitionKey.startsWith('Input.')) {
+					extendsVar = 'input';
+				} else if (definitionKey.startsWith('Action.')) {
+					extendsVar = 'action';
+				} else {
+					extendsVar = 'element';
+				}
+			}
+
+			const type = extendsVar && extendsVar.toLowerCase();
+			let extensionObject: any = null;
+			let category = DesignerPeerCategory.Elements;
+			let containerPeer: any = null;
+			let icon = '';
+			switch (type) {
+				case 'input':
+					extensionObject = class ExtensionClass extends GenericInput { }
+					category = DesignerPeerCategory.Inputs;
+					icon = 'acd-icon-inputText';
+					containerPeer = DesignerPeers.GenericInputPeer;
+					break;
+				case 'container':
+					category = DesignerPeerCategory.Containers;
+					extensionObject = class ExtensionClass extends GenericContainer { };
+					icon = 'acd-icon-container';
+					containerPeer = DesignerPeers.GenericContainerPeer;
+					break;
+				case 'action':
+					category = DesignerPeerCategory.Actions;
+					extensionObject = class ExtensionClass extends GenericAction { };
+					icon = 'acd-icon-actionHttp';
+					containerPeer = DesignerPeers.GenericActionPeer;
+					break;
+				case 'element':
+				default:
+					category = DesignerPeerCategory.Elements;
+					extensionObject = class ExtensionClass extends GenericContainer { };
+					icon = 'acd-icon-richTextBlock';
+					containerPeer = DesignerPeers.GenericContainerPeer;
+					break;
+			}
+			extensionObject.prototype.getJsonTypeName = function () {
+				return definitionKey;
+			};
+			Object.defineProperty(extensionObject, "name", {
+				value: definitionKey,
+				writable: true
+			});
+			Object.defineProperty(extensionObject, "ac_isExtension", {
+				value: true,
+				writable: false
+			});
+			this.addProperties(definitions, definition, extensionObject);
+			this.registerPeer(extensionObject, containerPeer, category, icon);
+		}
+	}
+
+	private addProperties(definitions: any, definition: any, extensionObject: any) {
+		for (const key of Object.keys(definition)) {
+			if (definition[key].type === "string") {
+				extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+				const decorator = property(new StringProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key);
+			}
+			else if (definition[key].type === "number") {
+				extensionObject.prototype[key + "Property"] = new NumProperty(Versions.v1_0, key);
+				const decorator = property(new NumProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key);
+			}
+			else if (definition[key].type === "boolean") {
+				extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
+				const decorator = property(new BoolProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key);
 			}
 			else {
-				const element = this._items.find(a => (a.sourceType as any).prototype.getJsonTypeName() == definitionKey);
-				if (element) {
-					const peerType = element.peerType as any;
-					peerType.extensions = [];
+				const foundType = definitions[definition[key].type];
+				const commonType = Adaptive[definition[key].type];
 
-					for (const key in definition) {
-						if (Object.prototype.hasOwnProperty.call(definition, key)) {
-							const extension = definition[key];
-							switch (extension.type) {
-								case "string":
-									peerType.push(new StringPropertyEditor(Adaptive.Versions.v1_0, key, key, true));
-									break;
-								case "number":
-									peerType.push(new NumberPropertyEditor(Adaptive.Versions.v1_0, key, key));
-									break;
-								case "boolean":
-									peerType.push(new BooleanPropertyEditor(Adaptive.Versions.v1_0, key, key));
-									break;
-								default:
-									//element.peerType["extensions"].push(new StringPropertyEditor(Adaptive.Versions.v1_0, key, key, true));        
-									peerType.push(new EnumPropertyEditor(Adaptive.Versions.v1_0, "checkDigit", "Check digit", Adaptive.InputTextCheckDigitAlgorithm));
-									break;
-							}
-						}
+				if (foundType && foundType.classType === 'Enum') {
+					const enumObject = {};
+					for (let i = 0; i < foundType.values.length; i++) {
+						enumObject[i] = foundType.values[i];
+						enumObject[foundType.values[i]] = i;
 					}
+
+					const defaultEnumValue = definition[key].default;
+
+					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[defaultEnumValue]);
+					const decorator = property(extensionObject.prototype[key + "Property"]);
+					decorator(extensionObject.prototype, key);
+				} else if (commonType) {
+					const keys = Object.keys(commonType);
+					const numbers = keys.filter(Number);
+					const values = keys.filter(k => numbers.indexOf(k) === -1 && k !== '0');
+
+					const enumObject = {};
+					for (let i = 0; i < values.length; i++) {
+						enumObject[i] = values[i];
+						enumObject[values[i]] = i;
+					}
+
+					const defaultEnumValue = definition[key].default ? definition[key].default.toLowerCase() : definition[key].default;
+					const foundValue = keys.find(k => k.toLowerCase() === defaultEnumValue);
+					const initialValue = foundValue ? enumObject[foundValue] : enumObject[enumObject[0]];
+
+					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
+					const decorator = property(extensionObject.prototype[key + "Property"]);
+					decorator(extensionObject.prototype, key);
+				} else {
+					extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+					const decorator = property(new StringProperty(Versions.v1_0, key));
+					decorator(extensionObject.prototype, key);
 				}
 			}
 		}

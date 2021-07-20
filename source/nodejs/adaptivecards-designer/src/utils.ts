@@ -5,13 +5,27 @@ export function extractionElementsAndActionsFromExtension(extensionObject: any):
 	const actions = {};
 
 	definitionsNames.forEach(definitionsName => {
-		if (definitions[definitionsName].extends && definitions[definitionsName].extends.toLowerCase() === 'action') {
+		const extensionType = definitions[definitionsName].extends ? definitions[definitionsName].extends.toLowerCase() : null;
+		const classType = definitions[definitionsName].classType ? definitions[definitionsName].classType.toLowerCase() : null;
+
+		if (classType === 'enum') {
 			actions[definitionsName] = definitions[definitionsName];
-		} else if (definitions[definitionsName].extends) {
 			elements[definitionsName] = definitions[definitionsName];
+			return;
+		}
+
+		if (extensionType) {
+			if (extensionType === 'action') {
+				actions[definitionsName] = definitions[definitionsName];
+			} else {
+				elements[definitionsName] = definitions[definitionsName];
+			}
 		} else {
-			actions[definitionsName] = definitions[definitionsName];
-			elements[definitionsName] = definitions[definitionsName];
+			if (definitionsName.startsWith('Action.')) {
+				actions[definitionsName] = definitions[definitionsName];
+			} else {
+				elements[definitionsName] = definitions[definitionsName];	
+			}
 		}
 	});
 
