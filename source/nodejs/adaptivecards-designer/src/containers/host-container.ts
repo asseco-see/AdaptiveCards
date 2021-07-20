@@ -6,6 +6,7 @@ import {
 } from "@asseco/adaptivecards";
 import * as hostConfig from "../hostConfigs/sample.json";
 import { ExtensionRegistry } from "../extension-loader";
+import { extractionElementsAndActionsFromExtension } from "../utils";
 
 export abstract class HostContainer {
 	private _cardHost: HTMLElement;
@@ -26,10 +27,16 @@ export abstract class HostContainer {
 		GlobalRegistry.populateWithDefaultActions(this._actionsRegistry);
 
 		ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
-			GlobalRegistry.populateWithExtension(this._elementsRegistry, value);
+			const { elements, actions } = extractionElementsAndActionsFromExtension(value);
+
+			GlobalRegistry.populateWithExtension(this._elementsRegistry, elements);
+			GlobalRegistry.populateWithExtension(this._actionsRegistry, actions);
 		});
 		ExtensionRegistry.subscribe((schema) => {
-			GlobalRegistry.populateWithExtension(this._elementsRegistry, schema);
+			const { elements, actions } = extractionElementsAndActionsFromExtension(schema);
+
+			GlobalRegistry.populateWithExtension(this._elementsRegistry, elements);
+			GlobalRegistry.populateWithExtension(this._actionsRegistry, actions);
 		});
 		CustomCardElementRegistry.cardElementRegistry.forEach((value: any, key: any) => {
 			this._elementsRegistry.register(key, value);

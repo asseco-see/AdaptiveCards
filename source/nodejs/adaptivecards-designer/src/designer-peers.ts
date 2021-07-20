@@ -2494,6 +2494,28 @@ export class GenericInputPeer extends InputPeer<Adaptive.GenericInput> {
 	}
 }
 
+export class GenericActionPeer extends TypedActionPeer<Adaptive.GenericAction> {
+	populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
+		super.populatePropertySheet(propertySheet, defaultCategory);
+
+		for (const key of Object.keys(Object.getPrototypeOf(this.action))) {
+			const value = Object.getPrototypeOf(this.action)[key];
+			if (value instanceof PropertyDefinition) {
+				if (value instanceof NumProperty) {
+					propertySheet.add(defaultCategory, new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
+				} else if (value instanceof StringProperty) {
+					propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
+				} else if (value instanceof BoolProperty) {
+					propertySheet.add(defaultCategory, new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
+				} else if (value instanceof EnumProperty) {
+					propertySheet.add(defaultCategory, new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType));
+				} else {
+					propertySheet.add(defaultCategory, new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
+				}
+			}
+		}
+	}
+}
 
 export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.CardElement> {
 	protected isContainer(): boolean {

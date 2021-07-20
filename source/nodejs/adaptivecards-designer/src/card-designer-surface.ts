@@ -11,9 +11,10 @@ import * as Shared from "./shared";
 import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
 import * as yaml from 'js-yaml';
-import { ActionPeer, ActionPropertyEditor, BooleanPropertyEditor, DesignerPeer, EnumPropertyEditor, InputPeer, NumberPropertyEditor, PropertySheet, PropertySheetCategory, StringPropertyEditor, SubPropertySheetEntry, TextInputPeer } from "./designer-peers";
-import { ActionProperty, BoolProperty, EnumProperty, GenericContainer, GenericInput, NumProperty, property, StringProperty, Versions } from "@asseco/adaptivecards";
+import { BooleanPropertyEditor, EnumPropertyEditor, NumberPropertyEditor, StringPropertyEditor } from "./designer-peers";
+import { BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, StringProperty, Versions } from "@asseco/adaptivecards";
 import { ExtensionRegistry } from "./extension-loader";
+import { extractionElementsAndActionsFromExtension } from "./utils";
 
 export enum BindingPreviewMode {
 	NoPreview,
@@ -73,38 +74,8 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 		}
 		return null;
 	}
-	// BORO REGISTRATION OF THE PEERS
-	registerPeer(sourceType: TSource, peerType: TPeer, category: string, iconClass: string = null) {
-		var registrationInfo = this.findTypeRegistration(sourceType);
 
-		if (registrationInfo != null) {
-			console.log("Calling unregisterPeer for:", registrationInfo.sourceType);
-			this.unregisterPeer(registrationInfo.sourceType);
-		}
-
-		registrationInfo = new DesignerPeers.DesignerPeerRegistration<TSource, TPeer>(
-			sourceType,
-			peerType,
-			category,
-			iconClass);
-
-		this._items.push(registrationInfo);
-	}
-
-	unregisterPeer(sourceType: TSource) {
-		for (var i = 0; i < this._items.length; i++) {
-			if (this._items[i].sourceType === sourceType) {
-				this._items.splice(i, 1);
-
-				return;
-			}
-		}
-	}
-}
-export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementType, CardElementPeerType> {
-
-	loadExtension(value: any) {
-		const definitions = value.contributes.definitions;
+	loadExtension(definitions: any) {
 		for (const definitionKey of Object.keys(definitions)) {
 			const definition = definitions[definitionKey].properties;
 			if (definitions[definitionKey].extends) {
@@ -133,8 +104,13 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 						icon = 'acd-icon-richTextBlock';
 						containerPeer = DesignerPeers.GenericContainerPeer;
 						break;
+					case 'action':
+						category = DesignerPeerCategory.Actions;
+						extensionObject = class ExtensionClass extends GenericAction { };
+						icon = 'acd-icon-actionHttp';
+						containerPeer = DesignerPeers.GenericActionPeer;
+						break;
 				}
-				// extensionObject.prototype.JsonTypeName = definitionKey;
 				extensionObject.prototype.getJsonTypeName = function () {
 					return definitionKey;
 				};
@@ -177,7 +153,7 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 						} else if (commonType) {			
 							const keys = Object.keys(commonType);
 							const numbers = keys.filter(Number);
-							const values = keys.filter(k => numbers.indexOf(k) === -1);
+							const values = keys.filter(k => numbers.indexOf(k) === -1 && k !== '0');
 
 							const enumObject = {};
 							for (let i = 0; i < values.length; i++) {
@@ -185,7 +161,11 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 								enumObject[values[i]] = i;
 							}
 
-							extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[enumObject[0]]);
+							const defaultEnumValue = definition[key].default ? definition[key].default.toLowerCase() : definition[key].default;
+							const foundValue = keys.find(k => k.toLowerCase() === defaultEnumValue);
+							const initialValue = foundValue ? enumObject[foundValue] : enumObject[enumObject[0]];
+
+							extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
 							const decorator = property(extensionObject.prototype[key + "Property"]);
 							decorator(extensionObject.prototype, key);
 						} else {
@@ -197,10 +177,10 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 				}
 				// eslint-disable-next-line max-len
 
-					this.registerPeer(extensionObject, containerPeer, category, icon);
+				this.registerPeer(extensionObject, containerPeer, category, icon);
 			}
 			else {
-				const element = this._items.find(a => a.sourceType.prototype.getJsonTypeName() == definitionKey);
+				const element = this._items.find(a => (a.sourceType as any).prototype.getJsonTypeName() == definitionKey);
 				if (element) {
 					const peerType = element.peerType as any;
 					peerType.extensions = [];
@@ -229,6 +209,36 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 			}
 		}
 	}
+
+	// BORO REGISTRATION OF THE PEERS
+	registerPeer(sourceType: TSource, peerType: TPeer, category: string, iconClass: string = null) {
+		var registrationInfo = this.findTypeRegistration(sourceType);
+
+		if (registrationInfo != null) {
+			console.log("Calling unregisterPeer for:", registrationInfo.sourceType);
+			this.unregisterPeer(registrationInfo.sourceType);
+		}
+
+		registrationInfo = new DesignerPeers.DesignerPeerRegistration<TSource, TPeer>(
+			sourceType,
+			peerType,
+			category,
+			iconClass);
+
+		this._items.push(registrationInfo);
+	}
+
+	unregisterPeer(sourceType: TSource) {
+		for (var i = 0; i < this._items.length; i++) {
+			if (this._items[i].sourceType === sourceType) {
+				this._items.splice(i, 1);
+
+				return;
+			}
+		}
+	}
+}
+export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementType, CardElementPeerType> {
 	reset() {
 		this.clear();
 
@@ -254,15 +264,13 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 
 
 		ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
-			this.loadExtension(value);
+			const { elements } = extractionElementsAndActionsFromExtension(value);
+			this.loadExtension(elements);
 		});
 		ExtensionRegistry.subscribe((schema) => {
-			this.loadExtension(schema);
+			const { elements } = extractionElementsAndActionsFromExtension(schema);
+			this.loadExtension(elements);
 		});
-
-		// // Tab
-		//const tab = DesignerPeers.GenericContainerPeer;
-		//this.registerPeer(Adaptive.GenericContainer, tab, DesignerPeerCategory.Containers, "acd-icon-containerGeneric");
 	}
 
 	createPeerInstance(designerSurface: CardDesignerSurface, parent: DesignerPeers.DesignerPeer, cardElement: Adaptive.CardElement): DesignerPeers.CardElementPeer {
@@ -282,6 +290,15 @@ export class ActionPeerRegistry extends DesignerPeerRegistry<ActionType, ActionP
 		this.registerPeer(Adaptive.OpenUrlAction, DesignerPeers.OpenUrlActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionOpenUrl");
 		this.registerPeer(Adaptive.ShowCardAction, DesignerPeers.ShowCardActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionShowCard");
 		this.registerPeer(Adaptive.ToggleVisibilityAction, DesignerPeers.ToggleVisibilityActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionToggleVisibility");
+
+		ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
+			const { actions } = extractionElementsAndActionsFromExtension(value);
+			this.loadExtension(actions);
+		});
+		ExtensionRegistry.subscribe((schema) => {
+			const { actions } = extractionElementsAndActionsFromExtension(schema);
+			this.loadExtension(actions);
+		});
 	}
 
 	createPeerInstance(designerSurface: CardDesignerSurface, parent: DesignerPeers.DesignerPeer, action: Adaptive.Action): DesignerPeers.ActionPeer {

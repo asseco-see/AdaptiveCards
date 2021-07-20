@@ -5470,6 +5470,12 @@ export abstract class StylableCardElementContainer extends CardElementContainer 
 	}
 }
 
+export class GenericAction extends Action {
+	getJsonTypeName(): string {
+		return 'generic-action';
+	}
+}
+
 export class GenericInput extends Input {
 	isSet(): boolean {
 		return true;
@@ -7081,9 +7087,7 @@ export class GlobalRegistry {
 		registry.register(ToggleVisibilityAction.JsonTypeName, ToggleVisibilityAction, Versions.v1_2);
 	}
 
-	static populateWithExtension(registry: CardObjectRegistry<CardElement>, extension: any) {
-		const definitions = extension.contributes.definitions;
-		// console.log("Extension definitions:", definitions)
+	static populateWithExtension(registry: CardObjectRegistry<CardElement | Action>, definitions: any) {
 		for (let definitionKey of Object.keys(definitions)) {
 			const definition = definitions[definitionKey].properties;
 			if (definition) {
@@ -7093,7 +7097,10 @@ export class GlobalRegistry {
 					let extensionObject: any = null;
 					switch (type) {
 						case 'input':
-							extensionObject = class ExtensionClass extends GenericInput { }
+							extensionObject = class ExtensionClass extends GenericInput { };
+							break;
+						case 'action':
+							extensionObject = class ExtensionClass extends GenericAction { };
 							break;
 						case 'container':
 						case 'element':
@@ -7144,15 +7151,19 @@ export class GlobalRegistry {
 							} else if (commonType) {
 								const keys = Object.keys(commonType);
 								const numbers = keys.filter(Number);
-								const values = keys.filter(k => numbers.indexOf(k) === -1);
-	
+								const values = keys.filter(k => numbers.indexOf(k) === -1 && k !== '0');
+
 								const enumObject: any = {};
-								for (let i = 0; i < keys.length; i++) {
-									enumObject[i] = keys[i];
-									enumObject[keys[i]] = i;
+								for (let i = 0; i < values.length; i++) {
+									enumObject[i] = values[i];
+									enumObject[values[i]] = i;
 								}
+
+								const defaultEnumValue = definition[key].default ? definition[key].default.toLowerCase() : definition[key].default;
+								const foundValue = keys.find(k => k.toLowerCase() === defaultEnumValue);
+								const initialValue = foundValue ? enumObject[foundValue] : enumObject[enumObject[0]];
 	
-								extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[enumObject[0]]);
+								extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
 								const decorator = property(extensionObject.prototype[key + "Property"]);
 								decorator(extensionObject.prototype, key);
 							} else {
