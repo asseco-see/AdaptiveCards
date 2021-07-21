@@ -1248,6 +1248,17 @@ export class ActionPeer extends DesignerPeer {
 			ActionPeer.titleProperty,
 			ActionPeer.styleProperty,
 			ActionPeer.iconUrlProperty);
+
+		// add extensions
+		const peerTypeExtensions: any = this.registration;
+		if (peerTypeExtensions.peerType.extensions) {
+			for (const key in peerTypeExtensions.peerType.extensions) {
+				if (Object.prototype.hasOwnProperty.call(peerTypeExtensions.peerType.extensions, key)) {
+					const element = peerTypeExtensions.peerType.extensions[key];
+					propertySheet.add(defaultCategory, element);
+				}
+			}
+		}
 	}
 
 	get action(): Adaptive.Action {
