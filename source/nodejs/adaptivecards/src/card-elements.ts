@@ -5492,25 +5492,20 @@ export class GenericInput extends Input {
 	}
 
 	public internalRender(): HTMLElement | undefined {
-		const element = document.createElement("div");
-		element.className = this.hostConfig.makeCssClassName("ac-genericElement");
-		element.style.display = "flex";
-		element.style.width = "100%";
-		element.style.height = "50px";
-		element.style.backgroundColor = "white";
-		element.style.justifyContent = "center";
-		element.style.alignItems = "center";
-		element.style.border = "1px solid #0063c2";
-		element.style.fontWeight = "bold";
+		let styleDefinition = this.getEffectiveStyleDefinition();
+		let foregroundCssColor = Utils.stringToCssColor(styleDefinition.foregroundColors.default.subtle);
+		const inputElement = document.createElement("div");
+		inputElement.style.border = "1px dashed " + foregroundCssColor;
+		inputElement.style.display = "flex"
+		inputElement.style.justifyContent = "center";
+		inputElement.style.alignItems = "center";
+		inputElement.style.fontWeight = "bold";
+		inputElement.style.width = "100%";
+		
+		inputElement.className = this.hostConfig.makeCssClassName("ac-genericInput");
+		inputElement.innerText = this.getJsonTypeName() + (this.id ? ' - ' + this.id: '');
 
-		const style = (this as any).style;
-		if (style && style !== 0) {
-			element.style.backgroundColor = style === 1 ? '#0078D7' : '#E50000';
-			element.style.color = 'white';
-		}
-
-		element.innerText = this.getJsonTypeName() + (this.id ? ' - ' + this.id: '');
-		return element;
+		return inputElement;
 	}
 
 	getJsonTypeName(): string {
@@ -5522,12 +5517,8 @@ export class GenericInput extends Input {
 	}
 }
 
-export class GenericContainer extends CardElement {
+export class GenericContainer extends StylableCardElementContainer {
 	[name: string]: any;
-
-	// static readonly selectedTabProperty = new NumProperty(Versions.v1_0, "selectedTab");
-	// @property(GenericContainer.selectedTabProperty)
-	// selectedTab?: number;
 
 	constructor() {
 		super();
@@ -5549,24 +5540,35 @@ export class GenericContainer extends CardElement {
 	}
 
 	public internalRender(): HTMLElement | undefined {
-		const element = document.createElement("div");
-		element.className = this.hostConfig.makeCssClassName("ac-genericElement");
-		element.style.display = "flex";
-		element.style.width = "100%";
-		element.style.height = "50px";
-		element.style.backgroundColor = "white";
-		element.style.justifyContent = "center";
-		element.style.alignItems = "center";
-		element.style.border = "1px solid #0063c2";
-		element.style.fontWeight = "bold";
+		let styleDefinition = this.getEffectiveStyleDefinition();
+		let foregroundCssColor = Utils.stringToCssColor(styleDefinition.foregroundColors.default.subtle);
 
-		const style = (this as any).style;
-		if (style && style !== 0) {
-			element.style.backgroundColor = style === 1 ? '#0078D7' : '#E50000';
-			element.style.color = 'white';
+		const element = document.createElement("div");
+		element.style.border = "1px dashed " + foregroundCssColor;
+		element.classList.add(this.hostConfig.makeCssClassName("ac-container"));
+		element.style.display = "flex";
+		element.style.minHeight = "32px";
+		element.style.alignItems = "center";
+		element.style.fontWeight = "bold";
+		element.style.boxSizing = "border-box";
+		element.style.flexDirection = "column";
+		
+		const verticalContentAlignment = (this as any).verticalContentAlignment;
+		switch (verticalContentAlignment) {
+			default:
+			case Enums.VerticalAlignment.Center:
+				element.style.justifyContent = "center";
+				break;
+			case Enums.VerticalAlignment.Bottom:
+				element.style.justifyContent = "flex-end";
+				break;
+				case Enums.VerticalAlignment.Top:
+				element.style.justifyContent = "flex-start";
+				break;
 		}
 
 		element.innerText = this.getJsonTypeName() + (this.id ? ' - ' + this.id: '');
+
 		return element;
 	}
 

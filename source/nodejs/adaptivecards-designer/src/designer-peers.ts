@@ -2488,7 +2488,7 @@ export class GenericInputPeer extends InputPeer<Adaptive.GenericInput> {
 		super.populatePropertySheet(propertySheet, defaultCategory);
 		for (const key of Object.keys(Object.getPrototypeOf(this.cardElement))) {
 			const value = Object.getPrototypeOf(this.cardElement)[key];
-			if (value instanceof PropertyDefinition) {
+			if (value instanceof PropertyDefinition && value.name !== 'id') {
 				if (value instanceof NumProperty) {
 					propertySheet.add(defaultCategory, new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
 				} else if (value instanceof StringProperty) {
@@ -2580,9 +2580,11 @@ export class GenericContainerPeer extends TypedCardElementPeer<Adaptive.CardElem
 			PropertySheetCategory.SelectionAction,
 			ContainerPeer.selectActionProperty);
 
+		propertySheet.remove(ContainerPeer.horizontalAlignmentProperty);
+
 		for (const key of Object.keys(Object.getPrototypeOf(this.cardElement))) {
 			const value = Object.getPrototypeOf(this.cardElement)[key];
-			if (value instanceof PropertyDefinition) {
+			if (value instanceof PropertyDefinition && value.name !== "minHeight" && value.name !== "bleed" && value.name !== "style") {
 				if (value instanceof NumProperty) {
 					propertySheet.add(defaultCategory, new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name));
 				} else if (value instanceof StringProperty) {
