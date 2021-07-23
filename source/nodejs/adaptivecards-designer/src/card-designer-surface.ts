@@ -154,6 +154,9 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 					containerPeer = DesignerPeers.GenericContainerPeer;
 					break;
 			}
+			if (definitions[definitionKey].icon) {
+				icon = definitions[definitionKey].icon;
+			}
 			extensionObject.prototype.getJsonTypeName = function () {
 				return definitionKey;
 			};
