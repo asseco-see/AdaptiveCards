@@ -81,9 +81,9 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 			const style = document.createElement("style");
 			if ((style as any).styleSheet) {
 				// This is required for IE8 and below.
-				(style as any).styleSheet.cssText = value;
+				(style as any).styleSheet.cssText = css;
 			} else {
-				style.appendChild(document.createTextNode(value));
+				style.appendChild(document.createTextNode(css));
 			}
 			style.id = id;
 			document.getElementsByTagName("head")[0].appendChild(style);
@@ -93,8 +93,8 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 	loadIcon(definition: any) {
 		const icon = definition.icon;
 		if (icon) {
-			const iconName = "acd-icon-" + (Math.random() * (99999 - 10000) + 10000);
-			const css = "." + iconName + ` {
+			const iconName = "acd-icon-" + Math.ceil(Math.random() * (99999 - 10000) + 10000);
+			const css = "." + iconName + `::before {
 				content: "\\` + icon + `" 
 			}`;
 			this.loadIconCss(iconName, css);
