@@ -66,23 +66,53 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 
 	findTypeRegistration(sourceType: TSource): DesignerPeers.DesignerPeerRegistration<TSource, TPeer> {
 		for (var i = 0; i < this._items.length; i++) {
-	
+
 			if (this._items[i].sourceType == sourceType
-				 || (this._items[i].sourceType as any).prototype.getJsonTypeName() === (sourceType as any).prototype.getJsonTypeName()) {
+				|| (this._items[i].sourceType as any).prototype.getJsonTypeName() === (sourceType as any).prototype.getJsonTypeName()) {
 				return this._items[i];
 			}
 		}
 		return null;
 	}
 
+	loadIconCss(id: string, css: string) {
+		const element = document.getElementById(id);
+		if (!element) {
+			const style = document.createElement("style");
+			if ((style as any).styleSheet) {
+				// This is required for IE8 and below.
+				(style as any).styleSheet.cssText = value;
+			} else {
+				style.appendChild(document.createTextNode(value));
+			}
+			style.id = id;
+			document.getElementsByTagName("head")[0].appendChild(style);
+		}
+	}
+
+	loadIcon(definition: any) {
+		const icon = definition.icon;
+		if (icon) {
+			const iconName = "acd-icon-" + (Math.random() * (99999 - 10000) + 10000);
+			const css = "." + iconName + ` {
+				content: "\\` + icon + `" 
+			}`;
+			this.loadIconCss(iconName, css);
+			return iconName;
+		}
+		return null;
+	}
+
+
 	loadExtension(definitions: any) {
 		for (const definitionKey of Object.keys(definitions)) {
-			const definition = definitions[definitionKey].properties;
+			const definitionBase = definitions[definitionKey];
+			const definition = definitionBase.properties;
 			if (!definition) {
 				continue;
 			}
 
-			const existingElement = this._items.find(item => !item.sourceType['ac_isExtension'] &&  (item.sourceType as any).prototype.getJsonTypeName() === definitionKey);
+			const existingElement = this._items.find(item => !item.sourceType['ac_isExtension'] && (item.sourceType as any).prototype.getJsonTypeName() === definitionKey);
 			if (existingElement) {
 				this.addProperties(definitions, definition, existingElement.sourceType);
 
@@ -101,7 +131,7 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 						} else if (value instanceof BoolProperty) {
 							(existingElement.peerType as any).extensions[key] = new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
 						} else if (value instanceof EnumProperty) {
-							(existingElement.peerType as any).extensions[key] =new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType);
+							(existingElement.peerType as any).extensions[key] = new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType);
 						} else {
 							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
 						}
@@ -126,36 +156,34 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 			let extensionObject: any = null;
 			let category = DesignerPeerCategory.Elements;
 			let containerPeer: any = null;
-			let icon = '';
+
+			let icon = this.loadIcon(definitionBase);
 			switch (type) {
 				case 'input':
 					extensionObject = class ExtensionClass extends GenericInput { }
 					category = DesignerPeerCategory.Inputs;
-					icon = 'acd-icon-inputText';
+					icon = (icon) ? icon : 'acd-icon-inputText';
 					containerPeer = DesignerPeers.GenericInputPeer;
 					break;
 				case 'container':
 					category = DesignerPeerCategory.Containers;
 					extensionObject = class ExtensionClass extends GenericContainer { };
-					icon = 'acd-icon-container';
+					icon = (icon) ? icon : 'acd-icon-container';
 					containerPeer = DesignerPeers.GenericContainerPeer;
 					break;
 				case 'action':
 					category = DesignerPeerCategory.Actions;
 					extensionObject = class ExtensionClass extends GenericAction { };
-					icon = 'acd-icon-actionHttp';
+					icon = (icon) ? icon : 'acd-icon-actionHttp';
 					containerPeer = DesignerPeers.GenericActionPeer;
 					break;
 				case 'element':
 				default:
 					category = DesignerPeerCategory.Elements;
 					extensionObject = class ExtensionClass extends GenericContainer { };
-					icon = 'acd-icon-richTextBlock';
+					icon = (icon) ? icon : 'acd-icon-richTextBlock';
 					containerPeer = DesignerPeers.GenericContainerPeer;
 					break;
-			}
-			if (definitions[definitionKey].icon) {
-				icon = definitions[definitionKey].icon;
 			}
 			extensionObject.prototype.getJsonTypeName = function () {
 				return definitionKey;
