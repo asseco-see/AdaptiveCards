@@ -7086,6 +7086,7 @@ export class GlobalRegistry {
 
 			const existingElement = registry.findByName(definitionKey);
 			if (existingElement && !(existingElement.objectType as any)['ac_isExtension']) {
+				this.addProperties(definitions, definition, existingElement.objectType);
 				continue;
 			}
 
@@ -7126,66 +7127,72 @@ export class GlobalRegistry {
 			extensionObject.prototype.getJsonTypeName = function () {
 				return definitionKey;
 			};
-			for (let key of Object.keys(definition)) {
-				// add properties
-				if (definition[key].type === "string") {
+			
+			this.addProperties(definitions, definition, extensionObject);
+
+			genericList.push(extensionObject);
+			registry.register(definitionKey, extensionObject, Versions.v1_4);
+		}
+	}
+
+	private static addProperties(definitions: any, definition: any, extensionObject: any): void {
+		for (let key of Object.keys(definition)) {
+			// add properties
+			if (definition[key].type === "string") {
+				extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+				let decorator = property(new StringProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key)
+			}
+			else if (definition[key].type === "number") {
+				extensionObject.prototype[key + "Property"] = new NumProperty(Versions.v1_0, key);
+				let decorator = property(new NumProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key)
+			}
+			else if (definition[key].type === "boolean") {
+				extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
+				let decorator = property(new BoolProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key)
+			}
+			else {
+				const foundType = definitions[definition[key].type];
+				const commonType = (Enums as any)[definition[key].type];
+
+				if (foundType && foundType.classType === 'Enum') {
+					const enumObject: any = {};
+					for (let i = 0; i < foundType.values.length; i++) {
+						enumObject[i] = foundType.values[i];
+						enumObject[foundType.values[i]] = i;
+					}
+
+					const defaultEnumValue = definition[key].default;
+
+					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[defaultEnumValue]);
+					const decorator = property(extensionObject.prototype[key + "Property"]);
+					decorator(extensionObject.prototype, key);
+				} else if (commonType) {
+					const keys = Object.keys(commonType);
+					const numbers = keys.filter(Number);
+					const values = keys.filter(k => numbers.indexOf(k) === -1 && k !== '0');
+
+					const enumObject: any = {};
+					for (let i = 0; i < values.length; i++) {
+						enumObject[i] = values[i];
+						enumObject[values[i]] = i;
+					}
+
+					const defaultEnumValue = definition[key].default ? definition[key].default.toLowerCase() : definition[key].default;
+					const foundValue = keys.find(k => k.toLowerCase() === defaultEnumValue);
+					const initialValue = foundValue ? enumObject[foundValue] : enumObject[enumObject[0]];
+
+					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
+					const decorator = property(extensionObject.prototype[key + "Property"]);
+					decorator(extensionObject.prototype, key);
+				} else {
 					extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
 					let decorator = property(new StringProperty(Versions.v1_0, key));
 					decorator(extensionObject.prototype, key)
 				}
-				else if (definition[key].type === "number") {
-					extensionObject.prototype[key + "Property"] = new NumProperty(Versions.v1_0, key);
-					let decorator = property(new NumProperty(Versions.v1_0, key));
-					decorator(extensionObject.prototype, key)
-				}
-				else if (definition[key].type === "boolean") {
-					extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
-					let decorator = property(new BoolProperty(Versions.v1_0, key));
-					decorator(extensionObject.prototype, key)
-				}
-				else {
-					const foundType = definitions[definition[key].type];
-					const commonType = (Enums as any)[definition[key].type];
-
-					if (foundType && foundType.classType === 'Enum') {
-						const enumObject: any = {};
-						for (let i = 0; i < foundType.values.length; i++) {
-							enumObject[i] = foundType.values[i];
-							enumObject[foundType.values[i]] = i;
-						}
-
-						const defaultEnumValue = definition[key].default;
-
-						extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[defaultEnumValue]);
-						const decorator = property(extensionObject.prototype[key + "Property"]);
-						decorator(extensionObject.prototype, key);
-					} else if (commonType) {
-						const keys = Object.keys(commonType);
-						const numbers = keys.filter(Number);
-						const values = keys.filter(k => numbers.indexOf(k) === -1 && k !== '0');
-
-						const enumObject: any = {};
-						for (let i = 0; i < values.length; i++) {
-							enumObject[i] = values[i];
-							enumObject[values[i]] = i;
-						}
-
-						const defaultEnumValue = definition[key].default ? definition[key].default.toLowerCase() : definition[key].default;
-						const foundValue = keys.find(k => k.toLowerCase() === defaultEnumValue);
-						const initialValue = foundValue ? enumObject[foundValue] : enumObject[enumObject[0]];
-
-						extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
-						const decorator = property(extensionObject.prototype[key + "Property"]);
-						decorator(extensionObject.prototype, key);
-					} else {
-						extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
-						let decorator = property(new StringProperty(Versions.v1_0, key));
-						decorator(extensionObject.prototype, key)
-					}
-				}
 			}
-			genericList.push(extensionObject);
-			registry.register(definitionKey, extensionObject, Versions.v1_4);
 		}
 	}
 
