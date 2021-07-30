@@ -109,6 +109,11 @@ module.exports = (env, argv) => {
 						flatten: true
 					},
 					{
+						from: '../../../schemas/extensions/**/*.json',
+						to: 'extensions/',
+						flatten: true
+					},
+					{
 						from: 'src/containers/**/*.png',
 						to: 'containers/',
 						flatten: true

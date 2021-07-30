@@ -494,6 +494,11 @@
     content: "\E7A7";
 }
 
+/* BORO */
+.acd-icon-inputGeneric::before {
+    content: "\E7A7";
+}
+
 .acd-icon-redo::before {
     content: "\E7A6";
 }

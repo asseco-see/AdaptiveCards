@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Adaptive from "@asseco/adaptivecards";
@@ -10,6 +11,10 @@ import * as Shared from "./shared";
 import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
 import * as yaml from 'js-yaml';
+import { BooleanPropertyEditor, EnumPropertyEditor, NumberPropertyEditor, StringPropertyEditor } from "./designer-peers";
+import { BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, PropertyDefinition, StringProperty, Versions } from "@asseco/adaptivecards";
+import { ExtensionRegistry } from "./extension-loader";
+import { extractionElementsAndActionsFromExtension } from "./utils";
 
 export enum BindingPreviewMode {
 	NoPreview,
@@ -36,7 +41,7 @@ export type ActionPeerType = {
 	): DesignerPeers.ActionPeer
 };
 
-class DesignerPeerCategory {
+export class DesignerPeerCategory {
 	static Unknown = "Unknown";
 	static Containers = "Containers";
 	static Elements = "Elements";
@@ -61,29 +66,217 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 
 	findTypeRegistration(sourceType: TSource): DesignerPeers.DesignerPeerRegistration<TSource, TPeer> {
 		for (var i = 0; i < this._items.length; i++) {
-			if (this._items[i].sourceType === sourceType) {
+
+			if (this._items[i].sourceType == sourceType
+				|| (this._items[i].sourceType as any).prototype.getJsonTypeName() === (sourceType as any).prototype.getJsonTypeName()) {
 				return this._items[i];
 			}
 		}
-
 		return null;
 	}
 
+	loadIconCss(id: string, css: string) {
+		const element = document.getElementById(id);
+		if (!element) {
+			const style = document.createElement("style");
+			if ((style as any).styleSheet) {
+				// This is required for IE8 and below.
+				(style as any).styleSheet.cssText = css;
+			} else {
+				style.appendChild(document.createTextNode(css));
+			}
+			style.id = id;
+			document.getElementsByTagName("head")[0].appendChild(style);
+		}
+	}
+
+	loadIcon(definition: any) {
+		const icon = definition.icon;
+		if (icon) {
+			const iconName = "acd-icon-" + Math.ceil(Math.random() * (99999 - 10000) + 10000);
+			const css = "." + iconName + `::before {
+				content: "\\` + icon + `" 
+			}`;
+			this.loadIconCss(iconName, css);
+			return iconName;
+		}
+		return null;
+	}
+
+
+	loadExtension(definitions: any) {
+		for (const definitionKey of Object.keys(definitions)) {
+			const definitionBase = definitions[definitionKey];
+			const definition = definitionBase.properties;
+			if (!definition) {
+				continue;
+			}
+
+			const existingElement = this._items.find(item => !item.sourceType['ac_isExtension'] && (item.sourceType as any).prototype.getJsonTypeName() === definitionKey);
+			if (existingElement) {
+				this.addProperties(definitions, definition, existingElement.sourceType);
+
+				if (!(existingElement.peerType as any).extensions) {
+					(existingElement.peerType as any).extensions = {};
+				}
+
+				const keys = Object.keys((existingElement.sourceType as any).prototype).filter(k => k.endsWith('Property'));
+				for (const key of keys) {
+					const value = (existingElement.sourceType as any).prototype[key];
+					if (value instanceof PropertyDefinition) {
+						if (value instanceof NumProperty) {
+							(existingElement.peerType as any).extensions[key] = new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+						} else if (value instanceof StringProperty) {
+							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+						} else if (value instanceof BoolProperty) {
+							(existingElement.peerType as any).extensions[key] = new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+						} else if (value instanceof EnumProperty) {
+							(existingElement.peerType as any).extensions[key] = new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType);
+						} else {
+							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+						}
+					}
+				}
+				continue;
+			}
+
+			let extendsVar = definitions[definitionKey].extends;
+
+			if (!extendsVar) {
+				if (definitionKey.startsWith('Input.')) {
+					extendsVar = 'input';
+				} else if (definitionKey.startsWith('Action.')) {
+					extendsVar = 'action';
+				} else {
+					extendsVar = 'element';
+				}
+			}
+
+			const type = extendsVar && extendsVar.toLowerCase();
+			let extensionObject: any = null;
+			let category = DesignerPeerCategory.Elements;
+			let containerPeer: any = null;
+
+			let icon = this.loadIcon(definitionBase);
+			switch (type) {
+				case 'input':
+					extensionObject = class ExtensionClass extends GenericInput { }
+					category = DesignerPeerCategory.Inputs;
+					icon = (icon) ? icon : 'acd-icon-inputText';
+					containerPeer = DesignerPeers.GenericInputPeer;
+					break;
+				case 'container':
+					category = DesignerPeerCategory.Containers;
+					extensionObject = class ExtensionClass extends GenericContainer { };
+					icon = (icon) ? icon : 'acd-icon-container';
+					containerPeer = DesignerPeers.GenericContainerPeer;
+					break;
+				case 'action':
+					category = DesignerPeerCategory.Actions;
+					extensionObject = class ExtensionClass extends GenericAction { };
+					icon = (icon) ? icon : 'acd-icon-actionHttp';
+					containerPeer = DesignerPeers.GenericActionPeer;
+					break;
+				case 'element':
+				default:
+					category = DesignerPeerCategory.Elements;
+					extensionObject = class ExtensionClass extends GenericContainer { };
+					icon = (icon) ? icon : 'acd-icon-richTextBlock';
+					containerPeer = DesignerPeers.GenericContainerPeer;
+					break;
+			}
+			extensionObject.prototype.getJsonTypeName = function () {
+				return definitionKey;
+			};
+			Object.defineProperty(extensionObject, "name", {
+				value: definitionKey,
+				writable: true
+			});
+			Object.defineProperty(extensionObject, "ac_isExtension", {
+				value: true,
+				writable: false
+			});
+			this.addProperties(definitions, definition, extensionObject);
+			this.registerPeer(extensionObject, containerPeer, category, icon);
+		}
+	}
+
+	private addProperties(definitions: any, definition: any, extensionObject: any) {
+		for (const key of Object.keys(definition)) {
+			if (definition[key].type === "string") {
+				extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+				const decorator = property(new StringProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key);
+			}
+			else if (definition[key].type === "number") {
+				extensionObject.prototype[key + "Property"] = new NumProperty(Versions.v1_0, key);
+				const decorator = property(new NumProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key);
+			}
+			else if (definition[key].type === "boolean") {
+				extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
+				const decorator = property(new BoolProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key);
+			}
+			else {
+				const foundType = definitions[definition[key].type];
+				const commonType = Adaptive[definition[key].type];
+
+				if (foundType && foundType.classType === 'Enum') {
+					const enumObject = {};
+					for (let i = 0; i < foundType.values.length; i++) {
+						enumObject[i] = foundType.values[i];
+						enumObject[foundType.values[i]] = i;
+					}
+
+					const defaultEnumValue = definition[key].default;
+
+					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[defaultEnumValue]);
+					const decorator = property(extensionObject.prototype[key + "Property"]);
+					decorator(extensionObject.prototype, key);
+				} else if (commonType) {
+					const keys = Object.keys(commonType);
+					const numbers = keys.filter(Number);
+					const values = keys.filter(k => numbers.indexOf(k) === -1 && k !== '0');
+
+					const enumObject = {};
+					for (let i = 0; i < values.length; i++) {
+						enumObject[i] = values[i];
+						enumObject[values[i]] = i;
+					}
+
+					const defaultEnumValue = definition[key].default ? definition[key].default.toLowerCase() : definition[key].default;
+					const foundValue = keys.find(k => k.toLowerCase() === defaultEnumValue);
+					const initialValue = foundValue ? enumObject[foundValue] : enumObject[enumObject[0]];
+
+					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
+					const decorator = property(extensionObject.prototype[key + "Property"]);
+					decorator(extensionObject.prototype, key);
+				} else {
+					extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+					const decorator = property(new StringProperty(Versions.v1_0, key));
+					decorator(extensionObject.prototype, key);
+				}
+			}
+		}
+	}
+
+	// BORO REGISTRATION OF THE PEERS
 	registerPeer(sourceType: TSource, peerType: TPeer, category: string, iconClass: string = null) {
 		var registrationInfo = this.findTypeRegistration(sourceType);
 
 		if (registrationInfo != null) {
-			registrationInfo.peerType = peerType;
+			console.log("Calling unregisterPeer for:", registrationInfo.sourceType);
+			this.unregisterPeer(registrationInfo.sourceType);
 		}
-		else {
-			registrationInfo = new DesignerPeers.DesignerPeerRegistration<TSource, TPeer>(
-				sourceType,
-				peerType,
-				category,
-				iconClass);
 
-			this._items.push(registrationInfo);
-		}
+		registrationInfo = new DesignerPeers.DesignerPeerRegistration<TSource, TPeer>(
+			sourceType,
+			peerType,
+			category,
+			iconClass);
+
+		this._items.push(registrationInfo);
 	}
 
 	unregisterPeer(sourceType: TSource) {
@@ -96,7 +289,6 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 		}
 	}
 }
-
 export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementType, CardElementPeerType> {
 	reset() {
 		this.clear();
@@ -120,11 +312,20 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 		this.registerPeer(Adaptive.ToggleInput, DesignerPeers.ToggleInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputToggle");
 		this.registerPeer(Adaptive.NumberInput, DesignerPeers.NumberInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputNumber");
 		this.registerPeer(Adaptive.ChoiceSetInput, DesignerPeers.ChoiceSetInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputChoiceSet");
+
+
+		ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
+			const { elements } = extractionElementsAndActionsFromExtension(value);
+			this.loadExtension(elements);
+		});
+		ExtensionRegistry.subscribe((schema) => {
+			const { elements } = extractionElementsAndActionsFromExtension(schema);
+			this.loadExtension(elements);
+		});
 	}
 
 	createPeerInstance(designerSurface: CardDesignerSurface, parent: DesignerPeers.DesignerPeer, cardElement: Adaptive.CardElement): DesignerPeers.CardElementPeer {
 		var registrationInfo = this.findTypeRegistration((<any>cardElement).constructor);
-
 		var peer = registrationInfo ? new registrationInfo.peerType(parent, designerSurface, registrationInfo, cardElement) : new DesignerPeers.CardElementPeer(parent, designerSurface, this.defaultRegistration, cardElement);
 
 		return peer;
@@ -140,6 +341,15 @@ export class ActionPeerRegistry extends DesignerPeerRegistry<ActionType, ActionP
 		this.registerPeer(Adaptive.OpenUrlAction, DesignerPeers.OpenUrlActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionOpenUrl");
 		this.registerPeer(Adaptive.ShowCardAction, DesignerPeers.ShowCardActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionShowCard");
 		this.registerPeer(Adaptive.ToggleVisibilityAction, DesignerPeers.ToggleVisibilityActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionToggleVisibility");
+
+		ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
+			const { actions } = extractionElementsAndActionsFromExtension(value);
+			this.loadExtension(actions);
+		});
+		ExtensionRegistry.subscribe((schema) => {
+			const { actions } = extractionElementsAndActionsFromExtension(schema);
+			this.loadExtension(actions);
+		});
 	}
 
 	createPeerInstance(designerSurface: CardDesignerSurface, parent: DesignerPeers.DesignerPeer, action: Adaptive.Action): DesignerPeers.ActionPeer {
@@ -201,7 +411,7 @@ export class CardDesignerSurface {
 		CardDesignerSurface._onRenderAngular = data;
 	}
 
-static readonly webComponentCardRenderCode = 'if (!document.getElementById("asseco-as-card-root")) { var asCardContainer = document.getElementById("asseco-as-card-container"); var asCardRoot = document.createElement("div"); asCardRoot.id = "asseco-as-card-root"; var asCard = document.createElement("asseco-as-card");\
+	static readonly webComponentCardRenderCode = 'if (!document.getElementById("asseco-as-card-root")) { var asCardContainer = document.getElementById("asseco-as-card-container"); var asCardRoot = document.createElement("div"); asCardRoot.id = "asseco-as-card-root"; var asCard = document.createElement("asseco-as-card");\
 	asCard.hostConfig = asCardContainer.hostConfig; asCard.definition = asCardContainer.definition; asCardRoot.appendChild(asCard); asCardContainer.appendChild(asCardRoot); asCardContainer.definition = null; asCardContainer.hostConfig = null; }';
 	private updatePeerCommandsLayout() {
 		if (this._selectedPeer) {
@@ -362,7 +572,9 @@ static readonly webComponentCardRenderCode = 'if (!document.getElementById("asse
 					this._adaptiveUiWebImported = true;
 					import('@asseco/adaptive-ui-web').then(() => {
 						import('@asseco/adaptive-ui-material-web').then(() => {
-
+							// import('@asseco/adaptive-ui-extensions').then(() => {
+							// 	console.log('BUREEEK SA SIRROM NIJE BUUREEEEK');
+							// });
 						});
 					});
 				}

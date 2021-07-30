@@ -24,8 +24,9 @@ import * as Shared from "./shared";
 import { TreeView } from "./tree-view";
 import { SampleCatalogue } from "./catalogue";
 import { HelpDialog } from "./help-dialog";
-import * as yaml from 'js-yaml';
-
+import * as yaml from "js-yaml";
+import { ExtensionRegistry } from "./extension-loader";
+import { CustomCardElementRegistry } from "@asseco/adaptivecards";
 
 export class CardDesigner extends Designer.DesignContext {
 	private static internalProcessMarkdown(text: string, result: Adaptive.IMarkdownProcessingResult) {
@@ -102,7 +103,7 @@ export class CardDesigner extends Designer.DesignContext {
 					'</div>';
 			}
 			else {
-				let treeView = new TreeView(this.designerSurface.rootPeer.treeItem);
+				const treeView = new TreeView(this.designerSurface.rootPeer.treeItem);
 
 				this._treeViewToolbox.content.appendChild(treeView.render());
 			}
@@ -176,6 +177,7 @@ export class CardDesigner extends Designer.DesignContext {
 			this._draggedElement.style.left = this._currentMousePosition.x + "px";
 			this._draggedElement.style.top = this._currentMousePosition.y + "px";
 
+
 			document.body.appendChild(this._draggedElement);
 		}
 
@@ -190,18 +192,14 @@ export class CardDesigner extends Designer.DesignContext {
 		this._toolPaletteToolbox.content.innerHTML = "";
 
 		let categorizedTypes: object = {};
-
 		for (let i = 0; i < this.hostContainer.elementsRegistry.getItemCount(); i++) {
 			let registration = this.hostContainer.elementsRegistry.getItemAt(i);
-
 			if (registration.schemaVersion.compareTo(this.targetVersion) <= 0) {
 				let peerRegistration = Designer.CardDesignerSurface.cardElementPeerRegistry.findTypeRegistration(registration.objectType);
-
 				if (peerRegistration) {
 					if (!categorizedTypes.hasOwnProperty(peerRegistration.category)) {
 						categorizedTypes[peerRegistration.category] = [];
 					}
-
 					let paletteItem = new ElementPaletteItem(
 						registration,
 						peerRegistration
@@ -546,7 +544,6 @@ export class CardDesigner extends Designer.DesignContext {
 			this.preventJsonUpdate = true;
 
 			let currentEditorPayload = this.getCurrentCardEditorPayload();
-
 			if (addToUndoStack) {
 				try {
 					if (this.language === "json") {
@@ -557,6 +554,7 @@ export class CardDesigner extends Designer.DesignContext {
 					}
 				}
 				catch {
+					console.log('catch');
 					// Swallow the parse error
 				}
 			}
@@ -1020,12 +1018,45 @@ export class CardDesigner extends Designer.DesignContext {
 		this.updateJsonFromCard(true);
 	}
 
+	loadCss() {
+		ExtensionRegistry.customCss.forEach((value: string, key: string) => {
+			const id = "designerCss" + key;
+			const element = document.getElementById(id);
+			if (!element) {
+				let style = document.createElement("style");
+				if ((style as any).styleSheet) {
+					// This is required for IE8 and below.
+					(style as any).styleSheet.cssText = value;
+				} else {
+					style.appendChild(document.createTextNode(value));
+				}
+				style.id = id;
+				document.getElementsByTagName("head")[0].appendChild(style);
+			}
+		});
+	}
+
 	attachTo(root: HTMLElement) {
 		let styleSheetLinkElement = document.createElement("link");
 		styleSheetLinkElement.id = "__ac-designer";
 		styleSheetLinkElement.rel = "stylesheet";
 		styleSheetLinkElement.type = "text/css";
 		styleSheetLinkElement.href = Utils.joinPaths(this._assetPath, "adaptivecards-designer.css");
+
+		this.buildPalette();
+		ExtensionRegistry.subscribe(() => {
+			this.buildPalette();
+		});
+
+		CustomCardElementRegistry.subscribe(() => {
+			this.buildPalette();
+		});
+
+		this.loadCss();
+		ExtensionRegistry.subscribeCss(() => {
+			this.loadCss();
+		});
+
 
 		document.getElementsByTagName("head")[0].appendChild(styleSheetLinkElement);
 
