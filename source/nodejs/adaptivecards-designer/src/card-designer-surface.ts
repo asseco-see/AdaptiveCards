@@ -571,9 +571,8 @@ export class CardDesignerSurface {
 				if (!this._adaptiveUiWebImported) {
 					this._adaptiveUiWebImported = true;
 					import('@asseco/adaptive-ui-web').then(() => {
-						import('@asseco/adaptive-ui-material-web').then(() => {
+						import('@asseco/adaptive-ui-web-angular-elements').then(() => {
 							// import('@asseco/adaptive-ui-extensions').then(() => {
-							// 	console.log('BUREEEK SA SIRROM NIJE BUUREEEEK');
 							// });
 						});
 					});
