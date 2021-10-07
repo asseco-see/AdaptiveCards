@@ -10,6 +10,9 @@ variables:
 - name: dockerfilePath
   value: 'Dockerfile'
 
+- name: moduleName
+  value: 'adaptive-ui-cards'
+
 pool: 'Digital'
 
 steps:
@@ -45,6 +48,7 @@ steps:
     envVars: |
       TAGGER_VERSION=v2
       GITHUB_TOKEN=$(githubToken)
+      RELEASE=false
 
 - script: |
     echo -e "\nCOPY --chown=1001:0 .version /" >> $(dockerfilePath)
@@ -100,20 +104,22 @@ steps:
   displayName: 'COMMIT_cleanup'
   condition: always()
 
+- task: DockerAdvanced@0
+  displayName: 'COMMIT_release_version'
+  inputs:
+    image: 'registry.see.asseco.com/tools/image-tagger'
+    dockerRegistryEndpoint: harbor
+    envVars: |
+      TAGGER_VERSION=v2
+      GITHUB_TOKEN=$(githubToken)
+      NPM_ARTIFACTS=@asseco/adaptivecards:UI Kit;@asseco/adaptivecards-designer:UI Kit
+      DOCKER_IMAGE_ARTIFACTS=platform/adaptive-ui:UI Kit - Shell Modules
+      RELEASED_VERSION_API_URL=$(releasedVersionApiUrl)
+      PUBLIC_DEVOPS_SERVER_URL=$(publicDevOpsServerUrl)
+      PUBLIC_DEVOPS_PAT=$(publicDevOpsKey)
+
 - script: |
-    echo -e "adaptive-ui-cards" >> .name
-  displayName: 'CD_PREPARATION_SERVICE_NAME'
+    echo '##vso[task.setvariable variable=serviceName]$(moduleName)'
+  displayName: 'COMMIT_override_serviceName'
 
-- task: CopyFiles@2
-  displayName: 'CD_PREPARATION_COPY'
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: |
-      .version
-      .name
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- task: PublishBuildArtifacts@1
-  displayName: 'CD_PREPARATION_BUILD_ARTIFACTS'
-  inputs:
-    ArtifactName: 'CD_Data'
+- template: create-cd-artifacts.yml@templates
