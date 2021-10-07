@@ -5,7 +5,7 @@ variables:
   value: '.'
 
 - name: imageRepository
-  value: 'registry.see.asseco.com/platform/adaptive-ui'
+  value: 'registry.see.asseco.com/docs/adaptive-ui-cards'
 
 - name: dockerfilePath
   value: 'Dockerfile'
