@@ -15,6 +15,14 @@ variables:
 
 pool: 'Digital'
 
+resources:
+  repositories:
+    - repository: templates
+      type: githubenterprise
+      name: asseco-see/pipeline-templates
+      ref: refs/heads/main
+      endpoint: github
+
 steps:
 - script: |
     sed -i 's/root: \//root: \/adaptive-ui/g' source/nodejs/adaptivecards-site/_config.yml
