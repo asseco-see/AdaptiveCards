@@ -93,16 +93,6 @@ steps:
     dockerfile: $(dockerfilePath)
     dockerRegistryEndpoint: harbor
 
-- task: DockerAdvanced@0
-  displayName: 'COMMIT_publish_chart'
-  inputs:
-    image: 'registry.see.asseco.com/tools/helm-asseco-deploy'
-    dockerRegistryEndpoint: harbor
-    envVars: |
-      HARBOR_URL=$(harborUrl)
-      HARBOR_USERNAME=$(harborUsername)
-      HARBOR_PASSWORD=$(harborPassword)
-
 - script: |
     IFS=',' read -a tags <<< $(cat .tags)
     for tag in "${tags[@]}"
