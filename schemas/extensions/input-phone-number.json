@@ -54,7 +54,12 @@
             "description": "Options configuration key. Read options from configuration service (used when options are not provided).",
             "version": "0.1",
 						"default": "components-ui/phone-number-options"
-          }
+          },
+					"value": {
+						"type": "string",
+						"description": "The initial value for this field.",
+						"version": "0.1"
+					}
         }
       }
     }

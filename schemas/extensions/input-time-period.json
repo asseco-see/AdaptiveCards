@@ -1,0 +1,41 @@
+{
+  "id": "time-period",
+  "version": "0.1",
+  "elementPrefix": "aseeco",
+  "propertyPrefix": "",
+  "supports": {
+    "javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+  },
+  "contributes": {
+    "definitions": {
+      "DefaultPeriod": {
+        "classType": "Enum",
+        "type": "DefaultPeriod",
+        "values": ["Y", "M", "D"]
+      },
+      "Input.TimePeriod": {
+        "description": "Allows a user to input a time period in ISO duration.",
+        "extends": "Input",
+        "properties": {
+          "defaultPeriod": {
+            "type": "DefaultPeriod",
+            "description": "Default input period. Used when 'allowComplex' is set to 'false'.",
+            "version": "0.1",
+            "default": "M"
+          },
+          "allowComplex": {
+            "type": "boolean",
+            "description": "Controls whether complex time period input type is used. If true, enables entering years, months and days separately.",
+            "version": "0.1",
+            "default": false
+          },
+					"value": {
+						"type": "string",
+						"description": "The initial value for this field in ISO duration format.",
+						"version": "0.1"
+					}
+        }
+      }
+    }
+  }
+}
