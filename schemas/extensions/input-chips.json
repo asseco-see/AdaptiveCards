@@ -8,12 +8,12 @@
     },
     "contributes": {
         "definitions": {
-            "Input.Chip": {
+            "Chip": {
                 "description": "Describes a chip for use in a ChipSet.",
                 "properties": {
                     "type": {
                         "type": "string",
-                        "description": "Must be `Input.Chip`"
+                        "description": "Must be `Chip`"
                     },
                     "id": {
                         "type": "string",
@@ -44,7 +44,7 @@
                         "description": "Must be `Input.Chips`"
                     },
                     "chips": {
-                        "type": "Input.Chip[]",
+                        "type": "Chip[]",
                         "description": "`Chip` options.",
                         "version": "0.1",
 						"required": true

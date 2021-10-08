@@ -1,0 +1,29 @@
+{
+  "id": "decimal-input",
+  "version": "0.1",
+  "elementPrefix": "",
+  "propertyPrefix": "asseco",
+  "supports": {
+    "javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+  },
+  "contributes": {
+    "definitions": {
+      "Input.Number": {
+        "properties": {
+          "allowDecimal": {
+            "type": "boolean",
+            "description": "Whether to support decimal numbers.",
+						"default": false,
+            "version": "0.1"
+          },
+					"decimalPlaces": {
+            "type": "number",
+            "description": "Marks desired decimal places, used when 'allowDecimal' is set to 'true'.",
+						"default": 0,
+            "version": "0.1"
+          }
+        }
+      }
+    }
+  }
+}

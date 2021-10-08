@@ -200,6 +200,8 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 				schemaModelForUpdate = schemaModels.find(m => m.title == 'Inputs');
 			} else if (extension.definition.type.startsWith('Action.')) {
 				schemaModelForUpdate = schemaModels.find(m => m.title == 'Actions');
+			} else if (extension.definition.extends && extension.definition.extends.toLowerCase() === 'element') {
+				schemaModelForUpdate = schemaModels.find(m => m.title == 'Card Elements');
 			} else {
 				schemaModelForUpdate = schemaModels.find(m => m.title == 'Feature Extensions');
 			}

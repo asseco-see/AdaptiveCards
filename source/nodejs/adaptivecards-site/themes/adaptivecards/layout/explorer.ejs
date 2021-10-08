@@ -60,7 +60,7 @@
 			</div>
 
 			<% if (page.isExtension) { %>
-			<img src="<%- url_for('https://img.shields.io/badge/' + page.element.extensionId.replace('-', ' ') + '-' + page.element.version + '-blue') %>">
+			<img src="<%- url_for('https://img.shields.io/badge/' + page.element.extensionId.split('-').join(' ') + '-' + page.element.version + '-blue') %>">
 			<% } %>
 
 			<p><strong>Important note about accessibility:</strong> 
