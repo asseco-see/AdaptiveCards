@@ -1,0 +1,58 @@
+{
+	"id": "date-select-input",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"InputDateType": {
+				"classType": "Enum",
+				"type": "InputDateType",
+				"values": [
+					"default",
+					"date-input",
+					"date-select"
+				]
+			},
+			"DateOrderEnum": {
+				"classType": "Enum",
+				"type": "DateOrderEnum",
+				"values": [
+					"dmy",
+					"dym",
+					"mdy",
+					"myd",
+					"ydm",
+					"ymd"
+				]
+			},
+			"Input.Date": {
+				"properties": {
+					"inputType": {
+						"type": "InputDateType",
+						"description": "Controls input date type.",
+						"default": "default",
+						"version": "0.1"
+					},
+					"dateOrder": {
+						"type": "DateOrderEnum",
+						"description": "Date order used when inputType is date-input or date-select",
+						"default": "dmy",
+						"version": "0.1"
+					},
+					"startYear": {
+						"type": "number",
+						"description": "Start year used when inputType is date-select",
+						"version": "0.1"
+					},
+					"separator": {
+						"type": "string",
+						"description": "Date separator used when inputType is date-input",
+						"default": "/",
+						"version": "0.1"
+					}
+				}
+			}
+		}
+	}
+}
