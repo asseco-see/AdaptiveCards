@@ -1,0 +1,25 @@
+{
+	"id": "date-select",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+			"definitions": {
+					"InputDateType": {
+							"classType": "Enum",
+							"type": "InputDateType",
+							"values": ["default", "date-input", "date-select"]
+					},
+					"Input.Date": {
+							"properties": {
+									"inputType": {
+											"type": "InputDateType",
+											"description": "Controls input date type.",
+											"default": "default",
+											"version": "0.1"
+									}
+							}
+					}
+			}
+	}
+}
