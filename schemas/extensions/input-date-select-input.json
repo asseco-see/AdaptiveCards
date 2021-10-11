@@ -45,7 +45,7 @@
 						"description": "Start year used when inputType is date-select",
 						"version": "0.1"
 					},
-					"separator": {
+					"dateSeparator": {
 						"type": "string",
 						"description": "Date separator used when inputType is date-input",
 						"default": "/",
