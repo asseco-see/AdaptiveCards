@@ -44,7 +44,7 @@
 					},
 					"multiple": {
 						"type": "boolean",
-						"description": "Multiple selections allowed",
+						"description": "Multiple selections allowed when allowAutocomplete is false",
 						"version": "0.1",
 						"default": false
 					},
@@ -52,6 +52,12 @@
 						"type": "string",
 						"description": "The initial value for this field.",
 						"version": "0.1"
+					},
+					"allowAutocomplete": {
+						"type": "boolean",
+						"description": "Allow autocomplete control",
+						"version": "0.1",
+						"default": false
 					}
 				}
 			}
