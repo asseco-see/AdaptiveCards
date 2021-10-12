@@ -33,25 +33,22 @@
 						"description": "Controls input date type.",
 						"default": "default",
 						"version": "0.1"
-					},
-					"dateOrder": {
-						"type": "DateOrderEnum",
-						"description": "Date order used when inputType is date-input or date-select",
-						"default": "dmy",
-						"version": "0.1"
-					},
-					"startYear": {
-						"type": "number",
-						"description": "Start year used when inputType is date-select",
-						"version": "0.1"
-					},
-					"dateSeparator": {
-						"type": "string",
-						"description": "Date separator used when inputType is date-input",
-						"default": "/",
-						"version": "0.1"
 					}
 				}
+			}
+		}
+	},
+	"hostConfig": {
+		"properties": {
+			"dateOrder": {
+				"type": "DateOrderEnum",
+				"description": "Date order used when inputType is date-input",
+				"default": "dmy"
+			},
+			"dateSeparator": {
+				"type": "string",
+				"description": "Date separator used when inputType is date-input",
+				"default": "/"
 			}
 		}
 	}
