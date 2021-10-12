@@ -47,6 +47,11 @@
 						"description": "Multiple selections allowed",
 						"version": "0.1",
 						"default": false
+					},
+					"value": {
+						"type": "string",
+						"description": "The initial value for this field.",
+						"version": "0.1"
 					}
 				}
 			}
