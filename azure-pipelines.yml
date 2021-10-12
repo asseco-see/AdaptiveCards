@@ -5,7 +5,7 @@ variables:
   value: '.'
 
 - name: imageRepository
-  value: 'registry.see.asseco.com/docs/adaptive-ui-cards'
+  value: 'registry.see.asseco.com/docs/adaptive-ui-docs'
 
 - name: dockerfilePath
   value: 'Dockerfile'
@@ -111,7 +111,6 @@ steps:
       TAGGER_VERSION=v2
       GITHUB_TOKEN=$(githubToken)
       NPM_ARTIFACTS=@asseco/adaptivecards:UI Kit;@asseco/adaptivecards-designer:UI Kit
-      DOCKER_IMAGE_ARTIFACTS=platform/adaptive-ui-cards:UI Kit - Shell Modules
       RELEASED_VERSION_API_URL=$(releasedVersionApiUrl)
       PUBLIC_DEVOPS_SERVER_URL=$(publicDevOpsServerUrl)
       PUBLIC_DEVOPS_PAT=$(publicDevOpsKey)
