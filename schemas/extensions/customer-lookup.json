@@ -1,26 +1,12 @@
 {
-  "id": "lookup",
+  "id": "customer-lookup",
   "version": "0.1",
   "elementPrefix": "",
   "propertyPrefix": "asseco",
   "contributes": {
     "definitions": {
-			"LookupTemplate":{
-				"properties":{
-					"value": {
-            "type": "string",
-            "description": "Value for selected template.",
-            "version": "0.1"
-          },
-          "template": {
-            "type": "Container",
-            "description": "Template for lookup.",
-            "version": "0.1"
-          }
-				}
-			},
-      "Input.Lookup": {
-        "description": "Allows a user to select value from array of values",
+      "Input.CustomerLookup": {
+        "description": "Allows a user to select customer from list of customers",
         "extends": "Input",
         "properties": {
           "id": {
@@ -46,11 +32,6 @@
           "dataSource": {
             "type": "DataSource",
             "description": "DataSource is an abstraction for using local data (arrays of JavaScript objects) or remote data (web services returning JSON or XML).",
-            "version": "0.1"
-          },
-          "items": {
-            "type": "LookupTemplate[]",
-            "description": "Container for lookup template",
             "version": "0.1"
           }
         }
