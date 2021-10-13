@@ -5,36 +5,6 @@
   "propertyPrefix": "asseco",
   "contributes": {
     "definitions": {
-      "DataSource.Party": {
-        "description": "DataSource for party lookup",
-        "properties": {
-          "baseUrl": {
-            "type": "string",
-            "description": "Base Url of service",
-            "version": "0.1"
-          },
-          "serviceName": {
-            "type": "string",
-            "description": "Name of service. Default value is `party`",
-            "version": "0.1"
-          },
-          "serviceVersion": {
-            "type": "string",
-            "description": "Service version. Default value is `v1`",
-            "version": "0.1"
-          },
-          "serviceEndpoint": {
-            "type": "string",
-            "description": "Endpoint for service. Default value is `parties/search?q=`",
-            "version": "0.1"
-          },
-          "responseItemsPath": {
-            "type": "string",
-            "description": "Root path for array of customers. Default value is 'parties'",
-            "version": "0.1"
-          }
-        }
-      },
       "Input.PartyLookup": {
         "description": "Allows a user to select customer from list of customers",
         "extends": "Input",
@@ -70,8 +40,8 @@
             "version": "0.1"
           },
           "dataSource": {
-            "type": "DataSource.Party",
-            "description": "DataSource for customer lookup",
+            "type": "DataSource.AseeAPI",
+            "description": "Asee API DataSource for customer lookup",
             "version": "0.1"
           }
         }

@@ -1,0 +1,158 @@
+{
+  "id": "table",
+  "version": "0.1",
+  "elementPrefix": "",
+  "propertyPrefix": "asseco",
+  "contributes": {
+    "definitions": {
+      "TableColumnDefinition": {
+        "description": "Defines the characteristics of a column in a Table element.",
+        "version": "1.5",
+        "properties": {
+          "width": {
+            "type": "string",
+            "description": "Specifies the width of the column. If expressed as a number, width represents the weight a the column relative to the other columns in the table. If expressed as a string, width must by in the format \"<number>px\" (for instance, \"50px\") and represents an explicit number of pixels.",
+            "version": "0.1"
+          },
+          "horizontalCellContentAlignment": {
+            "type": "HorizontalAlignment",
+            "description": "Controls how the content of all cells in the column is horizontally aligned by default. When specified, this value overrides the setting at the table level. When not specified, horizontal alignment is defined at the table, row or cell level.",
+            "version": "0.1"
+          },
+          "verticalCellContentAlignment": {
+            "type": "VerticalAlignment",
+            "description": "Controls how the content of all cells in the column is vertically aligned by default. When specified, this value overrides the setting at the table level. When not specified, vertical alignment is defined at the table, row or cell level.",
+            "version": "0.1"
+          },
+          "isSortable": {
+            "type": "boolean",
+            "description": "Specifies if column is sortable",
+            "default": false,
+            "version": "0.1"
+          }
+        }
+      },
+      "TableRow": {
+        "description": "Represents a row of cells within a Table element.",
+        "version": "1.5",
+        "properties": {
+          "cells": {
+            "type": "TableCell[]",
+            "description": "The cells in this row. If a row contains more cells than there are columns defined on the Table element, the extra cells are ignored.",
+            "version": "0.1"
+          },
+          "style": {
+            "type": "ContainerStyle",
+            "description": "Defines the style of the entire row.",
+            "version": "0.1"
+          },
+          "horizontalCellContentAlignment": {
+            "type": "HorizontalAlignment",
+            "description": "Controls how the content of all cells in the row is horizontally aligned by default. When specified, this value overrides both the setting at the table and columns level. When not specified, horizontal alignment is defined at the table, column or cell level.",
+            "version": "0.1"
+          },
+          "verticalCellContentAlignment": {
+            "type": "VerticalAlignment",
+            "description": "Controls how the content of all cells in the column is vertically aligned by default. When specified, this value overrides the setting at the table and column level. When not specified, vertical alignment is defined either at the table, column or cell level.",
+            "version": "0.1"
+          }
+        }
+      },
+      "TableCell": {
+        "description": "Represents a cell within a row of a Table element.",
+        "version": "0.1",
+        "properties": {
+          "items": {
+            "type": "Element[]",
+            "description": "The card elements to render inside the `TableCell`",
+            "version": "0.1"
+          },
+          "selectAction": {
+            "type": "ISelectAction",
+            "description": "An `Action` that will be invoked when the `TableCell` is tapped or selected. `Action.ShowCard` is not supported.",
+            "version": "0.1"
+          },
+          "style": {
+            "type": "ContainerStyle",
+            "description": "Style hint for `TableCell`.",
+            "version": "0.1"
+          },
+          "verticalContentAlignment": {
+            "type": "VerticalContentAlignment",
+            "description": "Defines how the content should be aligned vertically within the container. When not specified, the value of verticalContentAlignment is inherited from the parent container. If no parent container has verticalContentAlignment set, it defaults to Top.",
+            "version": "0.1"
+          },
+          "bleed": {
+            "type": "boolean",
+            "description": "Determines whether the element should bleed through its parent’s padding.",
+            "version": "0.1"
+          },
+          "backgroundImage": {
+            "type": "BackgroundImage",
+            "description": "Specifies the background image. Acceptable formats are PNG, JPEG, and GIF.",
+            "version": "0.1"
+          },
+          "minHeight": {
+            "type": "ISelectAction",
+            "description": "Specifies the minimum height of the column in pixels, like `\"80px\"`.",
+            "version": "0.1"
+          },
+          "rtl": {
+            "type": "boolean",
+            "description": "When `true` content in this container should be presented right to left. When `false` content in this container should be presented left to right. When unset layout direction will inherit from parent container or column. If unset in all ancestors, the default platform behavior will apply.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Table": {
+        "description": "Allows a user to select value from array of values",
+        "extends": "Element",
+        "properties": {
+          "columns": {
+            "type": "TableColumnDefinition[]",
+            "description": "Defines the number of columns in the table, their sizes, and more.",
+            "version": "0.1"
+          },
+          "rows": {
+            "type": "TableRow[]",
+            "description": "Defines the rows of the table.",
+            "version": "0.1"
+          },
+          "firstRowAsHeader": {
+            "type": "boolean",
+            "description": "Specifies whether the first row of the table should be treated as a header row, and be announced as such by accessibility software.",
+            "default": true,
+            "version": "0.1"
+          },
+          "showGridLines": {
+            "type": "boolean",
+            "description": "Specifies whether grid lines should be displayed.",
+            "default": true,
+            "version": "0.1"
+          },
+          "gridStyle": {
+            "type": "ContainerStyle?",
+            "description": "Defines the style of the grid. This property currently only controls the grid’s color.",
+            "default":"default",
+            "version": "0.1"
+          },
+          "horizontalCellContentAlignment": {
+            "type": "HorizontalAlignment?",
+            "description": "Controls how the content of all cells is horizontally aligned by default. When not specified, horizontal alignment is defined on a per-cell basis.",
+            "version": "0.1"
+          },
+          "verticalCellContentAlignment": {
+            "type": "VerticalAlignment?",
+            "description": "Controls how the content of all cells is vertically aligned by default. When not specified, vertical alignment is defined on a per-cell basis.",
+            "version": "0.1"
+          },
+          "dataSource": {
+            "type": "DataSource",
+            "description": "DataSource for table element",
+            "version": "0.1"
+          }
+        }
+      }
+    }
+  }
+}

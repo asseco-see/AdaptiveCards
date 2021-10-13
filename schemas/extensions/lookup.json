@@ -5,20 +5,6 @@
   "propertyPrefix": "asseco",
   "contributes": {
     "definitions": {
-			"LookupTemplate":{
-				"properties":{
-					"value": {
-            "type": "string",
-            "description": "Value for selected template.",
-            "version": "0.1"
-          },
-          "template": {
-            "type": "Container",
-            "description": "Template for lookup.",
-            "version": "0.1"
-          }
-				}
-			},
       "Input.Lookup": {
         "description": "Allows a user to select value from array of values",
         "extends": "Input",
@@ -44,13 +30,8 @@
             "version": "0.1"
           },
           "dataSource": {
-            "type": "DataSource",
-            "description": "DataSource is an abstraction for using local data (arrays of JavaScript objects) or remote data (web services returning JSON or XML).",
-            "version": "0.1"
-          },
-          "items": {
-            "type": "LookupTemplate[]",
-            "description": "Container for lookup template",
+            "type": "DataSource.AseeAPI",
+            "description": "Asee API DataSource for generic lookup",
             "version": "0.1"
           }
         }

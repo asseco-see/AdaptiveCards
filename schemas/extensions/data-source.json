@@ -19,7 +19,7 @@
         "classType": "Enum",
         "type": "DataSourceType",
         "values": [
-          "JSON",
+          "LocalData",
           "REST",
           "GraphQL"
         ]
@@ -66,7 +66,7 @@
           },
           "dataSourceType": {
             "type": "DataSourceType",
-            "description": "Type of service. Can be JSON, REST and GraphQL. Other service types can be added in future like SOAP and GRPC",
+            "description": "Type of service. Can be LocalData, REST and GraphQL. Other service types can be added in future like SOAP and GRPC",
             "required": true,
             "version": "0.1"
           },
@@ -108,7 +108,17 @@
             "description": "Parameter name for page size",
             "version": "0.1"
           },
-          "Params": {
+          "totalCountParam": {
+            "type": "string",
+            "description": "Parameter name for totalCount",
+            "version": "0.1"
+          },
+          "responseArrayPath": {
+            "type": "string",
+            "description": "Specifies the root path for response array",
+            "version": "0.1"
+          },
+          "params": {
             "type": "Param[]",
             "description": "List of parameters for service call",
             "version": "0.1"
