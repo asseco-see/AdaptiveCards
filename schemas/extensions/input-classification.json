@@ -35,7 +35,7 @@
 					}
 				}
 			},
-			"Input.ClassificationSelect": {
+			"Input.Classification": {
 				"extends": "Input",
 				"description": "Allows user to select a classification from a service",
 				"properties": {
