@@ -1,52 +1,63 @@
 {
-  "id": "autocomplete",
-  "version": "0.1",
-  "elementPrefix": "aseeco",
-  "propertyPrefix": "",
-  "supports": {
-    "javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
-  },
-  "contributes": {
-    "definitions": {
-      "AutocompleteChoice": {
-        "properties": {
-          "value": {
-            "type": "string",
-            "description": "Value for autocomplete choice.",
-            "version": "0.1"
-          }
-        }
-      },
-      "Input.Autocomplete": {
-        "description": "Allows a user to input text with autocomplete option.",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed.",
-            "version": "0.1"
-          },
-          "value": {
-            "type": "string",
-            "description": "Initial value that should be selected.",
-            "version": "0.1"
-          },
-          "choices": {
-            "type": "AutocompleteChoice[]",
-            "description": "Autocomplete choices.",
-            "version": "0.1"
-          },
-          "placeholder": {
-            "type": "string",
-            "description": "Description of the input desired. Only visible when no selection has been made.",
-            "version": "0.1"
-          },
-          "dataSource": {
-            "type": "DataSource",
-            "description": "DataSource is an abstraction for using local data (arrays of JavaScript objects) or remote data (web services returning JSON or XML).",
-            "version": "0.1"
-          }
-        }
-      }
-    }
-  }
+	"id": "autocomplete",
+	"version": "0.1",
+	"elementPrefix": "aseeco",
+	"propertyPrefix": "",
+	"supports": {
+		"javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+	},
+	"contributes": {
+		"definitions": {
+			"FilterType": {
+				"classType": "Enum",
+				"type": "FilterType",
+				"values": [
+					"none",
+					"startsWith",
+					"includes",
+					"endsWith"
+				]
+			},
+			"Input.Autocomplete": {
+				"extends": "Input",
+				"description": "Allows a user to input text with autocomplete option.",
+				"properties": {
+					"value": {
+						"type": "string",
+						"description": "Initial value that should be selected.",
+						"version": "0.1"
+					},
+					"choices": {
+						"type": "object[]",
+						"description": "Autocomplete choices.",
+						"version": "0.1"
+					},
+					"valueProperty": {
+						"type": "string",
+						"description": "Value property name from the choice object",
+						"version": "0.1",
+						"default": "value"
+					},
+					"labelProperty": {
+						"type": "string",
+						"description": "Label property name from the choice object",
+						"version": "0.1",
+						"default": "value"
+					},
+					"filterType": {
+						"type": "FilterType",
+						"description": "Autocomplete filter type",
+						"version": "0.1",
+						"default": "startsWith"
+					},
+					"showClear": {
+						"type": "boolean",
+						"description": "Show clear button",
+						"version": "0.1",
+						"default": true
+					}
+				}
+			}
+		}
+	}
 }
