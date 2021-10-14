@@ -58,6 +58,12 @@
 						"description": "Allow autocomplete control",
 						"version": "0.1",
 						"default": false
+					},
+					"filterType": {
+						"type": "FilterType",
+						"description": "Filter type when allowAutocomplete is true",
+						"version": "0.1",
+						"default": "startsWith"
 					}
 				}
 			}
