@@ -1,0 +1,118 @@
+{
+  "id": "data-table",
+  "version": "0.1",
+  "elementPrefix": "",
+  "propertyPrefix": "asseco",
+  "contributes": {
+    "definitions": {
+      "DataTableColumnDefinition": {
+        "description": "Defines the characteristics of a column in a DataTable element.",
+        "version": "0.1",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Specifies the id of column.",
+            "version": "0.1"
+          },
+          "title": {
+            "type": "string",
+            "description": "Specifies the title of column.",
+            "version": "0.1"
+          },
+          "sortable": {
+            "type": "boolean",
+            "description": "Specifies if the column is sortable.",
+            "version": "0.1"
+          },
+          "size": {
+            "type": "string",
+            "description": "Specifies the size of column.",
+            "version": "0.1"
+          },
+          "cell": {
+            "type": "string",
+            "description": "Specifies the cell value expression.",
+            "version": "0.1"
+          },
+          "footer": {
+            "type": "string",
+            "description": "Specifies the footer value expression.",
+            "version": "0.1"
+          },
+          "width": {
+            "type": "string",
+            "description": "Specifies the width of the column. If expressed as a number, width represents the weight a the column relative to the other columns in the table. If expressed as a string, width must by in the format \"<number>px\" (for instance, \"50px\") and represents an explicit number of pixels.",
+            "version": "0.1"
+          },
+          "horizontalCellContentAlignment": {
+            "type": "HorizontalAlignment",
+            "description": "Controls how the content of all cells in the column is horizontally aligned by default. When specified, this value overrides the setting at the table level. When not specified, horizontal alignment is defined at the table, row or cell level.",
+            "version": "0.1"
+          },
+          "verticalCellContentAlignment": {
+            "type": "VerticalAlignment",
+            "description": "Controls how the content of all cells in the column is vertically aligned by default. When specified, this value overrides the setting at the table level. When not specified, vertical alignment is defined at the table, row or cell level.",
+            "version": "0.1"
+          }
+        }
+      },
+      "DataTable": {
+        "description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
+        "extends": "Element",
+        "properties": {
+          "columns": {
+            "type": "DataTableColumnDefinition[]",
+            "description": "Defines the number of columns in the table, their sizes, and more.",
+            "required":true,
+            "version": "0.1"
+          },
+          "columnsToDisplay":{
+            "type": "string[]",
+            "description": "Specifies column ids to be displayed.",
+            "required": true,
+            "version": "0.1"
+          },
+          "showHeader": {
+            "type": "boolean",
+            "description": "Specifies whether the header of the data table should be shown.",
+            "default": true,
+            "version": "0.1"
+          },
+          "showPaginator": {
+            "type": "boolean",
+            "description": "Specifies whether the paginator of the data table should be shown.",
+            "default": true,
+            "version": "0.1"
+          },
+          "showGridLines": {
+            "type": "boolean",
+            "description": "Specifies whether grid lines should be displayed.",
+            "default": true,
+            "version": "0.1"
+          },
+          "gridStyle": {
+            "type": "ContainerStyle?",
+            "description": "Defines the style of the grid. This property currently only controls the grid’s color.",
+            "default":"default",
+            "version": "0.1"
+          },
+          "horizontalCellContentAlignment": {
+            "type": "HorizontalAlignment?",
+            "description": "Controls how the content of all cells is horizontally aligned by default. When not specified, horizontal alignment is defined on a per-cell basis.",
+            "version": "0.1"
+          },
+          "verticalCellContentAlignment": {
+            "type": "VerticalAlignment?",
+            "description": "Controls how the content of all cells is vertically aligned by default. When not specified, vertical alignment is defined on a per-cell basis.",
+            "version": "0.1"
+          },
+          "dataSource": {
+            "type": "DataSource",
+            "description": "DataSource for data table element",
+            "version": "0.1"
+          }
+        }
+      }
+    }
+  }
+}
