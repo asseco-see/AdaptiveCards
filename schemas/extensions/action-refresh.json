@@ -1,0 +1,21 @@
+{
+	"id": "action-refresh",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"Action.Refresh": {
+				"extends": "Action",
+				"description": "",
+				"properties": {
+					"elementId": {
+						"type": "string",
+						"description": "Element id to be refreshed",
+						"version": "0.1"
+					}
+				}
+			}
+		}
+	}
+}
