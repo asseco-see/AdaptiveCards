@@ -18,32 +18,17 @@
 					"endsWith"
 				]
 			},
-			"Input.Autocomplete": {
-				"extends": "Input",
-				"description": "Allows a user to input text with autocomplete option.",
+			"ChoiceInputStyle": {
+				"classType": "Enum",
+				"type": "ChoiceInputStyle",
+				"values": [
+					"compact",
+					"expanded",
+					"autocomplete"
+				]
+			},
+			"Input.ChoiceSet": {
 				"properties": {
-					"value": {
-						"type": "string",
-						"description": "Initial value that should be selected.",
-						"version": "0.1"
-					},
-					"choices": {
-						"type": "object[]",
-						"description": "Autocomplete choices.",
-						"version": "0.1"
-					},
-					"valueProperty": {
-						"type": "string",
-						"description": "Value property name from the choice object",
-						"version": "0.1",
-						"default": "value"
-					},
-					"labelProperty": {
-						"type": "string",
-						"description": "Label property name from the choice object",
-						"version": "0.1",
-						"default": "value"
-					},
 					"filterType": {
 						"type": "FilterType",
 						"description": "Autocomplete filter type",
@@ -55,6 +40,11 @@
 						"description": "Show clear button",
 						"version": "0.1",
 						"default": true
+					},
+					"style": {
+						"type": "ChoiceInputStyle",
+						"description": "",
+						"version": "0.1"
 					}
 				}
 			}
