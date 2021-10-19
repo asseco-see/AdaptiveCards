@@ -1,5 +1,5 @@
 {
-	"id": "material-components",
+	"id": "material",
 	"version": "0.1",
 	"elementPrefix": "",
 	"propertyPrefix": "asseco",
@@ -17,14 +17,12 @@
 		}
 	},
 	"hostConfig": {
-		"InputsConfig": {
-			"properties": {
-				"appearance": {
-					"type": "MaterialComponentAppearance",
-					"description": "Appearance type of the material component",
-					"version": "0.1",
-					"default": "outline"
-				}
+		"properties": {
+			"appearance": {
+				"type": "MaterialComponentAppearance",
+				"description": "Appearance type of the material component",
+				"version": "0.1",
+				"default": "outline"
 			}
 		}
 	}
