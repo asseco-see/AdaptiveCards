@@ -1,0 +1,31 @@
+{
+	"id": "material-components",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"MaterialComponentAppearance": {
+				"classType": "Enum",
+				"type": "MaterialComponentAppearance",
+				"values": [
+					"outline",
+					"fill",
+					"standard"
+				]
+			}
+		}
+	},
+	"hostConfig": {
+		"InputsConfig": {
+			"properties": {
+				"appearance": {
+					"type": "MaterialComponentAppearance",
+					"description": "Appearance type of the material component",
+					"version": "0.1",
+					"default": "outline"
+				}
+			}
+		}
+	}
+}

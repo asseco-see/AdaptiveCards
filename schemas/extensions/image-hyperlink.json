@@ -1,0 +1,18 @@
+{
+	"id": "image-hyperlink",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"Image": {
+				"properties": {
+					"href": {
+						"type": "uri-reference",
+						"description": "The URL that represents hyperlink bind to image."
+					}
+				}
+			}
+		}
+	}
+}

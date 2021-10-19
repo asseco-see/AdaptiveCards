@@ -1,51 +1,51 @@
 {
-  "id": "party-lookup",
-  "version": "0.1",
-  "elementPrefix": "",
-  "propertyPrefix": "asseco",
-  "contributes": {
-    "definitions": {
-      "Input.PartyLookup": {
-        "description": "Allows a user to select customer from list of customers",
-        "extends": "Input",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed.",
-            "version": "0.1"
-          },
-          "value": {
-            "type": "string",
-            "description": "The initial choice (or set of choices) that should be selected.",
-            "version": "0.1"
-          },
-          "placeholder": {
-            "type": "string",
-            "description": "Description of the input desired. Only visible when no selection has been made.",
-            "version": "0.1"
-          },
-          "labelProperty": {
-            "type": "string",
-            "description": "Property for lookup label value",
-            "version": "0.1"
-          },
-          "subLabelProperty": {
-            "type": "string",
-            "description": "Property for lookup sub-label value",
-            "version": "0.1"
-          },
-          "valueProperty": {
-            "type": "string",
-            "description": "Property for lookup value",
-            "version": "0.1"
-          },
-          "dataSource": {
-            "type": "DataSource.AseeAPI",
-            "description": "Asee API DataSource for customer lookup",
-            "version": "0.1"
-          }
-        }
-      }
-    }
-  }
+	"id": "party-lookup",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"Input.PartyLookup": {
+				"description": "Allows a user to select customer from list of customers",
+				"extends": "Input",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed.",
+						"version": "0.1"
+					},
+					"value": {
+						"type": "string",
+						"description": "The initial choice (or set of choices) that should be selected.",
+						"version": "0.1"
+					},
+					"placeholder": {
+						"type": "string",
+						"description": "Description of the input desired. Only visible when no selection has been made.",
+						"version": "0.1"
+					},
+					"labelProperty": {
+						"type": "string",
+						"description": "Property for lookup label value",
+						"version": "0.1"
+					},
+					"subLabelProperty": {
+						"type": "string",
+						"description": "Property for lookup sub-label value",
+						"version": "0.1"
+					},
+					"valueProperty": {
+						"type": "string",
+						"description": "Property for lookup value",
+						"version": "0.1"
+					},
+					"dataSource": {
+						"type": "DataSource.AseeAPI",
+						"description": "Asee API DataSource for customer lookup",
+						"version": "0.1"
+					}
+				}
+			}
+		}
+	}
 }

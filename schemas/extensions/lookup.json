@@ -1,41 +1,41 @@
 {
-  "id": "lookup",
-  "version": "0.1",
-  "elementPrefix": "",
-  "propertyPrefix": "asseco",
-  "contributes": {
-    "definitions": {
-      "Input.Lookup": {
-        "description": "Allows a user to select value from array of values",
-        "extends": "Input",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed.",
-            "version": "0.1"
-          },
-          "value": {
-            "type": "string",
-            "description": "The initial choice (or set of choices) that should be selected.",
-            "version": "0.1"
-          },
-          "placeholder": {
-            "type": "string",
-            "description": "Description of the input desired. Only visible when no selection has been made.",
-            "version": "0.1"
-          },
-          "wrap": {
-            "type": "boolean",
-            "description": "If `true`, allow text to wrap. Otherwise, text is clipped.",
-            "version": "0.1"
-          },
-          "dataSource": {
-            "type": "DataSource.AseeAPI",
-            "description": "Asee API DataSource for generic lookup",
-            "version": "0.1"
-          }
-        }
-      }
-    }
-  }
+	"id": "lookup",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"Input.Lookup": {
+				"description": "Allows a user to select value from array of values",
+				"extends": "Input",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed.",
+						"version": "0.1"
+					},
+					"value": {
+						"type": "string",
+						"description": "The initial choice (or set of choices) that should be selected.",
+						"version": "0.1"
+					},
+					"placeholder": {
+						"type": "string",
+						"description": "Description of the input desired. Only visible when no selection has been made.",
+						"version": "0.1"
+					},
+					"wrap": {
+						"type": "boolean",
+						"description": "If `true`, allow text to wrap. Otherwise, text is clipped.",
+						"version": "0.1"
+					},
+					"dataSource": {
+						"type": "DataSource.AseeAPI",
+						"description": "Asee API DataSource for generic lookup",
+						"version": "0.1"
+					}
+				}
+			}
+		}
+	}
 }

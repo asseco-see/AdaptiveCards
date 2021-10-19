@@ -1,97 +1,111 @@
 {
-  "id": "decimal-input",
-  "version": "0.1",
-  "elementPrefix": "",
-  "propertyPrefix": "asseco",
-  "supports": {
-    "javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
-  },
-  "contributes": {
-    "definitions": {
+	"id": "decimal-input",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"supports": {
+		"javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+	},
+	"contributes": {
+		"definitions": {
 			"InputNumberType": {
-        "classType": "Enum",
-        "type": "InputNumberType",
-        "values": ["default", "decimal", "currency"]
-      },
+				"classType": "Enum",
+				"type": "InputNumberType",
+				"values": [
+					"default",
+					"decimal",
+					"currency"
+				]
+			},
 			"DecimalConfig": {
-        "classType": "Class",
-        "type": "DecimalConfig",
-        "properties": {
+				"classType": "Class",
+				"type": "DecimalConfig",
+				"properties": {
 					"align": {
-            "type": "HorizontalAlignment",
-            "description": "Horizontal alignment of decimal input value.",
-            "version": "0.1",
+						"type": "HorizontalAlignment",
+						"description": "Horizontal alignment of decimal input value.",
+						"version": "0.1",
 						"default": "right"
-          },
+					},
 					"allowNegative": {
-            "type": "boolean",
-            "description": "Whether to allow negative values.",
-            "version": "0.1",
+						"type": "boolean",
+						"description": "Whether to allow negative values.",
+						"version": "0.1",
 						"default": true
-          },
+					},
 					"allowZero": {
-            "type": "boolean",
-            "description": "Whether to allow zero value.",
-            "version": "0.1",
+						"type": "boolean",
+						"description": "Whether to allow zero value.",
+						"version": "0.1",
 						"default": true
-          },
+					},
 					"decimalSeparator": {
-            "type": "string",
-            "description": "Decimal separator value.",
-            "version": "0.1",
+						"type": "string",
+						"description": "Decimal separator value.",
+						"version": "0.1",
 						"default": "."
-          },
+					},
 					"prefix": {
-            "type": "string",
-            "description": "Prefix for the decimal input value.",
-            "version": "0.1"
-          },
+						"type": "string",
+						"description": "Prefix for the decimal input value.",
+						"version": "0.1"
+					},
 					"suffix": {
-            "type": "string",
-            "description": "Suffix for the decimal input value.",
-            "version": "0.1"
-          },
+						"type": "string",
+						"description": "Suffix for the decimal input value.",
+						"version": "0.1"
+					},
 					"thousandsSeparator": {
-            "type": "string",
-            "description": "Thousands separator value.",
-            "version": "0.1",
+						"type": "string",
+						"description": "Thousands separator value.",
+						"version": "0.1",
 						"default": ","
-          }
+					},
+					"appearance": {
+						"type": "MaterialComponentAppearance",
+						"description": "Appearance type of the component",
+						"version": "0.1",
+						"default": "outline"
+					}
 				}
-      },
-      "Input.Number": {
-        "properties": {
-          "inputType": {
-            "type": "InputNumberType",
-            "description": "Controls input number type.",
+			},
+			"Input.Number": {
+				"properties": {
+					"inputType": {
+						"type": "InputNumberType",
+						"description": "Controls input number type.",
 						"default": "default",
-            "version": "0.1"
-          },
+						"version": "0.1"
+					},
 					"precision": {
-            "type": "number",
-            "description": "Marks desired decimal places, used when 'inputType' is set to 'decimal' or 'currency'.",
+						"type": "number",
+						"description": "Marks desired decimal places, used when 'inputType' is set to 'decimal' or 'currency'.",
 						"default": 2,
-            "version": "0.1"
-          },
+						"version": "0.1"
+					},
 					"decimalOptions": {
-            "type": "DecimalConfig",
-            "description": "Decimal input options, used when 'inputType' is set to 'decimal' or 'currency'.",
-            "version": "0.1"
-          },
+						"type": "DecimalConfig",
+						"description": "Decimal input options, used when 'inputType' is set to 'decimal' or 'currency'.",
+						"version": "0.1"
+					},
 					"separateThousands": {
-            "type": "boolean",
-            "description": "Whether to separate thousands, used when 'inputType' is set to 'decimal' or 'currency'.",
+						"type": "boolean",
+						"description": "Whether to separate thousands, used when 'inputType' is set to 'decimal' or 'currency'.",
 						"default": false,
-            "version": "0.1"
-          },
+						"version": "0.1"
+					},
 					"currencies": {
-            "type": "string[]",
-            "description": "Supported currency list, used when 'inputType' is set to 'currency'.",
-            "version": "0.1",
-						"example": ["EUR", "USD", "RSD"]
-          }
-        }
-      }
-    }
-  }
+						"type": "string[]",
+						"description": "Supported currency list, used when 'inputType' is set to 'currency'.",
+						"version": "0.1",
+						"example": [
+							"EUR",
+							"USD",
+							"RSD"
+						]
+					}
+				}
+			}
+		}
+	}
 }
