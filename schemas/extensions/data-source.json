@@ -122,6 +122,11 @@
             "type": "Param[]",
             "description": "List of parameters for service call",
             "version": "0.1"
+          },
+					"data": {
+            "type": "object[]",
+            "description": "Local data collection. Used when 'dataSourceType' is set to 'LocalData'.",
+            "version": "0.1"
           }
         }
       }

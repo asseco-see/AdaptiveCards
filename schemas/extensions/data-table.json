@@ -5,7 +5,17 @@
   "propertyPrefix": "asseco",
   "contributes": {
     "definitions": {
-      "DataTableColumnDefinition": {
+			"DataTableColumnFormat": {
+        "classType": "Enum",
+        "type": "DataTableColumnType",
+        "values": [
+					"text",
+					"date",
+					"currency",
+					"image"
+				]
+      },
+      "DataTableColumn": {
         "description": "Defines the characteristics of a column in a DataTable element.",
         "version": "0.1",
         "properties": {
@@ -19,45 +29,46 @@
             "description": "Specifies the title of column.",
             "version": "0.1"
           },
+					"cell": {
+						"type": "string",
+						"description": "Specifies the cell value expression.",
+						"version": "0.1"
+					},
+					"format": {
+						"type": "DataTableColumnFormat",
+						"description": "Specifies the cell value type.",
+						"version": "0.1",
+						"default": "text"
+					},
           "sortable": {
             "type": "boolean",
             "description": "Specifies if the column is sortable.",
             "version": "0.1"
           },
-          "size": {
-            "type": "string",
-            "description": "Specifies the size of column.",
-            "version": "0.1"
-          },
-          "cell": {
-            "type": "string",
-            "description": "Specifies the cell value expression.",
-            "version": "0.1"
-          },
           "width": {
             "type": "number",
-            "description": "Specifies the width of the column. Width represents the weight a the column relative to the other columns in the table.",
+            "description": "Specifies the width of the column. Width represents the weight of the column relative to the other columns in the table.",
             "version": "0.1"
           },
-          "horizontalCellContentAlignment": {
+					"translate": {
+            "type": "boolean",
+            "description": "Specifies whether the column should be translated.",
+            "version": "0.1"
+          },
+          "cellContentAlignment": {
             "type": "HorizontalAlignment",
-            "description": "Controls how the content of all cells in the column is horizontally aligned by default. When specified, this value overrides the setting at the table level. When not specified, horizontal alignment is defined at the table, row or cell level.",
-            "version": "0.1"
-          },
-          "verticalCellContentAlignment": {
-            "type": "VerticalAlignment",
-            "description": "Controls how the content of all cells in the column is vertically aligned by default. When specified, this value overrides the setting at the table level. When not specified, vertical alignment is defined at the table, row or cell level.",
+            "description": "Controls how the content of all cells in the column is horizontally aligned by default. This value overrides the setting at the table level.",
             "version": "0.1"
           }
         }
       },
-      "ResponsiveDefinition": {
+      "ResponsiveConfiguration": {
         "description": "Defines responsive configuration of data table.",
         "version": "0.1",
         "properties": {
           "width": {
             "type": "string",
-            "description": "Specifies the width in pixels whe columns are applied.",
+            "description": "Specifies the width in pixels when columns are applied.",
             "version": "0.1"
           },
           "columns": {
@@ -67,7 +78,23 @@
           }
         }
       },
-      "ActionsDefinition": {
+			"DataTablePaging": {
+        "description": "Defines paging configuration of data table.",
+        "version": "0.1",
+        "properties": {
+          "pageSize": {
+            "type": "number",
+            "description": "Specifies initial page size value.",
+            "version": "0.1"
+          },
+          "pageSizeOptions": {
+            "type": "number[]",
+            "description": "Specifies the list of available page size options.",
+            "version": "0.1"
+          }
+        }
+      },
+      "DataTableAction": {
         "description": "Defines actions that can be triggered of data table row.",
         "version": "0.1",
         "properties": {
@@ -98,67 +125,55 @@
         "extends": "Element",
         "properties": {
           "columns": {
-            "type": "DataTableColumnDefinition[]",
+            "type": "DataTableColumn[]",
             "description": "Defines the number of columns in the table, their sizes, and more.",
             "required": true,
             "version": "0.1"
           },
           "responsive": {
-            "type": "ResponsiveDefinition[]",
+            "type": "ResponsiveConfiguration[]",
             "description": "Defines visible columns when column width changes.",
             "required": true,
             "version": "0.1"
           },
           "actions": {
-            "type": "ActionsDefinition[]",
+            "type": "DataTableAction[]",
             "description": "Defines the actions that can be triggered on data table.",
-            "required": true,
+            "version": "0.1"
+          },
+					"paging": {
+            "type": "DataTablePaging",
+            "description": "Defines data table paging configuration.",
             "version": "0.1"
           },
           "showFilter": {
             "type": "boolean",
-            "description": "Specifies whether the header of the data table should be shown.",
+            "description": "Specifies whether the data table filter should be shown.",
             "default": true,
             "version": "0.1"
           },
-          "showHeader": {
+          "stickyHeader": {
             "type": "boolean",
-            "description": "Specifies whether the header of the data table should be shown.",
-            "default": true,
+            "description": "Specifies whether the header of the data table should stick to the top.",
+            "default": false,
             "version": "0.1"
-          },
-          "showPaginator": {
-            "type": "boolean",
-            "description": "Specifies whether the paginator of the data table should be shown.",
-            "default": true,
-            "version": "0.1"
-          },
-          "showGridLines": {
-            "type": "boolean",
-            "description": "Specifies whether grid lines should be displayed.",
-            "default": true,
-            "version": "0.1"
-          },
+          },        
           "headerStyle": {
             "type": "ContainerStyle?",
-            "description": "Defines the style of the grid. This property currently only controls the grid’s color.",
+            "description": "Defines the style of the table header. This property currently only controls the headers’s color.",
             "default": "default",
             "version": "0.1"
           },
-          "horizontalCellContentAlignment": {
+          "cellContentAlignment": {
             "type": "HorizontalAlignment?",
-            "description": "Controls how the content of all cells is horizontally aligned by default. When not specified, horizontal alignment is defined on a per-cell basis.",
-            "version": "0.1"
-          },
-          "verticalCellContentAlignment": {
-            "type": "VerticalAlignment?",
-            "description": "Controls how the content of all cells is vertically aligned by default. When not specified, vertical alignment is defined on a per-cell basis.",
+            "description": "Controls how the content of all cells is horizontally aligned by default.",
             "version": "0.1"
           },
           "dataSource": {
             "type": "DataSource",
-            "description": "DataSource for data table element",
-            "version": "0.1"
+            "description": "Data source for data table element.",
+            "version": "0.1",
+						"required": true
           }
         }
       }
