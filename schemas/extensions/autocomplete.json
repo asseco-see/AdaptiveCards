@@ -37,14 +37,15 @@
 					},
 					"showClear": {
 						"type": "boolean",
-						"description": "Show clear button",
+						"description": "Show clear button when style is autocomplete",
 						"version": "0.1",
 						"default": true
 					},
 					"style": {
 						"type": "ChoiceInputStyle",
-						"description": "",
-						"version": "0.1"
+						"description": "Style hint for `Input.ChoiceSet`.",
+						"version": "0.1",
+						"default": "compact"
 					}
 				}
 			}
