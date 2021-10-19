@@ -34,14 +34,9 @@
             "description": "Specifies the cell value expression.",
             "version": "0.1"
           },
-          "footer": {
-            "type": "string",
-            "description": "Specifies the footer value expression.",
-            "version": "0.1"
-          },
           "width": {
-            "type": "string",
-            "description": "Specifies the width of the column. If expressed as a number, width represents the weight a the column relative to the other columns in the table. If expressed as a string, width must by in the format \"<number>px\" (for instance, \"50px\") and represents an explicit number of pixels.",
+            "type": "number",
+            "description": "Specifies the width of the column. Width represents the weight a the column relative to the other columns in the table.",
             "version": "0.1"
           },
           "horizontalCellContentAlignment": {
@@ -56,6 +51,48 @@
           }
         }
       },
+      "ResponsiveDefinition": {
+        "description": "Defines responsive configuration of data table.",
+        "version": "0.1",
+        "properties": {
+          "width": {
+            "type": "string",
+            "description": "Specifies the width in pixels whe columns are applied.",
+            "version": "0.1"
+          },
+          "columns": {
+            "type": "string[]",
+            "description": "Specifies the list of columns that are displayed.",
+            "version": "0.1"
+          }
+        }
+      },
+      "ActionsDefinition": {
+        "description": "Defines actions that can be triggered of data table row.",
+        "version": "0.1",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Specifies the action id.",
+            "version": "0.1"
+          },
+          "title": {
+            "type": "string",
+            "description": "Specifies the action name.",
+            "version": "0.1"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Specifies the icon that will be shown for action.",
+            "version": "0.1"
+          },
+          "type": {
+            "type": "string",
+            "description": "Specifies the type of action that will be shown.",
+            "version": "0.1"
+          }
+        }
+      },
       "DataTable": {
         "description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
         "extends": "Element",
@@ -63,13 +100,25 @@
           "columns": {
             "type": "DataTableColumnDefinition[]",
             "description": "Defines the number of columns in the table, their sizes, and more.",
-            "required":true,
+            "required": true,
             "version": "0.1"
           },
-          "columnsToDisplay":{
-            "type": "string[]",
-            "description": "Specifies column ids to be displayed.",
+          "responsive": {
+            "type": "ResponsiveDefinition[]",
+            "description": "Defines visible columns when column width changes.",
             "required": true,
+            "version": "0.1"
+          },
+          "actions": {
+            "type": "ActionsDefinition[]",
+            "description": "Defines the actions that can be triggered on data table.",
+            "required": true,
+            "version": "0.1"
+          },
+          "showFilter": {
+            "type": "boolean",
+            "description": "Specifies whether the header of the data table should be shown.",
+            "default": true,
             "version": "0.1"
           },
           "showHeader": {
@@ -90,10 +139,10 @@
             "default": true,
             "version": "0.1"
           },
-          "gridStyle": {
+          "headerStyle": {
             "type": "ContainerStyle?",
             "description": "Defines the style of the grid. This property currently only controls the grid’s color.",
-            "default":"default",
+            "default": "default",
             "version": "0.1"
           },
           "horizontalCellContentAlignment": {
