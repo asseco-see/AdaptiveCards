@@ -7084,6 +7084,10 @@ export class GlobalRegistry {
 				continue;
 			}
 
+			if (definitions[definitionKey].classType === 'Class') {
+				continue;
+			}
+
 			const existingElement = registry.findByName(definitionKey);
 			if (existingElement && !(existingElement.objectType as any)['ac_isExtension']) {
 				this.addProperties(definitions, definition, existingElement.objectType);

@@ -8,7 +8,7 @@ export function extractionElementsAndActionsFromExtension(extensionObject: any):
 		const extensionType = definitions[definitionsName].extends ? definitions[definitionsName].extends.toLowerCase() : null;
 		const classType = definitions[definitionsName].classType ? definitions[definitionsName].classType.toLowerCase() : null;
 
-		if (classType === 'enum') {
+		if (classType === 'enum' || classType === 'class') {
 			actions[definitionsName] = definitions[definitionsName];
 			elements[definitionsName] = definitions[definitionsName];
 			return;
