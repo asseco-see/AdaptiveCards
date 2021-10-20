@@ -18,6 +18,7 @@
       "DataTableColumn": {
         "description": "Defines the characteristics of a column in a DataTable element.",
         "version": "0.1",
+				"extends": "Element",
         "properties": {
           "id": {
             "type": "string",
