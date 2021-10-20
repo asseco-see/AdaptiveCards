@@ -5,11 +5,25 @@
 	"propertyPrefix": "asseco",
 	"contributes": {
 		"definitions": {
+			"HrefTarget": {
+				"classType": "Enum",
+				"type": "HrefTarget",
+				"values": [
+					"_blank",
+					"_self",
+					"_parent",
+					"_top"
+				]
+			},
 			"Image": {
 				"properties": {
 					"href": {
 						"type": "uri-reference",
 						"description": "The URL that represents hyperlink bind to image."
+					},
+					"hrefTarget": {
+						"type": "HrefTarget",
+						"description": "Defines way of opening hyperlink."
 					}
 				}
 			}
