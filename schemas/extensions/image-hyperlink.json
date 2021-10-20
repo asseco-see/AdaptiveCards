@@ -21,7 +21,7 @@
 						"type": "uri-reference",
 						"description": "The URL that represents hyperlink bind to image."
 					},
-					"hrefTarget": {
+					"target": {
 						"type": "HrefTarget",
 						"description": "Defines way of opening hyperlink."
 					}
