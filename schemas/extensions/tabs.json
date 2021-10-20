@@ -9,6 +9,8 @@
 	"contributes": {
 		"definitions": {
 			"Tab": {
+				"classType": "Class",
+				"type": "Tab",
 				"description": "Defines a container that is part of a TabSet.",
 				"properties": {
 					"type": {
@@ -36,9 +38,7 @@
 						"description": "A unique identifier associated with the element.",
 						"version": "0.1"
 					}
-				},
-				"type": "object",
-				"additionalProperties": false
+				}
 			},
 			"TabSet": {
 				"description": "TabSet allows to display content through various tabs.",
@@ -70,9 +70,7 @@
 						"version": "0.1"
 					}
 				},
-				"type": "object",
-				"extends": "Element",
-				"additionalProperties": false
+				"extends": "Element"
 			}
 		}
 	},

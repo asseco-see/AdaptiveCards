@@ -1,69 +1,72 @@
 {
-  "id": "file-upload",
-  "version": "0.1",
-  "elementPrefix": "aseeco",
-  "propertyPrefix": "",
-  "supports": {
-    "javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
-  },
-  "contributes": {
-    "definitions": {
-      "FileUploadMode": {
-        "classType": "Enum",
-        "type": "FileUploadMode",
-        "values": ["content", "screens"]
-      },
-      "Input.FileUpload": {
-        "description": "Allows a user to upload a file.",
-        "extends": "Input",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed.",
-            "version": "0.1",
-            "required": true
-          },
-          "mode": {
-            "type": "FileUploadMode",
-            "description": "File upload mode. Controls where uploaded file should end.",
-            "version": "0.1",
-            "default": "content",
-            "required": false
-          },
-          "multiple": {
-            "type": "boolean",
-            "description": "Controls whether multiple file upload is allowed. If true, maximum 5 files are allowed.",
-            "version": "0.1",
-            "default": false,
-            "required": false
-          },
-          "accept": {
-            "type": "string[]",
-            "description": "Controls what file extensions are allowed. Extensions must start with \".\".",
-            "version": "0.1",
-            "required": false
-          },
-          "repoName": {
-            "type": "string",
-            "description": "Controls the name of the repository. Used within \"content\" upload mode.",
-            "version": "0.1",
-            "required": false
-          },
-          "folderPath": {
-            "type": "string",
-            "description": "Controls the folder path. Used within \"content\" upload mode.",
-            "version": "0.1",
-            "required": false
-          },
-          "style": {
-            "type": "ActionStyle",
-            "description": "Controls the style of remove file action.",
-            "version": "0.1",
-            "default": "default",
-            "required": false
-          }
-        }
-      }
-    }
-  }
+	"id": "file-upload",
+	"version": "0.1",
+	"elementPrefix": "aseeco",
+	"propertyPrefix": "",
+	"supports": {
+		"javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+	},
+	"contributes": {
+		"definitions": {
+			"FileUploadMode": {
+				"classType": "Enum",
+				"type": "FileUploadMode",
+				"values": [
+					"content",
+					"screens"
+				]
+			},
+			"Input.FileUpload": {
+				"description": "Allows a user to upload a file.",
+				"extends": "Input",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed.",
+						"version": "0.1",
+						"required": true
+					},
+					"mode": {
+						"type": "FileUploadMode",
+						"description": "File upload mode. Controls where uploaded file should end.",
+						"version": "0.1",
+						"default": "content",
+						"required": false
+					},
+					"multiple": {
+						"type": "boolean",
+						"description": "Controls whether multiple file upload is allowed. If true, maximum 5 files are allowed.",
+						"version": "0.1",
+						"default": false,
+						"required": false
+					},
+					"accept": {
+						"type": "string[]",
+						"description": "Controls what file extensions are allowed. Extensions must start with \".\".",
+						"version": "0.1",
+						"required": false
+					},
+					"repoName": {
+						"type": "string",
+						"description": "Controls the name of the repository. Used within \"content\" upload mode.",
+						"version": "0.1",
+						"required": false
+					},
+					"folderPath": {
+						"type": "string",
+						"description": "Controls the folder path. Used within \"content\" upload mode.",
+						"version": "0.1",
+						"required": false
+					},
+					"style": {
+						"type": "ActionStyle",
+						"description": "Controls the style of remove file action.",
+						"version": "0.1",
+						"default": "default",
+						"required": false
+					}
+				}
+			}
+		}
+	}
 }

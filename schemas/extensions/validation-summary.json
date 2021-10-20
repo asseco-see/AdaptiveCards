@@ -48,12 +48,10 @@
 						"description": "A unique identifier associated with the element.",
 						"version": "0.1"
 					}
-				},
-				"additionalProperties": false
+				}
 			},
 			"ValidationSummary": {
 				"description": "Allows a user to display validation summary with different severity",
-				"type": "object",
 				"extends": "Element",
 				"properties": {
 					"id": {

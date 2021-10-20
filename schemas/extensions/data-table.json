@@ -1,35 +1,35 @@
 {
-  "id": "data-table",
-  "version": "0.1",
-  "elementPrefix": "",
-  "propertyPrefix": "asseco",
-  "contributes": {
-    "definitions": {
+	"id": "data-table",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
 			"DataTableColumnFormat": {
-        "classType": "Enum",
-        "type": "DataTableColumnType",
-        "values": [
+				"classType": "Enum",
+				"type": "DataTableColumnType",
+				"values": [
 					"text",
 					"date",
 					"money",
 					"image"
 				]
-      },
-      "DataTableColumn": {
-        "description": "Defines the characteristics of a column in a DataTable element.",
-        "version": "0.1",
+			},
+			"DataTableColumn": {
+				"description": "Defines the characteristics of a column in a DataTable element.",
+				"version": "0.1",
 				"extends": "Element",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Specifies the id of column.",
-            "version": "0.1"
-          },
-          "title": {
-            "type": "string",
-            "description": "Specifies the title of column.",
-            "version": "0.1"
-          },
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Specifies the id of column.",
+						"version": "0.1"
+					},
+					"title": {
+						"type": "string",
+						"description": "Specifies the title of column.",
+						"version": "0.1"
+					},
 					"cell": {
 						"type": "string",
 						"description": "Specifies the cell value expression.",
@@ -41,143 +41,149 @@
 						"version": "0.1",
 						"default": "text"
 					},
-          "sortable": {
-            "type": "boolean",
-            "description": "Specifies if the column is sortable.",
-            "version": "0.1"
-          },
-          "width": {
-            "type": "number",
-            "description": "Specifies the width of the column. Width represents the weight of the column relative to the other columns in the table.",
-            "version": "0.1"
-          },
+					"sortable": {
+						"type": "boolean",
+						"description": "Specifies if the column is sortable.",
+						"version": "0.1"
+					},
+					"width": {
+						"type": "number",
+						"description": "Specifies the width of the column. Width represents the weight of the column relative to the other columns in the table.",
+						"version": "0.1"
+					},
 					"translate": {
-            "type": "boolean",
-            "description": "Specifies whether the column should be translated.",
-            "version": "0.1"
-          },
-          "cellContentAlignment": {
-            "type": "HorizontalAlignment",
-            "description": "Controls how the content of all cells in the column is horizontally aligned by default. This value overrides the setting at the table level.",
-            "version": "0.1"
-          }
-        }
-      },
-      "ResponsiveConfiguration": {
-        "description": "Defines responsive configuration of data table.",
-        "version": "0.1",
-        "properties": {
-          "width": {
-            "type": "string",
-            "description": "Specifies the width in pixels when columns are applied.",
-            "version": "0.1"
-          },
-          "columns": {
-            "type": "string[]",
-            "description": "Specifies the list of columns that are displayed.",
-            "version": "0.1"
-          }
-        }
-      },
+						"type": "boolean",
+						"description": "Specifies whether the column should be translated.",
+						"version": "0.1"
+					},
+					"cellContentAlignment": {
+						"type": "HorizontalAlignment",
+						"description": "Controls how the content of all cells in the column is horizontally aligned by default. This value overrides the setting at the table level.",
+						"version": "0.1"
+					}
+				}
+			},
+			"ResponsiveConfiguration": {
+				"classType": "Class",
+				"type": "ResponsiveConfiguration",
+				"description": "Defines responsive configuration of data table.",
+				"version": "0.1",
+				"properties": {
+					"width": {
+						"type": "string",
+						"description": "Specifies the width in pixels when columns are applied.",
+						"version": "0.1"
+					},
+					"columns": {
+						"type": "string[]",
+						"description": "Specifies the list of columns that are displayed.",
+						"version": "0.1"
+					}
+				}
+			},
 			"DataTablePaging": {
-        "description": "Defines paging configuration of data table.",
-        "version": "0.1",
-        "properties": {
-          "pageSize": {
-            "type": "number",
-            "description": "Specifies initial page size value.",
-            "version": "0.1"
-          },
-          "pageSizeOptions": {
-            "type": "number[]",
-            "description": "Specifies the list of available page size options.",
-            "version": "0.1"
-          }
-        }
-      },
-      "DataTableAction": {
-        "description": "Defines actions that can be triggered of data table row.",
-        "version": "0.1",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Specifies the action id.",
-            "version": "0.1"
-          },
-          "title": {
-            "type": "string",
-            "description": "Specifies the action name.",
-            "version": "0.1"
-          },
-          "icon": {
-            "type": "string",
-            "description": "Specifies the icon that will be shown for action.",
-            "version": "0.1"
-          },
-          "type": {
-            "type": "string",
-            "description": "Specifies the type of action that will be shown.",
-            "version": "0.1"
-          }
-        }
-      },
-      "DataTable": {
-        "description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
-        "extends": "Element",
-        "properties": {
-          "columns": {
-            "type": "DataTableColumn[]",
-            "description": "Defines the number of columns in the table, their sizes, and more.",
-            "required": true,
-            "version": "0.1"
-          },
-          "responsive": {
-            "type": "ResponsiveConfiguration[]",
-            "description": "Defines visible columns when column width changes.",
-            "required": true,
-            "version": "0.1"
-          },
-          "actions": {
-            "type": "DataTableAction[]",
-            "description": "Defines the actions that can be triggered on data table.",
-            "version": "0.1"
-          },
+				"classType": "Class",
+				"type": "DataTablePaging",
+				"description": "Defines paging configuration of data table.",
+				"version": "0.1",
+				"properties": {
+					"pageSize": {
+						"type": "number",
+						"description": "Specifies initial page size value.",
+						"version": "0.1"
+					},
+					"pageSizeOptions": {
+						"type": "number[]",
+						"description": "Specifies the list of available page size options.",
+						"version": "0.1"
+					}
+				}
+			},
+			"DataTableAction": {
+				"classType": "Class",
+				"type": "DataTableAction",
+				"description": "Defines actions that can be triggered of data table row.",
+				"version": "0.1",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Specifies the action id.",
+						"version": "0.1"
+					},
+					"title": {
+						"type": "string",
+						"description": "Specifies the action name.",
+						"version": "0.1"
+					},
+					"icon": {
+						"type": "string",
+						"description": "Specifies the icon that will be shown for action.",
+						"version": "0.1"
+					},
+					"type": {
+						"type": "string",
+						"description": "Specifies the type of action that will be shown.",
+						"version": "0.1"
+					}
+				}
+			},
+			"DataTable": {
+				"description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
+				"extends": "Element",
+				"properties": {
+					"columns": {
+						"type": "DataTableColumn[]",
+						"description": "Defines the number of columns in the table, their sizes, and more.",
+						"required": true,
+						"version": "0.1"
+					},
+					"responsive": {
+						"type": "ResponsiveConfiguration[]",
+						"description": "Defines visible columns when column width changes.",
+						"required": true,
+						"version": "0.1"
+					},
+					"actions": {
+						"type": "DataTableAction[]",
+						"description": "Defines the actions that can be triggered on data table.",
+						"version": "0.1"
+					},
 					"paging": {
-            "type": "DataTablePaging",
-            "description": "Defines data table paging configuration.",
-            "version": "0.1"
-          },
-          "showFilter": {
-            "type": "boolean",
-            "description": "Specifies whether the data table filter should be shown.",
-            "default": true,
-            "version": "0.1"
-          },
-          "stickyHeader": {
-            "type": "boolean",
-            "description": "Specifies whether the header of the data table should stick to the top.",
-            "default": false,
-            "version": "0.1"
-          },        
-          "headerStyle": {
-            "type": "ContainerStyle?",
-            "description": "Defines the style of the table header. This property currently only controls the headers’s color.",
-            "default": "default",
-            "version": "0.1"
-          },
-          "cellContentAlignment": {
-            "type": "HorizontalAlignment?",
-            "description": "Controls how the content of all cells is horizontally aligned by default.",
-            "version": "0.1"
-          },
-          "dataSource": {
-            "type": "DataSource",
-            "description": "Data source for data table element.",
-            "version": "0.1",
+						"type": "DataTablePaging",
+						"description": "Defines data table paging configuration.",
+						"version": "0.1"
+					},
+					"showFilter": {
+						"type": "boolean",
+						"description": "Specifies whether the data table filter should be shown.",
+						"default": true,
+						"version": "0.1"
+					},
+					"stickyHeader": {
+						"type": "boolean",
+						"description": "Specifies whether the header of the data table should stick to the top.",
+						"default": false,
+						"version": "0.1"
+					},
+					"headerStyle": {
+						"type": "ContainerStyle?",
+						"description": "Defines the style of the table header. This property currently only controls the headers’s color.",
+						"default": "default",
+						"version": "0.1"
+					},
+					"cellContentAlignment": {
+						"type": "HorizontalAlignment?",
+						"description": "Controls how the content of all cells is horizontally aligned by default.",
+						"version": "0.1"
+					},
+					"dataSource": {
+						"type": "DataSource",
+						"description": "Data source for data table element.",
+						"version": "0.1",
 						"required": true
-          }
-        }
-      }
-    }
-  }
+					}
+				}
+			}
+		}
+	}
 }

@@ -6,7 +6,6 @@
 	"contributes": {
 		"definitions": {
 			"Dialog": {
-				"type": "object",
 				"extends": "Element",
 				"description": "Dialog is a pop-up container.",
 				"properties": {

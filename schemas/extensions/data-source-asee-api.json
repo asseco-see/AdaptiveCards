@@ -1,40 +1,42 @@
 {
-  "id": "data-source-asee-api",
-  "version": "0.1",
-  "elementPrefix": "",
-  "propertyPrefix": "asseco",
-  "contributes": {
-    "definitions": {
-      "DataSource.AseeAPI": {
-        "description": "Asee API DataSource is data source for Asse REST APIs",
-        "properties": {
-          "baseUrl": {
-            "type": "string",
-            "description": "Base Url of service",
-            "version": "0.1"
-          },
-          "serviceName": {
-            "type": "string",
-            "description": "Specifies the name of service. For example `\"party\"`",
-            "version": "0.1"
-          },
-          "serviceVersion": {
-            "type": "string",
-            "description": "Specifies the service version. For example `\"v1\"`",
-            "version": "0.1"
-          },
-          "serviceEndpoint": {
-            "type": "string",
-            "description": "Specifies the endpoint for service. For example `\"parties/search?q=\"`",
-            "version": "0.1"
-          },
-          "responseArrayPath": {
-            "type": "string",
-            "description": "Specifies the root path for response array. For example '\"parties\"'",
-            "version": "0.1"
-          }
-        }
-      }
-    }
-  }
+	"id": "data-source-asee-api",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"DataSource.AseeAPI": {
+				"classType": "Class",
+				"type": "DataSource.AseeAPI",
+				"description": "Asee API DataSource is data source for Asse REST APIs",
+				"properties": {
+					"baseUrl": {
+						"type": "string",
+						"description": "Base Url of service",
+						"version": "0.1"
+					},
+					"serviceName": {
+						"type": "string",
+						"description": "Specifies the name of service. For example `\"party\"`",
+						"version": "0.1"
+					},
+					"serviceVersion": {
+						"type": "string",
+						"description": "Specifies the service version. For example `\"v1\"`",
+						"version": "0.1"
+					},
+					"serviceEndpoint": {
+						"type": "string",
+						"description": "Specifies the endpoint for service. For example `\"parties/search?q=\"`",
+						"version": "0.1"
+					},
+					"responseArrayPath": {
+						"type": "string",
+						"description": "Specifies the root path for response array. For example '\"parties\"'",
+						"version": "0.1"
+					}
+				}
+			}
+		}
+	}
 }
