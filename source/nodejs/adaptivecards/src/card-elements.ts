@@ -7084,7 +7084,7 @@ export class GlobalRegistry {
 				continue;
 			}
 
-			if (definitions[definitionKey].classType === 'Class') {
+			if (definitions[definitionKey] && definitions[definitionKey].classType === 'Class') {
 				continue;
 			}
 
