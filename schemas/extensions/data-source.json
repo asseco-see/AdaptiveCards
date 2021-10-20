@@ -25,7 +25,7 @@
 				]
 			},
 			"Param": {
-				"classType": "Enum",
+				"classType": "Class",
 				"type": "Param",
 				"properties": {
 					"name": {
@@ -52,7 +52,7 @@
 				}
 			},
 			"DataSource": {
-				"classType": "Enum",
+				"classType": "Class",
 				"type": "DataSource",
 				"description": "DataSource is an abstraction for using local data (arrays of JavaScript objects) or remote data (web services returning JSON or XML)",
 				"properties": {
