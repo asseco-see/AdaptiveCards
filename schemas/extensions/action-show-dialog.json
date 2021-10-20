@@ -1,0 +1,21 @@
+{
+	"id": "action-show-dialog",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"Action.ShowDialog": {
+				"extends": "Action",
+				"description": "Allows a user to show Dialog container",
+				"properties": {
+					"dialogId": {
+						"type": "string",
+						"description": "Dialog id to be shown",
+						"version": "0.1"
+					}
+				}
+			}
+		}
+	}
+}

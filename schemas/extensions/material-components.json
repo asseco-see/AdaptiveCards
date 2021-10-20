@@ -13,6 +13,63 @@
 					"fill",
 					"standard"
 				]
+			},
+			"MaterialButtonType": {
+				"classType": "Enum",
+				"type": "MaterialButtonType",
+				"values": [
+					"standard",
+					"raised",
+					"flat",
+					"icon",
+					"fab",
+					"mini-fab"
+				]
+			},
+			"Action.OpenUrl": {
+				"properties": {
+					"buttonType": {
+						"type": "MaterialButtonType",
+						"description": "Material button type of the action",
+						"version": "0.1"
+					}
+				}
+			},
+			"Action.ShowCard": {
+				"properties": {
+					"buttonType": {
+						"type": "MaterialButtonType",
+						"description": "Material button type of the action",
+						"version": "0.1"
+					}
+				}
+			},
+			"Action.Submit": {
+				"properties": {
+					"buttonType": {
+						"type": "MaterialButtonType",
+						"description": "Material button type of the action",
+						"version": "0.1"
+					}
+				}
+			},
+			"Action.ToggleVisibility": {
+				"properties": {
+					"buttonType": {
+						"type": "MaterialButtonType",
+						"description": "Material button type of the action",
+						"version": "0.1"
+					}
+				}
+			},
+			"Action.ShowDialog": {
+				"properties": {
+					"buttonType": {
+						"type": "MaterialButtonType",
+						"description": "Material button type of the action",
+						"version": "0.1"
+					}
+				}
 			}
 		}
 	},
@@ -23,6 +80,12 @@
 				"description": "Appearance type of the material component",
 				"version": "0.1",
 				"default": "outline"
+			},
+			"buttonType": {
+				"type": "MaterialButtonType",
+				"description": "Default material button type of all actions",
+				"version": "0.1",
+				"default": "raised"
 			}
 		}
 	}
