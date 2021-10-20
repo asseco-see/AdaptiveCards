@@ -18,12 +18,13 @@
 				"classType": "Enum",
 				"type": "MaterialButtonType",
 				"values": [
-					"standard",
+					"basic",
 					"raised",
+					"stroked",
 					"flat",
 					"icon",
 					"fab",
-					"mini-fab"
+					"miniFab"
 				]
 			},
 			"Action.OpenUrl": {
