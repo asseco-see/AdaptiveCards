@@ -26,9 +26,9 @@
 					},
 					"hideCloseButton": {
 						"type": "boolean",
-						"description":  "If `true`, hides the default close button.",
+						"description": "If `true`, hides the default close button.",
 						"version": "0.1",
-						"default": "false"
+						"default": false
 					},
 					"items": {
 						"type": "Element[]",
