@@ -27,6 +27,33 @@
 					"miniFab"
 				]
 			},
+			"MaterialDialogConfig": {
+				"type": "object",
+				"description": "Controls dialogs styling.",
+				"version": "0.1",
+				"properties": {
+					"actionsOrientation": {
+						"type": "string",
+						"description": "Controls how buttons are laid out in dialog.",
+						"default": "horizontal",
+						"enum": [
+							"horizontal",
+							"vertical"
+						]
+					},
+					"actionsAlignment": {
+						"type": "string",
+						"description": "Control layout of buttons in dialog.",
+						"default": "stretch",
+						"enum": [
+							"left",
+							"center",
+							"right",
+							"stretch"
+						]
+					}
+				}
+			},
 			"Action.OpenUrl": {
 				"properties": {
 					"buttonType": {
@@ -157,37 +184,20 @@
 		"properties": {
 			"appearance": {
 				"type": "MaterialComponentAppearance",
-				"description": "Appearance type of the material component",
+				"description": "Appearance type of the material component.",
 				"version": "0.1",
 				"default": "outline"
 			},
 			"buttonType": {
 				"type": "MaterialButtonType",
-				"description": "Default material button type of all actions",
+				"description": "Default material button type of all actions.",
 				"version": "0.1",
 				"default": "raised"
 			},
 			"dialogs": {
-				"actionsOrientation": {
-					"type": "string",
-					"description": "Controls how buttons are laid out in dialog.",
-					"default": "horizontal",
-					"enum": [
-						"horizontal",
-						"vertical"
-					]
-				},
-				"actionsAlignment": {
-					"type": "string",
-					"description": "Control layout of buttons in dialog.",
-					"default": "stretch",
-					"enum": [
-						"left",
-						"center",
-						"right",
-						"stretch"
-					]
-				}
+				"type": "MaterialDialogConfig",
+				"description": "Material dialogs config.",
+				"version": "0.1"
 			}
 		}
 	}
