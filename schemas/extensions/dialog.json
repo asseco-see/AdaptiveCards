@@ -9,56 +9,66 @@
 				"extends": "Element",
 				"description": "Dialog is a pop-up container.",
 				"properties": {
+					"title": {
+						"type": "string",
+						"description": "The title of the Dialog.",
+						"version": "0.1"
+					},
+					"icon": {
+						"type": "string",
+						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
+						"version": "0.1"
+					},
+					"closeButtonText": {
+						"type": "string",
+						"description": "Specifies the default close button text.",
+						"version": "0.1"
+					},
+					"hideCloseButton": {
+						"type": "boolean",
+						"description":  "If `true`, hides the default close button.",
+						"version": "0.1",
+						"default": "false"
+					},
 					"items": {
 						"type": "Element[]",
 						"description": "The card elements to render inside the `Dialog`.",
 						"required": true
 					},
-					"selectAction": {
-						"type": "ISelectAction",
-						"description": "An Action that will be invoked when the `Dialog` is tapped or selected. `Action.ShowCard` is not supported.",
-						"version": "0.1"
-					},
-					"style": {
-						"type": "ContainerStyle?",
-						"description": "Style hint for `Dialog`."
-					},
-					"verticalContentAlignment": {
-						"type": "VerticalContentAlignment",
-						"description": "Defines how the content should be aligned vertically within the container.",
-						"default": "top",
-						"version": "0.1"
-					},
-					"bleed": {
-						"type": "boolean",
-						"description": "Determines whether the element should bleed through its parent's padding.",
-						"version": "0.1"
-					},
-					"backgroundImage": {
-						"type": "BackgroundImage",
-						"description": "Specifies the background image. Acceptable formats are PNG, JPEG, and GIF",
-						"version": "0.1",
-						"shorthands": [
-							{
-								"type": "uri-reference",
-								"description": "The URL (or data url) to use as the background image. Supports data URI."
-							}
-						]
+					"actions": {
+						"description": "The Actions to show in the dialogs's action bar.",
+						"type": "Action[]"
 					},
 					"minHeight": {
 						"type": "string",
-						"description": "Specifies the minimum height of the container in pixels, like `\"300px\"`.",
+						"description": "Specifies the minimum height of the dialog in percentage or pixels, like `\"60%\"`.",
 						"version": "0.1",
 						"examples": [
-							"300px"
+							"60%"
 						]
 					},
 					"minWidth": {
 						"type": "string",
-						"description": "Specifies the minimum width of the container in pixels, like `\"400px\"`.",
+						"description": "Specifies the minimum width of the dialog in percentage or pixels, like `\"60%\"`.",
 						"version": "0.1",
 						"examples": [
-							"400px"
+							"60%"
+						]
+					},
+					"maxHeight": {
+						"type": "string",
+						"description": "Specifies the maximum height of the dialog in percentage or pixels, like `\"60%\"`.",
+						"version": "0.1",
+						"examples": [
+							"60%"
+						]
+					},
+					"maxWidth": {
+						"type": "string",
+						"description": "Specifies the maximum width of the dialog in percentage or pixels, like `\"60%\"`.",
+						"version": "0.1",
+						"examples": [
+							"60%"
 						]
 					}
 				}

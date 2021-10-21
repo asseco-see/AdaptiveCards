@@ -36,7 +36,7 @@
 					},
 					"icon": {
 						"type": "string",
-						"description": "Material icon name. For more info checkout https://fonts.google.com/icons",
+						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
 						"version": "0.1"
 					}
 				}
@@ -50,7 +50,7 @@
 					},
 					"icon": {
 						"type": "string",
-						"description": "Material icon name. For more info checkout https://fonts.google.com/icons",
+						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
 						"version": "0.1"
 					}
 				}
@@ -64,7 +64,7 @@
 					},
 					"icon": {
 						"type": "string",
-						"description": "Material icon name. For more info checkout https://fonts.google.com/icons",
+						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
 						"version": "0.1"
 					}
 				}
@@ -78,21 +78,7 @@
 					},
 					"icon": {
 						"type": "string",
-						"description": "Material icon name. For more info checkout https://fonts.google.com/icons",
-						"version": "0.1"
-					}
-				}
-			},
-			"Action.ShowDialog": {
-				"properties": {
-					"buttonType": {
-						"type": "MaterialButtonType",
-						"description": "Material button type of the action",
-						"version": "0.1"
-					},
-					"icon": {
-						"type": "string",
-						"description": "Material icon name. For more info checkout https://fonts.google.com/icons",
+						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
 						"version": "0.1"
 					}
 				}
