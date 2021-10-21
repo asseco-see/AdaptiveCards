@@ -25,7 +25,8 @@
 					"icon",
 					"fab",
 					"miniFab"
-				]
+				],
+				"default": "raised"
 			},
 			"MaterialDialogConfig": {
 				"type": "object",
@@ -183,21 +184,13 @@
 	"hostConfig": {
 		"properties": {
 			"appearance": {
-				"type": "MaterialComponentAppearance",
-				"description": "Appearance type of the material component.",
-				"version": "0.1",
-				"default": "outline"
+				"$ref": "#/contributes/definitions/MaterialComponentAppearance"
 			},
 			"buttonType": {
-				"type": "MaterialButtonType",
-				"description": "Default material button type of all actions.",
-				"version": "0.1",
-				"default": "raised"
+				"$ref": "#/contributes/definitions/MaterialButtonType"
 			},
 			"dialogs": {
-				"type": "MaterialDialogConfig",
-				"description": "Material dialogs config.",
-				"version": "0.1"
+				"$ref": "#/contributes/definitions/MaterialDialogConfig"
 			}
 		}
 	}
