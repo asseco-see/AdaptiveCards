@@ -25,35 +25,7 @@
 					"icon",
 					"fab",
 					"miniFab"
-				],
-				"default": "raised"
-			},
-			"MaterialDialogConfig": {
-				"type": "object",
-				"description": "Controls dialogs styling.",
-				"version": "0.1",
-				"properties": {
-					"actionsOrientation": {
-						"type": "string",
-						"description": "Controls how buttons are laid out in dialog.",
-						"default": "horizontal",
-						"enum": [
-							"horizontal",
-							"vertical"
-						]
-					},
-					"actionsAlignment": {
-						"type": "string",
-						"description": "Control layout of buttons in dialog.",
-						"default": "stretch",
-						"enum": [
-							"left",
-							"center",
-							"right",
-							"stretch"
-						]
-					}
-				}
+				]
 			},
 			"Action.OpenUrl": {
 				"properties": {
@@ -184,13 +156,21 @@
 	"hostConfig": {
 		"properties": {
 			"appearance": {
-				"$ref": "#/contributes/definitions/MaterialComponentAppearance"
+				"type": "MaterialComponentAppearance",
+				"description": "Appearance type of the material component",
+				"version": "0.1",
+				"default": "outline"
 			},
 			"buttonType": {
-				"$ref": "#/contributes/definitions/MaterialButtonType"
+				"type": "MaterialButtonType",
+				"description": "Default material button type of all actions",
+				"version": "0.1",
+				"default": "raised"
 			},
 			"dialogs": {
-				"$ref": "#/contributes/definitions/MaterialDialogConfig"
+				"type": "MaterialDialogConfig",
+				"description": "Material dialogs configuration.",
+				"version": "0.1"
 			}
 		}
 	}
