@@ -125,15 +125,15 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 					const value = (existingElement.sourceType as any).prototype[key];
 					if (value instanceof PropertyDefinition) {
 						if (value instanceof NumProperty) {
-							(existingElement.peerType as any).extensions[key] = new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+							(existingElement.peerType as any).extensions[key] = new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, null, true);
 						} else if (value instanceof StringProperty) {
-							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, true, null, true);
 						} else if (value instanceof BoolProperty) {
-							(existingElement.peerType as any).extensions[key] = new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+							(existingElement.peerType as any).extensions[key] = new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, true);
 						} else if (value instanceof EnumProperty) {
-							(existingElement.peerType as any).extensions[key] = new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType);
+							(existingElement.peerType as any).extensions[key] = new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType, true);
 						} else {
-							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name);
+							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, true, null, true);
 						}
 					}
 				}
