@@ -916,7 +916,7 @@ export class CardDesigner extends Designer.DesignContext {
 	constructor(hostContainers: Array<HostContainer> = null) {
 		super();
 
-		Adaptive.GlobalSettings.enableFullJsonRoundTrip = true;
+		Adaptive.GlobalSettings.enableFullJsonRoundTrip = false;
 		Adaptive.GlobalSettings.allowPreProcessingPropertyValues = true;
 		Adaptive.GlobalSettings.setTabIndexAtCardRoot = false;
 
