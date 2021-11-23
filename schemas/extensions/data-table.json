@@ -153,10 +153,9 @@
 						"description": "Defines data table paging configuration.",
 						"version": "0.1"
 					},
-					"showFilter": {
-						"type": "boolean",
-						"description": "Specifies whether the data table filter should be shown.",
-						"default": true,
+					"filterDialogId": {
+						"type": "string",
+						"description": "Specifies id of the filter dialog.",
 						"version": "0.1"
 					},
 					"stickyHeader": {
