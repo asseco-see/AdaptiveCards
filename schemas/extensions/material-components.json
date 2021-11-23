@@ -5,9 +5,9 @@
 	"propertyPrefix": "asseco",
 	"contributes": {
 		"definitions": {
-			"DialogKind": {
+			"DialogStyle": {
 				"classType": "Enum",
-				"type": "DialogKind",
+				"type": "DialogStyle",
 				"values": [
 					"default",
 					"filter"
@@ -100,15 +100,10 @@
 						"description": "The title of the Dialog.",
 						"version": "0.1"
 					},
-					"kind": {
-						"type": "DialogKind",
-						"description": "Specifies dialog kind.",
+					"style": {
+						"type": "DialogStyle",
+						"description": "Specifies dialog style.",
 						"default": "default",
-						"version": "0.1"
-					},
-					"applyFilterButtonText": {
-						"type": "string",
-						"description": "Specifies the default apply filter button text, if dialog 'kind' is set to 'filter'.",
 						"version": "0.1"
 					},
 					"icon": {
