@@ -5501,9 +5501,9 @@ export class GenericInput extends Input {
 		inputElement.style.alignItems = "center";
 		inputElement.style.fontWeight = "bold";
 		inputElement.style.width = "100%";
-		
+
 		inputElement.className = this.hostConfig.makeCssClassName("ac-genericInput");
-		inputElement.innerText = this.getJsonTypeName() + (this.id ? ' - ' + this.id: '');
+		inputElement.innerText = this.getJsonTypeName() + (this.id ? ' - ' + this.id : '');
 
 		return inputElement;
 	}
@@ -5519,7 +5519,8 @@ export class GenericInput extends Input {
 
 export class GenericContainer extends StylableCardElementContainer {
 	[name: string]: any;
-
+	arrayTypes: string[] = [];
+	objectTypes: string[] = [];
 	constructor() {
 		super();
 	}
@@ -5539,6 +5540,40 @@ export class GenericContainer extends StylableCardElementContainer {
 		return true;
 	}
 
+	protected internalParse(source: any, context: SerializationContext) {
+		super.internalParse(source, context);
+		Object.keys(source).forEach((key: string) => {
+			let jsonItems = source[key];
+			if (Array.isArray(jsonItems)) {
+				this[key] = [];
+				this.arrayTypes.push(key);
+				for (let item of jsonItems) {
+					let element = context.parseElement(this, item, !this.isDesignMode());
+					if (element) {
+						this[key].push(element);
+					} else {
+						this[key].push(item);
+					}
+				}
+			} else if (typeof jsonItems === 'object' && jsonItems !== null) {
+				this[key] = jsonItems;
+				this.objectTypes.push(key);
+			}
+		});
+	}
+
+	internalToJSON(target: PropertyBag, context: SerializationContext) {
+		super.internalToJSON(target, context);
+		this.arrayTypes.forEach(x => {
+			context.serializeArray(target, x, this[x]);
+		});
+		this.objectTypes.forEach(x => {
+			context.serializeValue(target, x, this[x]);
+		});
+		// VUK
+
+	}
+
 	public internalRender(): HTMLElement | undefined {
 		let styleDefinition = this.getEffectiveStyleDefinition();
 		let foregroundCssColor = Utils.stringToCssColor(styleDefinition.foregroundColors.default.subtle);
@@ -5552,7 +5587,7 @@ export class GenericContainer extends StylableCardElementContainer {
 		element.style.fontWeight = "bold";
 		element.style.boxSizing = "border-box";
 		element.style.flexDirection = "column";
-		
+
 		const verticalContentAlignment = (this as any).verticalContentAlignment;
 		switch (verticalContentAlignment) {
 			default:
@@ -5562,12 +5597,12 @@ export class GenericContainer extends StylableCardElementContainer {
 			case Enums.VerticalAlignment.Bottom:
 				element.style.justifyContent = "flex-end";
 				break;
-				case Enums.VerticalAlignment.Top:
+			case Enums.VerticalAlignment.Top:
 				element.style.justifyContent = "flex-start";
 				break;
 		}
 
-		element.innerText = this.getJsonTypeName() + (this.id ? ' - ' + this.id: '');
+		element.innerText = this.getJsonTypeName() + (this.id ? ' - ' + this.id : '');
 
 		return element;
 	}
@@ -7046,6 +7081,12 @@ class InlineAdaptiveCard extends AdaptiveCard {
 
 export const genericList: any[] = [];
 
+export class SerializableElement extends SerializableObject {
+	protected getSchemaKey(): string {
+		return "any";
+	}
+
+}
 export class GlobalRegistry {
 	static populateWithDefaultElements(registry: CardObjectRegistry<CardElement>) {
 		registry.clear();
@@ -7131,7 +7172,7 @@ export class GlobalRegistry {
 			extensionObject.prototype.getJsonTypeName = function () {
 				return definitionKey;
 			};
-			
+
 			this.addProperties(definitions, definition, extensionObject);
 
 			genericList.push(extensionObject);
@@ -7157,10 +7198,14 @@ export class GlobalRegistry {
 				let decorator = property(new BoolProperty(Versions.v1_0, key));
 				decorator(extensionObject.prototype, key)
 			}
+			else if (definition[key].type === "boolean") {
+				extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
+				let decorator = property(new BoolProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key)
+			}
 			else {
 				const foundType = definitions[definition[key].type];
 				const commonType = (Enums as any)[definition[key].type];
-
 				if (foundType && foundType.classType === 'Enum') {
 					const enumObject: any = {};
 					for (let i = 0; i < foundType.values.length; i++) {
@@ -7173,7 +7218,8 @@ export class GlobalRegistry {
 					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[defaultEnumValue]);
 					const decorator = property(extensionObject.prototype[key + "Property"]);
 					decorator(extensionObject.prototype, key);
-				} else if (commonType) {
+				}
+				else if (commonType) {
 					const keys = Object.keys(commonType);
 					const numbers = keys.filter(Number);
 					const values = keys.filter(k => numbers.indexOf(k) === -1 && k !== '0');
@@ -7191,11 +7237,12 @@ export class GlobalRegistry {
 					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
 					const decorator = property(extensionObject.prototype[key + "Property"]);
 					decorator(extensionObject.prototype, key);
-				} else {
-					extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
-					let decorator = property(new StringProperty(Versions.v1_0, key));
-					decorator(extensionObject.prototype, key)
-				}
+				} 
+				// else {
+				// 	extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+				// 	let decorator = property(new StringProperty(Versions.v1_0, key));
+				// 	decorator(extensionObject.prototype, key)
+				// }
 			}
 		}
 	}

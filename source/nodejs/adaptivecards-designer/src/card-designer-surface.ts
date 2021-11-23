@@ -252,11 +252,12 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
 					const decorator = property(extensionObject.prototype[key + "Property"]);
 					decorator(extensionObject.prototype, key);
-				} else {
-					extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
-					const decorator = property(new StringProperty(Versions.v1_0, key));
-					decorator(extensionObject.prototype, key);
 				}
+				// else {
+				// 	extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+				// 	const decorator = property(new StringProperty(Versions.v1_0, key));
+				// 	decorator(extensionObject.prototype, key);
+				// }
 			}
 		}
 	}

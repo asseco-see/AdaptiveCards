@@ -189,7 +189,7 @@ export abstract class BaseSerializationContext {
                 if (item instanceof SerializableObject) {
                     serializedItem = item.toJSON(this);
                 }
-                else if (item.toJSON) {
+                else if (item && item.toJSON) {
                     serializedItem = item.toJSON();
                 }
                 else {
