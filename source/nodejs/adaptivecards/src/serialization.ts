@@ -132,9 +132,9 @@ export abstract class BaseSerializationContext {
 
     toJSONOriginalParam: any;
 
-    serializeValue(target: { [key: string]: any }, propertyName: string, propertyValue: any, defaultValue: any = undefined) {
+    serializeValue(target: { [key: string]: any }, propertyName: string, propertyValue: any, defaultValue: any = undefined, forceDeleteIfNullOrDefault: boolean = false) {
         if (propertyValue === null || propertyValue === undefined || propertyValue === defaultValue) {
-            if (!GlobalSettings.enableFullJsonRoundTrip) {
+            if (!GlobalSettings.enableFullJsonRoundTrip || forceDeleteIfNullOrDefault) {
                 delete target[propertyName];
             }
         }
@@ -259,8 +259,8 @@ export class PropertyDefinition {
         return source[this.name];
     }
 
-    toJSON(sender: SerializableObject, target: PropertyBag, value: any, context: BaseSerializationContext): void {
-        context.serializeValue(target, this.name, value, this.defaultValue);
+    toJSON(sender: SerializableObject, target: PropertyBag, value: any, context: BaseSerializationContext, forceDeleteIfNullOrDefault: boolean = false): void {
+        context.serializeValue(target, this.name, value, this.defaultValue, forceDeleteIfNullOrDefault);
     }
 
     readonly sequentialNumber: number;
@@ -617,7 +617,7 @@ export class SerializableObjectProperty extends PropertyDefinition {
             serializedValue = undefined;
         }
 
-        super.toJSON(sender, target, serializedValue, context);
+        super.toJSON(sender, target, serializedValue, context, true);
     }
 
     constructor(

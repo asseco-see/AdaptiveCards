@@ -627,7 +627,7 @@ export class ActionProperty extends PropertyDefinition {
 	}
 
 	toJSON(sender: SerializableObject, target: PropertyBag, value: Action | undefined, context: SerializationContext) {
-		context.serializeValue(target, this.name, value ? value.toJSON(context) : undefined);
+		context.serializeValue(target, this.name, value ? value.toJSON(context) : undefined, undefined, true);
 	}
 
 	constructor(
