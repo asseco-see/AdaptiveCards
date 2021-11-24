@@ -32,7 +32,7 @@ export abstract class HostContainer {
 			GlobalRegistry.populateWithExtension(this._elementsRegistry, elements);
 			GlobalRegistry.populateWithExtension(this._actionsRegistry, actions);
 		});
-		ExtensionRegistry.subscribe((schema) => {
+		ExtensionRegistry.subscribe(10, (schema) => {
 			const { elements, actions } = extractionElementsAndActionsFromExtension(schema);
 
 			GlobalRegistry.populateWithExtension(this._elementsRegistry, elements);

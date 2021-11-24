@@ -10,7 +10,15 @@ export interface ITypeRegistration<T extends SerializableObject> {
 
 export class CardObjectRegistry<T extends SerializableObject> {
     private _items: { [typeName: string]: ITypeRegistration<T> } = {};
+    private _schemas: any[] = [];
 
+
+    addSchema(schema: any) {
+        this._schemas.push(schema);
+    }
+    getSchemas() {
+        return this._schemas;
+    }
     findByName(typeName: string): ITypeRegistration<T> | undefined {
         return this._items.hasOwnProperty(typeName) ? this._items[typeName] : undefined;
     }
@@ -18,8 +26,8 @@ export class CardObjectRegistry<T extends SerializableObject> {
     clear() {
         this._items = {};
     }
-	// BORO
-     register(typeName: string, objectType: { new(): T }, schemaVersion: Version = Versions.v1_0) {
+    // BORO
+    register(typeName: string, objectType: { new(): T }, schemaVersion: Version = Versions.v1_0) {
         let registrationInfo = this.findByName(typeName);
 
         if (registrationInfo !== undefined) {

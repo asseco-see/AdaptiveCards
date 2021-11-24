@@ -17,6 +17,7 @@ import {
 import { CardObjectRegistry } from "./registry";
 import { Strings } from "./strings";
 import { mod11_2, mod97_10 } from "cdigit";
+import { ValidationEvent } from "./enums";
 
 export type CardElementHeight = "auto" | "stretch";
 
@@ -5459,7 +5460,7 @@ export abstract class StylableCardElementContainer extends CardElementContainer 
 }
 
 export class GenericAction extends Action {
-	
+
 	arrayTypes: string[] = [];
 	objectTypes: string[] = [];
 	getJsonTypeName(): string {
@@ -5552,8 +5553,29 @@ export class GenericInput extends Input {
 }
 
 export class ParseUtilities {
+	public static createGenericInstance(classData: any, parent: any, source: any, context: SerializationContext) {
 
+		return context.parseCardObjectRegular(
+			parent,
+			source,
+			[], // Forbidden types not supported for elements for now
+			!parent.isDesignMode(),
+			(typeName: string) => { return new classData() },
+			(typeName: string, errorType: any) => {
+
+				context.logParseEvent(
+					undefined,
+					ValidationEvent.ElementTypeNotAllowed,
+					Strings.errors.elementTypeNotAllowed(typeName));
+			});
+	}
 	public static parseGeneric(parent: any, source: any, context: SerializationContext) {
+		const type = context.elementRegistry.findByName(source.type);
+		let properties: any = null;
+		if (type) {
+			const contextData = context.elementRegistry.getSchemas().find(x => x.key === type?.objectType.name);
+			properties = contextData.value.properties;
+		}
 		Object.keys(source).forEach((key: string) => {
 			let jsonItems = source[key];
 			if (Array.isArray(jsonItems)) {
@@ -5561,15 +5583,29 @@ export class ParseUtilities {
 				parent.arrayTypes.push(key);
 				for (let item of jsonItems) {
 					let element = null;
-					if (key === "actions") {
-						element = context.parseAction(parent, item, [], false);
+					const type = properties
+						&& properties[key]
+						&& properties[key].type.replace('[]', '');
+					if (type && context.elementRegistry.findByName(type)) {
+						const propertyType = context.elementRegistry.findByName(type)!.objectType;
+						if (!item.type) {
+							item.type = type;
+						}
+						let itemData = this.createGenericInstance(propertyType, parent, item, context);
+						if (itemData) {
+							parent[key].push(itemData);
+						}
 					} else {
-						element = context.parseElement(parent, item, !parent.isDesignMode());
-					}
-					if (element) {
-						parent[key].push(element);
-					} else {
-						parent[key].push(item);
+						if (key === "actions") {
+							element = context.parseAction(parent, item, [], false);
+						} else {
+							element = context.parseElement(parent, item, !parent.isDesignMode());
+						}
+						if (element) {
+							parent[key].push(element);
+						} else {
+							parent[key].push(item);
+						}
 					}
 				}
 			} else if (typeof jsonItems === 'object' && jsonItems !== null) {
@@ -5587,22 +5623,29 @@ export class GenericContainer extends StylableCardElementContainer {
 	constructor() {
 		super();
 	}
+
+	// TODO: Resolve issue with coutn
 	getItemCount(): number {
 		return 0;
 	}
 	getItemAt(index: number): CardElement {
 		return {} as CardElement;
 	}
-	getFirstVisibleRenderedItem(): CardElement | undefined {
-		return undefined;
-	}
-	getLastVisibleRenderedItem(): CardElement | undefined {
-		return undefined;
-	}
+
 	removeItem(item: CardElement): boolean {
 		return true;
 	}
+  getFirstVisibleRenderedItem(): CardElement | undefined {
 
+    return this.columns && this.columns.length > 0 ? this.columns[0] : undefined;
+
+  }
+
+  getLastVisibleRenderedItem(): CardElement | undefined {
+
+    return this.columns && this.columns.length > 0 ? this.columns[this.columns.length - 1] : undefined;
+
+  }
 	protected internalParse(source: any, context: SerializationContext) {
 		super.internalParse(source, context);
 		ParseUtilities.parseGeneric(this, source, context);
@@ -7169,14 +7212,14 @@ export class GlobalRegistry {
 			if (!definition) {
 				continue;
 			}
-
+			registry.addSchema({ key: definitionKey, value: definitions[definitionKey] });
 			if (definitions[definitionKey] && definitions[definitionKey].classType === 'Class') {
 				continue;
 			}
 
 			const existingElement = registry.findByName(definitionKey);
 			if (existingElement && !(existingElement.objectType as any)['ac_isExtension']) {
-				this.addProperties(definitions, definition, existingElement.objectType);
+				this.addProperties(registry, definitions, definition, existingElement.objectType);
 				continue;
 			}
 
@@ -7218,17 +7261,33 @@ export class GlobalRegistry {
 				return definitionKey;
 			};
 
-			this.addProperties(definitions, definition, extensionObject);
+			this.addProperties(registry, definitions, definition, extensionObject);
 
 			genericList.push(extensionObject);
 			registry.register(definitionKey, extensionObject, Versions.v1_4);
 		}
 	}
 
-	private static addProperties(definitions: any, definition: any, extensionObject: any): void {
+	private static addProperties(registry: CardObjectRegistry<CardElement | Action>, definitions: any, definition: any, extensionObject: any): void {
 		for (let key of Object.keys(definition)) {
-			// add properties
-			if (definition[key].type === "string") {
+			const typeWithoutNormalization = definition[key].type;
+			const definitionType = definition[key].type.replace('[]', '');
+			const definitionFound = definitions[definitionType];
+			if (definitionType && definitionFound) {
+				const foundType = registry.findByName(definitionType);
+				if (foundType) {
+					if (typeWithoutNormalization.endsWith('[]')) {
+						extensionObject.prototype[key + "Property"] = new SerializableObjectCollectionProperty(Versions.v1_0, key, foundType.objectType);
+						let decorator = property(new SerializableObjectCollectionProperty(Versions.v1_0, key, foundType.objectType));
+						decorator(extensionObject.prototype, key);
+					} else {
+						extensionObject.prototype[key + "Property"] = new SerializableObjectProperty(Versions.v1_0, key, foundType.objectType);
+						let decorator = property(new SerializableObjectProperty(Versions.v1_0, key, foundType.objectType));
+						decorator(extensionObject.prototype, key);
+					}
+				}
+			}
+			else if (definition[key].type === "string") {
 				extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
 				let decorator = property(new StringProperty(Versions.v1_0, key));
 				decorator(extensionObject.prototype, key)
@@ -7247,6 +7306,7 @@ export class GlobalRegistry {
 				extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
 				let decorator = property(new BoolProperty(Versions.v1_0, key));
 				decorator(extensionObject.prototype, key)
+			} else if (definition[key].extends && definition[key].extends === 'Element') {
 			}
 			else {
 				const foundType = definitions[definition[key].type];
@@ -7320,7 +7380,6 @@ export class SerializationContext extends BaseSerializationContext {
 		createInstanceCallback: (typeName: string) => T | undefined,
 		logParseEvent: (typeName: string, errorType: TypeErrorType) => void): T | undefined {
 		let result: T | undefined = undefined;
-
 		if (source && typeof source === "object") {
 			let typeName = Utils.parseString(source["type"]);
 
@@ -7390,6 +7449,29 @@ export class SerializationContext extends BaseSerializationContext {
 		allowFallback: boolean,
 		createInstanceCallback: (typeName: string) => T | undefined,
 		logParseEvent: (typeName: string, errorType: TypeErrorType) => void): T | undefined {
+
+		let result = this.internalParseCardObject(
+			parent,
+			source,
+			forbiddenTypeNames,
+			allowFallback,
+			createInstanceCallback,
+			logParseEvent);
+
+		if (result !== undefined) {
+			this.cardObjectParsed(result, source);
+		}
+
+		return result;
+	}
+
+	parseCardObjectRegular(
+		parent: CardElement | undefined,
+		source: any,
+		forbiddenTypeNames: string[],
+		allowFallback: boolean,
+		createInstanceCallback: (typeName: string) => any | undefined,
+		logParseEvent: (typeName: string, errorType: TypeErrorType) => void): any | undefined {
 		let result = this.internalParseCardObject(
 			parent,
 			source,

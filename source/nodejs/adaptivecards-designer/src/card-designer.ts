@@ -1044,7 +1044,7 @@ export class CardDesigner extends Designer.DesignContext {
 		styleSheetLinkElement.href = Utils.joinPaths(this._assetPath, "adaptivecards-designer.css");
 
 		this.buildPalette();
-		ExtensionRegistry.subscribe(() => {
+		ExtensionRegistry.subscribe(1, () => {
 			this.buildPalette();
 		});
 
