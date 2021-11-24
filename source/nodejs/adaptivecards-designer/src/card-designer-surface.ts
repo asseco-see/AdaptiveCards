@@ -12,7 +12,7 @@ import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
 import * as yaml from 'js-yaml';
 import { BooleanPropertyEditor, EnumPropertyEditor, NumberPropertyEditor, StringPropertyEditor } from "./designer-peers";
-import { BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, PropertyDefinition, StringProperty, Versions } from "@asseco/adaptivecards";
+import { ActionProperty, BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, PropertyDefinition, StringProperty, Versions } from "@asseco/adaptivecards";
 import { ExtensionRegistry } from "./extension-loader";
 import { extractionElementsAndActionsFromExtension } from "./utils";
 

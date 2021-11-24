@@ -31,6 +31,9 @@ See a sample [HostConfig.json](https://github.com/Microsoft/AdaptiveCards/blob/m
    * [`TextBlockConfig`](/platform/adaptive-cards/host-config/#schema-textblockconfig) - Parameters controlling the display of text
    * [`ExtensionsConfig`](/platform/adaptive-cards/host-config/#schema-extensionsconfig) - Host Configuration for renderer extensions
    * [`CheckDigitConfig`](/platform/adaptive-cards/host-config/#schema-checkdigitconfig) - Parameters controlling the check-digit
+   * [`DateSelectInputConfig`](/platform/adaptive-cards/host-config/#schema-dateselectinputconfig) - Parameters controlling the date-select-input
+   * [`MaterialConfig`](/platform/adaptive-cards/host-config/#schema-materialconfig) - Parameters controlling the material
+   * [`MaterialDialogConfig`](/platform/adaptive-cards/host-config/#schema-materialdialogconfig) - Parameters controlling the material-dialog
    * [`TabsConfig`](/platform/adaptive-cards/host-config/#schema-tabsconfig) - Parameters controlling the tabs
 
 
@@ -331,6 +334,9 @@ Host Configuration for renderer extensions
 |Property|Type|Required|Description|Version|
 |--------|----|--------|-----------|-------|
 |**checkDigit**|`CheckDigitConfig`|No|Parameters controlling the check-digit|1.0
+|**dateSelectInput**|`DateSelectInputConfig`|No|Parameters controlling the date-select-input|1.0
+|**material**|`MaterialConfig`|No|Parameters controlling the material|1.0
+|**materialDialog**|`MaterialDialogConfig`|No|Parameters controlling the material-dialog|1.0
 |**tabs**|`TabsConfig`|No|Parameters controlling the tabs|1.0
 
 <br/>
@@ -343,6 +349,43 @@ Parameters controlling the check-digit
 |Property|Type|Required|Description|Version|
 |--------|----|--------|-----------|-------|
 |**registries**|`array`|No|The list of registries to lookup templates|0.1
+
+<br/>
+
+<a name="schema-dateselectinputconfig"></a>
+## DateSelectInputConfig
+Parameters controlling the date-select-input
+
+
+|Property|Type|Required|Description|Version|
+|--------|----|--------|-----------|-------|
+|**dateOrder**|`DateOrderEnum`|No|Date order used when inputType is date-input|0.1
+|**dateSeparator**|`string`|No|Date separator used when inputType is date-input|0.1
+
+<br/>
+
+<a name="schema-materialconfig"></a>
+## MaterialConfig
+Parameters controlling the material
+
+
+|Property|Type|Required|Description|Version|
+|--------|----|--------|-----------|-------|
+|**appearance**|`MaterialComponentAppearance`|No|Appearance type of the material component|0.1
+|**buttonType**|`MaterialButtonType`|No|Default material button type of all actions|0.1
+|**dialogs**|`MaterialDialogConfig`|No|Material dialogs configuration.|0.1
+
+<br/>
+
+<a name="schema-materialdialogconfig"></a>
+## MaterialDialogConfig
+Parameters controlling the material-dialog
+
+
+|Property|Type|Required|Description|Version|
+|--------|----|--------|-----------|-------|
+|**actionsOrientation**|`string`|No|Controls how buttons are laid out in dialog.|0.1
+|**actionsAlignment**|`string`|No|Control layout of buttons in dialog.|0.1
 
 <br/>
 

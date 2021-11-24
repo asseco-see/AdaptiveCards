@@ -5459,12 +5459,32 @@ export abstract class StylableCardElementContainer extends CardElementContainer 
 }
 
 export class GenericAction extends Action {
+	
+	arrayTypes: string[] = [];
+	objectTypes: string[] = [];
 	getJsonTypeName(): string {
 		return 'generic-action';
+	}
+
+	protected internalParse(source: any, context: SerializationContext) {
+		super.internalParse(source, context);
+		ParseUtilities.parseGeneric(this, source, context);
+	}
+
+	internalToJSON(target: PropertyBag, context: SerializationContext) {
+		super.internalToJSON(target, context);
+		this.arrayTypes.forEach(x => {
+			context.serializeArray(target, x, (this as any)[x]);
+		});
+		this.objectTypes.forEach(x => {
+			context.serializeValue(target, x, (this as any)[x]);
+		});
 	}
 }
 
 export class GenericInput extends Input {
+	arrayTypes: string[] = [];
+	objectTypes: string[] = [];
 	isSet(): boolean {
 		return true;
 	}
@@ -5489,6 +5509,20 @@ export class GenericInput extends Input {
 	}
 	removeItem(item: CardElement): boolean {
 		return true;
+	}
+	protected internalParse(source: any, context: SerializationContext) {
+		super.internalParse(source, context);
+		ParseUtilities.parseGeneric(this, source, context);
+	}
+
+	internalToJSON(target: PropertyBag, context: SerializationContext) {
+		super.internalToJSON(target, context);
+		this.arrayTypes.forEach(x => {
+			context.serializeArray(target, x, (this as any)[x]);
+		});
+		this.objectTypes.forEach(x => {
+			context.serializeValue(target, x, (this as any)[x]);
+		});
 	}
 
 	public internalRender(): HTMLElement | undefined {
@@ -5517,6 +5551,35 @@ export class GenericInput extends Input {
 	}
 }
 
+export class ParseUtilities {
+
+	public static parseGeneric(parent: any, source: any, context: SerializationContext) {
+		Object.keys(source).forEach((key: string) => {
+			let jsonItems = source[key];
+			if (Array.isArray(jsonItems)) {
+				parent[key] = [];
+				parent.arrayTypes.push(key);
+				for (let item of jsonItems) {
+					let element = null;
+					if (key === "actions") {
+						element = context.parseAction(parent, item, [], false);
+					} else {
+						element = context.parseElement(parent, item, !parent.isDesignMode());
+					}
+					if (element) {
+						parent[key].push(element);
+					} else {
+						parent[key].push(item);
+					}
+				}
+			} else if (typeof jsonItems === 'object' && jsonItems !== null) {
+				parent[key] = jsonItems;
+				parent.objectTypes.push(key);
+			}
+		});
+	}
+}
+
 export class GenericContainer extends StylableCardElementContainer {
 	[name: string]: any;
 	arrayTypes: string[] = [];
@@ -5542,24 +5605,7 @@ export class GenericContainer extends StylableCardElementContainer {
 
 	protected internalParse(source: any, context: SerializationContext) {
 		super.internalParse(source, context);
-		Object.keys(source).forEach((key: string) => {
-			let jsonItems = source[key];
-			if (Array.isArray(jsonItems)) {
-				this[key] = [];
-				this.arrayTypes.push(key);
-				for (let item of jsonItems) {
-					let element = context.parseElement(this, item, !this.isDesignMode());
-					if (element) {
-						this[key].push(element);
-					} else {
-						this[key].push(item);
-					}
-				}
-			} else if (typeof jsonItems === 'object' && jsonItems !== null) {
-				this[key] = jsonItems;
-				this.objectTypes.push(key);
-			}
-		});
+		ParseUtilities.parseGeneric(this, source, context);
 	}
 
 	internalToJSON(target: PropertyBag, context: SerializationContext) {
@@ -5570,7 +5616,6 @@ export class GenericContainer extends StylableCardElementContainer {
 		this.objectTypes.forEach(x => {
 			context.serializeValue(target, x, this[x]);
 		});
-		// VUK
 
 	}
 
@@ -7237,7 +7282,7 @@ export class GlobalRegistry {
 					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
 					const decorator = property(extensionObject.prototype[key + "Property"]);
 					decorator(extensionObject.prototype, key);
-				} 
+				}
 				// else {
 				// 	extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
 				// 	let decorator = property(new StringProperty(Versions.v1_0, key));
