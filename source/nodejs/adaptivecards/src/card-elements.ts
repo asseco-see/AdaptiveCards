@@ -4698,7 +4698,7 @@ export class ShowCardAction extends Action {
 	}
 }
 
-class ActionCollection {
+export class ActionCollection {
 	private _owner: CardElement;
 	private _actionCardContainer: HTMLDivElement;
 	private _expandedAction?: ShowCardAction;
