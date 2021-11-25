@@ -1,0 +1,167 @@
+{
+    "id": "data-set",
+    "version": "0.1",
+    "elementPrefix": "",
+    "propertyPrefix": "asseco",
+    "contributes": {
+        "definitions": {
+			"AdaptiveCard": {
+				"properties": {
+                    "dataset": {
+                        "type": "DataSet",
+                        "required": false,
+                        "description": "DataSet for card"
+                    }
+                }
+            },
+            "ParamType": {
+                "classType": "Enum",
+                "type": "ParamType",
+                "default": "query",
+                "values": [
+                    "query",
+                    "route",
+                    "header"
+                ]
+            },
+            "AuthenticationType": {
+                "classType": "Enum",
+                "type": "AuthenticationType",
+                "values": [
+                    "client",
+                    "server"
+                ]
+            },
+            "DataSetBindingType": {
+                "classType": "Enum",
+                "type": "DataSetBindingType",
+                "values": [
+                    "client",
+                    "server"
+                ]
+            },
+            "DataSourceType": {
+                "classType": "Enum",
+                "type": "DataSourceType",
+                "values": [
+                    "REST",
+                    "GraphQL"
+                ]
+            },
+            "Param": {
+                "classType": "Class",
+                "type": "Param",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Parameter name",
+                        "required": true,
+                        "version": "0.1"
+                    },
+                    "type": {
+                        "type": "ParamType",
+                        "description": "Parameter type",
+                        "version": "0.1"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "Parameter value",
+                        "version": "0.1"
+                    },
+                    "binding-expression": {
+                        "type": "string",
+                        "description": "Parameter value binding expression",
+                        "version": "0.1"
+                    }
+                }
+            },
+            "DataSet": {
+                "classType": "Class",
+                "type": "DataSet",
+                "description": "Set of data sources",
+                "propererties": {
+                    "binding": {
+                        "type": "DataSetBindingType",
+                        "description": "Is DataSet bindning client or server side",
+                        "required": true,
+                        "version": "0.1",
+                        "default": "client"
+                    },
+                    "dataSources": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/DataSource"
+                        },
+                        "description": "Data sources",
+                        "required": true,
+                        "version": "0.1"
+                    }
+                }
+            },
+            "DataSource": {
+                "classType": "Class",
+                "type": "DataSource",
+                "description": "DataSource is an abstraction for using local data (arrays of JavaScript objects) or remote data (web services returning JSON or XML)",
+                "properties": {
+                    "uri": {
+                        "type": "uri",
+                        "description": "URI to data service",
+                        "required": true,
+                        "version": "0.1"
+                    },
+                    "method": {
+                        "type": "string",
+                        "description": "Data service method. For REST endpoint is route",
+                        "required": true,
+                        "version": "0.1"
+                    },
+                    "isAuthenticated": {
+                        "type": "boolean",
+                        "description": "Whether data source service needs authentication.",
+                        "version": "0.1"
+                    },
+                    "authenticationType": {
+                        "type": "AuthenticationType",
+                        "description": "Type of authentication. Can be client or server. Defaults to client",
+                        "version": "0.1",
+                        "default": "client"
+                    },
+                    "type": {
+                        "type": "DataSourceType",
+                        "description": "Type of service. Can be LocalData, REST and GraphQL. Other service types can be added in future like SOAP and GRPC",
+                        "required": true,
+                        "version": "0.1"
+                    },
+                    "contentType": {
+                        "type": "string",
+                        "description": "Type of returned content",
+                        "version": "0.1",
+                        "default": "application/json"
+                    },
+                    "isPageable": {
+                        "type": "boolean",
+                        "description": "Returns if result of service call is pageable",
+                        "default": false,
+                        "version": "0.1"
+                    },
+                    "isSortable": {
+                        "type": "string",
+                        "description": "Returns if result of service call is sortable",
+                        "default": false,
+                        "version": "0.1"
+                    },
+                    "params": {
+                        "type": "Param[]",
+                        "description": "List of parameters for service call",
+                        "version": "0.1"
+                    },
+                    "data": {
+                        "type": "object[]",
+                        "description": "Local data collection. Used when 'dataSourceType' is set to 'LocalData'.",
+                        "version": "0.1"
+                    }
+                }
+            }
+        }
+    }
+}
