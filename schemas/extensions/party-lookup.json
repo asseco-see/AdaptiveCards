@@ -40,8 +40,8 @@
 						"version": "0.1"
 					},
 					"dataSource": {
-						"type": "DataSource.AseeAPI",
-						"description": "Asee API DataSource for customer lookup",
+						"type": "DataSource",
+						"description": "DataSource for customer lookup",
 						"version": "0.1"
 					}
 				}

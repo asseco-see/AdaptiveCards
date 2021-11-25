@@ -30,8 +30,8 @@
 						"version": "0.1"
 					},
 					"dataSource": {
-						"type": "DataSource.AseeAPI",
-						"description": "Asee API DataSource for generic lookup",
+						"type": "DataSource",
+						"description": "DataSource for generic lookup",
 						"version": "0.1"
 					}
 				}
