@@ -5,42 +5,14 @@
 	"propertyPrefix": "asseco",
 	"contributes": {
 		"definitions": {
-			"DataSource.Classification": {
-				"classType": "Class",
-				"type": "DataSource.Classification",
-				"properties": {
-					"baseUrl": {
-						"type": "string",
-						"description": "Data source base url",
-						"version": "0.1",
-						"required": true
-					},
-					"serviceName": {
-						"type": "string",
-						"description": "Service name",
-						"required": true,
-						"version": "0.1"
-					},
-					"serviceVersion": {
-						"type": "string",
-						"description": "Service version",
-						"required": true,
-						"version": "0.1"
-					},
-					"schemaId": {
-						"type": "string",
-						"description": "Classification schema id",
-						"version": "0.1",
-						"required": true
-					}
-				}
-			},
+		
 			"Input.Classification": {
 				"extends": "Input",
 				"description": "Allows user to select a classification from a service",
 				"properties": {
 					"dataSource": {
-						"type": "DataSource.Classification"
+						"type": "DataSource",
+						"description": "Classification data source"
 					},
 					"multiple": {
 						"type": "boolean",

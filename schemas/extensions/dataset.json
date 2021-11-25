@@ -71,7 +71,7 @@
                 "classType": "Class",
                 "type": "DataSet",
                 "description": "Set of data sources",
-                "propererties": {
+                "properties": {
                     "binding": {
                         "type": "DataSetBindingType",
                         "description": "Is DataSet bindning client or server side",
@@ -80,31 +80,16 @@
                         "default": "client"
                     },
                     "dataSources": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/DataSource"
-                        },
+                        "type": "DataSource[]",
                         "description": "Data sources",
                         "required": true,
                         "version": "0.1"
                     }
                 }
             },
-            "DataSource": {
-                "description": "Expresses an enum value",
-                "anyOf": [
-                    {
-                        "type": "DataSource.GraphQL",
-                        "description": "GraphQL Data Source"
-                    },
-                    {
-                        "type": "DataSource.REST",
-                        "description": "REST Data Source"
-                    }
-                ]
-            },
             "DataSource.GraphQL": {
                 "classType": "Class",
+                "extends": "DataSource",
                 "type": "DataSource.GraphQL",
                 "description": "GraphQL Data Source",
                 "properties": {
@@ -131,60 +116,74 @@
                         "version": "0.1",
                         "default": "client"
                     }
-                },
-                "DataSource.REST": {
-                    "classType": "Class",
-                    "type": "DataSource.REST",
-                    "description": "REST DataSource",
-                    "properties": {
-                        "uri": {
-                            "type": "uri",
-                            "description": "URI to data service",
-                            "required": true,
-                            "version": "0.1"
-                        },
-                        "method": {
-                            "type": "string",
-                            "description": "Data service method. For REST endpoint is route",
-                            "required": true,
-                            "version": "0.1"
-                        },
-                        "isAuthenticated": {
-                            "type": "boolean",
-                            "description": "Whether data source service needs authentication.",
-                            "version": "0.1"
-                        },
-                        "authenticationType": {
-                            "type": "AuthenticationType",
-                            "description": "Type of authentication. Can be client or server. Defaults to client",
-                            "version": "0.1",
-                            "default": "client"
-                        },
-                        "contentType": {
-                            "type": "string",
-                            "description": "Type of returned content",
-                            "version": "0.1",
-                            "default": "application/json"
-                        },
-                        "isPageable": {
-                            "type": "boolean",
-                            "description": "Returns if result of service call is pageable",
-                            "default": false,
-                            "version": "0.1"
-                        },
-                        "isSortable": {
-                            "type": "string",
-                            "description": "Returns if result of service call is sortable",
-                            "default": false,
-                            "version": "0.1"
-                        },
-                        "params": {
-                            "type": "Param[]",
-                            "description": "List of parameters for service call",
-                            "version": "0.1"
-                        }
+                }
+            },
+            "DataSource.REST": {
+                "classType": "Class",
+                "extends": "DataSource",
+                "type": "DataSource.REST",
+                "description": "REST DataSource",
+                "properties": {
+                    "uri": {
+                        "type": "uri",
+                        "description": "URI to data service",
+                        "required": true,
+                        "version": "0.1"
+                    },
+                    "method": {
+                        "type": "string",
+                        "description": "Data service method. For REST endpoint is route",
+                        "required": true,
+                        "version": "0.1"
+                    },
+                    "isAuthenticated": {
+                        "type": "boolean",
+                        "description": "Whether data source service needs authentication.",
+                        "version": "0.1"
+                    },
+                    "authenticationType": {
+                        "type": "AuthenticationType",
+                        "description": "Type of authentication. Can be client or server. Defaults to client",
+                        "version": "0.1",
+                        "default": "client"
+                    },
+                    "contentType": {
+                        "type": "string",
+                        "description": "Type of returned content",
+                        "version": "0.1",
+                        "default": "application/json"
+                    },
+                    "isPageable": {
+                        "type": "boolean",
+                        "description": "Returns if result of service call is pageable",
+                        "default": false,
+                        "version": "0.1"
+                    },
+                    "isSortable": {
+                        "type": "string",
+                        "description": "Returns if result of service call is sortable",
+                        "default": false,
+                        "version": "0.1"
+                    },
+                    "params": {
+                        "type": "Param[]",
+                        "description": "List of parameters for service call",
+                        "version": "0.1"
                     }
                 }
+            },
+            "DataSource": {
+                "description": "Expresses an enum value",
+                "anyOf": [
+                    {
+                        "type": "DataSource.GraphQL",
+                        "description": "GraphQL Data Source"
+                    },
+                    {
+                        "type": "DataSource.REST",
+                        "description": "REST Data Source"
+                    }
+                ]
             }
         }
     }

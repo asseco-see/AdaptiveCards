@@ -9,7 +9,7 @@ const { loadExtendedDefinitions } = require("./utilities/schema-builder-extensio
 
 hexo.extend.generator.register("generator-explorer", function (locals) {
 
-    return new Promise(function (resolve, reject) {
+	return new Promise(function (resolve, reject) {
 
 		try {
 			var schemaModel = typedschema.markdown.buildModel({
@@ -18,58 +18,58 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 				rootDefinition: "AdaptiveCard",
 				examplesPath: "../../../samples",
 			});
-			
+
 			var pages = [];
 			let extensions = loadExtendedDefinitions("../../../schemas/extensions");
 
 			// Extend schema model with loaded extensions
 			schemaModel = buildExtensionModel(
-				schemaModel, 
-				extensions, 
+				schemaModel,
+				extensions,
 				{
 					schema: "../../../schemas/src",
 				});
 
-				schemaModel.forEach(function (root) {
-					if (root.extensions && root.extensions.length > 0) {
-						root.extensions.forEach(function (extension) {
-							extension.htmlPath = "explorer/md/" + extension.name + ".md";
-							var page = {
-								path: extension.htmlPath,
-								layout: "explorermd",
-								data: {
-									markdown: true,
-									title: "Schema Explorer",
-									schema: schemaModel,
-									element: extension,
-									childPath: extension.htmlPath,
-									isExtension: true,
-									propertiesSummary: typedschema.markdown.createPropertiesSummary(extension.type, null, true, true, extension.version)
-								}
-							}
-	
-							pages.push(page);
-						});
-					}
-					root.children.forEach(function (child) {
-						child.htmlPath = "explorer/md/" + child.name + ".md";
+			schemaModel.forEach(function (root) {
+				if (root.extensions && root.extensions.length > 0) {
+					root.extensions.forEach(function (extension) {
+						extension.htmlPath = "explorer/md/" + extension.name + ".md";
 						var page = {
-							path: child.htmlPath,
+							path: extension.htmlPath,
 							layout: "explorermd",
 							data: {
 								markdown: true,
 								title: "Schema Explorer",
 								schema: schemaModel,
-								element: child,
-								childPath: child.htmlPath,
-								isExtension: root.title === 'Feature Extensions',
-								propertiesSummary: typedschema.markdown.createPropertiesSummary(child.type, null, true, true, child.version)
+								element: extension,
+								childPath: extension.htmlPath,
+								isExtension: true,
+								propertiesSummary: typedschema.markdown.createPropertiesSummary(extension.type, null, true, true, extension.version)
 							}
 						}
-	
+
 						pages.push(page);
 					});
+				}
+				root.children.forEach(function (child) {
+					child.htmlPath = "explorer/md/" + child.name + ".md";
+					var page = {
+						path: child.htmlPath,
+						layout: "explorermd",
+						data: {
+							markdown: true,
+							title: "Schema Explorer",
+							schema: schemaModel,
+							element: child,
+							childPath: child.htmlPath,
+							isExtension: root.title === 'Feature Extensions',
+							propertiesSummary: typedschema.markdown.createPropertiesSummary(child.type, null, true, true, child.version)
+						}
+					}
+
+					pages.push(page);
 				});
+			});
 
 
 			schemaModel.forEach(function (root) {
@@ -131,53 +131,53 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 		} catch (err) {
 			reject(err);
 		}
-    });
+	});
 
 	function findElementByName(schemaModels, name) {
-        for (const model of schemaModels) {
-            for (const child of model.children) {
-                if (child.name === name) {
-                    return child;
-                }
-            }
-        }
-        return null;
-    }
+		for (const model of schemaModels) {
+			for (const child of model.children) {
+				if (child.name === name) {
+					return child;
+				}
+			}
+		}
+		return null;
+	}
 
 	function buildExtensionModel(schemaModels, extendedDefinitions, options) {
 
-        let items = [];
-        // Load adaptive-cards schemas for reusing types
-        var files = typedschema.Schema.getAllFiles(options.schema);
+		let items = [];
+		// Load adaptive-cards schemas for reusing types
+		var files = typedschema.Schema.getAllFiles(options.schema);
 
-        files.forEach((filePath) => {
-            if (filePath.endsWith(".json")) {
-                var fileTxt = fs.readFileSync(filePath, "utf8");
-                var type = JSON.parse(fileTxt);
+		files.forEach((filePath) => {
+			if (filePath.endsWith(".json")) {
+				var fileTxt = fs.readFileSync(filePath, "utf8");
+				var type = JSON.parse(fileTxt);
 
-                // Infer type name from file name if not specified
-                if (!type.type) {
-                    var stat = fs.statSync(filePath);
-                    if (stat) {
-                        type.type = path.basename(filePath, ".json");
-                    }
-                }
+				// Infer type name from file name if not specified
+				if (!type.type) {
+					var stat = fs.statSync(filePath);
+					if (stat) {
+						type.type = path.basename(filePath, ".json");
+					}
+				}
 
-                items.push(type);
-                items[type.type] = type;
-            }
-        });
+				items.push(type);
+				items[type.type] = type;
+			}
+		});
 
-        let existingElementExtensions = []
-        extendedDefinitions.forEach(extension => {
-            const elementToExtend = findElementByName(schemaModels, extension.definition.type);
-            if (elementToExtend === null) {
-                items.push(extension.definition);
-			    items[extension.definition.type] = extension.definition;
-            } else {
-                existingElementExtensions.push(extension);
-            }
-        });
+		let existingElementExtensions = []
+		extendedDefinitions.forEach(extension => {
+			const elementToExtend = findElementByName(schemaModels, extension.definition.type);
+			if (elementToExtend === null) {
+				items.push(extension.definition);
+				items[extension.definition.type] = extension.definition;
+			} else {
+				existingElementExtensions.push(extension);
+			}
+		});
 
 		if (!extendedDefinitions || extendedDefinitions.length < 1) {
 			return schemaModels;
@@ -191,7 +191,7 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 
 		// Generate schema with extensions
 		var schema = new typedschema.Schema(items);
-		
+
 		// Iterate extended definitions and update schema model
 		const newDefinitions = extendedDefinitions.filter(e => existingElementExtensions.indexOf(e) === -1);
 		newDefinitions.forEach((extension) => {
@@ -202,18 +202,26 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 				schemaModelForUpdate = schemaModels.find(m => m.title == 'Actions');
 			} else if (extension.definition.extends && extension.definition.extends.toLowerCase() === 'element') {
 				schemaModelForUpdate = schemaModels.find(m => m.title == 'Card Elements');
+			} else if (extension.definition.extends && extension.definition.extends.toLowerCase() === 'datasource') {
+				schemaModelForUpdate = schemaModels.find(m => m.title == 'DataSources');
+				if (schemaModelForUpdate == null) {
+					schemaModelForUpdate = {
+						title: 'DataSources',
+						children: [],
+						schema: schemaModels
+					};
+				}
 			} else {
 				schemaModelForUpdate = schemaModels.find(m => m.title == 'Feature Extensions');
+				if (schemaModelForUpdate == null) {
+					schemaModelForUpdate = {
+						title: 'Feature Extensions',
+						children: [],
+						schema: schemaModels
+					};
+				}
 			}
-	
-			if (schemaModelForUpdate == null) {
-				schemaModelForUpdate = {
-					title: 'Feature Extensions',
-					children: [],
-					schema: schemaModels
-				};
-			}
-	
+
 			if (!schemaModelForUpdate.extensions) {
 				schemaModelForUpdate.extensions = [];
 			}
@@ -224,9 +232,9 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 				return;
 			}
 
-            if (!(objSchema instanceof typedschema.SchemaClass)) {
-                return;
-            }
+			if (!(objSchema instanceof typedschema.SchemaClass)) {
+				return;
+			}
 			var definition = {
 				type: objSchema
 			};
@@ -246,7 +254,7 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 			}
 
 			var extendedProperties = [];
-            if (objSchema instanceof typedschema.SchemaClass) {
+			if (objSchema instanceof typedschema.SchemaClass) {
 				extendedProperties = objSchema.getAllExtendedProperties();
 			}
 			if (definition.properties) {
@@ -268,13 +276,15 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 				});
 			}
 
-			if (schemaModelForUpdate.title == 'Feature Extensions') {
-				schemaModelForUpdate.children.push(definition);
+			if (schemaModelForUpdate.title == 'Feature Extensions' || schemaModelForUpdate.title == 'DataSource') {
+				if (definition.properties && definition.properties.size > 0) {
+					schemaModelForUpdate.children.push(definition);
+				}
 			} else {
 				schemaModelForUpdate.extensions.push(definition);
 			}
 
-			if (schemaModelForUpdate.title == 'Feature Extensions' && !schemaModels.find(t => t.title == 'Feature Extensions')) {
+			if (!schemaModels.find(t => t.title == schemaModelForUpdate.title)) {
 				schemaModels.push(schemaModelForUpdate);
 			}
 		});
@@ -302,7 +312,7 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 					existingElement.type.properties.set(key, newProp);
 				}
 			}
-			
+
 		});
 		return schemaModels;
 	}
