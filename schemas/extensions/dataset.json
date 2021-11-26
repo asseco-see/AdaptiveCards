@@ -20,7 +20,6 @@
                 "default": "query",
                 "values": [
                     "query",
-                    "route",
                     "header"
                 ]
             },
@@ -53,16 +52,13 @@
                     "type": {
                         "type": "ParamType",
                         "description": "Parameter type",
+                        "required": true,
                         "version": "0.1"
                     },
                     "value": {
                         "type": "string",
                         "description": "Parameter value",
-                        "version": "0.1"
-                    },
-                    "binding-expression": {
-                        "type": "string",
-                        "description": "Parameter value binding expression",
+                        "required": true,
                         "version": "0.1"
                     }
                 }
@@ -147,12 +143,6 @@
                         "version": "0.1",
                         "default": "client"
                     },
-                    "contentType": {
-                        "type": "string",
-                        "description": "Type of returned content",
-                        "version": "0.1",
-                        "default": "application/json"
-                    },
                     "isPageable": {
                         "type": "boolean",
                         "description": "Returns if result of service call is pageable",
@@ -168,6 +158,11 @@
                     "params": {
                         "type": "Param[]",
                         "description": "List of parameters for service call",
+                        "version": "0.1"
+                    },
+                    "body": {
+                        "type": "object",
+                        "description": "Body for POST, PUT, PATCH methods",
                         "version": "0.1"
                     }
                 }

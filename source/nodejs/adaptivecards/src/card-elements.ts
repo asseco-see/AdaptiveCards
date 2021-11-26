@@ -3983,9 +3983,14 @@ export class DataSourceRestParam extends SerializableObject {
 
 export class DataSource extends CardElement {
 
+	static readonly nameProperty = new StringProperty(Versions.v1_0, "name");
 	static readonly uriProperty = new StringProperty(Versions.v1_0, "uri");
 	static readonly isAuthenticatedProperty = new BoolProperty(Versions.v1_0, "isAuthenticated");
 	static readonly authenticationTypeProperty = new EnumProperty(Versions.v1_0, "authenticationType", Enums.AuthenticationType);
+
+	@property(DataSource.nameProperty)
+	name?: string;
+
 	@property(DataSource.uriProperty)
 	uri?: string;
 
@@ -4025,7 +4030,6 @@ export class DataSourceGraphQL extends DataSource {
 export class DataSourceRest extends DataSource {
 	static readonly paramsTypeProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "params", DataSourceRestParam);
 	static readonly methodProperty = new EnumProperty(Versions.v1_0, "method", Enums.RestMethod);
-	static readonly contentTypeProperty = new StringProperty(Versions.v1_0, "contentType");
 	static readonly isPageableProperty = new BoolProperty(Versions.v1_0, "isPageable");
 	static readonly isSortableProperty = new BoolProperty(Versions.v1_0, "isSortable");
 
@@ -4035,9 +4039,7 @@ export class DataSourceRest extends DataSource {
 	@property(DataSourceRest.paramsTypeProperty)
 	params?: DataSourceRestParam[];
 
-	@property(DataSourceRest.contentTypeProperty)
-	contentType?: string;
-
+	body: any;
 	@property(DataSourceRest.isPageableProperty)
 	isPageable: boolean;
 
@@ -4046,6 +4048,19 @@ export class DataSourceRest extends DataSource {
 
 	static dataSourceName = "DataSource.REST";
 
+	protected internalParse(source: any, context: SerializationContext) {
+		if (source.body) {
+			this.body = source.body;
+		}
+		super.internalParse(source, context);
+	}
+	protected internalToJSON(target: PropertyBag, context: SerializationContext) {
+		this.setValue(AdaptiveCard.versionProperty, context.targetVersion);
+		if (this.body) {
+			context.serializeValue(target, 'body', this.body);
+		}
+		super.internalToJSON(target, context);
+	}
 
 	getJsonTypeName(): string {
 		return DataSourceRest.dataSourceName;
@@ -4130,7 +4145,15 @@ export class DataSet extends CardElement {
 			source,
 			[], // Forbidden types not supported for elements for now
 			!this.isDesignMode(),
-			(typeName: string) => !typeName || typeName === source.type ? new type() : undefined,
+			(typeName: string) => {
+				if (!typeName || typeName === source.type) {
+					const typeData = new type();
+					typeData.name = 'dataSource';
+					return typeData;
+				}
+				return undefined;
+
+			},
 			(typeName: string, errorType: any) => {
 				context.logParseEvent(
 					undefined,
@@ -7039,11 +7062,14 @@ export class AdaptiveCard extends ContainerWithActions {
 
 
 	addDataSource(dataSource: DataSource) {
-		console.log('Dodajem dataset');
 		if (!this.dataset) {
 			this.dataset = new DataSet();
 			this.dataset.binding = "client";
 		}
+		dataSource.uri = 'http://sampleservice/sampleendpoint';
+		const sampleName = 'sampleDataSource';
+		const countData = this.dataset.dataSources?.filter(x => (x.name?.indexOf(sampleName) ?? 0) !== -1).length ?? 0;
+		dataSource.name = sampleName + (countData == 0 ? '' : '-' + countData);
 		this.dataset.addDataSource(dataSource);
 	}
 	//#endregion
