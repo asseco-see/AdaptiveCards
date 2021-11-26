@@ -103,11 +103,6 @@
 						"description": "Defines the number of columns in the table, their sizes, and more.",
 						"required": true,
 						"version": "0.1"
-					},
-					"actions": {
-						"type": "Action[]",
-						"description": "Defines the actions that can be triggered on data table.",
-						"version": "0.1"
 					}
 				}
 			},
@@ -184,7 +179,12 @@
 						"description": "Controls how the content of all cells is horizontally aligned by default.",
 						"version": "0.1"
 					},
-					"dataSource": {
+					"actions": {
+						"type": "Action[]",
+						"description": "Defines the actions that can be triggered on data table.",
+						"version": "0.1"
+					},
+					"dataSet": {
 						"type": "DataSet",
 						"description": "Data set for data table element.",
 						"version": "0.1",
