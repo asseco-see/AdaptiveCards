@@ -227,23 +227,25 @@ export class CardDesigner extends Designer.DesignContext {
 			if (registration.schemaVersion.compareTo(this.targetVersion) <= 0) {
 				let peerRegistration = Designer.CardDesignerSurface.cardElementPeerRegistry.findTypeRegistration(registration.objectType);
 				if (peerRegistration) {
-					if (!categorizedTypes.hasOwnProperty(peerRegistration.category)) {
-						categorizedTypes[peerRegistration.category] = [];
+					if (peerRegistration.category) {
+						if (!categorizedTypes.hasOwnProperty(peerRegistration.category)) {
+							categorizedTypes[peerRegistration.category] = [];
+						}
+						let paletteItem = new ElementPaletteItem(
+							registration,
+							peerRegistration
+						)
+
+						paletteItem.onDoubleClick = (sender) => {
+							const peer = paletteItem.createPeer(this, this.designerSurface);
+
+							if (this.designerSurface.rootPeer.tryAdd(peer)) {
+								peer.isSelected = true;
+							};
+						}
+
+						categorizedTypes[peerRegistration.category].push(paletteItem);
 					}
-					let paletteItem = new ElementPaletteItem(
-						registration,
-						peerRegistration
-					)
-
-					paletteItem.onDoubleClick = (sender) => {
-						const peer = paletteItem.createPeer(this, this.designerSurface);
-
-						if (this.designerSurface.rootPeer.tryAdd(peer)) {
-							peer.isSelected = true;
-						};
-					}
-
-					categorizedTypes[peerRegistration.category].push(paletteItem);
 				}
 			}
 		}

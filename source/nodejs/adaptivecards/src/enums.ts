@@ -29,6 +29,11 @@ export enum SizeUnit {
     Pixel
 }
 
+export enum DataSourceRestParamType {
+    Query,
+    Header
+}
+
 export enum TextSize {
     Small,
     Default,
@@ -119,6 +124,24 @@ export enum InputTextStyle {
     Tel,
     Url,
     Email
+}
+
+export enum AuthenticationType {
+    Client,
+    Server
+}
+
+export enum DataSetBindingType {
+    Client,
+    Server
+}
+
+export enum RestMethod {
+    GET,
+    POST,
+    PUT,
+    DELETE,
+    PATCH
 }
 
 /*

@@ -10,8 +10,9 @@ import { DesignerPeerTreeItem } from "./designer-peer-treeitem";
 import { Rect, IPoint } from "./miscellaneous";
 import { GlobalSettings } from "./shared";
 import { FieldPicker } from "./field-picker";
-import { EnumProperty, Input, PropertyDefinition } from "@asseco/adaptivecards";
+import { DataSet, DataSource, DataSourceList, EnumProperty, Input, PropertyDefinition } from "@asseco/adaptivecards";
 import { BoolProperty, NumProperty, StringProperty } from "@asseco/adaptivecards";
+import { SerializableObjectCollectionProperty } from "adaptivecards";
 
 export abstract class DesignerPeerInplaceEditor {
 	onClose: (applyChanges: boolean) => void;
@@ -644,6 +645,153 @@ interface INameValuePair {
 	name: string;
 	value: string;
 }
+
+interface IParamPair {
+	name: string;
+	value: string;
+	type: string;
+}
+
+class DataSourceRestParamPropertyEditor extends PropertySheetEntry {
+	private collectionChanged(context: PropertySheetContext, nameValuePairs: IParamPair[], refreshPropertySheet: boolean) {
+		context.target[this.collectionPropertyName] = [];
+		for (let nameValuePair of nameValuePairs) {
+			let item = this.createCollectionItem(nameValuePair.name, nameValuePair.type, nameValuePair.value);
+			context.target[this.collectionPropertyName].push(item);
+		}
+
+		context.peer.changed(refreshPropertySheet);
+	}
+
+	render(context: PropertySheetContext): Adaptive.CardElement {
+		let result = new Adaptive.Container();
+
+		let collection = context.target[this.collectionPropertyName];
+		if (!Array.isArray(collection)) {
+			throw new Error("The " + this.collectionPropertyName + " property on " + context.peer.getCardObject().getJsonTypeName() + " either doesn't exist or isn't an array.")
+		}
+
+		let nameValuePairs: IParamPair[] = [];
+
+		for (let pair of collection) {
+			nameValuePairs.push(
+				{
+					name: pair['name'],
+					value: pair['value'],
+					type: pair['type']
+				}
+			)
+		}
+
+		if (nameValuePairs.length == 0) {
+			let messageTextBlock = new Adaptive.TextBlock();
+			messageTextBlock.spacing = Adaptive.Spacing.Small;
+			messageTextBlock.text = this.messageIfEmpty;
+
+			result.addItem(messageTextBlock);
+		}
+		else {
+			for (let i = 0; i < nameValuePairs.length; i++) {
+				let textInput = new Adaptive.TextInput();
+				textInput.placeholder = this.namePropertyLabel;
+				textInput.defaultValue = nameValuePairs[i].name;
+				textInput.onValueChanged = (sender) => {
+					nameValuePairs[i].name = sender.value;
+
+					this.collectionChanged(context, nameValuePairs, false);
+				};
+
+				let nameColumn = new Adaptive.Column("stretch");
+				nameColumn.addItem(textInput);
+
+
+				const type = new Adaptive.ChoiceSetInput();
+				type.placeholder = this.typePropertyLabel;
+				type.defaultValue = nameValuePairs[i].type;
+				const enumValues = Object.values(Adaptive.DataSourceRestParamType);
+				enumValues.splice(enumValues.length / 2, enumValues.length / 2);
+				type.choices = [];
+				for(let choice of enumValues) {
+					type.choices.push(new Adaptive.Choice(choice.toString(), choice.toString()));
+				}
+				type.onValueChanged = (sender) => {
+					nameValuePairs[i].type = sender.value;
+
+					this.collectionChanged(context, nameValuePairs, false);
+				};
+
+				let typeColumn = new Adaptive.Column("stretch");
+				typeColumn.spacing = Adaptive.Spacing.Small;
+				typeColumn.addItem(type);
+
+				textInput = new Adaptive.TextInput();
+				textInput.placeholder = this.valuePropertyLabel;
+				textInput.defaultValue = nameValuePairs[i].value;
+				textInput.onValueChanged = (sender) => {
+					nameValuePairs[i].value = sender.value;
+					this.collectionChanged(context, nameValuePairs, false);
+				};
+
+				let valueColumn = new Adaptive.Column("stretch");
+				valueColumn.spacing = Adaptive.Spacing.Small;
+				valueColumn.addItem(textInput);
+
+				let removeAction = new Adaptive.SubmitAction();
+				removeAction.title = "X";
+				removeAction.onExecute = (sender) => {
+					nameValuePairs.splice(i, 1);
+
+					this.collectionChanged(context, nameValuePairs, true);
+				}
+
+				let actionSet = new Adaptive.ActionSet();
+				actionSet.addAction(removeAction);
+
+				let removeColumn = new Adaptive.Column("auto");
+				removeColumn.spacing = Adaptive.Spacing.Small;
+				removeColumn.addItem(actionSet);
+
+				let columnSet = new Adaptive.ColumnSet();
+				columnSet.spacing = Adaptive.Spacing.Small;
+				columnSet.addColumn(nameColumn);
+				columnSet.addColumn(typeColumn);
+				columnSet.addColumn(valueColumn);
+				columnSet.addColumn(removeColumn);
+
+				result.addItem(columnSet);
+			}
+		}
+
+		let addAction = new Adaptive.SubmitAction();
+		addAction.title = this.addButtonTitle;
+		addAction.onExecute = (sender) => {
+			nameValuePairs.push({ name: "", type: "", value: "" });
+
+			this.collectionChanged(context, nameValuePairs, true);
+		}
+
+		let actionSet = new Adaptive.ActionSet();
+		actionSet.spacing = Adaptive.Spacing.Small;
+		actionSet.addAction(addAction);
+
+		result.addItem(actionSet);
+
+		return result;
+	}
+
+	constructor(
+		readonly targetVersion: Adaptive.TargetVersion,
+		readonly collectionPropertyName: string,
+		readonly createCollectionItem: (name: string, type: string, value: string) => any,
+		readonly namePropertyLabel: string = "Name",
+		readonly typePropertyLabel: string = "Type",
+		readonly valuePropertyLabel: string = "Value",
+		readonly addButtonTitle: string = "Add",
+		readonly messageIfEmpty: string = "This collection is empty") {
+		super(targetVersion);
+	}
+}
+
 
 class NameValuePairPropertyEditor extends PropertySheetEntry {
 	private collectionChanged(context: PropertySheetContext, nameValuePairs: INameValuePair[], refreshPropertySheet: boolean) {
@@ -1629,11 +1777,33 @@ export class AdaptiveCardPeer extends TypedCardElementPeer<Adaptive.AdaptiveCard
 	static readonly langProperty = new StringPropertyEditor(Adaptive.Versions.v1_1, "lang", "Language");
 	static readonly fallbackTextProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "fallbackText", "Fallback text", false, true);
 	static readonly speakProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "speak", "Speak");
+	dataSetPeer: CardElementPeer;
+	constructor(
+		parent: DesignerPeer,
+		designerSurface: CardDesignerSurface,
+		registration: DesignerPeerRegistrationBase,
+		cardElement: Adaptive.AdaptiveCard) {
+		super(parent, designerSurface, registration, cardElement);
 
+		if (cardElement.dataset) {
+			this.dataSetPeer = CardDesignerSurface.cardElementPeerRegistry.createPeerInstance(this.designerSurface, this, cardElement.dataset);
+			this.insertChild(this.dataSetPeer);
+		}
+	}
 	protected addAction(action: Adaptive.Action) {
 		this.cardElement.addAction(action);
-
 		this.insertChild(CardDesignerSurface.actionPeerRegistry.createPeerInstance(this.designerSurface, this, action));
+	}
+
+	protected addDataSource(dataSource: new () => DataSource) {
+		const dataSourceData = new dataSource();
+		this.cardElement.addDataSource(dataSourceData);
+		if (!this.dataSetPeer) {
+			this.dataSetPeer = CardDesignerSurface.cardElementPeerRegistry.createPeerInstance(this.designerSurface, this, this.cardElement.dataset);
+			this.insertChild(this.dataSetPeer);
+		} else {
+			this.dataSetPeer.insertChild(CardDesignerSurface.cardElementPeerRegistry.createPeerInstance(this.designerSurface, this, dataSourceData));
+		}
 	}
 
 	protected internalRemove(): boolean {
@@ -1673,6 +1843,32 @@ export class AdaptiveCardPeer extends TypedCardElementPeer<Adaptive.AdaptiveCard
 
 									this.addAction(action);
 
+									popupMenu.closePopup(false);
+								};
+
+								popupMenu.items.add(menuItem);
+							}
+
+							popupMenu.popup(clickedElement);
+						}
+					})
+			);
+			commands.push(
+				new PeerCommand(
+					{
+						name: "Add an DataSource",
+						alwaysShowName: true,
+						iconClass: "acd-icon-bolt",
+						showInPropertySheet: true,
+						execute: (command: PeerCommand, clickedElement: HTMLElement) => {
+							let popupMenu = new Controls.PopupMenu();
+
+							for (let i = 0; i < DataSourceList.length; i++) {
+								let menuItem = new Controls.DropDownItem(i.toString(), DataSourceList[i].name);
+								menuItem.onClick = (clickedItem: Controls.DropDownItem) => {
+									let registration = DataSourceList[i];
+									let dataSource = registration.type;
+									this.addDataSource(dataSource);
 									popupMenu.closePopup(false);
 								};
 
@@ -2342,6 +2538,131 @@ export class TextInputPeer extends InputPeer<Adaptive.TextInput> {
 		super.initializeCardElement();
 
 		this.cardElement.placeholder = "Placeholder text";
+	}
+}
+
+
+
+export abstract class DataSourcePeer extends TypedCardElementPeer<Adaptive.DataSource> {
+	static readonly urlProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "uri", "Uri");
+	static readonly isAuthenticatedProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "isAuthenticated", "Is authenticated");
+	static readonly authenticationTypeProperty = new EnumPropertyEditor(Adaptive.Versions.v1_0, "authenticationType", "Authentication type", Adaptive.AuthenticationType);
+
+	populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
+		super.populatePropertySheet(propertySheet, defaultCategory);
+		propertySheet.add(
+			defaultCategory,
+			DataSourcePeer.urlProperty);
+		propertySheet.add(
+			defaultCategory,
+			DataSourcePeer.isAuthenticatedProperty);
+		propertySheet.add(
+			defaultCategory,
+			DataSourcePeer.authenticationTypeProperty);
+	}
+
+	isDraggable(): boolean {
+		return false;
+	}
+
+	internalRemove(): boolean {
+		const acPeer = this.parent as DataSetPeer;
+		acPeer.cardElement.dataSources.splice(acPeer.cardElement.dataSources.indexOf(this.cardElement), 1);
+		return true;
+	}
+
+	getBoundingRect(): Rect {
+		return this.parent.getBoundingRect();
+	}
+	updateLayout() {
+
+	}
+	initializeCardElement() {
+		super.initializeCardElement();
+	}
+}
+export class DataSourceRestPeer extends DataSourcePeer {
+
+	static readonly methodProperty = new EnumPropertyEditor(Adaptive.Versions.v1_0, "method", "Method", Adaptive.RestMethod);
+	static readonly isPageableProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "isPageable", "Is pageable by ASEE standard");
+	static readonly isSoratbleProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "isSortable", "Is soratble by ASEE Standard");
+	static readonly paramsProperty = new DataSourceRestParamPropertyEditor(Adaptive.Versions.v1_0, "params",
+		(name: string, type: string, value: string) => {
+			{
+				const element = new Adaptive.DataSourceRestParam();
+				element.name = name;
+				element.type = type;
+				element.value = value;
+				return element;
+
+			}
+		});
+	populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
+		super.populatePropertySheet(propertySheet, defaultCategory);
+		propertySheet.add(
+			defaultCategory,
+			DataSourceRestPeer.methodProperty);
+		propertySheet.add(
+			defaultCategory,
+			DataSourceRestPeer.isPageableProperty);
+		propertySheet.add(
+			defaultCategory,
+			DataSourceRestPeer.isSoratbleProperty);
+		propertySheet.add(
+			defaultCategory,
+			DataSourceRestPeer.paramsProperty);
+	}
+
+}
+export class DataSourceGraphQLPeer extends DataSourcePeer {
+	static readonly queryProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "query", "GraphQL query");
+	populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
+		super.populatePropertySheet(propertySheet, defaultCategory);
+		propertySheet.add(
+			defaultCategory,
+			DataSourceGraphQLPeer.queryProperty);
+	}
+}
+
+export class DataSetPeer extends TypedCardElementPeer<Adaptive.DataSet> {
+	static readonly bindingProperty = new EnumPropertyEditor(Adaptive.Versions.v1_0, "binding", "Binding", Adaptive.DataSetBindingType);
+	constructor(
+		parent: DesignerPeer,
+		designerSurface: CardDesignerSurface,
+		registration: DesignerPeerRegistrationBase,
+		cardElement: Adaptive.DataSet) {
+		super(parent, designerSurface, registration, cardElement);
+		const dataSources = cardElement.dataSources ?? [];
+		for (const dataSource of dataSources) {
+			this.insertChild(CardDesignerSurface.cardElementPeerRegistry.createPeerInstance(this.designerSurface, this, dataSource));
+		}
+	}
+	getBoundingRect(): Rect {
+		const rect = this.parent.getBoundingRect();
+		rect.bottom = 0;
+		return rect;
+	}
+	updateLayout() {
+
+	}
+	isDraggable(): boolean {
+		return false;
+	}
+
+	populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
+		super.populatePropertySheet(propertySheet, defaultCategory);
+
+		propertySheet.add(
+			defaultCategory,
+			DataSetPeer.bindingProperty);
+	}
+
+	internalRemove(): boolean {
+		(this.parent as AdaptiveCardPeer).cardElement.dataset = null;
+		return true;
+	}
+	initializeCardElement() {
+		super.initializeCardElement();
 	}
 }
 

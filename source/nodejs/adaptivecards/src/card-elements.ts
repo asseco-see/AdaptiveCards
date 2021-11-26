@@ -3954,6 +3954,193 @@ class ActionButton {
 
 export type ActionType = { new(): Action };
 
+
+export class DataSourceRestParam extends SerializableObject {
+
+	static readonly valueProperty = new StringProperty(Versions.v1_0, "value");
+	static readonly typeProperty = new StringProperty(Versions.v1_0, "type");
+	static readonly nameProperty = new StringProperty(Versions.v1_0, "name");
+
+	@property(DataSourceRestParam.valueProperty)
+	value?: string;
+	@property(DataSourceRestParam.typeProperty)
+	type?: string;
+	@property(DataSourceRestParam.nameProperty)
+	name?: string;
+
+	protected getSchemaKey(): string {
+		return 'DataSource.RestParam'
+	}
+
+	constructor(name?: string, type?: string, value?: string) {
+		super();
+
+		this.name = name;
+		this.type = type;
+		this.value = value;
+	}
+}
+
+export class DataSource extends CardElement {
+
+	static readonly uriProperty = new StringProperty(Versions.v1_0, "uri");
+	static readonly isAuthenticatedProperty = new BoolProperty(Versions.v1_0, "isAuthenticated");
+	static readonly authenticationTypeProperty = new EnumProperty(Versions.v1_0, "authenticationType", Enums.AuthenticationType);
+	@property(DataSource.uriProperty)
+	uri?: string;
+
+	@property(DataSource.isAuthenticatedProperty)
+	isAuthenticated: boolean;
+
+	@property(DataSource.authenticationTypeProperty)
+
+	authenticationType?: Enums.AuthenticationType;
+	getJsonTypeName(): string {
+		return "DataSource";
+	}
+	protected internalRender(): HTMLElement | undefined {
+		return document.createElement('span');
+	}
+
+	get hostConfig(): HostConfig {
+		return this.parent ? this.parent.hostConfig : defaultHostConfig;
+	}
+	get isStandalone(): boolean {
+		return false;
+	}
+}
+
+export class DataSourceGraphQL extends DataSource {
+	static readonly queryProperty = new StringProperty(Versions.v1_0, "query");
+
+	@property(DataSourceGraphQL.queryProperty)
+	query?: string;
+
+	static dataSourceName = "DataSource.GraphQL";
+	getJsonTypeName(): string {
+		return DataSourceGraphQL.dataSourceName;
+	}
+}
+
+export class DataSourceRest extends DataSource {
+	static readonly paramsTypeProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "params", DataSourceRestParam);
+	static readonly methodProperty = new EnumProperty(Versions.v1_0, "method", Enums.RestMethod);
+	static readonly contentTypeProperty = new StringProperty(Versions.v1_0, "contentType");
+	static readonly isPageableProperty = new BoolProperty(Versions.v1_0, "isPageable");
+	static readonly isSortableProperty = new BoolProperty(Versions.v1_0, "isSortable");
+
+	@property(DataSourceRest.methodProperty)
+	method?: string;
+
+	@property(DataSourceRest.paramsTypeProperty)
+	params?: DataSourceRestParam[];
+
+	@property(DataSourceRest.contentTypeProperty)
+	contentType?: string;
+
+	@property(DataSourceRest.isPageableProperty)
+	isPageable: boolean;
+
+	@property(DataSourceRest.isSortableProperty)
+	isSortable: boolean;
+
+	static dataSourceName = "DataSource.REST";
+
+
+	getJsonTypeName(): string {
+		return DataSourceRest.dataSourceName;
+	}
+}
+
+export class AvailableDataSource {
+	name: string;
+	type: new () => DataSource;
+}
+export const DataSourceList: AvailableDataSource[] = [
+	{
+		name: DataSourceGraphQL.dataSourceName,
+		type: DataSourceGraphQL
+	},
+	{
+		name: DataSourceRest.dataSourceName,
+		type: DataSourceRest
+	}
+];
+
+export class DataSet extends CardElement {
+
+	static readonly bindingProperty = new EnumProperty(Versions.v1_0, "binding", Enums.DataSetBindingType);
+
+	@property(DataSet.bindingProperty)
+	binding?: string;
+
+	dataSources?: DataSource[] = [];
+
+	get isStandalone(): boolean {
+		return false;
+	}
+	getJsonTypeName(): string {
+		return "DataSet"
+	}
+	get hostConfig(): HostConfig {
+		return this.parent ? this.parent.hostConfig : defaultHostConfig;
+	}
+
+	protected internalRender(): HTMLElement | undefined {
+		return document.createElement('span');
+	}
+
+	public addDataSource(dataSource: DataSource) {
+		if (!this.dataSources) {
+			this.dataSources = [];
+		}
+		this.dataSources?.push(dataSource);
+	}
+
+	protected internalParse(source: any, context: SerializationContext) {
+		this.dataSources = [];
+		const dataSourcesList = source.dataSources;
+		if (Array.isArray(dataSourcesList)) {
+			for (const item of dataSourcesList) {
+				const data = this.createDataSourceInstance(item, context);
+				if (data) {
+					this.dataSources.push(data);
+				}
+			}
+		}
+		super.internalParse(source, context);
+	}
+	protected internalToJSON(target: PropertyBag, context: SerializationContext) {
+		this.setValue(AdaptiveCard.versionProperty, context.targetVersion);
+		if (this.dataSources) {
+			context.serializeArray(target, 'dataSources', this.dataSources);
+		}
+		super.internalToJSON(target, context);
+	}
+
+	private createDataSourceInstance(source: any, context: SerializationContext): DataSource | undefined {
+		let type: new () => DataSource = DataSource;
+		if (source.type === 'DataSource.REST') {
+			type = DataSourceRest;
+		} else {
+			type = DataSourceGraphQL;
+		}
+		return context.parseCardObject<DataSource>(
+			this,
+			source,
+			[], // Forbidden types not supported for elements for now
+			!this.isDesignMode(),
+			(typeName: string) => !typeName || typeName === source.type ? new type() : undefined,
+			(typeName: string, errorType: any) => {
+				context.logParseEvent(
+					undefined,
+					Enums.ValidationEvent.ElementTypeNotAllowed,
+					Strings.errors.elementTypeNotAllowed(typeName));
+			});
+	}
+
+}
+
 export abstract class Action extends CardObject {
 	//#region Schema
 
@@ -5074,7 +5261,6 @@ export class ActionCollection {
 
 		return this._renderedActionCount > 0 ? element : undefined;
 	}
-
 	addAction(action: Action) {
 		if (!action) {
 			throw new Error("The action parameter cannot be null.");
@@ -5459,7 +5645,7 @@ export abstract class StylableCardElementContainer extends CardElementContainer 
 }
 
 export class GenericAction extends Action {
-	
+
 	arrayTypes: string[] = [];
 	objectTypes: string[] = [];
 	getJsonTypeName(): string {
@@ -6803,6 +6989,7 @@ export interface IMarkdownProcessingResult {
 export class AdaptiveCard extends ContainerWithActions {
 	static readonly schemaUrl = "http://adaptivecards.io/schemas/adaptive-card.json";
 
+	// static readonly datasetProperty = new SerializableObjectProperty(Versions.v1_0, "dataset", DataSet, undefined);
 	//#region Schema
 
 	protected static readonly $schemaProperty = new CustomProperty<string>(
@@ -6846,10 +7033,19 @@ export class AdaptiveCard extends ContainerWithActions {
 
 	@property(AdaptiveCard.fallbackTextProperty)
 	fallbackText?: string;
-
+	dataset?: DataSet;
 	@property(AdaptiveCard.speakProperty)
 	speak?: string;
 
+
+	addDataSource(dataSource: DataSource) {
+		console.log('Dodajem dataset');
+		if (!this.dataset) {
+			this.dataset = new DataSet();
+			this.dataset.binding = "client";
+		}
+		this.dataset.addDataSource(dataSource);
+	}
 	//#endregion
 
 	static onAnchorClicked?: (element: CardElement, anchor: HTMLAnchorElement) => boolean;
@@ -6923,13 +7119,33 @@ export class AdaptiveCard extends ContainerWithActions {
 			this._fallbackCard = new AdaptiveCard();
 			this._fallbackCard.addItem(fallbackElement);
 		}
-
+		if (source.dataset) {
+			const dataSetNew = this.createDataSetInstance(source.dataset, context);
+			this.dataset = dataSetNew;
+		}
 		super.internalParse(source, context);
+	}
+
+	private createDataSetInstance(source: any, context: SerializationContext): DataSet | undefined {
+		return context.parseCardObject<DataSet>(
+			this,
+			source,
+			[], // Forbidden types not supported for elements for now
+			!this.isDesignMode(),
+			(typeName: string) => !typeName || typeName === 'DataSet' ? new DataSet() : undefined,
+			(typeName: string, errorType: any) => {
+				context.logParseEvent(
+					undefined,
+					Enums.ValidationEvent.ElementTypeNotAllowed,
+					Strings.errors.elementTypeNotAllowed(typeName));
+			});
 	}
 
 	protected internalToJSON(target: PropertyBag, context: SerializationContext) {
 		this.setValue(AdaptiveCard.versionProperty, context.targetVersion);
-
+		if (this.dataset) {
+			context.serializeValue(target, 'dataset', this.dataset ? this.dataset.toJSON(context) : undefined, undefined, true);
+		}
 		super.internalToJSON(target, context);
 	}
 
@@ -7152,6 +7368,10 @@ export class GlobalRegistry {
 		registry.register("Input.Number", NumberInput);
 		registry.register("Input.ChoiceSet", ChoiceSetInput);
 		registry.register("Input.Toggle", ToggleInput);
+		registry.register("DataSet", DataSet);
+		registry.register("DataSource", DataSource);
+		registry.register("DataSource.GraphQL", DataSourceGraphQL);
+		registry.register("DataSource.REST", DataSourceRest);
 	}
 
 	static populateWithDefaultActions(registry: CardObjectRegistry<Action>) {
