@@ -40,8 +40,8 @@ export function parseBool(value: any, defaultValue?: boolean): any | undefined {
             return true;
         } else if (value.toLowerCase() === "false") {
             return false;
-        } else if (value.toLowerCase()) {
-            return value.toLowerCase();
+        } else if (value) {
+            return value;
         } else {
             return defaultValue;
         }
