@@ -30,17 +30,6 @@
 						"description": "Specifies the title of column.",
 						"version": "0.1"
 					},
-					"cell": {
-						"type": "string",
-						"description": "Specifies the cell value expression.",
-						"version": "0.1"
-					},
-					"format": {
-						"type": "DataTableColumnFormat",
-						"description": "Specifies the cell value type.",
-						"version": "0.1",
-						"default": "text"
-					},
 					"sortable": {
 						"type": "boolean",
 						"description": "Specifies if the column is sortable.",
@@ -49,11 +38,6 @@
 					"width": {
 						"type": "number",
 						"description": "Specifies the width of the column. Width represents the weight of the column relative to the other columns in the table.",
-						"version": "0.1"
-					},
-					"translate": {
-						"type": "boolean",
-						"description": "Specifies whether the column should be translated.",
 						"version": "0.1"
 					},
 					"cellContentAlignment": {
@@ -87,9 +71,14 @@
 				"description": "Defines paging configuration of data table.",
 				"version": "0.1",
 				"properties": {
+					"page": {
+						"type": "string",
+						"description": "Specifies the page value. Can be an expression from a dataset.",
+						"version": "0.1"
+					},
 					"pageSize": {
-						"type": "number",
-						"description": "Specifies initial page size value.",
+						"type": "string",
+						"description": "Specifies the page size value. Can be an expression from a dataset.",
 						"version": "0.1"
 					},
 					"pageSizeOptions": {
@@ -127,12 +116,60 @@
 					}
 				}
 			},
+			"DataTableRow": {
+				"description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
+				"extends": "Element",
+				"properties": {
+					"$data": {
+						"type": "string",
+						"description": "Expression for getting the row items from the dataset",
+						"required": true,
+						"version": "0.1"
+					},
+					"cells": {
+						"type": "DataTableCell[]",
+						"description": "Defines the number of columns in the table, their sizes, and more.",
+						"required": true,
+						"version": "0.1"
+					}
+				}
+			},
+			"DataTableCell": {
+				"description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
+				"extends": "Element",
+				"properties": {
+					"value": {
+						"type": "string",
+						"description": "Expression for getting the value from the dataset",
+						"required": true,
+						"version": "0.1"
+					},
+					"translate": {
+						"type": "boolean",
+						"description": "Specifies whether the column should be translated.",
+						"required": true,
+						"version": "0.1"
+					},
+					"format": {
+						"type": "DataTableColumnFormat",
+						"description": "Specifies the cell value type.",
+						"version": "0.1",
+						"default": "text"
+					}
+				}
+			},
 			"DataTable": {
 				"description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
 				"extends": "Element",
 				"properties": {
 					"columns": {
 						"type": "DataTableColumn[]",
+						"description": "Defines the number of columns in the table, their sizes, and more.",
+						"required": true,
+						"version": "0.1"
+					},
+					"rows": {
+						"type": "DataTableRow[]",
 						"description": "Defines the number of columns in the table, their sizes, and more.",
 						"required": true,
 						"version": "0.1"
@@ -176,8 +213,8 @@
 						"version": "0.1"
 					},
 					"dataSource": {
-						"type": "DataSource",
-						"description": "Data source for data table element.",
+						"type": "DataSet",
+						"description": "Data set for data table element.",
 						"version": "0.1",
 						"required": true
 					}
