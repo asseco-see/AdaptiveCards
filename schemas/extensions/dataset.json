@@ -89,6 +89,12 @@
                 "type": "DataSource.GraphQL",
                 "description": "GraphQL Data Source",
                 "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name of data source",
+                        "required": true,
+                        "version": "0.1"
+                    },
                     "uri": {
                         "type": "uri",
                         "description": "URI to data service",
@@ -120,6 +126,12 @@
                 "type": "DataSource.REST",
                 "description": "REST DataSource",
                 "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name of data source",
+                        "required": true,
+                        "version": "0.1"
+                    },
                     "uri": {
                         "type": "uri",
                         "description": "URI to data service",
