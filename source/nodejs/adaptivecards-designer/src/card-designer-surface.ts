@@ -15,6 +15,7 @@ import { BooleanPropertyEditor, EnumPropertyEditor, NumberPropertyEditor, String
 import { ActionCollection, ActionProperty, BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, PropertyDefinition, StringProperty, Versions } from "@asseco/adaptivecards";
 import { ExtensionRegistry } from "./extension-loader";
 import { extractionElementsAndActionsFromExtension } from "./utils";
+import { itemForRender } from "./constants";
 
 export enum BindingPreviewMode {
 	NoPreview,
@@ -590,7 +591,7 @@ export class CardDesignerSurface {
 				filterToRender._items = cardToRender._items.filter(item=> item.id === this.selectedDialogId);
 				filterToRender._actionCollection = new ActionCollection(cardToRender);
 				renderedCard = filterToRender.render();
-			}
+			}			
 			if (this.isPreviewMode) {
 				cardToRender.onExecuteAction = (action: Adaptive.Action) => {
 					let message: string = "Action executed\n";
@@ -635,6 +636,10 @@ export class CardDesignerSurface {
 	private addPeer(peer: DesignerPeers.DesignerPeer) {
 		if (this._allPeers.indexOf(peer) < 0) {
 			this._allPeers.push(peer);
+			if (this.selectedDialogId)
+			{
+				peer["designMode"] = true;
+			}
 
 			peer.render();
 

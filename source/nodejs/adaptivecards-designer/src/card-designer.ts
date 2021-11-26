@@ -27,6 +27,7 @@ import { HelpDialog } from "./help-dialog";
 import * as yaml from "js-yaml";
 import { ExtensionRegistry } from "./extension-loader";
 import { CustomCardElementRegistry } from "@asseco/adaptivecards";
+import { itemForRender } from "./constants";
 
 export class CardDesigner extends Designer.DesignContext {
 	private static internalProcessMarkdown(text: string, result: Adaptive.IMarkdownProcessingResult) {
@@ -115,7 +116,7 @@ export class CardDesigner extends Designer.DesignContext {
 								value: null
 							});
 						this.designerSurface.card._items.forEach(element => {
-							if (element.getJsonTypeName() === "Dialog") {
+							if (element.getJsonTypeName() === itemForRender) {
 								if (element.id) {
 									this._dialogChoicePicker.choices.push(
 										{
