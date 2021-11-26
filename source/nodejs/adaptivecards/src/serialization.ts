@@ -106,8 +106,8 @@ export class Versions {
     static readonly v1_0 = new Version(1, 0);
     static readonly v1_1 = new Version(1, 1);
     static readonly v1_2 = new Version(1, 2);
-	static readonly v1_3 = new Version(1, 3);
-	static readonly v1_4 = new Version(1, 4);
+    static readonly v1_3 = new Version(1, 3);
+    static readonly v1_4 = new Version(1, 4);
     static readonly latest = Versions.v1_4;
 }
 
@@ -239,14 +239,14 @@ export abstract class BaseSerializationContext {
         return this._validationEvents[index];
     }
 
-    constructor(public targetVersion: Version = Versions.latest) {}
+    constructor(public targetVersion: Version = Versions.latest) { }
 
     get eventCount(): number {
         return this._validationEvents.length;
     }
 }
 
-class SimpleSerializationContext extends BaseSerializationContext {}
+class SimpleSerializationContext extends BaseSerializationContext { }
 
 export class PropertyDefinition {
     private static _sequentialNumber: number = 0;
@@ -272,10 +272,10 @@ export class PropertyDefinition {
         readonly name: string,
         readonly defaultValue?: any,
         readonly onGetInitialValue?: (sender: SerializableObject) => any) {
-            this.sequentialNumber = PropertyDefinition._sequentialNumber;
+        this.sequentialNumber = PropertyDefinition._sequentialNumber;
 
-            PropertyDefinition._sequentialNumber++;
-        }
+        PropertyDefinition._sequentialNumber++;
+    }
 }
 
 export class StringProperty extends PropertyDefinition {
@@ -319,7 +319,7 @@ export class StringProperty extends PropertyDefinition {
 }
 
 export class BoolProperty extends PropertyDefinition {
-    parse(sender: SerializableObject, source: PropertyBag, context: BaseSerializationContext): boolean | undefined {
+    parse(sender: SerializableObject, source: PropertyBag, context: BaseSerializationContext): any | undefined {
         return Utils.parseBool(source[this.name], this.defaultValue);
     }
 
@@ -580,7 +580,7 @@ export class EnumProperty<TEnum extends { [s: number]: string }> extends Propert
                 let keyAsNumber = parseInt(key, 10);
 
                 if (keyAsNumber >= 0) {
-                    this._values.push( { value: keyAsNumber });
+                    this._values.push({ value: keyAsNumber });
                 }
             }
         }
@@ -748,13 +748,13 @@ export class SerializableObjectSchema {
 // This is a decorator function, used to map SerializableObject descendant class members to
 // schema properties
 export function property(property: PropertyDefinition) {
-    return function(target: any, propertyKey: string) {
+    return function (target: any, propertyKey: string) {
         let descriptor = Object.getOwnPropertyDescriptor(target, propertyKey) || {};
         if (!descriptor.get && !descriptor.set) {
             delete descriptor.value;
             delete descriptor.writable;
-            descriptor.get = function(this: SerializableObject) { return this.getValue(property); };
-            descriptor.set = function(this: SerializableObject, value: any) { this.setValue(property, value); };
+            descriptor.get = function (this: SerializableObject) { return this.getValue(property); };
+            descriptor.set = function (this: SerializableObject, value: any) { this.setValue(property, value); };
 
             Object.defineProperty(target, propertyKey, descriptor)
         }
@@ -794,8 +794,7 @@ export abstract class SerializableObject {
                 // it throws an exception, we need to catch it here
             }
         }
-        if (this._propertyBag)
-        {
+        if (this._propertyBag) {
             for (let propertyName in Object.getPrototypeOf(this)) {
                 try {
                     let propertyValue = Object.getPrototypeOf(this)[propertyName];
@@ -923,7 +922,7 @@ export abstract class SerializableObject {
 
     toJSON(context?: BaseSerializationContext): PropertyBag | undefined {
         let effectiveContext: BaseSerializationContext;
-        
+
         if (context && context instanceof BaseSerializationContext) {
             effectiveContext = context;
         }
