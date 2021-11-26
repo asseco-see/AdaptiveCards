@@ -1,0 +1,49 @@
+{
+	"id": "action-navigate",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"NavigateParam": {
+				"classType": "Class",
+				"type": "NavigateParam",
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "Parameter name",
+						"required": true,
+						"version": "0.1"
+					},
+					"value": {
+						"type": "string",
+						"description": "Parameter value",
+						"version": "0.1"
+					}
+				}
+			},
+			"Action.Navigate": {
+				"extends": "Action",
+				"description": "Allows a user to a named route",
+				"properties": {
+					"route": {
+						"type": "string",
+						"description": "Element id to be refreshed",
+						"version": "0.1"
+					},
+					"parameters": {
+						"type": "NavigateParam[]",
+						"description": "Initial route parameters that will be combined with the input fields. These are essentially ‘hidden’ properties.",
+						"version": "0.1"
+					},
+					"associatedInputs": {
+						"type": "AssociatedInputs",
+						"description": "Controls which inputs are associated with the navigate action.",
+						"default": "auto",
+						"version": "0.1"
+					}
+				}
+			}
+		}
+	}
+}
