@@ -5,9 +5,9 @@
 	"propertyPrefix": "asseco",
 	"contributes": {
 		"definitions": {
-			"DataTableColumnFormat": {
+			"DataTableCellFormat": {
 				"classType": "Enum",
-				"type": "DataTableColumnType",
+				"type": "DataTableCellFormat",
 				"values": [
 					"text",
 					"date",
@@ -88,34 +88,6 @@
 					}
 				}
 			},
-			"DataTableAction": {
-				"classType": "Class",
-				"type": "DataTableAction",
-				"description": "Defines actions that can be triggered of data table row.",
-				"version": "0.1",
-				"properties": {
-					"id": {
-						"type": "string",
-						"description": "Specifies the action id.",
-						"version": "0.1"
-					},
-					"title": {
-						"type": "string",
-						"description": "Specifies the action name.",
-						"version": "0.1"
-					},
-					"icon": {
-						"type": "string",
-						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
-						"version": "0.1"
-					},
-					"type": {
-						"type": "string",
-						"description": "Specifies the type of action that will be shown.",
-						"version": "0.1"
-					}
-				}
-			},
 			"DataTableRow": {
 				"description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
 				"extends": "Element",
@@ -130,6 +102,11 @@
 						"type": "DataTableCell[]",
 						"description": "Defines the number of columns in the table, their sizes, and more.",
 						"required": true,
+						"version": "0.1"
+					},
+					"actions": {
+						"type": "Action[]",
+						"description": "Defines the actions that can be triggered on data table.",
 						"version": "0.1"
 					}
 				}
@@ -178,11 +155,6 @@
 						"type": "ResponsiveConfiguration[]",
 						"description": "Defines visible columns when column width changes.",
 						"required": true,
-						"version": "0.1"
-					},
-					"actions": {
-						"type": "DataTableAction[]",
-						"description": "Defines the actions that can be triggered on data table.",
 						"version": "0.1"
 					},
 					"paging": {
