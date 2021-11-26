@@ -357,6 +357,23 @@ export class Toolbar {
         return null;
     }
 
+    addOrReplaceElement(element: ToolbarElement) {
+        const elementIndex = this._elements.findIndex((dialog) => dialog.id === element.id);
+        if (elementIndex !== -1) {
+            this._elements[elementIndex] = element;
+        }
+        else {
+            this._elements.unshift(element);
+        }
+    }
+
+    removeElement(element: ToolbarElement) {
+        const elementIndex = this._elements.findIndex((dialog) => dialog.id === element.id);
+        if (elementIndex !== -1) {
+            this._elements.splice(elementIndex, 1);
+        }
+    }
+
     insertElementAfter(element: ToolbarElement, afterElementId: string) {
         for (let i = 0; i < this._elements.length; i++) {
             if (this._elements[i].id == afterElementId) {

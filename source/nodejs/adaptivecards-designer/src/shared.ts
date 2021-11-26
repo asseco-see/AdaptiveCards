@@ -8,6 +8,7 @@ export class GlobalSettings {
     static selectedHostContainerControlsTargetVersion: boolean = true;
     static showTargetVersionMismatchWarning: boolean = true;
     static showLanguagePicker: boolean = true;
+    static showDialogPicker: boolean = true;
 }
 
 export var SupportedTargetVersions: Adaptive.Version[] = [

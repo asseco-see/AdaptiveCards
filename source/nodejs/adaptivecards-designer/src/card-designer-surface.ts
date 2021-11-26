@@ -12,7 +12,7 @@ import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
 import * as yaml from 'js-yaml';
 import { BooleanPropertyEditor, EnumPropertyEditor, NumberPropertyEditor, StringPropertyEditor } from "./designer-peers";
-import { ActionProperty, BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, PropertyDefinition, StringProperty, Versions } from "@asseco/adaptivecards";
+import { ActionCollection, ActionProperty, BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, PropertyDefinition, StringProperty, Versions } from "@asseco/adaptivecards";
 import { ExtensionRegistry } from "./extension-loader";
 import { extractionElementsAndActionsFromExtension } from "./utils";
 
@@ -405,6 +405,7 @@ export class CardDesignerSurface {
 	private _serializationContext: Adaptive.SerializationContext;
 	private _isPreviewMode: boolean = false;
 	private _dragVisual?: HTMLElement;
+	public selectedDialogId: string;
 
 	private static _onRenderAngular?: (htmlElement: HTMLElement, definition) => void;
 
@@ -583,6 +584,13 @@ export class CardDesignerSurface {
 		}
 		else {
 			let cardToRender = this.generateCardToRender(this.isPreviewMode);
+			const filterToRender = cardToRender;
+			let renderedCard = cardToRender.render();
+			if (this.selectedDialogId) {
+				filterToRender._items = cardToRender._items.filter(item=> item.id === this.selectedDialogId);
+				filterToRender._actionCollection = new ActionCollection(cardToRender);
+				renderedCard = filterToRender.render();
+			}
 			if (this.isPreviewMode) {
 				cardToRender.onExecuteAction = (action: Adaptive.Action) => {
 					let message: string = "Action executed\n";
@@ -615,7 +623,6 @@ export class CardDesignerSurface {
 					alert(message);
 				};
 			}
-			let renderedCard = cardToRender.render();
 
 			if (this.fixedHeightCard) {
 				renderedCard.style.height = "100%";
@@ -748,7 +755,7 @@ export class CardDesignerSurface {
 		this.updateLayout();
 	}
 
-	private get card(): Adaptive.AdaptiveCard {
+	public get card(): Adaptive.AdaptiveCard {
 		return this._card;
 	}
 

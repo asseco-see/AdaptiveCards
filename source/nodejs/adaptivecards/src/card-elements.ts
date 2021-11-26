@@ -5766,7 +5766,7 @@ export class Container extends StylableCardElementContainer {
 
 	//#endregion
 
-	private _items: CardElement[] = [];
+	public _items: CardElement[] = [];
 	private _renderedItems: CardElement[] = [];
 
 	private insertItemAt(
@@ -6650,7 +6650,7 @@ function raiseElementVisibilityChangedEvent(element: CardElement, shouldUpdateLa
 }
 
 export abstract class ContainerWithActions extends Container {
-	private _actionCollection: ActionCollection;
+	public _actionCollection: ActionCollection;
 
 	protected internalParse(source: any, context: SerializationContext) {
 		super.internalParse(source, context);
