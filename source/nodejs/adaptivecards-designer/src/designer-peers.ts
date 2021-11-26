@@ -2619,7 +2619,7 @@ export class DataSourceRestPeer extends DataSourcePeer {
 
 }
 export class DataSourceGraphQLPeer extends DataSourcePeer {
-	static readonly queryProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "query", "GraphQL query");
+	static readonly queryProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "query", "GraphQL query", undefined, true);
 	populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
 		super.populatePropertySheet(propertySheet, defaultCategory);
 		propertySheet.add(
