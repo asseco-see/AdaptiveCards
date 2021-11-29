@@ -67,11 +67,15 @@ export abstract class DesignerPeerRegistry<TSource, TPeer> {
 
     findTypeRegistration(sourceType: TSource): DesignerPeers.DesignerPeerRegistration<TSource, TPeer> {
         for (var i = 0; i < this._items.length; i++) {
-
-            if (this._items[i].sourceType == sourceType
-                || (this._items[i].sourceType as any).prototype.getJsonTypeName() === (sourceType as any).prototype.getJsonTypeName()) {
-                return this._items[i];
-            }
+					  try
+						{
+							if (this._items[i].sourceType == sourceType
+									|| (this._items[i].sourceType as any).prototype.getJsonTypeName() === (sourceType as any).prototype.getJsonTypeName()) {
+									return this._items[i];
+							}
+						} catch (e) {
+							return null;
+						}
         }
         return null;
     }
@@ -640,9 +644,10 @@ export class CardDesignerSurface {
 	private addPeer(peer: DesignerPeers.DesignerPeer) {
 		if (this._allPeers.indexOf(peer) < 0) {
 			this._allPeers.push(peer);
+			console.log(peer);
 			if (this.selectedDialogId)
 			{
-				peer["designMode"] = true;
+				peer["cardElement"]["designMode"] = true;
 			}
 
 			peer.render();
