@@ -596,7 +596,11 @@ export class CardDesignerSurface {
 			const filterToRender = cardToRender;
 			let renderedCard = cardToRender.render();
 			if (this.selectedDialogId) {
-				filterToRender._items = cardToRender._items.filter(item=> item.id === this.selectedDialogId);
+				filterToRender._items = cardToRender._items.filter(item=> item.id === this.selectedDialogId);				
+				if (filterToRender._items)
+				{
+					filterToRender._items[0]["designMode"] = true;
+				}
 				filterToRender._actionCollection = new ActionCollection(cardToRender);
 				renderedCard = filterToRender.render();
 			}			
@@ -644,12 +648,6 @@ export class CardDesignerSurface {
 	private addPeer(peer: DesignerPeers.DesignerPeer) {
 		if (this._allPeers.indexOf(peer) < 0) {
 			this._allPeers.push(peer);
-			console.log(peer);
-			if (this.selectedDialogId)
-			{
-				peer["cardElement"]["designMode"] = true;
-			}
-
 			peer.render();
 
 			peer.onSelectedChanged = (peer: DesignerPeers.DesignerPeer) => {
