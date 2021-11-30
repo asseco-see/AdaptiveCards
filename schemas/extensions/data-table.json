@@ -81,6 +81,11 @@
 						"description": "Specifies the page size value. Can be an expression from a dataset.",
 						"version": "0.1"
 					},
+					"totalCount": {
+						"type": "string",
+						"description": "Specifies the total entries count. Can be an expression from a dataset.",
+						"version": "0.1"
+					},
 					"pageSizeOptions": {
 						"type": "number[]",
 						"description": "Specifies the list of available page size options.",
