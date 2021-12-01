@@ -764,7 +764,6 @@ export function property(property: PropertyDefinition) {
 export type PropertyBag = { [propertyName: string]: any };
 
 export abstract class SerializableObject {
-	private static readonly _reservedFields = ["$data", "$when", "$root", "$index"];
     static onRegisterCustomProperties?: (sender: SerializableObject, schema: SerializableObjectSchema) => void;
 
     private static readonly _schemaCache: { [typeName: string]: SerializableObjectSchema } = {};
@@ -846,7 +845,9 @@ export abstract class SerializableObject {
 
     protected internalParse(source: PropertyBag, context: BaseSerializationContext) {
         this._propertyBag = {};
-        this._rawProperties = GlobalSettings.enableFullJsonRoundTrip ? (source ? source : {}) : {};
+		// TODO: Return this code when enableFullJsonRoundTrip=true
+        // this._rawProperties = GlobalSettings.enableFullJsonRoundTrip ? (source ? source : {}) : {};
+		this._rawProperties = source ? source : {};
 
         if (source) {
             let s = this.getSchema();
@@ -874,15 +875,7 @@ export abstract class SerializableObject {
 
                     this.setValue(property, propertyValue);
                 }
-            }
-
-			SerializableObject._reservedFields.forEach(rf => {
-				if (source.hasOwnProperty(rf)) {
-					this.setCustomProperty(rf, source[rf]);
-				}
-			});
-
-			
+            }	
         }
         else {
             this.resetDefaultValues();
@@ -905,12 +898,6 @@ export abstract class SerializableObject {
                 serializedProperties.push(property.name);
             }
         }
-
-		if (this._rawProperties) {
-			for (const rawPropName of Object.keys(this._rawProperties)) {
-				target[rawPropName] = this._rawProperties[rawPropName];
-			}
-		}
     }
 
     protected shouldSerialize(context: BaseSerializationContext): boolean {
@@ -949,7 +936,11 @@ export abstract class SerializableObject {
         if (this.shouldSerialize(effectiveContext)) {
             let result: PropertyBag;
 
-            if (GlobalSettings.enableFullJsonRoundTrip && this._rawProperties && typeof this._rawProperties === "object") {
+			// TODO: Return this code when enableFullJsonRoundTrip=true
+            // if (GlobalSettings.enableFullJsonRoundTrip && this._rawProperties && typeof this._rawProperties === "object") {
+            //     result = this._rawProperties;
+            // }
+			if (this._rawProperties && typeof this._rawProperties === "object") {
                 result = this._rawProperties;
             }
             else {
