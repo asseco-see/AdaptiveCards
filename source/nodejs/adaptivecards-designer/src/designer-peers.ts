@@ -650,6 +650,7 @@ interface IParamPair {
 	name: string;
 	value: string;
 	type: string;
+	required: boolean;
 }
 
 class DataSourceRestParamPropertyEditor extends PropertySheetEntry {
@@ -678,7 +679,8 @@ class DataSourceRestParamPropertyEditor extends PropertySheetEntry {
 				{
 					name: pair['name'],
 					value: pair['value'],
-					type: pair['type']
+					type: pair['type'],
+					required: pair['required']
 				}
 			)
 		}
@@ -724,6 +726,19 @@ class DataSourceRestParamPropertyEditor extends PropertySheetEntry {
 				typeColumn.spacing = Adaptive.Spacing.Small;
 				typeColumn.addItem(type);
 
+
+				const toggle = new Adaptive.ToggleInput();
+				toggle.title = 'Required';
+				toggle.defaultValue = nameValuePairs[i].type;
+				toggle.onValueChanged = (sender) => {
+					nameValuePairs[i].type = sender.value;
+					this.collectionChanged(context, nameValuePairs, false);
+				};
+
+				let requiredColumn = new Adaptive.Column("stretch");
+				requiredColumn.spacing = Adaptive.Spacing.Small;
+				requiredColumn.addItem(toggle);
+
 				textInput = new Adaptive.TextInput();
 				textInput.placeholder = this.valuePropertyLabel;
 				textInput.defaultValue = nameValuePairs[i].value;
@@ -756,6 +771,7 @@ class DataSourceRestParamPropertyEditor extends PropertySheetEntry {
 				columnSet.addColumn(nameColumn);
 				columnSet.addColumn(typeColumn);
 				columnSet.addColumn(valueColumn);
+				columnSet.addColumn(requiredColumn);
 				columnSet.addColumn(removeColumn);
 
 				result.addItem(columnSet);
@@ -765,7 +781,7 @@ class DataSourceRestParamPropertyEditor extends PropertySheetEntry {
 		let addAction = new Adaptive.SubmitAction();
 		addAction.title = this.addButtonTitle;
 		addAction.onExecute = (sender) => {
-			nameValuePairs.push({ name: "", type: "", value: "" });
+			nameValuePairs.push({ name: "", type: "", value: "", required: false });
 
 			this.collectionChanged(context, nameValuePairs, true);
 		}

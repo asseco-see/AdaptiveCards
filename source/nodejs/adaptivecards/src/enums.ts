@@ -31,7 +31,8 @@ export enum SizeUnit {
 
 export enum DataSourceRestParamType {
     Query,
-    Header
+    Header,
+		Route
 }
 
 export enum TextSize {
