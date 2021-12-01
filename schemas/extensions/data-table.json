@@ -54,7 +54,7 @@
 				"version": "0.1",
 				"properties": {
 					"width": {
-						"type": "string",
+						"type": "string|number",
 						"description": "Specifies the width in pixels when columns are applied.",
 						"version": "0.1"
 					},
