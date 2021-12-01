@@ -731,7 +731,7 @@ class DataSourceRestParamPropertyEditor extends PropertySheetEntry {
 				toggle.title = 'Required';
 				toggle.defaultValue = nameValuePairs[i].type;
 				toggle.onValueChanged = (sender) => {
-					nameValuePairs[i].type = sender.value;
+					nameValuePairs[i].required = sender.value;
 					this.collectionChanged(context, nameValuePairs, false);
 				};
 
