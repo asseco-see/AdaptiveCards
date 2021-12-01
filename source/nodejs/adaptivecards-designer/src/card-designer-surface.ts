@@ -18,379 +18,378 @@ import { extractionElementsAndActionsFromExtension } from "./utils";
 import { itemForRender } from "./constants";
 
 export enum BindingPreviewMode {
-    NoPreview,
-    GeneratedData,
-    SampleData
+	NoPreview,
+	GeneratedData,
+	SampleData
 }
 
 export type CardElementType = { new(): Adaptive.CardElement };
 export type ActionType = { new(): Adaptive.Action };
 export type CardElementPeerType = {
-    new(
-        parent: DesignerPeers.DesignerPeer,
-        designerSurface: CardDesignerSurface,
-        registration: DesignerPeers.DesignerPeerRegistrationBase,
-        cardElement: Adaptive.CardElement
-    ): DesignerPeers.CardElementPeer
+	new(
+		parent: DesignerPeers.DesignerPeer,
+		designerSurface: CardDesignerSurface,
+		registration: DesignerPeers.DesignerPeerRegistrationBase,
+		cardElement: Adaptive.CardElement
+	): DesignerPeers.CardElementPeer
 };
 export type ActionPeerType = {
-    new(
-        parent: DesignerPeers.DesignerPeer,
-        designerSurface: CardDesignerSurface,
-        registration: DesignerPeers.DesignerPeerRegistrationBase,
-        action: Adaptive.Action
-    ): DesignerPeers.ActionPeer
+	new(
+		parent: DesignerPeers.DesignerPeer,
+		designerSurface: CardDesignerSurface,
+		registration: DesignerPeers.DesignerPeerRegistrationBase,
+		action: Adaptive.Action
+	): DesignerPeers.ActionPeer
 };
 
 export class DesignerPeerCategory {
-    static Unknown = "Unknown";
-    static Containers = "Containers";
-    static Elements = "Elements";
-    static Inputs = "Inputs";
-    static Actions = "Actions";
+	static Unknown = "Unknown";
+	static Containers = "Containers";
+	static Elements = "Elements";
+	static Inputs = "Inputs";
+	static Actions = "Actions";
 }
 
 export abstract class DesignerPeerRegistry<TSource, TPeer> {
-    protected _items: Array<DesignerPeers.DesignerPeerRegistration<TSource, TPeer>> = [];
+	protected _items: Array<DesignerPeers.DesignerPeerRegistration<TSource, TPeer>> = [];
 
-    readonly defaultRegistration = new DesignerPeers.DesignerPeerRegistrationBase(DesignerPeerCategory.Unknown, "acd-icon-unknownPeer");
+	readonly defaultRegistration = new DesignerPeers.DesignerPeerRegistrationBase(DesignerPeerCategory.Unknown, "acd-icon-unknownPeer");
 
-    constructor() {
-        this.reset();
-    }
+	constructor() {
+		this.reset();
+	}
 
-    abstract reset();
+	abstract reset();
 
-    clear() {
-        this._items = [];
-    }
+	clear() {
+		this._items = [];
+	}
 
-    findTypeRegistration(sourceType: TSource): DesignerPeers.DesignerPeerRegistration<TSource, TPeer> {
-        for (var i = 0; i < this._items.length; i++) {
-					  try
-						{
-							if (this._items[i].sourceType == sourceType
-									|| (this._items[i].sourceType as any).prototype.getJsonTypeName() === (sourceType as any).prototype.getJsonTypeName()) {
-									return this._items[i];
-							}
-						} catch (e) {
-							return null;
-						}
-        }
-        return null;
-    }
+	findTypeRegistration(sourceType: TSource): DesignerPeers.DesignerPeerRegistration<TSource, TPeer> {
+		for (var i = 0; i < this._items.length; i++) {
+			try {
+				if (this._items[i].sourceType == sourceType
+					|| (this._items[i].sourceType as any).prototype.getJsonTypeName() === (sourceType as any).prototype.getJsonTypeName()) {
+					return this._items[i];
+				}
+			} catch (e) {
+				return null;
+			}
+		}
+		return null;
+	}
 
-    loadIconCss(id: string, css: string) {
-        const element = document.getElementById(id);
-        if (!element) {
-            const style = document.createElement("style");
-            if ((style as any).styleSheet) {
-                // This is required for IE8 and below.
-                (style as any).styleSheet.cssText = css;
-            } else {
-                style.appendChild(document.createTextNode(css));
-            }
-            style.id = id;
-            document.getElementsByTagName("head")[0].appendChild(style);
-        }
-    }
+	loadIconCss(id: string, css: string) {
+		const element = document.getElementById(id);
+		if (!element) {
+			const style = document.createElement("style");
+			if ((style as any).styleSheet) {
+				// This is required for IE8 and below.
+				(style as any).styleSheet.cssText = css;
+			} else {
+				style.appendChild(document.createTextNode(css));
+			}
+			style.id = id;
+			document.getElementsByTagName("head")[0].appendChild(style);
+		}
+	}
 
-    loadIcon(definition: any) {
-        const icon = definition.icon;
-        if (icon) {
-            const iconName = "acd-icon-" + Math.ceil(Math.random() * (99999 - 10000) + 10000);
-            const css = "." + iconName + `::before {
+	loadIcon(definition: any) {
+		const icon = definition.icon;
+		if (icon) {
+			const iconName = "acd-icon-" + Math.ceil(Math.random() * (99999 - 10000) + 10000);
+			const css = "." + iconName + `::before {
 				content: "\\` + icon + `" 
 			}`;
-            this.loadIconCss(iconName, css);
-            return iconName;
-        }
-        return null;
-    }
+			this.loadIconCss(iconName, css);
+			return iconName;
+		}
+		return null;
+	}
 
 
-    loadExtension(definitions: any) {
-        for (const definitionKey of Object.keys(definitions)) {
-            const definitionBase = definitions[definitionKey];
-            const definition = definitionBase.properties;
-            if (!definition) {
-                continue;
-            }
+	loadExtension(definitions: any) {
+		for (const definitionKey of Object.keys(definitions)) {
+			const definitionBase = definitions[definitionKey];
+			const definition = definitionBase.properties;
+			if (!definition) {
+				continue;
+			}
 
-            const existingElement = this._items.find(item => !item.sourceType['ac_isExtension'] && (item.sourceType as any).prototype.getJsonTypeName() === definitionKey);
-            if (existingElement) {
-                this.addProperties(definitions, definition, existingElement.sourceType);
+			const existingElement = this._items.find(item => !item.sourceType['ac_isExtension'] && (item.sourceType as any).prototype.getJsonTypeName() === definitionKey);
+			if (existingElement) {
+				this.addProperties(definitions, definition, existingElement.sourceType);
 
-                if (!(existingElement.peerType as any).extensions) {
-                    (existingElement.peerType as any).extensions = {};
-                }
+				if (!(existingElement.peerType as any).extensions) {
+					(existingElement.peerType as any).extensions = {};
+				}
 
-                const keys = Object.keys((existingElement.sourceType as any).prototype).filter(k => k.endsWith('Property'));
-                for (const key of keys) {
-                    const value = (existingElement.sourceType as any).prototype[key];
-                    if (value instanceof PropertyDefinition) {
-                        if (value instanceof NumProperty) {
-                            (existingElement.peerType as any).extensions[key] = new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, null, true);
-                        } else if (value instanceof StringProperty) {
-                            (existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, true, null, true);
-                        } else if (value instanceof BoolProperty) {
-                            (existingElement.peerType as any).extensions[key] = new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, true);
-                        } else if (value instanceof EnumProperty) {
-                            (existingElement.peerType as any).extensions[key] = new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType, true);
-                        } else {
-                            (existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, true, null, true);
-                        }
-                    }
-                }
-                continue;
-            }
+				const keys = Object.keys((existingElement.sourceType as any).prototype).filter(k => k.endsWith('Property'));
+				for (const key of keys) {
+					const value = (existingElement.sourceType as any).prototype[key];
+					if (value instanceof PropertyDefinition) {
+						if (value instanceof NumProperty) {
+							(existingElement.peerType as any).extensions[key] = new NumberPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, null, true);
+						} else if (value instanceof StringProperty) {
+							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, true, null, true);
+						} else if (value instanceof BoolProperty) {
+							(existingElement.peerType as any).extensions[key] = new BooleanPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, true);
+						} else if (value instanceof EnumProperty) {
+							(existingElement.peerType as any).extensions[key] = new EnumPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, value.enumType, true);
+						} else {
+							(existingElement.peerType as any).extensions[key] = new StringPropertyEditor(Adaptive.Versions.v1_0, value.name, value.name, true, null, true);
+						}
+					}
+				}
+				continue;
+			}
 
-            let extendsVar = definitions[definitionKey].extends;
+			let extendsVar = definitions[definitionKey].extends;
 
-            if (!extendsVar) {
-                if (definitionKey.startsWith('Input.')) {
-                    extendsVar = 'input';
-                } else if (definitionKey.startsWith('Action.')) {
-                    extendsVar = 'action';
-                } else {
-                    extendsVar = 'element';
-                }
-            }
+			if (!extendsVar) {
+				if (definitionKey.startsWith('Input.')) {
+					extendsVar = 'input';
+				} else if (definitionKey.startsWith('Action.')) {
+					extendsVar = 'action';
+				} else {
+					extendsVar = 'element';
+				}
+			}
 
-            const type = extendsVar && extendsVar.toLowerCase();
-            let extensionObject: any = null;
-            let category = DesignerPeerCategory.Elements;
-            let containerPeer: any = null;
+			const type = extendsVar && extendsVar.toLowerCase();
+			let extensionObject: any = null;
+			let category = DesignerPeerCategory.Elements;
+			let containerPeer: any = null;
 
-            let icon = this.loadIcon(definitionBase);
-            switch (type) {
-                case 'input':
-                    extensionObject = class ExtensionClass extends GenericInput { }
-                    category = DesignerPeerCategory.Inputs;
-                    icon = (icon) ? icon : 'acd-icon-inputText';
-                    containerPeer = DesignerPeers.GenericInputPeer;
-                    break;
-                case 'container':
-                    category = DesignerPeerCategory.Containers;
-                    extensionObject = class ExtensionClass extends GenericContainer { };
-                    icon = (icon) ? icon : 'acd-icon-container';
-                    containerPeer = DesignerPeers.GenericContainerPeer;
-                    break;
-                case 'action':
-                    category = DesignerPeerCategory.Actions;
-                    extensionObject = class ExtensionClass extends GenericAction { };
-                    icon = (icon) ? icon : 'acd-icon-actionHttp';
-                    containerPeer = DesignerPeers.GenericActionPeer;
-                    break;
-                case 'element':
-                default:
-                    category = DesignerPeerCategory.Elements;
-                    extensionObject = class ExtensionClass extends GenericContainer { };
-                    icon = (icon) ? icon : 'acd-icon-richTextBlock';
-                    containerPeer = DesignerPeers.GenericContainerPeer;
-                    break;
-            }
-            extensionObject.prototype.getJsonTypeName = function () {
-                return definitionKey;
-            };
-            Object.defineProperty(extensionObject, "name", {
-                value: definitionKey,
-                writable: true
-            });
-            Object.defineProperty(extensionObject, "ac_isExtension", {
-                value: true,
-                writable: false
-            });
-            this.addProperties(definitions, definition, extensionObject);
-            this.registerPeer(extensionObject, containerPeer, category, icon);
-        }
-    }
+			let icon = this.loadIcon(definitionBase);
+			switch (type) {
+				case 'input':
+					extensionObject = class ExtensionClass extends GenericInput { }
+					category = DesignerPeerCategory.Inputs;
+					icon = (icon) ? icon : 'acd-icon-inputText';
+					containerPeer = DesignerPeers.GenericInputPeer;
+					break;
+				case 'container':
+					category = DesignerPeerCategory.Containers;
+					extensionObject = class ExtensionClass extends GenericContainer { };
+					icon = (icon) ? icon : 'acd-icon-container';
+					containerPeer = DesignerPeers.GenericContainerPeer;
+					break;
+				case 'action':
+					category = DesignerPeerCategory.Actions;
+					extensionObject = class ExtensionClass extends GenericAction { };
+					icon = (icon) ? icon : 'acd-icon-actionHttp';
+					containerPeer = DesignerPeers.GenericActionPeer;
+					break;
+				case 'element':
+				default:
+					category = DesignerPeerCategory.Elements;
+					extensionObject = class ExtensionClass extends GenericContainer { };
+					icon = (icon) ? icon : 'acd-icon-richTextBlock';
+					containerPeer = DesignerPeers.GenericContainerPeer;
+					break;
+			}
+			extensionObject.prototype.getJsonTypeName = function () {
+				return definitionKey;
+			};
+			Object.defineProperty(extensionObject, "name", {
+				value: definitionKey,
+				writable: true
+			});
+			Object.defineProperty(extensionObject, "ac_isExtension", {
+				value: true,
+				writable: false
+			});
+			this.addProperties(definitions, definition, extensionObject);
+			this.registerPeer(extensionObject, containerPeer, category, icon);
+		}
+	}
 
-    private addProperties(definitions: any, definition: any, extensionObject: any) {
-        for (const key of Object.keys(definition)) {
-            if (definition[key].type === "string") {
-                extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
-                const decorator = property(new StringProperty(Versions.v1_0, key));
-                decorator(extensionObject.prototype, key);
-            }
-            else if (definition[key].type === "number") {
-                extensionObject.prototype[key + "Property"] = new NumProperty(Versions.v1_0, key);
-                const decorator = property(new NumProperty(Versions.v1_0, key));
-                decorator(extensionObject.prototype, key);
-            }
-            else if (definition[key].type === "boolean") {
-                extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
-                const decorator = property(new BoolProperty(Versions.v1_0, key));
-                decorator(extensionObject.prototype, key);
-            }
-            else {
-                const foundType = definitions[definition[key].type];
-                const commonType = Adaptive[definition[key].type];
+	private addProperties(definitions: any, definition: any, extensionObject: any) {
+		for (const key of Object.keys(definition)) {
+			if (definition[key].type === "string") {
+				extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+				const decorator = property(new StringProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key);
+			}
+			else if (definition[key].type === "number") {
+				extensionObject.prototype[key + "Property"] = new NumProperty(Versions.v1_0, key);
+				const decorator = property(new NumProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key);
+			}
+			else if (definition[key].type === "boolean") {
+				extensionObject.prototype[key + "Property"] = new BoolProperty(Versions.v1_0, key);
+				const decorator = property(new BoolProperty(Versions.v1_0, key));
+				decorator(extensionObject.prototype, key);
+			}
+			else {
+				const foundType = definitions[definition[key].type];
+				const commonType = Adaptive[definition[key].type];
 
-                if (foundType && foundType.classType === 'Enum') {
-                    const enumObject = {};
-                    for (let i = 0; i < foundType.values.length; i++) {
-                        enumObject[i] = foundType.values[i];
-                        enumObject[foundType.values[i]] = i;
-                    }
+				if (foundType && foundType.classType === 'Enum') {
+					const enumObject = {};
+					for (let i = 0; i < foundType.values.length; i++) {
+						enumObject[i] = foundType.values[i];
+						enumObject[foundType.values[i]] = i;
+					}
 
-                    const defaultEnumValue = definition[key].default;
+					const defaultEnumValue = definition[key].default;
 
-                    extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[defaultEnumValue]);
-                    const decorator = property(extensionObject.prototype[key + "Property"]);
-                    decorator(extensionObject.prototype, key);
-                } else if (commonType) {
-                    const keys = Object.keys(commonType);
-                    const numbers = keys.filter(Number);
-                    const values = keys.filter(k => numbers.indexOf(k) === -1 && k !== '0');
+					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, enumObject[defaultEnumValue]);
+					const decorator = property(extensionObject.prototype[key + "Property"]);
+					decorator(extensionObject.prototype, key);
+				} else if (commonType) {
+					const keys = Object.keys(commonType);
+					const numbers = keys.filter(Number);
+					const values = keys.filter(k => numbers.indexOf(k) === -1 && k !== '0');
 
-                    const enumObject = {};
-                    for (let i = 0; i < values.length; i++) {
-                        enumObject[i] = values[i];
-                        enumObject[values[i]] = i;
-                    }
+					const enumObject = {};
+					for (let i = 0; i < values.length; i++) {
+						enumObject[i] = values[i];
+						enumObject[values[i]] = i;
+					}
 
-                    const defaultEnumValue = definition[key].default ? definition[key].default.toLowerCase() : definition[key].default;
-                    const foundValue = keys.find(k => k.toLowerCase() === defaultEnumValue);
-                    const initialValue = foundValue ? enumObject[foundValue] : enumObject[enumObject[0]];
+					const defaultEnumValue = definition[key].default ? definition[key].default.toLowerCase() : definition[key].default;
+					const foundValue = keys.find(k => k.toLowerCase() === defaultEnumValue);
+					const initialValue = foundValue ? enumObject[foundValue] : enumObject[enumObject[0]];
 
-                    extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
-                    const decorator = property(extensionObject.prototype[key + "Property"]);
-                    decorator(extensionObject.prototype, key);
-                }
-                // else {
-                // 	extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
-                // 	const decorator = property(new StringProperty(Versions.v1_0, key));
-                // 	decorator(extensionObject.prototype, key);
-                // }
-            }
-        }
-    }
+					extensionObject.prototype[key + "Property"] = new EnumProperty(Versions.v1_0, key, enumObject, initialValue);
+					const decorator = property(extensionObject.prototype[key + "Property"]);
+					decorator(extensionObject.prototype, key);
+				}
+				// else {
+				// 	extensionObject.prototype[key + "Property"] = new StringProperty(Versions.v1_0, key);
+				// 	const decorator = property(new StringProperty(Versions.v1_0, key));
+				// 	decorator(extensionObject.prototype, key);
+				// }
+			}
+		}
+	}
 
-    // BORO REGISTRATION OF THE PEERS
-    registerPeer(sourceType: TSource, peerType: TPeer, category: string, iconClass: string = null) {
-        var registrationInfo = this.findTypeRegistration(sourceType);
+	// BORO REGISTRATION OF THE PEERS
+	registerPeer(sourceType: TSource, peerType: TPeer, category: string, iconClass: string = null) {
+		var registrationInfo = this.findTypeRegistration(sourceType);
 
-        if (registrationInfo != null) {
-            console.log("Calling unregisterPeer for:", registrationInfo.sourceType);
-            this.unregisterPeer(registrationInfo.sourceType);
-        }
+		if (registrationInfo != null) {
+			console.log("Calling unregisterPeer for:", registrationInfo.sourceType);
+			this.unregisterPeer(registrationInfo.sourceType);
+		}
 
-        registrationInfo = new DesignerPeers.DesignerPeerRegistration<TSource, TPeer>(
-            sourceType,
-            peerType,
-            category,
-            iconClass);
+		registrationInfo = new DesignerPeers.DesignerPeerRegistration<TSource, TPeer>(
+			sourceType,
+			peerType,
+			category,
+			iconClass);
 
-        this._items.push(registrationInfo);
-    }
+		this._items.push(registrationInfo);
+	}
 
-    unregisterPeer(sourceType: TSource) {
-        for (var i = 0; i < this._items.length; i++) {
-            if (this._items[i].sourceType === sourceType) {
-                this._items.splice(i, 1);
+	unregisterPeer(sourceType: TSource) {
+		for (var i = 0; i < this._items.length; i++) {
+			if (this._items[i].sourceType === sourceType) {
+				this._items.splice(i, 1);
 
-                return;
-            }
-        }
-    }
+				return;
+			}
+		}
+	}
 }
 export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementType, CardElementPeerType> {
-    reset() {
-        this.clear();
+	reset() {
+		this.clear();
 
-        this.registerPeer(Adaptive.AdaptiveCard, DesignerPeers.AdaptiveCardPeer, DesignerPeerCategory.Containers, "acd-icon-adaptiveCard");
-        this.registerPeer(Adaptive.Container, DesignerPeers.ContainerPeer, DesignerPeerCategory.Containers, "acd-icon-container");
-        this.registerPeer(Adaptive.ColumnSet, DesignerPeers.ColumnSetPeer, DesignerPeerCategory.Containers, "acd-icon-columnSet");
-        this.registerPeer(Adaptive.Column, DesignerPeers.ColumnPeer, DesignerPeerCategory.Containers, "acd-icon-column");
-        this.registerPeer(Adaptive.ImageSet, DesignerPeers.ImageSetPeer, DesignerPeerCategory.Containers, "acd-icon-imageSet");
-        this.registerPeer(Adaptive.FactSet, DesignerPeers.FactSetPeer, DesignerPeerCategory.Containers, "acd-icon-factSet");
+		this.registerPeer(Adaptive.AdaptiveCard, DesignerPeers.AdaptiveCardPeer, DesignerPeerCategory.Containers, "acd-icon-adaptiveCard");
+		this.registerPeer(Adaptive.Container, DesignerPeers.ContainerPeer, DesignerPeerCategory.Containers, "acd-icon-container");
+		this.registerPeer(Adaptive.ColumnSet, DesignerPeers.ColumnSetPeer, DesignerPeerCategory.Containers, "acd-icon-columnSet");
+		this.registerPeer(Adaptive.Column, DesignerPeers.ColumnPeer, DesignerPeerCategory.Containers, "acd-icon-column");
+		this.registerPeer(Adaptive.ImageSet, DesignerPeers.ImageSetPeer, DesignerPeerCategory.Containers, "acd-icon-imageSet");
+		this.registerPeer(Adaptive.FactSet, DesignerPeers.FactSetPeer, DesignerPeerCategory.Containers, "acd-icon-factSet");
 
-        this.registerPeer(Adaptive.TextBlock, DesignerPeers.TextBlockPeer, DesignerPeerCategory.Elements, "acd-icon-textBlock");
-        this.registerPeer(Adaptive.RichTextBlock, DesignerPeers.RichTextBlockPeer, DesignerPeerCategory.Elements, "acd-icon-richTextBlock");
-        this.registerPeer(Adaptive.Image, DesignerPeers.ImagePeer, DesignerPeerCategory.Elements, "acd-icon-image");
-        this.registerPeer(Adaptive.Media, DesignerPeers.MediaPeer, DesignerPeerCategory.Elements, "acd-icon-media");
-        this.registerPeer(Adaptive.ActionSet, DesignerPeers.ActionSetPeer, DesignerPeerCategory.Elements, "acd-icon-actionSet");
+		this.registerPeer(Adaptive.TextBlock, DesignerPeers.TextBlockPeer, DesignerPeerCategory.Elements, "acd-icon-textBlock");
+		this.registerPeer(Adaptive.RichTextBlock, DesignerPeers.RichTextBlockPeer, DesignerPeerCategory.Elements, "acd-icon-richTextBlock");
+		this.registerPeer(Adaptive.Image, DesignerPeers.ImagePeer, DesignerPeerCategory.Elements, "acd-icon-image");
+		this.registerPeer(Adaptive.Media, DesignerPeers.MediaPeer, DesignerPeerCategory.Elements, "acd-icon-media");
+		this.registerPeer(Adaptive.ActionSet, DesignerPeers.ActionSetPeer, DesignerPeerCategory.Elements, "acd-icon-actionSet");
 
-        this.registerPeer(Adaptive.TextInput, DesignerPeers.TextInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputText");
-        this.registerPeer(Adaptive.DateInput, DesignerPeers.DateInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputDate");
-        this.registerPeer(Adaptive.TimeInput, DesignerPeers.TimeInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputTime");
-        this.registerPeer(Adaptive.ToggleInput, DesignerPeers.ToggleInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputToggle");
-        this.registerPeer(Adaptive.NumberInput, DesignerPeers.NumberInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputNumber");
-        this.registerPeer(Adaptive.ChoiceSetInput, DesignerPeers.ChoiceSetInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputChoiceSet");
-        this.registerPeer(Adaptive.DataSet, DesignerPeers.DataSetPeer, null, "acd-icon-inputChoiceSet");
-        // this.registerPeer(Adaptive.DataSource, DesignerPeers.DataSourcePeer, null, "acd-icon-inputChoiceSet");
-        this.registerPeer(Adaptive.DataSourceRest, DesignerPeers.DataSourceRestPeer, null, "acd-icon-inputChoiceSet");
-        this.registerPeer(Adaptive.DataSourceGraphQL, DesignerPeers.DataSourceGraphQLPeer, null, "acd-icon-inputChoiceSet");
+		this.registerPeer(Adaptive.TextInput, DesignerPeers.TextInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputText");
+		this.registerPeer(Adaptive.DateInput, DesignerPeers.DateInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputDate");
+		this.registerPeer(Adaptive.TimeInput, DesignerPeers.TimeInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputTime");
+		this.registerPeer(Adaptive.ToggleInput, DesignerPeers.ToggleInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputToggle");
+		this.registerPeer(Adaptive.NumberInput, DesignerPeers.NumberInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputNumber");
+		this.registerPeer(Adaptive.ChoiceSetInput, DesignerPeers.ChoiceSetInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputChoiceSet");
+		this.registerPeer(Adaptive.DataSet, DesignerPeers.DataSetPeer, null, "acd-icon-inputChoiceSet");
+		// this.registerPeer(Adaptive.DataSource, DesignerPeers.DataSourcePeer, null, "acd-icon-inputChoiceSet");
+		this.registerPeer(Adaptive.DataSourceRest, DesignerPeers.DataSourceRestPeer, null, "acd-icon-inputChoiceSet");
+		this.registerPeer(Adaptive.DataSourceGraphQL, DesignerPeers.DataSourceGraphQLPeer, null, "acd-icon-inputChoiceSet");
 
 
-        ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
-            const { elements } = extractionElementsAndActionsFromExtension(value);
-            this.loadExtension(elements);
-        });
-        ExtensionRegistry.subscribe((schema) => {
-            const { elements } = extractionElementsAndActionsFromExtension(schema);
-            this.loadExtension(elements);
-        });
-    }
+		ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
+			const { elements } = extractionElementsAndActionsFromExtension(value);
+			this.loadExtension(elements);
+		});
+		ExtensionRegistry.subscribe((schema) => {
+			const { elements } = extractionElementsAndActionsFromExtension(schema);
+			this.loadExtension(elements);
+		});
+	}
 
-    createPeerInstance(designerSurface: CardDesignerSurface, parent: DesignerPeers.DesignerPeer, cardElement: Adaptive.CardElement): DesignerPeers.CardElementPeer {
-        var registrationInfo = this.findTypeRegistration((<any>cardElement).constructor);
-        var peer = registrationInfo ? new registrationInfo.peerType(parent, designerSurface, registrationInfo, cardElement) : new DesignerPeers.CardElementPeer(parent, designerSurface, this.defaultRegistration, cardElement);
+	createPeerInstance(designerSurface: CardDesignerSurface, parent: DesignerPeers.DesignerPeer, cardElement: Adaptive.CardElement): DesignerPeers.CardElementPeer {
+		var registrationInfo = this.findTypeRegistration((<any>cardElement).constructor);
+		var peer = registrationInfo ? new registrationInfo.peerType(parent, designerSurface, registrationInfo, cardElement) : new DesignerPeers.CardElementPeer(parent, designerSurface, this.defaultRegistration, cardElement);
 
-        return peer;
-    }
+		return peer;
+	}
 }
 
 export class ActionPeerRegistry extends DesignerPeerRegistry<ActionType, ActionPeerType> {
-    reset() {
-        this.clear();
+	reset() {
+		this.clear();
 
-        this.registerPeer(Adaptive.HttpAction, DesignerPeers.HttpActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionHttp");
-        this.registerPeer(Adaptive.SubmitAction, DesignerPeers.SubmitActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionSubmit");
-        this.registerPeer(Adaptive.OpenUrlAction, DesignerPeers.OpenUrlActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionOpenUrl");
-        this.registerPeer(Adaptive.ShowCardAction, DesignerPeers.ShowCardActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionShowCard");
-        this.registerPeer(Adaptive.ToggleVisibilityAction, DesignerPeers.ToggleVisibilityActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionToggleVisibility");
+		this.registerPeer(Adaptive.HttpAction, DesignerPeers.HttpActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionHttp");
+		this.registerPeer(Adaptive.SubmitAction, DesignerPeers.SubmitActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionSubmit");
+		this.registerPeer(Adaptive.OpenUrlAction, DesignerPeers.OpenUrlActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionOpenUrl");
+		this.registerPeer(Adaptive.ShowCardAction, DesignerPeers.ShowCardActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionShowCard");
+		this.registerPeer(Adaptive.ToggleVisibilityAction, DesignerPeers.ToggleVisibilityActionPeer, DesignerPeerCategory.Actions, "acd-icon-actionToggleVisibility");
 
-        ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
-            const { actions } = extractionElementsAndActionsFromExtension(value);
-            this.loadExtension(actions);
-        });
-        ExtensionRegistry.subscribe((schema) => {
-            const { actions } = extractionElementsAndActionsFromExtension(schema);
-            this.loadExtension(actions);
-        });
-    }
+		ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
+			const { actions } = extractionElementsAndActionsFromExtension(value);
+			this.loadExtension(actions);
+		});
+		ExtensionRegistry.subscribe((schema) => {
+			const { actions } = extractionElementsAndActionsFromExtension(schema);
+			this.loadExtension(actions);
+		});
+	}
 
-    createPeerInstance(designerSurface: CardDesignerSurface, parent: DesignerPeers.DesignerPeer, action: Adaptive.Action): DesignerPeers.ActionPeer {
-        var registrationInfo = this.findTypeRegistration((<any>action).constructor);
+	createPeerInstance(designerSurface: CardDesignerSurface, parent: DesignerPeers.DesignerPeer, action: Adaptive.Action): DesignerPeers.ActionPeer {
+		var registrationInfo = this.findTypeRegistration((<any>action).constructor);
 
-        var peer = registrationInfo ? new registrationInfo.peerType(parent, designerSurface, registrationInfo, action) : new DesignerPeers.ActionPeer(parent, designerSurface, this.defaultRegistration, action);
+		var peer = registrationInfo ? new registrationInfo.peerType(parent, designerSurface, registrationInfo, action) : new DesignerPeers.ActionPeer(parent, designerSurface, this.defaultRegistration, action);
 
-        return peer;
-    }
+		return peer;
+	}
 }
 
 class DragHandle extends DraggableElement {
-    protected internalRender(): HTMLElement {
-        let element = document.createElement("div");
-        element.classList.add("acd-peerButton", "acd-peerButton-icon", "fixedWidth", "circular", "acd-icon-drag");
-        element.title = "Drag to move this element";
-        element.style.visibility = "hidden";
-        element.style.position = "absolute";
-        element.style.zIndex = "500";
+	protected internalRender(): HTMLElement {
+		let element = document.createElement("div");
+		element.classList.add("acd-peerButton", "acd-peerButton-icon", "fixedWidth", "circular", "acd-icon-drag");
+		element.title = "Drag to move this element";
+		element.style.visibility = "hidden";
+		element.style.position = "absolute";
+		element.style.zIndex = "500";
 
-        return element;
-    }
+		return element;
+	}
 }
 
 export abstract class DesignContext {
-    abstract get hostContainer(): HostContainer;
-    abstract get targetVersion(): Adaptive.Version;
-    abstract get language(): string;
-    abstract get dataStructure(): FieldDefinition;
-    abstract get bindingPreviewMode(): BindingPreviewMode;
-    abstract get sampleData(): any;
+	abstract get hostContainer(): HostContainer;
+	abstract get targetVersion(): Adaptive.Version;
+	abstract get language(): string;
+	abstract get dataStructure(): FieldDefinition;
+	abstract get bindingPreviewMode(): BindingPreviewMode;
+	abstract get sampleData(): any;
 }
 
 export class CardDesignerSurface {
@@ -424,155 +423,159 @@ export class CardDesignerSurface {
 
 	static readonly webComponentCardRenderCode = 'if (!document.getElementById("asseco-as-card-root")) { var asCardContainer = document.getElementById("asseco-as-card-container"); var asCardRoot = document.createElement("div"); asCardRoot.id = "asseco-as-card-root"; var asCard = document.createElement("asseco-as-card");\
 	asCard.hostConfig = asCardContainer.hostConfig; asCard.definition = asCardContainer.definition; asCardRoot.appendChild(asCard); asCardContainer.appendChild(asCardRoot); asCardContainer.definition = null; asCardContainer.hostConfig = null; }';
-    private updatePeerCommandsLayout() {
-        if (this._selectedPeer) {
-            let peerRect = this._selectedPeer.getBoundingRect();
-            let dragHandleRect = this._dragHandle.renderedElement.getBoundingClientRect();
-            let removeButtonRect = this._removeCommandElement.getBoundingClientRect();
+	private updatePeerCommandsLayout() {
+		if (this._selectedPeer) {
+			let peerRect = this._selectedPeer.getBoundingRect();
+			let dragHandleRect = this._dragHandle.renderedElement.getBoundingClientRect();
+			let removeButtonRect = this._removeCommandElement.getBoundingClientRect();
 
-            this._dragHandle.renderedElement.style.left = (peerRect.left - dragHandleRect.width) + "px";
-            this._dragHandle.renderedElement.style.top = (peerRect.top - dragHandleRect.height) + "px";
+			this._dragHandle.renderedElement.style.left = (peerRect.left - dragHandleRect.width) + "px";
+			this._dragHandle.renderedElement.style.top = (peerRect.top - dragHandleRect.height) + "px";
 
-            this._removeCommandElement.style.left = peerRect.right + "px";
-            this._removeCommandElement.style.top = (peerRect.top - removeButtonRect.height) + "px";
+			this._removeCommandElement.style.left = peerRect.right + "px";
+			this._removeCommandElement.style.top = (peerRect.top - removeButtonRect.height) + "px";
 
-            this._peerCommandsHostElement.style.left = peerRect.left + "px";
-            this._peerCommandsHostElement.style.top = (peerRect.bottom + 2) + "px";
-            this._peerCommandsHostElement.style.width = peerRect.width + "px";
+			this._peerCommandsHostElement.style.left = peerRect.left + "px";
+			this._peerCommandsHostElement.style.top = (peerRect.bottom + 2) + "px";
+			this._peerCommandsHostElement.style.width = peerRect.width + "px";
 
-            this._dragHandle.renderedElement.style.visibility = this._selectedPeer.isDraggable() ? "visible" : "hidden";
-            this._removeCommandElement.style.visibility = this._selectedPeer.canBeRemoved() ? "visible" : "hidden";
-            this._peerCommandsHostElement.style.visibility = this._peerCommandsHostElement.childElementCount > 0 ? "visible" : "hidden";
-        }
-        else {
-            this._dragHandle.renderedElement.style.visibility = "hidden";
-            this._removeCommandElement.style.visibility = "hidden";
-            this._peerCommandsHostElement.style.visibility = "hidden";
-        }
-    }
+			this._dragHandle.renderedElement.style.visibility = this._selectedPeer.isDraggable() ? "visible" : "hidden";
+			this._removeCommandElement.style.visibility = this._selectedPeer.canBeRemoved() ? "visible" : "hidden";
+			this._peerCommandsHostElement.style.visibility = this._peerCommandsHostElement.childElementCount > 0 ? "visible" : "hidden";
+		}
+		else {
+			this._dragHandle.renderedElement.style.visibility = "hidden";
+			this._removeCommandElement.style.visibility = "hidden";
+			this._peerCommandsHostElement.style.visibility = "hidden";
+		}
+	}
 
-    private setSelectedPeer(value: DesignerPeers.DesignerPeer) {
-        if (this._selectedPeer != value) {
-            if (this._selectedPeer) {
-                this._selectedPeer.isSelected = false;
-            }
+	private setSelectedPeer(value: DesignerPeers.DesignerPeer) {
+		if (this._selectedPeer != value) {
+			if (this._selectedPeer) {
+				this._selectedPeer.isSelected = false;
+			}
 
-            this._selectedPeer = value;
+			this._selectedPeer = value;
 
-            this._peerCommandsHostElement.innerHTML = "";
+			this._peerCommandsHostElement.innerHTML = "";
 
-            if (this._selectedPeer) {
-                this._selectedPeer.isSelected = true;
+			if (this._selectedPeer) {
+				this._selectedPeer.isSelected = true;
 
-                let commands = this._selectedPeer.getCommands(this.context);
+				let commands = this._selectedPeer.getCommands(this.context);
 
-                for (let command of commands) {
-                    this._peerCommandsHostElement.appendChild(command.render());
-                }
-            }
+				for (let command of commands) {
+					this._peerCommandsHostElement.appendChild(command.render());
+				}
+			}
 
-            this.updatePeerCommandsLayout();
+			this.updatePeerCommandsLayout();
 
-            if (this.onSelectedPeerChanged) {
-                this.onSelectedPeerChanged(this._selectedPeer);
-            }
-        }
-    }
+			if (this.onSelectedPeerChanged) {
+				this.onSelectedPeerChanged(this._selectedPeer);
+			}
+		}
+	}
 
-    private peerChanged(peer: DesignerPeers.DesignerPeer, updatePropertySheet: boolean) {
-        this.renderCard()
-        this.updateLayout();
+	private peerChanged(peer: DesignerPeers.DesignerPeer, updatePropertySheet: boolean) {
+		this.renderCard()
+		this.updateLayout();
 
-        if (updatePropertySheet && this.onSelectedPeerChanged) {
-            this.onSelectedPeerChanged(this._selectedPeer);
-        }
-    }
+		if (updatePropertySheet && this.onSelectedPeerChanged) {
+			this.onSelectedPeerChanged(this._selectedPeer);
+		}
+	}
 
-    private peerRemoved(peer: DesignerPeers.DesignerPeer) {
-        this._allPeers.splice(this._allPeers.indexOf(peer), 1);
+	private peerRemoved(peer: DesignerPeers.DesignerPeer) {
+		this._allPeers.splice(this._allPeers.indexOf(peer), 1);
 
-        if (peer == this._selectedPeer) {
-            this.setSelectedPeer(null);
-        }
+		if (peer == this._selectedPeer) {
+			this.setSelectedPeer(null);
+		}
 
-        if (this._updateCount == 0) {
-            this.renderCard();
-            this.updateLayout();
-        }
-    }
+		if (this._updateCount == 0) {
+			this.renderCard();
+			this.updateLayout();
+		}
+	}
 
-    private generateCardToRender(asPreview: boolean): Adaptive.AdaptiveCard {
-        let cardToRender: Adaptive.AdaptiveCard = this.card;
+	private generateCardToRender(asPreview: boolean): Adaptive.AdaptiveCard {
+		let cardToRender: Adaptive.AdaptiveCard = this.card;
 
-        if (asPreview) {
-            let inputPayload = this.card.toJSON(this._serializationContext);
+		if (asPreview) {
+			let inputPayload = this.card.toJSON(this._serializationContext);
 
-            cardToRender = new Adaptive.AdaptiveCard();
-            cardToRender.hostConfig = this.card.hostConfig;
+			cardToRender = new Adaptive.AdaptiveCard();
+			cardToRender.hostConfig = this.card.hostConfig;
 
-            let outputPayload = inputPayload;
+			let outputPayload = inputPayload;
 
-            if (Shared.GlobalSettings.enableDataBindingSupport) {
-                try {
-                    let template = new ACData.Template(inputPayload);
+			if (Shared.GlobalSettings.enableDataBindingSupport) {
+				try {
+					let template = new ACData.Template(inputPayload);
 
-                    let evaluationContext: ACData.IEvaluationContext;
+					let evaluationContext: ACData.IEvaluationContext;
 
-                    if (this.context.bindingPreviewMode === BindingPreviewMode.SampleData) {
-                        evaluationContext = { $root: this.context.sampleData };
-                    }
-                    else {
-                        evaluationContext = { $root: this.context.dataStructure.dataType.generateSampleData() };
-                    }
+					if (this.context.bindingPreviewMode === BindingPreviewMode.SampleData) {
+						evaluationContext = { $root: this.context.sampleData };
+					}
+					else {
+						evaluationContext = { $root: this.context.dataStructure.dataType.generateSampleData() };
+					}
 
-                    outputPayload = template.expand(evaluationContext);
-                }
-                catch (e) {
-                    console.log("Template expansion error: " + e.message);
-                }
-            }
+					outputPayload = template.expand(evaluationContext);
+				}
+				catch (e) {
+					console.log("Template expansion error: " + e.message);
+				}
+			}
 
-            cardToRender.parse(outputPayload, this._serializationContext);
-        }
+			cardToRender.parse(outputPayload, this._serializationContext);
+		}
 
-        return cardToRender;
-    }
+		return cardToRender;
+	}
 
-    private renderCard() {
-        this._cardHost.innerHTML = "";
-        if (this.onCardValidated) {
-            let allValidationEvents: Adaptive.IValidationEvent[] = [];
+	private renderCard() {
+		this._cardHost.innerHTML = "";
+		if (this.onCardValidated) {
+			let allValidationEvents: Adaptive.IValidationEvent[] = [];
 
-            for (let i = 0; i < this._serializationContext.eventCount; i++) {
-                allValidationEvents.push(this._serializationContext.getEventAt(i));
-            }
+			for (let i = 0; i < this._serializationContext.eventCount; i++) {
+				allValidationEvents.push(this._serializationContext.getEventAt(i));
+			}
 
-            allValidationEvents.push(...this.card.validateProperties().validationEvents);
+			allValidationEvents.push(...this.card.validateProperties().validationEvents);
 
-            this.onCardValidated(allValidationEvents);
-        }
+			this.onCardValidated(allValidationEvents);
+		}
 
-        if (this.context.hostContainer instanceof AngularContainer && this.isPreviewMode) {
-            let asCard = document.createElement("div");
-            let template = new ACData.Template(this.card.toJSON(this._serializationContext));
-            let context = { $root: this.context.sampleData };
-            let definition = template.expand(context);
+		if (this.context.hostContainer instanceof AngularContainer && this.isPreviewMode) {
+			let asCard = document.createElement("div");
+			const card = this.card.toJSON(this._serializationContext);
+			if (card.dataset) {
+				delete card.dataset;
+			}
+			let template = new ACData.Template(card);
+			let context = { $root: this.context.sampleData };
+			let definition = template.expand(context);
 
-            asCard['definition'] = definition;
-            asCard['hostConfig'] = this.context.hostContainer.getRawHostConfig();
-            asCard.id = 'asseco-as-card-container';
-            if (this.fixedHeightCard) {
-                asCard.style.height = "100%";
-            }
-            this._cardHost.appendChild(asCard);
+			asCard['definition'] = definition;
+			asCard['hostConfig'] = this.context.hostContainer.getRawHostConfig();
+			asCard.id = 'asseco-as-card-container';
+			if (this.fixedHeightCard) {
+				asCard.style.height = "100%";
+			}
+			this._cardHost.appendChild(asCard);
 
-            if (CardDesignerSurface._onRenderAngular) {
-                CardDesignerSurface._onRenderAngular(asCard, definition);
-            } else {
-                var script = document.createElement("script");
-                script.type = 'text/javascript';
-                script.id = 'element-load-script';
-                script.innerText = '\
+			if (CardDesignerSurface._onRenderAngular) {
+				CardDesignerSurface._onRenderAngular(asCard, definition);
+			} else {
+				var script = document.createElement("script");
+				script.type = 'text/javascript';
+				script.id = 'element-load-script';
+				script.innerText = '\
 				if (!window["AdaptiveScreen"]) {\
 					document.addEventListener("AdaptiveScreenLoaded", function () {\
 					AdaptiveScreen.loadComponentsUiPack().then(() => {' + CardDesignerSurface.webComponentCardRenderCode + '}); });\
@@ -596,14 +599,13 @@ export class CardDesignerSurface {
 			const filterToRender = cardToRender;
 			let renderedCard = cardToRender.render();
 			if (this.selectedDialogId) {
-				filterToRender._items = cardToRender._items.filter(item=> item.id === this.selectedDialogId);				
-				if (filterToRender._items)
-				{
+				filterToRender._items = cardToRender._items.filter(item => item.id === this.selectedDialogId);
+				if (filterToRender._items) {
 					filterToRender._items[0]["designMode"] = true;
 				}
 				filterToRender._actionCollection = new ActionCollection(cardToRender);
 				renderedCard = filterToRender.render();
-			}			
+			}
 			if (this.isPreviewMode) {
 				cardToRender.onExecuteAction = (action: Adaptive.Action) => {
 					let message: string = "Action executed\n";
