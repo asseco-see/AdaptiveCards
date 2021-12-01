@@ -764,6 +764,7 @@ export function property(property: PropertyDefinition) {
 export type PropertyBag = { [propertyName: string]: any };
 
 export abstract class SerializableObject {
+	private static readonly _reservedFields = ["$data", "$when", "$root", "$index"];
     static onRegisterCustomProperties?: (sender: SerializableObject, schema: SerializableObjectSchema) => void;
 
     private static readonly _schemaCache: { [typeName: string]: SerializableObjectSchema } = {};
@@ -874,6 +875,14 @@ export abstract class SerializableObject {
                     this.setValue(property, propertyValue);
                 }
             }
+
+			SerializableObject._reservedFields.forEach(rf => {
+				if (source.hasOwnProperty(rf)) {
+					this.setCustomProperty(rf, source[rf]);
+				}
+			});
+
+			
         }
         else {
             this.resetDefaultValues();
@@ -896,6 +905,12 @@ export abstract class SerializableObject {
                 serializedProperties.push(property.name);
             }
         }
+
+		if (this._rawProperties) {
+			for (const rawPropName of Object.keys(this._rawProperties)) {
+				target[rawPropName] = this._rawProperties[rawPropName];
+			}
+		}
     }
 
     protected shouldSerialize(context: BaseSerializationContext): boolean {
