@@ -212,6 +212,28 @@ export abstract class BaseSerializationContext {
         }
     }
 
+	serializeObject(target: { [key: string]: any }, propertyName: string, propertyValue: SerializableObject | undefined) {
+		let serializedItem: any = undefined;
+
+        if (propertyValue) {
+			if (propertyValue instanceof SerializableObject) {
+				serializedItem = propertyValue.toJSON(this);
+			}
+			else {
+				serializedItem = propertyValue;
+			}
+		}
+
+        if (serializedItem !== undefined) {
+			this.serializeValue(target, propertyName, serializedItem);
+        }
+        else {
+            if (target.hasOwnProperty(propertyName)) {
+                delete target[propertyName];
+            }
+        }
+    }
+
     clearEvents() {
         this._validationEvents = [];
     }
