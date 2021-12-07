@@ -36,6 +36,7 @@
                 "classType": "Enum",
                 "type": "DataSetBindingType",
                 "values": [
+										"inherited",
                     "client",
                     "server"
                 ]
@@ -76,10 +77,10 @@
                 "properties": {
                     "binding": {
                         "type": "DataSetBindingType",
-                        "description": "Is DataSet bindning client or server side",
+                        "description": "Is DataSet binding client or server side",
                         "required": true,
                         "version": "0.1",
-                        "default": "client"
+                        "default": "inherited"
                     },
                     "dataSources": {
                         "type": "DataSource[]",
