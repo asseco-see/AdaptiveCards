@@ -10,9 +10,29 @@ import { DesignerPeerTreeItem } from "./designer-peer-treeitem";
 import { Rect, IPoint } from "./miscellaneous";
 import { GlobalSettings } from "./shared";
 import { FieldPicker } from "./field-picker";
-import { DataSet, DataSource, DataSourceList, EnumProperty, Input, PropertyDefinition } from "@asseco/adaptivecards";
+import { DataSource, DataSourceList, EnumProperty, PropertyDefinition } from "@asseco/adaptivecards";
 import { BoolProperty, NumProperty, StringProperty } from "@asseco/adaptivecards";
-import { SerializableObjectCollectionProperty } from "adaptivecards";
+
+export function findElementIdsForType(obj: any, typeName: string) {
+	let ids = [];
+	for (let prop in obj) {
+		if (!obj.hasOwnProperty(prop)) {
+			continue;
+		}
+
+		if (typeof obj[prop] === 'object') {
+			ids.push(...findElementIdsForType(obj[prop], typeName));
+		} else if (prop === 'type' && obj[prop] === typeName) {
+			if (obj['id']) {
+				const match = obj['id'].match(/(\d+)/);
+				if (match && match.length > 0) {
+					ids.push(match[0]);
+				}
+			}
+		}
+	}
+	return ids;
+}
 
 export abstract class DesignerPeerInplaceEditor {
 	onClose: (applyChanges: boolean) => void;
@@ -1368,6 +1388,22 @@ export class ActionPeer extends DesignerPeer {
 		super(parent, designerSurface, registration, action);
 	}
 
+	initializeAction() {
+		let root = this.designerSurface.card.toJSON();
+		const elementName = this.action.getJsonTypeName();
+		const foundIds = findElementIdsForType(root, elementName);
+		let id = foundIds.length === 0 ? 1 : 0;
+		if (id === 0) {
+			const ids = foundIds.filter(n => !isNaN(n));
+			const maxId = Math.max(...ids);
+			id = maxId + 1;
+		}
+		const simpleName = elementName.replace(/\./g, '').replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+			return index === 0 ? word.toLowerCase() : word.toUpperCase();
+		}).replace(/\s+/g, '');
+		this.action.id = simpleName + id;
+	}
+
 	protected internalGetTreeItemText(): string {
 		if (this.action.title && this.action.title != "") {
 			return this.action.title;
@@ -1620,38 +1656,17 @@ export class CardElementPeer extends DesignerPeer {
 	initializeCardElement() {
 		let root = this.designerSurface.card.toJSON();
 		const elementName = this.cardElement.getJsonTypeName();
-		const elements = this.findCount(root, elementName);
-		let count = elements.length === 0 ? 1 : 0;
-		if (count === 0) {
-			const ids = elements.filter(n => !isNaN(n));
+		const foundIds = findElementIdsForType(root, elementName);
+		let id = foundIds.length === 0 ? 1 : 0;
+		if (id === 0) {
+			const ids = foundIds.filter(n => !isNaN(n));
 			const maxId = Math.max(...ids);
-			count = maxId + 1;
+			id = maxId + 1;
 		}
 		const simpleName = elementName.replace(/\./g, '').replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
 			return index === 0 ? word.toLowerCase() : word.toUpperCase();
 		}).replace(/\s+/g, '');
-		this.cardElement.id = simpleName + count;
-
-	}
-
-	// Find count of an object in the tree that has property type with value provided
-	findCount(obj: any, type: string) {
-		let count = [];
-		for (let prop in obj) {
-			if (obj.hasOwnProperty(prop)) {
-				if (typeof obj[prop] === 'object') {
-					count.push(...this.findCount(obj[prop], type));
-				} else if (prop === 'type' && obj[prop] === type) {
-					if (obj["id"]) {
-						const match = obj['id'].match(/(\d+)/);
-						if (match && match.length > 0) {
-							count.push(match[0]);
-						}
-					}
-				}
-			}
-		}
-		return count;
+		this.cardElement.id = simpleName + id;
 	}
 
 	public getRootCard() {

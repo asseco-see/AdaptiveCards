@@ -336,6 +336,7 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 	createPeerInstance(designerSurface: CardDesignerSurface, parent: DesignerPeers.DesignerPeer, cardElement: Adaptive.CardElement): DesignerPeers.CardElementPeer {
 		var registrationInfo = this.findTypeRegistration((<any>cardElement).constructor);
 		var peer = registrationInfo ? new registrationInfo.peerType(parent, designerSurface, registrationInfo, cardElement) : new DesignerPeers.CardElementPeer(parent, designerSurface, this.defaultRegistration, cardElement);
+		peer.initializeCardElement();
 
 		return peer;
 	}
@@ -365,6 +366,7 @@ export class ActionPeerRegistry extends DesignerPeerRegistry<ActionType, ActionP
 		var registrationInfo = this.findTypeRegistration((<any>action).constructor);
 
 		var peer = registrationInfo ? new registrationInfo.peerType(parent, designerSurface, registrationInfo, action) : new DesignerPeers.ActionPeer(parent, designerSurface, this.defaultRegistration, action);
+		peer.initializeAction();
 
 		return peer;
 	}
