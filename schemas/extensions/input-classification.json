@@ -32,7 +32,7 @@
 						"default": false
 					},
 					"filterType": {
-						"type": "FilterType",
+						"type": "ChoiceInputFilterType",
 						"description": "Filter type when allowAutocomplete is true",
 						"version": "0.1",
 						"default": "startsWith"
