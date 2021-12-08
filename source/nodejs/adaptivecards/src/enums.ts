@@ -133,9 +133,9 @@ export enum AuthenticationType {
 }
 
 export enum DataSetBindingType {
+	Inherited,
     Client,
-    Server,
-	Inherited
+    Server
 }
 
 export enum RestMethod {
