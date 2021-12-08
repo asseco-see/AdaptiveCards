@@ -1,8 +1,17 @@
 export function extractionElementsAndActionsFromExtension(extensionObject: any): { elements: any, actions: any } {
-	const definitions: { [key: string]: any } = extensionObject.contributes.definitions;
-	const definitionsNames: any[] = Object.keys(extensionObject.contributes.definitions);
 	const elements = {};
 	const actions = {};
+
+	if (!extensionObject || !extensionObject.contributes || !extensionObject.contributes.definitions) {
+		return {
+			elements,
+			actions,
+		};
+	}
+
+	const definitions: { [key: string]: any } = extensionObject.contributes.definitions;
+	const definitionsNames: any[] = Object.keys(extensionObject.contributes.definitions);
+
 
 	definitionsNames.forEach(definitionsName => {
 		const extensionType = definitions[definitionsName].extends ? definitions[definitionsName].extends.toLowerCase() : null;
@@ -24,7 +33,7 @@ export function extractionElementsAndActionsFromExtension(extensionObject: any):
 			if (definitionsName.startsWith('Action.')) {
 				actions[definitionsName] = definitions[definitionsName];
 			} else {
-				elements[definitionsName] = definitions[definitionsName];	
+				elements[definitionsName] = definitions[definitionsName];
 			}
 		}
 	});
