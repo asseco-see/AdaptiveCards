@@ -1401,7 +1401,10 @@ export class ActionPeer extends DesignerPeer {
 		const simpleName = elementName.replace(/\./g, '').replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
 			return index === 0 ? word.toLowerCase() : word.toUpperCase();
 		}).replace(/\s+/g, '');
-		this.action.id = simpleName + id;
+
+		if (!this.action.id) {
+			this.action.id = simpleName + id;
+		}
 	}
 
 	protected internalGetTreeItemText(): string {
@@ -1666,7 +1669,10 @@ export class CardElementPeer extends DesignerPeer {
 		const simpleName = elementName.replace(/\./g, '').replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
 			return index === 0 ? word.toLowerCase() : word.toUpperCase();
 		}).replace(/\s+/g, '');
-		this.cardElement.id = simpleName + id;
+
+		if (!this.cardElement.id) {
+			this.cardElement.id = simpleName + id;
+		}
 	}
 
 	public getRootCard() {
