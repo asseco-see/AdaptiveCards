@@ -710,10 +710,11 @@ class DataSourceRestParamPropertyEditor extends PropertySheetEntry {
 				const type = new Adaptive.ChoiceSetInput();
 				type.placeholder = this.typePropertyLabel;
 				type.defaultValue = nameValuePairs[i].type;
+				type.defaultValue = type.defaultValue.charAt(0).toUpperCase() + type.defaultValue.slice(1);
 				const enumValues = Object.values(Adaptive.DataSourceRestParamType);
 				enumValues.splice(enumValues.length / 2, enumValues.length / 2);
 				type.choices = [];
-				for(let choice of enumValues) {
+				for (let choice of enumValues) {
 					type.choices.push(new Adaptive.Choice(choice.toString(), choice.toString()));
 				}
 				type.onValueChanged = (sender) => {
@@ -1617,7 +1618,48 @@ export class CardElementPeer extends DesignerPeer {
 	}
 
 	initializeCardElement() {
-		// Do nothing in base implementation
+		let root = this.designerSurface.card.toJSON();
+		const elementName = this.cardElement.getJsonTypeName();
+		const elements = this.findCount(root, elementName);
+		let count = elements.length === 0 ? 1 : 0;
+		if (count === 0) {
+			const ids = elements.filter(n => !isNaN(n));
+			const maxId = Math.max(...ids);
+			count = maxId + 1;
+		}
+		const simpleName = elementName.replace(/\./g, '').replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+			return index === 0 ? word.toLowerCase() : word.toUpperCase();
+		}).replace(/\s+/g, '');
+		this.cardElement.id = simpleName + count;
+
+	}
+
+	// Find count of an object in the tree that has property type with value provided
+	findCount(obj: any, type: string) {
+		let count = [];
+		for (let prop in obj) {
+			if (obj.hasOwnProperty(prop)) {
+				if (typeof obj[prop] === 'object') {
+					count.push(...this.findCount(obj[prop], type));
+				} else if (prop === 'type' && obj[prop] === type) {
+					if (obj["id"]) {
+						const match = obj['id'].match(/(\d+)/);
+						if (match && match.length > 0) {
+							count.push(match[0]);
+						}
+					}
+				}
+			}
+		}
+		return count;
+	}
+
+	public getRootCard() {
+		let element = this.cardElement;
+		while (element.parent) {
+			element = element.parent;
+		}
+		return element;
 	}
 
 	canDrop(peer: DesignerPeer) {
@@ -2765,6 +2807,7 @@ export class ToggleInputPeer extends InputPeer<Adaptive.ToggleInput> {
 	}
 
 	initializeCardElement() {
+		super.initializeCardElement();
 		this.cardElement.title = "New Input.Toggle";
 	}
 }
@@ -2806,6 +2849,7 @@ export class ChoiceSetInputPeer extends InputPeer<Adaptive.ChoiceSetInput> {
 	}
 
 	initializeCardElement() {
+		super.initializeCardElement();
 		this.cardElement.placeholder = "Placeholder text";
 
 		this.cardElement.choices.push(
@@ -3110,6 +3154,7 @@ export class TextBlockPeer extends TypedCardElementPeer<Adaptive.TextBlock> {
 	}
 
 	initializeCardElement() {
+		super.initializeCardElement();
 		if (!this.cardElement.text || this.cardElement.text == "") {
 			this.cardElement.text = "New TextBlock";
 		}
@@ -3145,6 +3190,7 @@ export class RichTextBlockPeer extends TypedCardElementPeer<Adaptive.RichTextBlo
 	}
 
 	initializeCardElement() {
+		super.initializeCardElement();
 		let textRun = new Adaptive.TextRun();
 		textRun.text = "New RichTextBlock";
 

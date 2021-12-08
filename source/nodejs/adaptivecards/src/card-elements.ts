@@ -7067,9 +7067,9 @@ export class AdaptiveCard extends ContainerWithActions {
 			this.dataset.binding = "client";
 		}
 		dataSource.uri = 'http://sampleservice/sampleendpoint';
-		const sampleName = 'sampleDataSource';
+		const sampleName = 'dataSource';
 		const countData = this.dataset.dataSources?.filter(x => (x.name?.indexOf(sampleName) ?? 0) !== -1).length ?? 0;
-		dataSource.name = sampleName + (countData == 0 ? '' : '-' + countData);
+		dataSource.name = sampleName + (countData == 0 ? '1' : '' + (countData + 1));
 		this.dataset.addDataSource(dataSource);
 	}
 	//#endregion
