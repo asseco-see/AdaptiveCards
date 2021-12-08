@@ -2831,8 +2831,38 @@ export class ChoiceSetInputPeer extends InputPeer<Adaptive.ChoiceSetInput> {
 	static readonly defaultValueProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "defaultValue", "Default value");
 	static readonly placeholderProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "placeholder", "Placeholder");
 	static readonly isMultiselectProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "isMultiSelect", "Allow multi selection");
-	static readonly isCompactProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "isCompact", "Compact style");
+	static readonly styleProperty = new ChoicePropertyEditor(
+		Adaptive.Versions.v1_0,
+		"style",
+		"Style",
+		[
+			{ targetVersion: Adaptive.Versions.v1_0, name: "Compact", value: Adaptive.ChoiceInputStyle.Compact },
+			{ targetVersion: Adaptive.Versions.v1_0, name: "Expanded", value: Adaptive.ChoiceInputStyle.Expanded },
+			{ targetVersion: Adaptive.Versions.v1_0, name: "Autocomplete", value: Adaptive.ChoiceInputStyle.Autocomplete }
+		],
+		true);
+	static readonly filterTypeProperty = new ChoicePropertyEditor(
+		Adaptive.Versions.v1_0,
+		"filterType",
+		"Filter type",
+		[
+			{ targetVersion: Adaptive.Versions.v1_0, name: "None", value: Adaptive.ChoiceInputFilterType.None },
+			{ targetVersion: Adaptive.Versions.v1_0, name: "StartsWith", value: Adaptive.ChoiceInputFilterType.StartsWith },
+			{ targetVersion: Adaptive.Versions.v1_0, name: "Includes", value: Adaptive.ChoiceInputFilterType.Includes },
+			{ targetVersion: Adaptive.Versions.v1_0, name: "EndsWith", value: Adaptive.ChoiceInputFilterType.EndsWith },
+		],
+		true);
+	static readonly filterModeProperty = new ChoicePropertyEditor(
+		Adaptive.Versions.v1_0,
+		"filterMode",
+		"Filter mode",
+		[
+			{ targetVersion: Adaptive.Versions.v1_0, name: "Client", value: Adaptive.FilterMode.Client },
+			{ targetVersion: Adaptive.Versions.v1_0, name: "Server", value: Adaptive.FilterMode.Server },
+		],
+		true);
 	static readonly wrapProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_2, "wrap", "Wrap");
+	static readonly showClearProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_2, "showClear", "Show clear button");
 	static readonly choicesProperty = new NameValuePairPropertyEditor(
 		Adaptive.Versions.v1_0,
 		"choices",
@@ -2851,8 +2881,15 @@ export class ChoiceSetInputPeer extends InputPeer<Adaptive.ChoiceSetInput> {
 			defaultCategory,
 			ChoiceSetInputPeer.placeholderProperty,
 			ChoiceSetInputPeer.isMultiselectProperty,
-			ChoiceSetInputPeer.isCompactProperty,
+			ChoiceSetInputPeer.styleProperty,
 			ChoiceSetInputPeer.defaultValueProperty);
+
+		if (this.cardElement.style === Adaptive.ChoiceInputStyle.Autocomplete) {
+			propertySheet.add(defaultCategory,
+				ChoiceSetInputPeer.showClearProperty,
+				ChoiceSetInputPeer.filterTypeProperty,
+				ChoiceSetInputPeer.filterModeProperty);
+		}
 
 		propertySheet.add(
 			PropertySheetCategory.LayoutCategory,

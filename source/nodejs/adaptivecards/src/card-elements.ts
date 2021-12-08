@@ -3270,26 +3270,68 @@ export class ChoiceSetInput extends Input {
 		Versions.v1_0,
 		"style",
 		[
-			{ value: "compact" },
-			{ value: "expanded" }
+			{ value: Enums.ChoiceInputStyle.Compact },
+			{ value: Enums.ChoiceInputStyle.Expanded },
+			{ value: Enums.ChoiceInputStyle.Autocomplete }
 		],
-		"compact");
+		Enums.ChoiceInputStyle.Compact);
 	static readonly isMultiSelectProperty = new BoolProperty(Versions.v1_0, "isMultiSelect", false);
 	static readonly placeholderProperty = new StringProperty(Versions.v1_0, "placeholder");
 	static readonly wrapProperty = new BoolProperty(Versions.v1_2, "wrap", false);
+	static readonly showClearProperty = new BoolProperty(Versions.v1_0, 'showClear', false);
+	static readonly filterTypeProperty = new ValueSetProperty(
+		Versions.v1_0,
+		"filterType",
+		[
+			{ value: Enums.ChoiceInputFilterType.None },
+			{ value: Enums.ChoiceInputFilterType.StartsWith },
+			{ value: Enums.ChoiceInputFilterType.Includes },
+			{ value: Enums.ChoiceInputFilterType.EndsWith },
+		],
+		Enums.ChoiceInputFilterType.StartsWith);
+	static readonly filterModeProperty = new ValueSetProperty(
+		Versions.v1_0,
+		"filterMode",
+		[
+			{ value: Enums.FilterMode.Client },
+			{ value: Enums.FilterMode.Server },
+		],
+		Enums.FilterMode.Client);
+
+	@property(ChoiceSetInput.showClearProperty)
+	showClear: boolean = false;
+
+	@property(ChoiceSetInput.filterTypeProperty)
+	filterType?: string;
+
+	@property(ChoiceSetInput.filterModeProperty)
+	filterMode?: string;
 
 	@property(ChoiceSetInput.valueProperty)
 	defaultValue?: string;
 
 	@property(ChoiceSetInput.styleProperty)
-	style?: "compact" | "expanded";
+	private _style?: string;
+
+	get style(): string | undefined {
+		return this._style;
+	}
+
+	set style(value: string | undefined) {
+		this._style = value;
+		if (this._style !== Enums.ChoiceInputStyle.Autocomplete) {
+			this.showClear = false;
+			this.filterType = undefined;
+			this.filterMode = undefined;
+		}
+	}
 
 	get isCompact(): boolean {
-		return this.style !== "expanded";
+		return !this.style || this.style === Enums.ChoiceInputStyle.Compact;
 	}
 
 	set isCompact(value: boolean) {
-		this.style = value ? undefined : "expanded";
+		this.style = value ? undefined : Enums.ChoiceInputStyle.Expanded;
 	}
 
 	@property(ChoiceSetInput.isMultiSelectProperty)

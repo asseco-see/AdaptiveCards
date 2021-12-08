@@ -214,3 +214,21 @@ export enum InputTextCheckDigitAlgorithm {
     Mod11,
     Mod97
 }
+
+export class ChoiceInputStyle {
+	static readonly Compact: "compact" = "compact";
+	static readonly Expanded: "expanded" = "expanded";
+	static readonly Autocomplete: "autocomplete" = "autocomplete";
+}
+
+export class ChoiceInputFilterType {
+	static readonly None: "none" = "none";
+	static readonly StartsWith: "startsWith" = "startsWith";
+	static readonly Includes: "includes" = "includes";
+	static readonly EndsWith: "endsWith" = "endsWith";
+}
+
+export class FilterMode {
+	static readonly Client: "client" = "client";
+	static readonly Server: "server" = "server";
+}
