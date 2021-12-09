@@ -1389,7 +1389,7 @@ export class ActionPeer extends DesignerPeer {
 	}
 
 	initializeAction() {
-		let root = this.designerSurface.card.toJSON();
+		let root = this.designerSurface.getCardPayloadAsObject();
 		const elementName = this.action.getJsonTypeName();
 		const foundIds = findElementIdsForType(root, elementName);
 		let id = foundIds.length === 0 ? 1 : 0;
@@ -1657,7 +1657,7 @@ export class CardElementPeer extends DesignerPeer {
 	}
 
 	initializeCardElement() {
-		let root = this.designerSurface.card.toJSON();
+		let root = this.designerSurface.getCardPayloadAsObject();
 		const elementName = this.cardElement.getJsonTypeName();
 		const foundIds = findElementIdsForType(root, elementName);
 		let id = foundIds.length === 0 ? 1 : 0;
