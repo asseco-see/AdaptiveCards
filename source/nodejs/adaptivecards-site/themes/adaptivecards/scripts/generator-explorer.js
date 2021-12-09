@@ -144,6 +144,19 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 		return null;
 	}
 
+	function getAllModels(schemaModels) {
+		const schemaModelsData = [];
+		for (const model of schemaModels) {
+			for (const child of model.children) {
+				if (child.type && child.type._original &&
+					child.type._original.classType !== 'Class') {
+					schemaModelsData.push(child);
+				}
+			}
+		}
+		return schemaModelsData;
+	}
+
 	function buildExtensionModel(schemaModels, extendedDefinitions, options) {
 
 		let items = [];
@@ -175,6 +188,13 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 				items.push(extension.definition);
 				items[extension.definition.type] = extension.definition;
 			} else {
+				existingElementExtensions.push(extension);
+			}
+		});
+
+
+		extendedDefinitions.forEach(extension => {
+			if (extension.definition.type === 'Element') {
 				existingElementExtensions.push(extension);
 			}
 		});
@@ -290,26 +310,47 @@ hexo.extend.generator.register("generator-explorer", function (locals) {
 		});
 
 		existingElementExtensions.forEach((extension) => {
-			let existingElement = findElementByName(schemaModels, extension.definition.type);
+			if (extension.definition.type === 'Element') {
+				let models = getAllModels(schemaModels);
+				for (let model of models) {
+					if (extension.definition.properties) {
+						for (var key in extension.definition.properties) {
+							const propDefinition = extension.definition.properties[key];
+							propDefinition.fromExtension = extension.id;
+							const newProp = new typedschema.SchemaProperty(key, propDefinition);
+							newProp.resolve(schema.typeDictionary);
 
-			if (existingElement === null) {
-				return;
-			}
+							// TODO: Fix this after renderer extension implementation
+							newProp.cardExamples = [];
 
-			if (extension.definition.properties) {
-				for (var key in extension.definition.properties) {
+							// Expand 
+							model.properties.set(key, newProp);
+							model.type.properties.set(key, newProp);
+						}
+					}
+				}
+			} else {
+				let existingElement = findElementByName(schemaModels, extension.definition.type);
 
-					const propDefinition = extension.definition.properties[key];
-					propDefinition.fromExtension = extension.id;
-					const newProp = new typedschema.SchemaProperty(key, propDefinition);
-					newProp.resolve(schema.typeDictionary);
+				if (existingElement === null) {
+					return;
+				}
 
-					// TODO: Fix this after renderer extension implementation
-					newProp.cardExamples = [];
+				if (extension.definition.properties) {
+					for (var key in extension.definition.properties) {
 
-					// Expand 
-					existingElement.properties.set(key, newProp);
-					existingElement.type.properties.set(key, newProp);
+						const propDefinition = extension.definition.properties[key];
+						propDefinition.fromExtension = extension.id;
+						const newProp = new typedschema.SchemaProperty(key, propDefinition);
+						newProp.resolve(schema.typeDictionary);
+
+						// TODO: Fix this after renderer extension implementation
+						newProp.cardExamples = [];
+
+						// Expand 
+						existingElement.properties.set(key, newProp);
+						existingElement.type.properties.set(key, newProp);
+					}
 				}
 			}
 
