@@ -197,7 +197,7 @@
 	},
 	"hostConfig": {
 		"properties": {
-			"preferredRender": {
+			"bind": {
 				"type": "PreferredRenderType",
 				"description": "Preferred render type",
 				"version": "0.1",
