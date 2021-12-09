@@ -16,11 +16,6 @@
 						"type": "DataSet",
 						"required": false,
 						"description": "DataSet for card"
-					},
-					"title": {
-						"type": "string",
-						"required": false,
-						"description": "Adaptive card title"
 					}
 				}
 			},

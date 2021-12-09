@@ -31,6 +31,7 @@ See a sample [HostConfig.json](https://github.com/Microsoft/AdaptiveCards/blob/m
    * [`TextBlockConfig`](/platform/adaptive-cards/host-config/#schema-textblockconfig) - Parameters controlling the display of text
    * [`ExtensionsConfig`](/platform/adaptive-cards/host-config/#schema-extensionsconfig) - Host Configuration for renderer extensions
    * [`CheckDigitConfig`](/platform/adaptive-cards/host-config/#schema-checkdigitconfig) - Parameters controlling the check-digit
+   * [`DataSetConfig`](/platform/adaptive-cards/host-config/#schema-datasetconfig) - Parameters controlling the data-set
    * [`DateSelectInputConfig`](/platform/adaptive-cards/host-config/#schema-dateselectinputconfig) - Parameters controlling the date-select-input
    * [`MaterialConfig`](/platform/adaptive-cards/host-config/#schema-materialconfig) - Parameters controlling the material
    * [`MaterialDialogConfig`](/platform/adaptive-cards/host-config/#schema-materialdialogconfig) - Parameters controlling the material-dialog
@@ -334,6 +335,7 @@ Host Configuration for renderer extensions
 |Property|Type|Required|Description|Version|
 |--------|----|--------|-----------|-------|
 |**checkDigit**|`CheckDigitConfig`|No|Parameters controlling the check-digit|1.0
+|**dataSet**|`DataSetConfig`|No|Parameters controlling the data-set|1.0
 |**dateSelectInput**|`DateSelectInputConfig`|No|Parameters controlling the date-select-input|1.0
 |**material**|`MaterialConfig`|No|Parameters controlling the material|1.0
 |**materialDialog**|`MaterialDialogConfig`|No|Parameters controlling the material-dialog|1.0
@@ -349,6 +351,17 @@ Parameters controlling the check-digit
 |Property|Type|Required|Description|Version|
 |--------|----|--------|-----------|-------|
 |**registries**|`array`|No|The list of registries to lookup templates|0.1
+
+<br/>
+
+<a name="schema-datasetconfig"></a>
+## DataSetConfig
+Parameters controlling the data-set
+
+
+|Property|Type|Required|Description|Version|
+|--------|----|--------|-----------|-------|
+|**bind**|`PreferredRenderType`|No|Preferred render type|0.1
 
 <br/>
 

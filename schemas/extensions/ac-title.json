@@ -1,0 +1,19 @@
+{
+	"id": "adaptive-card-title",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"AdaptiveCard": {
+				"properties": {
+					"title": {
+						"type": "string",
+						"required": false,
+						"description": "Adaptive card title"
+					}
+				}
+			}
+		}
+	}
+}
