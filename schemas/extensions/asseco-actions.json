@@ -94,7 +94,7 @@
 				"extends": "Action",
 				"description": "Sets an value to input",
 				"properties": {
-					"targetId": {
+					"inputId": {
 						"type": "string",
 						"description": "Input ID"
 					},
@@ -106,15 +106,17 @@
 			},
 			"Action.SetProperty": {
 				"extends": "Action",
-				"description": "Sets an value to property",
+				"description": "Allows a user to set a local property which can be used in binding expressions.",
 				"properties": {
-					"targetId": {
+					"propertyName": {
 						"type": "string",
-						"description": "Property ID"
+						"description": "Property name.",
+						"version": "0.1"
 					},
-					"value": {
-						"type": "object",
-						"description": "Value to set"
+					"propertyValue": {
+						"type": "string",
+						"description": "Property value.",
+						"version": "0.1"
 					}
 				}
 			}
