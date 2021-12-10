@@ -25,8 +25,13 @@
 				   },
 				   "trigger": {
 					  "type": "TriggerType",
-					  "required": true,
-					  "description": "Trigger type"
+					  "required": false,
+					  "description": "Trigger type. Required if event not provided"
+				   },
+				   "event": {
+					  "type": "string",
+					  "required": false,
+					  "description": "Event. Required if trigger not provided"
 				   },
 				   "actions": {
 					   "type": "Action[]",
@@ -42,16 +47,10 @@
 				"values": ["Rule.Interaction"]
 			},
 			"TriggerType": {
-				"description": "Trigger type which can be eaither string or predefined enum values"
-			},
-			"TriggerTypeString": {
-				"type": "string",
-				"extends": "TriggerType"
-			},
-			"TriggerTypeEnum": {
-				"type": "string",
-				"extends": "TriggerType",
-				"enum": ["ValueChanged", "Click", "FocusOut"]
+				"classType": "Enum",	
+				"description": "Trigger type which can be eaither string or predefined enum values",
+				"type": "TriggerType",
+				"values": ["ValueChanged", "Click", "FocusOut"]
 			}
 		}
 	}
