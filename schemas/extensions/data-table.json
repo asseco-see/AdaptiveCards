@@ -36,7 +36,7 @@
 						"version": "0.1"
 					},
 					"width": {
-						"type": "number",
+						"type": "string|number",
 						"description": "Specifies the width of the column. Width represents the weight of the column relative to the other columns in the table.",
 						"version": "0.1"
 					},
@@ -47,9 +47,9 @@
 					}
 				}
 			},
-			"ResponsiveConfiguration": {
+			"TableResponsiveConfig": {
 				"classType": "Class",
-				"type": "ResponsiveConfiguration",
+				"type": "TableResponsiveConfig",
 				"description": "Defines responsive configuration of data table.",
 				"version": "0.1",
 				"properties": {
@@ -157,7 +157,7 @@
 						"version": "0.1"
 					},
 					"responsive": {
-						"type": "ResponsiveConfiguration[]",
+						"type": "TableResponsiveConfig[]",
 						"description": "Defines visible columns when column width changes.",
 						"required": true,
 						"version": "0.1"
