@@ -1,0 +1,26 @@
+{
+	"id": "action-set-property",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"Action.SetProperty": {
+				"extends": "Action",
+				"description": "Allows a user to set a local property which can be used in binding expressions.",
+				"properties": {
+					"propertyName": {
+						"type": "string",
+						"description": "Property name.",
+						"version": "0.1"
+					},
+					"propertyValue": {
+						"type": "string",
+						"description": "Property value.",
+						"version": "0.1"
+					}
+				}
+			}
+		}
+	}
+}
