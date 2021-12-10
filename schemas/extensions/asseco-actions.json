@@ -98,8 +98,8 @@
 						"type": "string",
 						"description": "Input ID"
 					},
-					"value": {
-						"type": "object",
+					"inputValue": {
+						"type": "string",
 						"description": "Value to set"
 					}
 				}
