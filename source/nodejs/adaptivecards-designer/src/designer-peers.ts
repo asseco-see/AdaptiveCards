@@ -2910,10 +2910,12 @@ export class ChoiceSetInputPeer extends InputPeer<Adaptive.ChoiceSetInput> {
 		super.initializeCardElement();
 		this.cardElement.placeholder = "Placeholder text";
 
-		this.cardElement.choices.push(
-			new Adaptive.Choice("Choice 1", "Choice 1"),
-			new Adaptive.Choice("Choice 2", "Choice 2")
-		);
+		if (this.cardElement.choices && this.cardElement.choices.length === 0) {
+			this.cardElement.choices.push(
+				new Adaptive.Choice("Choice 1", "Choice 1"),
+				new Adaptive.Choice("Choice 2", "Choice 2")
+			);
+		}
 	}
 }
 
