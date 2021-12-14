@@ -81,6 +81,7 @@ export class PropertySheetCategory {
 	static readonly SelectionAction = "Selection action";
 	static readonly InlineAction = "Inline action";
 	static readonly Validation = "Validation";
+	static readonly RulesCategory = "Rules";
 
 	private _entries: PropertySheetEntry[] = [];
 
@@ -145,6 +146,7 @@ export class PropertySheet {
 		this._categories[PropertySheetCategory.DefaultCategory] = new PropertySheetCategory(PropertySheetCategory.DefaultCategory);
 		this._categories[PropertySheetCategory.LayoutCategory] = new PropertySheetCategory(PropertySheetCategory.LayoutCategory);
 		this._categories[PropertySheetCategory.StyleCategory] = new PropertySheetCategory(PropertySheetCategory.StyleCategory);
+		this._categories[PropertySheetCategory.RulesCategory] = new PropertySheetCategory(PropertySheetCategory.RulesCategory);
 	}
 
 	add(categoryName: string, ...entries: PropertySheetEntry[]) {
@@ -673,6 +675,17 @@ interface IParamPair {
 	required: boolean;
 }
 
+interface IRuleParam {
+	type: string;
+	trigger: string;
+	actions: IActionParam [];
+}
+
+interface IActionParam{
+	type: string,
+	kind: string,
+	data: object
+}
 class DataSourceRestParamPropertyEditor extends PropertySheetEntry {
 	private collectionChanged(context: PropertySheetContext, nameValuePairs: IParamPair[], refreshPropertySheet: boolean) {
 		context.target[this.collectionPropertyName] = [];
@@ -829,6 +842,337 @@ class DataSourceRestParamPropertyEditor extends PropertySheetEntry {
 	}
 }
 
+class RulesPropertyEditor extends PropertySheetEntry {
+
+	private collectionChanged(context: PropertySheetContext, nameValuePairs: any[], refreshPropertySheet: boolean) {
+		context.target[this.collectionPropertyName] = [];
+		for (let nameValuePair of nameValuePairs) {
+			let item = this.createCollectionItem(nameValuePair.trigger, nameValuePair.type, nameValuePair.actions);
+			context.target[this.collectionPropertyName].push(item);
+		}
+
+		context.peer.changed(refreshPropertySheet);
+	}
+
+	render(context: PropertySheetContext): Adaptive.CardElement {
+		let result = new Adaptive.Container();
+
+		let collection = context.target[this.collectionPropertyName];
+		if (!Array.isArray(collection)) {
+			collection = [];
+		}
+
+		let nameValuePairs: any[] = [];
+
+		for (let pair of collection) {
+			nameValuePairs.push(
+				{
+					trigger: pair['trigger'],
+					type: pair['type'],
+					actions: pair['actions'],
+				}
+			)
+		}
+
+		if (nameValuePairs.length == 0) {
+			let messageTextBlock = new Adaptive.TextBlock();
+			messageTextBlock.spacing = Adaptive.Spacing.Small;
+			messageTextBlock.text = this.messageIfEmpty;
+
+			result.addItem(messageTextBlock);
+		}
+		else {
+			for (let i = 0; i < nameValuePairs.length; i++) {				
+				let ruleTextBlock = new Adaptive.TextBlock();
+				ruleTextBlock.spacing = Adaptive.Spacing.Small;
+				ruleTextBlock.text = "Rule:";
+				result.addItem(ruleTextBlock);
+
+				let ruleTriggerChoiceSet = new Adaptive.ChoiceSetInput();
+				ruleTriggerChoiceSet.placeholder = "Trigger";
+				ruleTriggerChoiceSet.defaultValue = nameValuePairs[i].trigger;
+				ruleTriggerChoiceSet.defaultValue = ruleTriggerChoiceSet.defaultValue.charAt(0).toUpperCase() + ruleTriggerChoiceSet.defaultValue.slice(1);
+				const ruleTriggerEnumValues = Object.values(Adaptive.RuleTrigger); 
+				ruleTriggerEnumValues.splice(ruleTriggerEnumValues.length / 2, ruleTriggerEnumValues.length / 2);
+				ruleTriggerChoiceSet.choices = [];
+				for (let choice of ruleTriggerEnumValues) {
+					ruleTriggerChoiceSet.choices.push(new Adaptive.Choice(choice.toString(), choice.toString()));
+				}
+				ruleTriggerChoiceSet.onValueChanged = (sender) => {
+					nameValuePairs[i].trigger = sender.value;
+					this.collectionChanged(context, nameValuePairs, false);
+				};
+
+				let ruleTriggerColumn = new Adaptive.Column("stretch");
+				ruleTriggerColumn.addItem(ruleTriggerChoiceSet);
+
+
+				const type = new Adaptive.ChoiceSetInput();
+				type.placeholder = this.typePropertyLabel;
+				type.defaultValue = nameValuePairs[i].type;
+				type.defaultValue = type.defaultValue.charAt(0).toUpperCase() + type.defaultValue.slice(1);
+				const enumValues = Object.values(Adaptive.RuleType);
+				enumValues.splice(enumValues.length / 2, enumValues.length / 2);
+				type.choices = [];
+				for (let choice of enumValues) {
+					type.choices.push(new Adaptive.Choice(choice.toString(), choice.toString()));
+				}
+				type.onValueChanged = (sender) => {
+					nameValuePairs[i].type = sender.value;
+					this.collectionChanged(context, nameValuePairs, false);
+				};
+
+				let typeColumn = new Adaptive.Column("stretch");
+				typeColumn.spacing = Adaptive.Spacing.Small;
+				typeColumn.addItem(type);
+
+				let eventInput = new Adaptive.TextInput();
+				eventInput.placeholder = this.eventPropertyLabel;
+				eventInput.defaultValue = nameValuePairs[i].event;
+				eventInput.onValueChanged = (sender) => {
+					nameValuePairs[i].event = sender.value;
+					this.collectionChanged(context, nameValuePairs, false);
+				};
+
+				let eventColumn = new Adaptive.Column("stretch");
+				eventColumn.spacing = Adaptive.Spacing.Small;
+				eventColumn.addItem(eventInput);
+
+				let removeAction = new Adaptive.SubmitAction();
+				removeAction.title = "X";
+				removeAction.onExecute = (sender) => {
+					nameValuePairs.splice(i, 1);
+					this.collectionChanged(context, nameValuePairs, true);
+				}
+
+				let addActionInternal = new Adaptive.SubmitAction();
+				addActionInternal.title = "+";
+				addActionInternal.onExecute = (sender) => {
+					let actionParams : IActionParam [] = [];
+					if (!nameValuePairs[i].actions)
+					{ 
+						nameValuePairs[i].actions = actionParams;
+					}
+					nameValuePairs[i].actions.push( { type: '', kind: '', data: {}})
+					this.collectionChanged(context, nameValuePairs, true);
+				}
+
+				let actionSet = new Adaptive.ActionSet();
+				actionSet.addAction(addActionInternal);
+				actionSet.addAction(removeAction);
+				
+
+				let removeColumn = new Adaptive.Column("auto");
+				removeColumn.spacing = Adaptive.Spacing.Small;
+				removeColumn.addItem(actionSet);
+
+				let columnSet = new Adaptive.ColumnSet();
+				columnSet.spacing = Adaptive.Spacing.Small;
+				columnSet.addColumn(typeColumn);
+				columnSet.addColumn(ruleTriggerColumn);				
+				columnSet.addColumn(eventColumn);
+				columnSet.addColumn(removeColumn);
+
+				result.addItem(columnSet);
+
+				if (nameValuePairs[i].actions) {
+					if (nameValuePairs[i].actions.length > 0) {
+						let actionsTextBlock = new Adaptive.TextBlock();
+						actionsTextBlock.spacing = Adaptive.Spacing.Small;
+						actionsTextBlock.text = "Actions:";
+						result.addItem(actionsTextBlock);
+					}
+					for (let j = 0; j < nameValuePairs[i].actions.length; j++) {
+						let ruleActionTypeChoiceSet = new Adaptive.ChoiceSetInput();
+						ruleActionTypeChoiceSet.placeholder = this.typePropertyLabel;
+						ruleActionTypeChoiceSet.defaultValue = nameValuePairs[i].actions[j].type;
+						ruleActionTypeChoiceSet.defaultValue = ruleActionTypeChoiceSet.defaultValue.charAt(0).toUpperCase() + ruleActionTypeChoiceSet.defaultValue.slice(1);
+						const ruleActionTypeEnumValues = Object.values(Adaptive.RuleActionType); 
+						ruleActionTypeChoiceSet.choices = [];
+						for (let choice of ruleActionTypeEnumValues) {
+							ruleActionTypeChoiceSet.choices.push(new Adaptive.Choice(choice.toString(), choice.toString()));
+						}
+						ruleActionTypeChoiceSet.onValueChanged = (sender) => {
+							nameValuePairs[i].actions[j] = {};
+							nameValuePairs[i].actions[j].type = sender.value;
+							switch (sender.value) {
+								case "Action.RaiseEvent":
+									raiseEventColumnSet.isVisible = true;
+									setInputValueColumnSet.isVisible = false;
+									setPropertyColumnSet.isVisible = false;
+									break;
+								case "Action.SetInputValue":
+									raiseEventColumnSet.isVisible = false;
+									setInputValueColumnSet.isVisible = true;
+									setPropertyColumnSet.isVisible = false;
+									break;
+								case "Action.SetProperty":
+									raiseEventColumnSet.isVisible = false;
+									setInputValueColumnSet.isVisible = false;
+									setPropertyColumnSet.isVisible = true;
+									break;									
+							}
+							this.collectionChanged(context, nameValuePairs, false);
+						};					
+						
+						let actionTypeColumn = new Adaptive.Column("stretch");
+						actionTypeColumn.spacing = Adaptive.Spacing.Small;
+						actionTypeColumn.addItem(ruleActionTypeChoiceSet);
+
+
+						let actionTypeColumnSet = new Adaptive.ColumnSet();
+						actionTypeColumnSet.spacing = Adaptive.Spacing.Small;
+						actionTypeColumnSet.addColumn(actionTypeColumn);
+						result.addItem(actionTypeColumnSet);
+						
+						//Raise event ...
+						let actionKindInput = new Adaptive.TextInput();
+						actionKindInput.placeholder = "Action kind";
+						actionKindInput.defaultValue = nameValuePairs[i].actions[j].kind;
+						actionKindInput.onValueChanged = (sender) => {
+							nameValuePairs[i].actions[j].kind = sender.value;
+							this.collectionChanged(context, nameValuePairs, false);
+						};
+
+						let actionKindColumn = new Adaptive.Column("stretch");
+						actionKindColumn.spacing = Adaptive.Spacing.Small;
+						actionKindColumn.addItem(actionKindInput);
+
+						let actionDataInput = new Adaptive.TextInput();
+						actionDataInput.placeholder = "Action data";
+						actionDataInput.defaultValue = JSON.stringify(nameValuePairs[i].actions[j].data);
+						actionDataInput.onValueChanged = (sender) => {
+							nameValuePairs[i].actions[j].data = JSON.parse(sender.value);
+							this.collectionChanged(context, nameValuePairs, false);
+						};
+
+						let actionDataColumn = new Adaptive.Column("stretch");
+						actionDataColumn.spacing = Adaptive.Spacing.Small;
+						actionDataColumn.addItem(actionDataInput);
+
+
+						let raiseEventColumnSet = new Adaptive.ColumnSet();
+						raiseEventColumnSet.spacing = Adaptive.Spacing.Small;
+						if (nameValuePairs[i].actions[j].type == "Action.RaiseEvent") {
+							raiseEventColumnSet.isVisible = true;
+						} else {
+							raiseEventColumnSet.isVisible = false;
+						}
+						raiseEventColumnSet.addColumn(actionKindColumn);
+						raiseEventColumnSet.addColumn(actionDataColumn);
+
+						result.addItem(raiseEventColumnSet);
+
+						//SetInputValue ...
+						let inputIdInput = new Adaptive.TextInput();
+						inputIdInput.placeholder = "Input id";
+						inputIdInput.defaultValue = nameValuePairs[i].actions[j].inputId;
+						inputIdInput.onValueChanged = (sender) => {
+							nameValuePairs[i].actions[j].inputId = sender.value;
+							this.collectionChanged(context, nameValuePairs, false);
+						};
+
+						let inputIdColumn = new Adaptive.Column("stretch");
+						inputIdColumn.spacing = Adaptive.Spacing.Small;
+						inputIdColumn.addItem(inputIdInput);
+
+						let inputValueInput = new Adaptive.TextInput();
+						inputValueInput.placeholder = "Input value";
+						inputValueInput.defaultValue = nameValuePairs[i].actions[j].inputValue;
+						inputValueInput.onValueChanged = (sender) => {
+							nameValuePairs[i].actions[j].inputValue = sender.value;
+							this.collectionChanged(context, nameValuePairs, false);
+						};
+
+						let inputValueColumn = new Adaptive.Column("stretch");
+						inputValueColumn.spacing = Adaptive.Spacing.Small;
+						inputValueColumn.addItem(inputValueInput);
+
+						let setInputValueColumnSet = new Adaptive.ColumnSet();
+						setInputValueColumnSet.spacing = Adaptive.Spacing.Small;
+
+						if (nameValuePairs[i].actions[j].type === "Action.SetInputValue") {
+							setInputValueColumnSet.isVisible = true;
+						} else {
+							setInputValueColumnSet.isVisible = false;
+						}
+						setInputValueColumnSet.addColumn(inputIdColumn);
+						setInputValueColumnSet.addColumn(inputValueColumn);
+
+						result.addItem(setInputValueColumnSet);
+
+						//SetProperty ...
+						let propertyNameInput = new Adaptive.TextInput();
+						propertyNameInput.placeholder = "Property name";
+						propertyNameInput.defaultValue = nameValuePairs[i].actions[j].propertyName;
+						propertyNameInput.onValueChanged = (sender) => {
+							nameValuePairs[i].actions[j].propertyName = sender.value;
+							this.collectionChanged(context, nameValuePairs, false);
+						};
+
+						let propertyNameColumn = new Adaptive.Column("stretch");
+						propertyNameColumn.spacing = Adaptive.Spacing.Small;
+						propertyNameColumn.addItem(propertyNameInput);
+
+						let propertyValueInput = new Adaptive.TextInput();
+						propertyValueInput.placeholder = "Property value";
+						propertyValueInput.defaultValue = nameValuePairs[i].actions[j].propertyValue;
+						propertyValueInput.onValueChanged = (sender) => {
+							nameValuePairs[i].actions[j].propertyValue = sender.value;
+							this.collectionChanged(context, nameValuePairs, false);
+						};
+
+						let propertyValueColumn = new Adaptive.Column("stretch");
+						propertyValueColumn.spacing = Adaptive.Spacing.Small;
+						propertyValueColumn.addItem(propertyValueInput);
+
+						let setPropertyColumnSet = new Adaptive.ColumnSet();
+						setPropertyColumnSet.spacing = Adaptive.Spacing.Small;
+
+						if (nameValuePairs[i].actions[j].type === "Action.SetProperty") {
+							setPropertyColumnSet.isVisible = true;
+						} else {
+							setPropertyColumnSet.isVisible = false;
+						}
+						setPropertyColumnSet.addColumn(propertyNameColumn);
+						setPropertyColumnSet.addColumn(propertyValueColumn);
+
+						result.addItem(setPropertyColumnSet);
+
+
+					}
+				}		
+			}
+		}
+
+		let addAction = new Adaptive.SubmitAction();
+		addAction.title = this.addRuleTitle;
+		addAction.onExecute = (sender) => {
+			nameValuePairs.push({ trigger: "", type: "", actions: []});
+			this.collectionChanged(context, nameValuePairs, true);
+		}
+
+		let actionSet = new Adaptive.ActionSet();
+		actionSet.spacing = Adaptive.Spacing.Small;
+		actionSet.addAction(addAction);
+		result.addItem(actionSet);
+		return result;
+	}
+
+	constructor(
+		readonly targetVersion: Adaptive.TargetVersion,
+		readonly collectionPropertyName: string,
+		readonly createCollectionItem: (trigger: string, type: string, actions: IActionParam[]) => any,
+		readonly triggerPropertyLabel: string = "Trigger",
+		readonly eventPropertyLabel: string = "Event",
+		readonly typePropertyLabel: string = "Type",
+		readonly actionDataPropertyLabel: string = "Data",
+		readonly actionKindPropertyLabel: string = "Kind",
+		readonly addRuleTitle: string = "Add rule",
+		readonly messageIfEmpty: string = "Rules collection is empty") {
+		super(targetVersion);
+	}
+}
 
 class NameValuePairPropertyEditor extends PropertySheetEntry {
 	private collectionChanged(context: PropertySheetContext, nameValuePairs: INameValuePair[], refreshPropertySheet: boolean) {
@@ -1582,6 +1926,14 @@ export class CardElementPeer extends DesignerPeer {
 	static readonly spacingProperty = new EnumPropertyEditor(Adaptive.Versions.v1_0, "spacing", "Spacing", Adaptive.Spacing);
 	static readonly separatorProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "separator", "Separator");
 	static readonly horizontalAlignmentProperty = new EnumPropertyEditor(Adaptive.Versions.v1_0, "horizontalAlignment", "Horizontal alignment", Adaptive.HorizontalAlignment);
+	static readonly rulesProperty = new RulesPropertyEditor(Adaptive.Versions.v1_0, "rules", (trigger: string, type: string, actions: IActionParam[]) => {
+		{
+			const element = new Adaptive.RuleParam(trigger, type, actions);
+			return element;
+
+		}
+	});
+	
 	static readonly heightProperty = new HeightPropertyEditor(
 		Adaptive.Versions.v1_1,
 		"height",
@@ -1820,6 +2172,11 @@ export class CardElementPeer extends DesignerPeer {
 			CardElementPeer.separatorProperty,
 			CardElementPeer.horizontalAlignmentProperty,
 			CardElementPeer.heightProperty);
+
+			propertySheet.add(
+				PropertySheetCategory.RulesCategory,
+				CardElementPeer.rulesProperty
+				);
 
 		// add extensions
 		const peerTypeExtensions: any = this.registration;
@@ -2619,9 +2976,6 @@ export class TextInputPeer extends InputPeer<Adaptive.TextInput> {
 		this.cardElement.placeholder = "Placeholder text";
 	}
 }
-
-
-
 export abstract class DataSourcePeer extends TypedCardElementPeer<Adaptive.DataSource> {
 	static readonly nameProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "name", "Name");
 	static readonly urlProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "uri", "Uri");
@@ -2664,6 +3018,7 @@ export abstract class DataSourcePeer extends TypedCardElementPeer<Adaptive.DataS
 		super.initializeCardElement();
 	}
 }
+
 export class DataSourceRestPeer extends DataSourcePeer {
 
 	static readonly methodProperty = new EnumPropertyEditor(Adaptive.Versions.v1_0, "method", "Method", Adaptive.RestMethod);

@@ -20,12 +20,63 @@ import { mod11_2, mod97_10 } from "cdigit";
 
 export type CardElementHeight = "auto" | "stretch";
 
+export class ActionParam extends SerializableObject {
+
+	static readonly typeProperty = new StringProperty(Versions.v1_0, "type");
+	static readonly kindProperty = new StringProperty(Versions.v1_0, "kind");
+	static readonly dataProperty = new StringProperty(Versions.v1_0, "data");
+
+	@property(ActionParam.kindProperty)
+	kind?: string;
+	@property(ActionParam.typeProperty)
+	type?: string;
+	@property(ActionParam.dataProperty)
+	data?: string;
+	protected getSchemaKey(): string {
+		return 'ActionParam'
+	}
+
+	constructor(kind?: string, type?: string, data?: string) {
+		super();
+
+		this.kind = kind;
+		this.type = type;
+		this.data = data;
+	}
+}
+export class RuleParam extends SerializableObject {
+
+	static readonly triggerProperty = new StringProperty(Versions.v1_0, "trigger");
+	static readonly typeProperty = new StringProperty(Versions.v1_0, "type");
+	static readonly actionsProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "actions", ActionParam);
+
+	@property(RuleParam.triggerProperty)
+	trigger?: string;
+	@property(RuleParam.typeProperty)
+	type?: string;
+	@property(RuleParam.actionsProperty)
+	actions?: any[];
+
+	protected getSchemaKey(): string {
+		return 'RuleParam'
+	}
+
+	constructor(trigger?: string, type?: string, actions?: any[]) {
+		super();
+
+		this.trigger = trigger;
+		this.type = type;
+		this.actions = actions;
+	}
+}
+
 export abstract class CardElement extends CardObject {
 	//#region Schema
 
 	static readonly langProperty = new StringProperty(Versions.v1_1, "lang", true, /^[a-z]{2,3}$/ig);
 	static readonly isVisibleProperty = new BoolProperty(Versions.v1_2, "isVisible", true);
 	static readonly separatorProperty = new BoolProperty(Versions.v1_0, "separator", false);
+	static readonly rulesProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "rules", RuleParam);
 	static readonly heightProperty = new ValueSetProperty(
 		Versions.v1_1,
 		"height",
@@ -105,6 +156,9 @@ export abstract class CardElement extends CardObject {
 			this._renderedElement.setAttribute("aria-expanded", value.toString());
 		}
 	}
+
+	@property(CardElement.rulesProperty)
+	rules: string;
 
 	//#endregion
 

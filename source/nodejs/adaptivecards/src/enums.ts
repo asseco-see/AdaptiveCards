@@ -35,6 +35,25 @@ export enum DataSourceRestParamType {
 		Route
 }
 
+export enum RuleType {
+    Interaction = "Rule.Interaction"
+}
+
+export enum RuleTrigger {
+    ValueChanged,
+    Click,
+    FocusOut
+}
+
+export enum RuleActionType {
+    Navigate = "Action.Navigate",
+    Refresh = "Action.Refresh",
+    ShowDialog = "Action.ShowDialog",
+    RaiseEvent = "Action.RaiseEvent",
+    SetInputValue = "Action.SetInputValue",
+    SetProperty = "Action.SetProperty",
+}
+
 export enum TextSize {
     Small,
     Default,
