@@ -36,6 +36,23 @@ export class ActionParam extends SerializableObject {
 		return 'ActionParam'
 	}
 
+	protected internalToJSON(target: PropertyBag, context: SerializationContext) {
+		super.internalToJSON(target, context);
+
+		if (target && target.data) {
+
+			target.data = JSON.parse(target.data);
+		}
+	}
+
+	protected internalParse(source: any, context: SerializationContext) {
+		if (source && source.data) {
+
+			source.data = JSON.stringify(source.data);
+		}
+		super.internalParse(source, context);
+	}
+
 	constructor(kind?: string, type?: string, data?: string) {
 		super();
 
@@ -7833,4 +7850,4 @@ export enum DataTableColumnFormat {
 	Date,
 	Money,
 	Image,
-  }
+}
