@@ -46,9 +46,6 @@ export enum RuleTrigger {
 }
 
 export enum RuleActionType {
-    Navigate = "Action.Navigate",
-    Refresh = "Action.Refresh",
-    ShowDialog = "Action.ShowDialog",
     RaiseEvent = "Action.RaiseEvent",
     SetInputValue = "Action.SetInputValue",
     SetProperty = "Action.SetProperty",
