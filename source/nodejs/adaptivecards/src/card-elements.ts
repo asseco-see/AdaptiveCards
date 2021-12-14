@@ -47,11 +47,14 @@ export class ActionParam extends SerializableObject {
 export class RuleParam extends SerializableObject {
 
 	static readonly triggerProperty = new StringProperty(Versions.v1_0, "trigger");
+	static readonly eventProperty = new StringProperty(Versions.v1_0, "event");
 	static readonly typeProperty = new StringProperty(Versions.v1_0, "type");
 	static readonly actionsProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "actions", ActionParam);
 
 	@property(RuleParam.triggerProperty)
 	trigger?: string;
+	@property(RuleParam.eventProperty)
+	event?: string;
 	@property(RuleParam.typeProperty)
 	type?: string;
 	@property(RuleParam.actionsProperty)
@@ -61,10 +64,11 @@ export class RuleParam extends SerializableObject {
 		return 'RuleParam'
 	}
 
-	constructor(trigger?: string, type?: string, actions?: any[]) {
+	constructor(trigger?: string, event?: string, type?: string, actions?: any[]) {
 		super();
 
 		this.trigger = trigger;
+		this.event = event;
 		this.type = type;
 		this.actions = actions;
 	}
@@ -158,7 +162,7 @@ export abstract class CardElement extends CardObject {
 	}
 
 	@property(CardElement.rulesProperty)
-	rules: string;
+	rules: RuleParam[];
 
 	//#endregion
 
@@ -7823,3 +7827,10 @@ export class SerializationContext extends BaseSerializationContext {
 	}
 }
 
+
+export enum DataTableColumnFormat {
+	Text,
+	Date,
+	Money,
+	Image,
+  }

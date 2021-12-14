@@ -847,7 +847,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 	private collectionChanged(context: PropertySheetContext, nameValuePairs: any[], refreshPropertySheet: boolean) {
 		context.target[this.collectionPropertyName] = [];
 		for (let nameValuePair of nameValuePairs) {
-			let item = this.createCollectionItem(nameValuePair.trigger, nameValuePair.type, nameValuePair.actions);
+			let item = this.createCollectionItem(nameValuePair.trigger, nameValuePair.event, nameValuePair.type, nameValuePair.actions);
 			context.target[this.collectionPropertyName].push(item);
 		}
 
@@ -868,6 +868,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 			nameValuePairs.push(
 				{
 					trigger: pair['trigger'],
+					event: pair['event'],
 					type: pair['type'],
 					actions: pair['actions'],
 				}
@@ -891,13 +892,14 @@ class RulesPropertyEditor extends PropertySheetEntry {
 				let ruleTriggerChoiceSet = new Adaptive.ChoiceSetInput();
 				ruleTriggerChoiceSet.placeholder = "Trigger";
 				ruleTriggerChoiceSet.defaultValue = nameValuePairs[i].trigger;
-				ruleTriggerChoiceSet.defaultValue = ruleTriggerChoiceSet.defaultValue.charAt(0).toUpperCase() + ruleTriggerChoiceSet.defaultValue.slice(1);
+				// ruleTriggerChoiceSet.defaultValue = ruleTriggerChoiceSet.defaultValue.charAt(0).toUpperCase() + ruleTriggerChoiceSet.defaultValue.slice(1);
 				const ruleTriggerEnumValues = Object.values(Adaptive.RuleTrigger); 
 				ruleTriggerEnumValues.splice(ruleTriggerEnumValues.length / 2, ruleTriggerEnumValues.length / 2);
 				ruleTriggerChoiceSet.choices = [];
 				for (let choice of ruleTriggerEnumValues) {
 					ruleTriggerChoiceSet.choices.push(new Adaptive.Choice(choice.toString(), choice.toString()));
 				}
+
 				ruleTriggerChoiceSet.onValueChanged = (sender) => {
 					nameValuePairs[i].trigger = sender.value;
 					this.collectionChanged(context, nameValuePairs, false);
@@ -910,7 +912,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 				const type = new Adaptive.ChoiceSetInput();
 				type.placeholder = this.typePropertyLabel;
 				type.defaultValue = nameValuePairs[i].type;
-				type.defaultValue = type.defaultValue.charAt(0).toUpperCase() + type.defaultValue.slice(1);
+				// type.defaultValue = type.defaultValue.charAt(0).toUpperCase() + type.defaultValue.slice(1);
 				const enumValues = Object.values(Adaptive.RuleType);
 				enumValues.splice(enumValues.length / 2, enumValues.length / 2);
 				type.choices = [];
@@ -1199,7 +1201,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 		let addAction = new Adaptive.SubmitAction();
 		addAction.title = this.addRuleTitle;
 		addAction.onExecute = (sender) => {
-			nameValuePairs.push({ trigger: "", type: "", actions: []});
+			nameValuePairs.push({ trigger: "", type: "Rule.Interaction", event: "", actions: []});
 			this.collectionChanged(context, nameValuePairs, true);
 		}
 
@@ -1213,7 +1215,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 	constructor(
 		readonly targetVersion: Adaptive.TargetVersion,
 		readonly collectionPropertyName: string,
-		readonly createCollectionItem: (trigger: string, type: string, actions: IActionParam[]) => any,
+		readonly createCollectionItem: (trigger: string, event: string, type: string, actions: IActionParam[]) => any,
 		readonly triggerPropertyLabel: string = "Trigger",
 		readonly eventPropertyLabel: string = "Event",
 		readonly typePropertyLabel: string = "Type",
@@ -1977,9 +1979,9 @@ export class CardElementPeer extends DesignerPeer {
 	static readonly spacingProperty = new EnumPropertyEditor(Adaptive.Versions.v1_0, "spacing", "Spacing", Adaptive.Spacing);
 	static readonly separatorProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "separator", "Separator");
 	static readonly horizontalAlignmentProperty = new EnumPropertyEditor(Adaptive.Versions.v1_0, "horizontalAlignment", "Horizontal alignment", Adaptive.HorizontalAlignment);
-	static readonly rulesProperty = new RulesPropertyEditor(Adaptive.Versions.v1_0, "rules", (trigger: string, type: string, actions: IActionParam[]) => {
+	static readonly rulesProperty = new RulesPropertyEditor(Adaptive.Versions.v1_0, "rules", (trigger: string, event: string, type: string, actions: IActionParam[]) => {
 		{
-			const element = new Adaptive.RuleParam(trigger, type, actions);
+			const element = new Adaptive.RuleParam(trigger, event, type, actions);
 			return element;
 
 		}
