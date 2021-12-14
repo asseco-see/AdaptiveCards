@@ -55,26 +55,27 @@ export class ActionParam extends SerializableObject {
 		return 'ActionParam'
 	}
 
-	protected internalToJSON(target: PropertyBag, context: SerializationContext) {
+	protected internalToJSON(target: PropertyBag, context: SerializationContext) {		
 		super.internalToJSON(target, context);
 		if (target && target.data) {
-			target.data = JSON.parse(target.data);
+			try {
+				target.data = JSON.parse(target.data);
+			}
+			catch (e) {
+				console.warn(e, target.data);
+			}
 		}
 	}
 
-	protected internalParse(source: any, context: SerializationContext) {
+	protected internalParse(source: any, context: SerializationContext) {		
 		if (source && source.data) {
-			source.data = JSON.stringify(source.data);
+			try {
+				source.data = JSON.stringify(source.data, null, 2);
+			} catch (e) {
+				console.warn(e, source.data);
+			}
 		}
 		super.internalParse(source, context);
-	}
-
-	constructor(kind?: string, type?: string, data?: string) {
-		super();
-
-		this.kind = kind;
-		this.type = type;
-		this.data = data;
 	}
 }
 export class RuleParam extends SerializableObject {

@@ -886,13 +886,36 @@ class RulesPropertyEditor extends PropertySheetEntry {
 			for (let i = 0; i < nameValuePairs.length; i++) {				
 				let ruleTextBlock = new Adaptive.TextBlock();
 				ruleTextBlock.spacing = Adaptive.Spacing.Small;
-				ruleTextBlock.text = "Rule:";
-				result.addItem(ruleTextBlock);
+				ruleTextBlock.separator = true;
+				ruleTextBlock.weight = Adaptive.TextWeight.Bolder;
+				ruleTextBlock.text = "Rule.Interaction";
 
+				let removeRule = new Adaptive.SubmitAction();
+				removeRule.title = "Remove rule";
+				removeRule.onExecute = (sender) => {
+					nameValuePairs.splice(i, 1);
+					this.collectionChanged(context, nameValuePairs, true);
+				}
+
+				let ruleActionSet = new Adaptive.ActionSet();
+				ruleActionSet.addAction(removeRule);
+
+				let ruleTitleColumn = new Adaptive.Column("stretch");
+				ruleTitleColumn.addItem(ruleTextBlock);
+				let ruleRemoveColumn = new Adaptive.Column("auto");
+				ruleRemoveColumn.addItem(ruleActionSet);
+
+				let ruleColumnSet = new Adaptive.ColumnSet();
+				ruleColumnSet.spacing = Adaptive.Spacing.Small;
+				ruleColumnSet.addColumn(ruleTitleColumn);
+				ruleColumnSet.addColumn(ruleRemoveColumn);
+	
+				result.addItem(ruleColumnSet);
+				
 				let ruleTriggerChoiceSet = new Adaptive.ChoiceSetInput();
-				ruleTriggerChoiceSet.placeholder = "Trigger";
+				ruleTriggerChoiceSet.label = "Trigger";
+				ruleTriggerChoiceSet.placeholder = "Select trigger";
 				ruleTriggerChoiceSet.defaultValue = nameValuePairs[i].trigger;
-				// ruleTriggerChoiceSet.defaultValue = ruleTriggerChoiceSet.defaultValue.charAt(0).toUpperCase() + ruleTriggerChoiceSet.defaultValue.slice(1);
 				const ruleTriggerEnumValues = Object.values(Adaptive.RuleTrigger); 
 				ruleTriggerEnumValues.splice(ruleTriggerEnumValues.length / 2, ruleTriggerEnumValues.length / 2);
 				ruleTriggerChoiceSet.choices = [];
@@ -908,29 +931,10 @@ class RulesPropertyEditor extends PropertySheetEntry {
 				let ruleTriggerColumn = new Adaptive.Column("stretch");
 				ruleTriggerColumn.addItem(ruleTriggerChoiceSet);
 
-
-				const type = new Adaptive.ChoiceSetInput();
-				type.placeholder = this.typePropertyLabel;
-				type.defaultValue = nameValuePairs[i].type;
-				// type.defaultValue = type.defaultValue.charAt(0).toUpperCase() + type.defaultValue.slice(1);
-				const enumValues = Object.values(Adaptive.RuleType);
-				enumValues.splice(enumValues.length / 2, enumValues.length / 2);
-				type.choices = [];
-				for (let choice of enumValues) {
-					type.choices.push(new Adaptive.Choice(choice.toString(), choice.toString()));
-				}
-				type.onValueChanged = (sender) => {
-					nameValuePairs[i].type = sender.value;
-					this.collectionChanged(context, nameValuePairs, false);
-				};
-
-				let typeColumn = new Adaptive.Column("stretch");
-				typeColumn.spacing = Adaptive.Spacing.Small;
-				typeColumn.addItem(type);
-
 				let eventInput = new Adaptive.TextInput();
+				eventInput.label = "Event";
 				eventInput.placeholder = this.eventPropertyLabel;
-				eventInput.defaultValue = nameValuePairs[i].event;
+				eventInput.defaultValue = nameValuePairs[i].event;				
 				eventInput.onValueChanged = (sender) => {
 					nameValuePairs[i].event = sender.value;
 					this.collectionChanged(context, nameValuePairs, false);
@@ -940,50 +944,52 @@ class RulesPropertyEditor extends PropertySheetEntry {
 				eventColumn.spacing = Adaptive.Spacing.Small;
 				eventColumn.addItem(eventInput);
 
-				let removeAction = new Adaptive.SubmitAction();
-				removeAction.title = "X";
-				removeAction.onExecute = (sender) => {
-					nameValuePairs.splice(i, 1);
-					this.collectionChanged(context, nameValuePairs, true);
-				}
+				let ruleTriggerColumnSet = new Adaptive.ColumnSet();
+				ruleTriggerColumnSet.spacing = Adaptive.Spacing.Small;
+				ruleTriggerColumnSet.addColumn(ruleTriggerColumn);
+
+				let eventColumnSet = new Adaptive.ColumnSet();
+				eventColumnSet.spacing = Adaptive.Spacing.Small;
+				eventColumnSet.addColumn(eventColumn);
+
+				result.addItem(ruleTriggerColumnSet);
+				result.addItem(eventColumnSet);
+
+				let actionsTextBlock = new Adaptive.TextBlock();
+				actionsTextBlock.spacing = Adaptive.Spacing.Small;
+				actionsTextBlock.text = "Actions:";
+				
+				let actionsColumn = new Adaptive.Column("stretch");
+				actionsColumn.spacing = Adaptive.Spacing.Small;				
+				actionsColumn.addItem(actionsTextBlock);
 
 				let addActionInternal = new Adaptive.SubmitAction();
-				addActionInternal.title = "+";
+				addActionInternal.title = "Add action";
 				addActionInternal.onExecute = (sender) => {
 					let actionParams : IActionParam [] = [];
 					if (!nameValuePairs[i].actions)
 					{ 
 						nameValuePairs[i].actions = actionParams;
 					}
-					nameValuePairs[i].actions.push( { type: '', kind: '', data: {}})
+					nameValuePairs[i].actions.push({ type: ''})
 					this.collectionChanged(context, nameValuePairs, true);
 				}
 
 				let actionSet = new Adaptive.ActionSet();
 				actionSet.addAction(addActionInternal);
-				actionSet.addAction(removeAction);
 				
+				let addActionColumn = new Adaptive.Column("auto");
+				addActionColumn.spacing = Adaptive.Spacing.Small;				
+				addActionColumn.addItem(actionSet);
 
-				let removeColumn = new Adaptive.Column("auto");
-				removeColumn.spacing = Adaptive.Spacing.Small;
-				removeColumn.addItem(actionSet);
-
-				let columnSet = new Adaptive.ColumnSet();
-				columnSet.spacing = Adaptive.Spacing.Small;
-				columnSet.addColumn(typeColumn);
-				columnSet.addColumn(ruleTriggerColumn);				
-				columnSet.addColumn(eventColumn);
-				columnSet.addColumn(removeColumn);
-
-				result.addItem(columnSet);
+				let actionsColumnSet = new Adaptive.ColumnSet();
+				actionsColumnSet.separator = true;
+				actionsColumnSet.spacing = Adaptive.Spacing.Small;
+				actionsColumnSet.addColumn(actionsColumn);
+				actionsColumnSet.addColumn(addActionColumn);
+				result.addItem(actionsColumnSet);
 
 				if (nameValuePairs[i].actions) {
-					if (nameValuePairs[i].actions.length > 0) {
-						let actionsTextBlock = new Adaptive.TextBlock();
-						actionsTextBlock.spacing = Adaptive.Spacing.Small;
-						actionsTextBlock.text = "Actions:";
-						result.addItem(actionsTextBlock);
-					}
 					for (let j = 0; j < nameValuePairs[i].actions.length; j++) {
 						let ruleActionTypeChoiceSet = new Adaptive.ChoiceSetInput();
 						ruleActionTypeChoiceSet.placeholder = this.typePropertyLabel;
@@ -1026,35 +1032,70 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						actionTypeColumn.spacing = Adaptive.Spacing.Small;
 						actionTypeColumn.addItem(ruleActionTypeChoiceSet);
 
+						let removeActionInternal = new Adaptive.SubmitAction();
+						removeActionInternal.title = "Remove action";
+						removeActionInternal.onExecute = (sender) => {
+							nameValuePairs[i].actions.splice(j, 1);
+							this.collectionChanged(context, nameValuePairs, true);
+						}
+
+						let removeActionSet = new Adaptive.ActionSet();
+						removeActionSet.addAction(removeActionInternal);
+
+						let removeActionColumn = new Adaptive.Column("auto");
+						removeActionColumn.spacing = Adaptive.Spacing.Small;
+						removeActionColumn.addItem(removeActionSet);
+
 						let actionTypeColumnSet = new Adaptive.ColumnSet();
+						actionTypeColumnSet.separator = true;
 						actionTypeColumnSet.spacing = Adaptive.Spacing.Small;
 						actionTypeColumnSet.addColumn(actionTypeColumn);
+						actionTypeColumnSet.addColumn(removeActionColumn);
+						
 						result.addItem(actionTypeColumnSet);
 						
 						//Raise event ...
 						let actionKindInput = new Adaptive.TextInput();
-						actionKindInput.placeholder = "Action kind";
+						actionKindInput.label = "Kind";
 						actionKindInput.defaultValue = nameValuePairs[i].actions[j].kind;
 						actionKindInput.onValueChanged = (sender) => {
 							nameValuePairs[i].actions[j].kind = sender.value;
 							this.collectionChanged(context, nameValuePairs, false);
 						};
 
-						let actionKindColumn = new Adaptive.Column("stretch");
-						actionKindColumn.spacing = Adaptive.Spacing.Small;
-						actionKindColumn.addItem(actionKindInput);
-
 						let actionDataInput = new Adaptive.TextInput();
-						actionDataInput.placeholder = "Action data";
-						actionDataInput.defaultValue = JSON.stringify(nameValuePairs[i].actions[j].data);
+						actionDataInput.label = "Data";
+						actionDataInput.isMultiline = true;
+						if (typeof(nameValuePairs[i].actions[j].data) !== "string")
+						{
+							actionDataInput.defaultValue = JSON.stringify(nameValuePairs[i].actions[j].data, null, 2);
+						} else {
+							actionDataInput.defaultValue = nameValuePairs[i].actions[j].data;
+						}
 						actionDataInput.onValueChanged = (sender) => {
-							nameValuePairs[i].actions[j].data = JSON.parse(sender.value);
+							if (sender.value) {
+								if (typeof (sender.value) === "string") {
+									try {
+										nameValuePairs[i].actions[j].data = JSON.parse(sender.value);
+									} catch (e) { }
+								} else {
+									nameValuePairs[i].actions[j].data = sender.value;
+								}
+							}
+							else {
+								nameValuePairs[i].actions[j].data = null;
+							}
 							this.collectionChanged(context, nameValuePairs, false);
 						};
 
-						let actionDataColumn = new Adaptive.Column("stretch");
-						actionDataColumn.spacing = Adaptive.Spacing.Small;
-						actionDataColumn.addItem(actionDataInput);
+						let actionKindColumn = new Adaptive.Column("stretch");
+						actionKindColumn.spacing = Adaptive.Spacing.Small;
+						actionKindColumn.addItem(actionKindInput);
+						actionKindColumn.addItem(actionDataInput);
+
+						// let actionDataColumn = new Adaptive.Column("stretch");
+						// actionDataColumn.spacing = Adaptive.Spacing.Small;
+						// actionDataColumn.addItem(actionDataInput);
 
 
 						let raiseEventColumnSet = new Adaptive.ColumnSet();
@@ -1065,13 +1106,13 @@ class RulesPropertyEditor extends PropertySheetEntry {
 							raiseEventColumnSet.isVisible = false;
 						}
 						raiseEventColumnSet.addColumn(actionKindColumn);
-						raiseEventColumnSet.addColumn(actionDataColumn);
+						// raiseEventColumnSet.addColumn(actionDataColumn);
 
 						result.addItem(raiseEventColumnSet);
 
 						//SetInputValue ...
 						let inputIdInput = new Adaptive.TextInput();
-						inputIdInput.placeholder = "Input id";
+						inputIdInput.label = "Input id";
 						inputIdInput.defaultValue = nameValuePairs[i].actions[j].inputId;
 						inputIdInput.onValueChanged = (sender) => {
 							nameValuePairs[i].actions[j].inputId = sender.value;
@@ -1083,7 +1124,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						inputIdColumn.addItem(inputIdInput);
 
 						let inputValueInput = new Adaptive.TextInput();
-						inputValueInput.placeholder = "Input value";
+						inputValueInput.label = "Input value";
 						inputValueInput.defaultValue = nameValuePairs[i].actions[j].inputValue;
 						inputValueInput.onValueChanged = (sender) => {
 							nameValuePairs[i].actions[j].inputValue = sender.value;
@@ -1109,7 +1150,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 
 						//SetProperty ...
 						let propertyNameInput = new Adaptive.TextInput();
-						propertyNameInput.placeholder = "Property name";
+						propertyNameInput.label = "Property name";
 						propertyNameInput.defaultValue = nameValuePairs[i].actions[j].propertyName;
 						propertyNameInput.onValueChanged = (sender) => {
 							nameValuePairs[i].actions[j].propertyName = sender.value;
@@ -1121,7 +1162,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						propertyNameColumn.addItem(propertyNameInput);
 
 						let propertyValueInput = new Adaptive.TextInput();
-						propertyValueInput.placeholder = "Property value";
+						propertyValueInput.label = "Property value";
 						propertyValueInput.defaultValue = nameValuePairs[i].actions[j].propertyValue;
 						propertyValueInput.onValueChanged = (sender) => {
 							nameValuePairs[i].actions[j].propertyValue = sender.value;
@@ -1147,7 +1188,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 
 						//Refresh ...
 						let elementIdInput = new Adaptive.TextInput();
-						elementIdInput.placeholder = "Element id";
+						elementIdInput.label = "Element id";
 						elementIdInput.defaultValue = nameValuePairs[i].actions[j].elementId;
 						elementIdInput.onValueChanged = (sender) => {
 							nameValuePairs[i].actions[j].elementId = sender.value;
@@ -1171,7 +1212,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 
 						//ShowDialog ...
 						let dialogIdInput = new Adaptive.TextInput();
-						dialogIdInput.placeholder = "Dialog id";
+						dialogIdInput.label = "Dialog id";
 						dialogIdInput.defaultValue = nameValuePairs[i].actions[j].dialogId;
 						dialogIdInput.onValueChanged = (sender) => {
 							nameValuePairs[i].actions[j].dialogId = sender.value;
