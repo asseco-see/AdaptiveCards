@@ -986,7 +986,6 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						let ruleActionTypeChoiceSet = new Adaptive.ChoiceSetInput();
 						ruleActionTypeChoiceSet.placeholder = this.typePropertyLabel;
 						ruleActionTypeChoiceSet.defaultValue = nameValuePairs[i].actions[j].type;
-						ruleActionTypeChoiceSet.defaultValue = ruleActionTypeChoiceSet.defaultValue.charAt(0).toUpperCase() + ruleActionTypeChoiceSet.defaultValue.slice(1);
 						const ruleActionTypeEnumValues = Object.values(Adaptive.RuleActionType); 
 						ruleActionTypeChoiceSet.choices = [];
 						for (let choice of ruleActionTypeEnumValues) {
@@ -995,21 +994,27 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						ruleActionTypeChoiceSet.onValueChanged = (sender) => {
 							nameValuePairs[i].actions[j] = {};
 							nameValuePairs[i].actions[j].type = sender.value;
+							
+							raiseEventColumnSet.isVisible = false;							
+							setInputValueColumnSet.isVisible = false;
+						  setPropertyColumnSet.isVisible = false;
+							refreshColumnSet.isVisible = false;
+							showDialogColumnSet.isVisible = false;
 							switch (sender.value) {
 								case "Action.RaiseEvent":
 									raiseEventColumnSet.isVisible = true;
-									setInputValueColumnSet.isVisible = false;
-									setPropertyColumnSet.isVisible = false;
 									break;
 								case "Action.SetInputValue":
-									raiseEventColumnSet.isVisible = false;
 									setInputValueColumnSet.isVisible = true;
-									setPropertyColumnSet.isVisible = false;
 									break;
 								case "Action.SetProperty":
-									raiseEventColumnSet.isVisible = false;
-									setInputValueColumnSet.isVisible = false;
 									setPropertyColumnSet.isVisible = true;
+									break;									
+								case "Action.Refresh":
+									refreshColumnSet.isVisible = true;
+									break;									
+								case "Action.ShowDialog":
+									showDialogColumnSet.isVisible = true;
 									break;									
 							}
 							this.collectionChanged(context, nameValuePairs, false);
@@ -1139,7 +1144,53 @@ class RulesPropertyEditor extends PropertySheetEntry {
 
 						result.addItem(setPropertyColumnSet);
 
+						//Refresh ...
+						let elementIdInput = new Adaptive.TextInput();
+						elementIdInput.placeholder = "Element id";
+						elementIdInput.defaultValue = nameValuePairs[i].actions[j].elementId;
+						elementIdInput.onValueChanged = (sender) => {
+							nameValuePairs[i].actions[j].elementId = sender.value;
+							this.collectionChanged(context, nameValuePairs, false);
+						};
 
+						let elementIdColumn = new Adaptive.Column("stretch");
+						elementIdColumn.spacing = Adaptive.Spacing.Small;
+						elementIdColumn.addItem(elementIdInput);
+
+						let refreshColumnSet = new Adaptive.ColumnSet();
+						refreshColumnSet.spacing = Adaptive.Spacing.Small;
+
+						if (nameValuePairs[i].actions[j].type === "Action.Refresh") {
+							refreshColumnSet.isVisible = true;
+						} else {
+							refreshColumnSet.isVisible = false;
+						}
+						refreshColumnSet.addColumn(elementIdColumn);
+						result.addItem(refreshColumnSet);
+
+						//ShowDialog ...
+						let dialogIdInput = new Adaptive.TextInput();
+						dialogIdInput.placeholder = "Element id";
+						dialogIdInput.defaultValue = nameValuePairs[i].actions[j].dialogId;
+						dialogIdInput.onValueChanged = (sender) => {
+							nameValuePairs[i].actions[j].dialogId = sender.value;
+							this.collectionChanged(context, nameValuePairs, false);
+						};
+
+						let dialogIdColumn = new Adaptive.Column("stretch");
+						dialogIdColumn.spacing = Adaptive.Spacing.Small;
+						dialogIdColumn.addItem(dialogIdInput);
+
+						let showDialogColumnSet = new Adaptive.ColumnSet();
+						showDialogColumnSet.spacing = Adaptive.Spacing.Small;
+
+						if (nameValuePairs[i].actions[j].type === "Action.ShowDialog") {
+							showDialogColumnSet.isVisible = true;
+						} else {
+							showDialogColumnSet.isVisible = false;
+						}
+						showDialogColumnSet.addColumn(dialogIdColumn);
+						result.addItem(showDialogColumnSet);
 					}
 				}		
 			}

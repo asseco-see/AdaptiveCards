@@ -46,9 +46,11 @@ export enum RuleTrigger {
 }
 
 export enum RuleActionType {
+    Refresh = "Action.Refresh",
     RaiseEvent = "Action.RaiseEvent",
     SetInputValue = "Action.SetInputValue",
     SetProperty = "Action.SetProperty",
+    ShowDialog = "Action.ShowDialog"
 }
 
 export enum TextSize {
