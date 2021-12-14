@@ -25,29 +25,45 @@ export class ActionParam extends SerializableObject {
 	static readonly typeProperty = new StringProperty(Versions.v1_0, "type");
 	static readonly kindProperty = new StringProperty(Versions.v1_0, "kind");
 	static readonly dataProperty = new StringProperty(Versions.v1_0, "data");
-
+	static readonly elementIdProperty = new StringProperty(Versions.v1_0, "elementId");
+	static readonly inputIdProperty = new StringProperty(Versions.v1_0, "inputId");
+	static readonly inputValueProperty = new StringProperty(Versions.v1_0, "inputValue");
+	static readonly propertyNameProperty = new StringProperty(Versions.v1_0, "propertyName");
+	static readonly propertyValueProperty = new StringProperty(Versions.v1_0, "propertyValue");
+	static readonly dialogIdProperty = new StringProperty(Versions.v1_0, "dialogId");
+	
 	@property(ActionParam.kindProperty)
 	kind?: string;
 	@property(ActionParam.typeProperty)
 	type?: string;
 	@property(ActionParam.dataProperty)
 	data?: string;
+	@property(ActionParam.elementIdProperty)
+	elementId?: string;
+	@property(ActionParam.inputIdProperty)
+	inputId?: string;
+	@property(ActionParam.inputValueProperty)
+	inputValue?: string;
+	@property(ActionParam.propertyNameProperty)
+	propertyName?: string;
+	@property(ActionParam.propertyValueProperty)
+	propertyValue?: string;
+	@property(ActionParam.dialogIdProperty)
+	dialogId?: string;
+
 	protected getSchemaKey(): string {
 		return 'ActionParam'
 	}
 
 	protected internalToJSON(target: PropertyBag, context: SerializationContext) {
 		super.internalToJSON(target, context);
-
 		if (target && target.data) {
-
 			target.data = JSON.parse(target.data);
 		}
 	}
 
 	protected internalParse(source: any, context: SerializationContext) {
 		if (source && source.data) {
-
 			source.data = JSON.stringify(source.data);
 		}
 		super.internalParse(source, context);

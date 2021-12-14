@@ -1026,7 +1026,6 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						actionTypeColumn.spacing = Adaptive.Spacing.Small;
 						actionTypeColumn.addItem(ruleActionTypeChoiceSet);
 
-
 						let actionTypeColumnSet = new Adaptive.ColumnSet();
 						actionTypeColumnSet.spacing = Adaptive.Spacing.Small;
 						actionTypeColumnSet.addColumn(actionTypeColumn);
@@ -1172,7 +1171,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 
 						//ShowDialog ...
 						let dialogIdInput = new Adaptive.TextInput();
-						dialogIdInput.placeholder = "Element id";
+						dialogIdInput.placeholder = "Dialog id";
 						dialogIdInput.defaultValue = nameValuePairs[i].actions[j].dialogId;
 						dialogIdInput.onValueChanged = (sender) => {
 							nameValuePairs[i].actions[j].dialogId = sender.value;
