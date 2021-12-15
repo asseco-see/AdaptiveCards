@@ -4117,13 +4117,9 @@ export class DataSourceRestParam extends SerializableObject {
 
 export class DataSource extends CardElement {
 
-	static readonly nameProperty = new StringProperty(Versions.v1_0, "name");
 	static readonly uriProperty = new StringProperty(Versions.v1_0, "uri");
 	static readonly isAuthenticatedProperty = new BoolProperty(Versions.v1_0, "isAuthenticated");
 	static readonly authenticationTypeProperty = new EnumProperty(Versions.v1_0, "authenticationType", Enums.AuthenticationType);
-
-	@property(DataSource.nameProperty)
-	name?: string;
 
 	@property(DataSource.uriProperty)
 	uri?: string;
@@ -4282,7 +4278,6 @@ export class DataSet extends CardElement {
 			(typeName: string) => {
 				if (!typeName || typeName === source.type) {
 					const typeData = new type();
-					typeData.name = 'dataSource';
 					return typeData;
 				}
 				return undefined;
@@ -7201,9 +7196,6 @@ export class AdaptiveCard extends ContainerWithActions {
 			this.dataset.binding = "client";
 		}
 		dataSource.uri = 'http://sampleservice/sampleendpoint';
-		const sampleName = 'dataSource';
-		const countData = this.dataset.dataSources?.filter(x => (x.name?.indexOf(sampleName) ?? 0) !== -1).length ?? 0;
-		dataSource.name = sampleName + (countData == 0 ? '1' : '' + (countData + 1));
 		this.dataset.addDataSource(dataSource);
 	}
 	//#endregion

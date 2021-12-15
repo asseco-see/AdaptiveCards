@@ -3070,7 +3070,6 @@ export class TextInputPeer extends InputPeer<Adaptive.TextInput> {
 	}
 }
 export abstract class DataSourcePeer extends TypedCardElementPeer<Adaptive.DataSource> {
-	static readonly nameProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "name", "Name");
 	static readonly urlProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "uri", "Uri");
 	static readonly isAuthenticatedProperty = new BooleanPropertyEditor(Adaptive.Versions.v1_0, "isAuthenticated", "Is authenticated");
 	static readonly authenticationTypeProperty = new EnumPropertyEditor(Adaptive.Versions.v1_0, "authenticationType", "Authentication type", Adaptive.AuthenticationType);
@@ -3079,15 +3078,8 @@ export abstract class DataSourcePeer extends TypedCardElementPeer<Adaptive.DataS
 		super.populatePropertySheet(propertySheet, defaultCategory);
 		propertySheet.add(
 			defaultCategory,
-			DataSourcePeer.nameProperty);
-		propertySheet.add(
-			defaultCategory,
-			DataSourcePeer.urlProperty);
-		propertySheet.add(
-			defaultCategory,
-			DataSourcePeer.isAuthenticatedProperty);
-		propertySheet.add(
-			defaultCategory,
+			DataSourcePeer.urlProperty,
+			DataSourcePeer.isAuthenticatedProperty,
 			DataSourcePeer.authenticationTypeProperty);
 	}
 
