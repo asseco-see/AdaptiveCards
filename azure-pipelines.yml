@@ -36,7 +36,7 @@ steps:
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
       cd source/nodejs
-      npm install --no-progress --loglevel=warn
+      npm install
       npx lerna bootstrap
       npx lerna run build
 
