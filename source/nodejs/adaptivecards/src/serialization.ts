@@ -107,7 +107,8 @@ export class Versions {
     static readonly v1_1 = new Version(1, 1);
     static readonly v1_2 = new Version(1, 2);
     static readonly v1_3 = new Version(1, 3);
-    static readonly latest = Versions.v1_3;
+    static readonly v1_4 = new Version(1, 4);
+    static readonly latest = Versions.v1_4;
 }
 
 export function isVersionLessOrEqual(version: TargetVersion, targetVersion: TargetVersion): boolean {
@@ -131,9 +132,9 @@ export abstract class BaseSerializationContext {
 
     toJSONOriginalParam: any;
 
-    serializeValue(target: { [key: string]: any }, propertyName: string, propertyValue: any, defaultValue: any = undefined) {
+    serializeValue(target: { [key: string]: any }, propertyName: string, propertyValue: any, defaultValue: any = undefined, forceDeleteIfNullOrDefault: boolean = false) {
         if (propertyValue === null || propertyValue === undefined || propertyValue === defaultValue) {
-            if (!GlobalSettings.enableFullJsonRoundTrip) {
+            if (!GlobalSettings.enableFullJsonRoundTrip || forceDeleteIfNullOrDefault) {
                 delete target[propertyName];
             }
         }
@@ -188,7 +189,7 @@ export abstract class BaseSerializationContext {
                 if (item instanceof SerializableObject) {
                     serializedItem = item.toJSON(this);
                 }
-                else if (item.toJSON) {
+                else if (item && item.toJSON) {
                     serializedItem = item.toJSON();
                 }
                 else {
@@ -208,6 +209,28 @@ export abstract class BaseSerializationContext {
         }
         else {
             this.serializeValue(target, propertyName, items);
+        }
+    }
+
+	serializeObject(target: { [key: string]: any }, propertyName: string, propertyValue: SerializableObject | undefined) {
+		let serializedItem: any = undefined;
+
+        if (propertyValue) {
+			if (propertyValue instanceof SerializableObject) {
+				serializedItem = propertyValue.toJSON(this);
+			}
+			else {
+				serializedItem = propertyValue;
+			}
+		}
+
+        if (serializedItem !== undefined) {
+			this.serializeValue(target, propertyName, serializedItem);
+        }
+        else {
+            if (target.hasOwnProperty(propertyName)) {
+                delete target[propertyName];
+            }
         }
     }
 
@@ -238,14 +261,14 @@ export abstract class BaseSerializationContext {
         return this._validationEvents[index];
     }
 
-    constructor(public targetVersion: Version = Versions.latest) {}
+    constructor(public targetVersion: Version = Versions.latest) { }
 
     get eventCount(): number {
         return this._validationEvents.length;
     }
 }
 
-class SimpleSerializationContext extends BaseSerializationContext {}
+class SimpleSerializationContext extends BaseSerializationContext { }
 
 export class PropertyDefinition {
     private static _sequentialNumber: number = 0;
@@ -258,8 +281,8 @@ export class PropertyDefinition {
         return source[this.name];
     }
 
-    toJSON(sender: SerializableObject, target: PropertyBag, value: any, context: BaseSerializationContext): void {
-        context.serializeValue(target, this.name, value, this.defaultValue);
+    toJSON(sender: SerializableObject, target: PropertyBag, value: any, context: BaseSerializationContext, forceDeleteIfNullOrDefault: boolean = false): void {
+        context.serializeValue(target, this.name, value, this.defaultValue, forceDeleteIfNullOrDefault);
     }
 
     readonly sequentialNumber: number;
@@ -271,10 +294,10 @@ export class PropertyDefinition {
         readonly name: string,
         readonly defaultValue?: any,
         readonly onGetInitialValue?: (sender: SerializableObject) => any) {
-            this.sequentialNumber = PropertyDefinition._sequentialNumber;
+        this.sequentialNumber = PropertyDefinition._sequentialNumber;
 
-            PropertyDefinition._sequentialNumber++;
-        }
+        PropertyDefinition._sequentialNumber++;
+    }
 }
 
 export class StringProperty extends PropertyDefinition {
@@ -318,7 +341,7 @@ export class StringProperty extends PropertyDefinition {
 }
 
 export class BoolProperty extends PropertyDefinition {
-    parse(sender: SerializableObject, source: PropertyBag, context: BaseSerializationContext): boolean | undefined {
+    parse(sender: SerializableObject, source: PropertyBag, context: BaseSerializationContext): any | undefined {
         return Utils.parseBool(source[this.name], this.defaultValue);
     }
 
@@ -579,7 +602,7 @@ export class EnumProperty<TEnum extends { [s: number]: string }> extends Propert
                 let keyAsNumber = parseInt(key, 10);
 
                 if (keyAsNumber >= 0) {
-                    this._values.push( { value: keyAsNumber });
+                    this._values.push({ value: keyAsNumber });
                 }
             }
         }
@@ -616,7 +639,7 @@ export class SerializableObjectProperty extends PropertyDefinition {
             serializedValue = undefined;
         }
 
-        super.toJSON(sender, target, serializedValue, context);
+        super.toJSON(sender, target, serializedValue, context, true);
     }
 
     constructor(
@@ -747,12 +770,13 @@ export class SerializableObjectSchema {
 // This is a decorator function, used to map SerializableObject descendant class members to
 // schema properties
 export function property(property: PropertyDefinition) {
-    return function(target: any, propertyKey: string) {
+    return function (target: any, propertyKey: string) {
         let descriptor = Object.getOwnPropertyDescriptor(target, propertyKey) || {};
-
         if (!descriptor.get && !descriptor.set) {
-            descriptor.get = function(this: SerializableObject) { return this.getValue(property); };
-            descriptor.set = function(this: SerializableObject, value: any) { this.setValue(property, value); };
+            delete descriptor.value;
+            delete descriptor.writable;
+            descriptor.get = function (this: SerializableObject) { return this.getValue(property); };
+            descriptor.set = function (this: SerializableObject, value: any) { this.setValue(property, value); };
 
             Object.defineProperty(target, propertyKey, descriptor)
         }
@@ -792,6 +816,21 @@ export abstract class SerializableObject {
                 // it throws an exception, we need to catch it here
             }
         }
+        if (this._propertyBag) {
+            for (let propertyName in Object.getPrototypeOf(this)) {
+                try {
+                    let propertyValue = Object.getPrototypeOf(this)[propertyName];
+
+                    if (propertyValue instanceof PropertyDefinition) {
+                        properties.push(propertyValue);
+                    }
+                }
+                catch {
+                    // If a property happens to have a getter function and
+                    // it throws an exception, we need to catch it here
+                }
+            }
+        }
 
         if (properties.length > 0) {
             let sortedProperties = properties.sort((p1: PropertyDefinition, p2: PropertyDefinition) => {
@@ -828,7 +867,9 @@ export abstract class SerializableObject {
 
     protected internalParse(source: PropertyBag, context: BaseSerializationContext) {
         this._propertyBag = {};
-        this._rawProperties = GlobalSettings.enableFullJsonRoundTrip ? (source ? source : {}) : {};
+		// TODO: Return this code when enableFullJsonRoundTrip=true
+        // this._rawProperties = GlobalSettings.enableFullJsonRoundTrip ? (source ? source : {}) : {};
+		this._rawProperties = source ? source : {};
 
         if (source) {
             let s = this.getSchema();
@@ -856,7 +897,7 @@ export abstract class SerializableObject {
 
                     this.setValue(property, propertyValue);
                 }
-            }
+            }	
         }
         else {
             this.resetDefaultValues();
@@ -885,7 +926,7 @@ export abstract class SerializableObject {
         return true;
     }
 
-    maxVersion: Version = Versions.v1_3;
+    maxVersion: Version = Versions.v1_4;
 
     constructor() {
         let s = this.getSchema();
@@ -905,7 +946,7 @@ export abstract class SerializableObject {
 
     toJSON(context?: BaseSerializationContext): PropertyBag | undefined {
         let effectiveContext: BaseSerializationContext;
-        
+
         if (context && context instanceof BaseSerializationContext) {
             effectiveContext = context;
         }
@@ -917,7 +958,11 @@ export abstract class SerializableObject {
         if (this.shouldSerialize(effectiveContext)) {
             let result: PropertyBag;
 
-            if (GlobalSettings.enableFullJsonRoundTrip && this._rawProperties && typeof this._rawProperties === "object") {
+			// TODO: Return this code when enableFullJsonRoundTrip=true
+            // if (GlobalSettings.enableFullJsonRoundTrip && this._rawProperties && typeof this._rawProperties === "object") {
+            //     result = this._rawProperties;
+            // }
+			if (this._rawProperties && typeof this._rawProperties === "object") {
                 result = this._rawProperties;
             }
             else {

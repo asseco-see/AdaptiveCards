@@ -85,30 +85,44 @@ module.exports = (env, argv) => {
 				filesToConcat: ['./node_modules/adaptivecards-controls/dist/adaptivecards-controls.css', './src/adaptivecards-designer.css']
 			}),
 			new CopyWebpackPlugin({
-				patterns: [{
-					from: 'src/containers/default/adaptivecards-defaulthost.css',
-					to: '.'
-				},
-				{
-					from: 'src/adaptivecards-designer.css',
-					to: '.',
-					flatten: true
-				},
-				{
-					from: 'src/containers/**/*.css',
-					to: 'containers/',
-					flatten: true
-				},
-				{
-					from: 'src/containers/**/*.png',
-					to: 'containers/',
-					flatten: true
-				},
-				{
-					from: 'src/containers/**/*.jpg',
-					to: 'containers/',
-					flatten: true
-				}],
+				patterns: [
+					{
+						from: 'configuration.json',
+						to: '.'
+					},
+					{
+						from: '../adaptivecards/dist/adaptivecards.js',
+						to: '.'
+					},
+					{
+						from: 'src/containers/default/adaptivecards-defaulthost.css',
+						to: '.'
+					},
+					{
+						from: 'src/adaptivecards-designer.css',
+						to: '.',
+						flatten: true
+					},
+					{
+						from: 'src/containers/**/*.css',
+						to: 'containers/',
+						flatten: true
+					},
+					{
+						from: '../../../schemas/extensions/**/*.json',
+						to: 'extensions/',
+						flatten: true
+					},
+					{
+						from: 'src/containers/**/*.png',
+						to: 'containers/',
+						flatten: true
+					},
+					{
+						from: 'src/containers/**/*.jpg',
+						to: 'containers/',
+						flatten: true
+					}],
 				options: {
 					concurrency: 8
 				}
@@ -116,9 +130,14 @@ module.exports = (env, argv) => {
 		],
 		externals: {
 			///^monaco-editor/ // <-- NOT WORKING for some reason
+			"@asseco/adaptivecards": {
+				commonjs2: "@asseco/adaptivecards",
+				commonjs: "@asseco/adaptivecards",
+				root: "AdaptiveCards"
+			},
 			"adaptivecards": {
-				commonjs2: "adaptivecards",
-				commonjs: "adaptivecards",
+				commonjs2: "@asseco/adaptivecards",
+				commonjs: "@asseco/adaptivecards",
 				root: "AdaptiveCards"
 			},
 			"adaptive-expressions": {

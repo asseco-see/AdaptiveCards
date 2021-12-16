@@ -12,7 +12,7 @@ import {
     ShowCardActionMode,
     Orientation,
     ActionAlignment,
-} from "adaptivecards";
+} from "@asseco/adaptivecards";
 import * as windowsNotificationConfiguration from "../../../../../samples/HostConfig/windows-notification.json";
 
 export class ToastContainer extends HostContainer {

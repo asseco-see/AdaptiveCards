@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HostContainer } from "./host-container";
-import * as Adaptive from "adaptivecards";
+import * as Adaptive from "@asseco/adaptivecards";
 import * as windowsTimelineConfiguration from "../../../../../samples/HostConfig/windows-timeline.json";
 
 export class TimelineContainer extends HostContainer {

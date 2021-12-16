@@ -1,0 +1,202 @@
+{
+	"id": "data-table",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"DataTableCellFormat": {
+				"classType": "Enum",
+				"type": "DataTableCellFormat",
+				"values": [
+					"text",
+					"date",
+					"money",
+					"image"
+				]
+			},
+			"DataTableColumn": {
+				"description": "Defines the characteristics of a column in a DataTable element.",
+				"version": "0.1",
+				"extends": "Element",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "Specifies the id of column.",
+						"version": "0.1"
+					},
+					"title": {
+						"type": "string",
+						"description": "Specifies the title of column.",
+						"version": "0.1"
+					},
+					"sortable": {
+						"type": "boolean",
+						"description": "Specifies if the column is sortable.",
+						"version": "0.1"
+					},
+					"width": {
+						"type": "string|number",
+						"description": "Specifies the width of the column. Width represents the weight of the column relative to the other columns in the table.",
+						"version": "0.1"
+					},
+					"cellContentAlignment": {
+						"type": "HorizontalAlignment",
+						"description": "Controls how the content of all cells in the column is horizontally aligned by default. This value overrides the setting at the table level.",
+						"version": "0.1"
+					}
+				}
+			},
+			"TableResponsiveConfig": {
+				"classType": "Class",
+				"type": "TableResponsiveConfig",
+				"description": "Defines responsive configuration of data table.",
+				"version": "0.1",
+				"properties": {
+					"width": {
+						"type": "string|number",
+						"description": "Specifies the width in pixels when columns are applied.",
+						"version": "0.1"
+					},
+					"columns": {
+						"type": "string[]",
+						"description": "Specifies the list of columns that are displayed.",
+						"version": "0.1"
+					}
+				}
+			},
+			"DataTablePaging": {
+				"classType": "Class",
+				"type": "DataTablePaging",
+				"description": "Defines paging configuration of data table.",
+				"version": "0.1",
+				"properties": {
+					"page": {
+						"type": "string",
+						"description": "Specifies the page value. Can be an expression from a dataset.",
+						"version": "0.1"
+					},
+					"pageSize": {
+						"type": "string",
+						"description": "Specifies the page size value. Can be an expression from a dataset.",
+						"version": "0.1"
+					},
+					"totalCount": {
+						"type": "string",
+						"description": "Specifies the total entries count. Can be an expression from a dataset.",
+						"version": "0.1"
+					},
+					"pageSizeOptions": {
+						"type": "number[]",
+						"description": "Specifies the list of available page size options.",
+						"version": "0.1"
+					}
+				}
+			},
+			"DataTableRow": {
+				"description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
+				"extends": "Element",
+				"properties": {
+					"$data": {
+						"type": "string",
+						"description": "Expression for getting the row items from the dataset",
+						"required": true,
+						"version": "0.1"
+					},
+					"cells": {
+						"type": "DataTableCell[]",
+						"description": "Defines the number of columns in the table, their sizes, and more.",
+						"required": true,
+						"version": "0.1"
+					},
+					"actions": {
+						"type": "Action[]",
+						"description": "Defines the actions that can be triggered on data table.",
+						"version": "0.1"
+					}
+				}
+			},
+			"DataTableCell": {
+				"description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
+				"extends": "Element",
+				"properties": {
+					"value": {
+						"type": "string",
+						"description": "Expression for getting the value from the dataset",
+						"required": true,
+						"version": "0.1"
+					},
+					"translate": {
+						"type": "boolean",
+						"description": "Specifies whether the column should be translated.",
+						"required": true,
+						"version": "0.1"
+					},
+					"format": {
+						"type": "DataTableCellFormat",
+						"description": "Specifies the cell value type.",
+						"version": "0.1",
+						"default": "text"
+					}
+				}
+			},
+			"DataTable": {
+				"description": "Provides a way to integrate with various sources and display, sort and filter data in a tabular form.",
+				"extends": "Element",
+				"properties": {
+					"columns": {
+						"type": "DataTableColumn[]",
+						"description": "Defines the number of columns in the table, their sizes, and more.",
+						"required": true,
+						"version": "0.1"
+					},
+					"rows": {
+						"type": "DataTableRow[]",
+						"description": "Defines the number of columns in the table, their sizes, and more.",
+						"required": true,
+						"version": "0.1"
+					},
+					"responsive": {
+						"type": "TableResponsiveConfig[]",
+						"description": "Defines visible columns when column width changes.",
+						"required": true,
+						"version": "0.1"
+					},
+					"paging": {
+						"type": "DataTablePaging",
+						"description": "Defines data table paging configuration.",
+						"version": "0.1"
+					},
+					"filterDialogId": {
+						"type": "string",
+						"description": "Specifies id of the filter dialog.",
+						"version": "0.1"
+					},
+					"stickyHeader": {
+						"type": "boolean",
+						"description": "Specifies whether the header of the data table should stick to the top.",
+						"default": false,
+						"version": "0.1"
+					},
+					"headerStyle": {
+						"type": "ContainerStyle?",
+						"description": "Defines the style of the table header. This property currently only controls the headers’s color.",
+						"default": "default",
+						"version": "0.1"
+					},
+					"cellContentAlignment": {
+						"type": "HorizontalAlignment?",
+						"description": "Controls how the content of all cells is horizontally aligned by default.",
+						"version": "0.1"
+					},
+					"dataSet": {
+						"type": "DataSet",
+						"description": "Data set for data table element.",
+						"version": "0.1",
+						"required": true
+					}
+				}
+			}
+		}
+	}
+}

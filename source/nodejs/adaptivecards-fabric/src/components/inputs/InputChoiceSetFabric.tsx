@@ -84,7 +84,7 @@ export class InputChoiceSetFabric extends Shared.ReactInputElement {
                 this.defaultValueToArray(this.value))}
             multiple={this.isMultiSelect}
         />
-    )
+    );
 
     private inputChoicesToCheckbox = (): JSX.Element => (
         <React.Fragment>

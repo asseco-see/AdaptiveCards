@@ -3,15 +3,7 @@
 	<%
 		var title = page.title;
 
-		if (is_archive()){
-			title = __("archive_a");
-
-			if (is_month()){
-			title += ": " + page.year + "/" + page.month;
-			} else if (is_year()){
-			title += ": " + page.year;
-			}
-		} else if (is_category()){
+	     if (is_category()){
 			title = __("category") + ": " + page.category;
 		} else if (is_tag()){
 			title = __("tag") + ": " + page.tag;
@@ -19,9 +11,9 @@
 	%>
 	<title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+	<base href="/">
 	<link rel="alternate" href="<%- url_for(config.feed.path) %>" title="<%= config.title %>" type="application/atom+xml">
-	<link rel="icon" href="<%- url_for('content/favicon.ico') %>">
+	<link rel="icon" href="<%- url_for('content/icons/favicon.ico') %>">
 
 	<% if(is_post()) { %>
 		<meta name="twitter:card" content="summary_large_image">
@@ -34,7 +26,7 @@
 
 	<% if(is_current("visualizer")) { %>
 		<%- hashed_asset("css/w3.css") %>
-		<%- hashed_asset("visualizer/css/visualizer.css") %>
+		<%- hashed_asset("visualizer/css/visualizer.css") %>	
 	<% } else if(!is_current("designer")) { %>
 		<%- hashed_asset("node_modules/@fortawesome/fontawesome-free/css/all.min.css") %>
 		<%- hashed_asset("node_modules/highlightjs/styles/default.css") %>
@@ -45,6 +37,9 @@
 		<%- hashed_asset("css/style.css") %>
 	<% } %>
 
+	<% if(is_current("host-config")) { %>
+		<%- hashed_asset("css/host-config.css") %>
+	<% } %>
 
 	<%- hashed_asset("node_modules/jquery/dist/jquery.min.js") %>
 

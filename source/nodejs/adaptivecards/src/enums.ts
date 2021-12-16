@@ -29,6 +29,30 @@ export enum SizeUnit {
     Pixel
 }
 
+export enum DataSourceRestParamType {
+    Query,
+    Header,
+		Route
+}
+
+export enum RuleType {
+    Interaction = "Rule.Interaction"
+}
+
+export enum RuleTrigger {
+    ValueChanged,
+    Click,
+    FocusOut
+}
+
+export enum RuleActionType {
+    Refresh = "Action.Refresh",
+    RaiseEvent = "Action.RaiseEvent",
+    SetInputValue = "Action.SetInputValue",
+    SetProperty = "Action.SetProperty",
+    ShowDialog = "Action.ShowDialog"
+}
+
 export enum TextSize {
     Small,
     Default,
@@ -121,6 +145,25 @@ export enum InputTextStyle {
     Email
 }
 
+export enum AuthenticationType {
+    Client,
+    Server
+}
+
+export enum DataSetBindingType {
+	Inherited,
+    Client,
+    Server
+}
+
+export enum RestMethod {
+    GET,
+    POST,
+    PUT,
+    DELETE,
+    PATCH
+}
+
 /*
     This should really be a string enum, e.g.
 
@@ -145,6 +188,12 @@ export class ContainerStyle {
     static readonly Good: "good" = "good";
     static readonly Attention: "attention" = "attention";
     static readonly Warning: "warning" = "warning";
+}
+
+export enum ChipInputColorSchema {
+    Primary = '#03a9f4',
+    Accent = '#ff9800',
+    Warn = '#f44336'
 }
 
 export enum ValidationPhase {
@@ -178,4 +227,27 @@ export enum ContainerFitStatus {
     FullyInContainer,
     Overflowing,
     FullyOutOfContainer
+}
+
+export enum InputTextCheckDigitAlgorithm {
+    Mod11,
+    Mod97
+}
+
+export class ChoiceInputStyle {
+	static readonly Compact: "compact" = "compact";
+	static readonly Expanded: "expanded" = "expanded";
+	static readonly Autocomplete: "autocomplete" = "autocomplete";
+}
+
+export class ChoiceInputFilterType {
+	static readonly None: "none" = "none";
+	static readonly StartsWith: "startsWith" = "startsWith";
+	static readonly Includes: "includes" = "includes";
+	static readonly EndsWith: "endsWith" = "endsWith";
+}
+
+export class FilterMode {
+	static readonly Client: "client" = "client";
+	static readonly Server: "server" = "server";
 }

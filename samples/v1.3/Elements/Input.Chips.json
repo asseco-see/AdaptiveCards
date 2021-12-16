@@ -1,0 +1,30 @@
+{
+    "type": "AdaptiveCard",
+    "version": "1.3",
+    "body": [
+        {
+            "type": "Input.Chips",
+            "id": "chip",
+            "placeholder": "Enter chips",
+            "chips": [
+                {
+                    "id": "12345",
+                    "name": "chip-1",
+                    "selected": true
+                },
+                {
+                    "id": "12346",
+                    "name": "chip-2"
+                }
+            ],
+            "removable": true,
+            "color": "primary"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "OK"
+        }
+    ]
+}

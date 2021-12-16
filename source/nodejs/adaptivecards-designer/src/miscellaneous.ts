@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Adaptive from "adaptivecards";
+import * as Adaptive from "@asseco/adaptivecards";
 
 export interface IPoint {
 	x: number;

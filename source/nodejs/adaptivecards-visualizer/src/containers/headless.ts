@@ -12,7 +12,7 @@ import {
     ShowCardActionMode,
     Orientation,
     ActionAlignment,
-} from "adaptivecards";
+} from "@asseco/adaptivecards";
 
 export class HeadlessContainer extends HostContainer {
     protected renderContainer(adaptiveCard: AdaptiveCard, target: HTMLElement): HTMLElement {

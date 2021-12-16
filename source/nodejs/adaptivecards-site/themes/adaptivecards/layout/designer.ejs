@@ -3,7 +3,7 @@
 <%- hashed_asset("node_modules/adaptive-expressions/lib/browser.js") %>
 <%- hashed_asset("node_modules/adaptivecards-templating/dist/adaptivecards-templating.min.js") %>
 <%- hashed_asset("node_modules/markdown-it/dist/markdown-it.min.js") %>
-<%- hashed_asset("node_modules/adaptivecards-designer/dist/adaptivecards-designer.min.js") %>
+<%- hashed_asset("node_modules/adaptivecards-designer/dist/adaptivecards-designer.js") %>
 <%- hashed_asset('node_modules/monaco-editor/min/vs/loader.js') %>
 
 <style type="text/css">
@@ -12,7 +12,7 @@
 	}
 
 	body {
-		font-family: 'Segoe UI', sans-serif;
+		font-family: 'Roboto', sans-serif;
 		font-size: 14px;
 	}
 
@@ -43,6 +43,11 @@
 	.acd-icon-scopeTemplate::before {
 		content: "\F2B0";
 	}
+	
+.platform-logo {
+	max-height: 39px;
+	width: auto;
+}
 </style>
 
 
@@ -72,30 +77,30 @@
 			designer.sampleCatalogueUrl = "<%- config.root %>designer/sample-catalogue.json";
 			designer.bindingPreviewMode = ACDesigner.BindingPreviewMode.SampleData;
 			
-			let hostDocsButton = new ACDesigner.ToolbarButton(
-				"hostDocs",
-				"Host App Docs",
-				"acd-icon-storyboard",
-				function () {
-					window.open("https://docs.microsoft.com/en-us/adaptive-cards/resources/partners")
-				}
-			);
-			hostDocsButton.separator = false;
-			hostDocsButton.toolTip = "Learn more about the Host Apps";
-			designer.toolbar.insertElementAfter(hostDocsButton, ACDesigner.CardDesigner.ToolbarCommands.HostAppPicker);
+			// let hostDocsButton = new ACDesigner.ToolbarButton(
+			// 	"hostDocs",
+			// 	"Host App Docs",
+			// 	"acd-icon-storyboard",
+			// 	function () {
+			// 		window.open("https://docs.microsoft.com/en-us/adaptive-cards/resources/partners")
+			// 	}
+			// );
+			// hostDocsButton.separator = false;
+			// hostDocsButton.toolTip = "Learn more about the Host Apps";
+			// designer.toolbar.insertElementAfter(hostDocsButton, ACDesigner.CardDesigner.ToolbarCommands.HostAppPicker);
 
-			let templateDocsButton = new ACDesigner.ToolbarButton(
-				"templateDocs",
-				"Templating Docs",
-				"acd-icon-scopeTemplate",
-				function () {
-					appInsights.trackEvent({ name: "ViewedTemplatingDocs" }, { Origin: "Designer" });
-					window.open("https://docs.microsoft.com/en-us/adaptive-cards/templating/");
-				}
-			);
-			templateDocsButton.separator = false;
-			templateDocsButton.toolTip = "Learn more about Adaptive Cards templating";
-			designer.toolbar.insertElementAfter(templateDocsButton, "hostDocs");
+			// let templateDocsButton = new ACDesigner.ToolbarButton(
+			// 	"templateDocs",
+			// 	"Templating Docs",
+			// 	"acd-icon-scopeTemplate",
+			// 	function () {
+			// 		appInsights.trackEvent({ name: "ViewedTemplatingDocs" }, { Origin: "Designer" });
+			// 		window.open("https://docs.microsoft.com/en-us/adaptive-cards/templating/");
+			// 	}
+			// );
+			// templateDocsButton.separator = false;
+			// templateDocsButton.toolTip = "Learn more about Adaptive Cards templating";
+			// designer.toolbar.insertElementAfter(templateDocsButton, "hostDocs");
 
 			designer.toolbar.getElementById(ACDesigner.CardDesigner.ToolbarCommands.HostAppPicker).width = "auto";
 
@@ -104,7 +109,7 @@
 				"Feedback",
 				"acd-icon-feedback",
 				function () {
-					window.open("https://github.com/Microsoft/AdaptiveCards/issues/new?title="
+					window.open("https://github.com/asseco-see/adaptive-ui/issues/new?title="
 						+ encodeURIComponent("[Designer] [Your feedback title here]")
 						+ "&body=" + encodeURIComponent("[Your detailed feedback here]"))
 				}
@@ -172,7 +177,7 @@
 
 					// TODO: Talk to David: I want to put the sampleData setter here but it was failing
 
-					history.replaceState(null, null, "<%- config.root %>designer");
+					history.replaceState(null, null, "<%- config.root %>/designer");
 				};
 
 				// TODO: when the designer has an addError API we should log that we failed to load the requested card

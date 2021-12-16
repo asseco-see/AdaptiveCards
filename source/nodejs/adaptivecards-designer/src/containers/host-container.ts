@@ -1,79 +1,107 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalSettings, GlobalRegistry, CardObjectRegistry, CardElement, Action, HostConfig, SerializationContext, Version, Versions } from "adaptivecards";
+import {
+	GlobalSettings, GlobalRegistry,
+	CardElement, Action, HostConfig, SerializationContext, Version, Versions, CardObjectRegistry, CustomCardElementRegistry
+} from "@asseco/adaptivecards";
 import * as hostConfig from "../hostConfigs/sample.json";
+import { ExtensionRegistry } from "../extension-loader";
+import { extractionElementsAndActionsFromExtension } from "../utils";
 
 export abstract class HostContainer {
-    private _cardHost: HTMLElement;
-    private _elementsRegistry = new CardObjectRegistry<CardElement>();
-    private _actionsRegistry = new CardObjectRegistry<Action>();
+	private _cardHost: HTMLElement;
+	private _elementsRegistry = new CardObjectRegistry<CardElement>();
+	private _actionsRegistry = new CardObjectRegistry<Action>();
 
-    readonly name: string;
-    readonly styleSheet: string;
+	readonly name: string;
+	readonly styleSheet: string;
 
-    constructor(name: string, styleSheet: string) {
-        this.name = name;
-        this.styleSheet = styleSheet;
+	constructor(name: string, styleSheet: string) {
+		this.name = name;
+		this.styleSheet = styleSheet;
 
-        this._cardHost = document.createElement("div");
-        this._cardHost.className = "cardHost";
+		this._cardHost = document.createElement("div");
+		this._cardHost.className = "cardHost";
 
-        GlobalRegistry.populateWithDefaultElements(this._elementsRegistry);
-        GlobalRegistry.populateWithDefaultActions(this._actionsRegistry);
-    }
+		GlobalRegistry.populateWithDefaultElements(this._elementsRegistry);
+		GlobalRegistry.populateWithDefaultActions(this._actionsRegistry);
 
-    abstract renderTo(hostElement: HTMLElement);
+		ExtensionRegistry.extensionsRegistry.forEach((value: any) => {
+			const { elements, actions } = extractionElementsAndActionsFromExtension(value);
 
-    public initialize() {
-        GlobalSettings.useMarkdownInRadioButtonAndCheckbox = true;
-        GlobalSettings.useAdvancedCardBottomTruncation = false;
-        GlobalSettings.useAdvancedTextBlockTruncation = true;
-    }
+			GlobalRegistry.populateWithExtension(this._elementsRegistry, elements);
+			GlobalRegistry.populateWithExtension(this._actionsRegistry, actions);
+		});
+		ExtensionRegistry.subscribe((schema) => {
+			const { elements, actions } = extractionElementsAndActionsFromExtension(schema);
 
-    public createSerializationContext(targetVersion: Version): SerializationContext {
-        let context = new SerializationContext(targetVersion);
-        context.setElementRegistry(this.elementsRegistry);
-        context.setActionRegistry(this.actionsRegistry);
+			GlobalRegistry.populateWithExtension(this._elementsRegistry, elements);
+			GlobalRegistry.populateWithExtension(this._actionsRegistry, actions);
+		});
+		CustomCardElementRegistry.cardElementRegistry.forEach((value: any, key: any) => {
+			this._elementsRegistry.register(key, value);
+		});
+		CustomCardElementRegistry.subscribe((name, object) => {
+			this._elementsRegistry.register(name, object);
+		});
+	}
 
-        return context;
-    }
+	abstract renderTo(hostElement: HTMLElement);
 
-    public getBackgroundColor(): string {
-        return "#F6F6F6";
-    }
+	public initialize() {
+		GlobalSettings.useMarkdownInRadioButtonAndCheckbox = true;
+		GlobalSettings.useAdvancedCardBottomTruncation = false;
+		GlobalSettings.useAdvancedTextBlockTruncation = true;
+	}
 
-    public parseElement(element: CardElement, source: any, context: SerializationContext) {
-        // Do nothing in base implementation
-    }
+	public createSerializationContext(targetVersion: Version): SerializationContext {
+		const context = new SerializationContext(targetVersion);
+		context.setElementRegistry(this.elementsRegistry);
+		context.setActionRegistry(this.actionsRegistry);
 
-    public anchorClicked(element: CardElement, anchor: HTMLAnchorElement): boolean {
-        // Not handled by the host container by default
-        return false;
-    }
+		return context;
+	}
 
-    public getHostConfig(): HostConfig {
-        return new HostConfig(hostConfig);
-    }
+	public getBackgroundColor(): string {
+		return "#F6F6F6";
+	}
 
-    supportsActionBar: boolean = false;
+	public parseElement(element: CardElement, source: any, context: SerializationContext) {
+		// Do nothing in base implementation
+	}
 
-    get cardHost(): HTMLElement {
-        return this._cardHost;
-    }
+	public anchorClicked(element: CardElement, anchor: HTMLAnchorElement): boolean {
+		// Not handled by the host container by default
+		return false;
+	}
 
-    get isFixedHeight(): boolean {
-        return false;
-    }
+	public getHostConfig(): HostConfig {
+		return new HostConfig(hostConfig);
+	}
 
-    get elementsRegistry(): CardObjectRegistry<CardElement> {
-        return this._elementsRegistry;
-    }
+	public getRawHostConfig(): any {
+		return hostConfig;
+	}
 
-    get actionsRegistry(): CardObjectRegistry<Action> {
-        return this._actionsRegistry;
-    }
+	supportsActionBar: boolean = false;
 
-    get targetVersion(): Version {
-        return Versions.v1_0;
-    }
+	get cardHost(): HTMLElement {
+		return this._cardHost;
+	}
+
+	get isFixedHeight(): boolean {
+		return false;
+	}
+
+	get elementsRegistry(): CardObjectRegistry<CardElement> {
+		return this._elementsRegistry;
+	}
+
+	get actionsRegistry(): CardObjectRegistry<Action> {
+		return this._actionsRegistry;
+	}
+
+	get targetVersion(): Version {
+		return Versions.v1_0;
+	}
 }

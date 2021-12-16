@@ -94,7 +94,7 @@ The latest release will keep you up to date with features and fixes, but may hav
 
 ```js
 // Import the module:
-import * as AdaptiveCards from "adaptivecards";
+import * as AdaptiveCards from "@asseco/adaptivecards";
 
 // OR require it:
 var AdaptiveCards = require("adaptivecards");

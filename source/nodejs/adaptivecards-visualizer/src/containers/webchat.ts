@@ -4,7 +4,7 @@ import { HostContainer } from "./host-container";
 import {
     AdaptiveCard,
     HostConfig,
-} from "adaptivecards";
+} from "@asseco/adaptivecards";
 import * as webChatConfiguration from "../../../../../samples/HostConfig/webchat.json";
 
 export class WebChatContainer extends HostContainer {

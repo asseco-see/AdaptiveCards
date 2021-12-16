@@ -27,7 +27,7 @@ export class Toolbox {
     private _collapsedTabContainer: HTMLElement;
 
     private getDimensionSettingName(): string {
-        return "Toolbox" + this.id + (this._orientation == ToolboxOrientation.Vertical ? "Height" : "Width");
+        return "Toolbox" + this.id + (this._orientation === ToolboxOrientation.Vertical ? "Height" : "Width");
     }
 
     private updateContent() {
@@ -72,31 +72,30 @@ export class Toolbox {
         this._headerRootElement.innerHTML = "";
         this._headerRootElement.className = "acd-toolbox-header";
 
-        let headerContentElement = document.createElement("div");
+        const headerContentElement = document.createElement("div");
         headerContentElement.className = "acd-toolbox-header-content";
 
-        let headerTitleElement = document.createElement("span");
+        const headerTitleElement = document.createElement("span");
         headerTitleElement.className = "acd-toolbox-header-title";
         headerTitleElement.innerText = this.title;
 
         headerContentElement.appendChild(headerTitleElement);
 
-        let headerCommandsHostElement = document.createElement("span");
+        const headerCommandsHostElement = document.createElement("span");
         headerCommandsHostElement.className = "acd-toolbox-header-commandsHost";
 
         this._customCommandsHost = document.createElement("div");
         this._customCommandsHost.style.display = "flex";
 
         if (this.commands) {
-            for (let command of this.commands) {
-                let commandButtonElement = document.createElement("div");
+            for (const command of this.commands) {
+                const commandButtonElement = document.createElement("div");
                 commandButtonElement.className = "acd-toolbox-header-commandButton";
                 commandButtonElement.title = command.title;
                 commandButtonElement.onclick = (e) => {
                     command.execute(command);
-                }
-
-                let commandIconElement = document.createElement("div");
+                };
+                const commandIconElement = document.createElement("div");
                 commandIconElement.classList.add("acd-icon", command.iconClass);
 
                 commandButtonElement.appendChild(commandIconElement);
@@ -114,7 +113,7 @@ export class Toolbox {
         this._expandCollapseButtonElement.setAttribute("role", "button");
         this._expandCollapseButtonElement.setAttribute("aria-expanded", "true");
 
-        this._headerIconElement = document.createElement("span")
+        this._headerIconElement = document.createElement("span");
         this._headerIconElement.classList.add("acd-icon", "acd-icon-header-expanded");
 
         this._expandCollapseButtonElement.appendChild(this._headerIconElement);
@@ -126,7 +125,7 @@ export class Toolbox {
                 e.preventDefault();
                 this._expandCollapseButtonElement.focus();
             }
-        }
+        };
 
         this._expandCollapseButtonElement.onclick = (e) => {
             this.toggle();
@@ -134,7 +133,7 @@ export class Toolbox {
             e.preventDefault();
 
             return true;
-        }
+        };
 
         headerCommandsHostElement.appendChild(this._expandCollapseButtonElement);
 
@@ -210,7 +209,7 @@ export class Toolbox {
 
             SettingsManager.trySaveSetting(
                 this.getDimensionSettingName(),
-                this.orientation == ToolboxOrientation.Vertical ? this.renderedElement.style.height : this.renderedElement.style.width);
+                this.orientation === ToolboxOrientation.Vertical ? this.renderedElement.style.height : this.renderedElement.style.width);
         }
     }
 
@@ -219,10 +218,10 @@ export class Toolbox {
             this._isRestoring = true;
 
             try {
-                let dimensionSetting = SettingsManager.tryLoadStringSetting(this.getDimensionSettingName());
+                const dimensionSetting = SettingsManager.tryLoadStringSetting(this.getDimensionSettingName());
 
-                if (dimensionSetting.succeeded && dimensionSetting.value != undefined && dimensionSetting.value != "") {
-                    if (this.orientation == ToolboxOrientation.Vertical) {
+                if (dimensionSetting.succeeded && dimensionSetting.value !== undefined && dimensionSetting.value !== "") {
+                    if (this.orientation === ToolboxOrientation.Vertical) {
                         this.renderedElement.style.height = dimensionSetting.value;
                     }
                     else {
@@ -230,7 +229,7 @@ export class Toolbox {
                     }
                 }
 
-                let isExpandedSetting = SettingsManager.tryLoadBooleanSetting("Toolbox" + this.id + "IsExpanded", true);
+                const isExpandedSetting = SettingsManager.tryLoadBooleanSetting("Toolbox" + this.id + "IsExpanded", true);
 
                 if (isExpandedSetting.succeeded) {
                     if (isExpandedSetting.value) {

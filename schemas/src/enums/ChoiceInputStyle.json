@@ -4,6 +4,7 @@
   "description": "Style hint for `Input.ChoiceSet`.",
   "values": [
     "compact",
-    "expanded"
+    "expanded",
+	"autcomplete"
   ]
 }
