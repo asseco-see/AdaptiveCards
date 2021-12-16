@@ -12,7 +12,7 @@ import {
     ShowCardActionMode,
     Orientation,
     ActionAlignment,
-} from "@asseco/adaptivecards";
+} from "adaptivecards";
 import * as teamsLightConfiguration from "../../../../../samples/HostConfig/microsoft-teams-light.json";
 
 export class TeamsContainer extends HostContainer {

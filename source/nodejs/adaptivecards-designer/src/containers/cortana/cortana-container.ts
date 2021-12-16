@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Adaptive from "@asseco/adaptivecards";
+import * as Adaptive from "adaptivecards";
 import { HostContainer } from "../host-container";
 import * as hostConfigLight from "../../hostConfigs/cortana-skills-light.json";
 import * as hostConfigDark from "../../hostConfigs/cortana-skills-dark.json";

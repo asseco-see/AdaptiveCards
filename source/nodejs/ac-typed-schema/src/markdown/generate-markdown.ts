@@ -54,27 +54,15 @@ export function createPropertiesSummary(classDefinition: SchemaClass, knownTypes
 
 		var firstInheritedFormattedProperty: any;
 
-		var formattedExtensionProperties = [];
-
 		properties.forEach((property, name) => {
 			var summary = getPropertySummary(property, knownTypes, autoLink, elementVersion);
-			var formattedProperty = null;
-			if (property.fromExtension) {
-				formattedProperty = {
-					Property: style.propertyNameSummary(name),
-					Type: summary.formattedType,
-					Required: summary.required,
-					Description: summary.description,
-					FromExtension: property.fromExtension
-				};
-			} else {
-			formattedProperty = {
+
+			var formattedProperty: any = {
 				Property: style.propertyNameSummary(name),
 				Type: summary.formattedType,
 				Required: summary.required,
-				Description: summary.description,
+				Description: summary.description
 			};
-		}
 
 			// If we haven't reached the start of the inherited properties...
 			// Note that inherited required properties are moved up to the front
@@ -92,17 +80,14 @@ export function createPropertiesSummary(classDefinition: SchemaClass, knownTypes
 			if (includeVersion) {
 				formattedProperty.Version = summary.version;
 			}
-			if (property.fromExtension) {
-				formattedExtensionProperties.push(formattedProperty);
-			} else {
-				formattedProperties.push(formattedProperty);
-			}
+
+			formattedProperties.push(formattedProperty);
 		});
 
 		var mainFormattedProperties = [];
 		var inheritedFormattedProperties = [];
 		var reachedInherited = false;
-		
+
 		formattedProperties.forEach((formattedProperty) => {
 			if (reachedInherited || formattedProperty == firstInheritedFormattedProperty) {
 				reachedInherited = true;
@@ -121,12 +106,6 @@ export function createPropertiesSummary(classDefinition: SchemaClass, knownTypes
 		if (inheritedFormattedProperties.length > 0) {
 			md += "\n### Inherited properties\n\n";
 			md += createTable(inheritedFormattedProperties);
-			md += "\n";
-		}
-
-		if (formattedExtensionProperties.length > 0) {
-			md += "\n### Extension properties\n\n";
-			md += createTable(formattedExtensionProperties);
 			md += "\n";
 		}
 	}

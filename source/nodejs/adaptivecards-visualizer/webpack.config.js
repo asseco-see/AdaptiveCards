@@ -49,7 +49,7 @@ module.exports = (env, argv) => {
 		],
 		externals: {
 			"markdown-it": "markdownit",
-			"@asseco/adaptivecards": "AdaptiveCards",
+			"adaptivecards": "AdaptiveCards",
 			"monaco-editor/esm/vs/editor/editor.api": "monaco"
 		}
 	}

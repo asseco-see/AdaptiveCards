@@ -18,8 +18,8 @@ export class CardObjectRegistry<T extends SerializableObject> {
     clear() {
         this._items = {};
     }
-	// BORO
-     register(typeName: string, objectType: { new(): T }, schemaVersion: Version = Versions.v1_0) {
+
+    register(typeName: string, objectType: { new(): T }, schemaVersion: Version = Versions.v1_0) {
         let registrationInfo = this.findByName(typeName);
 
         if (registrationInfo !== undefined) {

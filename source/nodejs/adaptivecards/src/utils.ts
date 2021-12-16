@@ -31,26 +31,25 @@ export function parseNumber(obj: any, defaultValue?: number): number | undefined
     return typeof obj === "number" ? obj : defaultValue;
 }
 
-export function parseBool(value: any, defaultValue?: boolean): any | undefined {
+export function parseBool(value: any, defaultValue?: boolean): boolean | undefined {
     if (typeof value === "boolean") {
         return value;
     }
     else if (typeof value === "string") {
-        if (value.toLowerCase() === "true") {
-            return true;
-        } else if (value.toLowerCase() === "false") {
-            return false;
-        } else if (value) {
-            return value;
-        } else {
-            return defaultValue;
+        switch (value.toLowerCase()) {
+            case "true":
+                return true;
+            case "false":
+                return false;
+            default:
+                return defaultValue;
         }
     }
 
     return defaultValue;
 }
 
-export function getEnumValueByName(enumType: { [s: number]: string }, name: string): number | undefined {
+export function getEnumValueByName(enumType: { [s: number]: string }, name: string) : number | undefined {
     for (let key in enumType) {
         let keyAsNumber = parseInt(key, 10);
 

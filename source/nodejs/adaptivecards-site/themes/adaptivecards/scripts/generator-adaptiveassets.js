@@ -12,9 +12,9 @@ var md5 = require("md5");
 // These are the flat asset files that will be copied into the output folder
 // and available to reference in HTML templates
 var simpleAssets = [
-	"../adaptivecards/dist/*.*",
+	"node_modules/adaptivecards/dist/*.*",
 	"node_modules/adaptive-expressions/lib/*.*",
-	"../adaptivecards-designer/dist/*.*",
+	"node_modules/adaptivecards-designer/dist/*.*",
 	"node_modules/adaptivecards-templating/dist/*.*",
 	"node_modules/@fortawesome/fontawesome-free/css/all.min.css",
 	"node_modules/@fortawesome/fontawesome-free/webfonts/*.*",
@@ -52,8 +52,8 @@ var customAssets = [
     },
 	{
         // designer module (hashing not working for CSS files; the designer expects certain filenames)
-        path: "../adaptivecards-designer/dist/containers/*.*",
-		dest: function (p) { return p.replace("../", "node_modules/"); },
+        path: "node_modules/adaptivecards-designer/dist/containers/*.*",
+		dest: function (p) { return p; },
 		noHash: true
 	},
 	{
@@ -106,7 +106,7 @@ hexo.extend.generator.register("generator-adaptiveassets", function (locals) {
 	simpleAssets.forEach(function(a) {
 		customAssets.push({
 			path: a,
-			dest: function(p) { return p.replace("../", "node_modules/"); }
+			dest: function(p) { return p; }
 		});
 	});
 

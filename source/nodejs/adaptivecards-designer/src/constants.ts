@@ -291,6 +291,4 @@ export const defaultDataPayload: string = `{
         { "key": "Assigned to", "value": "Matt Hidinger" },
         { "key": "Due date", "value": "Not set" }
     ]
-}`;
-
-export const itemForRender = "Dialog";
+}`

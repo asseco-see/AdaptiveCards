@@ -1,6 +1,5 @@
 {
 	"compilerOptions": {
-		"baseUrl": ".",
 		"module": "commonjs",
 		"target": "es5",
 		"lib": [
@@ -11,11 +10,6 @@
 		"noImplicitAny": false,
 		"sourceMap": true,
 		"declaration": true,
-		"paths": {
-			"@asseco/adaptivecards": [
-				"../adaptivecards/src/adaptivecards"
-			]
-		}
 	},
 	"files": ["./src/typed-schema.ts", "./src/command-line.ts"],
 	"exclude": [

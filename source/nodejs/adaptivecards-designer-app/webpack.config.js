@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 module.exports = (env, argv) => {
 	const mode = argv.mode || 'development';
 	const devMode = mode === "development";
@@ -14,15 +14,14 @@ module.exports = (env, argv) => {
 	return {
 		mode: mode,
 		entry: {
-			"adaptivecards-designer-app": "./src/app.ts"
+			"adaptivecards-designer-app": "./src/app.ts",
 		},
 		output: {
 			path: path.resolve(__dirname, "dist"),
-			filename: devMode ? "[name].js" : "[name].min.js"
+			filename: devMode ? "[name].js" : "[name].min.js",
 		},
 		resolve: {
-			extensions: [".ts", ".tsx", ".js"],
-			plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })]
+			extensions: [".ts", ".tsx", ".js"]
 		},
 		module: {
 			rules: [
@@ -46,29 +45,13 @@ module.exports = (env, argv) => {
 			]
 		},
 		plugins: [
-			new CleanWebpackPlugin(['dist']),
+			//new CleanWebpackPlugin(['dist']),
 			new CopyWebpackPlugin({
-				patterns: [
-					{
-						from: '../adaptivecards-designer/src/containers/**/*.css',
-						to: 'containers/',
-						flatten: true
-					},
-					{
-						from: '../adaptivecards-designer/src/containers/**/*.png',
-						to: 'containers/',
-						flatten: true
-					},
-					{
-						from: '../adaptivecards-designer/src/containers/**/*.jpg',
-						to: 'containers/',
-						flatten: true
-					},
-					{
-						from: '../adaptivecards-designer/configuration.json',
-						to: '.'
-					}
-				]
+				patterns: [{
+					from: 'node_modules/adaptivecards-designer/dist/containers/*',
+					to: 'containers/',
+					flatten: true
+				}]
 			}),
 			new HtmlWebpackPlugin({
 				title: "Adaptive Cards Designer",

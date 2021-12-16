@@ -13,7 +13,6 @@ export class SchemaProperty {
 	private _default: any;
 	private _examples: any[] = [];
 	private _override: boolean;
-	private _fromExtension: string;
 
 	constructor(name: string, sourceObj: any) {
 		this._original = sourceObj;
@@ -37,10 +36,6 @@ export class SchemaProperty {
 			this._default = sourceObj.default;
 		}
 
-		if (sourceObj.fromExtension) {
-			this._fromExtension = sourceObj.fromExtension;
-		}
-
 		if (sourceObj.examples) {
 			this._examples = sourceObj.examples;
 		}
@@ -52,10 +47,6 @@ export class SchemaProperty {
 
 	get name() {
 		return this._name;
-	}
-
-	get fromExtension() {
-		return this._fromExtension;
 	}
 
 	get original() {

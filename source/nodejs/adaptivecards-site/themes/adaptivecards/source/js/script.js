@@ -1,10 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-// Since there are 2 iframes in the page, we must pass an ID for the current iframe
-setInterval(function () {
-	window.top.postMessage(document.body.scrollHeight + '-' + 'iframe1', "*");
-}, 500);
-
 if (typeof hljs !== 'undefined') {
 	hljs.configure({
 		tabReplace: '  '
@@ -14,7 +9,7 @@ if (typeof hljs !== 'undefined') {
 }
 
 $(function () {
-	if (localStorage.getItem("enable-templating") === null) {
+	if(localStorage.getItem("enable-templating") === null) {
 		localStorage.setItem("enable-templating", true);
 	}
 
@@ -56,7 +51,7 @@ $(function () {
 		"supportsInteractivity": true,
 		"fontTypes": {
 			"default": {
-				"fontFamily": "Roboto, sans-serif",
+				"fontFamily": "Segoe UI, Helvetica Neue, Helvetica, sans-serif",
 				"fontSizes": {
 					"small": 12,
 					"default": 14,
@@ -443,18 +438,18 @@ $(function () {
 	$("button.copy-code").click(function (e) {
 		var content = $(this).parent().next("pre").text();
 		copyToClipboard(content);
-		$("button.copy-code").focus();
+    	$("button.copy-code").focus();
 	});
 
 	function launchDesigner(designerUrl, cardUrl, dataUrl) {
-		if (!designerUrl || !cardUrl) {
+		if(!designerUrl || !cardUrl) {
 			alert("Whoops, something went wrong. Please click the Feedback button in the top right and let us know what happened.");
 			return;
 		}
 
 		designerUrl += "?card=" + cardUrl;
 
-		if (dataUrl) {
+		if(dataUrl) {
 			designerUrl += "&data=" + dataUrl
 		}
 
@@ -478,20 +473,19 @@ $(function () {
 
 	function invokeFeedback(e) {
 		e.preventDefault();
-		window.open("https://github.com/asseco-see/adaptive-ui/issues/new?title="
+		window.open("https://github.com/Microsoft/AdaptiveCards/issues/new?title="
 			+ encodeURIComponent("[Website] [Your feedback title here]")
 			+ "&body=" + encodeURIComponent("\r\n\r\n[Your detailed feedback here]\r\n\r\n---\r\n* URL: "
-				+ window.location.href));
+			+ window.location.href));
 	}
 
 	$("#feedback-button").on({
-		click: invokeFeedback,
-		keydown: function (e) {
-			if (e.key === "Enter") {
-				invokeFeedback(e);
-			}
+	click: invokeFeedback,
+	keydown: function (e) {
+		if (e.key === "Enter") {
+			invokeFeedback(e);
 		}
-	});
+	}});
 
 	$('#menu-nav').on('change', function () {
 		window.location = this.value;

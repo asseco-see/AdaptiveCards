@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HostContainer } from "./host-container";
-import * as Adaptive from "@asseco/adaptivecards";
+import * as Adaptive from "adaptivecards";
 import * as outlookConfiguration from "../../../../../samples/HostConfig/outlook-desktop.json";
-import { SerializationContext } from "@asseco/adaptivecards";
+import { SerializationContext } from "adaptivecards";
 
 export class OutlookContainer extends HostContainer {
     protected renderContainer(adaptiveCard: Adaptive.AdaptiveCard, target: HTMLElement): HTMLElement {

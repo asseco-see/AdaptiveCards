@@ -15,7 +15,7 @@
     }
 
 .ac-pushButton {
-    font-family: "Roboto", sans-serfif;
+    font-family: "Segoe UI", sans-serif;
     font-size: 14px;
     font-weight: 600;
     overflow: hidden;
@@ -42,7 +42,7 @@
     }
 
 .ac-linkButton {
-    font-family: "Roboto", sans-serfif;
+    font-family: "Segoe UI", sans-serif;
     font-size: 14px;
     font-weight: 600;
     overflow: hidden;
@@ -80,7 +80,7 @@
 }
 
 .ac-input {
-    font-family: "Roboto", sans-serfif;
+    font-family: "Segoe UI", sans-serif;
     font-size: 14px;
     color: black;
 }

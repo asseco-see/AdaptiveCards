@@ -1,22 +1,7 @@
 {
 	"extends": "../tsconfig.json",
 	"compilerOptions": {
-		"outDir": "./lib",
-		"moduleResolution": "node",
-		"baseUrl": "./",
-		"paths": {
-			"@asseco/adaptivecards-designer": [
-				"../adaptivecards-designer/src/adaptivecards-designer.ts",
-				"adaptivecards-designer/src/adaptivecards-designer.ts"
-			],
-			"@asseco/adaptivecards": [
-				"../adaptivecards/src/adaptivecards.ts"
-			]
-		},
-		"experimentalDecorators": true,
-		"resolveJsonModule": true
+		"outDir": "./lib"
 	},
-	"files": [
-		"./src/app.ts"
-	]
+	"files": [ "./src/app.ts"]
 }

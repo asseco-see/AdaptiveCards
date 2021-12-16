@@ -28,17 +28,6 @@
       "type": "boolean",
       "description": "If `true`, allow text to wrap. Otherwise, text is clipped.",
       "version": "1.2"
-    },
-	"showClear": {
-	  "type": "boolean",
-	  "description": "Show clear button when style is autocomplete",
-	  "default": false
-	},
-	"filterType": {
-	  "type": "ChoiceInputFilterType"
-	},
-	"filterModee": {
-	  "type": "FilterMode"
-	}
+    }
   }
 }

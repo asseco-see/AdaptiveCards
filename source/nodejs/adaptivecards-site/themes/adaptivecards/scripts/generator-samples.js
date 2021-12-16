@@ -80,14 +80,5 @@ hexo.extend.generator.register("generator-sampleBrowser", function(locals) {
         }
     });
 
-    generated.push({
-        path: "designer/configuration.json",
-        data: function() {
-            return  {
-                baseUrl: 'https://adaptive-ui.see.asseco.com'
-            }
-        }
-    });
-
     return generated;
 });

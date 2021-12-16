@@ -9,14 +9,12 @@
 * [ActionAlignment](enums/actionalignment.md)
 * [ActionButtonState](enums/actionbuttonstate.md)
 * [ActionIconPlacement](enums/actioniconplacement.md)
-* [ChipInputColorSchema](enums/chipinputcolorschema.md)
 * [ContainerFitStatus](enums/containerfitstatus.md)
 * [FillMode](enums/fillmode.md)
 * [FontType](enums/fonttype.md)
 * [HorizontalAlignment](enums/horizontalalignment.md)
 * [ImageSize](enums/imagesize.md)
 * [ImageStyle](enums/imagestyle.md)
-* [InputTextCheckDigitAlgorithm](enums/inputtextcheckdigitalgorithm.md)
 * [InputTextStyle](enums/inputtextstyle.md)
 * [Orientation](enums/orientation.md)
 * [ShowCardActionMode](enums/showcardactionmode.md)
@@ -53,8 +51,6 @@
 * [CardElementContainer](classes/cardelementcontainer.md)
 * [CardObject](classes/cardobject.md)
 * [CardObjectRegistry](classes/cardobjectregistry.md)
-* [Chip](classes/chip.md)
-* [ChipInput](classes/chipinput.md)
 * [Choice](classes/choice.md)
 * [ChoiceSetInput](classes/choicesetinput.md)
 * [ColorDefinition](classes/colordefinition.md)
@@ -135,7 +131,6 @@
 
 ### Interfaces
 
-* [ChipData](interfaces/chipdata.md)
 * [IAction](interfaces/iaction.md)
 * [IAdaptiveCard](interfaces/iadaptivecard.md)
 * [IBackgroundImage](interfaces/ibackgroundimage.md)

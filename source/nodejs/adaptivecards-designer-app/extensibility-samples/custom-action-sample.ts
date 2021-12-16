@@ -1,4 +1,4 @@
-import * as AC from "@asseco/adaptivecards";
+import * as AC from "adaptivecards";
 
 /*
 The below code demonstrates how to implement a custom Adaptive Card action using

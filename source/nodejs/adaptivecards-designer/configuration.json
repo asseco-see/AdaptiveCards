@@ -1,7 +1,0 @@
-{
-    "baseUrl": "https://adaptive-ui.see.asseco.com",
-	"extensions": {
-		"url": "extensions/",
-		"extensionsToLoad": ["tabs", "check-digit", "input-chips"]
-	}
-}

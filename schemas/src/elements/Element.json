@@ -15,13 +15,11 @@
     },
     "separator": {
       "type": "boolean",
-      "description": "When `true`, draw a separating line at the top of the element.",
-	  "version": "1.0"
+      "description": "When `true`, draw a separating line at the top of the element."
     },
     "spacing": {
       "type": "Spacing",
-      "description": "Controls the amount of spacing between this element and the preceding element.",
-	  "version": "1.0"
+      "description": "Controls the amount of spacing between this element and the preceding element."
     }
   }
 }

@@ -3,10 +3,10 @@
 
 <head>
 	<title>Adaptive Cards Designer</title>
-	<script src="adaptivecards.js"></script>
+	<script src="https://unpkg.com/adaptivecards@latest/dist/adaptivecards.min.js"></script>
 	<script src="https://unpkg.com/adaptive-expressions@4/lib/browser.js"></script>
 	<script src="https://unpkg.com/adaptivecards-templating@latest/dist/adaptivecards-templating.min.js"></script>
-	<base href="/">
+
 	<script src="https://unpkg.com/markdown-it@8.4.0/dist/markdown-it.min.js"></script>
 
 	<style type="text/css">
@@ -21,9 +21,9 @@
 
 	<script type="text/javascript">
 		window.onload = function () {
-			ACDesigner.GlobalSettings.enableDataBindingSupport = true;
-			ACDesigner.GlobalSettings.showDataStructureToolbox = false;
-			ACDesigner.GlobalSettings.showSampleDataEditorToolbox = true;
+			ACDesigner.GlobalSettings.enableDataBindingSupport = false;
+			ACDesigner.GlobalSettings.showDataStructureTooklbox = false;
+			ACDesigner.GlobalSettings.showSampleDataEditorToolbox = false;
 			ACDesigner.GlobalSettings.showVersionPicker = false;
 
 			if (!ACDesigner.SettingsManager.isLocalStorageAvailable) {

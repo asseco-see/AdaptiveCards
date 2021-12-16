@@ -9,5 +9,4 @@ export * from "./host-config";
 export * from "./shared";
 export * from "./utils";
 export * from "./strings";
-export * from './custom-card-element-registry';
 export { IAdaptiveCard, ICardElement } from "./schema";
