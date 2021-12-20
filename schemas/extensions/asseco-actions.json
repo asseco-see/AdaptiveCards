@@ -14,7 +14,8 @@
 					},
 					"restEndpoint": {
 						"type": "string",
-						"description": "Uri to REST api that will be called if submitType is restEndpoint"
+						"description": "Uri to REST api that will be called if submitType is restEndpoint",
+						"version": "0.1"
 					}
 				}
 			},
