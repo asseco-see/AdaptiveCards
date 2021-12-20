@@ -5,6 +5,25 @@
 	"propertyPrefix": "asseco",
 	"contributes": {
 		"definitions": {
+			"Action.Submit": {
+				"properties": {
+					"submitType": {
+						"type": "SubmitType",
+						"description": "Type of submit action",
+						"version": "0.1"
+					},
+					"restEndpoint": {
+						"type": "string",
+						"description": "Uri to REST api that will be called if submitType is restEndpoint"
+					}
+				}
+			},
+			"SubmitType": {
+				"classType": "Enum",
+				"type": "SubmitType",
+				"description": "Type of submit action",
+				"values": ["restEndpoint", "taskCompletion", "taskAction"]
+			},
 			"NavigateParam": {
 				"classType": "Class",
 				"type": "NavigateParam",
