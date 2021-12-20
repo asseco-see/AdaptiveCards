@@ -50,7 +50,7 @@
 				"classType": "Enum",	
 				"description": "Trigger type which can be eaither string or predefined enum values",
 				"type": "TriggerType",
-				"values": ["ValueChanged", "Click", "FocusOut", "SubmitCompleted"]
+				"values": ["ValueChanged", "Click", "FocusOut", "ActionCompleted"]
 			}
 		}
 	}
