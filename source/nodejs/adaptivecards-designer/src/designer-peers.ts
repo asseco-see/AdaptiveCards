@@ -3068,7 +3068,9 @@ export class TextInputPeer extends InputPeer<Adaptive.TextInput> {
 	initializeCardElement() {
 		super.initializeCardElement();
 
-		this.cardElement.placeholder = "Placeholder text";
+		if (!this.cardElement.placeholder) {
+			this.cardElement.placeholder = "Placeholder text";
+		}
 	}
 }
 export abstract class DataSourcePeer extends TypedCardElementPeer<Adaptive.DataSource> {
@@ -3211,7 +3213,9 @@ export class NumberInputPeer extends InputPeer<Adaptive.NumberInput> {
 	initializeCardElement() {
 		super.initializeCardElement();
 
-		this.cardElement.placeholder = "Placeholder text";
+		if (!this.cardElement.placeholder) {
+			this.cardElement.placeholder = "Placeholder text";
+		}
 	}
 }
 
@@ -3271,7 +3275,10 @@ export class ToggleInputPeer extends InputPeer<Adaptive.ToggleInput> {
 
 	initializeCardElement() {
 		super.initializeCardElement();
-		this.cardElement.title = "New Input.Toggle";
+
+		if (!this.cardElement.title) {
+			this.cardElement.title = "New Input.Toggle";
+		}
 	}
 }
 
@@ -3350,7 +3357,9 @@ export class ChoiceSetInputPeer extends InputPeer<Adaptive.ChoiceSetInput> {
 
 	initializeCardElement() {
 		super.initializeCardElement();
-		this.cardElement.placeholder = "Placeholder text";
+		if (!this.cardElement.placeholder) {
+			this.cardElement.placeholder = "Placeholder text";
+		}
 
 		if (this.cardElement.choices && this.cardElement.choices.length === 0) {
 			this.cardElement.choices.push(
@@ -3369,7 +3378,9 @@ export class GenericInputPeer extends InputPeer<Adaptive.GenericInput> {
 	initializeCardElement() {
 		super.initializeCardElement();
 
-		this.cardElement['placeholder'] = "Placeholder text";
+		if (!this.cardElement['placeholder']) {
+			this.cardElement['placeholder'] = "Placeholder text";
+		}
 	}
 	populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
 		super.populatePropertySheet(propertySheet, defaultCategory);
@@ -3661,7 +3672,9 @@ export class TextBlockPeer extends TypedCardElementPeer<Adaptive.TextBlock> {
 			this.cardElement.text = "New TextBlock";
 		}
 
-		this.cardElement.wrap = true;
+		if (this.cardElement.wrap) {
+			this.cardElement.wrap = true;
+		}
 	}
 }
 
