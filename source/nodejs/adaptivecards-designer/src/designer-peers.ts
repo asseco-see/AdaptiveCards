@@ -2326,8 +2326,9 @@ export class AdaptiveCardPeer extends TypedCardElementPeer<Adaptive.AdaptiveCard
 
 	protected addDataSource(dataSource: new () => DataSource) {
 		const dataSourceData = new dataSource();
+		const isDatasetEmpty = !this.cardElement.dataset;
 		this.cardElement.addDataSource(dataSourceData);
-		if (!this.dataSetPeer) {
+		if (isDatasetEmpty) {
 			this.dataSetPeer = CardDesignerSurface.cardElementPeerRegistry.createPeerInstance(this.designerSurface, this, this.cardElement.dataset);
 			this.insertChild(this.dataSetPeer);
 		} else {

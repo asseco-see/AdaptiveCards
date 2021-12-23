@@ -7295,9 +7295,7 @@ export class AdaptiveCard extends ContainerWithActions {
 
 	protected internalToJSON(target: PropertyBag, context: SerializationContext) {
 		this.setValue(AdaptiveCard.versionProperty, context.targetVersion);
-		if (this.dataset) {
-			context.serializeValue(target, 'dataset', this.dataset ? this.dataset.toJSON(context) : undefined, undefined, true);
-		}
+		context.serializeValue(target, 'dataset', this.dataset ? this.dataset.toJSON(context) : undefined, undefined, true);
 		super.internalToJSON(target, context);
 	}
 
