@@ -3693,9 +3693,12 @@ export class RichTextBlockPeer extends TypedCardElementPeer<Adaptive.RichTextBlo
 
 	initializeCardElement() {
 		super.initializeCardElement();
-		let textRun = new Adaptive.TextRun();
-		textRun.text = "New RichTextBlock";
 
-		this.cardElement.addInline(textRun);
+		if (this.cardElement.getInlineCount() === 0) {
+			let textRun = new Adaptive.TextRun();
+			textRun.text = "New RichTextBlock";
+
+			this.cardElement.addInline(textRun);
+		}
 	}
 }
