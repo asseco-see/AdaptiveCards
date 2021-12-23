@@ -2960,10 +2960,12 @@ export class FactSetPeer extends TypedCardElementPeer<Adaptive.FactSet> {
 	initializeCardElement() {
 		super.initializeCardElement();
 
-		this.cardElement.facts.push(
-			new Adaptive.Fact("Fact 1", "Value 1"),
-			new Adaptive.Fact("Fact 2", "Value 2")
-		);
+		if (this.cardElement.facts && this.cardElement.facts.length === 0) {
+			this.cardElement.facts.push(
+				new Adaptive.Fact("Fact 1", "Value 1"),
+				new Adaptive.Fact("Fact 2", "Value 2")
+			);
+		}
 	}
 
 	populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
