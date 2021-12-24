@@ -916,15 +916,17 @@ class RulesPropertyEditor extends PropertySheetEntry {
 				ruleTriggerChoiceSet.label = "Trigger";
 				ruleTriggerChoiceSet.placeholder = "Select trigger";
 				ruleTriggerChoiceSet.defaultValue = nameValuePairs[i].trigger;
-				const ruleTriggerEnumValues = Object.values(Adaptive.RuleTrigger); 
-				ruleTriggerEnumValues.splice(ruleTriggerEnumValues.length / 2, ruleTriggerEnumValues.length / 2);
 				ruleTriggerChoiceSet.choices = [];
-				for (let choice of ruleTriggerEnumValues) {
+				ruleTriggerChoiceSet.choices.push(new Adaptive.Choice('None', 'none'));
+				for (let choice of this.triggers) {
 					ruleTriggerChoiceSet.choices.push(new Adaptive.Choice(choice.toString(), choice.toString()));
 				}
 
 				ruleTriggerChoiceSet.onValueChanged = (sender) => {
 					nameValuePairs[i].trigger = sender.value;
+					if (sender.value === 'none') {
+						nameValuePairs[i].trigger = undefined;
+					}
 					this.collectionChanged(context, nameValuePairs, false);
 				};
 
@@ -1256,6 +1258,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 		readonly targetVersion: Adaptive.TargetVersion,
 		readonly collectionPropertyName: string,
 		readonly createCollectionItem: (trigger: string, event: string, type: string, actions: IActionParam[]) => any,
+		readonly triggers: string[] = Object.values(Adaptive.RuleTrigger).filter((r): r is string => typeof(r) === 'string'),
 		readonly triggerPropertyLabel: string = "Trigger",
 		readonly eventPropertyLabel: string = "Event",
 		readonly typePropertyLabel: string = "Type",
@@ -1796,6 +1799,13 @@ export abstract class DesignerPeer extends DraggableElement {
 
 export class ActionPeer extends DesignerPeer {
 	static readonly titleProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "title", "Title");
+	static readonly rulesProperty = new RulesPropertyEditor(Adaptive.Versions.v1_0, "rules", (trigger: string, event: string, type: string, actions: IActionParam[]) => {
+		{
+			const element = new Adaptive.RuleParam(trigger, event, type, actions);
+			return element;
+
+		}
+	}, ['ActionCompleted']);
 	static readonly styleProperty = new ChoicePropertyEditor(
 		Adaptive.Versions.v1_2,
 		"style",
@@ -1889,6 +1899,10 @@ export class ActionPeer extends DesignerPeer {
 			ActionPeer.titleProperty,
 			ActionPeer.styleProperty,
 			ActionPeer.iconUrlProperty);
+
+		propertySheet.add(
+			PropertySheetCategory.RulesCategory,
+			ActionPeer.rulesProperty);
 
 		// add extensions
 		const peerTypeExtensions: any = this.registration;

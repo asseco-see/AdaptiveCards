@@ -42,7 +42,8 @@ export enum RuleType {
 export enum RuleTrigger {
     ValueChanged,
     Click,
-    FocusOut
+    FocusOut,
+	ActionCompleted
 }
 
 export enum RuleActionType {

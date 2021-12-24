@@ -4298,6 +4298,7 @@ export abstract class Action extends CardObject {
 
 	static readonly titleProperty = new StringProperty(Versions.v1_0, "title");
 	static readonly iconUrlProperty = new StringProperty(Versions.v1_1, "iconUrl");
+	static readonly rulesProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "rules", RuleParam);
 	static readonly styleProperty = new ValueSetProperty(
 		Versions.v1_2,
 		"style",
@@ -4316,6 +4317,9 @@ export abstract class Action extends CardObject {
 
 	@property(Action.styleProperty)
 	style: string = Enums.ActionStyle.Default;
+
+	@property(CardElement.rulesProperty)
+	rules: RuleParam[];
 
 	//#endregion
 
