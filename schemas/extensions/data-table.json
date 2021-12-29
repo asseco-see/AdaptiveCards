@@ -172,6 +172,11 @@
 						"description": "Specifies id of the filter dialog.",
 						"version": "0.1"
 					},
+					"elevationIndex": {
+						"type": "number",
+						"description": "Index of table elevation",
+						"version": "0.1"
+					},
 					"stickyHeader": {
 						"type": "boolean",
 						"description": "Specifies whether the header of the data table should stick to the top.",
