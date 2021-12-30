@@ -172,9 +172,9 @@
 						"description": "Specifies id of the filter dialog.",
 						"version": "0.1"
 					},
-					"elevationIndex": {
+					"elevation": {
 						"type": "number",
-						"description": "Index of table elevation",
+						"description": "Table elevation",
 						"version": "0.1"
 					},
 					"stickyHeader": {
