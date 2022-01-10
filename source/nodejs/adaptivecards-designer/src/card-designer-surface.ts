@@ -12,10 +12,9 @@ import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
 import * as yaml from 'js-yaml';
 import { BooleanPropertyEditor, EnumPropertyEditor, NumberPropertyEditor, StringPropertyEditor } from "./designer-peers";
-import { ActionCollection, ActionProperty, BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, PropertyDefinition, StringProperty, Versions } from "@asseco/adaptivecards";
+import { ActionCollection, BoolProperty, EnumProperty, GenericAction, GenericContainer, GenericInput, NumProperty, property, PropertyDefinition, StringProperty, Versions } from "@asseco/adaptivecards";
 import { ExtensionRegistry } from "./extension-loader";
 import { extractionElementsAndActionsFromExtension } from "./utils";
-import { itemForRender } from "./constants";
 
 export enum BindingPreviewMode {
 	NoPreview,
@@ -603,7 +602,7 @@ export class CardDesignerSurface {
 			if (this.selectedDialogId) {
 				filterToRender._items = cardToRender._items.filter(item => item.id === this.selectedDialogId);
 				if (filterToRender._items) {
-					filterToRender._items[0]["designMode"] = true;
+					filterToRender._items.find(i => i.id === this.selectedDialogId)["designMode"] = true;
 				}
 				filterToRender._actionCollection = new ActionCollection(cardToRender);
 				renderedCard = filterToRender.render();
@@ -929,6 +928,11 @@ export class CardDesignerSurface {
 	}
 
 	findDropTarget(pointerPosition: IPoint, peer: DesignerPeers.DesignerPeer): DesignerPeers.DesignerPeer {
+		if (this.selectedDialogId) {
+			const dialogPeer = this._allPeers.find((p: any) => p.cardElement && p.cardElement.id === this.selectedDialogId);
+			return this.internalFindDropTarget(pointerPosition, dialogPeer, peer);
+		}
+		
 		return this.internalFindDropTarget(pointerPosition, this._rootPeer, peer);
 	}
 
