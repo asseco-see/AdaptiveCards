@@ -575,6 +575,21 @@ export class CardDesigner extends Designer.DesignContext {
 
 	private preventJsonUpdate: boolean = false;
 
+	public getCardEditorJsonPayload(): any {
+		try {
+			if (this.language === "json") {
+				return JSON.parse(this.getCurrentCardEditorPayload());
+			}
+			else {
+				return JSON.parse(JSON.stringify(yaml.load(this.getCurrentCardEditorPayload())));
+			}
+		}
+		catch {
+			console.log('catch');
+			// Swallow the parse error
+		}
+	}
+
 	private getCurrentCardEditorPayload(): string {
 		return this._isMonacoEditorLoaded ? this._cardEditor.getValue() : Constants.defaultPayload;
 	}

@@ -2116,7 +2116,14 @@ export class CardElementPeer extends DesignerPeer {
 	}
 
 	initializeCardElement() {
-		let root = this.designerSurface.getCardPayloadAsObject();
+		let root = null;
+		const context: any = this.designerSurface.context;
+		if (context.constructor.name === 'CardDesigner' && context.getCardEditorJsonPayload) {
+			root = context.getCardEditorJsonPayload();
+		} else {
+			root = this.designerSurface.getCardPayloadAsObject();
+		}
+
 		const elementName = this.cardElement.getJsonTypeName();
 		const foundIds = findElementIdsForType(root, elementName);
 		let id = foundIds.length === 0 ? 1 : 0;
