@@ -1,0 +1,22 @@
+{
+  "id": "min-length",
+  "version": "0.1",
+  "elementPrefix": "",
+  "propertyPrefix": "asseco",
+  "supports": {
+    "javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+  },
+  "contributes": {
+    "definitions": {
+      "Input.Text": {
+        "properties": {
+          "minLength": {
+            "type": "number",
+            "description": "Hint of minimum length characters to collect (may be ignored by some clients).",
+            "version": "0.1"
+          }
+        }
+      }
+    }
+  }
+}
