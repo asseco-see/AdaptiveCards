@@ -10,7 +10,7 @@
 		"audit-all": "lerna-audit"
 	},
 	"devDependencies": {
-		"@types/jest": "^23.3.14",
+		"@types/jest": "^27.4.1",
 		"@types/node": "^10.14.13",
 		"@types/react": "^16.8.23",
 		"@types/react-dom": "^16.8.5",
