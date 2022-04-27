@@ -51,18 +51,18 @@ module.exports = (env, argv) => {
 				patterns: [
 					{
 						from: '../adaptivecards-designer/src/containers/**/*.css',
-						to: 'containers/',
-						flatten: true
+						to: 'containers/[name].[ext]',
+					//	flatten: true
 					},
 					{
 						from: '../adaptivecards-designer/src/containers/**/*.png',
-						to: 'containers/',
-						flatten: true
+						to: 'containers/[name].[ext]',
+					//	flatten: true
 					},
 					{
 						from: '../adaptivecards-designer/src/containers/**/*.jpg',
-						to: 'containers/',
-						flatten: true
+						to: 'containers/[name].[ext]',
+					//	flatten: true
 					},
 					{
 						from: '../adaptivecards-designer/configuration.json',

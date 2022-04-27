@@ -1,8 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-
 module.exports = (env, argv) => {
 	const mode = argv.mode || 'development';
 	const devMode = mode === "development";
@@ -46,6 +44,7 @@ module.exports = (env, argv) => {
 			]
 		},
 		plugins: [
+			new MiniCssExtractPlugin(),
 			new HtmlWebpackPlugin({
 				title: "Adaptive Cards Example",
 				template: "./example.html"

@@ -3,7 +3,7 @@
 "use strict";
 
 var typedschema = require("ac-typed-schema");
-var marked = require("marked");
+const { marked } = require('marked');
 var fs = require("fs");
 var path = require("path");
 

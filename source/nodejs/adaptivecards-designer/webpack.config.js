@@ -2,7 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ConcatPlugin = require('webpack-concat-plugin');
+const ConcatPlugin = require('@mcler/webpack-concat-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
@@ -27,8 +27,11 @@ module.exports = (env, argv) => {
 		},
 		devtool: devMode ? "inline-source-map" : "source-map",
 		devServer: {
-			contentBase: './dist'
+			static: {
+				directory: './dist'
+			},
 		},
+
 		resolve: {
 			extensions: [".ts", ".tsx", ".js"]
 		},
@@ -78,8 +81,6 @@ module.exports = (env, argv) => {
 				filename: '[name].css'
 			}),
 			new ConcatPlugin({
-				uglify: false,
-				sourceMap: false,
 				fileName: 'adaptivecards-designer.css',
 				injectType: 'none',
 				filesToConcat: ['./node_modules/adaptivecards-controls/dist/adaptivecards-controls.css', './src/adaptivecards-designer.css']
@@ -100,28 +101,28 @@ module.exports = (env, argv) => {
 					},
 					{
 						from: 'src/adaptivecards-designer.css',
-						to: '.',
-						flatten: true
+						to: './[name].[ext]',
+						//flatten: true
 					},
 					{
 						from: 'src/containers/**/*.css',
-						to: 'containers/',
-						flatten: true
+						to: 'containers/[name].[ext]',
+						//flatten: true
 					},
 					{
 						from: '../../../schemas/extensions/**/*.json',
 						to: 'extensions/',
-						flatten: true
+						//flatten: true
 					},
 					{
 						from: 'src/containers/**/*.png',
-						to: 'containers/',
-						flatten: true
+						to: 'containers/[name].[ext]',
+						//flatten: true
 					},
 					{
 						from: 'src/containers/**/*.jpg',
-						to: 'containers/',
-						flatten: true
+						to: 'containers/[name].[ext]',
+						//flatten: true
 					}],
 				options: {
 					concurrency: 8

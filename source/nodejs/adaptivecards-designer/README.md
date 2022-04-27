@@ -156,7 +156,7 @@ module.exports = {
 		new CopyWebpackPlugin([{
 			from: 'node_modules/adaptivecards-designer/dist/containers/*',
 			to: 'containers/',
-			flatten: true
+			// flatten: true
 		}]),
 		new MonacoWebpackPlugin({
 			languages: ['json']

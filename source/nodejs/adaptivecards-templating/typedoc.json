@@ -1,17 +1,13 @@
 {
 	"name": "Adaptive Cards Templating Javascript SDK",
-	"inputFiles": "./src",
-	"mode": "file",
+	"entryPoints": ["./src/adaptivecards-templating.ts"],
 	"out": "docs",
 	"exclude": [
 		"__tests__"
 	],
-	"excludeNotExported": true,
-	"excludePrivate": true,
 	"readme": "none",
 	"plugin": [
 		"typedoc-plugin-markdown"
 	],
-	"theme": "markdown",
-	"stripInternal": true
+	"theme": "markdown"
 }

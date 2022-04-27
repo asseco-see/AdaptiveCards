@@ -31,10 +31,12 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_install'
   inputs:
-    image: 'node:12-slim'
+    image: 'registry.see.asseco.com/tools/node:14-slim'
     secureFile: npm-asee-dp-robot
+    dockerRegistryEndpoint: harbor
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
+      cp /source/samples/HostConfig/*.json /source/source/nodejs/adaptivecards-designer/src/hostConfigs/
       cd source/nodejs
       npm install --no-progress --loglevel=warn
       npx lerna bootstrap
@@ -43,7 +45,8 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_release'
   inputs:
-    image: 'node:12-slim'
+    image: 'registry.see.asseco.com/tools/node:14-slim'
+    dockerRegistryEndpoint: harbor
     commands: |
       cd source/nodejs/adaptivecards-site
       npx lerna run release
