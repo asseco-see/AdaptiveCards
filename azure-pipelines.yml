@@ -31,7 +31,7 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_install'
   inputs:
-    image: 'node:12-slim'
+    image: 'registry.see.asseco.com/tools/node:12-slim'
     secureFile: npm-asee-dp-robot
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
