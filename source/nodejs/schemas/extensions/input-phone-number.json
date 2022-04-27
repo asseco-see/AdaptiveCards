@@ -1,0 +1,68 @@
+{
+	"id": "phone-number-input",
+	"version": "0.1",
+	"elementPrefix": "aseeco",
+	"propertyPrefix": "",
+	"supports": {
+		"javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+	},
+	"contributes": {
+		"definitions": {
+			"PhoneNumberOption": {
+				"classType": "Class",
+				"type": "PhoneNumberOption",
+				"properties": {
+					"countryCode": {
+						"type": "string",
+						"description": "Phone number country code.",
+						"version": "0.1",
+						"example": "+381",
+						"required": true
+					},
+					"areaCode": {
+						"type": "string[]",
+						"description": "Phone number area code.",
+						"version": "0.1",
+						"example": [
+							"60",
+							"61"
+						],
+						"required": true
+					},
+					"pattern": {
+						"type": "string",
+						"description": "Regex pattern for additional phone number validation.",
+						"version": "0.1"
+					},
+					"patternMessage": {
+						"type": "string",
+						"description": "Message displayed when regex validation fails.",
+						"version": "0.1"
+					}
+				}
+			},
+			"Input.PhoneNumber": {
+				"description": "Allows a user to input a phone number.",
+				"extends": "Input",
+				"properties": {
+					"options": {
+						"type": "PhoneNumberOption[]",
+						"description": "Phone number options.",
+						"version": "0.1"
+					},
+					"optionsConfigurationKey": {
+						"type": "string",
+						"description": "Options configuration key. Read options from configuration service (used when options are not provided).",
+						"version": "0.1",
+						"default": "components-ui/phone-number-options"
+					},
+					"value": {
+						"type": "string",
+						"description": "The initial value for this field.",
+						"version": "0.1"
+					}
+				}
+			}
+		}
+	}
+}

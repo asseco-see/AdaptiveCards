@@ -45,10 +45,10 @@ module.exports = (env, argv) => {
 			}
 			]
 		},
-		node: {
-			fs: 'empty'
-		},
 		resolve: {
+			fallback: {
+				fs: false
+			},
 			extensions: [".ts", ".tsx", ".js", ".jsx"]
 		},
 		plugins: [
