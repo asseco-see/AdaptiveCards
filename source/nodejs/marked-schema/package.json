@@ -17,7 +17,7 @@
 		"glob": "^7.1.2",
 		"js-yaml": "^3.14.0",
 		"json-schema-ref-parser": "^9.0.9",
-		"minimist": "^1.2.5",
+		"minimist": "^1.2.6",
 		"path": "^0.12.7"
 	}
 }
