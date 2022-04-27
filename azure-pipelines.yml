@@ -43,7 +43,7 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_release'
   inputs:
-    image: 'node:12-slim'
+    image: 'registry.see.asseco.com/tools/node:12-slim'
     commands: |
       cd source/nodejs/adaptivecards-site
       npx lerna run release
