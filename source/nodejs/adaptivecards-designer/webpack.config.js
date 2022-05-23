@@ -53,6 +53,52 @@ module.exports = (env, argv) => {
 		},
 		plugins: [
 			new Dotenv(),
+			new ConcatPlugin({
+				fileName: 'adaptivecards-designer.css',
+				injectType: 'none',
+				filesToConcat: [
+					'./node_modules/adaptivecards-controls/dist/adaptivecards-controls.css',
+					'./src/adaptivecards-designer.css'
+				]
+			}),
+			new CopyWebpackPlugin({
+				patterns: [
+					{
+						from: 'configuration.json',
+						to: '.'
+					},
+					{
+						from: '../adaptivecards/dist/adaptivecards.js',
+						to: '.'
+					},
+					{
+						from: 'src/containers/default/adaptivecards-defaulthost.css',
+						to: '.'
+					},
+					{
+						from: 'src/containers/**/*.css',
+						to: 'containers/[name].[ext]',
+						//flatten: true
+					},
+					{
+						from: '../../../schemas/extensions/**/*.json',
+						to: 'extensions/',
+						//flatten: true
+					},
+					{
+						from: 'src/containers/**/*.png',
+						to: 'containers/[name].[ext]',
+						//flatten: true
+					},
+					{
+						from: 'src/containers/**/*.jpg',
+						to: 'containers/[name].[ext]',
+						//flatten: true
+					}],
+				options: {
+					concurrency: 8
+				}
+			}),
 			new HtmlWebpackPlugin({
 				title: "Adaptive Cards Designer (No Microsoft Hosts)",
 				template: "./noHosts.html",
@@ -79,54 +125,6 @@ module.exports = (env, argv) => {
 			}),
 			new MiniCssExtractPlugin({
 				filename: '[name].css'
-			}),
-			new ConcatPlugin({
-				fileName: 'adaptivecards-designer.css',
-				injectType: 'none',
-				filesToConcat: ['./node_modules/adaptivecards-controls/dist/adaptivecards-controls.css', './src/adaptivecards-designer.css']
-			}),
-			new CopyWebpackPlugin({
-				patterns: [
-					{
-						from: 'configuration.json',
-						to: '.'
-					},
-					{
-						from: '../adaptivecards/dist/adaptivecards.js',
-						to: '.'
-					},
-					{
-						from: 'src/containers/default/adaptivecards-defaulthost.css',
-						to: '.'
-					},
-					{
-						from: 'src/adaptivecards-designer.css',
-						to: './[name].[ext]',
-						//flatten: true
-					},
-					{
-						from: 'src/containers/**/*.css',
-						to: 'containers/[name].[ext]',
-						//flatten: true
-					},
-					{
-						from: '../../../schemas/extensions/**/*.json',
-						to: 'extensions/',
-						//flatten: true
-					},
-					{
-						from: 'src/containers/**/*.png',
-						to: 'containers/[name].[ext]',
-						//flatten: true
-					},
-					{
-						from: 'src/containers/**/*.jpg',
-						to: 'containers/[name].[ext]',
-						//flatten: true
-					}],
-				options: {
-					concurrency: 8
-				}
 			})
 		],
 		externals: {

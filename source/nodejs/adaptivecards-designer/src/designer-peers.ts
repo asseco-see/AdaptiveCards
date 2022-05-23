@@ -2,7 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Adaptive from "@asseco/adaptivecards";
-import * as Controls from "adaptivecards-controls";
+import { Constants, DropDownItem, PopupMenu } from "adaptivecards-controls";
 import { DraggableElement } from "./draggable-element";
 import { PeerCommand } from "./peer-command";
 import { CardDesignerSurface, DesignContext } from "./card-designer-surface";
@@ -2383,11 +2383,11 @@ export class AdaptiveCardPeer extends TypedCardElementPeer<Adaptive.AdaptiveCard
 						iconClass: "acd-icon-bolt",
 						showInPropertySheet: true,
 						execute: (command: PeerCommand, clickedElement: HTMLElement) => {
-							let popupMenu = new Controls.PopupMenu();
+							let popupMenu = new PopupMenu();
 
 							for (let i = 0; i < availableActions.length; i++) {
-								let menuItem = new Controls.DropDownItem(i.toString(), availableActions[i].typeName);
-								menuItem.onClick = (clickedItem: Controls.DropDownItem) => {
+								let menuItem = new DropDownItem(i.toString(), availableActions[i].typeName);
+								menuItem.onClick = (clickedItem: DropDownItem) => {
 									let registration = availableActions[i];
 									let action = new registration.objectType();
 									action.title = registration.typeName;
@@ -2412,11 +2412,11 @@ export class AdaptiveCardPeer extends TypedCardElementPeer<Adaptive.AdaptiveCard
 						iconClass: "acd-icon-bolt",
 						showInPropertySheet: true,
 						execute: (command: PeerCommand, clickedElement: HTMLElement) => {
-							let popupMenu = new Controls.PopupMenu();
+							let popupMenu = new PopupMenu();
 
 							for (let i = 0; i < DataSourceList.length; i++) {
-								let menuItem = new Controls.DropDownItem(i.toString(), DataSourceList[i].name);
-								menuItem.onClick = (clickedItem: Controls.DropDownItem) => {
+								let menuItem = new DropDownItem(i.toString(), DataSourceList[i].name);
+								menuItem.onClick = (clickedItem: DropDownItem) => {
 									let registration = DataSourceList[i];
 									let dataSource = registration.type;
 									this.addDataSource(dataSource);
@@ -2753,11 +2753,11 @@ export class ActionSetPeer extends TypedCardElementPeer<Adaptive.AdaptiveCard> {
 						iconClass: "acd-icon-bolt",
 						showInPropertySheet: true,
 						execute: (command: PeerCommand, clickedElement: HTMLElement) => {
-							let popupMenu = new Controls.PopupMenu();
+							let popupMenu = new PopupMenu();
 
 							for (let i = 0; i < availableActions.length; i++) {
-								let menuItem = new Controls.DropDownItem(i.toString(), availableActions[i].typeName);
-								menuItem.onClick = (clickedItem: Controls.DropDownItem) => {
+								let menuItem = new DropDownItem(i.toString(), availableActions[i].typeName);
+								menuItem.onClick = (clickedItem: DropDownItem) => {
 									let registration = availableActions[i];
 									let action = new registration.objectType();
 									action.title = registration.typeName;
@@ -3594,14 +3594,14 @@ class TextBlockPeerInplaceEditor extends CardElementPeerInplaceEditor<Adaptive.T
 		this._renderedElement.value = this.cardElement.text;
 		this._renderedElement.onkeydown = (e) => {
 			switch (e.key) {
-				case Controls.Constants.keys.escape:
+				case Constants.keys.escape:
 					this.close(false);
 
 					e.preventDefault();
 					e.cancelBubble = true;
 
 					break;
-				case Controls.Constants.keys.enter:
+				case Constants.keys.enter:
 					this.close(true);
 
 					e.preventDefault();

@@ -11,5 +11,7 @@
 		},
 		"experimentalDecorators": true
 	},
-	"files": ["./src/adaptivecards-designer.ts" ]
+	"files": [
+		"./src/adaptivecards-designer.ts"
+	]
 }
