@@ -57,7 +57,7 @@ steps:
     image: 'registry.see.asseco.com/tools/image-tagger'
     dockerRegistryEndpoint: harbor
     envVars: |
-      TAGGER_VERSION=v2
+      TAGGER_VERSION=v4
       GITHUB_TOKEN=$(githubToken)
       RELEASE=false
 
@@ -111,7 +111,7 @@ steps:
     image: 'registry.see.asseco.com/tools/image-tagger'
     dockerRegistryEndpoint: harbor
     envVars: |
-      TAGGER_VERSION=v2
+      TAGGER_VERSION=v4
       GITHUB_TOKEN=$(githubToken)
       NPM_ARTIFACTS=@asseco/adaptivecards:UI Kit;@asseco/adaptivecards-designer:UI Kit
       RELEASED_VERSION_API_URL=$(releasedVersionApiUrl)
