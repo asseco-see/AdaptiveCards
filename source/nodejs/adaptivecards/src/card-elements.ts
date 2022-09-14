@@ -33,7 +33,7 @@ export class ActionParam extends SerializableObject {
 	static readonly propertyNameProperty = new StringProperty(Versions.v1_0, "propertyName");
 	static readonly propertyValueProperty = new StringProperty(Versions.v1_0, "propertyValue");
 	static readonly dialogIdProperty = new StringProperty(Versions.v1_0, "dialogId");
-	
+
 	@property(ActionParam.kindProperty)
 	kind?: string;
 	@property(ActionParam.typeProperty)
@@ -57,7 +57,7 @@ export class ActionParam extends SerializableObject {
 		return 'ActionParam'
 	}
 
-	protected internalToJSON(target: PropertyBag, context: SerializationContext) {		
+	protected internalToJSON(target: PropertyBag, context: SerializationContext) {
 		super.internalToJSON(target, context);
 		if (target && target.data) {
 			try {
@@ -69,7 +69,7 @@ export class ActionParam extends SerializableObject {
 		}
 	}
 
-	protected internalParse(source: any, context: SerializationContext) {		
+	protected internalParse(source: any, context: SerializationContext) {
 		if (source && source.data) {
 			try {
 				source.data = JSON.stringify(source.data, null, 2);
@@ -721,7 +721,7 @@ export class ActionProperty extends PropertyDefinition {
 	}
 
 	toJSON(sender: SerializableObject, target: PropertyBag, value: Action | undefined, context: SerializationContext) {
-		context.serializeValue(target, this.name, value ? value.toJSON(context) : undefined, undefined, true);
+		context.serializeValue(target, this.name, value ? value.toJSON(context) : undefined);
 	}
 
 	constructor(
@@ -1217,8 +1217,6 @@ export class TextBlock extends BaseTextBlock {
 		}
 	}
 }
-
-
 
 export class TextRun extends BaseTextBlock {
 	//#region Schema
@@ -2748,256 +2746,6 @@ export abstract class Input extends CardElement implements IInput {
 	}
 }
 
-//Extension
-
-// export interface ChipData {
-//     id: string
-//     name: string;
-//     selected: boolean;
-// }
-
-// export class Chip extends SerializableObject {
-//     static readonly idProperty = new StringProperty(Versions.v1_0, "id", true);
-//     static readonly nameProperty = new StringProperty(Versions.v1_0, "name", true);
-//     static readonly selectedProperty = new BoolProperty(Versions.v1_0, "selected", false);
-//     @property(Chip.idProperty)
-//     public id?: string;
-
-//     @property(Chip.nameProperty)
-//     public name?: string;
-
-//     @property(Chip.selectedProperty)
-//     public selected?: boolean;
-
-
-//     protected getSchemaKey(): string {
-//         return "chip"
-//     }
-
-//     constructor(name?: string, selected?: boolean) {
-//         super();
-
-//         this.name = name;
-//         this.selected = selected;
-//     }
-// }
-
-// export class ChipInput extends Input {
-
-//     static readonly JsonTypeName = "Input.Chips";
-//     static readonly selectedAttribute = 'data-selected';
-
-//     //#region Schema
-
-//     static readonly idProperty = new StringProperty(Versions.v1_0, "id", true);
-//     static readonly colorProperty = new StringProperty(Versions.v1_0, "color", true);
-//     static readonly removableProperty = new BoolProperty(Versions.v1_0, "removable", true);
-//     static readonly placeholderProperty = new StringProperty(Versions.v1_0, "placeholder", true);
-//     static readonly chipsProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "chips", Chip);
-
-//     private _chipElements: HTMLElement[] = [];
-//     private _input: HTMLElement;
-
-
-//     isSet(): boolean {
-//         return true;
-//     }
-//     get value(): any {
-//         var value = this._chipElements.map(c => {
-//             return {
-//                 id: c.id,
-//                 name: c.innerText,
-//                 selected: c.hasAttribute(ChipInput.selectedAttribute)
-//             }
-//         });
-
-//         console.log(value);
-//         return value;
-//     }
-
-//     @property(ChipInput.idProperty)
-//     id?: string;
-
-//     @property(ChipInput.chipsProperty)
-//     _chips: Chip[] = [];
-
-//     @property(ChipInput.colorProperty)
-//     get color(): string {
-//         return this.getValue(ChipInput.colorProperty);
-//     }
-
-//     set color(value: string) {
-//         this.setValue(ChipInput.colorProperty, value);
-//     }
-
-//     @property(ChipInput.removableProperty)
-//     get removable(): boolean {
-//         return this.getValue(ChipInput.removableProperty);
-//     }
-
-//     set removable(value: boolean) {
-//         this.setValue(ChipInput.removableProperty, value);
-//     }
-
-//     @property(ChipInput.placeholderProperty)
-//     get placeholder(): string {
-//         return this.getValue(ChipInput.placeholderProperty);
-//     }
-
-//     set placeholder(value: string) {
-//         this.setValue(ChipInput.placeholderProperty, value);
-
-//     }
-
-//     //#endregion
-
-//     protected internalRender(): HTMLElement {
-
-//         let element = document.createElement("div");
-
-//         element.style.width = '100%';
-//         element.style.marginTop = '10px';
-//         this.addInput(element);
-//         console.log(this._chips);
-//         this._chips.forEach(chip => {
-//             const chipData: any = { id: chip.id, name: chip.name, selected: chip.selected };
-
-//             this.addChip(chipData, element);
-//         });
-
-//         var hr = document.createElement('hr')
-//         hr.style.color = '#dcdcdc';
-//         hr.style.marginTop = '8px'
-//         element.appendChild(hr);
-
-//         return element;
-//     }
-
-//     addInput(parent: HTMLElement) {
-
-//         let input = document.createElement("input");
-
-//         input.className = this.hostConfig.makeCssClassName("ac-input", "ac-textInput");
-//         input.type = 'text';
-//         input.placeholder = this.placeholder;
-//         input.tabIndex = 0;
-//         input.style.display = 'inline-block';
-//         input.style.flex = "1 1 auto";
-//         input.style.flexWrap = 'wrap';
-//         input.style.border = 'none';
-//         input.style.backgroundColor = 'transparent';
-//         input.style.minWidth = '120px';
-//         input.style.outline = 'none';
-//         input.style.fontSize = '15px';
-//         input.setAttribute("aria-label", this.placeholder);
-//         input.onblur = () => {
-//             input.value = '';
-//         };
-//         input.onkeypress = (e) => {
-//             if (e.keyCode == 13 && input.value) // enter pressed
-//             {
-//                 e.preventDefault();
-//                 e.cancelBubble = true;
-//                 const chipData: ChipData = { id: input.value, name: input.value, selected: true }
-//                 this.addChip(chipData, parent);
-//                 input.value = ''
-//             }
-//         }
-//         parent.appendChild(input);
-//         this._input = input;
-//     }
-
-//     addChip(chip: ChipData, parent: HTMLElement) {
-
-//         var chipEl = document.createElement("div");
-
-//         chipEl.style.display = 'inline-block';
-//         chipEl.style.marginRight = '10px'
-//         chipEl.style.padding = '0 25px';
-//         chipEl.style.height = '30px';
-//         chipEl.style.borderRadius = '15px';
-//         chipEl.style.fontSize = '14px';
-//         chipEl.style.lineHeight = '30px';
-//         chipEl.style.color = '#ffffff';
-//         chipEl.style.marginBottom = '8px'
-//         chipEl.style.userSelect = 'none'
-//         chipEl.style.paddingLeft = '12px';
-//         chipEl.style.paddingRight = '12px';
-//         chipEl.innerText = chip.name;
-//         chipEl.id = chip.id;
-//         if (chip.selected) {
-
-//             chipEl.setAttribute(ChipInput.selectedAttribute, '');
-//             chipEl.style.backgroundColor = this.getBgColor(this.color);
-//         } else {
-//             chipEl.style.backgroundColor = '#e0e0e0';
-//             chipEl.style.color = '#353535';
-//         }
-//         chipEl.onclick = () => {
-
-//             var selected = chipEl.hasAttribute(ChipInput.selectedAttribute);
-//             selected ? chipEl.removeAttribute(ChipInput.selectedAttribute) : chipEl.setAttribute(ChipInput.selectedAttribute, '');;
-//             chipEl.style.backgroundColor = !selected ? this.getBgColor(this.color) : '#e0e0e0'
-//             chipEl.style.color = !selected ? '#ffffff' : '#353535'
-//         }
-
-//         if (this.removable) {
-
-//             var span = document.createElement('span');
-
-//             span.style.paddingLeft = '4px';
-//             span.style.paddingRight = '4px';
-//             span.style.marginLeft = '10px';
-//             span.style.minWidth = '30px';
-//             span.style.color = '#888';
-//             span.style.fontWeight = 'bold';
-//             span.style.fontSize = '14px';
-//             span.style.cursor = 'pointer';
-//             span.innerText = '×';
-//             span.style.backgroundColor = 'rgb(146, 146, 146, 0.4)';
-//             span.style.borderRadius = '100px';
-
-//             span.onclick = () => {
-
-//                 parent.removeChild(chipEl)
-//                 this._chipElements.splice(this._chipElements.indexOf(chipEl), 1);
-//             }
-
-//             span.onmouseenter = () => {
-//                 span.style.backgroundColor = 'rgb(146, 146, 146, 0.7)';
-//             }
-
-//             span.onmouseleave = () => {
-//                 span.style.backgroundColor = 'rgb(146, 146, 146, 0.4)';
-//             }
-
-//             chipEl.appendChild(span)
-//         }
-
-//         parent.insertBefore(chipEl, this._input);
-//         this._chipElements.push(chipEl);
-//     }
-
-//     getJsonTypeName(): string {
-//         return ChipInput.JsonTypeName;
-//     }
-
-//     getBgColor(color: string): string {
-//         switch (color) {
-//             default:
-//             case 'accent':
-//                 return Enums.ChipInputColorSchema.Accent;
-//             case 'primary':
-//                 return Enums.ChipInputColorSchema.Primary;
-//             case 'warn':
-//                 return Enums.ChipInputColorSchema.Warn;
-//         }
-//     }
-//     updateLayout(processChildren: boolean = true) {
-//         super.updateLayout(processChildren);
-//     }
-// }
-
 export class TextInput extends Input {
 	//#region Schema
 
@@ -4310,6 +4058,8 @@ export abstract class Action extends CardObject {
 			{ value: Enums.ActionStyle.Destructive }
 		],
 		Enums.ActionStyle.Default);
+	// TODO: Revise this when finalizing input validation
+	static readonly ignoreInputValidationProperty = new BoolProperty(Versions.v1_3, "ignoreInputValidation", false);
 
 	@property(Action.titleProperty)
 	title?: string;
@@ -4346,7 +4096,7 @@ export abstract class Action extends CardObject {
 	protected internalValidateInputs(referencedInputs: Dictionary<Input> | undefined): Input[] {
 		let result: Input[] = [];
 
-		if (referencedInputs) {
+		if (!this.ignoreInputValidation && referencedInputs) {
 			for (let key of Object.keys(referencedInputs)) {
 				let input = referencedInputs[key];
 
@@ -4528,6 +4278,10 @@ export abstract class Action extends CardObject {
 		}
 	}
 
+	get ignoreInputValidation(): boolean {
+		return true;
+	}
+
 	get hostConfig(): HostConfig {
 		return this.parent ? this.parent.hostConfig : defaultHostConfig;
 	}
@@ -4562,6 +4316,9 @@ export class SubmitAction extends Action {
 
 	@property(SubmitAction.associatedInputsProperty)
 	associatedInputs?: "auto" | "none";
+
+	@property(Action.ignoreInputValidationProperty)
+	private _ignoreInputValidation: boolean = false;
 
 	//#endregion
 
@@ -4618,6 +4375,14 @@ export class SubmitAction extends Action {
 
 	getJsonTypeName(): string {
 		return SubmitAction.JsonTypeName;
+	}
+
+	get ignoreInputValidation(): boolean {
+		return this._ignoreInputValidation;
+	}
+
+	set ignoreInputValidation(value: boolean) {
+		this._ignoreInputValidation = value;
 	}
 
 	get data(): object | undefined {
@@ -4848,6 +4613,12 @@ export class HttpAction extends Action {
 	static readonly headersProperty = new SerializableObjectCollectionProperty(Versions.v1_0, "headers", HttpHeader);
 	static readonly ignoreInputValidationProperty = new BoolProperty(Versions.v1_3, "ignoreInputValidation", false);
 
+	protected populateSchema(schema: SerializableObjectSchema) {
+		super.populateSchema(schema);
+
+		schema.add(Action.ignoreInputValidationProperty);
+	}
+
 	@property(HttpAction.urlProperty)
 	private _url: StringWithSubstitutions;
 
@@ -4860,7 +4631,7 @@ export class HttpAction extends Action {
 	@property(HttpAction.headersProperty)
 	headers: HttpHeader[];
 
-	@property(HttpAction.ignoreInputValidationProperty)
+	@property(Action.ignoreInputValidationProperty)
 	private _ignoreInputValidation: boolean = false;
 
 	//#endregion
@@ -5801,6 +5572,7 @@ export abstract class StylableCardElementContainer extends CardElementContainer 
 		return effectiveStyle ? effectiveStyle : super.getEffectiveStyle();
 	}
 }
+
 
 export class GenericAction extends Action {
 
@@ -7140,167 +6912,167 @@ export abstract class ContainerWithActions extends Container {
 
 
 export class CustomComponent extends CardElement {
-    //#region Schema
+	//#region Schema
 
-    static readonly viewProperty = new StringProperty(Versions.v1_3, "view", true);
-    static readonly nameProperty = new StringProperty(Versions.v1_3, "name", true);
-    static readonly propertiesProperty = new ObjectProperty(Versions.v1_3, "properties", {});
+	static readonly viewProperty = new StringProperty(Versions.v1_3, "view", true);
+	static readonly nameProperty = new StringProperty(Versions.v1_3, "name", true);
+	static readonly propertiesProperty = new ObjectProperty(Versions.v1_3, "properties", {});
 
-    @property(CustomComponent.viewProperty)
-    view?: string;
+	@property(CustomComponent.viewProperty)
+	view?: string;
 
-    @property(CustomComponent.nameProperty)
-    get name(): string | undefined {
-        return this.getValue(CustomComponent.nameProperty);
-    }
+	@property(CustomComponent.nameProperty)
+	get name(): string | undefined {
+		return this.getValue(CustomComponent.nameProperty);
+	}
 
-    set name(value: string | undefined) {
-        if (this.name !== value) {
-            this.setValue(CustomComponent.nameProperty, value);
+	set name(value: string | undefined) {
+		if (this.name !== value) {
+			this.setValue(CustomComponent.nameProperty, value);
 
-            this.loadComponentDefinition();
-        }
-    }
+			this.loadComponentDefinition();
+		}
+	}
 
-    @property(CustomComponent.propertiesProperty)
-    properties: object = {};
+	@property(CustomComponent.propertiesProperty)
+	properties: object = {};
 
-    //#endregion
+	//#endregion
 
-    private _componentDefinition?: AdaptiveComponent;
-    private _hostElement?: HTMLElement;
-    private _viewTemplate?: object;
+	private _componentDefinition?: AdaptiveComponent;
+	private _hostElement?: HTMLElement;
+	private _viewTemplate?: object;
 
-    private emptyHostElement() {
-        if (this._hostElement) {
-            while (this._hostElement.firstChild) {
-                this._hostElement.removeChild(this._hostElement.firstChild);
-            }
-        }
-    }
+	private emptyHostElement() {
+		if (this._hostElement) {
+			while (this._hostElement.firstChild) {
+				this._hostElement.removeChild(this._hostElement.firstChild);
+			}
+		}
+	}
 
-    private generateErrorView(message: string): object {
-        return {
-            type: "TextBlock",
-            text: message,
-            wrap: true
-        };
-    }
+	private generateErrorView(message: string): object {
+		return {
+			type: "TextBlock",
+			text: message,
+			wrap: true
+		};
+	}
 
-    private showSpinner() {
-        if (this._hostElement) {
-            this.emptyHostElement();
+	private showSpinner() {
+		if (this._hostElement) {
+			this.emptyHostElement();
 
-            let spinner = document.createElement("div");
-            spinner.className = "ac-spinner";
-            spinner.style.width = "16px";
-            spinner.style.height = "16px";
+			let spinner = document.createElement("div");
+			spinner.className = "ac-spinner";
+			spinner.style.width = "16px";
+			spinner.style.height = "16px";
 
-            this._hostElement.appendChild(spinner);
-        }
-    }
+			this._hostElement.appendChild(spinner);
+		}
+	}
 
-    private renderView() {
-        if (this._hostElement && this.viewTemplate) {
-            this.emptyHostElement();
+	private renderView() {
+		if (this._hostElement && this.viewTemplate) {
+			this.emptyHostElement();
 
-            let template = new Template(this.viewTemplate);
+			let template = new Template(this.viewTemplate);
 
-            let expandedTemplate = template.expand(
-                {
-                    $root: this.properties
-                }
-            );
+			let expandedTemplate = template.expand(
+				{
+					$root: this.properties
+				}
+			);
 
-            let context = new SerializationContext();
-            let contentElement = context.parseElement(this, expandedTemplate, true);
+			let context = new SerializationContext();
+			let contentElement = context.parseElement(this, expandedTemplate, true);
 
-            if (contentElement) {
-                contentElement.setParent(this);
+			if (contentElement) {
+				contentElement.setParent(this);
 
-                let renderedElement = contentElement.render();
+				let renderedElement = contentElement.render();
 
-                if (renderedElement) {
-                    this._hostElement.appendChild(renderedElement);
-                }
-            }
-        }
-    }
+				if (renderedElement) {
+					this._hostElement.appendChild(renderedElement);
+				}
+			}
+		}
+	}
 
-    private loadComponentDefinition() {
-        if (this.name) {
-            AdaptiveComponentManager.loadComponent(
-                this.name,
-                (componentDefinition: AdaptiveComponent) => {
-                    if (componentDefinition.name === this.name) {
-                        this.componentDefinition = componentDefinition;
-        
-                        this.viewTemplate = this.componentDefinition.getView(this.view);
-                    }
-                },
-                (error: string) => {
-                    this.viewTemplate = this.generateErrorView(error);
-                });
-        }
-        else {
-            this.viewTemplate = this.generateErrorView("Component name missing.");
-        }
-    }
+	private loadComponentDefinition() {
+		if (this.name) {
+			AdaptiveComponentManager.loadComponent(
+				this.name,
+				(componentDefinition: AdaptiveComponent) => {
+					if (componentDefinition.name === this.name) {
+						this.componentDefinition = componentDefinition;
 
-    private get viewTemplate(): object | undefined {
-        return this._viewTemplate;
-    }
+						this.viewTemplate = this.componentDefinition.getView(this.view);
+					}
+				},
+				(error: string) => {
+					this.viewTemplate = this.generateErrorView(error);
+				});
+		}
+		else {
+			this.viewTemplate = this.generateErrorView("Component name missing.");
+		}
+	}
 
-    private set viewTemplate(value: object | undefined) {
-        this._viewTemplate = value;
+	private get viewTemplate(): object | undefined {
+		return this._viewTemplate;
+	}
 
-        this.renderView();
-    }
+	private set viewTemplate(value: object | undefined) {
+		this._viewTemplate = value;
 
-    protected internalRender(): HTMLElement | undefined {
-        this._hostElement = document.createElement("div");
+		this.renderView();
+	}
 
-        this.showSpinner();
-        this.loadComponentDefinition();
+	protected internalRender(): HTMLElement | undefined {
+		this._hostElement = document.createElement("div");
 
-        return this._hostElement;
-    }
+		this.showSpinner();
+		this.loadComponentDefinition();
 
-    onComponentDefinitionChanged: (sender: CustomComponent) => void;
+		return this._hostElement;
+	}
 
-    getJsonTypeName(): string {
-        return "Component";
-    }
+	onComponentDefinitionChanged: (sender: CustomComponent) => void;
 
-    get componentDefinition(): AdaptiveComponent | undefined {
-        return this._componentDefinition;
-    }
+	getJsonTypeName(): string {
+		return "Component";
+	}
 
-    set componentDefinition(value: AdaptiveComponent | undefined) {
-        if (this._componentDefinition !== value) {
-            this._componentDefinition = value;
-            this.name = undefined;
+	get componentDefinition(): AdaptiveComponent | undefined {
+		return this._componentDefinition;
+	}
 
-            /* TODO: When should sample data be used?
+	set componentDefinition(value: AdaptiveComponent | undefined) {
+		if (this._componentDefinition !== value) {
+			this._componentDefinition = value;
+			this.name = undefined;
 
-            if (Object.getOwnPropertyNames(this.properties).length === 0 && componentDefinition.sampleData !== undefined) {
-                this.properties = componentDefinition.sampleData;
-            }
-            */
+			/* TODO: When should sample data be used?
 
-            if (this._componentDefinition) {
-                this.name = this._componentDefinition.name;
+			if (Object.getOwnPropertyNames(this.properties).length === 0 && componentDefinition.sampleData !== undefined) {
+				this.properties = componentDefinition.sampleData;
+			}
+			*/
 
-                if (Object.getOwnPropertyNames(this.properties).length === 0 && this._componentDefinition.sampleData !== undefined) {
-                    this.properties = JSON.parse(JSON.stringify(this._componentDefinition.sampleData));
-                }
-            }
+			if (this._componentDefinition) {
+				this.name = this._componentDefinition.name;
 
-            if (this.onComponentDefinitionChanged) {
-                this.onComponentDefinitionChanged(this);
-            }
-        }
-    }
+				if (Object.getOwnPropertyNames(this.properties).length === 0 && this._componentDefinition.sampleData !== undefined) {
+					this.properties = JSON.parse(JSON.stringify(this._componentDefinition.sampleData));
+				}
+			}
+
+			if (this.onComponentDefinitionChanged) {
+				this.onComponentDefinitionChanged(this);
+			}
+		}
+	}
 }
 
 export interface IMarkdownProcessingResult {
@@ -7672,7 +7444,7 @@ export class SerializableElement extends SerializableObject {
 export class GlobalRegistry {
 	static populateWithDefaultElements(registry: CardObjectRegistry<CardElement>) {
 		registry.clear();
-		
+
 		registry.register("Component", CustomComponent, Versions.v1_3);
 		registry.register("Container", Container);
 		registry.register("TextBlock", TextBlock);

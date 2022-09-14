@@ -12,7 +12,6 @@ function internalTryEvaluateExpression(expression: AEL.Expression, context: Eval
 	let options: AEL.Options | undefined = undefined;
 
 	if (allowSubstitutions) {
-		console.log('allowSubstitutions', allowSubstitutions);
 		options = new AEL.Options();
 		options.nullSubstitution = (path: string) => {
 			let substitutionValue: string | undefined = undefined;
@@ -30,15 +29,19 @@ function internalTryEvaluateExpression(expression: AEL.Expression, context: Eval
 	// in order to catch each individual expression evaluation error and substitute in
 	// the final string
 	if (expression.type === AEL.ExpressionType.Concat && allowSubstitutions) {
-		console.log('expression.type === AEL.ExpressionType.Concat && allowSubstitutions');
 		let result = "";
 
 		for (let childExpression of expression.children) {
 			let evaluationResult: { value: any; error?: string };
 
 			try {
-				console.log('childExpression.tryEvaluate');
+				console.log('-------------Child--------------');
+				console.log('memory', memory);
+				console.log('options', options);
 				evaluationResult = childExpression.tryEvaluate(memory, options);
+				console.log('childExpression.tryEvaluate', evaluationResult);
+				console.log('--------------------------------');
+
 			}
 			catch (ex) {
 				// We'll swallow all exceptions here
@@ -57,8 +60,13 @@ function internalTryEvaluateExpression(expression: AEL.Expression, context: Eval
 
 		return { value: result, error: undefined };
 	}
-
-	return expression.tryEvaluate(memory, options);
+	console.log('-----------NON Child-------------');
+	console.log('memory', memory);
+	console.log('options', options);
+	const e = expression.tryEvaluate(memory, options);
+	console.log('expression.tryEvaluate', e);
+	console.log('--------------------------------');
+	return e;
 }
 
 /**
@@ -293,7 +301,7 @@ export class Template {
 
 		return result;
 	}
-
+	// BORO HERE IS ISSUE WITH COMPOENNT EXPAND
 	private internalExpand(node: any): any {
 		let result: any;
 
@@ -318,7 +326,6 @@ export class Template {
 			result = itemArray;
 		}
 		else if (node instanceof AEL.Expression) {
-			console.log('node', node);
 			let evaluationResult = internalTryEvaluateExpression(node, this._context, true);
 
 			if (!evaluationResult.error) {
