@@ -3,7 +3,7 @@
 import * as Enums from "./enums";
 import {
 	PaddingDefinition, GlobalSettings, SizeAndUnit, SpacingDefinition,
-	Dictionary, StringWithSubstitutions, ContentTypes, IInput, IResourceInformation
+	Dictionary, StringWithSubstitutions, ContentTypes, IInput, IResourceInformation, PropertyBag
 } from "./shared";
 import * as Utils from "./utils";
 import { HostConfig, defaultHostConfig, BaseTextDefinition, FontTypeDefinition, ColorSetDefinition, TextColorDefinition, ContainerStyleDefinition } from "./host-config";
@@ -12,11 +12,13 @@ import { CardObject, ValidationResults } from "./card-object";
 import {
 	Versions, Version, property, BaseSerializationContext, SerializableObject, SerializableObjectSchema, StringProperty,
 	BoolProperty, ValueSetProperty, EnumProperty, SerializableObjectCollectionProperty, SerializableObjectProperty, PixelSizeProperty,
-	NumProperty, PropertyBag, CustomProperty, PropertyDefinition
+	NumProperty, CustomProperty, PropertyDefinition, ObjectProperty
 } from "./serialization";
 import { CardObjectRegistry } from "./registry";
 import { Strings } from "./strings";
 import { mod11_2, mod97_10 } from "cdigit";
+import { Template } from "./template-engine";
+import { AdaptiveComponent, AdaptiveComponentManager } from "./components";
 
 export type CardElementHeight = "auto" | "stretch";
 
@@ -7136,6 +7138,171 @@ export abstract class ContainerWithActions extends Container {
 	}
 }
 
+
+export class CustomComponent extends CardElement {
+    //#region Schema
+
+    static readonly viewProperty = new StringProperty(Versions.v1_3, "view", true);
+    static readonly nameProperty = new StringProperty(Versions.v1_3, "name", true);
+    static readonly propertiesProperty = new ObjectProperty(Versions.v1_3, "properties", {});
+
+    @property(CustomComponent.viewProperty)
+    view?: string;
+
+    @property(CustomComponent.nameProperty)
+    get name(): string | undefined {
+        return this.getValue(CustomComponent.nameProperty);
+    }
+
+    set name(value: string | undefined) {
+        if (this.name !== value) {
+            this.setValue(CustomComponent.nameProperty, value);
+
+            this.loadComponentDefinition();
+        }
+    }
+
+    @property(CustomComponent.propertiesProperty)
+    properties: object = {};
+
+    //#endregion
+
+    private _componentDefinition?: AdaptiveComponent;
+    private _hostElement?: HTMLElement;
+    private _viewTemplate?: object;
+
+    private emptyHostElement() {
+        if (this._hostElement) {
+            while (this._hostElement.firstChild) {
+                this._hostElement.removeChild(this._hostElement.firstChild);
+            }
+        }
+    }
+
+    private generateErrorView(message: string): object {
+        return {
+            type: "TextBlock",
+            text: message,
+            wrap: true
+        };
+    }
+
+    private showSpinner() {
+        if (this._hostElement) {
+            this.emptyHostElement();
+
+            let spinner = document.createElement("div");
+            spinner.className = "ac-spinner";
+            spinner.style.width = "16px";
+            spinner.style.height = "16px";
+
+            this._hostElement.appendChild(spinner);
+        }
+    }
+
+    private renderView() {
+        if (this._hostElement && this.viewTemplate) {
+            this.emptyHostElement();
+
+            let template = new Template(this.viewTemplate);
+
+            let expandedTemplate = template.expand(
+                {
+                    $root: this.properties
+                }
+            );
+
+            let context = new SerializationContext();
+            let contentElement = context.parseElement(this, expandedTemplate, true);
+
+            if (contentElement) {
+                contentElement.setParent(this);
+
+                let renderedElement = contentElement.render();
+
+                if (renderedElement) {
+                    this._hostElement.appendChild(renderedElement);
+                }
+            }
+        }
+    }
+
+    private loadComponentDefinition() {
+        if (this.name) {
+            AdaptiveComponentManager.loadComponent(
+                this.name,
+                (componentDefinition: AdaptiveComponent) => {
+                    if (componentDefinition.name === this.name) {
+                        this.componentDefinition = componentDefinition;
+        
+                        this.viewTemplate = this.componentDefinition.getView(this.view);
+                    }
+                },
+                (error: string) => {
+                    this.viewTemplate = this.generateErrorView(error);
+                });
+        }
+        else {
+            this.viewTemplate = this.generateErrorView("Component name missing.");
+        }
+    }
+
+    private get viewTemplate(): object | undefined {
+        return this._viewTemplate;
+    }
+
+    private set viewTemplate(value: object | undefined) {
+        this._viewTemplate = value;
+
+        this.renderView();
+    }
+
+    protected internalRender(): HTMLElement | undefined {
+        this._hostElement = document.createElement("div");
+
+        this.showSpinner();
+        this.loadComponentDefinition();
+
+        return this._hostElement;
+    }
+
+    onComponentDefinitionChanged: (sender: CustomComponent) => void;
+
+    getJsonTypeName(): string {
+        return "Component";
+    }
+
+    get componentDefinition(): AdaptiveComponent | undefined {
+        return this._componentDefinition;
+    }
+
+    set componentDefinition(value: AdaptiveComponent | undefined) {
+        if (this._componentDefinition !== value) {
+            this._componentDefinition = value;
+            this.name = undefined;
+
+            /* TODO: When should sample data be used?
+
+            if (Object.getOwnPropertyNames(this.properties).length === 0 && componentDefinition.sampleData !== undefined) {
+                this.properties = componentDefinition.sampleData;
+            }
+            */
+
+            if (this._componentDefinition) {
+                this.name = this._componentDefinition.name;
+
+                if (Object.getOwnPropertyNames(this.properties).length === 0 && this._componentDefinition.sampleData !== undefined) {
+                    this.properties = JSON.parse(JSON.stringify(this._componentDefinition.sampleData));
+                }
+            }
+
+            if (this.onComponentDefinitionChanged) {
+                this.onComponentDefinitionChanged(this);
+            }
+        }
+    }
+}
+
 export interface IMarkdownProcessingResult {
 	didProcess: boolean;
 	outputHtml?: any;
@@ -7505,7 +7672,8 @@ export class SerializableElement extends SerializableObject {
 export class GlobalRegistry {
 	static populateWithDefaultElements(registry: CardObjectRegistry<CardElement>) {
 		registry.clear();
-
+		
+		registry.register("Component", CustomComponent, Versions.v1_3);
 		registry.register("Container", Container);
 		registry.register("TextBlock", TextBlock);
 		registry.register("RichTextBlock", RichTextBlock, Versions.v1_2);

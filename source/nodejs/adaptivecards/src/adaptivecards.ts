@@ -10,4 +10,7 @@ export * from "./shared";
 export * from "./utils";
 export * from "./strings";
 export * from './custom-card-element-registry';
+export * from './downloader';
+export * from './template-engine';
+export * from './components';
 export { IAdaptiveCard, ICardElement } from "./schema";

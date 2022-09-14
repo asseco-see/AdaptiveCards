@@ -1,0 +1,130 @@
+{
+  "id": "readonly",
+  "version": "0.1",
+  "elementPrefix": "",
+  "propertyPrefix": "asseco",
+  "supports": {
+    "javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+  },
+  "contributes": {
+    "definitions": {
+      "Input.Text": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.Number": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.Date": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.Time": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.Toggle": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.ChoiceSet": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.Choice": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.Classification": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.FileUpload": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.PhoneNumber": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.TimePeriod": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.Lookup": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      },
+      "Input.PartyLookup": {
+        "properties": {
+          "readonly": {
+            "type": "boolean",
+            "description": "If `true`, render read-only input.",
+            "version": "0.1"
+          }
+        }
+      }
+    }
+  }
+}

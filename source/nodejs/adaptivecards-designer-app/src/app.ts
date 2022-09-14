@@ -3,7 +3,7 @@
 import * as monaco from "monaco-editor";
 import * as markdownit from "markdown-it";
 // import * as ACDesigner from "@asseco/adaptivecards-designer";
-import * as ACTemplating from "adaptivecards-templating";
+import * as Adaptive from "@asseco/adaptivecards";
 import "../../adaptivecards-designer/src/adaptivecards-designer.css";
 import "./app.css";
 import { CardDesigner } from "../../adaptivecards-designer/src/card-designer";
@@ -16,8 +16,45 @@ import * as Data from "../../adaptivecards-designer/src/data";
 // Uncomment below if you plan to use an empty hostContainers array
 // import "adaptivecards-designer/dist/adaptivecards-defaulthost.css";
 
+var componentSample = {
+    "type": "AdaptiveComponent",
+    "name": "schema.org/Thing",
+    "sampleData": {
+        "name": "Adaptive Cards",
+        "description": "A card-like render format",
+        "image": "https://adaptivecards.io/content/icon.png"
+    },
+    "schema": {
+        "properties": {
+            "name": {
+                "type": "string",
+                "displayName": "Name"
+            },
+            "description": {
+                "type": "string",
+                "displayName": "Description",
+                "editor:isMultiLine": "true"
+            },
+            "image": {
+                "type": "string",
+                "displayName": "Image"
+            }
+        }
+    },
+    "views": {
+        "default": {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "${name}"
+                }
+            ]
+        }
+    }
+};
 window.onload = function () {
-	ACTemplating.GlobalSettings.getUndefinedFieldValueSubstitutionString = (path: string) => { return "<" + path + " is undefined>" };
+	Adaptive.GlobalSettings.getUndefinedFieldValueSubstitutionString = (path: string) => { return "<" + path + " is undefined>" };
 
 	ACDesigner.GlobalSettings.showVersionPicker = true;
 	ACDesigner.GlobalSettings.enableDataBindingSupport = true;
@@ -321,4 +358,7 @@ window.onload = function () {
 	// designer.lockDataStructure = true;
 	designer.sampleData = sampleData;
 	designer.bindingPreviewMode = Designer.BindingPreviewMode.SampleData;
+
+	let adaptiveComponent = new Adaptive.AdaptiveComponent();
+	adaptiveComponent.parse(componentSample);
 }

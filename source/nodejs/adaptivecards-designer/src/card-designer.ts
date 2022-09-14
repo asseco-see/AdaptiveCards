@@ -251,26 +251,26 @@ export class CardDesigner extends Designer.DesignContext {
 		}
 
 		if (this.customPaletteItems) {
-			for (let item of this.customPaletteItems) {
-				if (!categorizedTypes.hasOwnProperty(item.category)) {
-					categorizedTypes[item.category] = [];
-				}
+            for (let item of this.customPaletteItems) {
+                if (!categorizedTypes.hasOwnProperty(item.category)) {
+                    categorizedTypes[item.category] = [];
+                }
 
-				categorizedTypes[item.category].push(item);
-			}
-		}
+                categorizedTypes[item.category].push(item);
+            }
+        }
 
-		for (let category in categorizedTypes) {
-			let node = document.createElement('div');
-			node.innerText = category;
-			node.className = "acd-palette-category";
+        for (let category in categorizedTypes) {
+            let node = document.createElement('div');
+            node.innerText = category;
+            node.className = "acd-palette-category";
 
-			this._toolPaletteToolbox.content.appendChild(node);
+            this._toolPaletteToolbox.content.appendChild(node);
 
-			for (var i = 0; i < categorizedTypes[category].length; i++) {
-				this.addPaletteItem(categorizedTypes[category][i], this._toolPaletteToolbox.content);
-			}
-		}
+            for (var i = 0; i < categorizedTypes[category].length; i++) {
+                this.addPaletteItem(categorizedTypes[category][i], this._toolPaletteToolbox.content);
+            }
+        }
 	}
 
 	private endDrag() {
