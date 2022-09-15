@@ -45,15 +45,6 @@ steps:
       cd adaptivecards-site
       npx lerna run release
 
-# - task: DockerAdvanced@0
-#   displayName: 'COMMIT_release'
-#   inputs:
-#     image: 'registry.see.asseco.com/tools/node:14-slim'
-#     dockerRegistryEndpoint: harbor
-#     commands: |
-#       cd source/nodejs/adaptivecards-site
-#       npx lerna run release
-
 - task: DockerAdvanced@0
   displayName: 'COMMIT_generate_version'
   inputs:
