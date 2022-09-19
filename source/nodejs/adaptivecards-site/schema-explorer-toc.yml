@@ -1,5 +1,6 @@
 - Cards:
   - AdaptiveCard
+  - AdaptiveComponent
 - Card Elements:
   - TextBlock
   - Image
