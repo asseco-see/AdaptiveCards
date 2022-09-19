@@ -35,13 +35,7 @@ function internalTryEvaluateExpression(expression: AEL.Expression, context: Eval
 			let evaluationResult: { value: any; error?: string };
 
 			try {
-				console.log('-------------Child--------------');
-				console.log('memory', memory);
-				console.log('options', options);
 				evaluationResult = childExpression.tryEvaluate(memory, options);
-				console.log('childExpression.tryEvaluate', evaluationResult);
-				console.log('--------------------------------');
-
 			}
 			catch (ex) {
 				// We'll swallow all exceptions here
@@ -60,12 +54,21 @@ function internalTryEvaluateExpression(expression: AEL.Expression, context: Eval
 
 		return { value: result, error: undefined };
 	}
-	console.log('-----------NON Child-------------');
-	console.log('memory', memory);
-	console.log('options', options);
-	const e = expression.tryEvaluate(memory, options);
-	console.log('expression.tryEvaluate', e);
-	console.log('--------------------------------');
+	let e: any = {
+		value: undefined,
+		error: undefined
+	};
+	try {
+		e = expression.tryEvaluate(memory, options);
+	}
+	catch (ex) {
+		// We'll swallow all exceptions here
+		e = {
+			value: undefined,
+			error: ex
+		};
+	}
+
 	return e;
 }
 
