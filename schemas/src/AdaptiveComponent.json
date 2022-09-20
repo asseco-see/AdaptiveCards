@@ -22,6 +22,10 @@
 		"$schema": {
 			"type": "uri",
 			"description": "The Adaptive Component schema."
+		},
+		"actions": {
+			"type": "Action[]",
+			"description": "The array of `Action` elements to show."
 		}
 	}
 }

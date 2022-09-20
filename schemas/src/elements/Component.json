@@ -3,6 +3,10 @@
 	"extends": "Element",
 	"description": "Reference to an Adaptive Component.",
 	"properties": {
+		"id":{
+			"type": "string",
+			"description": "A unique identifier associated with the item."
+		},
 		"name": {
 		  "description": "The name of the Component to load from the local or remote component registry. The recommended format is `[DOMAIN]/[COMPONENT-NAME]`, e.g., `graph.microsoft.com/file`",
 		  "type": "string",
@@ -15,7 +19,11 @@
 		"properties": {
 		  "description": "Passed directly to the component template",
 		  "type": "any"
-		}
+		},
+		"isInput": {
+			"type": "boolean",
+			"description": "If `true` all inputs in the component will be set as property in form of the root card."
+		}	
 	}
 }
   

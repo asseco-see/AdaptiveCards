@@ -16,6 +16,7 @@
   - FactSet
   - Fact
   - ImageSet
+  - Component
 - Actions:
   - Action.OpenUrl
   - Action.Submit
