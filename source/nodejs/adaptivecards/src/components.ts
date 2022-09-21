@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/no-parameter-properties */
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Downloader } from "./downloader";
-import { BaseSerializationContext, BoolProperty, CustomProperty, NumProperty, ObjectProperty, property, PropertyDefinition, SerializableObject, SerializableObjectProperty, StringProperty, Version, Versions } from "./serialization";
+import {
+    BaseSerializationContext, BoolProperty,
+    NumProperty, ObjectProperty, property, PropertyDefinition, SerializableObject,
+    SerializableObjectProperty, StringProperty, Version, Versions
+} from "./serialization";
 import { Dictionary, GlobalSettings, PropertyBag } from "./shared";
 
 type SchemaPropertyClass = { new(): SchemaProperty };
@@ -24,14 +29,15 @@ export abstract class SchemaProperty extends SerializableObject {
 
     static registerSchemaPropertyClass(type: string, propertyClass: SchemaPropertyClass) {
         SchemaProperty._schemaPropertyMap[type] = propertyClass;
-    }    
+    }
 
+    // eslint-disable-next-line no-shadow
     static parse(property: any): SchemaProperty | undefined {
         if (typeof property === "object") {
-            let propertyType = property["type"];
+            const propertyType = property.type;
 
             if (typeof propertyType === "string" && SchemaProperty._schemaPropertyMap.hasOwnProperty(propertyType)) {
-                let schemaProperty = new SchemaProperty._schemaPropertyMap[propertyType]();
+                const schemaProperty = new SchemaProperty._schemaPropertyMap[propertyType]();
                 schemaProperty.parse(property);
 
                 return schemaProperty;
@@ -54,7 +60,7 @@ export class StringSchemaProperty extends SchemaProperty {
 
     protected getSchemaKey(): string {
         return "StringSchemaProperty";
-    }    
+    }
 }
 
 export class NumberSchemaProperty extends SchemaProperty {
@@ -73,20 +79,22 @@ export class NumberSchemaProperty extends SchemaProperty {
 
     protected getSchemaKey(): string {
         return "NumberSchemaProperty";
-    }    
+    }
 }
 
 export class SchemaPropertiesProperty extends PropertyDefinition {
     parse(sender: SerializableObject, source: PropertyBag, context: BaseSerializationContext): SchemaProperty[] {
-        let result: SchemaProperty[] = [];
-        let sourceValue = source[this.name];
+        const result: SchemaProperty[] = [];
+        const sourceValue = source[this.name];
 
         if (typeof sourceValue === "object") {
-            for (let key in sourceValue) {
-                let property = sourceValue[key];
+            // eslint-disable-next-line guard-for-in
+            for (const key in sourceValue) {
+                // eslint-disable-next-line no-shadow
+                const property = sourceValue[key];
 
                 if (typeof property === "object") {
-                    let schemaProperty = SchemaProperty.parse(property);
+                    const schemaProperty = SchemaProperty.parse(property);
 
                     if (schemaProperty) {
                         schemaProperty.name = key;
@@ -101,15 +109,16 @@ export class SchemaPropertiesProperty extends PropertyDefinition {
     }
 
     toJSON(sender: SerializableObject, target: PropertyBag, value: SchemaProperty[], context: BaseSerializationContext) {
-        let serializedProperties: { [key: string]: any } = {};
+        const serializedProperties: { [key: string]: any } = {};
 
-        for (let schemaProperty of value) {
+        for (const schemaProperty of value) {
             serializedProperties[schemaProperty.name] = schemaProperty.toJSON(context);
         }
 
         context.serializeValue(target, this.name, serializedProperties);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-parameter-properties
     constructor(readonly targetVersion: Version, readonly name: string) {
         super(targetVersion, name);
     }
@@ -117,12 +126,13 @@ export class SchemaPropertiesProperty extends PropertyDefinition {
 
 export class DictionaryProperty<T extends object> extends PropertyDefinition {
     parse(sender: SerializableObject, source: PropertyBag, context: BaseSerializationContext): Dictionary<T> {
-        let result: Dictionary<T> = {}
-        let sourceValue = source[this.name];
+        const result: Dictionary<T> = {};
+        const sourceValue = source[this.name];
 
         if (typeof sourceValue === "object") {
-            for (let key in sourceValue) {
-                let view = sourceValue[key];
+            // eslint-disable-next-line guard-for-in
+            for (const key in sourceValue) {
+                const view = sourceValue[key];
 
                 if (typeof view === "object") {
                     result[key] = view;
@@ -150,7 +160,7 @@ export class ComponentSchema extends SerializableObject {
 
     protected getSchemaKey(): string {
         return "ComponentSchema";
-    }    
+    }
 }
 
 export class AdaptiveComponent extends SerializableObject {
@@ -193,7 +203,7 @@ export class AdaptiveComponent extends SerializableObject {
                 return this.views[name];
             }
 
-            let propertyNames = Object.getOwnPropertyNames(this.views);
+            const propertyNames = Object.getOwnPropertyNames(this.views);
 
             if (propertyNames.length > 0) {
                 return this.views[propertyNames[0]];
@@ -205,10 +215,11 @@ export class AdaptiveComponent extends SerializableObject {
 }
 
 interface IComponentLoaderListener {
-    onSuccess: (component: AdaptiveComponent) => void,
-    onError: (error: string) => void
+    onSuccess: (component: AdaptiveComponent) => void;
+    onError: (error: string) => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class AdaptiveComponentManager {
     private static _cache: Dictionary<AdaptiveComponent> = {};
     private static _pendingDownloads: Dictionary<Downloader> = {};
@@ -219,16 +230,16 @@ export class AdaptiveComponentManager {
             AdaptiveComponentManager._listeners[componentName].push(listener);
         }
         else {
-            AdaptiveComponentManager._listeners[componentName] = [ listener ];
+            AdaptiveComponentManager._listeners[componentName] = [listener];
         }
     }
 
     private static downloadSucceeded(component: AdaptiveComponent) {
         if (AdaptiveComponentManager._listeners.hasOwnProperty(component.name)) {
-            let listeners = AdaptiveComponentManager._listeners[component.name];
+            const listeners = AdaptiveComponentManager._listeners[component.name];
 
             while (listeners.length > 0) {
-                let listener = listeners.splice(0, 1)[0];
+                const listener = listeners.splice(0, 1)[0];
                 listener.onSuccess(component);
             }
         }
@@ -236,17 +247,17 @@ export class AdaptiveComponentManager {
 
     private static downloadFailed(componentName: string, error: string) {
         if (AdaptiveComponentManager._listeners.hasOwnProperty(componentName)) {
-            let listeners = AdaptiveComponentManager._listeners[componentName];
+            const listeners = AdaptiveComponentManager._listeners[componentName];
 
             while (listeners.length > 0) {
-                let listener = listeners.splice(0, 1)[0];
+                const listener = listeners.splice(0, 1)[0];
                 listener.onError(error);
             }
         }
     }
-	// BORO checkout this component
+    // BORO checkout this component
     static getComponentUrl(name: string): string {
-        let baseUrl = GlobalSettings.componentRegistryBaseUrl;
+        let baseUrl = GlobalSettings.componentRegistryBaseUrl + "/alpha/screens/component";
 
         if (!baseUrl.endsWith("/")) {
             baseUrl += "/";
@@ -272,25 +283,25 @@ export class AdaptiveComponentManager {
             );
 
             if (!AdaptiveComponentManager._pendingDownloads.hasOwnProperty(name)) {
-                let downloader = new Downloader(AdaptiveComponentManager.getComponentUrl(name));
+                const downloader = new Downloader(AdaptiveComponentManager.getComponentUrl(name));
 
                 downloader.onSuccess = (s: Downloader) => {
                     delete AdaptiveComponentManager._pendingDownloads[name];
 
-                    let parsedData = JSON.parse(s.data);
+                    const parsedData = JSON.parse(s.data);
 
                     if (typeof parsedData === "object") {
-                        let component = new AdaptiveComponent();
+                        const component = new AdaptiveComponent();
                         component.parse(parsedData);
 
                         AdaptiveComponentManager._cache[name] = component;
                         AdaptiveComponentManager.downloadSucceeded(component);
                     }
-                }
+                };
 
                 downloader.onError = (s: Downloader) => {
                     AdaptiveComponentManager.downloadFailed(name, `Component ${name} couldn't be loaded.`);
-                }
+                };
 
                 AdaptiveComponentManager._pendingDownloads[name] = downloader;
 

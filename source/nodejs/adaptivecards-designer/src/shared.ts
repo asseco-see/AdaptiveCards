@@ -9,8 +9,7 @@ export class GlobalSettings {
     static showTargetVersionMismatchWarning: boolean = true;
     static showLanguagePicker: boolean = true;
     static showDialogPicker: boolean = true;
-    static componentRegistryBaseUrl: string = "https://adaptive-ui.see.asseco.com/alpha/screens/components/";
-    static componentCatalogueBaseUrl: string = 'https://adaptive-ui.see.asseco.com';
+    static componentRegistryBaseUrl: string = "https://adaptive-ui.see.asseco.com";
 }
 
 export var SupportedTargetVersions: Adaptive.Version[] = [
