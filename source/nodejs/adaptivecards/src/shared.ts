@@ -13,8 +13,8 @@ export class GlobalSettings {
     static allowPreProcessingPropertyValues: boolean = false;
     static setTabIndexAtCardRoot: boolean = true;
     static enableFallback: boolean = true;
-    static componentRegistryBaseUrl: string = "https://dev.platform.see.asseco.com";
-	/**
+    static componentRegistryBaseUrl: string = "https://dev.pim.asseco.rs";
+    /**
      * Callback invoked when expression evaluation needs the value of a field in the source data object
      * and that field is undefined or null. By default, expression evaluation will substitute an undefined
      * field with its binding expression (e.g. `${field}`). This callback makes it possible to customize that
@@ -39,7 +39,7 @@ export class GlobalSettings {
      * 
      * With that, the above expression will evaluate to "David &lt;undefined value&gt;"
      */
-	static getUndefinedFieldValueSubstitutionString?: (path: string) => string | undefined = undefined;
+    static getUndefinedFieldValueSubstitutionString?: (path: string) => string | undefined = undefined;
 }
 
 export const ContentTypes = {
