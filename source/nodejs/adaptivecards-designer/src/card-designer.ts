@@ -45,7 +45,6 @@ export class CardDesigner extends Designer.DesignContext {
 	static onProcessMarkdown: (text: string, result: Adaptive.IMarkdownProcessingResult) => void = null;
 
 	static catalogueBaseUrl: string;
-	static componentCatalogueBaseUrl: string;
 	private static MAX_UNDO_STACK_SIZE = 50;
 
 	private _isAttached: boolean = false;

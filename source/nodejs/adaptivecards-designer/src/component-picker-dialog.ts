@@ -148,6 +148,12 @@ export class ComponentPickerDialog extends Dialog {
     private _componentListHostElement: HTMLElement;
     private _componentList: ComponentListItem[];
     private _selectedItem?: ComponentListItem;
+    private _url?: string;
+
+    constructor(url: string) {
+        super();
+        this._url = url;
+    }
 
     private setContent(hostElement: HTMLElement, element: HTMLElement) {
         while (hostElement.firstChild) {
@@ -209,7 +215,7 @@ export class ComponentPickerDialog extends Dialog {
             this._componentListHostElement,
             this.renderMessage("Loading component list, please wait...", true));
 
-        let downloader = new Adaptive.Downloader(CardDesigner.catalogueBaseUrl + '/alpha/screens/components');
+        let downloader = new Adaptive.Downloader(this._url + '/alpha/screens/components');
         downloader.onSuccess = (sender: Adaptive.Downloader) => {
             this._componentList = [];
 

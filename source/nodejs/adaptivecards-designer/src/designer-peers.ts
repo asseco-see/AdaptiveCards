@@ -3757,7 +3757,6 @@ export class CustomComponentPeer extends TypedCardElementPeer<Adaptive.CustomCom
 
 	protected internalAddCommands(context: DesignContext, commands: Array<PeerCommand>) {
 		super.internalAddCommands(context, commands);
-
 		commands.push(
 			new PeerCommand(
 				{
@@ -3765,7 +3764,7 @@ export class CustomComponentPeer extends TypedCardElementPeer<Adaptive.CustomCom
 					alwaysShowName: true,
 					toolTip: "Select a component from the component library.",
 					execute: (command: PeerCommand, clickedElement: HTMLElement) => {
-						let dialog = new ComponentPickerDialog();
+						let dialog = new ComponentPickerDialog(GlobalSettings.componentCatalogueBaseUrl);
 						dialog.title = "Pick a component";
 						dialog.closeButton.caption = "Cancel";
 						dialog.width = "70%";
