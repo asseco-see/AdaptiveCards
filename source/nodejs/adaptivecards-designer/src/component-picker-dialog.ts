@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Adaptive from "@asseco/adaptivecards";
-import { CardDesigner } from "./card-designer";
 import { Dialog } from "./dialog";
+import { GlobalSettings } from "./shared";
 
 class ComponentListItem {
     private _component?: Adaptive.AdaptiveComponent;
@@ -122,7 +122,7 @@ class ComponentListItem {
                     this.renderContent();
                 },
                 (error: string) => {
-                });
+                }, GlobalSettings.screensServiceBaseUrl);
         }
     }
 
@@ -215,7 +215,7 @@ export class ComponentPickerDialog extends Dialog {
             this._componentListHostElement,
             this.renderMessage("Loading component list, please wait...", true));
 
-        let downloader = new Adaptive.Downloader(this._url + '/alpha/screens/components');
+        let downloader = new Adaptive.Downloader(this._url + '/components');
         downloader.onSuccess = (sender: Adaptive.Downloader) => {
             this._componentList = [];
 

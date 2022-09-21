@@ -256,9 +256,8 @@ export class AdaptiveComponentManager {
         }
     }
     // BORO checkout this component
-    static getComponentUrl(name: string): string {
-        let baseUrl = GlobalSettings.componentRegistryBaseUrl + "/alpha/screens/component";
-
+    static getComponentUrl(name: string, screensServiceUrl?: string): string {
+        let baseUrl = (screensServiceUrl ? screensServiceUrl : GlobalSettings.screensServiceBaseUrl) + "/components";
         if (!baseUrl.endsWith("/")) {
             baseUrl += "/";
         }
@@ -269,7 +268,7 @@ export class AdaptiveComponentManager {
     static loadComponent(
         name: string,
         onSuccess: (component: AdaptiveComponent) => void,
-        onError: (error: string) => void) {
+        onError: (error: string) => void, screensServiceUrl = undefined) {
         if (AdaptiveComponentManager._cache.hasOwnProperty(name)) {
             onSuccess(AdaptiveComponentManager._cache[name]);
         }
@@ -283,7 +282,7 @@ export class AdaptiveComponentManager {
             );
 
             if (!AdaptiveComponentManager._pendingDownloads.hasOwnProperty(name)) {
-                const downloader = new Downloader(AdaptiveComponentManager.getComponentUrl(name));
+                const downloader = new Downloader(AdaptiveComponentManager.getComponentUrl(name, screensServiceUrl));
 
                 downloader.onSuccess = (s: Downloader) => {
                     delete AdaptiveComponentManager._pendingDownloads[name];

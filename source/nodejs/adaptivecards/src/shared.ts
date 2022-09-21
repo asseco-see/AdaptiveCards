@@ -13,7 +13,7 @@ export class GlobalSettings {
     static allowPreProcessingPropertyValues: boolean = false;
     static setTabIndexAtCardRoot: boolean = true;
     static enableFallback: boolean = true;
-    static componentRegistryBaseUrl: string = "http://dev.pim.asseco.rs";
+    static screensServiceBaseUrl: string = "https://dev.pim.asseco.rs/alpha/screens";
     /**
      * Callback invoked when expression evaluation needs the value of a field in the source data object
      * and that field is undefined or null. By default, expression evaluation will substitute an undefined
