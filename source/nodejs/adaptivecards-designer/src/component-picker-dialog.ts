@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Adaptive from "@asseco/adaptivecards";
+import { CardDesigner } from "./card-designer";
 import { Dialog } from "./dialog";
 
 class ComponentListItem {
@@ -19,7 +20,7 @@ class ComponentListItem {
 
     private renderContent() {
         while (this._renderedElement.firstChild) {
-            this._renderedElement.removeChild(this._renderedElement.firstChild);            
+            this._renderedElement.removeChild(this._renderedElement.firstChild);
         }
 
         let cardPayload: object;
@@ -208,7 +209,7 @@ export class ComponentPickerDialog extends Dialog {
             this._componentListHostElement,
             this.renderMessage("Loading component list, please wait...", true));
 
-        let downloader = new Adaptive.Downloader("https://dev.platform.see.asseco.com/alpha/screens/components");
+        let downloader = new Adaptive.Downloader(CardDesigner.catalogueBaseUrl + '/alpha/screens/components');
         downloader.onSuccess = (sender: Adaptive.Downloader) => {
             this._componentList = [];
 
@@ -242,7 +243,7 @@ export class ComponentPickerDialog extends Dialog {
         downloader.onError = (sender: Adaptive.Downloader) => {
             this.setContent(
                 this._componentListHostElement,
-                this.renderMessage("The component list could not be loaded, please try again later.", false));    
+                this.renderMessage("The component list could not be loaded, please try again later.", false));
         };
         downloader.download();
 
