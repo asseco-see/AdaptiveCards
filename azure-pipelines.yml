@@ -39,7 +39,7 @@ steps:
       cp /source/samples/HostConfig/*.json /source/source/nodejs/adaptivecards-designer/src/hostConfigs/
       cd source/nodejs
       npm config set user 0
-      npm install --unsafe-perm --no-progress --loglevel=warn
+      npm install --unsafe-perm --no-progress --loglevel=info
       npx lerna bootstrap
       npx lerna run build
       cd adaptivecards-site
