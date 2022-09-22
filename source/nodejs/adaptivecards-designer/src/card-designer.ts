@@ -105,10 +105,9 @@ export class CardDesigner extends Designer.DesignContext {
 			}
 			else {
 				const treeView = new TreeView(this.designerSurface.rootPeer.treeItem);
-				
-				if (this.designerSurface.card && this.designerSurface.card._items){
-					if (!this._designerSurface.selectedDialogId)
-					{
+
+				if (this.designerSurface.card && this.designerSurface.card._items) {
+					if (!this._designerSurface.selectedDialogId) {
 						this._dialogChoicePicker.choices.splice(0);
 						this._dialogChoicePicker.choices.push(
 							{
@@ -544,13 +543,13 @@ export class CardDesigner extends Designer.DesignContext {
 			this._preventCardUpdate = true;
 
 			// eslint-disable-next-line no-trailing-spaces
-			if (!this.preventJsonUpdate && this._isMonacoEditorLoaded) {				
+			if (!this.preventJsonUpdate && this._isMonacoEditorLoaded) {
 				let cardPayload = this._designerSurface.getCardPayloadAsObject();
 
-				if (!this._designerSurface.selectedDialogId){
+				if (!this._designerSurface.selectedDialogId) {
 					this.setCardPayload(cardPayload, addToUndoStack);
 				}
-				else{
+				else {
 					let originalPayload = JSON.parse(this.getCurrentCardEditorPayload());
 					const elementIndex = originalPayload["body"].findIndex((element) => element.id === this._designerSurface.selectedDialogId);
 					if (elementIndex !== -1) {
@@ -699,18 +698,17 @@ export class CardDesigner extends Designer.DesignContext {
 			this.toolbar.addElement(this._versionChoicePicker);
 		}
 
-		if (Shared.GlobalSettings.showDialogPicker)
-		{
+		if (Shared.GlobalSettings.showDialogPicker) {
 			this._dialogChoicePicker = new ToolbarChoicePicker(CardDesigner.ToolbarCommands.DialogPicker);
 			this._dialogChoicePicker.label = "Show dialog:"
 			this._dialogChoicePicker.alignment = ToolbarElementAlignment.Right;
-			this._dialogChoicePicker.separator = true;			
+			this._dialogChoicePicker.separator = true;
 			this._dialogChoicePicker.choices.push(
 				{
 					name: "None",
 					value: null
 				});
-			this.toolbar.addElement(this._dialogChoicePicker);			
+			this.toolbar.addElement(this._dialogChoicePicker);
 		}
 
 		if (Shared.GlobalSettings.showLanguagePicker) {
@@ -1183,11 +1181,10 @@ export class CardDesigner extends Designer.DesignContext {
 		if (this._dialogChoicePicker) {
 			this._dialogChoicePicker.onChanged = (sender: ToolbarChoicePicker) => {
 				this._designerSurface.selectedDialogId = this._dialogChoicePicker.value;
-				if (this._designerSurface.selectedDialogId)
-				{
-					console.log( "Render dialog with id: " + this._dialogChoicePicker.value);					
+				if (this._designerSurface.selectedDialogId) {
+					console.log("Render dialog with id: " + this._dialogChoicePicker.value);
 				} else {
-					console.log( "Render standard adaptive card");
+					console.log("Render standard adaptive card");
 				}
 				this.updateCardFromJson(false)
 			}

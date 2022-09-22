@@ -38,17 +38,11 @@ steps:
       cp npm-asee-dp-robot /root/.npmrc
       cp /source/samples/HostConfig/*.json /source/source/nodejs/adaptivecards-designer/src/hostConfigs/
       cd source/nodejs
-      npm install --no-progress --loglevel=warn
+      npm config set user 0
+      npm install --unsafe-perm --no-progress --loglevel=warn
       npx lerna bootstrap
       npx lerna run build
-
-- task: DockerAdvanced@0
-  displayName: 'COMMIT_release'
-  inputs:
-    image: 'registry.see.asseco.com/tools/node:14-slim'
-    dockerRegistryEndpoint: harbor
-    commands: |
-      cd source/nodejs/adaptivecards-site
+      cd adaptivecards-site
       npx lerna run release
 
 - task: DockerAdvanced@0

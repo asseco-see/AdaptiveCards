@@ -22,12 +22,13 @@
 	"repository": {
 		"type": "git",
 		"url": "git://git@github.com/microsoft/AdaptiveCards.git"
-	},	
+	},
 	"scripts": {
 		"test": "jest --forceExit --runInBand --detectOpenHandles",
 		"clean": "rimraf build lib dist",
 		"prebuild": "tsc",
 		"build": "webpack",
+		"build-prod": "webpack --mode=production",
 		"watch": "webpack --watch",
 		"start": "webpack-dev-server --open",
 		"dts": "dts-generator --prefix adaptivecards --project . --out dist/adaptivecards.d.ts",
@@ -35,7 +36,6 @@
 		"release": "npm run clean && concurrently \"npm:build\" \"webpack --mode=production\" \"npm:docs\" && concurrently \"npm:test\" \"npm:dts\"",
 		"docs": "npx typedoc",
 		"publish": "npm version $(head -n 1 ../../../.version) && npm publish --registry https://devops.see.asseco.com/DIGITAL/_packaging/Asseco/npm/registry/ --loglevel warn"
-	
 	},
 	"devDependencies": {
 		"@types/jest": "^27.4.1",
@@ -67,5 +67,8 @@
 			"jsx",
 			"json"
 		]
+	},
+	"dependencies": {
+		"adaptive-expressions": "^4.9.2"
 	}
 }

@@ -12,6 +12,7 @@ import { GlobalSettings } from "./shared";
 import { FieldPicker } from "./field-picker";
 import { DataSource, DataSourceList, EnumProperty, PropertyDefinition } from "@asseco/adaptivecards";
 import { BoolProperty, NumProperty, StringProperty } from "@asseco/adaptivecards";
+import { ComponentPickerDialog } from "./component-picker-dialog";
 
 export function findElementIdsForType(obj: any, typeName: string) {
 	let ids = [];
@@ -678,10 +679,10 @@ interface IParamPair {
 interface IRuleParam {
 	type: string;
 	trigger: string;
-	actions: IActionParam [];
+	actions: IActionParam[];
 }
 
-interface IActionParam{
+interface IActionParam {
 	type: string,
 	kind: string,
 	data: object
@@ -883,7 +884,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 			result.addItem(messageTextBlock);
 		}
 		else {
-			for (let i = 0; i < nameValuePairs.length; i++) {				
+			for (let i = 0; i < nameValuePairs.length; i++) {
 				let ruleTextBlock = new Adaptive.TextBlock();
 				ruleTextBlock.spacing = Adaptive.Spacing.Small;
 				ruleTextBlock.separator = true;
@@ -909,9 +910,9 @@ class RulesPropertyEditor extends PropertySheetEntry {
 				ruleColumnSet.spacing = Adaptive.Spacing.Small;
 				ruleColumnSet.addColumn(ruleTitleColumn);
 				ruleColumnSet.addColumn(ruleRemoveColumn);
-	
+
 				result.addItem(ruleColumnSet);
-				
+
 				let ruleTriggerChoiceSet = new Adaptive.ChoiceSetInput();
 				ruleTriggerChoiceSet.label = "Trigger";
 				ruleTriggerChoiceSet.placeholder = "Select trigger";
@@ -936,7 +937,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 				let eventInput = new Adaptive.TextInput();
 				eventInput.label = "Event";
 				eventInput.placeholder = this.eventPropertyLabel;
-				eventInput.defaultValue = nameValuePairs[i].event;				
+				eventInput.defaultValue = nameValuePairs[i].event;
 				eventInput.onValueChanged = (sender) => {
 					nameValuePairs[i].event = sender.value;
 					this.collectionChanged(context, nameValuePairs, false);
@@ -960,28 +961,27 @@ class RulesPropertyEditor extends PropertySheetEntry {
 				let actionsTextBlock = new Adaptive.TextBlock();
 				actionsTextBlock.spacing = Adaptive.Spacing.Small;
 				actionsTextBlock.text = "Actions:";
-				
+
 				let actionsColumn = new Adaptive.Column("stretch");
-				actionsColumn.spacing = Adaptive.Spacing.Small;				
+				actionsColumn.spacing = Adaptive.Spacing.Small;
 				actionsColumn.addItem(actionsTextBlock);
 
 				let addActionInternal = new Adaptive.SubmitAction();
 				addActionInternal.title = "Add action";
 				addActionInternal.onExecute = (sender) => {
-					let actionParams : IActionParam [] = [];
-					if (!nameValuePairs[i].actions)
-					{ 
+					let actionParams: IActionParam[] = [];
+					if (!nameValuePairs[i].actions) {
 						nameValuePairs[i].actions = actionParams;
 					}
-					nameValuePairs[i].actions.push({ type: ''})
+					nameValuePairs[i].actions.push({ type: '' })
 					this.collectionChanged(context, nameValuePairs, true);
 				}
 
 				let actionSet = new Adaptive.ActionSet();
 				actionSet.addAction(addActionInternal);
-				
+
 				let addActionColumn = new Adaptive.Column("auto");
-				addActionColumn.spacing = Adaptive.Spacing.Small;				
+				addActionColumn.spacing = Adaptive.Spacing.Small;
 				addActionColumn.addItem(actionSet);
 
 				let actionsColumnSet = new Adaptive.ColumnSet();
@@ -996,7 +996,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						let ruleActionTypeChoiceSet = new Adaptive.ChoiceSetInput();
 						ruleActionTypeChoiceSet.placeholder = this.typePropertyLabel;
 						ruleActionTypeChoiceSet.defaultValue = nameValuePairs[i].actions[j].type;
-						const ruleActionTypeEnumValues = Object.values(Adaptive.RuleActionType); 
+						const ruleActionTypeEnumValues = Object.values(Adaptive.RuleActionType);
 						ruleActionTypeChoiceSet.choices = [];
 						for (let choice of ruleActionTypeEnumValues) {
 							ruleActionTypeChoiceSet.choices.push(new Adaptive.Choice(choice.toString(), choice.toString()));
@@ -1004,10 +1004,10 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						ruleActionTypeChoiceSet.onValueChanged = (sender) => {
 							nameValuePairs[i].actions[j] = {};
 							nameValuePairs[i].actions[j].type = sender.value;
-							
-							raiseEventColumnSet.isVisible = false;							
+
+							raiseEventColumnSet.isVisible = false;
 							setInputValueColumnSet.isVisible = false;
-						  setPropertyColumnSet.isVisible = false;
+							setPropertyColumnSet.isVisible = false;
 							refreshColumnSet.isVisible = false;
 							showDialogColumnSet.isVisible = false;
 							switch (sender.value) {
@@ -1019,17 +1019,17 @@ class RulesPropertyEditor extends PropertySheetEntry {
 									break;
 								case "Action.SetProperty":
 									setPropertyColumnSet.isVisible = true;
-									break;									
+									break;
 								case "Action.Refresh":
 									refreshColumnSet.isVisible = true;
-									break;									
+									break;
 								case "Action.ShowDialog":
 									showDialogColumnSet.isVisible = true;
-									break;									
+									break;
 							}
 							this.collectionChanged(context, nameValuePairs, false);
-						};					
-						
+						};
+
 						let actionTypeColumn = new Adaptive.Column("stretch");
 						actionTypeColumn.spacing = Adaptive.Spacing.Small;
 						actionTypeColumn.addItem(ruleActionTypeChoiceSet);
@@ -1053,9 +1053,9 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						actionTypeColumnSet.spacing = Adaptive.Spacing.Small;
 						actionTypeColumnSet.addColumn(actionTypeColumn);
 						actionTypeColumnSet.addColumn(removeActionColumn);
-						
+
 						result.addItem(actionTypeColumnSet);
-						
+
 						//Raise event ...
 						let actionKindInput = new Adaptive.TextInput();
 						actionKindInput.label = "Kind";
@@ -1068,8 +1068,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						let actionDataInput = new Adaptive.TextInput();
 						actionDataInput.label = "Data";
 						actionDataInput.isMultiline = true;
-						if (typeof(nameValuePairs[i].actions[j].data) !== "string")
-						{
+						if (typeof (nameValuePairs[i].actions[j].data) !== "string") {
 							actionDataInput.defaultValue = JSON.stringify(nameValuePairs[i].actions[j].data, null, 2);
 						} else {
 							actionDataInput.defaultValue = nameValuePairs[i].actions[j].data;
@@ -1236,14 +1235,14 @@ class RulesPropertyEditor extends PropertySheetEntry {
 						showDialogColumnSet.addColumn(dialogIdColumn);
 						result.addItem(showDialogColumnSet);
 					}
-				}		
+				}
 			}
 		}
 
 		let addAction = new Adaptive.SubmitAction();
 		addAction.title = this.addRuleTitle;
 		addAction.onExecute = (sender) => {
-			nameValuePairs.push({ trigger: "", type: "Rule.Interaction", event: "", actions: []});
+			nameValuePairs.push({ trigger: "", type: "Rule.Interaction", event: "", actions: [] });
 			this.collectionChanged(context, nameValuePairs, true);
 		}
 
@@ -1258,7 +1257,7 @@ class RulesPropertyEditor extends PropertySheetEntry {
 		readonly targetVersion: Adaptive.TargetVersion,
 		readonly collectionPropertyName: string,
 		readonly createCollectionItem: (trigger: string, event: string, type: string, actions: IActionParam[]) => any,
-		readonly triggers: string[] = Object.values(Adaptive.RuleTrigger).filter((r): r is string => typeof(r) === 'string'),
+		readonly triggers: string[] = Object.values(Adaptive.RuleTrigger).filter((r): r is string => typeof (r) === 'string'),
 		readonly triggerPropertyLabel: string = "Trigger",
 		readonly eventPropertyLabel: string = "Event",
 		readonly typePropertyLabel: string = "Type",
@@ -1393,6 +1392,12 @@ class NameValuePairPropertyEditor extends PropertySheetEntry {
 	}
 }
 
+export interface ILayoutUpdateRequestOptions {
+	reRender: boolean,
+	updateLayout: boolean,
+	updatePropertySheet: boolean
+};
+
 export abstract class DesignerPeer extends DraggableElement {
 	static readonly idProperty = new StringPropertyEditor(Adaptive.Versions.v1_0, "id", "Id");
 
@@ -1416,6 +1421,7 @@ export abstract class DesignerPeer extends DraggableElement {
 			this._inplaceEditor = null;
 
 			this._inplaceEditorOverlay.parentNode.removeChild(this._inplaceEditorOverlay);
+			this._inplaceEditorOverlay.remove();
 		}
 	}
 
@@ -1570,6 +1576,7 @@ export abstract class DesignerPeer extends DraggableElement {
 	onParentChanged: (sender: DesignerPeer) => void;
 	onSelectedChanged: (sender: DesignerPeer) => void;
 	onChanged: (sender: DesignerPeer, updatePropertySheet: boolean) => void;
+	onLayoutUpdateNeeded: (sender: DesignerPeer, options: ILayoutUpdateRequestOptions) => void;
 	onPeerRemoved: (sender: DesignerPeer) => void;
 	onPeerAdded: (sender: DesignerPeer, newPeer: DesignerPeer) => void;
 
@@ -1598,6 +1605,12 @@ export abstract class DesignerPeer extends DraggableElement {
 	changed(updatePropertySheet: boolean) {
 		if (this.onChanged) {
 			this.onChanged(this, updatePropertySheet);
+		}
+	}
+
+	layoutUpdateNeeded(options: ILayoutUpdateRequestOptions = { reRender: true, updateLayout: true, updatePropertySheet: true }) {
+		if (this.onLayoutUpdateNeeded) {
+			this.onLayoutUpdateNeeded(this, options);
 		}
 	}
 
@@ -1707,6 +1720,7 @@ export abstract class DesignerPeer extends DraggableElement {
 
 	removeElementsFromDesignerSurface(processChildren: boolean = false) {
 		this.renderedElement.parentNode.removeChild(this.renderedElement);
+		this.renderedElement.remove(); // TOOT CHECK
 
 		if (processChildren) {
 			for (var i = 0; i < this.getChildCount(); i++) {
@@ -2040,7 +2054,7 @@ export class CardElementPeer extends DesignerPeer {
 
 		}
 	});
-	
+
 	static readonly heightProperty = new HeightPropertyEditor(
 		Adaptive.Versions.v1_1,
 		"height",
@@ -2287,10 +2301,10 @@ export class CardElementPeer extends DesignerPeer {
 			CardElementPeer.horizontalAlignmentProperty,
 			CardElementPeer.heightProperty);
 
-			propertySheet.add(
-				PropertySheetCategory.RulesCategory,
-				CardElementPeer.rulesProperty
-				);
+		propertySheet.add(
+			PropertySheetCategory.RulesCategory,
+			CardElementPeer.rulesProperty
+		);
 
 		// add extensions
 		const peerTypeExtensions: any = this.registration;
@@ -3734,6 +3748,123 @@ export class RichTextBlockPeer extends TypedCardElementPeer<Adaptive.RichTextBlo
 			textRun.text = "New RichTextBlock";
 
 			this.cardElement.addInline(textRun);
+		}
+	}
+}
+
+export class CustomComponentPeer extends TypedCardElementPeer<Adaptive.CustomComponent> {
+	static readonly nameProperty = new StringPropertyEditor(Adaptive.Versions.v1_3, "name", "Component name", true);
+
+	protected internalAddCommands(context: DesignContext, commands: Array<PeerCommand>) {
+		super.internalAddCommands(context, commands);
+		commands.push(
+			new PeerCommand(
+				{
+					name: "Choose...",
+					alwaysShowName: true,
+					toolTip: "Select a component from the component library.",
+					execute: (command: PeerCommand, clickedElement: HTMLElement) => {
+						let dialog = new ComponentPickerDialog(GlobalSettings.screensServiceBaseUrl);
+						dialog.title = "Pick a component";
+						dialog.closeButton.caption = "Cancel";
+						dialog.width = "70%";
+						dialog.height = "80%";
+						dialog.onClose = (d) => {
+							if (dialog.selectedComponentName) {
+								this.cardElement.name = dialog.selectedComponentName;
+							}
+						};
+						dialog.open();
+					}
+				})
+		);
+	}
+
+	constructor(
+		parent: DesignerPeer,
+		designerSurface: CardDesignerSurface,
+		registration: DesignerPeerRegistrationBase,
+		cardElement: Adaptive.CustomComponent) {
+		super(parent, designerSurface, registration, cardElement);
+
+		cardElement.onComponentDefinitionChanged = (sender: Adaptive.CustomComponent) => {
+			this.layoutUpdateNeeded(
+				{
+					reRender: false,
+					updateLayout: true,
+					updatePropertySheet: true
+				}
+			);
+		}
+	}
+
+	populatePropertySheet(propertySheet: PropertySheet, defaultCategory: string = PropertySheetCategory.DefaultCategory) {
+		super.populatePropertySheet(propertySheet, defaultCategory);
+
+		propertySheet.add(
+			defaultCategory,
+			CustomComponentPeer.nameProperty);
+
+		if (this.cardElement.componentDefinition) {
+			let allViews = Object.getOwnPropertyNames(this.cardElement.componentDefinition.views);
+
+			if (allViews.length > 0) {
+				let choices: IVersionedChoice[] = [];
+
+				for (let view of allViews) {
+					choices.push(
+						{
+							targetVersion: Adaptive.Versions.v1_3,
+							name: view,
+							value: view
+						}
+					);
+				}
+
+				propertySheet.add(
+					defaultCategory,
+					new ChoicePropertyEditor(
+						Adaptive.Versions.v1_3,
+						"view",
+						"View",
+						choices,
+						true));
+			}
+
+			if (this.cardElement.componentDefinition.schema) {
+				let schemaProperties: PropertySheetEntry[] = [];
+
+				if (this.cardElement.componentDefinition.schema.properties) {
+					for (let schemaProperty of this.cardElement.componentDefinition.schema.properties) {
+						if (schemaProperty instanceof Adaptive.StringSchemaProperty) {
+							schemaProperties.push(
+								new StringPropertyEditor(
+									Adaptive.Versions.v1_3,
+									schemaProperty.name,
+									schemaProperty.displayName ? schemaProperty.displayName : schemaProperty.name,
+									true,
+									schemaProperty.isMultiline));
+						}
+
+						if (schemaProperty instanceof Adaptive.NumberSchemaProperty) {
+							schemaProperties.push(
+								new NumberPropertyEditor(
+									Adaptive.Versions.v1_3,
+									schemaProperty.name,
+									schemaProperty.displayName ? schemaProperty.displayName : schemaProperty.name));
+						}
+					}
+				}
+
+				if (schemaProperties.length > 0) {
+					let subPropertySheet = new PropertySheet(false);
+					subPropertySheet.add(defaultCategory, ...schemaProperties);
+
+					propertySheet.add(
+						defaultCategory,
+						new SubPropertySheetEntry(Adaptive.Versions.v1_3, this.cardElement.properties, subPropertySheet));
+				}
+			}
 		}
 	}
 }

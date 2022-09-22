@@ -9,6 +9,7 @@ export class GlobalSettings {
     static showTargetVersionMismatchWarning: boolean = true;
     static showLanguagePicker: boolean = true;
     static showDialogPicker: boolean = true;
+	static screensServiceBaseUrl: string = "https://dev.pim.asseco.rs/alpha/screens";
 }
 
 export var SupportedTargetVersions: Adaptive.Version[] = [

@@ -1,0 +1,50 @@
+{
+	"id": "asee-link",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"TargetType": {
+			"classType": "Enum",
+			"type": "TargetType",
+			"values": [
+				"_blank",
+				"_self",
+				"_parent",
+				"_top"
+			]
+		},
+		"AseeLink": {
+			"description": "Allows a user to display link with full style customization.",
+			"type": "object",
+			"extends": "Element",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Unique identifier for the value. Used to identify collected input when the Submit action is performed.",
+					"version": "0.1"
+				},
+				"href": {
+					"type": "string",
+					"description": "Reference to bind to text of the link."
+				},
+				"target": {
+					"type": "TargetType",
+					"description": "The way of opening link."
+				},
+				"text": {
+					"type": "string",
+					"description": "Text to display. Markdown is not supported."
+				},
+				"containerStyle": {
+					"type": "object",
+					"description": "Style of the link container in css format."
+				},
+				"componentStyle": {
+					"type": "object",
+					"description": "Style of the link component in css format."
+				}
+			}
+		}
+	}
+}

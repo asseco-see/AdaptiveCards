@@ -1,5 +1,6 @@
 - Cards:
   - AdaptiveCard
+  - AdaptiveComponent
 - Card Elements:
   - TextBlock
   - Image
@@ -15,6 +16,7 @@
   - FactSet
   - Fact
   - ImageSet
+  - Component
 - Actions:
   - Action.OpenUrl
   - Action.Submit

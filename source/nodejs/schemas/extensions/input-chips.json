@@ -1,0 +1,88 @@
+{
+	"id": "chip-input",
+	"version": "0.1",
+	"elementPrefix": "aseeco",
+	"propertyPrefix": "",
+	"supports": {
+		"javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+	},
+	"contributes": {
+		"definitions": {
+			"Chip": {
+				"classType": "Class",
+				"type": "Chip",
+				"description": "Describes a chip for use in a ChipSet.",
+				"properties": {
+					"type": {
+						"type": "string",
+						"description": "Must be `Chip`"
+					},
+					"id": {
+						"type": "string",
+						"description": "Unique identifier for chip.",
+						"version": "0.1",
+						"required": true
+					},
+					"name": {
+						"type": "string",
+						"description": "Chip name.",
+						"version": "0.1",
+						"required": true
+					},
+					"selected": {
+						"type": "boolean",
+						"description": "Whether or not the chip is selected. Default value is false",
+						"version": "0.1",
+						"required": true
+					}
+				}
+			},
+			"Input.Chips": {
+				"description": "Allows a user to input a Chip.",
+				"extends": "Input",
+				"properties": {
+					"type": {
+						"type": "string",
+						"description": "Must be `Input.Chips`"
+					},
+					"chips": {
+						"type": "Chip[]",
+						"description": "`Chip` options.",
+						"version": "0.1",
+						"required": true
+					},
+					"value": {
+						"type": "string",
+						"description": "The initial choice (or set of chips) that should be selected. For multi-select, specify a comma-separated string of values.",
+						"version": "0.1"
+					},
+					"placeholder": {
+						"type": "string",
+						"description": "Description of the input desired. Only visible when no selection has been made, the `style` is `compact` and `isMultiSelect` is `false`",
+						"version": "0.1"
+					},
+					"color": {
+						"type": "string",
+						"description": "Material color palette of chip. Initial is 'primary'.",
+						"version": "0.1"
+					},
+					"selectable": {
+						"type": "boolean",
+						"description": "Whether or not chips are selectable. Default is true.",
+						"version": "0.1"
+					},
+					"removable": {
+						"type": "boolean",
+						"description": "Whether or not chips are removable. Default is true.",
+						"version": "0.1"
+					},
+					"addOnBlur": {
+						"type": "boolean",
+						"description": "Whether or not the chipEnd event will be emitted when the input is blurred. Default is true.",
+						"version": "0.1"
+					}
+				}
+			}
+		}
+	}
+}

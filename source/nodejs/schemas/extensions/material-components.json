@@ -1,0 +1,191 @@
+{
+	"id": "material",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"contributes": {
+		"definitions": {
+			"DialogStyle": {
+				"classType": "Enum",
+				"type": "DialogStyle",
+				"values": [
+					"default",
+					"filter"
+				]
+			},
+			"MaterialComponentAppearance": {
+				"classType": "Enum",
+				"type": "MaterialComponentAppearance",
+				"values": [
+					"outline",
+					"fill",
+					"standard"
+				]
+			},
+			"MaterialButtonType": {
+				"classType": "Enum",
+				"type": "MaterialButtonType",
+				"values": [
+					"basic",
+					"raised",
+					"stroked",
+					"flat",
+					"icon",
+					"fab",
+					"miniFab"
+				]
+			},
+			"Action.OpenUrl": {
+				"properties": {
+					"buttonType": {
+						"type": "MaterialButtonType",
+						"description": "Material button type of the action",
+						"version": "0.1"
+					},
+					"icon": {
+						"type": "string",
+						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
+						"version": "0.1"
+					}
+				}
+			},
+			"Action.ShowCard": {
+				"properties": {
+					"buttonType": {
+						"type": "MaterialButtonType",
+						"description": "Material button type of the action",
+						"version": "0.1"
+					},
+					"icon": {
+						"type": "string",
+						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
+						"version": "0.1"
+					}
+				}
+			},
+			"Action.Submit": {
+				"properties": {
+					"buttonType": {
+						"type": "MaterialButtonType",
+						"description": "Material button type of the action",
+						"version": "0.1"
+					},
+					"icon": {
+						"type": "string",
+						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
+						"version": "0.1"
+					}
+				}
+			},
+			"Action.ToggleVisibility": {
+				"properties": {
+					"buttonType": {
+						"type": "MaterialButtonType",
+						"description": "Material button type of the action",
+						"version": "0.1"
+					},
+					"icon": {
+						"type": "string",
+						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
+						"version": "0.1"
+					}
+				}
+			},
+			"Dialog": {
+				"extends": "Element",
+				"description": "Dialog is a pop-up container.",
+				"properties": {
+					"title": {
+						"type": "string",
+						"description": "The title of the Dialog.",
+						"version": "0.1"
+					},
+					"style": {
+						"type": "DialogStyle",
+						"description": "Specifies dialog style.",
+						"default": "default",
+						"version": "0.1"
+					},
+					"icon": {
+						"type": "string",
+						"description": "Specifies the material icon that will be shown for action. For more info checkout https://fonts.google.com/icons.",
+						"version": "0.1"
+					},
+					"closeButtonText": {
+						"type": "string",
+						"description": "Specifies the default close button text.",
+						"version": "0.1"
+					},
+					"hideCloseButton": {
+						"type": "boolean",
+						"description": "If `true`, hides the default close button.",
+						"version": "0.1",
+						"default": false
+					},
+					"items": {
+						"type": "Element[]",
+						"description": "The card elements to render inside the `Dialog`.",
+						"required": true
+					},
+					"actions": {
+						"description": "The Actions to show in the dialogs's action bar.",
+						"type": "Action[]"
+					},
+					"minHeight": {
+						"type": "string",
+						"description": "Specifies the minimum height of the dialog in percentage or pixels, like `\"60%\"`.",
+						"version": "0.1",
+						"examples": [
+							"60%"
+						]
+					},
+					"minWidth": {
+						"type": "string",
+						"description": "Specifies the minimum width of the dialog in percentage or pixels, like `\"60%\"`.",
+						"version": "0.1",
+						"examples": [
+							"60%"
+						]
+					},
+					"maxHeight": {
+						"type": "string",
+						"description": "Specifies the maximum height of the dialog in percentage or pixels, like `\"60%\"`.",
+						"version": "0.1",
+						"examples": [
+							"60%"
+						]
+					},
+					"maxWidth": {
+						"type": "string",
+						"description": "Specifies the maximum width of the dialog in percentage or pixels, like `\"60%\"`.",
+						"version": "0.1",
+						"examples": [
+							"60%"
+						]
+					}
+				}
+			}
+		}
+	},
+	"hostConfig": {
+		"properties": {
+			"appearance": {
+				"type": "MaterialComponentAppearance",
+				"description": "Appearance type of the material component",
+				"version": "0.1",
+				"default": "outline"
+			},
+			"buttonType": {
+				"type": "MaterialButtonType",
+				"description": "Default material button type of all actions",
+				"version": "0.1",
+				"default": "raised"
+			},
+			"dialogs": {
+				"type": "MaterialDialogConfig",
+				"description": "Material dialogs configuration.",
+				"version": "0.1"
+			}
+		}
+	}
+}

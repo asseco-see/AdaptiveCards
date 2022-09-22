@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Adaptive from "@asseco/adaptivecards";
@@ -6,7 +5,6 @@ import { Constants } from "adaptivecards-controls";
 import { DraggableElement } from "./draggable-element";
 import { IPoint } from "./miscellaneous";
 import * as DesignerPeers from "./designer-peers";
-import * as ACData from "adaptivecards-templating";
 import * as Shared from "./shared";
 import { AngularContainer, HostContainer } from "./containers";
 import { FieldDefinition } from "./data";
@@ -47,6 +45,7 @@ export class DesignerPeerCategory {
 	static Elements = "Elements";
 	static Inputs = "Inputs";
 	static Actions = "Actions";
+	static Other = "Other";
 }
 
 export abstract class DesignerPeerRegistry<TSource, TPeer> {
@@ -316,6 +315,7 @@ export class CardElementPeerRegistry extends DesignerPeerRegistry<CardElementTyp
 		this.registerPeer(Adaptive.ToggleInput, DesignerPeers.ToggleInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputToggle");
 		this.registerPeer(Adaptive.NumberInput, DesignerPeers.NumberInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputNumber");
 		this.registerPeer(Adaptive.ChoiceSetInput, DesignerPeers.ChoiceSetInputPeer, DesignerPeerCategory.Inputs, "acd-icon-inputChoiceSet");
+		this.registerPeer(Adaptive.CustomComponent, DesignerPeers.CustomComponentPeer, DesignerPeerCategory.Other, "acd-icon-container");
 		this.registerPeer(Adaptive.DataSet, DesignerPeers.DataSetPeer, null, "acd-icon-inputChoiceSet");
 		// this.registerPeer(Adaptive.DataSource, DesignerPeers.DataSourcePeer, null, "acd-icon-inputChoiceSet");
 		this.registerPeer(Adaptive.DataSourceRest, DesignerPeers.DataSourceRestPeer, null, "acd-icon-inputChoiceSet");
@@ -480,10 +480,24 @@ export class CardDesignerSurface {
 	}
 
 	private peerChanged(peer: DesignerPeers.DesignerPeer, updatePropertySheet: boolean) {
-		this.renderCard()
+		this.renderCard();
 		this.updateLayout();
 
 		if (updatePropertySheet && this.onSelectedPeerChanged) {
+			this.onSelectedPeerChanged(this._selectedPeer);
+		}
+	}
+
+	private peerLayoutUpdateNeeded(peer: DesignerPeers.DesignerPeer, options: DesignerPeers.ILayoutUpdateRequestOptions) {
+		if (options.reRender) {
+			this.renderCard();
+		}
+
+		if (options.reRender || options.updateLayout) {
+			this.updateLayout();
+		}
+
+		if (options.updatePropertySheet && this.onSelectedPeerChanged) {
 			this.onSelectedPeerChanged(this._selectedPeer);
 		}
 	}
@@ -514,9 +528,9 @@ export class CardDesignerSurface {
 
 			if (Shared.GlobalSettings.enableDataBindingSupport) {
 				try {
-					let template = new ACData.Template(inputPayload);
+					let template = new Adaptive.Template(inputPayload);
 
-					let evaluationContext: ACData.IEvaluationContext;
+					let evaluationContext: Adaptive.IEvaluationContext;
 
 					if (this.context.bindingPreviewMode === BindingPreviewMode.SampleData) {
 						evaluationContext = { $root: this.context.sampleData };
@@ -551,14 +565,14 @@ export class CardDesignerSurface {
 
 			this.onCardValidated(allValidationEvents);
 		}
-
+		// BORO CardtoRender
 		if (this.context.hostContainer instanceof AngularContainer && this.isPreviewMode) {
 			let asCard = document.createElement("div");
 			const card = this.card.toJSON(this._serializationContext);
 			if (card.dataset) {
 				delete card.dataset;
 			}
-			let template = new ACData.Template(card);
+			let template = new Adaptive.Template(card);
 			let context = { $root: this.context.sampleData };
 			let definition = template.expand(context);
 
@@ -646,6 +660,47 @@ export class CardDesignerSurface {
 			}
 			this._cardHost.appendChild(renderedCard);
 		}
+
+		// if (this.isPreviewMode) {
+		// 	cardToRender.onExecuteAction = (action: Adaptive.Action) => {
+		// 		let message: string = "Action executed\n";
+		// 		message += "    Title: " + action.title + "\n";
+
+		// 		if (action instanceof Adaptive.OpenUrlAction) {
+		// 			message += "    Type: OpenUrl\n";
+		// 			message += "    Url: " + action.url + "\n";
+		// 		}
+		// 		else if (action instanceof Adaptive.SubmitAction) {
+		// 			message += "    Type: Submit";
+		// 			message += "    Data: " + JSON.stringify(action.data);
+		// 		}
+		// 		else if (action instanceof Adaptive.HttpAction) {
+		// 			message += "    Type: Http\n";
+		// 			message += "    Url: " + action.url + "\n";
+		// 			message += "    Method: " + action.method + "\n";
+		// 			message += "    Headers:\n";
+
+		// 			for (let header of action.headers) {
+		// 				message += "        " + header.name + ": " + header.value + "\n";
+		// 			}
+
+		// 			message += "    Body: " + action.body + "\n";
+		// 		}
+		// 		else {
+		// 			message += "    Type: <unknown>";
+		// 		}
+
+		// 		alert(message);
+		// 	};
+		// }
+
+		// let renderedCard = cardToRender.render();
+
+		// if (this.fixedHeightCard) {
+		// 	renderedCard.style.height = "100%";
+
+		// }
+		// this._cardHost.appendChild(renderedCard);
 	}
 
 	private addPeer(peer: DesignerPeers.DesignerPeer) {
@@ -664,6 +719,7 @@ export class CardDesignerSurface {
 				}
 			};
 			peer.onChanged = (sender: DesignerPeers.DesignerPeer, updatePropertySheet: boolean) => { this.peerChanged(sender, updatePropertySheet); };
+			peer.onLayoutUpdateNeeded = (sender: DesignerPeers.DesignerPeer, options: DesignerPeers.ILayoutUpdateRequestOptions) => { this.peerLayoutUpdateNeeded(sender, options); };
 			peer.onPeerRemoved = (sender: DesignerPeers.DesignerPeer) => { this.peerRemoved(sender); };
 			peer.onPeerAdded = (sender: DesignerPeers.DesignerPeer, newPeer: DesignerPeers.DesignerPeer) => {
 				this.addPeer(newPeer);
@@ -885,13 +941,13 @@ export class CardDesignerSurface {
 		this._card.onInlineCardExpanded = (action: Adaptive.ShowCardAction, isExpanded: boolean) => { this.inlineCardExpanded(action, isExpanded); };
 		this._card.onPreProcessPropertyValue = (sender: Adaptive.CardObject, property: Adaptive.PropertyDefinition, value: any) => {
 			if (Shared.GlobalSettings.enableDataBindingSupport && typeof value === "string" && this.context.sampleData && this.context.bindingPreviewMode !== BindingPreviewMode.NoPreview) {
-				let expression = ACData.Template.parseInterpolatedString(value);
+				let expression = Adaptive.parseInterpolatedString(value);
 
 				if (typeof expression === "string") {
 					return expression;
 				}
 				else {
-					let evaluationContext: ACData.IEvaluationContext;
+					let evaluationContext: Adaptive.IEvaluationContext;
 
 					if (this.context.bindingPreviewMode === BindingPreviewMode.SampleData) {
 						evaluationContext = { $root: this.context.sampleData };
@@ -900,7 +956,7 @@ export class CardDesignerSurface {
 						evaluationContext = { $root: this.context.dataStructure.dataType.generateSampleData() };
 					}
 
-					let evaluationResult = ACData.Template.tryEvaluateExpression(expression, evaluationContext, true);
+					let evaluationResult = Adaptive.tryEvaluateExpression(expression, evaluationContext, true);
 
 					return typeof evaluationResult.value === "string" ? evaluationResult.value : value;
 				}
@@ -1105,7 +1161,7 @@ export class CardDesignerSurface {
 			this.draggedPeer.addElementsToDesignerSurface(this._designerSurface, true);
 
 			this._dropTarget.renderedElement.classList.remove("dragover");
-
+			// BORO
 			this._dragVisual?.parentNode.removeChild(this._dragVisual);
 			this._dragVisual = undefined;
 

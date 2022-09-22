@@ -1,0 +1,29 @@
+{
+	"$schema": "https://raw.githubusercontent.com/microsoft/AdaptiveCards/6f39aedce45864ae1067ed44a5551dc973790bb5/source/nodejs/typed-schema/schema/lib/Type.json",
+	"extends": "Element",
+	"description": "Reference to an Adaptive Component.",
+	"properties": {
+		"id":{
+			"type": "string",
+			"description": "A unique identifier associated with the item."
+		},
+		"name": {
+		  "description": "The name of the Component to load from the local or remote component registry. The recommended format is `[DOMAIN]/[COMPONENT-NAME]`, e.g., `graph.microsoft.com/file`",
+		  "type": "string",
+		  "required": true
+		},
+		"view": {
+		  "description": "The desired view for the component, first match wins.",
+		  "type": "string[]"
+		},
+		"properties": {
+		  "description": "Passed directly to the component template",
+		  "type": "any"
+		},
+		"isInput": {
+			"type": "boolean",
+			"description": "If `true` all inputs in the component will be set as property in form of the root card."
+		}	
+	}
+}
+  
