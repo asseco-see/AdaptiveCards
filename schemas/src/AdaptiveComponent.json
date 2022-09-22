@@ -17,7 +17,8 @@
 		},
 		"views": {
 			"type": "any",
-			"description": "The card elements to show in the primary card region."
+			"description": "The card elements to show in the primary card region.",
+			"required": true
 		},
 		"$schema": {
 			"type": "uri",
