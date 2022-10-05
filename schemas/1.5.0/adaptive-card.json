@@ -305,7 +305,7 @@
       "additionalProperties": false,
       "required": [
         "name",
-		"views"
+        "views"
       ]
     },
     "AdaptiveComponentSchema": {
@@ -746,6 +746,47 @@
       "required": [
         "facts"
       ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/Extendable.Element"
+        }
+      ]
+    },
+    "Icon": {
+      "description": "Displays an icon",
+      "properties": {
+        "type": {
+          "enum": [
+            "Icon"
+          ],
+          "description": "Must be `Icon`"
+        },
+        "label": {
+          "type": "string",
+          "description": "Icon label."
+        },
+        "name": {
+          "type": "string",
+          "description": "Icon name"
+        },
+        "color": {
+          "$ref": "#/definitions/IconColors",
+          "description": "Predefined set of icon colors."
+        },
+        "horizontalAlignment": {
+          "$ref": "#/definitions/HorizontalAlignment",
+          "description": "Controls how this element is horizontally positioned within its parent."
+        },
+        "fallback": {},
+        "height": {},
+        "separator": {},
+        "spacing": {},
+        "id": {},
+        "isVisible": {},
+        "requires": {}
+      },
+      "type": "object",
+      "additionalProperties": false,
       "allOf": [
         {
           "$ref": "#/definitions/Extendable.Element"
@@ -1801,6 +1842,20 @@
         }
       ]
     },
+    "IconColors": {
+      "anyOf": [
+        {
+          "enum": [
+            "primary",
+            "accent",
+            "warn"
+          ]
+        },
+        {
+          "pattern": "^([p|P][r|R][i|I][m|M][a|A][r|R][y|Y])|([a|A][c|C][c|C][e|E][n|N][t|T])|([w|W][a|A][r|R][n|N])$"
+        }
+      ]
+    },
     "ImageFillMode": {
       "anyOf": [
         {
@@ -2043,6 +2098,16 @@
           "allOf": [
             {
               "$ref": "#/definitions/FactSet"
+            }
+          ]
+        },
+        {
+          "required": [
+            "type"
+          ],
+          "allOf": [
+            {
+              "$ref": "#/definitions/Icon"
             }
           ]
         },
@@ -2304,6 +2369,16 @@
           ],
           "allOf": [
             {
+              "$ref": "#/definitions/Icon"
+            }
+          ]
+        },
+        {
+          "required": [
+            "type"
+          ],
+          "allOf": [
+            {
               "$ref": "#/definitions/Image"
             }
           ]
@@ -2479,6 +2554,16 @@
           "allOf": [
             {
               "$ref": "#/definitions/FactSet"
+            }
+          ]
+        },
+        {
+          "required": [
+            "type"
+          ],
+          "allOf": [
+            {
+              "$ref": "#/definitions/Icon"
             }
           ]
         },
