@@ -9,7 +9,7 @@
 		},
 		"name": {
 			"type": "string",
-			"description": "Icon name"
+			"description": "Icon name."
 		},
 		"color": {
 			"type": "IconColors",
@@ -18,6 +18,10 @@
 		"horizontalAlignment": {
 			"type": "HorizontalAlignment",
 			"description": "Controls how this element is horizontally positioned within its parent."
+		},
+		"style": {
+			"type": "ActionStyle",
+			"description": "Controls the style of icon."
 		}
 	}
 }

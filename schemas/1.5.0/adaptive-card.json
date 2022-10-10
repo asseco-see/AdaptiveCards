@@ -767,7 +767,7 @@
         },
         "name": {
           "type": "string",
-          "description": "Icon name"
+          "description": "Icon name."
         },
         "color": {
           "$ref": "#/definitions/IconColors",
@@ -776,6 +776,10 @@
         "horizontalAlignment": {
           "$ref": "#/definitions/HorizontalAlignment",
           "description": "Controls how this element is horizontally positioned within its parent."
+        },
+        "style": {
+          "$ref": "#/definitions/ActionStyle",
+          "description": "Controls the style of icon."
         },
         "fallback": {},
         "height": {},
