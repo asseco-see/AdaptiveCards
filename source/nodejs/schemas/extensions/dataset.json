@@ -19,6 +19,15 @@
 					}
 				}
 			},
+			"AdaptiveComponent": {
+				"properties": {
+					"dataset": {
+						"type": "DataSet",
+						"required": false,
+						"description": "DataSet for component"
+					}
+				}
+			},
 			"ParamType": {
 				"classType": "Enum",
 				"type": "ParamType",
