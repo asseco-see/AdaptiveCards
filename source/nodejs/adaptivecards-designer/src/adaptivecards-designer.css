@@ -569,7 +569,9 @@
 .acd-icon-customPaletteItem::before {
     content: "\ECAA";
 }
-
+.acd-icon-chips::before {
+    content: "\F261";
+}
 /*
     Side panes
 */
