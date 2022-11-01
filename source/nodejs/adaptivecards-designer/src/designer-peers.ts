@@ -480,7 +480,8 @@ export class ContainerStylePropertyEditor extends ChoicePropertyEditor {
 				{ targetVersion: Adaptive.Versions.v1_2, name: "Accent", value: "accent" },
 				{ targetVersion: Adaptive.Versions.v1_2, name: "Good", value: "good" },
 				{ targetVersion: Adaptive.Versions.v1_2, name: "Attention", value: "attention" },
-				{ targetVersion: Adaptive.Versions.v1_2, name: "Warning", value: "warning" }
+				{ targetVersion: Adaptive.Versions.v1_2, name: "Warning", value: "warning" },
+				{ targetVersion: Adaptive.Versions.v1_4, name: "Card", value: "card" }
 			]);
 	}
 }
@@ -667,6 +668,14 @@ export class EnumPropertyEditor extends SingleInputPropertyEditor {
 interface INameValuePair {
 	name: string;
 	value: string;
+}
+
+interface IChipPair {
+	name: string;
+	selected: string;
+	style: string;
+	icon: string;
+	avatarUrl: string;
 }
 
 interface IParamPair {
@@ -1269,6 +1278,137 @@ class RulesPropertyEditor extends PropertySheetEntry {
 	}
 }
 
+export class ChipPairPropertyEditor extends PropertySheetEntry {
+	private collectionChanged(context: PropertySheetContext, chipPairs: IChipPair[], refreshPropertySheet: boolean) {
+		context.target[this.collectionPropertyName] = [];
+
+		for (let chip of chipPairs) {
+			let item = this.createCollectionItem(chip.name, chip.selected, chip.style, chip.icon, chip.avatarUrl);
+
+			context.target[this.collectionPropertyName].push(item);
+		}
+
+		context.peer.changed(refreshPropertySheet);
+	}
+
+	render(context: PropertySheetContext): Adaptive.CardElement {
+		let result = new Adaptive.Container();
+
+		let collection = context.target[this.collectionPropertyName];
+		if (!Array.isArray(collection)) {
+			throw new Error("The " + this.collectionPropertyName + " property on " + context.peer.getCardObject().getJsonTypeName() + " either doesn't exist or isn't an array.")
+		}
+
+		let chipPairs: IChipPair[] = [];
+
+		for (let pair of collection) {
+			chipPairs.push(
+				{
+					name: pair[this.namePropertyName],
+					selected: pair[this.selectedPropertyName],
+					style: pair[this.stylePropertyName],
+					icon: pair[this.iconPropertyName],
+					avatarUrl: pair[this.avatarUrlPropertyName]
+				}
+			)
+		}
+
+		if (chipPairs.length == 0) {
+			let messageTextBlock = new Adaptive.TextBlock();
+			messageTextBlock.spacing = Adaptive.Spacing.Small;
+			messageTextBlock.text = this.messageIfEmpty;
+
+			result.addItem(messageTextBlock);
+		}
+		else {
+			for (let i = 0; i < chipPairs.length; i++) {
+				let textInput = new Adaptive.TextInput();
+				textInput.placeholder = this.namePropertyLabel;
+				textInput.defaultValue = chipPairs[i].name;
+				textInput.onValueChanged = (sender) => {
+					chipPairs[i].name = sender.value;
+
+					this.collectionChanged(context, chipPairs, false);
+				};
+
+				let nameColumn = new Adaptive.Column("stretch");
+				nameColumn.addItem(textInput);
+
+				textInput = new Adaptive.TextInput();
+				textInput.defaultValue = chipPairs[i].name;
+				textInput.onValueChanged = (sender) => {
+					chipPairs[i].name = sender.value;
+
+					this.collectionChanged(context, chipPairs, false);
+				};
+
+				let valueColumn = new Adaptive.Column("stretch");
+				valueColumn.spacing = Adaptive.Spacing.Small;
+				valueColumn.addItem(textInput);
+
+				let removeAction = new Adaptive.SubmitAction();
+				removeAction.title = "X";
+				removeAction.onExecute = (sender) => {
+					chipPairs.splice(i, 1);
+
+					this.collectionChanged(context, chipPairs, true);
+				}
+
+				let actionSet = new Adaptive.ActionSet();
+				actionSet.addAction(removeAction);
+
+				let removeColumn = new Adaptive.Column("auto");
+				removeColumn.spacing = Adaptive.Spacing.Small;
+				removeColumn.addItem(actionSet);
+
+				let columnSet = new Adaptive.ColumnSet();
+				columnSet.spacing = Adaptive.Spacing.Small;
+				columnSet.addColumn(nameColumn);
+				columnSet.addColumn(valueColumn);
+				columnSet.addColumn(removeColumn);
+
+				result.addItem(columnSet);
+			}
+		}
+
+		let addAction = new Adaptive.SubmitAction();
+		addAction.title = this.addButtonTitle;
+		addAction.onExecute = (sender) => {
+			chipPairs.push({ name: "", selected: "true", style: "default", icon: "", avatarUrl: "" });
+
+			this.collectionChanged(context, chipPairs, true);
+		}
+
+		let actionSet = new Adaptive.ActionSet();
+		actionSet.spacing = Adaptive.Spacing.Small;
+		actionSet.addAction(addAction);
+
+		result.addItem(actionSet);
+
+		return result;
+	}
+
+	constructor(
+		readonly targetVersion: Adaptive.TargetVersion,
+		readonly collectionPropertyName: string,
+		readonly namePropertyName: string,
+		readonly selectedPropertyName: string,
+		readonly stylePropertyName: string,
+		readonly iconPropertyName: string,
+		readonly avatarUrlPropertyName: string,
+		readonly createCollectionItem: (name: string, selected: string, style: string, icon: string, avatarUrl: string) => any,
+		readonly namePropertyLabel: string = "Name",
+		readonly selectedPropertyLabel: string = "Selected",
+		readonly stylePropertyLabel: string = "Style",
+		readonly iconPropertyLabel: string = "Icon",
+		readonly avatarUrlPropertyLabel: string = "AvatarUrl",
+		readonly addButtonTitle: string = "Add",
+		readonly messageIfEmpty: string = "This collection is empty") {
+		super(targetVersion);
+	}
+}
+
+
 export class NameValuePairPropertyEditor extends PropertySheetEntry {
 	private collectionChanged(context: PropertySheetContext, nameValuePairs: INameValuePair[], refreshPropertySheet: boolean) {
 		context.target[this.collectionPropertyName] = [];
@@ -1286,7 +1426,6 @@ export class NameValuePairPropertyEditor extends PropertySheetEntry {
 		let result = new Adaptive.Container();
 
 		let collection = context.target[this.collectionPropertyName];
-
 		if (!Array.isArray(collection)) {
 			throw new Error("The " + this.collectionPropertyName + " property on " + context.peer.getCardObject().getJsonTypeName() + " either doesn't exist or isn't an array.")
 		}
