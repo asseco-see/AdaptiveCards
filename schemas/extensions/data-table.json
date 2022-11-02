@@ -12,7 +12,8 @@
 					"text",
 					"date",
 					"money",
-					"image"
+					"image",
+					"url"
 				]
 			},
 			"DataTableColumn": {
