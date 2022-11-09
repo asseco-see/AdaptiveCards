@@ -569,7 +569,12 @@
 .acd-icon-customPaletteItem::before {
     content: "\ECAA";
 }
-
+.acd-icon-chip-input::before {
+    content: "\F444";
+}
+.acd-icon-chip-list::before {
+    content: "\F2AC";
+}
 /*
     Side panes
 */

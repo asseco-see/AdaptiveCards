@@ -1,0 +1,51 @@
+{
+	"id": "icon",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"supports": {
+		"javascript": "https://npmjs.com/package/adaptivecards-icon"
+	},
+	"contributes": {
+		"definitions": {
+			"IconColors": {
+				"classType": "Enum",
+				"type": "IconColors",
+				"values": [
+					"primary",
+					"accent",
+					"warn"
+				]
+			},
+			"Icon": {
+				"description": "Displays an icon",
+				"extends": "Element",
+				"properties": {
+					"label": {
+						"type": "string",
+						"description": "Icon label."
+					},
+					"name": {
+						"type": "string",
+						"description": "Icon name."
+					},
+					"color": {
+						"type": "IconColors",
+						"description": "Predefined set of icon colors."
+					},
+					"horizontalAlignment": {
+						"type": "HorizontalAlignment",
+						"description": "Controls how this element is horizontally positioned within its parent."
+					},
+					"style": {
+						"type": "ActionStyle",
+						"description": "Controls the style of icon.",
+						"version": "0.1",
+						"default": "default",
+						"required": false
+					}
+				}
+			}
+		}
+	}
+}

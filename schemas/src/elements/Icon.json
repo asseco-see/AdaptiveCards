@@ -1,0 +1,27 @@
+{
+	"$schema": "https://raw.githubusercontent.com/microsoft/AdaptiveCards/6f39aedce45864ae1067ed44a5551dc973790bb5/source/nodejs/typed-schema/schema/lib/Type.json",
+	"extends": "Element",
+	"description": "Displays an icon",
+	"properties": {
+		"label": {
+			"type": "string",
+			"description": "Icon label."
+		},
+		"name": {
+			"type": "string",
+			"description": "Icon name."
+		},
+		"color": {
+			"type": "IconColors",
+      		"description": "Predefined set of icon colors."
+		},
+		"horizontalAlignment": {
+			"type": "HorizontalAlignment",
+			"description": "Controls how this element is horizontally positioned within its parent."
+		},
+		"style": {
+			"type": "ActionStyle",
+			"description": "Controls the style of icon."
+		}
+	}
+}

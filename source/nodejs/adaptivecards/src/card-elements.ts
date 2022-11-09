@@ -7801,4 +7801,5 @@ export enum DataTableColumnFormat {
 	Date,
 	Money,
 	Image,
+	Url
 }
