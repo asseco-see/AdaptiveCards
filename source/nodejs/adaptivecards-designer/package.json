@@ -44,7 +44,7 @@
 		"adaptive-expressions": "^4.16.0",
 		"adaptivecards": "^2.1.0",
 		"adaptivecards-templating": "^2.0.0",
-		"monaco-editor": "^0.20.0"
+		"monaco-editor": "^0.26.0"
 	},
 	"devDependencies": {
 		"@mcler/webpack-concat-plugin": "^4.1.5",
