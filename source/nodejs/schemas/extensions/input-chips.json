@@ -1,5 +1,5 @@
 {
-	"id": "chip-input",
+	"id": "chip-input-chip-list",
 	"version": "0.1",
 	"elementPrefix": "aseeco",
 	"propertyPrefix": "",
@@ -8,6 +8,15 @@
 	},
 	"contributes": {
 		"definitions": {
+			"ChipStyle": {
+				"classType": "Enum",
+				"type": "ChipStyle",
+				"values": [
+					"default",
+					"positive",
+					"destructive"
+				]
+			},
 			"Chip": {
 				"classType": "Class",
 				"type": "Chip",
@@ -31,19 +40,31 @@
 					},
 					"selected": {
 						"type": "boolean",
-						"description": "Whether or not the chip is selected. Default value is false",
+						"description": "Whether or not the chip is selected. Default value is true",
 						"version": "0.1",
 						"required": true
+					},
+					"icon": {
+						"type": "string",
+						"description": "Material icon name of icon that is added left side of Chip name",
+						"version": "0.1",
+						"required": false
+					},
+					"avatarUrl": {
+						"type": "boolean",
+						"description": "Url of the image that is added left side of Chip name",
+						"version": "0.1",
+						"required": false
 					}
 				}
 			},
-			"Input.Chips": {
+			"Input.Chip": {
 				"description": "Allows a user to input a Chip.",
 				"extends": "Input",
 				"properties": {
 					"type": {
 						"type": "string",
-						"description": "Must be `Input.Chips`"
+						"description": "Must be `Input.Chip`"
 					},
 					"chips": {
 						"type": "Chip[]",
@@ -61,24 +82,109 @@
 						"description": "Description of the input desired. Only visible when no selection has been made, the `style` is `compact` and `isMultiSelect` is `false`",
 						"version": "0.1"
 					},
-					"color": {
-						"type": "string",
-						"description": "Material color palette of chip. Initial is 'primary'.",
-						"version": "0.1"
+					"style": {
+						"type": "ChipStyle",
+						"description": "Material color palette of chip. Initial is 'default'.",
+						"version": "0.1",
+						"default": "default"
 					},
 					"selectable": {
 						"type": "boolean",
 						"description": "Whether or not chips are selectable. Default is true.",
-						"version": "0.1"
+						"version": "0.1",
+						"default": true
 					},
 					"removable": {
 						"type": "boolean",
 						"description": "Whether or not chips are removable. Default is true.",
+						"version": "0.1",
+						"default": true
+					},
+					"multiple": {
+						"type": "boolean",
+						"description": "Whether or not chips are multi selectable. Default is true.",
+						"version": "0.1",
+						"default": true
+					},
+					"readonly": {
+						"type": "boolean",
+						"description": "Whether or not input chips is readonly. Default is false.",
+						"version": "0.1",
+						"default": false
+					},
+					"icon": {
+						"type": "boolean",
+						"description": "Material icon name of icon that is added left side of Chip name. Added globally to all chips.",
+						"version": "0.1"
+					},
+					"avatarUrl": {
+						"type": "boolean",
+						"description": "Url of the image that is added left side of Chip name. Added globally to all chips.",
 						"version": "0.1"
 					},
 					"addOnBlur": {
 						"type": "boolean",
 						"description": "Whether or not the chipEnd event will be emitted when the input is blurred. Default is true.",
+						"version": "0.1"
+					}
+				}
+			},
+			"ChipList": {
+				"description": "Allows a user to preview a Chip list.",
+				"extends": "Element",
+				"properties": {
+					"type": {
+						"type": "string",
+						"description": "Must be `ChipList`"
+					},
+					"chips": {
+						"type": "Chip[]",
+						"description": "`Chip` options.",
+						"version": "0.1",
+						"required": true
+					},
+					"value": {
+						"type": "string",
+						"description": "The initial choice (or set of chips) that should be selected. For multi-select, specify a comma-separated string of values.",
+						"version": "0.1"
+					},
+					"placeholder": {
+						"type": "string",
+						"description": "Description of the input desired. Only visible when no selection has been made, the `style` is `compact` and `isMultiSelect` is `false`",
+						"version": "0.1"
+					},
+					"style": {
+						"type": "ChipStyle",
+						"description": "Material color palette of chip. Initial is 'default'.",
+						"version": "0.1",
+						"default": "default"
+					},
+					"selectable": {
+						"type": "boolean",
+						"description": "Whether or not chips are selectable. Default is true.",
+						"version": "0.1",
+						"default": true
+					},
+					"stackOriented": {
+						"type": "boolean",
+						"description": "Whether or not chips are oriented like a stack. Default is false.",
+						"version": "0.1",
+						"default": false
+					},
+					"multiple": {
+						"type": "boolean",
+						"description": "Whether or not chips are multi selectable. Default is true.",
+						"version": "0.1",
+						"default": true
+					},
+					"icon": {
+						"type": "boolean",
+						"description": "Material icon name of icon that is added left side of Chip name. Added globally to all chips.",
+						"version": "0.1"
+					},
+					"avatarUrl": {
+						"type": "boolean",
+						"description": "Url of the image that is added left side of Chip name. Added globally to all chips.",
 						"version": "0.1"
 					}
 				}

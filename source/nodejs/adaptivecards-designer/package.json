@@ -34,18 +34,18 @@
 		"release": "npm run build && webpack --mode=production && npm run dts",
 		"publish": "npm version $(head -n 1 ../../../.version) && npm publish --registry https://devops.see.asseco.com/DIGITAL/_packaging/Asseco/npm/registry/ --loglevel warn"
 	},
-	"dependencies": {
-		"@asseco/adaptive-ui-web": "11.2.0",
-		"@asseco/adaptive-ui-web-angular-elements": "11.2.0",
-		"adaptivecards-controls": "~0.9.0",
-		"clipboard": "^2.0.11"
-	},
 	"peerDependencies": {
 		"adaptive-expressions": "^4.16.0",
 		"adaptivecards": "^2.1.0",
 		"adaptivecards-templating": "^2.0.0",
+		"adaptivecards-controls": "^0.9.0",
+		"@asseco/adaptive-ui-web": "11.2.0",
+		"@asseco/adaptive-ui-web-angular-elements": "11.2.0",
+		"clipboard": "^2.0.11",
 		"monaco-editor": "^0.26.0",
-		"@mcler/webpack-concat-plugin": "^4.1.5",
+		"@mcler/webpack-concat-plugin": "^4.1.5"
+	},
+	"dependencies": {
 		"@types/js-yaml": "^4.0.5",
 		"@typescript-eslint/eslint-plugin": "^3.4.0",
 		"@typescript-eslint/parser": "^3.4.0",
