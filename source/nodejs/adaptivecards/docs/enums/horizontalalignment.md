@@ -1,29 +1,41 @@
-[Adaptive Cards Javascript SDK](../README.md) › [HorizontalAlignment](horizontalalignment.md)
+[Adaptive Cards Javascript SDK](../README.md) / HorizontalAlignment
 
 # Enumeration: HorizontalAlignment
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Center](horizontalalignment.md#center)
-* [Left](horizontalalignment.md#left)
-* [Right](horizontalalignment.md#right)
+- [Center](HorizontalAlignment.md#center)
+- [Left](HorizontalAlignment.md#left)
+- [Right](HorizontalAlignment.md#right)
 
-## Enumeration members
+## Enumeration Members
 
-###  Center
+### Center
 
-• **Center**:
+• **Center** = ``1``
 
-___
+#### Defined in
 
-###  Left
-
-• **Left**:
+[enums.ts:98](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L98)
 
 ___
 
-###  Right
+### Left
 
-• **Right**:
+• **Left** = ``0``
+
+#### Defined in
+
+[enums.ts:97](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L97)
+
+___
+
+### Right
+
+• **Right** = ``2``
+
+#### Defined in
+
+[enums.ts:99](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L99)

@@ -1,36 +1,52 @@
-[Adaptive Cards Javascript SDK](../README.md) › [FillMode](fillmode.md)
+[Adaptive Cards Javascript SDK](../README.md) / FillMode
 
 # Enumeration: FillMode
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Cover](fillmode.md#cover)
-* [Repeat](fillmode.md#repeat)
-* [RepeatHorizontally](fillmode.md#repeathorizontally)
-* [RepeatVertically](fillmode.md#repeatvertically)
+- [Cover](FillMode.md#cover)
+- [Repeat](FillMode.md#repeat)
+- [RepeatHorizontally](FillMode.md#repeathorizontally)
+- [RepeatVertically](FillMode.md#repeatvertically)
 
-## Enumeration members
+## Enumeration Members
 
-###  Cover
+### Cover
 
-• **Cover**:
+• **Cover** = ``0``
 
-___
+#### Defined in
 
-###  Repeat
-
-• **Repeat**:
+[enums.ts:131](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L131)
 
 ___
 
-###  RepeatHorizontally
+### Repeat
 
-• **RepeatHorizontally**:
+• **Repeat** = ``3``
+
+#### Defined in
+
+[enums.ts:134](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L134)
 
 ___
 
-###  RepeatVertically
+### RepeatHorizontally
 
-• **RepeatVertically**:
+• **RepeatHorizontally** = ``1``
+
+#### Defined in
+
+[enums.ts:132](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L132)
+
+___
+
+### RepeatVertically
+
+• **RepeatVertically** = ``2``
+
+#### Defined in
+
+[enums.ts:133](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L133)

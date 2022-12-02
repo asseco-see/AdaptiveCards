@@ -1,46 +1,66 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ValidationResults](validationresults.md)
+[Adaptive Cards Javascript SDK](../README.md) / ValidationResults
 
 # Class: ValidationResults
 
-## Hierarchy
+## Table of contents
 
-* **ValidationResults**
+### Constructors
 
-## Index
+- [constructor](ValidationResults.md#constructor)
 
 ### Properties
 
-* [allIds](validationresults.md#readonly-allids)
-* [validationEvents](validationresults.md#readonly-validationevents)
+- [allIds](ValidationResults.md#allids)
+- [validationEvents](ValidationResults.md#validationevents)
 
 ### Methods
 
-* [addFailure](validationresults.md#addfailure)
+- [addFailure](ValidationResults.md#addfailure)
+
+## Constructors
+
+### constructor
+
+• **new ValidationResults**()
 
 ## Properties
 
-### `Readonly` allIds
+### allIds
 
-• **allIds**: *[Dictionary](../README.md#dictionary)‹number›*
+• `Readonly` **allIds**: [`Dictionary`](../README.md#dictionary)<`number`\> = `{}`
+
+#### Defined in
+
+[card-object.ts:11](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-object.ts#L11)
 
 ___
 
-### `Readonly` validationEvents
+### validationEvents
 
-• **validationEvents**: *[IValidationEvent](../interfaces/ivalidationevent.md)[]* = []
+• `Readonly` **validationEvents**: [`IValidationEvent`](../interfaces/IValidationEvent.md)[] = `[]`
+
+#### Defined in
+
+[card-object.ts:12](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-object.ts#L12)
 
 ## Methods
 
-###  addFailure
+### addFailure
 
-▸ **addFailure**(`cardObject`: [CardObject](cardobject.md), `event`: [ValidationEvent](../enums/validationevent.md), `message`: string): *void*
+▸ **addFailure**(`cardObject`, `event`, `message`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`cardObject` | [CardObject](cardobject.md) |
-`event` | [ValidationEvent](../enums/validationevent.md) |
-`message` | string |
+| Name | Type |
+| :------ | :------ |
+| `cardObject` | [`CardObject`](CardObject.md) |
+| `event` | [`ValidationEvent`](../enums/ValidationEvent.md) |
+| `message` | `string` |
 
-**Returns:** *void*
+#### Returns
+
+`void`
+
+#### Defined in
+
+[card-object.ts:14](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-object.ts#L14)

@@ -1,314 +1,413 @@
-[Adaptive Cards Javascript SDK](../README.md) › [HostConfig](hostconfig.md)
+[Adaptive Cards Javascript SDK](../README.md) / HostConfig
 
 # Class: HostConfig
 
-## Hierarchy
-
-* **HostConfig**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](hostconfig.md#constructor)
+- [constructor](HostConfig.md#constructor)
 
 ### Properties
 
-* [actions](hostconfig.md#readonly-actions)
-* [adaptiveCard](hostconfig.md#readonly-adaptivecard)
-* [alwaysAllowBleed](hostconfig.md#alwaysallowbleed)
-* [choiceSetInputValueSeparator](hostconfig.md#choicesetinputvalueseparator)
-* [containerStyles](hostconfig.md#readonly-containerstyles)
-* [cssClassNamePrefix](hostconfig.md#optional-cssclassnameprefix)
-* [factSet](hostconfig.md#readonly-factset)
-* [fontTypes](hostconfig.md#optional-fonttypes)
-* [hostCapabilities](hostconfig.md#readonly-hostcapabilities)
-* [imageSet](hostconfig.md#readonly-imageset)
-* [inputs](hostconfig.md#readonly-inputs)
-* [lineHeights](hostconfig.md#optional-lineheights)
-* [media](hostconfig.md#readonly-media)
-* [supportsInteractivity](hostconfig.md#supportsinteractivity)
+- [actions](HostConfig.md#actions)
+- [adaptiveCard](HostConfig.md#adaptivecard)
+- [alwaysAllowBleed](HostConfig.md#alwaysallowbleed)
+- [choiceSetInputValueSeparator](HostConfig.md#choicesetinputvalueseparator)
+- [containerStyles](HostConfig.md#containerstyles)
+- [cssClassNamePrefix](HostConfig.md#cssclassnameprefix)
+- [factSet](HostConfig.md#factset)
+- [fontTypes](HostConfig.md#fonttypes)
+- [hostCapabilities](HostConfig.md#hostcapabilities)
+- [imageSet](HostConfig.md#imageset)
+- [imageSizes](HostConfig.md#imagesizes)
+- [inputs](HostConfig.md#inputs)
+- [lineHeights](HostConfig.md#lineheights)
+- [media](HostConfig.md#media)
+- [separator](HostConfig.md#separator)
+- [spacing](HostConfig.md#spacing)
+- [supportsInteractivity](HostConfig.md#supportsinteractivity)
 
 ### Accessors
 
-* [fontFamily](hostconfig.md#fontfamily)
-* [fontSizes](hostconfig.md#fontsizes)
-* [fontWeights](hostconfig.md#fontweights)
+- [fontFamily](HostConfig.md#fontfamily)
+- [fontSizes](HostConfig.md#fontsizes)
+- [fontWeights](HostConfig.md#fontweights)
 
 ### Methods
 
-* [getEffectiveSpacing](hostconfig.md#geteffectivespacing)
-* [getFontTypeDefinition](hostconfig.md#getfonttypedefinition)
-* [makeCssClassName](hostconfig.md#makecssclassname)
-* [makeCssClassNames](hostconfig.md#makecssclassnames)
-* [paddingDefinitionToSpacingDefinition](hostconfig.md#paddingdefinitiontospacingdefinition)
-
-### Object literals
-
-* [imageSizes](hostconfig.md#readonly-imagesizes)
-* [separator](hostconfig.md#readonly-separator)
-* [spacing](hostconfig.md#readonly-spacing)
+- [getEffectiveSpacing](HostConfig.md#geteffectivespacing)
+- [getFontTypeDefinition](HostConfig.md#getfonttypedefinition)
+- [makeCssClassName](HostConfig.md#makecssclassname)
+- [makeCssClassNames](HostConfig.md#makecssclassnames)
+- [paddingDefinitionToSpacingDefinition](HostConfig.md#paddingdefinitiontospacingdefinition)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new HostConfig**(`obj?`: any): *[HostConfig](hostconfig.md)*
+• **new HostConfig**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[HostConfig](hostconfig.md)*
+#### Defined in
+
+[host-config.ts:593](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L593)
 
 ## Properties
 
-### `Readonly` actions
+### actions
 
-• **actions**: *[ActionsConfig](actionsconfig.md)* = new ActionsConfig()
+• `Readonly` **actions**: [`ActionsConfig`](ActionsConfig.md)
 
-___
+#### Defined in
 
-### `Readonly` adaptiveCard
-
-• **adaptiveCard**: *[AdaptiveCardConfig](adaptivecardconfig.md)* = new AdaptiveCardConfig()
+[host-config.ts:584](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L584)
 
 ___
 
-###  alwaysAllowBleed
+### adaptiveCard
 
-• **alwaysAllowBleed**: *boolean* = false
+• `Readonly` **adaptiveCard**: [`AdaptiveCardConfig`](AdaptiveCardConfig.md)
 
-___
+#### Defined in
 
-###  choiceSetInputValueSeparator
-
-• **choiceSetInputValueSeparator**: *string* = ","
+[host-config.ts:585](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L585)
 
 ___
 
-### `Readonly` containerStyles
+### alwaysAllowBleed
 
-• **containerStyles**: *[ContainerStyleSet](containerstyleset.md)* = new ContainerStyleSet()
+• **alwaysAllowBleed**: `boolean` = `false`
 
-___
+#### Defined in
 
-### `Optional` cssClassNamePrefix
-
-• **cssClassNamePrefix**? : *undefined | string*
+[host-config.ts:591](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L591)
 
 ___
 
-### `Readonly` factSet
+### choiceSetInputValueSeparator
 
-• **factSet**: *[FactSetConfig](factsetconfig.md)* = new FactSetConfig()
+• **choiceSetInputValueSeparator**: `string` = `","`
 
-___
+#### Defined in
 
-### `Optional` fontTypes
-
-• **fontTypes**? : *[FontTypeSet](fonttypeset.md)*
+[host-config.ts:557](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L557)
 
 ___
 
-### `Readonly` hostCapabilities
+### containerStyles
 
-• **hostCapabilities**: *[HostCapabilities](hostcapabilities.md)‹›* = new HostCapabilities()
+• `Readonly` **containerStyles**: [`ContainerStyleSet`](ContainerStyleSet.md)
 
-___
+#### Defined in
 
-### `Readonly` imageSet
-
-• **imageSet**: *[ImageSetConfig](imagesetconfig.md)* = new ImageSetConfig()
+[host-config.ts:582](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L582)
 
 ___
 
-### `Readonly` inputs
+### cssClassNamePrefix
 
-• **inputs**: *[InputConfig](inputconfig.md)* = new InputConfig()
+• `Optional` **cssClassNamePrefix**: `string`
 
-___
+#### Defined in
 
-### `Optional` lineHeights
-
-• **lineHeights**? : *[ILineHeightDefinitions](../interfaces/ilineheightdefinitions.md)*
+[host-config.ts:590](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L590)
 
 ___
 
-### `Readonly` media
+### factSet
 
-• **media**: *[MediaConfig](mediaconfig.md)* = new MediaConfig()
+• `Readonly` **factSet**: [`FactSetConfig`](FactSetConfig.md)
+
+#### Defined in
+
+[host-config.ts:588](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L588)
 
 ___
 
-###  supportsInteractivity
+### fontTypes
 
-• **supportsInteractivity**: *boolean* = true
+• `Optional` **fontTypes**: [`FontTypeSet`](FontTypeSet.md)
+
+#### Defined in
+
+[host-config.ts:560](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L560)
+
+___
+
+### hostCapabilities
+
+• `Readonly` **hostCapabilities**: `HostCapabilities`
+
+#### Defined in
+
+[host-config.ts:553](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L553)
+
+___
+
+### imageSet
+
+• `Readonly` **imageSet**: [`ImageSetConfig`](ImageSetConfig.md)
+
+#### Defined in
+
+[host-config.ts:586](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L586)
+
+___
+
+### imageSizes
+
+• `Readonly` **imageSizes**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `large` | `number` |
+| `medium` | `number` |
+| `small` | `number` |
+
+#### Defined in
+
+[host-config.ts:576](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L576)
+
+___
+
+### inputs
+
+• `Readonly` **inputs**: [`InputConfig`](InputConfig.md)
+
+#### Defined in
+
+[host-config.ts:583](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L583)
+
+___
+
+### lineHeights
+
+• `Optional` **lineHeights**: [`ILineHeightDefinitions`](../interfaces/ILineHeightDefinitions.md)
+
+#### Defined in
+
+[host-config.ts:559](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L559)
+
+___
+
+### media
+
+• `Readonly` **media**: [`MediaConfig`](MediaConfig.md)
+
+#### Defined in
+
+[host-config.ts:587](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L587)
+
+___
+
+### separator
+
+• `Readonly` **separator**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `lineColor` | `string` |
+| `lineThickness` | `number` |
+
+#### Defined in
+
+[host-config.ts:571](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L571)
+
+___
+
+### spacing
+
+• `Readonly` **spacing**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `default` | `number` |
+| `extraLarge` | `number` |
+| `large` | `number` |
+| `medium` | `number` |
+| `padding` | `number` |
+| `small` | `number` |
+
+#### Defined in
+
+[host-config.ts:562](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L562)
+
+___
+
+### supportsInteractivity
+
+• **supportsInteractivity**: `boolean` = `true`
+
+#### Defined in
+
+[host-config.ts:558](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L558)
 
 ## Accessors
 
-###  fontFamily
+### fontFamily
 
-• **get fontFamily**(): *string | undefined*
+• `get` **fontFamily**(): `undefined` \| `string`
 
-**Returns:** *string | undefined*
+#### Returns
 
-• **set fontFamily**(`value`: string | undefined): *void*
+`undefined` \| `string`
 
-**Parameters:**
+#### Defined in
 
-Name | Type |
------- | ------ |
-`value` | string &#124; undefined |
+[host-config.ts:700](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L700)
 
-**Returns:** *void*
+• `set` **fontFamily**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `undefined` \| `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[host-config.ts:704](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L704)
 
 ___
 
-###  fontSizes
+### fontSizes
 
-• **get fontSizes**(): *[IFontSizeDefinitions](../interfaces/ifontsizedefinitions.md)*
+• `get` **fontSizes**(): [`IFontSizeDefinitions`](../interfaces/IFontSizeDefinitions.md)
 
-**Returns:** *[IFontSizeDefinitions](../interfaces/ifontsizedefinitions.md)*
+#### Returns
+
+[`IFontSizeDefinitions`](../interfaces/IFontSizeDefinitions.md)
+
+#### Defined in
+
+[host-config.ts:708](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L708)
 
 ___
 
-###  fontWeights
+### fontWeights
 
-• **get fontWeights**(): *[IFontWeightDefinitions](../interfaces/ifontweightdefinitions.md)*
+• `get` **fontWeights**(): [`IFontWeightDefinitions`](../interfaces/IFontWeightDefinitions.md)
 
-**Returns:** *[IFontWeightDefinitions](../interfaces/ifontweightdefinitions.md)*
+#### Returns
+
+[`IFontWeightDefinitions`](../interfaces/IFontWeightDefinitions.md)
+
+#### Defined in
+
+[host-config.ts:712](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L712)
 
 ## Methods
 
-###  getEffectiveSpacing
+### getEffectiveSpacing
 
-▸ **getEffectiveSpacing**(`spacing`: [Spacing](../enums/spacing.md)): *number*
+▸ **getEffectiveSpacing**(`spacing`): `number`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`spacing` | [Spacing](../enums/spacing.md) |
+| Name | Type |
+| :------ | :------ |
+| `spacing` | [`Spacing`](../enums/Spacing.md) |
 
-**Returns:** *number*
+#### Returns
 
-___
+`number`
 
-###  getFontTypeDefinition
+#### Defined in
 
-▸ **getFontTypeDefinition**(`style?`: Enums.FontType): *[FontTypeDefinition](fonttypedefinition.md)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`style?` | Enums.FontType |
-
-**Returns:** *[FontTypeDefinition](fonttypedefinition.md)*
+[host-config.ts:657](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L657)
 
 ___
 
-###  makeCssClassName
+### getFontTypeDefinition
 
-▸ **makeCssClassName**(...`classNames`: string[]): *string*
+▸ **getFontTypeDefinition**(`style?`): [`FontTypeDefinition`](FontTypeDefinition.md)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`...classNames` | string[] |
+| Name | Type |
+| :------ | :------ |
+| `style?` | [`FontType`](../enums/FontType.md) |
 
-**Returns:** *string*
+#### Returns
 
-___
+[`FontTypeDefinition`](FontTypeDefinition.md)
 
-###  makeCssClassNames
+#### Defined in
 
-▸ **makeCssClassNames**(...`classNames`: string[]): *string[]*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`...classNames` | string[] |
-
-**Returns:** *string[]*
+[host-config.ts:648](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L648)
 
 ___
 
-###  paddingDefinitionToSpacingDefinition
+### makeCssClassName
 
-▸ **paddingDefinitionToSpacingDefinition**(`paddingDefinition`: [PaddingDefinition](paddingdefinition.md)): *[SpacingDefinition](spacingdefinition.md)*
+▸ **makeCssClassName**(...`classNames`): `string`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`paddingDefinition` | [PaddingDefinition](paddingdefinition.md) |
+| Name | Type |
+| :------ | :------ |
+| `...classNames` | `string`[] |
 
-**Returns:** *[SpacingDefinition](spacingdefinition.md)*
+#### Returns
 
-## Object literals
+`string`
 
-### `Readonly` imageSizes
+#### Defined in
 
-### ▪ **imageSizes**: *object*
-
-###  large
-
-• **large**: *number* = 160
-
-###  medium
-
-• **medium**: *number* = 80
-
-###  small
-
-• **small**: *number* = 40
+[host-config.ts:694](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L694)
 
 ___
 
-### `Readonly` separator
+### makeCssClassNames
 
-### ▪ **separator**: *object*
+▸ **makeCssClassNames**(...`classNames`): `string`[]
 
-###  lineColor
+#### Parameters
 
-• **lineColor**: *string* = "#EEEEEE"
+| Name | Type |
+| :------ | :------ |
+| `...classNames` | `string`[] |
 
-###  lineThickness
+#### Returns
 
-• **lineThickness**: *number* = 1
+`string`[]
+
+#### Defined in
+
+[host-config.ts:684](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L684)
 
 ___
 
-### `Readonly` spacing
+### paddingDefinitionToSpacingDefinition
 
-### ▪ **spacing**: *object*
+▸ **paddingDefinitionToSpacingDefinition**(`paddingDefinition`): [`SpacingDefinition`](SpacingDefinition.md)
 
-###  default
+#### Parameters
 
-• **default**: *number* = 8
+| Name | Type |
+| :------ | :------ |
+| `paddingDefinition` | [`PaddingDefinition`](PaddingDefinition.md) |
 
-###  extraLarge
+#### Returns
 
-• **extraLarge**: *number* = 40
+[`SpacingDefinition`](SpacingDefinition.md)
 
-###  large
+#### Defined in
 
-• **large**: *number* = 30
-
-###  medium
-
-• **medium**: *number* = 20
-
-###  padding
-
-• **padding**: *number* = 15
-
-###  small
-
-• **small**: *number* = 3
+[host-config.ts:676](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L676)

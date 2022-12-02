@@ -33,13 +33,13 @@ module.exports = (env, argv) => {
 				},
 				{
 					test: /\.ttf$/,
-					loader: "file-loader"
+					type: 'asset/resource',
 				},
 				{
 					test: /\.css$/,
 					use: [
 						'style-loader',
-						//MiniCssExtractPlugin.loader,
+						MiniCssExtractPlugin.loader,
 						'css-loader'
 					]
 				}
@@ -52,17 +52,17 @@ module.exports = (env, argv) => {
 					{
 						from: '../adaptivecards-designer/src/containers/**/*.css',
 						to: 'containers/[name].[ext]',
-					//	flatten: true
+						//	flatten: true
 					},
 					{
 						from: '../adaptivecards-designer/src/containers/**/*.png',
 						to: 'containers/[name].[ext]',
-					//	flatten: true
+						//	flatten: true
 					},
 					{
 						from: '../adaptivecards-designer/src/containers/**/*.jpg',
 						to: 'containers/[name].[ext]',
-					//	flatten: true
+						//	flatten: true
 					},
 					{
 						from: '../adaptivecards-designer/configuration.json',

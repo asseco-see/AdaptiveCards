@@ -1,41 +1,51 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ITypeRegistration](ityperegistration.md)
+[Adaptive Cards Javascript SDK](../README.md) / ITypeRegistration
 
-# Interface: ITypeRegistration ‹**T**›
+# Interface: ITypeRegistration<T\>
 
 ## Type parameters
 
-▪ **T**: *[SerializableObject](../classes/serializableobject.md)*
+| Name | Type |
+| :------ | :------ |
+| `T` | extends [`SerializableObject`](../classes/SerializableObject.md) |
 
-## Hierarchy
-
-* **ITypeRegistration**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [objectType](ityperegistration.md#objecttype)
-* [schemaVersion](ityperegistration.md#schemaversion)
-* [typeName](ityperegistration.md#typename)
+- [objectType](ITypeRegistration.md#objecttype)
+- [schemaVersion](ITypeRegistration.md#schemaversion)
+- [typeName](ITypeRegistration.md#typename)
 
 ## Properties
 
-###  objectType
+### objectType
 
-• **objectType**: *object*
+• **objectType**: () => `T`
 
-#### Type declaration:
+#### Type declaration
 
-* **new __type**(): *T*
+• **new ITypeRegistration**()
 
-___
+#### Defined in
 
-###  schemaVersion
-
-• **schemaVersion**: *[Version](../classes/version.md)*
+[registry.ts:7](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L7)
 
 ___
 
-###  typeName
+### schemaVersion
 
-• **typeName**: *string*
+• **schemaVersion**: [`Version`](../classes/Version.md)
+
+#### Defined in
+
+[registry.ts:8](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L8)
+
+___
+
+### typeName
+
+• **typeName**: `string`
+
+#### Defined in
+
+[registry.ts:6](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L6)

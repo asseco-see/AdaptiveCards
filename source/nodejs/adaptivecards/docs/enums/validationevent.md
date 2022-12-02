@@ -1,134 +1,206 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ValidationEvent](validationevent.md)
+[Adaptive Cards Javascript SDK](../README.md) / ValidationEvent
 
 # Enumeration: ValidationEvent
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [ActionTypeNotAllowed](validationevent.md#actiontypenotallowed)
-* [CollectionCantBeEmpty](validationevent.md#collectioncantbeempty)
-* [Deprecated](validationevent.md#deprecated)
-* [DuplicateId](validationevent.md#duplicateid)
-* [ElementTypeNotAllowed](validationevent.md#elementtypenotallowed)
-* [Hint](validationevent.md#hint)
-* [InteractivityNotAllowed](validationevent.md#interactivitynotallowed)
-* [InvalidPropertyValue](validationevent.md#invalidpropertyvalue)
-* [MissingCardType](validationevent.md#missingcardtype)
-* [Other](validationevent.md#other)
-* [PropertyCantBeNull](validationevent.md#propertycantbenull)
-* [RequiredInputsShouldHaveErrorMessage](validationevent.md#requiredinputsshouldhaveerrormessage)
-* [RequiredInputsShouldHaveLabel](validationevent.md#requiredinputsshouldhavelabel)
-* [TooManyActions](validationevent.md#toomanyactions)
-* [UnknownActionType](validationevent.md#unknownactiontype)
-* [UnknownElementType](validationevent.md#unknownelementtype)
-* [UnsupportedCardVersion](validationevent.md#unsupportedcardversion)
-* [UnsupportedProperty](validationevent.md#unsupportedproperty)
+- [ActionTypeNotAllowed](ValidationEvent.md#actiontypenotallowed)
+- [CollectionCantBeEmpty](ValidationEvent.md#collectioncantbeempty)
+- [Deprecated](ValidationEvent.md#deprecated)
+- [DuplicateId](ValidationEvent.md#duplicateid)
+- [ElementTypeNotAllowed](ValidationEvent.md#elementtypenotallowed)
+- [Hint](ValidationEvent.md#hint)
+- [InteractivityNotAllowed](ValidationEvent.md#interactivitynotallowed)
+- [InvalidPropertyValue](ValidationEvent.md#invalidpropertyvalue)
+- [MissingCardType](ValidationEvent.md#missingcardtype)
+- [Other](ValidationEvent.md#other)
+- [PropertyCantBeNull](ValidationEvent.md#propertycantbenull)
+- [RequiredInputsShouldHaveErrorMessage](ValidationEvent.md#requiredinputsshouldhaveerrormessage)
+- [RequiredInputsShouldHaveLabel](ValidationEvent.md#requiredinputsshouldhavelabel)
+- [TooManyActions](ValidationEvent.md#toomanyactions)
+- [UnknownActionType](ValidationEvent.md#unknownactiontype)
+- [UnknownElementType](ValidationEvent.md#unknownelementtype)
+- [UnsupportedCardVersion](ValidationEvent.md#unsupportedcardversion)
+- [UnsupportedProperty](ValidationEvent.md#unsupportedproperty)
 
-## Enumeration members
+## Enumeration Members
 
-###  ActionTypeNotAllowed
+### ActionTypeNotAllowed
 
-• **ActionTypeNotAllowed**:
+• **ActionTypeNotAllowed** = ``1``
 
-___
+#### Defined in
 
-###  CollectionCantBeEmpty
-
-• **CollectionCantBeEmpty**:
+[enums.ts:208](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L208)
 
 ___
 
-###  Deprecated
+### CollectionCantBeEmpty
 
-• **Deprecated**:
+• **CollectionCantBeEmpty** = ``2``
 
-___
+#### Defined in
 
-###  DuplicateId
-
-• **DuplicateId**:
+[enums.ts:209](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L209)
 
 ___
 
-###  ElementTypeNotAllowed
+### Deprecated
 
-• **ElementTypeNotAllowed**:
+• **Deprecated** = ``3``
 
-___
+#### Defined in
 
-###  Hint
-
-• **Hint**:
+[enums.ts:210](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L210)
 
 ___
 
-###  InteractivityNotAllowed
+### DuplicateId
 
-• **InteractivityNotAllowed**:
+• **DuplicateId** = ``13``
 
-___
+#### Defined in
 
-###  InvalidPropertyValue
-
-• **InvalidPropertyValue**:
+[enums.ts:220](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L220)
 
 ___
 
-###  MissingCardType
+### ElementTypeNotAllowed
 
-• **MissingCardType**:
+• **ElementTypeNotAllowed** = ``4``
 
-___
+#### Defined in
 
-###  Other
-
-• **Other**:
+[enums.ts:211](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L211)
 
 ___
 
-###  PropertyCantBeNull
+### Hint
 
-• **PropertyCantBeNull**:
+• **Hint** = ``0``
 
-___
+#### Defined in
 
-###  RequiredInputsShouldHaveErrorMessage
-
-• **RequiredInputsShouldHaveErrorMessage**:
+[enums.ts:207](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L207)
 
 ___
 
-###  RequiredInputsShouldHaveLabel
+### InteractivityNotAllowed
 
-• **RequiredInputsShouldHaveLabel**:
+• **InteractivityNotAllowed** = ``5``
 
-___
+#### Defined in
 
-###  TooManyActions
-
-• **TooManyActions**:
+[enums.ts:212](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L212)
 
 ___
 
-###  UnknownActionType
+### InvalidPropertyValue
 
-• **UnknownActionType**:
+• **InvalidPropertyValue** = ``6``
 
-___
+#### Defined in
 
-###  UnknownElementType
-
-• **UnknownElementType**:
+[enums.ts:213](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L213)
 
 ___
 
-###  UnsupportedCardVersion
+### MissingCardType
 
-• **UnsupportedCardVersion**:
+• **MissingCardType** = ``7``
+
+#### Defined in
+
+[enums.ts:214](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L214)
 
 ___
 
-###  UnsupportedProperty
+### Other
 
-• **UnsupportedProperty**:
+• **Other** = ``17``
+
+#### Defined in
+
+[enums.ts:224](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L224)
+
+___
+
+### PropertyCantBeNull
+
+• **PropertyCantBeNull** = ``8``
+
+#### Defined in
+
+[enums.ts:215](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L215)
+
+___
+
+### RequiredInputsShouldHaveErrorMessage
+
+• **RequiredInputsShouldHaveErrorMessage** = ``16``
+
+#### Defined in
+
+[enums.ts:223](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L223)
+
+___
+
+### RequiredInputsShouldHaveLabel
+
+• **RequiredInputsShouldHaveLabel** = ``15``
+
+#### Defined in
+
+[enums.ts:222](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L222)
+
+___
+
+### TooManyActions
+
+• **TooManyActions** = ``9``
+
+#### Defined in
+
+[enums.ts:216](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L216)
+
+___
+
+### UnknownActionType
+
+• **UnknownActionType** = ``10``
+
+#### Defined in
+
+[enums.ts:217](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L217)
+
+___
+
+### UnknownElementType
+
+• **UnknownElementType** = ``11``
+
+#### Defined in
+
+[enums.ts:218](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L218)
+
+___
+
+### UnsupportedCardVersion
+
+• **UnsupportedCardVersion** = ``12``
+
+#### Defined in
+
+[enums.ts:219](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L219)
+
+___
+
+### UnsupportedProperty
+
+• **UnsupportedProperty** = ``14``
+
+#### Defined in
+
+[enums.ts:221](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L221)

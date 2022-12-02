@@ -1,51 +1,61 @@
-[Adaptive Cards Javascript SDK](../README.md) › [InputLabelConfig](inputlabelconfig.md)
+[Adaptive Cards Javascript SDK](../README.md) / InputLabelConfig
 
 # Class: InputLabelConfig
 
-## Hierarchy
-
-* **InputLabelConfig**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](inputlabelconfig.md#constructor)
+- [constructor](InputLabelConfig.md#constructor)
 
 ### Properties
 
-* [inputSpacing](inputlabelconfig.md#inputspacing)
-* [optionalInputs](inputlabelconfig.md#readonly-optionalinputs)
-* [requiredInputs](inputlabelconfig.md#readonly-requiredinputs)
+- [inputSpacing](InputLabelConfig.md#inputspacing)
+- [optionalInputs](InputLabelConfig.md#optionalinputs)
+- [requiredInputs](InputLabelConfig.md#requiredinputs)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new InputLabelConfig**(`obj?`: any): *[InputLabelConfig](inputlabelconfig.md)*
+• **new InputLabelConfig**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[InputLabelConfig](inputlabelconfig.md)*
+#### Defined in
+
+[host-config.ts:160](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L160)
 
 ## Properties
 
-###  inputSpacing
+### inputSpacing
 
-• **inputSpacing**: *[Spacing](../enums/spacing.md)* = Enums.Spacing.Small
+• **inputSpacing**: [`Spacing`](../enums/Spacing.md) = `Enums.Spacing.Small`
 
-___
+#### Defined in
 
-### `Readonly` optionalInputs
-
-• **optionalInputs**: *[BaseTextDefinition](basetextdefinition.md)* = new BaseTextDefinition()
+[host-config.ts:156](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L156)
 
 ___
 
-### `Readonly` requiredInputs
+### optionalInputs
 
-• **requiredInputs**: *[RequiredInputLabelTextDefinition](requiredinputlabeltextdefinition.md)* = new RequiredInputLabelTextDefinition()
+• `Readonly` **optionalInputs**: [`BaseTextDefinition`](BaseTextDefinition.md)
+
+#### Defined in
+
+[host-config.ts:158](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L158)
+
+___
+
+### requiredInputs
+
+• `Readonly` **requiredInputs**: [`RequiredInputLabelTextDefinition`](RequiredInputLabelTextDefinition.md)
+
+#### Defined in
+
+[host-config.ts:157](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L157)

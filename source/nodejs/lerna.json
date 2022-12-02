@@ -3,9 +3,9 @@
 	"packages": [
 		"adaptivecards*/**",
 		"aclint/**",
+		"ac-typed-schema/**",
 		"marked-schema/**",
-		"spec-generator/**",
-		"ac-typed-schema/**"
+		"spec-generator/**"
 	],
 	"command": {
 		"publish": {

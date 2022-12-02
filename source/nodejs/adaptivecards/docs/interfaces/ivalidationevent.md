@@ -1,40 +1,52 @@
-[Adaptive Cards Javascript SDK](../README.md) › [IValidationEvent](ivalidationevent.md)
+[Adaptive Cards Javascript SDK](../README.md) / IValidationEvent
 
 # Interface: IValidationEvent
 
-## Hierarchy
-
-* **IValidationEvent**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [event](ivalidationevent.md#event)
-* [message](ivalidationevent.md#message)
-* [phase](ivalidationevent.md#phase)
-* [source](ivalidationevent.md#optional-source)
+- [event](IValidationEvent.md#event)
+- [message](IValidationEvent.md#message)
+- [phase](IValidationEvent.md#phase)
+- [source](IValidationEvent.md#source)
 
 ## Properties
 
-###  event
+### event
 
-• **event**: *[ValidationEvent](../enums/validationevent.md)*
+• **event**: [`ValidationEvent`](../enums/ValidationEvent.md)
 
-___
+#### Defined in
 
-###  message
-
-• **message**: *string*
+[serialization.ts:11](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L11)
 
 ___
 
-###  phase
+### message
 
-• **phase**: *[ValidationPhase](../enums/validationphase.md)*
+• **message**: `string`
+
+#### Defined in
+
+[serialization.ts:12](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L12)
 
 ___
 
-### `Optional` source
+### phase
 
-• **source**? : *[SerializableObject](../classes/serializableobject.md)*
+• **phase**: [`ValidationPhase`](../enums/ValidationPhase.md)
+
+#### Defined in
+
+[serialization.ts:10](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L10)
+
+___
+
+### source
+
+• `Optional` **source**: [`SerializableObject`](../classes/SerializableObject.md)
+
+#### Defined in
+
+[serialization.ts:9](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L9)

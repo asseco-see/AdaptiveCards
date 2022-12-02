@@ -1,33 +1,41 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ISeparationDefinition](iseparationdefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / ISeparationDefinition
 
 # Interface: ISeparationDefinition
 
-## Hierarchy
-
-* **ISeparationDefinition**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [lineColor](iseparationdefinition.md#optional-linecolor)
-* [lineThickness](iseparationdefinition.md#optional-linethickness)
-* [spacing](iseparationdefinition.md#spacing)
+- [lineColor](ISeparationDefinition.md#linecolor)
+- [lineThickness](ISeparationDefinition.md#linethickness)
+- [spacing](ISeparationDefinition.md#spacing)
 
 ## Properties
 
-### `Optional` lineColor
+### lineColor
 
-• **lineColor**? : *undefined | string*
+• `Optional` **lineColor**: `string`
 
-___
+#### Defined in
 
-### `Optional` lineThickness
-
-• **lineThickness**? : *undefined | number*
+[shared.ts:53](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L53)
 
 ___
 
-###  spacing
+### lineThickness
 
-• **spacing**: *number*
+• `Optional` **lineThickness**: `number`
+
+#### Defined in
+
+[shared.ts:52](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L52)
+
+___
+
+### spacing
+
+• **spacing**: `number`
+
+#### Defined in
+
+[shared.ts:51](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L51)

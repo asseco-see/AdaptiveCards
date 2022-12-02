@@ -1,43 +1,63 @@
-[Adaptive Cards Javascript SDK](../README.md) › [TextSize](textsize.md)
+[Adaptive Cards Javascript SDK](../README.md) / TextSize
 
 # Enumeration: TextSize
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Default](textsize.md#default)
-* [ExtraLarge](textsize.md#extralarge)
-* [Large](textsize.md#large)
-* [Medium](textsize.md#medium)
-* [Small](textsize.md#small)
+- [Default](TextSize.md#default)
+- [ExtraLarge](TextSize.md#extralarge)
+- [Large](TextSize.md#large)
+- [Medium](TextSize.md#medium)
+- [Small](TextSize.md#small)
 
-## Enumeration members
+## Enumeration Members
 
-###  Default
+### Default
 
-• **Default**:
+• **Default** = ``1``
 
-___
+#### Defined in
 
-###  ExtraLarge
-
-• **ExtraLarge**:
+[enums.ts:59](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L59)
 
 ___
 
-###  Large
+### ExtraLarge
 
-• **Large**:
+• **ExtraLarge** = ``4``
 
-___
+#### Defined in
 
-###  Medium
-
-• **Medium**:
+[enums.ts:62](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L62)
 
 ___
 
-###  Small
+### Large
 
-• **Small**:
+• **Large** = ``3``
+
+#### Defined in
+
+[enums.ts:61](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L61)
+
+___
+
+### Medium
+
+• **Medium** = ``2``
+
+#### Defined in
+
+[enums.ts:60](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L60)
+
+___
+
+### Small
+
+• **Small** = ``0``
+
+#### Defined in
+
+[enums.ts:58](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L58)

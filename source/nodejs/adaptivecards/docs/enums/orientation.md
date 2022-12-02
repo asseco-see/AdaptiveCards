@@ -1,22 +1,30 @@
-[Adaptive Cards Javascript SDK](../README.md) › [Orientation](orientation.md)
+[Adaptive Cards Javascript SDK](../README.md) / Orientation
 
 # Enumeration: Orientation
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Horizontal](orientation.md#horizontal)
-* [Vertical](orientation.md#vertical)
+- [Horizontal](Orientation.md#horizontal)
+- [Vertical](Orientation.md#vertical)
 
-## Enumeration members
+## Enumeration Members
 
-###  Horizontal
+### Horizontal
 
-• **Horizontal**:
+• **Horizontal** = ``0``
+
+#### Defined in
+
+[enums.ts:126](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L126)
 
 ___
 
-###  Vertical
+### Vertical
 
-• **Vertical**:
+• **Vertical** = ``1``
+
+#### Defined in
+
+[enums.ts:127](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L127)

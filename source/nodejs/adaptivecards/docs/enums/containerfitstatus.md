@@ -1,29 +1,41 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ContainerFitStatus](containerfitstatus.md)
+[Adaptive Cards Javascript SDK](../README.md) / ContainerFitStatus
 
 # Enumeration: ContainerFitStatus
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [FullyInContainer](containerfitstatus.md#fullyincontainer)
-* [FullyOutOfContainer](containerfitstatus.md#fullyoutofcontainer)
-* [Overflowing](containerfitstatus.md#overflowing)
+- [FullyInContainer](ContainerFitStatus.md#fullyincontainer)
+- [FullyOutOfContainer](ContainerFitStatus.md#fullyoutofcontainer)
+- [Overflowing](ContainerFitStatus.md#overflowing)
 
-## Enumeration members
+## Enumeration Members
 
-###  FullyInContainer
+### FullyInContainer
 
-• **FullyInContainer**:
+• **FullyInContainer** = ``0``
 
-___
+#### Defined in
 
-###  FullyOutOfContainer
-
-• **FullyOutOfContainer**:
+[enums.ts:228](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L228)
 
 ___
 
-###  Overflowing
+### FullyOutOfContainer
 
-• **Overflowing**:
+• **FullyOutOfContainer** = ``2``
+
+#### Defined in
+
+[enums.ts:230](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L230)
+
+___
+
+### Overflowing
+
+• **Overflowing** = ``1``
+
+#### Defined in
+
+[enums.ts:229](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L229)

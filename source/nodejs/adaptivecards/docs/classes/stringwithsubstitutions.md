@@ -1,77 +1,113 @@
-[Adaptive Cards Javascript SDK](../README.md) › [StringWithSubstitutions](stringwithsubstitutions.md)
+[Adaptive Cards Javascript SDK](../README.md) / StringWithSubstitutions
 
 # Class: StringWithSubstitutions
 
-## Hierarchy
+## Table of contents
 
-* **StringWithSubstitutions**
+### Constructors
 
-## Index
+- [constructor](StringWithSubstitutions.md#constructor)
 
 ### Methods
 
-* [get](stringwithsubstitutions.md#get)
-* [getOriginal](stringwithsubstitutions.md#getoriginal)
-* [getReferencedInputs](stringwithsubstitutions.md#getreferencedinputs)
-* [set](stringwithsubstitutions.md#set)
-* [substituteInputValues](stringwithsubstitutions.md#substituteinputvalues)
+- [get](StringWithSubstitutions.md#get)
+- [getOriginal](StringWithSubstitutions.md#getoriginal)
+- [getReferencedInputs](StringWithSubstitutions.md#getreferencedinputs)
+- [set](StringWithSubstitutions.md#set)
+- [substituteInputValues](StringWithSubstitutions.md#substituteinputvalues)
+
+## Constructors
+
+### constructor
+
+• **new StringWithSubstitutions**()
 
 ## Methods
 
-###  get
+### get
 
-▸ **get**(): *string | undefined*
+▸ **get**(): `undefined` \| `string`
 
-**Returns:** *string | undefined*
+#### Returns
 
-___
+`undefined` \| `string`
 
-###  getOriginal
+#### Defined in
 
-▸ **getOriginal**(): *string | undefined*
-
-**Returns:** *string | undefined*
+[shared.ts:126](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L126)
 
 ___
 
-###  getReferencedInputs
+### getOriginal
 
-▸ **getReferencedInputs**(`inputs`: [IInput](../interfaces/iinput.md)[], `referencedInputs`: [Dictionary](../README.md#dictionary)‹[IInput](../interfaces/iinput.md)›): *void*
+▸ **getOriginal**(): `undefined` \| `string`
 
-**Parameters:**
+#### Returns
 
-Name | Type |
------- | ------ |
-`inputs` | [IInput](../interfaces/iinput.md)[] |
-`referencedInputs` | [Dictionary](../README.md#dictionary)‹[IInput](../interfaces/iinput.md)› |
+`undefined` \| `string`
 
-**Returns:** *void*
+#### Defined in
 
-___
-
-###  set
-
-▸ **set**(`value`: string | undefined): *void*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`value` | string &#124; undefined |
-
-**Returns:** *void*
+[shared.ts:122](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L122)
 
 ___
 
-###  substituteInputValues
+### getReferencedInputs
 
-▸ **substituteInputValues**(`inputs`: [Dictionary](../README.md#dictionary)‹[IInput](../interfaces/iinput.md)›, `contentType`: string): *void*
+▸ **getReferencedInputs**(`inputs`, `referencedInputs`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`inputs` | [Dictionary](../README.md#dictionary)‹[IInput](../interfaces/iinput.md)› |
-`contentType` | string |
+| Name | Type |
+| :------ | :------ |
+| `inputs` | [`IInput`](../interfaces/IInput.md)[] |
+| `referencedInputs` | [`Dictionary`](../README.md#dictionary)<[`IInput`](../interfaces/IInput.md)\> |
 
-**Returns:** *void*
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shared.ts:71](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L71)
+
+___
+
+### set
+
+▸ **set**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `undefined` \| `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shared.ts:135](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L135)
+
+___
+
+### substituteInputValues
+
+▸ **substituteInputValues**(`inputs`, `contentType`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `inputs` | [`Dictionary`](../README.md#dictionary)<[`IInput`](../interfaces/IInput.md)\> |
+| `contentType` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[shared.ts:85](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L85)

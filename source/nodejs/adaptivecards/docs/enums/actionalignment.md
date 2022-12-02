@@ -1,36 +1,52 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ActionAlignment](actionalignment.md)
+[Adaptive Cards Javascript SDK](../README.md) / ActionAlignment
 
 # Enumeration: ActionAlignment
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Center](actionalignment.md#center)
-* [Left](actionalignment.md#left)
-* [Right](actionalignment.md#right)
-* [Stretch](actionalignment.md#stretch)
+- [Center](ActionAlignment.md#center)
+- [Left](ActionAlignment.md#left)
+- [Right](ActionAlignment.md#right)
+- [Stretch](ActionAlignment.md#stretch)
 
-## Enumeration members
+## Enumeration Members
 
-###  Center
+### Center
 
-• **Center**:
+• **Center** = ``1``
 
-___
+#### Defined in
 
-###  Left
-
-• **Left**:
+[enums.ts:110](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L110)
 
 ___
 
-###  Right
+### Left
 
-• **Right**:
+• **Left** = ``0``
+
+#### Defined in
+
+[enums.ts:109](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L109)
 
 ___
 
-###  Stretch
+### Right
 
-• **Stretch**:
+• **Right** = ``2``
+
+#### Defined in
+
+[enums.ts:111](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L111)
+
+___
+
+### Stretch
+
+• **Stretch** = ``3``
+
+#### Defined in
+
+[enums.ts:112](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L112)

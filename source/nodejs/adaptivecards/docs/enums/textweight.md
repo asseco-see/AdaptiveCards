@@ -1,29 +1,41 @@
-[Adaptive Cards Javascript SDK](../README.md) › [TextWeight](textweight.md)
+[Adaptive Cards Javascript SDK](../README.md) / TextWeight
 
 # Enumeration: TextWeight
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Bolder](textweight.md#bolder)
-* [Default](textweight.md#default)
-* [Lighter](textweight.md#lighter)
+- [Bolder](TextWeight.md#bolder)
+- [Default](TextWeight.md#default)
+- [Lighter](TextWeight.md#lighter)
 
-## Enumeration members
+## Enumeration Members
 
-###  Bolder
+### Bolder
 
-• **Bolder**:
+• **Bolder** = ``2``
 
-___
+#### Defined in
 
-###  Default
-
-• **Default**:
+[enums.ts:68](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L68)
 
 ___
 
-###  Lighter
+### Default
 
-• **Lighter**:
+• **Default** = ``1``
+
+#### Defined in
+
+[enums.ts:67](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L67)
+
+___
+
+### Lighter
+
+• **Lighter** = ``0``
+
+#### Defined in
+
+[enums.ts:66](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L66)

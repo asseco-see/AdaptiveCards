@@ -1,54 +1,84 @@
-[Adaptive Cards Javascript SDK](../README.md) › [Versions](versions.md)
+[Adaptive Cards Javascript SDK](../README.md) / Versions
 
 # Class: Versions
 
-## Hierarchy
+## Table of contents
 
-* **Versions**
+### Constructors
 
-## Index
+- [constructor](Versions.md#constructor)
 
 ### Properties
 
-* [latest](versions.md#static-readonly-latest)
-* [v1_0](versions.md#static-readonly-v1_0)
-* [v1_1](versions.md#static-readonly-v1_1)
-* [v1_2](versions.md#static-readonly-v1_2)
-* [v1_3](versions.md#static-readonly-v1_3)
-* [v1_4](versions.md#static-readonly-v1_4)
+- [latest](Versions.md#latest)
+- [v1\_0](Versions.md#v1_0)
+- [v1\_1](Versions.md#v1_1)
+- [v1\_2](Versions.md#v1_2)
+- [v1\_3](Versions.md#v1_3)
+- [v1\_4](Versions.md#v1_4)
+
+## Constructors
+
+### constructor
+
+• **new Versions**()
 
 ## Properties
 
-### `Static` `Readonly` latest
+### latest
 
-▪ **latest**: *[Version](version.md)‹›* = Versions.v1_4
+▪ `Static` `Readonly` **latest**: [`Version`](Version.md) = `Versions.v1_4`
 
-___
+#### Defined in
 
-### `Static` `Readonly` v1_0
-
-▪ **v1_0**: *[Version](version.md)‹›* = new Version(1, 0)
+[serialization.ts:111](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L111)
 
 ___
 
-### `Static` `Readonly` v1_1
+### v1\_0
 
-▪ **v1_1**: *[Version](version.md)‹›* = new Version(1, 1)
+▪ `Static` `Readonly` **v1\_0**: [`Version`](Version.md)
 
-___
+#### Defined in
 
-### `Static` `Readonly` v1_2
-
-▪ **v1_2**: *[Version](version.md)‹›* = new Version(1, 2)
+[serialization.ts:106](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L106)
 
 ___
 
-### `Static` `Readonly` v1_3
+### v1\_1
 
-▪ **v1_3**: *[Version](version.md)‹›* = new Version(1, 3)
+▪ `Static` `Readonly` **v1\_1**: [`Version`](Version.md)
+
+#### Defined in
+
+[serialization.ts:107](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L107)
 
 ___
 
-### `Static` `Readonly` v1_4
+### v1\_2
 
-▪ **v1_4**: *[Version](version.md)‹›* = new Version(1, 4)
+▪ `Static` `Readonly` **v1\_2**: [`Version`](Version.md)
+
+#### Defined in
+
+[serialization.ts:108](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L108)
+
+___
+
+### v1\_3
+
+▪ `Static` `Readonly` **v1\_3**: [`Version`](Version.md)
+
+#### Defined in
+
+[serialization.ts:109](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L109)
+
+___
+
+### v1\_4
+
+▪ `Static` `Readonly` **v1\_4**: [`Version`](Version.md)
+
+#### Defined in
+
+[serialization.ts:110](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L110)

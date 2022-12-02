@@ -10,13 +10,10 @@
 		"audit-all": "lerna-audit"
 	},
 	"devDependencies": {
-		"@types/jest": "^27.4.1",
-		"@types/node": "^10.14.13",
+		"@types/jest": "^27.4.1", 
+		"@types/node": "^18.11.9",
 		"@types/react": "^16.8.23",
 		"@types/react-dom": "^16.8.5",
-		"@typescript-eslint/eslint-plugin": "^2.26.0",
-		"@typescript-eslint/parser": "^2.26.0",
-		"awesome-typescript-loader": "^5.2.1",
 		"clean-webpack-plugin": "^1.0.1",
 		"copy-webpack-plugin": "^11.0.0",
 		"css-loader": "^6.0.0",
@@ -25,9 +22,6 @@
 		"html-webpack-plugin": "^5.0.0",
 		"jest": "^27.1.4",
 		"json-loader": "^0.5.7",
-		"lerna": "^6.0.1",
-		"lerna-audit": "^1.3.0",
-		"lerna-update-wizard": "^1.1.2",
 		"mini-css-extract-plugin": "^2.6.0",
 		"monaco-editor-webpack-plugin": "^4.0.0",
 		"react": "^16.8.6",
@@ -35,14 +29,19 @@
 		"rimraf": "^2.6.3",
 		"style-loader": "^0.23.1",
 		"ts-jest": "^27.1.4",
-		"ts-loader": "^7.0.5",
+		"typings-for-css-modules-loader": "^1.7.0"
+	},
+	"peerDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.0.0",
+		"@typescript-eslint/parser": "^5.0.0",
+		"ansi-regex": "^6.0.1",
+		"ts-loader": "^8.0.0",
 		"typescript": "^4.9.3",
-		"typings-for-css-modules-loader": "^1.7.0",
+		"lerna": "^6.0.1",
+		"lerna-audit": "^1.3.0",
+		"lerna-update-wizard": "^1.1.2",
 		"webpack": "^5.72.0",
 		"webpack-cli": "^5.0.0",
 		"webpack-dev-server": "^4.11.1"
-	},
-	"peerDependencies": {
-		"ansi-regex": "^6.0.1"
 	}
 }

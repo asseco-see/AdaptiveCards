@@ -1,82 +1,188 @@
-[Adaptive Cards Javascript SDK](../README.md) › [GlobalSettings](globalsettings.md)
+[Adaptive Cards Javascript SDK](../README.md) / GlobalSettings
 
 # Class: GlobalSettings
 
-## Hierarchy
+## Table of contents
 
-* **GlobalSettings**
+### Constructors
 
-## Index
+- [constructor](GlobalSettings.md#constructor)
 
 ### Properties
 
-* [allowMarkForTextHighlighting](globalsettings.md#static-allowmarkfortexthighlighting)
-* [allowPreProcessingPropertyValues](globalsettings.md#static-allowpreprocessingpropertyvalues)
-* [alwaysBleedSeparators](globalsettings.md#static-alwaysbleedseparators)
-* [displayInputValidationErrors](globalsettings.md#static-displayinputvalidationerrors)
-* [enableFallback](globalsettings.md#static-enablefallback)
-* [enableFullJsonRoundTrip](globalsettings.md#static-enablefulljsonroundtrip)
-* [setTabIndexAtCardRoot](globalsettings.md#static-settabindexatcardroot)
-* [useAdvancedCardBottomTruncation](globalsettings.md#static-useadvancedcardbottomtruncation)
-* [useAdvancedTextBlockTruncation](globalsettings.md#static-useadvancedtextblocktruncation)
-* [useMarkdownInRadioButtonAndCheckbox](globalsettings.md#static-usemarkdowninradiobuttonandcheckbox)
+- [allowMarkForTextHighlighting](GlobalSettings.md#allowmarkfortexthighlighting)
+- [allowPreProcessingPropertyValues](GlobalSettings.md#allowpreprocessingpropertyvalues)
+- [alwaysBleedSeparators](GlobalSettings.md#alwaysbleedseparators)
+- [displayInputValidationErrors](GlobalSettings.md#displayinputvalidationerrors)
+- [enableFallback](GlobalSettings.md#enablefallback)
+- [enableFullJsonRoundTrip](GlobalSettings.md#enablefulljsonroundtrip)
+- [getUndefinedFieldValueSubstitutionString](GlobalSettings.md#getundefinedfieldvaluesubstitutionstring)
+- [screensServiceBaseUrl](GlobalSettings.md#screensservicebaseurl)
+- [setTabIndexAtCardRoot](GlobalSettings.md#settabindexatcardroot)
+- [useAdvancedCardBottomTruncation](GlobalSettings.md#useadvancedcardbottomtruncation)
+- [useAdvancedTextBlockTruncation](GlobalSettings.md#useadvancedtextblocktruncation)
+- [useMarkdownInRadioButtonAndCheckbox](GlobalSettings.md#usemarkdowninradiobuttonandcheckbox)
+
+## Constructors
+
+### constructor
+
+• **new GlobalSettings**()
 
 ## Properties
 
-### `Static` allowMarkForTextHighlighting
+### allowMarkForTextHighlighting
 
-▪ **allowMarkForTextHighlighting**: *boolean* = false
+▪ `Static` **allowMarkForTextHighlighting**: `boolean` = `false`
 
-___
+#### Defined in
 
-### `Static` allowPreProcessingPropertyValues
-
-▪ **allowPreProcessingPropertyValues**: *boolean* = false
+[shared.ts:9](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L9)
 
 ___
 
-### `Static` alwaysBleedSeparators
+### allowPreProcessingPropertyValues
 
-▪ **alwaysBleedSeparators**: *boolean* = false
+▪ `Static` **allowPreProcessingPropertyValues**: `boolean` = `false`
 
-___
+#### Defined in
 
-### `Static` displayInputValidationErrors
-
-▪ **displayInputValidationErrors**: *boolean* = true
+[shared.ts:13](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L13)
 
 ___
 
-### `Static` enableFallback
+### alwaysBleedSeparators
 
-▪ **enableFallback**: *boolean* = true
+▪ `Static` **alwaysBleedSeparators**: `boolean` = `false`
 
-___
+#### Defined in
 
-### `Static` enableFullJsonRoundTrip
-
-▪ **enableFullJsonRoundTrip**: *boolean* = false
+[shared.ts:10](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L10)
 
 ___
 
-### `Static` setTabIndexAtCardRoot
+### displayInputValidationErrors
 
-▪ **setTabIndexAtCardRoot**: *boolean* = true
+▪ `Static` **displayInputValidationErrors**: `boolean` = `true`
 
-___
+#### Defined in
 
-### `Static` useAdvancedCardBottomTruncation
-
-▪ **useAdvancedCardBottomTruncation**: *boolean* = false
+[shared.ts:12](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L12)
 
 ___
 
-### `Static` useAdvancedTextBlockTruncation
+### enableFallback
 
-▪ **useAdvancedTextBlockTruncation**: *boolean* = true
+▪ `Static` **enableFallback**: `boolean` = `true`
+
+#### Defined in
+
+[shared.ts:15](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L15)
 
 ___
 
-### `Static` useMarkdownInRadioButtonAndCheckbox
+### enableFullJsonRoundTrip
 
-▪ **useMarkdownInRadioButtonAndCheckbox**: *boolean* = true
+▪ `Static` **enableFullJsonRoundTrip**: `boolean` = `false`
+
+#### Defined in
+
+[shared.ts:11](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L11)
+
+___
+
+### getUndefinedFieldValueSubstitutionString
+
+▪ `Static` `Optional` **getUndefinedFieldValueSubstitutionString**: (`path`: `string`) => `undefined` \| `string` = `undefined`
+
+#### Type declaration
+
+▸ (`path`): `undefined` \| `string`
+
+Callback invoked when expression evaluation needs the value of a field in the source data object
+and that field is undefined or null. By default, expression evaluation will substitute an undefined
+field with its binding expression (e.g. `${field}`). This callback makes it possible to customize that
+behavior.
+
+**Example**
+Given this data object:
+
+```json
+{
+    firstName: "David"
+}
+```
+
+The expression `${firstName} ${lastName}` will evaluate to "David ${lastName}" because the `lastName`
+field is undefined.
+
+Now let's set the callback:
+```typescript
+GlobalSettings.getUndefinedFieldValueSubstitutionString = (path: string) => { return "<undefined value>"; }
+```
+
+With that, the above expression will evaluate to "David &lt;undefined value&gt;"
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `path` | `string` |
+
+##### Returns
+
+`undefined` \| `string`
+
+#### Defined in
+
+[shared.ts:42](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L42)
+
+___
+
+### screensServiceBaseUrl
+
+▪ `Static` **screensServiceBaseUrl**: `string` = `"https://dev.pim.asseco.rs/alpha/screens"`
+
+#### Defined in
+
+[shared.ts:16](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L16)
+
+___
+
+### setTabIndexAtCardRoot
+
+▪ `Static` **setTabIndexAtCardRoot**: `boolean` = `true`
+
+#### Defined in
+
+[shared.ts:14](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L14)
+
+___
+
+### useAdvancedCardBottomTruncation
+
+▪ `Static` **useAdvancedCardBottomTruncation**: `boolean` = `false`
+
+#### Defined in
+
+[shared.ts:7](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L7)
+
+___
+
+### useAdvancedTextBlockTruncation
+
+▪ `Static` **useAdvancedTextBlockTruncation**: `boolean` = `true`
+
+#### Defined in
+
+[shared.ts:6](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L6)
+
+___
+
+### useMarkdownInRadioButtonAndCheckbox
+
+▪ `Static` **useMarkdownInRadioButtonAndCheckbox**: `boolean` = `true`
+
+#### Defined in
+
+[shared.ts:8](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L8)

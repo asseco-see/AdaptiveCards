@@ -1,30 +1,36 @@
-[Adaptive Cards Javascript SDK](../README.md) › [IVersionedValue](iversionedvalue.md)
+[Adaptive Cards Javascript SDK](../README.md) / IVersionedValue
 
-# Interface: IVersionedValue ‹**TValue**›
+# Interface: IVersionedValue<TValue\>
 
 ## Type parameters
 
-▪ **TValue**
+| Name |
+| :------ |
+| `TValue` |
 
-## Hierarchy
-
-* **IVersionedValue**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [targetVersion](iversionedvalue.md#optional-targetversion)
-* [value](iversionedvalue.md#value)
+- [targetVersion](IVersionedValue.md#targetversion)
+- [value](IVersionedValue.md#value)
 
 ## Properties
 
-### `Optional` targetVersion
+### targetVersion
 
-• **targetVersion**? : *[Version](../classes/version.md)*
+• `Optional` **targetVersion**: [`Version`](../classes/Version.md)
+
+#### Defined in
+
+[serialization.ts:435](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L435)
 
 ___
 
-###  value
+### value
 
-• **value**: *TValue*
+• **value**: `TValue`
+
+#### Defined in
+
+[serialization.ts:434](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L434)

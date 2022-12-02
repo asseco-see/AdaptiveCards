@@ -1,47 +1,63 @@
-[Adaptive Cards Javascript SDK](../README.md) › [IFontSizeDefinitions](ifontsizedefinitions.md)
+[Adaptive Cards Javascript SDK](../README.md) / IFontSizeDefinitions
 
 # Interface: IFontSizeDefinitions
 
-## Hierarchy
-
-* **IFontSizeDefinitions**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [default](ifontsizedefinitions.md#default)
-* [extraLarge](ifontsizedefinitions.md#extralarge)
-* [large](ifontsizedefinitions.md#large)
-* [medium](ifontsizedefinitions.md#medium)
-* [small](ifontsizedefinitions.md#small)
+- [default](IFontSizeDefinitions.md#default)
+- [extraLarge](IFontSizeDefinitions.md#extralarge)
+- [large](IFontSizeDefinitions.md#large)
+- [medium](IFontSizeDefinitions.md#medium)
+- [small](IFontSizeDefinitions.md#small)
 
 ## Properties
 
-###  default
+### default
 
-• **default**: *number*
+• **default**: `number`
 
-___
+#### Defined in
 
-###  extraLarge
-
-• **extraLarge**: *number*
+[host-config.ts:473](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L473)
 
 ___
 
-###  large
+### extraLarge
 
-• **large**: *number*
+• **extraLarge**: `number`
 
-___
+#### Defined in
 
-###  medium
-
-• **medium**: *number*
+[host-config.ts:476](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L476)
 
 ___
 
-###  small
+### large
 
-• **small**: *number*
+• **large**: `number`
+
+#### Defined in
+
+[host-config.ts:475](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L475)
+
+___
+
+### medium
+
+• **medium**: `number`
+
+#### Defined in
+
+[host-config.ts:474](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L474)
+
+___
+
+### small
+
+• **small**: `number`
+
+#### Defined in
+
+[host-config.ts:472](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L472)

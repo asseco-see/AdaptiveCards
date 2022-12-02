@@ -1,33 +1,41 @@
-[Adaptive Cards Javascript SDK](../README.md) › [IFontWeightDefinitions](ifontweightdefinitions.md)
+[Adaptive Cards Javascript SDK](../README.md) / IFontWeightDefinitions
 
 # Interface: IFontWeightDefinitions
 
-## Hierarchy
-
-* **IFontWeightDefinitions**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [bolder](ifontweightdefinitions.md#bolder)
-* [default](ifontweightdefinitions.md#default)
-* [lighter](ifontweightdefinitions.md#lighter)
+- [bolder](IFontWeightDefinitions.md#bolder)
+- [default](IFontWeightDefinitions.md#default)
+- [lighter](IFontWeightDefinitions.md#lighter)
 
 ## Properties
 
-###  bolder
+### bolder
 
-• **bolder**: *number*
+• **bolder**: `number`
 
-___
+#### Defined in
 
-###  default
-
-• **default**: *number*
+[host-config.ts:482](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L482)
 
 ___
 
-###  lighter
+### default
 
-• **lighter**: *number*
+• **default**: `number`
+
+#### Defined in
+
+[host-config.ts:481](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L481)
+
+___
+
+### lighter
+
+• **lighter**: `number`
+
+#### Defined in
+
+[host-config.ts:480](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L480)

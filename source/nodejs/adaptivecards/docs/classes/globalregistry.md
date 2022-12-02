@@ -1,68 +1,122 @@
-[Adaptive Cards Javascript SDK](../README.md) › [GlobalRegistry](globalregistry.md)
+[Adaptive Cards Javascript SDK](../README.md) / GlobalRegistry
 
 # Class: GlobalRegistry
 
-## Hierarchy
+## Table of contents
 
-* **GlobalRegistry**
+### Constructors
 
-## Index
+- [constructor](GlobalRegistry.md#constructor)
 
 ### Properties
 
-* [actions](globalregistry.md#static-readonly-actions)
-* [elements](globalregistry.md#static-readonly-elements)
+- [actions](GlobalRegistry.md#actions)
+- [elements](GlobalRegistry.md#elements)
 
 ### Methods
 
-* [populateWithDefaultActions](globalregistry.md#static-populatewithdefaultactions)
-* [populateWithDefaultElements](globalregistry.md#static-populatewithdefaultelements)
-* [reset](globalregistry.md#static-reset)
+- [populateWithDefaultActions](GlobalRegistry.md#populatewithdefaultactions)
+- [populateWithDefaultElements](GlobalRegistry.md#populatewithdefaultelements)
+- [populateWithExtension](GlobalRegistry.md#populatewithextension)
+- [reset](GlobalRegistry.md#reset)
+
+## Constructors
+
+### constructor
+
+• **new GlobalRegistry**()
 
 ## Properties
 
-### `Static` `Readonly` actions
+### actions
 
-▪ **actions**: *[CardObjectRegistry](cardobjectregistry.md)‹[Action](action.md)‹››* = new CardObjectRegistry<Action>()
+▪ `Static` `Readonly` **actions**: [`CardObjectRegistry`](CardObjectRegistry.md)<[`Action`](Action.md)\>
+
+#### Defined in
+
+[card-elements.ts:7610](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L7610)
 
 ___
 
-### `Static` `Readonly` elements
+### elements
 
-▪ **elements**: *[CardObjectRegistry](cardobjectregistry.md)‹[CardElement](cardelement.md)‹››* = new CardObjectRegistry<CardElement>()
+▪ `Static` `Readonly` **elements**: [`CardObjectRegistry`](CardObjectRegistry.md)<[`CardElement`](CardElement.md)\>
+
+#### Defined in
+
+[card-elements.ts:7609](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L7609)
 
 ## Methods
 
-### `Static` populateWithDefaultActions
+### populateWithDefaultActions
 
-▸ **populateWithDefaultActions**(`registry`: [CardObjectRegistry](cardobjectregistry.md)‹[Action](action.md)›): *void*
+▸ `Static` **populateWithDefaultActions**(`registry`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`registry` | [CardObjectRegistry](cardobjectregistry.md)‹[Action](action.md)› |
+| Name | Type |
+| :------ | :------ |
+| `registry` | [`CardObjectRegistry`](CardObjectRegistry.md)<[`Action`](Action.md)\> |
 
-**Returns:** *void*
+#### Returns
 
-___
+`void`
 
-### `Static` populateWithDefaultElements
+#### Defined in
 
-▸ **populateWithDefaultElements**(`registry`: [CardObjectRegistry](cardobjectregistry.md)‹[CardElement](cardelement.md)›): *void*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`registry` | [CardObjectRegistry](cardobjectregistry.md)‹[CardElement](cardelement.md)› |
-
-**Returns:** *void*
+[card-elements.ts:7471](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L7471)
 
 ___
 
-### `Static` reset
+### populateWithDefaultElements
 
-▸ **reset**(): *void*
+▸ `Static` **populateWithDefaultElements**(`registry`): `void`
 
-**Returns:** *void*
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `registry` | [`CardObjectRegistry`](CardObjectRegistry.md)<[`CardElement`](CardElement.md)\> |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[card-elements.ts:7445](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L7445)
+
+___
+
+### populateWithExtension
+
+▸ `Static` **populateWithExtension**(`registry`, `definitions`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `registry` | [`CardObjectRegistry`](CardObjectRegistry.md)<[`CardElement`](CardElement.md) \| [`Action`](Action.md)\> |
+| `definitions` | `any` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[card-elements.ts:7480](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L7480)
+
+___
+
+### reset
+
+▸ `Static` **reset**(): `void`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[card-elements.ts:7612](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L7612)

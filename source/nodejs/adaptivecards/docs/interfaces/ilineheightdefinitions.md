@@ -1,47 +1,63 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ILineHeightDefinitions](ilineheightdefinitions.md)
+[Adaptive Cards Javascript SDK](../README.md) / ILineHeightDefinitions
 
 # Interface: ILineHeightDefinitions
 
-## Hierarchy
-
-* **ILineHeightDefinitions**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [default](ilineheightdefinitions.md#default)
-* [extraLarge](ilineheightdefinitions.md#extralarge)
-* [large](ilineheightdefinitions.md#large)
-* [medium](ilineheightdefinitions.md#medium)
-* [small](ilineheightdefinitions.md#small)
+- [default](ILineHeightDefinitions.md#default)
+- [extraLarge](ILineHeightDefinitions.md#extralarge)
+- [large](ILineHeightDefinitions.md#large)
+- [medium](ILineHeightDefinitions.md#medium)
+- [small](ILineHeightDefinitions.md#small)
 
 ## Properties
 
-###  default
+### default
 
-• **default**: *number*
+• **default**: `number`
 
-___
+#### Defined in
 
-###  extraLarge
-
-• **extraLarge**: *number*
+[host-config.ts:383](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L383)
 
 ___
 
-###  large
+### extraLarge
 
-• **large**: *number*
+• **extraLarge**: `number`
 
-___
+#### Defined in
 
-###  medium
-
-• **medium**: *number*
+[host-config.ts:385](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L385)
 
 ___
 
-###  small
+### large
 
-• **small**: *number*
+• **large**: `number`
+
+#### Defined in
+
+[host-config.ts:384](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L384)
+
+___
+
+### medium
+
+• **medium**: `number`
+
+#### Defined in
+
+[host-config.ts:382](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L382)
+
+___
+
+### small
+
+• **small**: `number`
+
+#### Defined in
+
+[host-config.ts:381](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L381)

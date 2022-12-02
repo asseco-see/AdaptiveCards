@@ -1,80 +1,108 @@
-[Adaptive Cards Javascript SDK](../README.md) › [TextColorDefinition](textcolordefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / TextColorDefinition
 
 # Class: TextColorDefinition
 
 ## Hierarchy
 
-* [ColorDefinition](colordefinition.md)
+- [`ColorDefinition`](ColorDefinition.md)
 
-  ↳ **TextColorDefinition**
+  ↳ **`TextColorDefinition`**
 
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](textcolordefinition.md#constructor)
+- [constructor](TextColorDefinition.md#constructor)
 
 ### Properties
 
-* [default](textcolordefinition.md#default)
-* [highlightColors](textcolordefinition.md#readonly-highlightcolors)
-* [subtle](textcolordefinition.md#subtle)
+- [default](TextColorDefinition.md#default)
+- [highlightColors](TextColorDefinition.md#highlightcolors)
+- [subtle](TextColorDefinition.md#subtle)
 
 ### Methods
 
-* [parse](textcolordefinition.md#parse)
+- [parse](TextColorDefinition.md#parse)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new TextColorDefinition**(`defaultColor?`: undefined | string, `subtleColor?`: undefined | string): *[TextColorDefinition](textcolordefinition.md)*
+• **new TextColorDefinition**(`defaultColor?`, `subtleColor?`)
 
-*Inherited from [ColorDefinition](colordefinition.md).[constructor](colordefinition.md#constructor)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `defaultColor?` | `string` |
+| `subtleColor?` | `string` |
 
-Name | Type |
------- | ------ |
-`defaultColor?` | undefined &#124; string |
-`subtleColor?` | undefined &#124; string |
+#### Inherited from
 
-**Returns:** *[TextColorDefinition](textcolordefinition.md)*
+[ColorDefinition](ColorDefinition.md).[constructor](ColorDefinition.md#constructor)
+
+#### Defined in
+
+[host-config.ts:26](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L26)
 
 ## Properties
 
-###  default
+### default
 
-• **default**: *string* = "#000000"
+• **default**: `string` = `"#000000"`
 
-*Inherited from [ColorDefinition](colordefinition.md).[default](colordefinition.md#default)*
+#### Inherited from
+
+[ColorDefinition](ColorDefinition.md).[default](ColorDefinition.md#default)
+
+#### Defined in
+
+[host-config.ts:23](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L23)
 
 ___
 
-### `Readonly` highlightColors
+### highlightColors
 
-• **highlightColors**: *[ColorDefinition](colordefinition.md)‹›* = new ColorDefinition("#22000000", "#11000000")
+• `Readonly` **highlightColors**: [`ColorDefinition`](ColorDefinition.md)
+
+#### Defined in
+
+[host-config.ts:45](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L45)
 
 ___
 
-###  subtle
+### subtle
 
-• **subtle**: *string* = "#666666"
+• **subtle**: `string` = `"#666666"`
 
-*Inherited from [ColorDefinition](colordefinition.md).[subtle](colordefinition.md#subtle)*
+#### Inherited from
+
+[ColorDefinition](ColorDefinition.md).[subtle](ColorDefinition.md#subtle)
+
+#### Defined in
+
+[host-config.ts:24](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L24)
 
 ## Methods
 
-###  parse
+### parse
 
-▸ **parse**(`obj?`: any): *void*
+▸ **parse**(`obj?`): `void`
 
-*Overrides [ColorDefinition](colordefinition.md).[parse](colordefinition.md#parse)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+#### Returns
 
-**Returns:** *void*
+`void`
+
+#### Overrides
+
+[ColorDefinition](ColorDefinition.md).[parse](ColorDefinition.md#parse)
+
+#### Defined in
+
+[host-config.ts:47](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L47)

@@ -1,29 +1,41 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ChipInputColorSchema](chipinputcolorschema.md)
+[Adaptive Cards Javascript SDK](../README.md) / ChipInputColorSchema
 
 # Enumeration: ChipInputColorSchema
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Accent](chipinputcolorschema.md#accent)
-* [Primary](chipinputcolorschema.md#primary)
-* [Warn](chipinputcolorschema.md#warn)
+- [Accent](ChipInputColorSchema.md#accent)
+- [Primary](ChipInputColorSchema.md#primary)
+- [Warn](ChipInputColorSchema.md#warn)
 
-## Enumeration members
+## Enumeration Members
 
-###  Accent
+### Accent
 
-• **Accent**: = "#ff9800"
+• **Accent** = ``"#ff9800"``
 
-___
+#### Defined in
 
-###  Primary
-
-• **Primary**: = "#03a9f4"
+[enums.ts:196](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L196)
 
 ___
 
-###  Warn
+### Primary
 
-• **Warn**: = "#f44336"
+• **Primary** = ``"#03a9f4"``
+
+#### Defined in
+
+[enums.ts:195](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L195)
+
+___
+
+### Warn
+
+• **Warn** = ``"#f44336"``
+
+#### Defined in
+
+[enums.ts:197](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L197)

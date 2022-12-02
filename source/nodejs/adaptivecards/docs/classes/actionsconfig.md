@@ -1,126 +1,166 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ActionsConfig](actionsconfig.md)
+[Adaptive Cards Javascript SDK](../README.md) / ActionsConfig
 
 # Class: ActionsConfig
 
-## Hierarchy
-
-* **ActionsConfig**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](actionsconfig.md#constructor)
+- [constructor](ActionsConfig.md#constructor)
 
 ### Properties
 
-* [actionAlignment](actionsconfig.md#actionalignment)
-* [actionsOrientation](actionsconfig.md#actionsorientation)
-* [allowTitleToWrap](actionsconfig.md#allowtitletowrap)
-* [buttonSpacing](actionsconfig.md#buttonspacing)
-* [iconPlacement](actionsconfig.md#iconplacement)
-* [iconSize](actionsconfig.md#iconsize)
-* [maxActions](actionsconfig.md#maxactions)
-* [preExpandSingleShowCardAction](actionsconfig.md#optional-preexpandsingleshowcardaction)
-* [showCard](actionsconfig.md#readonly-showcard)
-* [spacing](actionsconfig.md#spacing)
+- [actionAlignment](ActionsConfig.md#actionalignment)
+- [actionsOrientation](ActionsConfig.md#actionsorientation)
+- [allowTitleToWrap](ActionsConfig.md#allowtitletowrap)
+- [buttonSpacing](ActionsConfig.md#buttonspacing)
+- [iconPlacement](ActionsConfig.md#iconplacement)
+- [iconSize](ActionsConfig.md#iconsize)
+- [maxActions](ActionsConfig.md#maxactions)
+- [preExpandSingleShowCardAction](ActionsConfig.md#preexpandsingleshowcardaction)
+- [showCard](ActionsConfig.md#showcard)
+- [spacing](ActionsConfig.md#spacing)
 
 ### Methods
 
-* [toJSON](actionsconfig.md#tojson)
+- [toJSON](ActionsConfig.md#tojson)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new ActionsConfig**(`obj?`: any): *[ActionsConfig](actionsconfig.md)*
+• **new ActionsConfig**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[ActionsConfig](actionsconfig.md)*
+#### Defined in
+
+[host-config.ts:266](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L266)
 
 ## Properties
 
-###  actionAlignment
+### actionAlignment
 
-• **actionAlignment**: *[ActionAlignment](../enums/actionalignment.md)* = Enums.ActionAlignment.Left
+• **actionAlignment**: [`ActionAlignment`](../enums/ActionAlignment.md) = `Enums.ActionAlignment.Left`
 
-___
+#### Defined in
 
-###  actionsOrientation
-
-• **actionsOrientation**: *[Orientation](../enums/orientation.md)* = Enums.Orientation.Horizontal
+[host-config.ts:261](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L261)
 
 ___
 
-###  allowTitleToWrap
+### actionsOrientation
 
-• **allowTitleToWrap**: *boolean* = false
+• **actionsOrientation**: [`Orientation`](../enums/Orientation.md) = `Enums.Orientation.Horizontal`
 
-___
+#### Defined in
 
-###  buttonSpacing
-
-• **buttonSpacing**: *number* = 20
+[host-config.ts:260](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L260)
 
 ___
 
-###  iconPlacement
+### allowTitleToWrap
 
-• **iconPlacement**: *[ActionIconPlacement](../enums/actioniconplacement.md)* = Enums.ActionIconPlacement.LeftOfTitle
+• **allowTitleToWrap**: `boolean` = `false`
 
-___
+#### Defined in
 
-###  iconSize
-
-• **iconSize**: *number* = 16
+[host-config.ts:263](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L263)
 
 ___
 
-###  maxActions
+### buttonSpacing
 
-• **maxActions**: *number* = 5
+• **buttonSpacing**: `number` = `20`
 
-___
+#### Defined in
 
-### `Optional` preExpandSingleShowCardAction
-
-• **preExpandSingleShowCardAction**? : *undefined | false | true* = false
+[host-config.ts:257](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L257)
 
 ___
 
-### `Readonly` showCard
+### iconPlacement
 
-• **showCard**: *[ShowCardActionConfig](showcardactionconfig.md)* = new ShowCardActionConfig()
+• **iconPlacement**: [`ActionIconPlacement`](../enums/ActionIconPlacement.md) = `Enums.ActionIconPlacement.LeftOfTitle`
+
+#### Defined in
+
+[host-config.ts:262](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L262)
 
 ___
 
-###  spacing
+### iconSize
 
-• **spacing**: *[Spacing](../enums/spacing.md)* = Enums.Spacing.Default
+• **iconSize**: `number` = `16`
+
+#### Defined in
+
+[host-config.ts:264](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L264)
+
+___
+
+### maxActions
+
+• **maxActions**: `number` = `5`
+
+#### Defined in
+
+[host-config.ts:255](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L255)
+
+___
+
+### preExpandSingleShowCardAction
+
+• `Optional` **preExpandSingleShowCardAction**: `boolean` = `false`
+
+#### Defined in
+
+[host-config.ts:259](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L259)
+
+___
+
+### showCard
+
+• `Readonly` **showCard**: [`ShowCardActionConfig`](ShowCardActionConfig.md)
+
+#### Defined in
+
+[host-config.ts:258](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L258)
+
+___
+
+### spacing
+
+• **spacing**: [`Spacing`](../enums/Spacing.md) = `Enums.Spacing.Default`
+
+#### Defined in
+
+[host-config.ts:256](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L256)
 
 ## Methods
 
-###  toJSON
+### toJSON
 
-▸ **toJSON**(): *object*
+▸ **toJSON**(): `Object`
 
-**Returns:** *object*
+#### Returns
 
-* **actionAlignment**: *string* = Enums.ActionAlignment[this.actionAlignment]
+`Object`
 
-* **actionsOrientation**: *string* = Enums.Orientation[this.actionsOrientation]
+| Name | Type |
+| :------ | :------ |
+| `actionAlignment` | `string` |
+| `actionsOrientation` | `string` |
+| `buttonSpacing` | `number` |
+| `maxActions` | `number` |
+| `preExpandSingleShowCardAction` | `undefined` \| `boolean` |
+| `showCard` | [`ShowCardActionConfig`](ShowCardActionConfig.md) |
+| `spacing` | `string` |
 
-* **buttonSpacing**: *number* = this.buttonSpacing
+#### Defined in
 
-* **maxActions**: *number* = this.maxActions
-
-* **preExpandSingleShowCardAction**: *undefined | false | true* = this.preExpandSingleShowCardAction
-
-* **showCard**: *[ShowCardActionConfig](showcardactionconfig.md)‹›* = this.showCard
-
-* **spacing**: *string* = Enums.Spacing[this.spacing]
+[host-config.ts:291](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L291)

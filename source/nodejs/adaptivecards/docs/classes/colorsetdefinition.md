@@ -1,97 +1,129 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ColorSetDefinition](colorsetdefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / ColorSetDefinition
 
 # Class: ColorSetDefinition
 
-## Hierarchy
-
-* **ColorSetDefinition**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](colorsetdefinition.md#constructor)
+- [constructor](ColorSetDefinition.md#constructor)
 
 ### Properties
 
-* [accent](colorsetdefinition.md#accent)
-* [attention](colorsetdefinition.md#attention)
-* [dark](colorsetdefinition.md#dark)
-* [default](colorsetdefinition.md#default)
-* [good](colorsetdefinition.md#good)
-* [light](colorsetdefinition.md#light)
-* [warning](colorsetdefinition.md#warning)
+- [accent](ColorSetDefinition.md#accent)
+- [attention](ColorSetDefinition.md#attention)
+- [dark](ColorSetDefinition.md#dark)
+- [default](ColorSetDefinition.md#default)
+- [good](ColorSetDefinition.md#good)
+- [light](ColorSetDefinition.md#light)
+- [warning](ColorSetDefinition.md#warning)
 
 ### Methods
 
-* [parse](colorsetdefinition.md#parse)
+- [parse](ColorSetDefinition.md#parse)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new ColorSetDefinition**(`obj?`: any): *[ColorSetDefinition](colorsetdefinition.md)*
+• **new ColorSetDefinition**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[ColorSetDefinition](colorsetdefinition.md)*
+#### Defined in
+
+[host-config.ts:319](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L319)
 
 ## Properties
 
-###  accent
+### accent
 
-• **accent**: *[TextColorDefinition](textcolordefinition.md)* = new TextColorDefinition()
+• **accent**: [`TextColorDefinition`](TextColorDefinition.md)
 
-___
+#### Defined in
 
-###  attention
-
-• **attention**: *[TextColorDefinition](textcolordefinition.md)* = new TextColorDefinition()
+[host-config.ts:314](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L314)
 
 ___
 
-###  dark
+### attention
 
-• **dark**: *[TextColorDefinition](textcolordefinition.md)* = new TextColorDefinition()
+• **attention**: [`TextColorDefinition`](TextColorDefinition.md)
 
-___
+#### Defined in
 
-###  default
-
-• **default**: *[TextColorDefinition](textcolordefinition.md)* = new TextColorDefinition()
+[host-config.ts:317](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L317)
 
 ___
 
-###  good
+### dark
 
-• **good**: *[TextColorDefinition](textcolordefinition.md)* = new TextColorDefinition()
+• **dark**: [`TextColorDefinition`](TextColorDefinition.md)
 
-___
+#### Defined in
 
-###  light
-
-• **light**: *[TextColorDefinition](textcolordefinition.md)* = new TextColorDefinition()
+[host-config.ts:312](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L312)
 
 ___
 
-###  warning
+### default
 
-• **warning**: *[TextColorDefinition](textcolordefinition.md)* = new TextColorDefinition()
+• **default**: [`TextColorDefinition`](TextColorDefinition.md)
+
+#### Defined in
+
+[host-config.ts:311](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L311)
+
+___
+
+### good
+
+• **good**: [`TextColorDefinition`](TextColorDefinition.md)
+
+#### Defined in
+
+[host-config.ts:315](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L315)
+
+___
+
+### light
+
+• **light**: [`TextColorDefinition`](TextColorDefinition.md)
+
+#### Defined in
+
+[host-config.ts:313](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L313)
+
+___
+
+### warning
+
+• **warning**: [`TextColorDefinition`](TextColorDefinition.md)
+
+#### Defined in
+
+[host-config.ts:316](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L316)
 
 ## Methods
 
-###  parse
+### parse
 
-▸ **parse**(`obj`: any): *void*
+▸ **parse**(`obj`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj` | `any` |
 
-**Returns:** *void*
+#### Returns
+
+`void`
+
+#### Defined in
+
+[host-config.ts:323](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L323)

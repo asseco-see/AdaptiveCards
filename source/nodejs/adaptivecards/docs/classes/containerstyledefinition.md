@@ -1,100 +1,114 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ContainerStyleDefinition](containerstyledefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / ContainerStyleDefinition
 
 # Class: ContainerStyleDefinition
 
-## Hierarchy
-
-* **ContainerStyleDefinition**
-
-  ↳ [BuiltInContainerStyleDefinition](builtincontainerstyledefinition.md)
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](containerstyledefinition.md#constructor)
+- [constructor](ContainerStyleDefinition.md#constructor)
 
 ### Properties
 
-* [backgroundColor](containerstyledefinition.md#optional-backgroundcolor)
-* [foregroundColors](containerstyledefinition.md#readonly-foregroundcolors)
-* [highlightBackgroundColor](containerstyledefinition.md#optional-highlightbackgroundcolor)
-* [highlightForegroundColor](containerstyledefinition.md#optional-highlightforegroundcolor)
+- [backgroundColor](ContainerStyleDefinition.md#backgroundcolor)
+- [foregroundColors](ContainerStyleDefinition.md#foregroundcolors)
+- [highlightBackgroundColor](ContainerStyleDefinition.md#highlightbackgroundcolor)
+- [highlightForegroundColor](ContainerStyleDefinition.md#highlightforegroundcolor)
 
 ### Accessors
 
-* [isBuiltIn](containerstyledefinition.md#isbuiltin)
+- [isBuiltIn](ContainerStyleDefinition.md#isbuiltin)
 
 ### Methods
 
-* [parse](containerstyledefinition.md#parse)
+- [parse](ContainerStyleDefinition.md#parse)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new ContainerStyleDefinition**(`obj?`: any): *[ContainerStyleDefinition](containerstyledefinition.md)*
+• **new ContainerStyleDefinition**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[ContainerStyleDefinition](containerstyledefinition.md)*
+#### Defined in
+
+[host-config.ts:365](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L365)
 
 ## Properties
 
-### `Optional` backgroundColor
+### backgroundColor
 
-• **backgroundColor**? : *undefined | string*
+• `Optional` **backgroundColor**: `string`
 
-___
+#### Defined in
 
-### `Readonly` foregroundColors
-
-• **foregroundColors**: *[ColorSetDefinition](colorsetdefinition.md)* = new ColorSetDefinition(
-        {
-            "default": { default: "#333333", subtle: "#EE333333" },
-            "dark": { default: "#000000", subtle: "#66000000" },
-            "light": { default: "#FFFFFF", subtle: "#33000000" },
-            "accent": { default: "#2E89FC", subtle: "#882E89FC" },
-            "good": { default: "#028A02", subtle: "#DD027502" },
-            "warning": { default: "#E69500", subtle: "#DDE69500" },
-            "attention": { default: "#CC3300", subtle: "#DDCC3300" }
-        }
-    )
+[host-config.ts:337](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L337)
 
 ___
 
-### `Optional` highlightBackgroundColor
+### foregroundColors
 
-• **highlightBackgroundColor**? : *undefined | string*
+• `Readonly` **foregroundColors**: [`ColorSetDefinition`](ColorSetDefinition.md)
+
+#### Defined in
+
+[host-config.ts:339](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L339)
 
 ___
 
-### `Optional` highlightForegroundColor
+### highlightBackgroundColor
 
-• **highlightForegroundColor**? : *undefined | string*
+• `Optional` **highlightBackgroundColor**: `string`
+
+#### Defined in
+
+[host-config.ts:351](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L351)
+
+___
+
+### highlightForegroundColor
+
+• `Optional` **highlightForegroundColor**: `string`
+
+#### Defined in
+
+[host-config.ts:352](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L352)
 
 ## Accessors
 
-###  isBuiltIn
+### isBuiltIn
 
-• **get isBuiltIn**(): *boolean*
+• `get` **isBuiltIn**(): `boolean`
 
-**Returns:** *boolean*
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[host-config.ts:369](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L369)
 
 ## Methods
 
-###  parse
+### parse
 
-▸ **parse**(`obj`: any): *void*
+▸ **parse**(`obj`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj` | `any` |
 
-**Returns:** *void*
+#### Returns
+
+`void`
+
+#### Defined in
+
+[host-config.ts:354](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L354)

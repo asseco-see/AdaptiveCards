@@ -1,120 +1,166 @@
-[Adaptive Cards Javascript SDK](../README.md) › [Version](version.md)
+[Adaptive Cards Javascript SDK](../README.md) / Version
 
 # Class: Version
 
-## Hierarchy
-
-* **Version**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](version.md#constructor)
+- [constructor](Version.md#constructor)
 
 ### Accessors
 
-* [isValid](version.md#isvalid)
-* [label](version.md#label)
-* [major](version.md#major)
-* [minor](version.md#minor)
+- [isValid](Version.md#isvalid)
+- [label](Version.md#label)
+- [major](Version.md#major)
+- [minor](Version.md#minor)
 
 ### Methods
 
-* [compareTo](version.md#compareto)
-* [toJSON](version.md#tojson)
-* [toString](version.md#tostring)
-* [parse](version.md#static-parse)
+- [compareTo](Version.md#compareto)
+- [toJSON](Version.md#tojson)
+- [toString](Version.md#tostring)
+- [parse](Version.md#parse)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new Version**(`major`: number, `minor`: number, `label?`: undefined | string): *[Version](version.md)*
+• **new Version**(`major?`, `minor?`, `label?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type | Default |
------- | ------ | ------ |
-`major` | number | 1 |
-`minor` | number | 1 |
-`label?` | undefined &#124; string | - |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `major` | `number` | `1` |
+| `minor` | `number` | `1` |
+| `label?` | `string` | `undefined` |
 
-**Returns:** *[Version](version.md)*
+#### Defined in
+
+[serialization.ts:22](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L22)
 
 ## Accessors
 
-###  isValid
+### isValid
 
-• **get isValid**(): *boolean*
+• `get` **isValid**(): `boolean`
 
-**Returns:** *boolean*
+#### Returns
 
-___
+`boolean`
 
-###  label
+#### Defined in
 
-• **get label**(): *string*
-
-**Returns:** *string*
+[serialization.ts:98](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L98)
 
 ___
 
-###  major
+### label
 
-• **get major**(): *number*
+• `get` **label**(): `string`
 
-**Returns:** *number*
+#### Returns
+
+`string`
+
+#### Defined in
+
+[serialization.ts:86](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L86)
 
 ___
 
-###  minor
+### major
 
-• **get minor**(): *number*
+• `get` **major**(): `number`
 
-**Returns:** *number*
+#### Returns
+
+`number`
+
+#### Defined in
+
+[serialization.ts:90](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L90)
+
+___
+
+### minor
+
+• `get` **minor**(): `number`
+
+#### Returns
+
+`number`
+
+#### Defined in
+
+[serialization.ts:94](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L94)
 
 ## Methods
 
-###  compareTo
+### compareTo
 
-▸ **compareTo**(`otherVersion`: [Version](version.md)): *number*
+▸ **compareTo**(`otherVersion`): `number`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`otherVersion` | [Version](version.md) |
+| Name | Type |
+| :------ | :------ |
+| `otherVersion` | [`Version`](Version.md) |
 
-**Returns:** *number*
+#### Returns
 
-___
+`number`
 
-###  toJSON
+#### Defined in
 
-▸ **toJSON**(): *any*
-
-**Returns:** *any*
+[serialization.ts:65](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L65)
 
 ___
 
-###  toString
+### toJSON
 
-▸ **toString**(): *string*
+▸ **toJSON**(): `any`
 
-**Returns:** *string*
+#### Returns
+
+`any`
+
+#### Defined in
+
+[serialization.ts:61](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L61)
 
 ___
 
-### `Static` parse
+### toString
 
-▸ **parse**(`versionString`: string, `context`: [BaseSerializationContext](baseserializationcontext.md)): *[Version](version.md) | undefined*
+▸ **toString**(): `string`
 
-**Parameters:**
+#### Returns
 
-Name | Type |
------- | ------ |
-`versionString` | string |
-`context` | [BaseSerializationContext](baseserializationcontext.md) |
+`string`
 
-**Returns:** *[Version](version.md) | undefined*
+#### Defined in
+
+[serialization.ts:57](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L57)
+
+___
+
+### parse
+
+▸ `Static` **parse**(`versionString`, `context`): `undefined` \| [`Version`](Version.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `versionString` | `string` |
+| `context` | [`BaseSerializationContext`](BaseSerializationContext.md) |
+
+#### Returns
+
+`undefined` \| [`Version`](Version.md)
+
+#### Defined in
+
+[serialization.ts:28](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L28)

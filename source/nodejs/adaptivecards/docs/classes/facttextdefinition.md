@@ -1,104 +1,152 @@
-[Adaptive Cards Javascript SDK](../README.md) › [FactTextDefinition](facttextdefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / FactTextDefinition
 
 # Class: FactTextDefinition
 
 ## Hierarchy
 
-* [BaseTextDefinition](basetextdefinition.md)
+- [`BaseTextDefinition`](BaseTextDefinition.md)
 
-  ↳ **FactTextDefinition**
+  ↳ **`FactTextDefinition`**
 
-  ↳ [FactTitleDefinition](facttitledefinition.md)
+  ↳↳ [`FactTitleDefinition`](FactTitleDefinition.md)
 
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](facttextdefinition.md#constructor)
+- [constructor](FactTextDefinition.md#constructor)
 
 ### Properties
 
-* [color](facttextdefinition.md#color)
-* [isSubtle](facttextdefinition.md#issubtle)
-* [size](facttextdefinition.md#size)
-* [weight](facttextdefinition.md#weight)
-* [wrap](facttextdefinition.md#wrap)
+- [color](FactTextDefinition.md#color)
+- [isSubtle](FactTextDefinition.md#issubtle)
+- [size](FactTextDefinition.md#size)
+- [weight](FactTextDefinition.md#weight)
+- [wrap](FactTextDefinition.md#wrap)
 
 ### Methods
 
-* [getDefaultWeight](facttextdefinition.md#getdefaultweight)
-* [toJSON](facttextdefinition.md#tojson)
+- [getDefaultWeight](FactTextDefinition.md#getdefaultweight)
+- [toJSON](FactTextDefinition.md#tojson)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new FactTextDefinition**(`obj?`: any): *[FactTextDefinition](facttextdefinition.md)*
+• **new FactTextDefinition**(`obj?`)
 
-*Overrides [BaseTextDefinition](basetextdefinition.md).[constructor](basetextdefinition.md#constructor)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+#### Overrides
 
-**Returns:** *[FactTextDefinition](facttextdefinition.md)*
+[BaseTextDefinition](BaseTextDefinition.md).[constructor](BaseTextDefinition.md#constructor)
+
+#### Defined in
+
+[host-config.ts:184](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L184)
 
 ## Properties
 
-###  color
+### color
 
-• **color**: *[TextColor](../enums/textcolor.md)* = Enums.TextColor.Default
+• **color**: [`TextColor`](../enums/TextColor.md) = `Enums.TextColor.Default`
 
-*Inherited from [BaseTextDefinition](basetextdefinition.md).[color](basetextdefinition.md#color)*
+#### Inherited from
 
-___
+[BaseTextDefinition](BaseTextDefinition.md).[color](BaseTextDefinition.md#color)
 
-###  isSubtle
+#### Defined in
 
-• **isSubtle**: *boolean* = false
-
-*Inherited from [BaseTextDefinition](basetextdefinition.md).[isSubtle](basetextdefinition.md#issubtle)*
+[host-config.ts:106](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L106)
 
 ___
 
-###  size
+### isSubtle
 
-• **size**: *[TextSize](../enums/textsize.md)* = Enums.TextSize.Default
+• **isSubtle**: `boolean` = `false`
 
-*Inherited from [BaseTextDefinition](basetextdefinition.md).[size](basetextdefinition.md#size)*
+#### Inherited from
 
-___
+[BaseTextDefinition](BaseTextDefinition.md).[isSubtle](BaseTextDefinition.md#issubtle)
 
-###  weight
+#### Defined in
 
-• **weight**: *[TextWeight](../enums/textweight.md)* = Enums.TextWeight.Default
-
-*Inherited from [BaseTextDefinition](basetextdefinition.md).[weight](basetextdefinition.md#weight)*
+[host-config.ts:107](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L107)
 
 ___
 
-###  wrap
+### size
 
-• **wrap**: *boolean* = true
+• **size**: [`TextSize`](../enums/TextSize.md) = `Enums.TextSize.Default`
+
+#### Inherited from
+
+[BaseTextDefinition](BaseTextDefinition.md).[size](BaseTextDefinition.md#size)
+
+#### Defined in
+
+[host-config.ts:105](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L105)
+
+___
+
+### weight
+
+• **weight**: [`TextWeight`](../enums/TextWeight.md) = `Enums.TextWeight.Default`
+
+#### Inherited from
+
+[BaseTextDefinition](BaseTextDefinition.md).[weight](BaseTextDefinition.md#weight)
+
+#### Defined in
+
+[host-config.ts:108](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L108)
+
+___
+
+### wrap
+
+• **wrap**: `boolean` = `true`
+
+#### Defined in
+
+[host-config.ts:182](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L182)
 
 ## Methods
 
-###  getDefaultWeight
+### getDefaultWeight
 
-▸ **getDefaultWeight**(): *[TextWeight](../enums/textweight.md)*
+▸ **getDefaultWeight**(): [`TextWeight`](../enums/TextWeight.md)
 
-*Inherited from [BaseTextDefinition](basetextdefinition.md).[getDefaultWeight](basetextdefinition.md#getdefaultweight)*
+#### Returns
 
-**Returns:** *[TextWeight](../enums/textweight.md)*
+[`TextWeight`](../enums/TextWeight.md)
+
+#### Inherited from
+
+[BaseTextDefinition](BaseTextDefinition.md).[getDefaultWeight](BaseTextDefinition.md#getdefaultweight)
+
+#### Defined in
+
+[host-config.ts:119](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L119)
 
 ___
 
-###  toJSON
+### toJSON
 
-▸ **toJSON**(): *any*
+▸ **toJSON**(): `any`
 
-*Overrides [BaseTextDefinition](basetextdefinition.md).[toJSON](basetextdefinition.md#tojson)*
+#### Returns
 
-**Returns:** *any*
+`any`
+
+#### Overrides
+
+[BaseTextDefinition](BaseTextDefinition.md).[toJSON](BaseTextDefinition.md#tojson)
+
+#### Defined in
+
+[host-config.ts:192](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L192)

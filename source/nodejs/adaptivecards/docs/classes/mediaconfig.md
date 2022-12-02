@@ -1,60 +1,73 @@
-[Adaptive Cards Javascript SDK](../README.md) › [MediaConfig](mediaconfig.md)
+[Adaptive Cards Javascript SDK](../README.md) / MediaConfig
 
 # Class: MediaConfig
 
-## Hierarchy
-
-* **MediaConfig**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](mediaconfig.md#constructor)
+- [constructor](MediaConfig.md#constructor)
 
 ### Properties
 
-* [allowInlinePlayback](mediaconfig.md#allowinlineplayback)
-* [defaultPoster](mediaconfig.md#optional-defaultposter)
+- [allowInlinePlayback](MediaConfig.md#allowinlineplayback)
+- [defaultPoster](MediaConfig.md#defaultposter)
 
 ### Methods
 
-* [toJSON](mediaconfig.md#tojson)
+- [toJSON](MediaConfig.md#tojson)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new MediaConfig**(`obj?`: any): *[MediaConfig](mediaconfig.md)*
+• **new MediaConfig**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[MediaConfig](mediaconfig.md)*
+#### Defined in
+
+[host-config.ts:89](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L89)
 
 ## Properties
 
-###  allowInlinePlayback
+### allowInlinePlayback
 
-• **allowInlinePlayback**: *boolean* = true
+• **allowInlinePlayback**: `boolean` = `true`
+
+#### Defined in
+
+[host-config.ts:87](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L87)
 
 ___
 
-### `Optional` defaultPoster
+### defaultPoster
 
-• **defaultPoster**? : *undefined | string*
+• `Optional` **defaultPoster**: `string`
+
+#### Defined in
+
+[host-config.ts:86](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L86)
 
 ## Methods
 
-###  toJSON
+### toJSON
 
-▸ **toJSON**(): *object*
+▸ **toJSON**(): `Object`
 
-**Returns:** *object*
+#### Returns
 
-* **allowInlinePlayback**: *boolean* = this.allowInlinePlayback
+`Object`
 
-* **defaultPoster**: *undefined | string* = this.defaultPoster
+| Name | Type |
+| :------ | :------ |
+| `allowInlinePlayback` | `boolean` |
+| `defaultPoster` | `undefined` \| `string` |
+
+#### Defined in
+
+[host-config.ts:96](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L96)
