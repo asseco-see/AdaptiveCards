@@ -34,6 +34,7 @@ steps:
     image: 'registry.see.asseco.com/platform/node:18-alpine'
     dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
+    user: root
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
       cp /source/samples/HostConfig/*.json /source/source/nodejs/adaptivecards-designer/src/hostConfigs/
