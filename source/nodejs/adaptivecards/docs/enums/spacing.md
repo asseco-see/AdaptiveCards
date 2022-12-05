@@ -1,57 +1,85 @@
-[Adaptive Cards Javascript SDK](../README.md) › [Spacing](spacing.md)
+[Adaptive Cards Javascript SDK](../README.md) / Spacing
 
 # Enumeration: Spacing
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Default](spacing.md#default)
-* [ExtraLarge](spacing.md#extralarge)
-* [Large](spacing.md#large)
-* [Medium](spacing.md#medium)
-* [None](spacing.md#none)
-* [Padding](spacing.md#padding)
-* [Small](spacing.md#small)
+- [Default](Spacing.md#default)
+- [ExtraLarge](Spacing.md#extralarge)
+- [Large](Spacing.md#large)
+- [Medium](Spacing.md#medium)
+- [None](Spacing.md#none)
+- [Padding](Spacing.md#padding)
+- [Small](Spacing.md#small)
 
-## Enumeration members
+## Enumeration Members
 
-###  Default
+### Default
 
-• **Default**:
+• **Default** = ``2``
 
-___
+#### Defined in
 
-###  ExtraLarge
-
-• **ExtraLarge**:
+[enums.ts:79](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L79)
 
 ___
 
-###  Large
+### ExtraLarge
 
-• **Large**:
+• **ExtraLarge** = ``5``
 
-___
+#### Defined in
 
-###  Medium
-
-• **Medium**:
+[enums.ts:82](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L82)
 
 ___
 
-###  None
+### Large
 
-• **None**:
+• **Large** = ``4``
 
-___
+#### Defined in
 
-###  Padding
-
-• **Padding**:
+[enums.ts:81](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L81)
 
 ___
 
-###  Small
+### Medium
 
-• **Small**:
+• **Medium** = ``3``
+
+#### Defined in
+
+[enums.ts:80](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L80)
+
+___
+
+### None
+
+• **None** = ``0``
+
+#### Defined in
+
+[enums.ts:77](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L77)
+
+___
+
+### Padding
+
+• **Padding** = ``6``
+
+#### Defined in
+
+[enums.ts:83](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L83)
+
+___
+
+### Small
+
+• **Small** = ``1``
+
+#### Defined in
+
+[enums.ts:78](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L78)

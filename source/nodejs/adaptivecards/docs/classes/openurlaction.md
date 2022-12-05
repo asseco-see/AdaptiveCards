@@ -1,902 +1,1457 @@
-[Adaptive Cards Javascript SDK](../README.md) › [OpenUrlAction](openurlaction.md)
+[Adaptive Cards Javascript SDK](../README.md) / OpenUrlAction
 
 # Class: OpenUrlAction
 
 ## Hierarchy
 
-  ↳ [Action](action.md)
+- [`Action`](Action.md)
 
-  ↳ **OpenUrlAction**
+  ↳ **`OpenUrlAction`**
 
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](openurlaction.md#constructor)
+- [constructor](OpenUrlAction.md#constructor)
 
 ### Properties
 
-* [_parent](openurlaction.md#protected-optional-_parent)
-* [_renderedElement](openurlaction.md#protected-optional-_renderedelement)
-* [iconUrl](openurlaction.md#optional-iconurl)
-* [id](openurlaction.md#optional-id)
-* [maxVersion](openurlaction.md#maxversion)
-* [onExecute](openurlaction.md#onexecute)
-* [onPreProcessPropertyValue](openurlaction.md#optional-onpreprocesspropertyvalue)
-* [style](openurlaction.md#style)
-* [title](openurlaction.md#optional-title)
-* [url](openurlaction.md#optional-url)
-* [JsonTypeName](openurlaction.md#static-readonly-jsontypename)
-* [iconUrlProperty](openurlaction.md#static-readonly-iconurlproperty)
-* [idProperty](openurlaction.md#static-readonly-idproperty)
-* [onRegisterCustomProperties](openurlaction.md#static-optional-onregistercustomproperties)
-* [requiresProperty](openurlaction.md#static-readonly-requiresproperty)
-* [styleProperty](openurlaction.md#static-readonly-styleproperty)
-* [titleProperty](openurlaction.md#static-readonly-titleproperty)
-* [typeNameProperty](openurlaction.md#static-readonly-typenameproperty)
-* [urlProperty](openurlaction.md#static-readonly-urlproperty)
+- [\_parent](OpenUrlAction.md#_parent)
+- [\_renderedElement](OpenUrlAction.md#_renderedelement)
+- [iconUrl](OpenUrlAction.md#iconurl)
+- [id](OpenUrlAction.md#id)
+- [maxVersion](OpenUrlAction.md#maxversion)
+- [onExecute](OpenUrlAction.md#onexecute)
+- [onPreProcessPropertyValue](OpenUrlAction.md#onpreprocesspropertyvalue)
+- [rules](OpenUrlAction.md#rules)
+- [style](OpenUrlAction.md#style)
+- [title](OpenUrlAction.md#title)
+- [url](OpenUrlAction.md#url)
+- [JsonTypeName](OpenUrlAction.md#jsontypename)
+- [iconUrlProperty](OpenUrlAction.md#iconurlproperty)
+- [idProperty](OpenUrlAction.md#idproperty)
+- [ignoreInputValidationProperty](OpenUrlAction.md#ignoreinputvalidationproperty)
+- [onRegisterCustomProperties](OpenUrlAction.md#onregistercustomproperties)
+- [requiresProperty](OpenUrlAction.md#requiresproperty)
+- [rulesProperty](OpenUrlAction.md#rulesproperty)
+- [styleProperty](OpenUrlAction.md#styleproperty)
+- [titleProperty](OpenUrlAction.md#titleproperty)
+- [typeNameProperty](OpenUrlAction.md#typenameproperty)
+- [urlProperty](OpenUrlAction.md#urlproperty)
 
 ### Accessors
 
-* [hostConfig](openurlaction.md#hostconfig)
-* [isPrimary](openurlaction.md#isprimary)
-* [parent](openurlaction.md#parent)
-* [renderedElement](openurlaction.md#renderedelement)
-* [requires](openurlaction.md#requires)
+- [hostConfig](OpenUrlAction.md#hostconfig)
+- [ignoreInputValidation](OpenUrlAction.md#ignoreinputvalidation)
+- [isPrimary](OpenUrlAction.md#isprimary)
+- [parent](OpenUrlAction.md#parent)
+- [renderedElement](OpenUrlAction.md#renderedelement)
+- [requires](OpenUrlAction.md#requires)
 
 ### Methods
 
-* [addCssClasses](openurlaction.md#protected-addcssclasses)
-* [execute](openurlaction.md#execute)
-* [getActionById](openurlaction.md#getactionbyid)
-* [getAllInputs](openurlaction.md#getallinputs)
-* [getAriaRole](openurlaction.md#getariarole)
-* [getCustomProperty](openurlaction.md#getcustomproperty)
-* [getDefaultSerializationContext](openurlaction.md#protected-getdefaultserializationcontext)
-* [getHref](openurlaction.md#gethref)
-* [getJsonTypeName](openurlaction.md#getjsontypename)
-* [getReferencedInputs](openurlaction.md#getreferencedinputs)
-* [getResourceInformation](openurlaction.md#getresourceinformation)
-* [getRootObject](openurlaction.md#getrootobject)
-* [getSchema](openurlaction.md#getschema)
-* [getSchemaKey](openurlaction.md#protected-getschemakey)
-* [getValue](openurlaction.md#protected-getvalue)
-* [hasAllDefaultValues](openurlaction.md#hasalldefaultvalues)
-* [hasDefaultValue](openurlaction.md#hasdefaultvalue)
-* [internalGetReferencedInputs](openurlaction.md#protected-internalgetreferencedinputs)
-* [internalParse](openurlaction.md#protected-internalparse)
-* [internalPrepareForExecution](openurlaction.md#protected-internalprepareforexecution)
-* [internalToJSON](openurlaction.md#protected-internaltojson)
-* [internalValidateInputs](openurlaction.md#protected-internalvalidateinputs)
-* [internalValidateProperties](openurlaction.md#internalvalidateproperties)
-* [parse](openurlaction.md#parse)
-* [populateSchema](openurlaction.md#protected-populateschema)
-* [preProcessPropertyValue](openurlaction.md#preprocesspropertyvalue)
-* [prepareForExecution](openurlaction.md#prepareforexecution)
-* [raiseExecuteActionEvent](openurlaction.md#protected-raiseexecuteactionevent)
-* [remove](openurlaction.md#remove)
-* [render](openurlaction.md#render)
-* [resetDefaultValues](openurlaction.md#resetdefaultvalues)
-* [setCustomProperty](openurlaction.md#setcustomproperty)
-* [setParent](openurlaction.md#setparent)
-* [setShouldFallback](openurlaction.md#setshouldfallback)
-* [setValue](openurlaction.md#protected-setvalue)
-* [shouldFallback](openurlaction.md#shouldfallback)
-* [shouldSerialize](openurlaction.md#protected-shouldserialize)
-* [toJSON](openurlaction.md#tojson)
-* [updateActionButtonCssStyle](openurlaction.md#updateactionbuttoncssstyle)
-* [validateInputs](openurlaction.md#validateinputs)
-* [validateProperties](openurlaction.md#validateproperties)
+- [addCssClasses](OpenUrlAction.md#addcssclasses)
+- [execute](OpenUrlAction.md#execute)
+- [getActionById](OpenUrlAction.md#getactionbyid)
+- [getAllInputs](OpenUrlAction.md#getallinputs)
+- [getAriaRole](OpenUrlAction.md#getariarole)
+- [getCustomProperty](OpenUrlAction.md#getcustomproperty)
+- [getDefaultSerializationContext](OpenUrlAction.md#getdefaultserializationcontext)
+- [getHref](OpenUrlAction.md#gethref)
+- [getJsonTypeName](OpenUrlAction.md#getjsontypename)
+- [getReferencedInputs](OpenUrlAction.md#getreferencedinputs)
+- [getResourceInformation](OpenUrlAction.md#getresourceinformation)
+- [getRootObject](OpenUrlAction.md#getrootobject)
+- [getSchema](OpenUrlAction.md#getschema)
+- [getSchemaKey](OpenUrlAction.md#getschemakey)
+- [getValue](OpenUrlAction.md#getvalue)
+- [hasAllDefaultValues](OpenUrlAction.md#hasalldefaultvalues)
+- [hasDefaultValue](OpenUrlAction.md#hasdefaultvalue)
+- [internalGetReferencedInputs](OpenUrlAction.md#internalgetreferencedinputs)
+- [internalParse](OpenUrlAction.md#internalparse)
+- [internalPrepareForExecution](OpenUrlAction.md#internalprepareforexecution)
+- [internalToJSON](OpenUrlAction.md#internaltojson)
+- [internalValidateInputs](OpenUrlAction.md#internalvalidateinputs)
+- [internalValidateProperties](OpenUrlAction.md#internalvalidateproperties)
+- [parse](OpenUrlAction.md#parse)
+- [populateSchema](OpenUrlAction.md#populateschema)
+- [preProcessPropertyValue](OpenUrlAction.md#preprocesspropertyvalue)
+- [prepareForExecution](OpenUrlAction.md#prepareforexecution)
+- [raiseExecuteActionEvent](OpenUrlAction.md#raiseexecuteactionevent)
+- [remove](OpenUrlAction.md#remove)
+- [render](OpenUrlAction.md#render)
+- [resetDefaultValues](OpenUrlAction.md#resetdefaultvalues)
+- [setCustomProperty](OpenUrlAction.md#setcustomproperty)
+- [setParent](OpenUrlAction.md#setparent)
+- [setShouldFallback](OpenUrlAction.md#setshouldfallback)
+- [setValue](OpenUrlAction.md#setvalue)
+- [shouldFallback](OpenUrlAction.md#shouldfallback)
+- [shouldSerialize](OpenUrlAction.md#shouldserialize)
+- [toJSON](OpenUrlAction.md#tojson)
+- [updateActionButtonCssStyle](OpenUrlAction.md#updateactionbuttoncssstyle)
+- [validateInputs](OpenUrlAction.md#validateinputs)
+- [validateProperties](OpenUrlAction.md#validateproperties)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new OpenUrlAction**(): *[OpenUrlAction](openurlaction.md)*
+• **new OpenUrlAction**()
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[constructor](hostcapabilities.md#constructor)*
+#### Inherited from
 
-**Returns:** *[OpenUrlAction](openurlaction.md)*
+[Action](Action.md).[constructor](Action.md#constructor)
+
+#### Defined in
+
+[serialization.ts:951](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L951)
 
 ## Properties
 
-### `Protected` `Optional` _parent
+### \_parent
 
-• **_parent**? : *[CardObject](cardobject.md)*
+• `Protected` `Optional` **\_parent**: [`CardObject`](CardObject.md)
 
-*Inherited from [CardObject](cardobject.md).[_parent](cardobject.md#protected-optional-_parent)*
+#### Inherited from
 
-___
+[Action](Action.md).[_parent](Action.md#_parent)
 
-### `Protected` `Optional` _renderedElement
+#### Defined in
 
-• **_renderedElement**? : *HTMLElement*
-
-*Inherited from [CardObject](cardobject.md).[_renderedElement](cardobject.md#protected-optional-_renderedelement)*
+[card-object.ts:63](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L63)
 
 ___
 
-### `Optional` iconUrl
+### \_renderedElement
 
-• **iconUrl**? : *undefined | string*
+• `Protected` `Optional` **\_renderedElement**: `HTMLElement`
 
-*Inherited from [Action](action.md).[iconUrl](action.md#optional-iconurl)*
+#### Inherited from
 
-___
+[Action](Action.md).[_renderedElement](Action.md#_renderedelement)
 
-### `Optional` id
+#### Defined in
 
-• **id**? : *undefined | string*
-
-*Inherited from [CardObject](cardobject.md).[id](cardobject.md#optional-id)*
+[card-object.ts:64](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L64)
 
 ___
 
-###  maxVersion
+### iconUrl
 
-• **maxVersion**: *[Version](version.md)* = Versions.v1_3
+• `Optional` **iconUrl**: `string`
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[maxVersion](hostcapabilities.md#maxversion)*
+#### Inherited from
 
-___
+[Action](Action.md).[iconUrl](Action.md#iconurl)
 
-###  onExecute
+#### Defined in
 
-• **onExecute**: *function*
-
-*Inherited from [Action](action.md).[onExecute](action.md#onexecute)*
-
-#### Type declaration:
-
-▸ (`sender`: [Action](action.md)): *void*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`sender` | [Action](action.md) |
+[card-elements.ts:4068](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4068)
 
 ___
 
-### `Optional` onPreProcessPropertyValue
+### id
 
-• **onPreProcessPropertyValue**? : *undefined | function*
+• `Optional` **id**: `string`
 
-*Inherited from [CardObject](cardobject.md).[onPreProcessPropertyValue](cardobject.md#optional-onpreprocesspropertyvalue)*
+#### Inherited from
 
-___
+[Action](Action.md).[id](Action.md#id)
 
-###  style
+#### Defined in
 
-• **style**: *string* = Enums.ActionStyle.Default
-
-*Inherited from [Action](action.md).[style](action.md#style)*
+[card-object.ts:52](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L52)
 
 ___
 
-### `Optional` title
+### maxVersion
 
-• **title**? : *undefined | string*
+• **maxVersion**: [`Version`](Version.md) = `Versions.v1_4`
 
-*Inherited from [Action](action.md).[title](action.md#optional-title)*
+#### Inherited from
 
-___
+[Action](Action.md).[maxVersion](Action.md#maxversion)
 
-### `Optional` url
+#### Defined in
 
-• **url**? : *undefined | string*
-
-___
-
-### `Static` `Readonly` JsonTypeName
-
-▪ **JsonTypeName**: *"Action.OpenUrl"* = "Action.OpenUrl"
+[serialization.ts:949](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L949)
 
 ___
 
-### `Static` `Readonly` iconUrlProperty
+### onExecute
 
-▪ **iconUrlProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_1, "iconUrl")
+• **onExecute**: (`sender`: [`Action`](Action.md)) => `void`
 
-*Inherited from [Action](action.md).[iconUrlProperty](action.md#static-readonly-iconurlproperty)*
+#### Type declaration
 
-___
+▸ (`sender`): `void`
 
-### `Static` `Readonly` idProperty
+##### Parameters
 
-▪ **idProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_0, "id")
+| Name | Type |
+| :------ | :------ |
+| `sender` | [`Action`](Action.md) |
 
-*Inherited from [CardObject](cardobject.md).[idProperty](cardobject.md#static-readonly-idproperty)*
+##### Returns
 
-___
+`void`
 
-### `Static` `Optional` onRegisterCustomProperties
+#### Inherited from
 
-▪ **onRegisterCustomProperties**? : *undefined | function*
+[Action](Action.md).[onExecute](Action.md#onexecute)
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[onRegisterCustomProperties](hostcapabilities.md#static-optional-onregistercustomproperties)*
+#### Defined in
 
-___
-
-### `Static` `Readonly` requiresProperty
-
-▪ **requiresProperty**: *[SerializableObjectProperty](serializableobjectproperty.md)‹›* = new SerializableObjectProperty(
-        Versions.v1_2,
-        "requires",
-        HostCapabilities,
-        new HostCapabilities())
-
-*Inherited from [CardObject](cardobject.md).[requiresProperty](cardobject.md#static-readonly-requiresproperty)*
+[card-elements.ts:4124](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4124)
 
 ___
 
-### `Static` `Readonly` styleProperty
+### onPreProcessPropertyValue
 
-▪ **styleProperty**: *[ValueSetProperty](valuesetproperty.md)‹›* = new ValueSetProperty(
-        Versions.v1_2,
-        "style",
-        [
-            { value: Enums.ActionStyle.Default },
-            { value: Enums.ActionStyle.Positive },
-            { value: Enums.ActionStyle.Destructive }
-        ],
-        Enums.ActionStyle.Default)
+• `Optional` **onPreProcessPropertyValue**: (`sender`: [`CardObject`](CardObject.md), `property`: [`PropertyDefinition`](PropertyDefinition.md), `value`: `any`) => `any`
 
-*Inherited from [Action](action.md).[styleProperty](action.md#static-readonly-styleproperty)*
+#### Type declaration
 
-___
+▸ (`sender`, `property`, `value`): `any`
 
-### `Static` `Readonly` titleProperty
+##### Parameters
 
-▪ **titleProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_0, "title")
+| Name | Type |
+| :------ | :------ |
+| `sender` | [`CardObject`](CardObject.md) |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
+| `value` | `any` |
 
-*Inherited from [Action](action.md).[titleProperty](action.md#static-readonly-titleproperty)*
+##### Returns
 
-___
+`any`
 
-### `Static` `Readonly` typeNameProperty
+#### Inherited from
 
-▪ **typeNameProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(
-        Versions.v1_0,
-        "type",
-        undefined,
-        undefined,
-        undefined,
-        (sender: object) => {
-            return (<CardObject>sender).getJsonTypeName()
-        })
+[Action](Action.md).[onPreProcessPropertyValue](Action.md#onpreprocesspropertyvalue)
 
-*Inherited from [CardObject](cardobject.md).[typeNameProperty](cardobject.md#static-readonly-typenameproperty)*
+#### Defined in
+
+[card-object.ts:66](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L66)
 
 ___
 
-### `Static` `Readonly` urlProperty
+### rules
 
-▪ **urlProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_0, "url")
+• **rules**: [`RuleParam`](RuleParam.md)[]
+
+#### Inherited from
+
+[Action](Action.md).[rules](Action.md#rules)
+
+#### Defined in
+
+[card-elements.ts:4074](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4074)
+
+___
+
+### style
+
+• **style**: `string` = `Enums.ActionStyle.Default`
+
+#### Inherited from
+
+[Action](Action.md).[style](Action.md#style)
+
+#### Defined in
+
+[card-elements.ts:4071](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4071)
+
+___
+
+### title
+
+• `Optional` **title**: `string`
+
+#### Inherited from
+
+[Action](Action.md).[title](Action.md#title)
+
+#### Defined in
+
+[card-elements.ts:4065](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4065)
+
+___
+
+### url
+
+• `Optional` **url**: `string`
+
+#### Defined in
+
+[card-elements.ts:4404](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4404)
+
+___
+
+### JsonTypeName
+
+▪ `Static` `Readonly` **JsonTypeName**: ``"Action.OpenUrl"``
+
+#### Defined in
+
+[card-elements.ts:4410](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4410)
+
+___
+
+### iconUrlProperty
+
+▪ `Static` `Readonly` **iconUrlProperty**: [`StringProperty`](StringProperty.md)
+
+#### Inherited from
+
+[Action](Action.md).[iconUrlProperty](Action.md#iconurlproperty)
+
+#### Defined in
+
+[card-elements.ts:4050](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4050)
+
+___
+
+### idProperty
+
+▪ `Static` `Readonly` **idProperty**: [`StringProperty`](StringProperty.md)
+
+#### Inherited from
+
+[Action](Action.md).[idProperty](Action.md#idproperty)
+
+#### Defined in
+
+[card-object.ts:40](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L40)
+
+___
+
+### ignoreInputValidationProperty
+
+▪ `Static` `Readonly` **ignoreInputValidationProperty**: [`BoolProperty`](BoolProperty.md)
+
+#### Inherited from
+
+[Action](Action.md).[ignoreInputValidationProperty](Action.md#ignoreinputvalidationproperty)
+
+#### Defined in
+
+[card-elements.ts:4062](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4062)
+
+___
+
+### onRegisterCustomProperties
+
+▪ `Static` `Optional` **onRegisterCustomProperties**: (`sender`: [`SerializableObject`](SerializableObject.md), `schema`: [`SerializableObjectSchema`](SerializableObjectSchema.md)) => `void`
+
+#### Type declaration
+
+▸ (`sender`, `schema`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `sender` | [`SerializableObject`](SerializableObject.md) |
+| `schema` | [`SerializableObjectSchema`](SerializableObjectSchema.md) |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[onRegisterCustomProperties](Action.md#onregistercustomproperties)
+
+#### Defined in
+
+[serialization.ts:809](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L809)
+
+___
+
+### requiresProperty
+
+▪ `Static` `Readonly` **requiresProperty**: [`SerializableObjectProperty`](SerializableObjectProperty.md)
+
+#### Inherited from
+
+[Action](Action.md).[requiresProperty](Action.md#requiresproperty)
+
+#### Defined in
+
+[card-object.ts:41](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L41)
+
+___
+
+### rulesProperty
+
+▪ `Static` `Readonly` **rulesProperty**: [`SerializableObjectCollectionProperty`](SerializableObjectCollectionProperty.md)
+
+#### Inherited from
+
+[Action](Action.md).[rulesProperty](Action.md#rulesproperty)
+
+#### Defined in
+
+[card-elements.ts:4051](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4051)
+
+___
+
+### styleProperty
+
+▪ `Static` `Readonly` **styleProperty**: [`ValueSetProperty`](ValueSetProperty.md)
+
+#### Inherited from
+
+[Action](Action.md).[styleProperty](Action.md#styleproperty)
+
+#### Defined in
+
+[card-elements.ts:4052](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4052)
+
+___
+
+### titleProperty
+
+▪ `Static` `Readonly` **titleProperty**: [`StringProperty`](StringProperty.md)
+
+#### Inherited from
+
+[Action](Action.md).[titleProperty](Action.md#titleproperty)
+
+#### Defined in
+
+[card-elements.ts:4049](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4049)
+
+___
+
+### typeNameProperty
+
+▪ `Static` `Readonly` **typeNameProperty**: [`StringProperty`](StringProperty.md)
+
+#### Inherited from
+
+[Action](Action.md).[typeNameProperty](Action.md#typenameproperty)
+
+#### Defined in
+
+[card-object.ts:31](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L31)
+
+___
+
+### urlProperty
+
+▪ `Static` `Readonly` **urlProperty**: [`StringProperty`](StringProperty.md)
+
+#### Defined in
+
+[card-elements.ts:4401](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4401)
 
 ## Accessors
 
-###  hostConfig
+### hostConfig
 
-• **get hostConfig**(): *[HostConfig](hostconfig.md)*
+• `get` **hostConfig**(): [`HostConfig`](HostConfig.md)
 
-*Inherited from [Action](action.md).[hostConfig](action.md#hostconfig)*
+#### Returns
 
-*Overrides [CardObject](cardobject.md).[hostConfig](cardobject.md#hostconfig)*
+[`HostConfig`](HostConfig.md)
 
-**Returns:** *[HostConfig](hostconfig.md)*
+#### Inherited from
 
-___
+Action.hostConfig
 
-###  isPrimary
+#### Defined in
 
-• **get isPrimary**(): *boolean*
-
-*Inherited from [Action](action.md).[isPrimary](action.md#isprimary)*
-
-**Returns:** *boolean*
-
-• **set isPrimary**(`value`: boolean): *void*
-
-*Inherited from [Action](action.md).[isPrimary](action.md#isprimary)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`value` | boolean |
-
-**Returns:** *void*
+[card-elements.ts:4285](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4285)
 
 ___
 
-###  parent
+### ignoreInputValidation
 
-• **get parent**(): *[CardElement](cardelement.md) | undefined*
+• `get` **ignoreInputValidation**(): `boolean`
 
-*Inherited from [Action](action.md).[parent](action.md#parent)*
+#### Returns
 
-*Overrides [CardObject](cardobject.md).[parent](cardobject.md#parent)*
+`boolean`
 
-**Returns:** *[CardElement](cardelement.md) | undefined*
+#### Inherited from
 
-___
+Action.ignoreInputValidation
 
-###  renderedElement
+#### Defined in
 
-• **get renderedElement**(): *HTMLElement | undefined*
-
-*Inherited from [CardObject](cardobject.md).[renderedElement](cardobject.md#renderedelement)*
-
-**Returns:** *HTMLElement | undefined*
+[card-elements.ts:4281](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4281)
 
 ___
 
-###  requires
+### isPrimary
 
-• **get requires**(): *[HostCapabilities](hostcapabilities.md)*
+• `get` **isPrimary**(): `boolean`
 
-*Inherited from [CardObject](cardobject.md).[requires](cardobject.md#requires)*
+#### Returns
 
-**Returns:** *[HostCapabilities](hostcapabilities.md)*
+`boolean`
+
+#### Inherited from
+
+Action.isPrimary
+
+#### Defined in
+
+[card-elements.ts:4266](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4266)
+
+• `set` **isPrimary**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `boolean` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+Action.isPrimary
+
+#### Defined in
+
+[card-elements.ts:4270](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4270)
+
+___
+
+### parent
+
+• `get` **parent**(): `undefined` \| [`CardElement`](CardElement.md)
+
+#### Returns
+
+`undefined` \| [`CardElement`](CardElement.md)
+
+#### Inherited from
+
+Action.parent
+
+#### Defined in
+
+[card-elements.ts:4289](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4289)
+
+___
+
+### renderedElement
+
+• `get` **renderedElement**(): `undefined` \| `HTMLElement`
+
+#### Returns
+
+`undefined` \| `HTMLElement`
+
+#### Inherited from
+
+Action.renderedElement
+
+#### Defined in
+
+[card-object.ts:142](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L142)
+
+___
+
+### requires
+
+• `get` **requires**(): `HostCapabilities`
+
+#### Returns
+
+`HostCapabilities`
+
+#### Inherited from
+
+Action.requires
+
+#### Defined in
+
+[card-object.ts:54](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L54)
 
 ## Methods
 
-### `Protected` addCssClasses
+### addCssClasses
 
-▸ **addCssClasses**(`element`: HTMLElement): *void*
+▸ `Protected` **addCssClasses**(`element`): `void`
 
-*Inherited from [Action](action.md).[addCssClasses](action.md#protected-addcssclasses)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `element` | `HTMLElement` |
 
-Name | Type |
------- | ------ |
-`element` | HTMLElement |
+#### Returns
 
-**Returns:** *void*
+`void`
 
-___
+#### Inherited from
 
-###  execute
+[Action](Action.md).[addCssClasses](Action.md#addcssclasses)
 
-▸ **execute**(): *void*
+#### Defined in
 
-*Inherited from [Action](action.md).[execute](action.md#execute)*
-
-**Returns:** *void*
+[card-elements.ts:4084](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4084)
 
 ___
 
-###  getActionById
+### execute
 
-▸ **getActionById**(`id`: string): *[Action](action.md) | undefined*
+▸ **execute**(): `void`
 
-*Inherited from [Action](action.md).[getActionById](action.md#getactionbyid)*
+#### Returns
 
-**Parameters:**
+`void`
 
-Name | Type |
------- | ------ |
-`id` | string |
+#### Inherited from
 
-**Returns:** *[Action](action.md) | undefined*
+[Action](Action.md).[execute](Action.md#execute)
 
-___
+#### Defined in
 
-###  getAllInputs
-
-▸ **getAllInputs**(`processActions`: boolean): *[Input](input.md)[]*
-
-*Inherited from [Action](action.md).[getAllInputs](action.md#getallinputs)*
-
-**Parameters:**
-
-Name | Type | Default |
------- | ------ | ------ |
-`processActions` | boolean | true |
-
-**Returns:** *[Input](input.md)[]*
+[card-elements.ts:4210](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4210)
 
 ___
 
-###  getAriaRole
+### getActionById
 
-▸ **getAriaRole**(): *string*
+▸ **getActionById**(`id`): `undefined` \| [`Action`](Action.md)
 
-*Overrides [Action](action.md).[getAriaRole](action.md#getariarole)*
+#### Parameters
 
-**Returns:** *string*
+| Name | Type |
+| :------ | :------ |
+| `id` | `string` |
 
-___
+#### Returns
 
-###  getCustomProperty
+`undefined` \| [`Action`](Action.md)
 
-▸ **getCustomProperty**(`name`: string): *any*
+#### Inherited from
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[getCustomProperty](hostcapabilities.md#getcustomproperty)*
+[Action](Action.md).[getActionById](Action.md#getactionbyid)
 
-**Parameters:**
+#### Defined in
 
-Name | Type |
------- | ------ |
-`name` | string |
-
-**Returns:** *any*
+[card-elements.ts:4249](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4249)
 
 ___
 
-### `Protected` getDefaultSerializationContext
+### getAllInputs
 
-▸ **getDefaultSerializationContext**(): *[BaseSerializationContext](baseserializationcontext.md)*
+▸ **getAllInputs**(`processActions?`): [`Input`](Input.md)[]
 
-*Inherited from [Action](action.md).[getDefaultSerializationContext](action.md#protected-getdefaultserializationcontext)*
+#### Parameters
 
-*Overrides [HostCapabilities](hostcapabilities.md).[getDefaultSerializationContext](hostcapabilities.md#protected-getdefaultserializationcontext)*
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `processActions` | `boolean` | `true` |
 
-**Returns:** *[BaseSerializationContext](baseserializationcontext.md)*
+#### Returns
 
-___
+[`Input`](Input.md)[]
 
-###  getHref
+#### Inherited from
 
-▸ **getHref**(): *string | undefined*
+[Action](Action.md).[getAllInputs](Action.md#getallinputs)
 
-*Overrides [Action](action.md).[getHref](action.md#gethref)*
+#### Defined in
 
-**Returns:** *string | undefined*
-
-___
-
-###  getJsonTypeName
-
-▸ **getJsonTypeName**(): *string*
-
-*Overrides [CardObject](cardobject.md).[getJsonTypeName](cardobject.md#abstract-getjsontypename)*
-
-**Returns:** *string*
+[card-elements.ts:4241](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4241)
 
 ___
 
-###  getReferencedInputs
+### getAriaRole
 
-▸ **getReferencedInputs**(): *[Dictionary](../README.md#dictionary)‹[Input](input.md)› | undefined*
+▸ **getAriaRole**(): `string`
 
-*Inherited from [Action](action.md).[getReferencedInputs](action.md#getreferencedinputs)*
+#### Returns
 
-**Returns:** *[Dictionary](../README.md#dictionary)‹[Input](input.md)› | undefined*
+`string`
 
-___
+#### Overrides
 
-###  getResourceInformation
+[Action](Action.md).[getAriaRole](Action.md#getariarole)
 
-▸ **getResourceInformation**(): *[IResourceInformation](../interfaces/iresourceinformation.md)[]*
+#### Defined in
 
-*Inherited from [Action](action.md).[getResourceInformation](action.md#getresourceinformation)*
-
-**Returns:** *[IResourceInformation](../interfaces/iresourceinformation.md)[]*
+[card-elements.ts:4416](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4416)
 
 ___
 
-###  getRootObject
+### getCustomProperty
 
-▸ **getRootObject**(): *[CardObject](cardobject.md)*
+▸ **getCustomProperty**(`name`): `any`
 
-*Inherited from [CardObject](cardobject.md).[getRootObject](cardobject.md#getrootobject)*
+#### Parameters
 
-**Returns:** *[CardObject](cardobject.md)*
+| Name | Type |
+| :------ | :------ |
+| `name` | `string` |
 
-___
+#### Returns
 
-###  getSchema
+`any`
 
-▸ **getSchema**(): *[SerializableObjectSchema](serializableobjectschema.md)*
+#### Inherited from
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[getSchema](hostcapabilities.md#getschema)*
+[Action](Action.md).[getCustomProperty](Action.md#getcustomproperty)
 
-**Returns:** *[SerializableObjectSchema](serializableobjectschema.md)*
+#### Defined in
 
-___
-
-### `Protected` getSchemaKey
-
-▸ **getSchemaKey**(): *string*
-
-*Inherited from [CardObject](cardobject.md).[getSchemaKey](cardobject.md#protected-getschemakey)*
-
-*Overrides [SerializableObject](serializableobject.md).[getSchemaKey](serializableobject.md#protected-abstract-getschemakey)*
-
-**Returns:** *string*
+[serialization.ts:1040](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1040)
 
 ___
 
-### `Protected` getValue
+### getDefaultSerializationContext
 
-▸ **getValue**(`property`: [PropertyDefinition](propertydefinition.md)): *any*
+▸ `Protected` **getDefaultSerializationContext**(): [`BaseSerializationContext`](BaseSerializationContext.md)
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[getValue](hostcapabilities.md#protected-getvalue)*
+#### Returns
 
-**Parameters:**
+[`BaseSerializationContext`](BaseSerializationContext.md)
 
-Name | Type |
------- | ------ |
-`property` | [PropertyDefinition](propertydefinition.md) |
+#### Inherited from
 
-**Returns:** *any*
+[Action](Action.md).[getDefaultSerializationContext](Action.md#getdefaultserializationcontext)
 
-___
+#### Defined in
 
-###  hasAllDefaultValues
-
-▸ **hasAllDefaultValues**(): *boolean*
-
-*Inherited from [HostCapabilities](hostcapabilities.md).[hasAllDefaultValues](hostcapabilities.md#hasalldefaultvalues)*
-
-**Returns:** *boolean*
+[card-elements.ts:4080](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4080)
 
 ___
 
-###  hasDefaultValue
+### getHref
 
-▸ **hasDefaultValue**(`property`: [PropertyDefinition](propertydefinition.md)): *boolean*
+▸ **getHref**(): `undefined` \| `string`
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[hasDefaultValue](hostcapabilities.md#hasdefaultvalue)*
+#### Returns
 
-**Parameters:**
+`undefined` \| `string`
 
-Name | Type |
------- | ------ |
-`property` | [PropertyDefinition](propertydefinition.md) |
+#### Overrides
 
-**Returns:** *boolean*
+[Action](Action.md).[getHref](Action.md#gethref)
 
-___
+#### Defined in
 
-### `Protected` internalGetReferencedInputs
-
-▸ **internalGetReferencedInputs**(): *[Dictionary](../README.md#dictionary)‹[Input](input.md)›*
-
-*Inherited from [Action](action.md).[internalGetReferencedInputs](action.md#protected-internalgetreferencedinputs)*
-
-**Returns:** *[Dictionary](../README.md#dictionary)‹[Input](input.md)›*
+[card-elements.ts:4431](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4431)
 
 ___
 
-### `Protected` internalParse
+### getJsonTypeName
 
-▸ **internalParse**(`source`: [PropertyBag](../README.md#propertybag), `context`: [BaseSerializationContext](baseserializationcontext.md)): *void*
+▸ **getJsonTypeName**(): `string`
 
-*Inherited from [SerializableObject](serializableobject.md).[internalParse](serializableobject.md#protected-internalparse)*
+#### Returns
 
-**Parameters:**
+`string`
 
-Name | Type |
------- | ------ |
-`source` | [PropertyBag](../README.md#propertybag) |
-`context` | [BaseSerializationContext](baseserializationcontext.md) |
+#### Overrides
 
-**Returns:** *void*
+[Action](Action.md).[getJsonTypeName](Action.md#getjsontypename)
 
-___
+#### Defined in
 
-### `Protected` internalPrepareForExecution
-
-▸ **internalPrepareForExecution**(`inputs`: [Dictionary](../README.md#dictionary)‹[Input](input.md)› | undefined): *void*
-
-*Inherited from [Action](action.md).[internalPrepareForExecution](action.md#protected-internalprepareforexecution)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`inputs` | [Dictionary](../README.md#dictionary)‹[Input](input.md)› &#124; undefined |
-
-**Returns:** *void*
+[card-elements.ts:4412](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4412)
 
 ___
 
-### `Protected` internalToJSON
+### getReferencedInputs
 
-▸ **internalToJSON**(`target`: [PropertyBag](../README.md#propertybag), `context`: [BaseSerializationContext](baseserializationcontext.md)): *void*
+▸ **getReferencedInputs**(): `undefined` \| [`Dictionary`](../README.md#dictionary)<[`Input`](Input.md)\>
 
-*Inherited from [SerializableObject](serializableobject.md).[internalToJSON](serializableobject.md#protected-internaltojson)*
+#### Returns
 
-**Parameters:**
+`undefined` \| [`Dictionary`](../README.md#dictionary)<[`Input`](Input.md)\>
 
-Name | Type |
------- | ------ |
-`target` | [PropertyBag](../README.md#propertybag) |
-`context` | [BaseSerializationContext](baseserializationcontext.md) |
+#### Inherited from
 
-**Returns:** *void*
+[Action](Action.md).[getReferencedInputs](Action.md#getreferencedinputs)
 
-___
+#### Defined in
 
-### `Protected` internalValidateInputs
-
-▸ **internalValidateInputs**(`referencedInputs`: [Dictionary](../README.md#dictionary)‹[Input](input.md)› | undefined): *[Input](input.md)[]*
-
-*Inherited from [Action](action.md).[internalValidateInputs](action.md#protected-internalvalidateinputs)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`referencedInputs` | [Dictionary](../README.md#dictionary)‹[Input](input.md)› &#124; undefined |
-
-**Returns:** *[Input](input.md)[]*
+[card-elements.ts:4253](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4253)
 
 ___
 
-###  internalValidateProperties
+### getResourceInformation
 
-▸ **internalValidateProperties**(`context`: [ValidationResults](validationresults.md)): *void*
+▸ **getResourceInformation**(): [`IResourceInformation`](../interfaces/IResourceInformation.md)[]
 
-*Overrides [CardObject](cardobject.md).[internalValidateProperties](cardobject.md#internalvalidateproperties)*
+#### Returns
 
-**Parameters:**
+[`IResourceInformation`](../interfaces/IResourceInformation.md)[]
 
-Name | Type |
------- | ------ |
-`context` | [ValidationResults](validationresults.md) |
+#### Inherited from
 
-**Returns:** *void*
+[Action](Action.md).[getResourceInformation](Action.md#getresourceinformation)
 
-___
+#### Defined in
 
-###  parse
-
-▸ **parse**(`source`: any, `context?`: [SerializationContext](serializationcontext.md)): *void*
-
-*Inherited from [Action](action.md).[parse](action.md#parse)*
-
-*Overrides [HostCapabilities](hostcapabilities.md).[parse](hostcapabilities.md#parse)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`source` | any |
-`context?` | [SerializationContext](serializationcontext.md) |
-
-**Returns:** *void*
+[card-elements.ts:4245](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4245)
 
 ___
 
-### `Protected` populateSchema
+### getRootObject
 
-▸ **populateSchema**(`schema`: [SerializableObjectSchema](serializableobjectschema.md)): *void*
+▸ **getRootObject**(): [`CardObject`](CardObject.md)
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[populateSchema](hostcapabilities.md#protected-populateschema)*
+#### Returns
 
-**Parameters:**
+[`CardObject`](CardObject.md)
 
-Name | Type |
------- | ------ |
-`schema` | [SerializableObjectSchema](serializableobjectschema.md) |
+#### Inherited from
 
-**Returns:** *void*
+[Action](Action.md).[getRootObject](Action.md#getrootobject)
 
-___
+#### Defined in
 
-###  preProcessPropertyValue
-
-▸ **preProcessPropertyValue**(`property`: [PropertyDefinition](propertydefinition.md), `propertyValue?`: any): *any*
-
-*Inherited from [CardObject](cardobject.md).[preProcessPropertyValue](cardobject.md#preprocesspropertyvalue)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`property` | [PropertyDefinition](propertydefinition.md) |
-`propertyValue?` | any |
-
-**Returns:** *any*
+[card-object.ts:102](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L102)
 
 ___
 
-###  prepareForExecution
+### getSchema
 
-▸ **prepareForExecution**(): *boolean*
+▸ **getSchema**(): [`SerializableObjectSchema`](SerializableObjectSchema.md)
 
-*Inherited from [Action](action.md).[prepareForExecution](action.md#prepareforexecution)*
+#### Returns
 
-**Returns:** *boolean*
+[`SerializableObjectSchema`](SerializableObjectSchema.md)
 
-___
+#### Inherited from
 
-### `Protected` raiseExecuteActionEvent
+[Action](Action.md).[getSchema](Action.md#getschema)
 
-▸ **raiseExecuteActionEvent**(): *void*
+#### Defined in
 
-*Inherited from [Action](action.md).[raiseExecuteActionEvent](action.md#protected-raiseexecuteactionevent)*
-
-**Returns:** *void*
+[serialization.ts:1044](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1044)
 
 ___
 
-###  remove
+### getSchemaKey
 
-▸ **remove**(): *boolean*
+▸ `Protected` **getSchemaKey**(): `string`
 
-*Inherited from [Action](action.md).[remove](action.md#remove)*
+#### Returns
 
-**Returns:** *boolean*
+`string`
 
-___
+#### Inherited from
 
-###  render
+[Action](Action.md).[getSchemaKey](Action.md#getschemakey)
 
-▸ **render**(`baseCssClass`: string): *void*
+#### Defined in
 
-*Inherited from [Action](action.md).[render](action.md#render)*
-
-**Parameters:**
-
-Name | Type | Default |
------- | ------ | ------ |
-`baseCssClass` | string | "ac-pushButton" |
-
-**Returns:** *void*
+[card-object.ts:47](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L47)
 
 ___
 
-###  resetDefaultValues
+### getValue
 
-▸ **resetDefaultValues**(): *void*
+▸ `Protected` **getValue**(`property`): `any`
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[resetDefaultValues](hostcapabilities.md#resetdefaultvalues)*
+#### Parameters
 
-**Returns:** *void*
+| Name | Type |
+| :------ | :------ |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
 
-___
+#### Returns
 
-###  setCustomProperty
+`any`
 
-▸ **setCustomProperty**(`name`: string, `value`: any): *void*
+#### Inherited from
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[setCustomProperty](hostcapabilities.md#setcustomproperty)*
+[Action](Action.md).[getValue](Action.md#getvalue)
 
-**Parameters:**
+#### Defined in
 
-Name | Type |
------- | ------ |
-`name` | string |
-`value` | any |
-
-**Returns:** *void*
+[serialization.ts:875](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L875)
 
 ___
 
-###  setParent
+### hasAllDefaultValues
 
-▸ **setParent**(`value`: [CardObject](cardobject.md) | undefined): *void*
+▸ **hasAllDefaultValues**(): `boolean`
 
-*Inherited from [CardObject](cardobject.md).[setParent](cardobject.md#setparent)*
+#### Returns
 
-**Parameters:**
+`boolean`
 
-Name | Type |
------- | ------ |
-`value` | [CardObject](cardobject.md) &#124; undefined |
+#### Inherited from
 
-**Returns:** *void*
+[Action](Action.md).[hasAllDefaultValues](Action.md#hasalldefaultvalues)
 
-___
+#### Defined in
 
-###  setShouldFallback
-
-▸ **setShouldFallback**(`value`: boolean): *void*
-
-*Inherited from [CardObject](cardobject.md).[setShouldFallback](cardobject.md#setshouldfallback)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`value` | boolean |
-
-**Returns:** *void*
+[serialization.ts:1005](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1005)
 
 ___
 
-### `Protected` setValue
+### hasDefaultValue
 
-▸ **setValue**(`property`: [PropertyDefinition](propertydefinition.md), `value`: any): *void*
+▸ **hasDefaultValue**(`property`): `boolean`
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[setValue](hostcapabilities.md#protected-setvalue)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
 
-Name | Type |
------- | ------ |
-`property` | [PropertyDefinition](propertydefinition.md) |
-`value` | any |
+#### Returns
 
-**Returns:** *void*
+`boolean`
 
-___
+#### Inherited from
 
-###  shouldFallback
+[Action](Action.md).[hasDefaultValue](Action.md#hasdefaultvalue)
 
-▸ **shouldFallback**(): *boolean*
+#### Defined in
 
-*Inherited from [CardObject](cardobject.md).[shouldFallback](cardobject.md#shouldfallback)*
-
-**Returns:** *boolean*
+[serialization.ts:1001](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1001)
 
 ___
 
-### `Protected` shouldSerialize
+### internalGetReferencedInputs
 
-▸ **shouldSerialize**(`context`: [SerializationContext](serializationcontext.md)): *boolean*
+▸ `Protected` **internalGetReferencedInputs**(): [`Dictionary`](../README.md#dictionary)<[`Input`](Input.md)\>
 
-*Inherited from [Action](action.md).[shouldSerialize](action.md#protected-shouldserialize)*
+#### Returns
 
-*Overrides [HostCapabilities](hostcapabilities.md).[shouldSerialize](hostcapabilities.md#protected-shouldserialize)*
+[`Dictionary`](../README.md#dictionary)<[`Input`](Input.md)\>
 
-**Parameters:**
+#### Inherited from
 
-Name | Type |
------- | ------ |
-`context` | [SerializationContext](serializationcontext.md) |
+[Action](Action.md).[internalGetReferencedInputs](Action.md#internalgetreferencedinputs)
 
-**Returns:** *boolean*
+#### Defined in
 
-___
-
-###  toJSON
-
-▸ **toJSON**(`context?`: [BaseSerializationContext](baseserializationcontext.md)): *[PropertyBag](../README.md#propertybag) | undefined*
-
-*Inherited from [HostCapabilities](hostcapabilities.md).[toJSON](hostcapabilities.md#tojson)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`context?` | [BaseSerializationContext](baseserializationcontext.md) |
-
-**Returns:** *[PropertyBag](../README.md#propertybag) | undefined*
+[card-elements.ts:4088](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4088)
 
 ___
 
-###  updateActionButtonCssStyle
+### internalParse
 
-▸ **updateActionButtonCssStyle**(`actionButtonElement`: HTMLElement, `buttonState`: [ActionButtonState](../enums/actionbuttonstate.md)): *void*
+▸ `Protected` **internalParse**(`source`, `context`): `void`
 
-*Inherited from [Action](action.md).[updateActionButtonCssStyle](action.md#updateactionbuttoncssstyle)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `source` | [`PropertyBag`](../README.md#propertybag) |
+| `context` | [`BaseSerializationContext`](BaseSerializationContext.md) |
 
-Name | Type | Default |
------- | ------ | ------ |
-`actionButtonElement` | HTMLElement | - |
-`buttonState` | [ActionButtonState](../enums/actionbuttonstate.md) | ActionButtonState.Normal |
+#### Returns
 
-**Returns:** *void*
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[internalParse](Action.md#internalparse)
+
+#### Defined in
+
+[serialization.ts:888](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L888)
 
 ___
 
-###  validateInputs
+### internalPrepareForExecution
 
-▸ **validateInputs**(): *[Input](input.md)[]*
+▸ `Protected` **internalPrepareForExecution**(`inputs`): `void`
 
-*Inherited from [Action](action.md).[validateInputs](action.md#validateinputs)*
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `inputs` | `undefined` \| [`Dictionary`](../README.md#dictionary)<[`Input`](Input.md)\> |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[internalPrepareForExecution](Action.md#internalprepareforexecution)
+
+#### Defined in
+
+[card-elements.ts:4092](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4092)
+
+___
+
+### internalToJSON
+
+▸ `Protected` **internalToJSON**(`target`, `context`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `target` | [`PropertyBag`](../README.md#propertybag) |
+| `context` | [`BaseSerializationContext`](BaseSerializationContext.md) |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[internalToJSON](Action.md#internaltojson)
+
+#### Defined in
+
+[serialization.ts:927](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L927)
+
+___
+
+### internalValidateInputs
+
+▸ `Protected` **internalValidateInputs**(`referencedInputs`): [`Input`](Input.md)[]
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `referencedInputs` | `undefined` \| [`Dictionary`](../README.md#dictionary)<[`Input`](Input.md)\> |
+
+#### Returns
+
+[`Input`](Input.md)[]
+
+#### Inherited from
+
+[Action](Action.md).[internalValidateInputs](Action.md#internalvalidateinputs)
+
+#### Defined in
+
+[card-elements.ts:4096](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4096)
+
+___
+
+### internalValidateProperties
+
+▸ **internalValidateProperties**(`context`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context` | [`ValidationResults`](ValidationResults.md) |
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[Action](Action.md).[internalValidateProperties](Action.md#internalvalidateproperties)
+
+#### Defined in
+
+[card-elements.ts:4420](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4420)
+
+___
+
+### parse
+
+▸ **parse**(`source`, `context?`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `source` | `any` |
+| `context?` | [`SerializationContext`](SerializationContext.md) |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[parse](Action.md#parse)
+
+#### Defined in
+
+[card-elements.ts:4138](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4138)
+
+___
+
+### populateSchema
+
+▸ `Protected` **populateSchema**(`schema`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `schema` | [`SerializableObjectSchema`](SerializableObjectSchema.md) |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[populateSchema](Action.md#populateschema)
+
+#### Defined in
+
+[serialization.ts:822](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L822)
+
+___
+
+### preProcessPropertyValue
+
+▸ **preProcessPropertyValue**(`property`, `propertyValue?`): `any`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
+| `propertyValue?` | `any` |
+
+#### Returns
+
+`any`
+
+#### Inherited from
+
+[Action](Action.md).[preProcessPropertyValue](Action.md#preprocesspropertyvalue)
+
+#### Defined in
+
+[card-object.ts:72](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L72)
+
+___
+
+### prepareForExecution
+
+▸ **prepareForExecution**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[Action](Action.md).[prepareForExecution](Action.md#prepareforexecution)
+
+#### Defined in
+
+[card-elements.ts:4218](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4218)
+
+___
+
+### raiseExecuteActionEvent
+
+▸ `Protected` **raiseExecuteActionEvent**(): `void`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[raiseExecuteActionEvent](Action.md#raiseexecuteactionevent)
+
+#### Defined in
+
+[card-elements.ts:4116](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4116)
+
+___
+
+### remove
+
+▸ **remove**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[Action](Action.md).[remove](Action.md#remove)
+
+#### Defined in
+
+[card-elements.ts:4233](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4233)
+
+___
+
+### render
+
+▸ **render**(`baseCssClass?`): `void`
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `baseCssClass` | `string` | `"ac-pushButton"` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[render](Action.md#render)
+
+#### Defined in
+
+[card-elements.ts:4142](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4142)
+
+___
+
+### resetDefaultValues
+
+▸ **resetDefaultValues**(): `void`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[resetDefaultValues](Action.md#resetdefaultvalues)
+
+#### Defined in
+
+[serialization.ts:1019](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1019)
+
+___
+
+### setCustomProperty
+
+▸ **setCustomProperty**(`name`, `value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `name` | `string` |
+| `value` | `any` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[setCustomProperty](Action.md#setcustomproperty)
+
+#### Defined in
+
+[serialization.ts:1029](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1029)
+
+___
+
+### setParent
+
+▸ **setParent**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `undefined` \| [`CardObject`](CardObject.md) |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[setParent](Action.md#setparent)
+
+#### Defined in
+
+[card-object.ts:90](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L90)
+
+___
+
+### setShouldFallback
+
+▸ **setShouldFallback**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `boolean` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[setShouldFallback](Action.md#setshouldfallback)
+
+#### Defined in
+
+[card-object.ts:94](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L94)
+
+___
+
+### setValue
+
+▸ `Protected` **setValue**(`property`, `value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
+| `value` | `any` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[setValue](Action.md#setvalue)
+
+#### Defined in
+
+[serialization.ts:879](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L879)
+
+___
+
+### shouldFallback
+
+▸ **shouldFallback**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[Action](Action.md).[shouldFallback](Action.md#shouldfallback)
+
+#### Defined in
+
+[card-object.ts:98](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L98)
+
+___
+
+### shouldSerialize
+
+▸ `Protected` **shouldSerialize**(`context`): `boolean`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context` | [`SerializationContext`](SerializationContext.md) |
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+[Action](Action.md).[shouldSerialize](Action.md#shouldserialize)
+
+#### Defined in
+
+[card-elements.ts:4112](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4112)
+
+___
+
+### toJSON
+
+▸ **toJSON**(`context?`): `undefined` \| [`PropertyBag`](../README.md#propertybag)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context?` | [`BaseSerializationContext`](BaseSerializationContext.md) |
+
+#### Returns
+
+`undefined` \| [`PropertyBag`](../README.md#propertybag)
+
+#### Inherited from
+
+[Action](Action.md).[toJSON](Action.md#tojson)
+
+#### Defined in
+
+[serialization.ts:967](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L967)
+
+___
+
+### updateActionButtonCssStyle
+
+▸ **updateActionButtonCssStyle**(`actionButtonElement`, `buttonState?`): `void`
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `actionButtonElement` | `HTMLElement` | `undefined` |
+| `buttonState` | `ActionButtonState` | `ActionButtonState.Normal` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[Action](Action.md).[updateActionButtonCssStyle](Action.md#updateactionbuttoncssstyle)
+
+#### Defined in
+
+[card-elements.ts:4134](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4134)
+
+___
+
+### validateInputs
+
+▸ **validateInputs**(): [`Input`](Input.md)[]
 
 Validates the inputs associated with this action.
 
-**Returns:** *[Input](input.md)[]*
+#### Returns
+
+[`Input`](Input.md)[]
 
 A list of inputs that failed validation, or an empty array if no input failed validation.
 
+#### Inherited from
+
+[Action](Action.md).[validateInputs](Action.md#validateinputs)
+
+#### Defined in
+
+[card-elements.ts:4262](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4262)
+
 ___
 
-###  validateProperties
+### validateProperties
 
-▸ **validateProperties**(): *[ValidationResults](validationresults.md)*
+▸ **validateProperties**(): [`ValidationResults`](ValidationResults.md)
 
-*Inherited from [CardObject](cardobject.md).[validateProperties](cardobject.md#validateproperties)*
+#### Returns
 
-**Returns:** *[ValidationResults](validationresults.md)*
+[`ValidationResults`](ValidationResults.md)
+
+#### Inherited from
+
+[Action](Action.md).[validateProperties](Action.md#validateproperties)
+
+#### Defined in
+
+[card-object.ts:130](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L130)

@@ -1,62 +1,74 @@
-[Adaptive Cards Javascript SDK](../README.md) › [FontTypeSet](fonttypeset.md)
+[Adaptive Cards Javascript SDK](../README.md) / FontTypeSet
 
 # Class: FontTypeSet
 
-## Hierarchy
-
-* **FontTypeSet**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](fonttypeset.md#constructor)
+- [constructor](FontTypeSet.md#constructor)
 
 ### Properties
 
-* [default](fonttypeset.md#default)
-* [monospace](fonttypeset.md#monospace)
+- [default](FontTypeSet.md#default)
+- [monospace](FontTypeSet.md#monospace)
 
 ### Methods
 
-* [getStyleDefinition](fonttypeset.md#getstyledefinition)
+- [getStyleDefinition](FontTypeSet.md#getstyledefinition)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new FontTypeSet**(`obj?`: any): *[FontTypeSet](fonttypeset.md)*
+• **new FontTypeSet**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[FontTypeSet](fonttypeset.md)*
+#### Defined in
+
+[host-config.ts:531](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L531)
 
 ## Properties
 
-###  default
+### default
 
-• **default**: *[FontTypeDefinition](fonttypedefinition.md)*
+• **default**: [`FontTypeDefinition`](FontTypeDefinition.md)
+
+#### Defined in
+
+[host-config.ts:528](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L528)
 
 ___
 
-###  monospace
+### monospace
 
-• **monospace**: *[FontTypeDefinition](fonttypedefinition.md)*
+• **monospace**: [`FontTypeDefinition`](FontTypeDefinition.md)
+
+#### Defined in
+
+[host-config.ts:529](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L529)
 
 ## Methods
 
-###  getStyleDefinition
+### getStyleDefinition
 
-▸ **getStyleDefinition**(`style`: [FontType](../enums/fonttype.md) | undefined): *[FontTypeDefinition](fonttypedefinition.md)*
+▸ **getStyleDefinition**(`style`): [`FontTypeDefinition`](FontTypeDefinition.md)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`style` | [FontType](../enums/fonttype.md) &#124; undefined |
+| Name | Type |
+| :------ | :------ |
+| `style` | `undefined` \| [`FontType`](../enums/FontType.md) |
 
-**Returns:** *[FontTypeDefinition](fonttypedefinition.md)*
+#### Returns
+
+[`FontTypeDefinition`](FontTypeDefinition.md)
+
+#### Defined in
+
+[host-config.ts:541](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L541)

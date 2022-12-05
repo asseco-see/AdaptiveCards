@@ -1,36 +1,52 @@
-[Adaptive Cards Javascript SDK](../README.md) › [InputTextStyle](inputtextstyle.md)
+[Adaptive Cards Javascript SDK](../README.md) / InputTextStyle
 
 # Enumeration: InputTextStyle
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Email](inputtextstyle.md#email)
-* [Tel](inputtextstyle.md#tel)
-* [Text](inputtextstyle.md#text)
-* [Url](inputtextstyle.md#url)
+- [Email](InputTextStyle.md#email)
+- [Tel](InputTextStyle.md#tel)
+- [Text](InputTextStyle.md#text)
+- [Url](InputTextStyle.md#url)
 
-## Enumeration members
+## Enumeration Members
 
-###  Email
+### Email
 
-• **Email**:
+• **Email** = ``3``
 
-___
+#### Defined in
 
-###  Tel
-
-• **Tel**:
+[enums.ts:146](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L146)
 
 ___
 
-###  Text
+### Tel
 
-• **Text**:
+• **Tel** = ``1``
+
+#### Defined in
+
+[enums.ts:144](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L144)
 
 ___
 
-###  Url
+### Text
 
-• **Url**:
+• **Text** = ``0``
+
+#### Defined in
+
+[enums.ts:143](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L143)
+
+___
+
+### Url
+
+• **Url** = ``2``
+
+#### Defined in
+
+[enums.ts:145](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L145)

@@ -1,29 +1,41 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ValidationPhase](validationphase.md)
+[Adaptive Cards Javascript SDK](../README.md) / ValidationPhase
 
 # Enumeration: ValidationPhase
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Parse](validationphase.md#parse)
-* [ToJSON](validationphase.md#tojson)
-* [Validation](validationphase.md#validation)
+- [Parse](ValidationPhase.md#parse)
+- [ToJSON](ValidationPhase.md#tojson)
+- [Validation](ValidationPhase.md#validation)
 
-## Enumeration members
+## Enumeration Members
 
-###  Parse
+### Parse
 
-• **Parse**:
+• **Parse** = ``0``
 
-___
+#### Defined in
 
-###  ToJSON
-
-• **ToJSON**:
+[enums.ts:201](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L201)
 
 ___
 
-###  Validation
+### ToJSON
 
-• **Validation**:
+• **ToJSON** = ``1``
+
+#### Defined in
+
+[enums.ts:202](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L202)
+
+___
+
+### Validation
+
+• **Validation** = ``2``
+
+#### Defined in
+
+[enums.ts:203](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L203)

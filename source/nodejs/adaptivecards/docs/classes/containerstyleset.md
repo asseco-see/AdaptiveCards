@@ -1,76 +1,98 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ContainerStyleSet](containerstyleset.md)
+[Adaptive Cards Javascript SDK](../README.md) / ContainerStyleSet
 
 # Class: ContainerStyleSet
 
-## Hierarchy
-
-* **ContainerStyleSet**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](containerstyleset.md#constructor)
+- [constructor](ContainerStyleSet.md#constructor)
 
 ### Accessors
 
-* [default](containerstyleset.md#default)
-* [emphasis](containerstyleset.md#emphasis)
+- [default](ContainerStyleSet.md#default)
+- [emphasis](ContainerStyleSet.md#emphasis)
 
 ### Methods
 
-* [getStyleByName](containerstyleset.md#getstylebyname)
-* [toJSON](containerstyleset.md#tojson)
+- [getStyleByName](ContainerStyleSet.md#getstylebyname)
+- [toJSON](ContainerStyleSet.md#tojson)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new ContainerStyleSet**(`obj?`: any): *[ContainerStyleSet](containerstyleset.md)*
+• **new ContainerStyleSet**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[ContainerStyleSet](containerstyleset.md)*
+#### Defined in
+
+[host-config.ts:391](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L391)
 
 ## Accessors
 
-###  default
+### default
 
-• **get default**(): *[ContainerStyleDefinition](containerstyledefinition.md)*
+• `get` **default**(): [`ContainerStyleDefinition`](ContainerStyleDefinition.md)
 
-**Returns:** *[ContainerStyleDefinition](containerstyledefinition.md)*
+#### Returns
+
+[`ContainerStyleDefinition`](ContainerStyleDefinition.md)
+
+#### Defined in
+
+[host-config.ts:462](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L462)
 
 ___
 
-###  emphasis
+### emphasis
 
-• **get emphasis**(): *[ContainerStyleDefinition](containerstyledefinition.md)*
+• `get` **emphasis**(): [`ContainerStyleDefinition`](ContainerStyleDefinition.md)
 
-**Returns:** *[ContainerStyleDefinition](containerstyledefinition.md)*
+#### Returns
+
+[`ContainerStyleDefinition`](ContainerStyleDefinition.md)
+
+#### Defined in
+
+[host-config.ts:466](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L466)
 
 ## Methods
 
-###  getStyleByName
+### getStyleByName
 
-▸ **getStyleByName**(`name`: string | undefined, `defaultValue?`: [ContainerStyleDefinition](containerstyledefinition.md)): *[ContainerStyleDefinition](containerstyledefinition.md)*
+▸ **getStyleByName**(`name`, `defaultValue?`): [`ContainerStyleDefinition`](ContainerStyleDefinition.md)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`name` | string &#124; undefined |
-`defaultValue?` | [ContainerStyleDefinition](containerstyledefinition.md) |
+| Name | Type |
+| :------ | :------ |
+| `name` | `undefined` \| `string` |
+| `defaultValue?` | [`ContainerStyleDefinition`](ContainerStyleDefinition.md) |
 
-**Returns:** *[ContainerStyleDefinition](containerstyledefinition.md)*
+#### Returns
+
+[`ContainerStyleDefinition`](ContainerStyleDefinition.md)
+
+#### Defined in
+
+[host-config.ts:453](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L453)
 
 ___
 
-###  toJSON
+### toJSON
 
-▸ **toJSON**(): *any*
+▸ **toJSON**(): `any`
 
-**Returns:** *any*
+#### Returns
+
+`any`
+
+#### Defined in
+
+[host-config.ts:428](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L428)

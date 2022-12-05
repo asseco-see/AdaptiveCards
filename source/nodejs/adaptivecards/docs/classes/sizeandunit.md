@@ -1,64 +1,76 @@
-[Adaptive Cards Javascript SDK](../README.md) › [SizeAndUnit](sizeandunit.md)
+[Adaptive Cards Javascript SDK](../README.md) / SizeAndUnit
 
 # Class: SizeAndUnit
 
-## Hierarchy
-
-* **SizeAndUnit**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](sizeandunit.md#constructor)
+- [constructor](SizeAndUnit.md#constructor)
 
 ### Properties
 
-* [physicalSize](sizeandunit.md#physicalsize)
-* [unit](sizeandunit.md#unit)
+- [physicalSize](SizeAndUnit.md#physicalsize)
+- [unit](SizeAndUnit.md#unit)
 
 ### Methods
 
-* [parse](sizeandunit.md#static-parse)
+- [parse](SizeAndUnit.md#parse)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new SizeAndUnit**(`physicalSize`: number, `unit`: [SizeUnit](../enums/sizeunit.md)): *[SizeAndUnit](sizeandunit.md)*
+• **new SizeAndUnit**(`physicalSize`, `unit`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`physicalSize` | number |
-`unit` | [SizeUnit](../enums/sizeunit.md) |
+| Name | Type |
+| :------ | :------ |
+| `physicalSize` | `number` |
+| `unit` | [`SizeUnit`](../enums/SizeUnit.md) |
 
-**Returns:** *[SizeAndUnit](sizeandunit.md)*
+#### Defined in
+
+[shared.ts:208](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L208)
 
 ## Properties
 
-###  physicalSize
+### physicalSize
 
-• **physicalSize**: *number*
+• **physicalSize**: `number`
+
+#### Defined in
+
+[shared.ts:176](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L176)
 
 ___
 
-###  unit
+### unit
 
-• **unit**: *[SizeUnit](../enums/sizeunit.md)*
+• **unit**: [`SizeUnit`](../enums/SizeUnit.md)
+
+#### Defined in
+
+[shared.ts:177](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L177)
 
 ## Methods
 
-### `Static` parse
+### parse
 
-▸ **parse**(`input`: string, `requireUnitSpecifier`: boolean): *[SizeAndUnit](sizeandunit.md)*
+▸ `Static` **parse**(`input`, `requireUnitSpecifier?`): [`SizeAndUnit`](SizeAndUnit.md)
 
-**Parameters:**
+#### Parameters
 
-Name | Type | Default |
------- | ------ | ------ |
-`input` | string | - |
-`requireUnitSpecifier` | boolean | false |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `input` | `string` | `undefined` |
+| `requireUnitSpecifier` | `boolean` | `false` |
 
-**Returns:** *[SizeAndUnit](sizeandunit.md)*
+#### Returns
+
+[`SizeAndUnit`](SizeAndUnit.md)
+
+#### Defined in
+
+[shared.ts:179](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L179)

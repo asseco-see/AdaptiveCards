@@ -1,29 +1,41 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ImageSize](imagesize.md)
+[Adaptive Cards Javascript SDK](../README.md) / ImageSize
 
 # Enumeration: ImageSize
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Large](imagesize.md#large)
-* [Medium](imagesize.md#medium)
-* [Small](imagesize.md#small)
+- [Large](ImageSize.md#large)
+- [Medium](ImageSize.md#medium)
+- [Small](ImageSize.md#small)
 
-## Enumeration members
+## Enumeration Members
 
-###  Large
+### Large
 
-• **Large**:
+• **Large** = ``2``
 
-___
+#### Defined in
 
-###  Medium
-
-• **Medium**:
+[enums.ts:24](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L24)
 
 ___
 
-###  Small
+### Medium
 
-• **Small**:
+• **Medium** = ``1``
+
+#### Defined in
+
+[enums.ts:23](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L23)
+
+___
+
+### Small
+
+• **Small** = ``0``
+
+#### Defined in
+
+[enums.ts:22](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L22)

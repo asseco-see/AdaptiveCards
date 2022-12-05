@@ -1,1628 +1,2586 @@
-[Adaptive Cards Javascript SDK](../README.md) › [Input](input.md)
+[Adaptive Cards Javascript SDK](../README.md) / Input
 
 # Class: Input
 
 ## Hierarchy
 
-  ↳ [CardElement](cardelement.md)
+- [`CardElement`](CardElement.md)
 
-  ↳ **Input**
+  ↳ **`Input`**
 
-  ↳ [ChipInput](chipinput.md)
+  ↳↳ [`TextInput`](TextInput.md)
 
-  ↳ [TextInput](textinput.md)
+  ↳↳ [`ToggleInput`](ToggleInput.md)
 
-  ↳ [ToggleInput](toggleinput.md)
+  ↳↳ [`ChoiceSetInput`](ChoiceSetInput.md)
 
-  ↳ [ChoiceSetInput](choicesetinput.md)
+  ↳↳ [`NumberInput`](NumberInput.md)
 
-  ↳ [NumberInput](numberinput.md)
+  ↳↳ [`DateInput`](DateInput.md)
 
-  ↳ [DateInput](dateinput.md)
+  ↳↳ [`TimeInput`](TimeInput.md)
 
-  ↳ [TimeInput](timeinput.md)
+  ↳↳ [`GenericInput`](GenericInput.md)
 
 ## Implements
 
-* [IInput](../interfaces/iinput.md)
+- [`IInput`](../interfaces/IInput.md)
 
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](input.md#constructor)
+- [constructor](Input.md#constructor)
 
 ### Properties
 
-* [_parent](input.md#protected-optional-_parent)
-* [_renderedElement](input.md#protected-optional-_renderedelement)
-* [customCssSelector](input.md#optional-customcssselector)
-* [errorMessage](input.md#optional-errormessage)
-* [height](input.md#height)
-* [horizontalAlignment](input.md#horizontalalignment)
-* [id](input.md#optional-id)
-* [isRequired](input.md#isrequired)
-* [label](input.md#optional-label)
-* [maxVersion](input.md#maxversion)
-* [onPreProcessPropertyValue](input.md#optional-onpreprocesspropertyvalue)
-* [onValueChanged](input.md#onvaluechanged)
-* [separator](input.md#separator)
-* [spacing](input.md#spacing)
-* [errorMessageProperty](input.md#static-readonly-errormessageproperty)
-* [heightProperty](input.md#static-readonly-heightproperty)
-* [horizontalAlignmentProperty](input.md#static-readonly-horizontalalignmentproperty)
-* [idProperty](input.md#static-readonly-idproperty)
-* [isRequiredProperty](input.md#static-readonly-isrequiredproperty)
-* [isVisibleProperty](input.md#static-readonly-isvisibleproperty)
-* [labelProperty](input.md#static-readonly-labelproperty)
-* [langProperty](input.md#static-readonly-langproperty)
-* [onRegisterCustomProperties](input.md#static-optional-onregistercustomproperties)
-* [requiresProperty](input.md#static-readonly-requiresproperty)
-* [separatorProperty](input.md#static-readonly-separatorproperty)
-* [spacingProperty](input.md#static-readonly-spacingproperty)
-* [typeNameProperty](input.md#static-readonly-typenameproperty)
+- [\_parent](Input.md#_parent)
+- [\_renderedElement](Input.md#_renderedelement)
+- [customCssSelector](Input.md#customcssselector)
+- [errorMessage](Input.md#errormessage)
+- [height](Input.md#height)
+- [horizontalAlignment](Input.md#horizontalalignment)
+- [id](Input.md#id)
+- [isRequired](Input.md#isrequired)
+- [label](Input.md#label)
+- [maxVersion](Input.md#maxversion)
+- [onPreProcessPropertyValue](Input.md#onpreprocesspropertyvalue)
+- [onValueChanged](Input.md#onvaluechanged)
+- [rules](Input.md#rules)
+- [separator](Input.md#separator)
+- [spacing](Input.md#spacing)
+- [errorMessageProperty](Input.md#errormessageproperty)
+- [heightProperty](Input.md#heightproperty)
+- [horizontalAlignmentProperty](Input.md#horizontalalignmentproperty)
+- [idProperty](Input.md#idproperty)
+- [isRequiredProperty](Input.md#isrequiredproperty)
+- [isVisibleProperty](Input.md#isvisibleproperty)
+- [labelProperty](Input.md#labelproperty)
+- [langProperty](Input.md#langproperty)
+- [onRegisterCustomProperties](Input.md#onregistercustomproperties)
+- [requiresProperty](Input.md#requiresproperty)
+- [rulesProperty](Input.md#rulesproperty)
+- [separatorProperty](Input.md#separatorproperty)
+- [spacingProperty](Input.md#spacingproperty)
+- [typeNameProperty](Input.md#typenameproperty)
 
 ### Accessors
 
-* [allowCustomPadding](input.md#protected-allowcustompadding)
-* [defaultStyle](input.md#protected-defaultstyle)
-* [hasVisibleSeparator](input.md#hasvisibleseparator)
-* [hostConfig](input.md#hostconfig)
-* [index](input.md#index)
-* [inputControlContainerElement](input.md#protected-inputcontrolcontainerelement)
-* [isInline](input.md#isinline)
-* [isInteractive](input.md#isinteractive)
-* [isNullable](input.md#protected-isnullable)
-* [isStandalone](input.md#isstandalone)
-* [isVisible](input.md#isvisible)
-* [lang](input.md#lang)
-* [parent](input.md#parent)
-* [renderedElement](input.md#renderedelement)
-* [renderedInputControlElement](input.md#protected-renderedinputcontrolelement)
-* [requires](input.md#requires)
-* [separatorElement](input.md#separatorelement)
-* [separatorOrientation](input.md#protected-separatororientation)
-* [useDefaultSizing](input.md#protected-usedefaultsizing)
-* [value](input.md#value)
+- [allowCustomPadding](Input.md#allowcustompadding)
+- [defaultStyle](Input.md#defaultstyle)
+- [hasVisibleSeparator](Input.md#hasvisibleseparator)
+- [hostConfig](Input.md#hostconfig)
+- [index](Input.md#index)
+- [inputControlContainerElement](Input.md#inputcontrolcontainerelement)
+- [isInline](Input.md#isinline)
+- [isInteractive](Input.md#isinteractive)
+- [isNullable](Input.md#isnullable)
+- [isStandalone](Input.md#isstandalone)
+- [isVisible](Input.md#isvisible)
+- [lang](Input.md#lang)
+- [parent](Input.md#parent)
+- [renderedElement](Input.md#renderedelement)
+- [renderedInputControlElement](Input.md#renderedinputcontrolelement)
+- [requires](Input.md#requires)
+- [separatorElement](Input.md#separatorelement)
+- [separatorOrientation](Input.md#separatororientation)
+- [useDefaultSizing](Input.md#usedefaultsizing)
+- [value](Input.md#value)
 
 ### Methods
 
-* [adjustRenderedElementSize](input.md#protected-adjustrenderedelementsize)
-* [applyPadding](input.md#protected-applypadding)
-* [asString](input.md#asstring)
-* [createPlaceholderElement](input.md#protected-createplaceholderelement)
-* [focus](input.md#focus)
-* [getActionAt](input.md#getactionat)
-* [getActionById](input.md#getactionbyid)
-* [getActionCount](input.md#getactioncount)
-* [getAllInputs](input.md#getallinputs)
-* [getAllLabelIds](input.md#protected-getalllabelids)
-* [getCustomProperty](input.md#getcustomproperty)
-* [getDefaultPadding](input.md#protected-getdefaultpadding)
-* [getDefaultSerializationContext](input.md#protected-getdefaultserializationcontext)
-* [getEffectivePadding](input.md#geteffectivepadding)
-* [getEffectiveStyle](input.md#geteffectivestyle)
-* [getEffectiveStyleDefinition](input.md#geteffectivestyledefinition)
-* [getElementById](input.md#getelementbyid)
-* [getForbiddenActionTypes](input.md#getforbiddenactiontypes)
-* [getHasBackground](input.md#protected-gethasbackground)
-* [getImmediateSurroundingPadding](input.md#getimmediatesurroundingpadding)
-* [getJsonTypeName](input.md#abstract-getjsontypename)
-* [getPadding](input.md#protected-getpadding)
-* [getParentContainer](input.md#getparentcontainer)
-* [getResourceInformation](input.md#getresourceinformation)
-* [getRootElement](input.md#getrootelement)
-* [getRootObject](input.md#getrootobject)
-* [getSchema](input.md#getschema)
-* [getSchemaKey](input.md#protected-getschemakey)
-* [getValue](input.md#protected-getvalue)
-* [hasAllDefaultValues](input.md#hasalldefaultvalues)
-* [hasDefaultValue](input.md#hasdefaultvalue)
-* [indexOf](input.md#indexof)
-* [internalParse](input.md#protected-internalparse)
-* [internalRender](input.md#protected-abstract-internalrender)
-* [internalToJSON](input.md#protected-internaltojson)
-* [internalValidateProperties](input.md#internalvalidateproperties)
-* [isAtTheVeryBottom](input.md#isattheverybottom)
-* [isAtTheVeryLeft](input.md#isattheveryleft)
-* [isAtTheVeryRight](input.md#isattheveryright)
-* [isAtTheVeryTop](input.md#isattheverytop)
-* [isBleeding](input.md#isbleeding)
-* [isBleedingAtBottom](input.md#isbleedingatbottom)
-* [isBleedingAtTop](input.md#isbleedingattop)
-* [isBottomElement](input.md#isbottomelement)
-* [isDesignMode](input.md#isdesignmode)
-* [isDisplayed](input.md#protected-isdisplayed)
-* [isFirstElement](input.md#isfirstelement)
-* [isHiddenDueToOverflow](input.md#ishiddenduetooverflow)
-* [isLastElement](input.md#islastelement)
-* [isLeftMostElement](input.md#isleftmostelement)
-* [isRightMostElement](input.md#isrightmostelement)
-* [isSet](input.md#abstract-isset)
-* [isTopElement](input.md#istopelement)
-* [isValid](input.md#isvalid)
-* [overrideInternalRender](input.md#protected-overrideinternalrender)
-* [parse](input.md#parse)
-* [populateSchema](input.md#protected-populateschema)
-* [preProcessPropertyValue](input.md#preprocesspropertyvalue)
-* [remove](input.md#remove)
-* [render](input.md#render)
-* [resetDefaultValues](input.md#resetdefaultvalues)
-* [resetValidationFailureCue](input.md#protected-resetvalidationfailurecue)
-* [setCustomProperty](input.md#setcustomproperty)
-* [setPadding](input.md#protected-setpadding)
-* [setParent](input.md#setparent)
-* [setShouldFallback](input.md#setshouldfallback)
-* [setValue](input.md#protected-setvalue)
-* [shouldFallback](input.md#shouldfallback)
-* [shouldSerialize](input.md#protected-shouldserialize)
-* [showValidationErrorMessage](input.md#protected-showvalidationerrormessage)
-* [toJSON](input.md#tojson)
-* [truncateOverflow](input.md#protected-truncateoverflow)
-* [undoOverflowTruncation](input.md#protected-undooverflowtruncation)
-* [updateInputControlAriaLabelledBy](input.md#protected-updateinputcontrolarialabelledby)
-* [updateLayout](input.md#updatelayout)
-* [validateProperties](input.md#validateproperties)
-* [validateValue](input.md#validatevalue)
-* [valueChanged](input.md#protected-valuechanged)
+- [adjustRenderedElementSize](Input.md#adjustrenderedelementsize)
+- [applyPadding](Input.md#applypadding)
+- [asString](Input.md#asstring)
+- [createPlaceholderElement](Input.md#createplaceholderelement)
+- [focus](Input.md#focus)
+- [getActionAt](Input.md#getactionat)
+- [getActionById](Input.md#getactionbyid)
+- [getActionCount](Input.md#getactioncount)
+- [getAllInputs](Input.md#getallinputs)
+- [getAllLabelIds](Input.md#getalllabelids)
+- [getCustomProperty](Input.md#getcustomproperty)
+- [getDefaultPadding](Input.md#getdefaultpadding)
+- [getDefaultSerializationContext](Input.md#getdefaultserializationcontext)
+- [getEffectivePadding](Input.md#geteffectivepadding)
+- [getEffectiveStyle](Input.md#geteffectivestyle)
+- [getEffectiveStyleDefinition](Input.md#geteffectivestyledefinition)
+- [getElementById](Input.md#getelementbyid)
+- [getForbiddenActionTypes](Input.md#getforbiddenactiontypes)
+- [getHasBackground](Input.md#gethasbackground)
+- [getImmediateSurroundingPadding](Input.md#getimmediatesurroundingpadding)
+- [getJsonTypeName](Input.md#getjsontypename)
+- [getPadding](Input.md#getpadding)
+- [getParentContainer](Input.md#getparentcontainer)
+- [getResourceInformation](Input.md#getresourceinformation)
+- [getRootElement](Input.md#getrootelement)
+- [getRootObject](Input.md#getrootobject)
+- [getSchema](Input.md#getschema)
+- [getSchemaKey](Input.md#getschemakey)
+- [getValue](Input.md#getvalue)
+- [hasAllDefaultValues](Input.md#hasalldefaultvalues)
+- [hasDefaultValue](Input.md#hasdefaultvalue)
+- [indexOf](Input.md#indexof)
+- [internalParse](Input.md#internalparse)
+- [internalRender](Input.md#internalrender)
+- [internalToJSON](Input.md#internaltojson)
+- [internalValidateProperties](Input.md#internalvalidateproperties)
+- [isAtTheVeryBottom](Input.md#isattheverybottom)
+- [isAtTheVeryLeft](Input.md#isattheveryleft)
+- [isAtTheVeryRight](Input.md#isattheveryright)
+- [isAtTheVeryTop](Input.md#isattheverytop)
+- [isBleeding](Input.md#isbleeding)
+- [isBleedingAtBottom](Input.md#isbleedingatbottom)
+- [isBleedingAtTop](Input.md#isbleedingattop)
+- [isBottomElement](Input.md#isbottomelement)
+- [isDesignMode](Input.md#isdesignmode)
+- [isDisplayed](Input.md#isdisplayed)
+- [isFirstElement](Input.md#isfirstelement)
+- [isHiddenDueToOverflow](Input.md#ishiddenduetooverflow)
+- [isLastElement](Input.md#islastelement)
+- [isLeftMostElement](Input.md#isleftmostelement)
+- [isRightMostElement](Input.md#isrightmostelement)
+- [isSet](Input.md#isset)
+- [isTopElement](Input.md#istopelement)
+- [isValid](Input.md#isvalid)
+- [overrideInternalRender](Input.md#overrideinternalrender)
+- [parse](Input.md#parse)
+- [populateSchema](Input.md#populateschema)
+- [preProcessPropertyValue](Input.md#preprocesspropertyvalue)
+- [remove](Input.md#remove)
+- [render](Input.md#render)
+- [resetDefaultValues](Input.md#resetdefaultvalues)
+- [resetValidationFailureCue](Input.md#resetvalidationfailurecue)
+- [setCustomProperty](Input.md#setcustomproperty)
+- [setPadding](Input.md#setpadding)
+- [setParent](Input.md#setparent)
+- [setShouldFallback](Input.md#setshouldfallback)
+- [setValue](Input.md#setvalue)
+- [shouldFallback](Input.md#shouldfallback)
+- [shouldSerialize](Input.md#shouldserialize)
+- [showValidationErrorMessage](Input.md#showvalidationerrormessage)
+- [toJSON](Input.md#tojson)
+- [truncateOverflow](Input.md#truncateoverflow)
+- [undoOverflowTruncation](Input.md#undooverflowtruncation)
+- [updateInputControlAriaLabelledBy](Input.md#updateinputcontrolarialabelledby)
+- [updateLayout](Input.md#updatelayout)
+- [validateProperties](Input.md#validateproperties)
+- [validateValue](Input.md#validatevalue)
+- [valueChanged](Input.md#valuechanged)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new Input**(): *[Input](input.md)*
+• **new Input**()
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[constructor](hostcapabilities.md#constructor)*
+#### Inherited from
 
-**Returns:** *[Input](input.md)*
+[CardElement](CardElement.md).[constructor](CardElement.md#constructor)
+
+#### Defined in
+
+[serialization.ts:951](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L951)
 
 ## Properties
 
-### `Protected` `Optional` _parent
+### \_parent
 
-• **_parent**? : *[CardObject](cardobject.md)*
+• `Protected` `Optional` **\_parent**: [`CardObject`](CardObject.md)
 
-*Inherited from [CardObject](cardobject.md).[_parent](cardobject.md#protected-optional-_parent)*
+#### Inherited from
 
-___
+[CardElement](CardElement.md).[_parent](CardElement.md#_parent)
 
-### `Protected` `Optional` _renderedElement
+#### Defined in
 
-• **_renderedElement**? : *HTMLElement*
-
-*Inherited from [CardObject](cardobject.md).[_renderedElement](cardobject.md#protected-optional-_renderedelement)*
+[card-object.ts:63](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L63)
 
 ___
 
-### `Optional` customCssSelector
+### \_renderedElement
 
-• **customCssSelector**? : *undefined | string*
+• `Protected` `Optional` **\_renderedElement**: `HTMLElement`
 
-*Inherited from [CardElement](cardelement.md).[customCssSelector](cardelement.md#optional-customcssselector)*
+#### Inherited from
 
-___
+[CardElement](CardElement.md).[_renderedElement](CardElement.md#_renderedelement)
 
-### `Optional` errorMessage
+#### Defined in
 
-• **errorMessage**? : *undefined | string*
-
-___
-
-###  height
-
-• **height**: *[CardElementHeight](../README.md#cardelementheight)*
-
-*Implementation of [IInput](../interfaces/iinput.md).[height](../interfaces/iinput.md#optional-height)*
-
-*Inherited from [CardElement](cardelement.md).[height](cardelement.md#height)*
+[card-object.ts:64](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L64)
 
 ___
 
-###  horizontalAlignment
+### customCssSelector
 
-• **horizontalAlignment**: *[HorizontalAlignment](../enums/horizontalalignment.md)*
+• `Optional` **customCssSelector**: `string`
 
-*Implementation of [IInput](../interfaces/iinput.md).[horizontalAlignment](../interfaces/iinput.md#optional-horizontalalignment)*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[horizontalAlignment](cardelement.md#horizontalalignment)*
+[CardElement](CardElement.md).[customCssSelector](CardElement.md#customcssselector)
 
-___
+#### Defined in
 
-### `Optional` id
-
-• **id**? : *undefined | string*
-
-*Implementation of [IInput](../interfaces/iinput.md).[id](../interfaces/iinput.md#optional-id)*
-
-*Inherited from [CardObject](cardobject.md).[id](cardobject.md#optional-id)*
+[card-elements.ts:426](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L426)
 
 ___
 
-###  isRequired
+### errorMessage
 
-• **isRequired**: *boolean*
+• `Optional` **errorMessage**: `string`
 
-___
+#### Defined in
 
-### `Optional` label
-
-• **label**? : *undefined | string*
+[card-elements.ts:2515](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2515)
 
 ___
 
-###  maxVersion
+### height
 
-• **maxVersion**: *[Version](version.md)* = Versions.v1_3
+• **height**: [`CardElementHeight`](../README.md#cardelementheight)
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[maxVersion](hostcapabilities.md#maxversion)*
+#### Inherited from
 
-___
+[CardElement](CardElement.md).[height](CardElement.md#height)
 
-### `Optional` onPreProcessPropertyValue
+#### Defined in
 
-• **onPreProcessPropertyValue**? : *undefined | function*
-
-*Inherited from [CardObject](cardobject.md).[onPreProcessPropertyValue](cardobject.md#optional-onpreprocesspropertyvalue)*
+[card-elements.ts:149](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L149)
 
 ___
 
-###  onValueChanged
+### horizontalAlignment
 
-• **onValueChanged**: *function*
+• **horizontalAlignment**: [`HorizontalAlignment`](../enums/HorizontalAlignment.md)
 
-#### Type declaration:
+#### Inherited from
 
-▸ (`sender`: [Input](input.md)): *void*
+[CardElement](CardElement.md).[horizontalAlignment](CardElement.md#horizontalalignment)
 
-**Parameters:**
+#### Defined in
 
-Name | Type |
------- | ------ |
-`sender` | [Input](input.md) |
+[card-elements.ts:140](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L140)
 
 ___
 
-###  separator
+### id
 
-• **separator**: *boolean*
+• `Optional` **id**: `string`
 
-*Implementation of [IInput](../interfaces/iinput.md).[separator](../interfaces/iinput.md#optional-separator)*
+#### Implementation of
 
-*Inherited from [CardElement](cardelement.md).[separator](cardelement.md#separator)*
+[IInput](../interfaces/IInput.md).[id](../interfaces/IInput.md#id)
 
-___
+#### Inherited from
 
-###  spacing
+[CardElement](CardElement.md).[id](CardElement.md#id)
 
-• **spacing**: *[Spacing](../enums/spacing.md)*
+#### Defined in
 
-*Implementation of [IInput](../interfaces/iinput.md).[spacing](../interfaces/iinput.md#optional-spacing)*
-
-*Inherited from [CardElement](cardelement.md).[spacing](cardelement.md#spacing)*
+[card-object.ts:52](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L52)
 
 ___
 
-### `Static` `Readonly` errorMessageProperty
+### isRequired
 
-▪ **errorMessageProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_3, "errorMessage", true)
+• **isRequired**: `boolean`
 
-___
+#### Defined in
 
-### `Static` `Readonly` heightProperty
-
-▪ **heightProperty**: *[ValueSetProperty](valuesetproperty.md)‹›* = new ValueSetProperty(
-        Versions.v1_1,
-        "height",
-        [
-            { value: "auto" },
-            { value: "stretch" }
-        ],
-        "auto")
-
-*Inherited from [CardElement](cardelement.md).[heightProperty](cardelement.md#static-readonly-heightproperty)*
+[card-elements.ts:2512](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2512)
 
 ___
 
-### `Static` `Readonly` horizontalAlignmentProperty
+### label
 
-▪ **horizontalAlignmentProperty**: *[EnumProperty](enumproperty.md)‹[HorizontalAlignment](../enums/horizontalalignment.md)›* = new EnumProperty(
-        Versions.v1_0,
-        "horizontalAlignment",
-        Enums.HorizontalAlignment,
-        Enums.HorizontalAlignment.Left)
+• `Optional` **label**: `string`
 
-*Inherited from [CardElement](cardelement.md).[horizontalAlignmentProperty](cardelement.md#static-readonly-horizontalalignmentproperty)*
+#### Defined in
+
+[card-elements.ts:2509](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2509)
 
 ___
 
-### `Static` `Readonly` idProperty
+### maxVersion
 
-▪ **idProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_0, "id")
+• **maxVersion**: [`Version`](Version.md) = `Versions.v1_4`
 
-*Inherited from [CardObject](cardobject.md).[idProperty](cardobject.md#static-readonly-idproperty)*
+#### Inherited from
 
-___
+[CardElement](CardElement.md).[maxVersion](CardElement.md#maxversion)
 
-### `Static` `Readonly` isRequiredProperty
+#### Defined in
 
-▪ **isRequiredProperty**: *[BoolProperty](boolproperty.md)‹›* = new BoolProperty(Versions.v1_3, "isRequired", false)
-
-___
-
-### `Static` `Readonly` isVisibleProperty
-
-▪ **isVisibleProperty**: *[BoolProperty](boolproperty.md)‹›* = new BoolProperty(Versions.v1_2, "isVisible", true)
-
-*Inherited from [CardElement](cardelement.md).[isVisibleProperty](cardelement.md#static-readonly-isvisibleproperty)*
+[serialization.ts:949](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L949)
 
 ___
 
-### `Static` `Readonly` labelProperty
+### onPreProcessPropertyValue
 
-▪ **labelProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_3, "label", true)
+• `Optional` **onPreProcessPropertyValue**: (`sender`: [`CardObject`](CardObject.md), `property`: [`PropertyDefinition`](PropertyDefinition.md), `value`: `any`) => `any`
 
-___
+#### Type declaration
 
-### `Static` `Readonly` langProperty
+▸ (`sender`, `property`, `value`): `any`
 
-▪ **langProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(Versions.v1_1, "lang", true, /^[a-z]{2,3}$/ig)
+##### Parameters
 
-*Inherited from [CardElement](cardelement.md).[langProperty](cardelement.md#static-readonly-langproperty)*
+| Name | Type |
+| :------ | :------ |
+| `sender` | [`CardObject`](CardObject.md) |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
+| `value` | `any` |
 
-___
+##### Returns
 
-### `Static` `Optional` onRegisterCustomProperties
+`any`
 
-▪ **onRegisterCustomProperties**? : *undefined | function*
+#### Inherited from
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[onRegisterCustomProperties](hostcapabilities.md#static-optional-onregistercustomproperties)*
+[CardElement](CardElement.md).[onPreProcessPropertyValue](CardElement.md#onpreprocesspropertyvalue)
 
-___
+#### Defined in
 
-### `Static` `Readonly` requiresProperty
-
-▪ **requiresProperty**: *[SerializableObjectProperty](serializableobjectproperty.md)‹›* = new SerializableObjectProperty(
-        Versions.v1_2,
-        "requires",
-        HostCapabilities,
-        new HostCapabilities())
-
-*Inherited from [CardObject](cardobject.md).[requiresProperty](cardobject.md#static-readonly-requiresproperty)*
+[card-object.ts:66](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L66)
 
 ___
 
-### `Static` `Readonly` separatorProperty
+### onValueChanged
 
-▪ **separatorProperty**: *[BoolProperty](boolproperty.md)‹›* = new BoolProperty(Versions.v1_0, "separator", false)
+• **onValueChanged**: (`sender`: [`Input`](Input.md)) => `void`
 
-*Inherited from [CardElement](cardelement.md).[separatorProperty](cardelement.md#static-readonly-separatorproperty)*
+#### Type declaration
+
+▸ (`sender`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `sender` | [`Input`](Input.md) |
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+[card-elements.ts:2683](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2683)
 
 ___
 
-### `Static` `Readonly` spacingProperty
+### rules
 
-▪ **spacingProperty**: *[EnumProperty](enumproperty.md)‹[Spacing](../enums/spacing.md)›* = new EnumProperty(
-        Versions.v1_0,
-        "spacing",
-        Enums.Spacing,
-        Enums.Spacing.Default)
+• **rules**: [`RuleParam`](RuleParam.md)[]
 
-*Inherited from [CardElement](cardelement.md).[spacingProperty](cardelement.md#static-readonly-spacingproperty)*
+#### Inherited from
+
+[CardElement](CardElement.md).[rules](CardElement.md#rules)
+
+#### Defined in
+
+[card-elements.ts:201](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L201)
 
 ___
 
-### `Static` `Readonly` typeNameProperty
+### separator
 
-▪ **typeNameProperty**: *[StringProperty](stringproperty.md)‹›* = new StringProperty(
-        Versions.v1_0,
-        "type",
-        undefined,
-        undefined,
-        undefined,
-        (sender: object) => {
-            return (<CardObject>sender).getJsonTypeName()
-        })
+• **separator**: `boolean`
 
-*Inherited from [CardObject](cardobject.md).[typeNameProperty](cardobject.md#static-readonly-typenameproperty)*
+#### Inherited from
+
+[CardElement](CardElement.md).[separator](CardElement.md#separator)
+
+#### Defined in
+
+[card-elements.ts:146](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L146)
+
+___
+
+### spacing
+
+• **spacing**: [`Spacing`](../enums/Spacing.md)
+
+#### Inherited from
+
+[CardElement](CardElement.md).[spacing](CardElement.md#spacing)
+
+#### Defined in
+
+[card-elements.ts:143](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L143)
+
+___
+
+### errorMessageProperty
+
+▪ `Static` `Readonly` **errorMessageProperty**: [`StringProperty`](StringProperty.md)
+
+#### Defined in
+
+[card-elements.ts:2506](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2506)
+
+___
+
+### heightProperty
+
+▪ `Static` `Readonly` **heightProperty**: [`ValueSetProperty`](ValueSetProperty.md)
+
+#### Inherited from
+
+[CardElement](CardElement.md).[heightProperty](CardElement.md#heightproperty)
+
+#### Defined in
+
+[card-elements.ts:120](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L120)
+
+___
+
+### horizontalAlignmentProperty
+
+▪ `Static` `Readonly` **horizontalAlignmentProperty**: [`EnumProperty`](EnumProperty.md)<typeof [`HorizontalAlignment`](../enums/HorizontalAlignment.md)\>
+
+#### Inherited from
+
+[CardElement](CardElement.md).[horizontalAlignmentProperty](CardElement.md#horizontalalignmentproperty)
+
+#### Defined in
+
+[card-elements.ts:128](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L128)
+
+___
+
+### idProperty
+
+▪ `Static` `Readonly` **idProperty**: [`StringProperty`](StringProperty.md)
+
+#### Inherited from
+
+[CardElement](CardElement.md).[idProperty](CardElement.md#idproperty)
+
+#### Defined in
+
+[card-object.ts:40](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L40)
+
+___
+
+### isRequiredProperty
+
+▪ `Static` `Readonly` **isRequiredProperty**: [`BoolProperty`](BoolProperty.md)
+
+#### Defined in
+
+[card-elements.ts:2505](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2505)
+
+___
+
+### isVisibleProperty
+
+▪ `Static` `Readonly` **isVisibleProperty**: [`BoolProperty`](BoolProperty.md)
+
+#### Inherited from
+
+[CardElement](CardElement.md).[isVisibleProperty](CardElement.md#isvisibleproperty)
+
+#### Defined in
+
+[card-elements.ts:117](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L117)
+
+___
+
+### labelProperty
+
+▪ `Static` `Readonly` **labelProperty**: [`StringProperty`](StringProperty.md)
+
+#### Defined in
+
+[card-elements.ts:2504](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2504)
+
+___
+
+### langProperty
+
+▪ `Static` `Readonly` **langProperty**: [`StringProperty`](StringProperty.md)
+
+#### Inherited from
+
+[CardElement](CardElement.md).[langProperty](CardElement.md#langproperty)
+
+#### Defined in
+
+[card-elements.ts:116](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L116)
+
+___
+
+### onRegisterCustomProperties
+
+▪ `Static` `Optional` **onRegisterCustomProperties**: (`sender`: [`SerializableObject`](SerializableObject.md), `schema`: [`SerializableObjectSchema`](SerializableObjectSchema.md)) => `void`
+
+#### Type declaration
+
+▸ (`sender`, `schema`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `sender` | [`SerializableObject`](SerializableObject.md) |
+| `schema` | [`SerializableObjectSchema`](SerializableObjectSchema.md) |
+
+##### Returns
+
+`void`
+
+#### Inherited from
+
+[CardElement](CardElement.md).[onRegisterCustomProperties](CardElement.md#onregistercustomproperties)
+
+#### Defined in
+
+[serialization.ts:809](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L809)
+
+___
+
+### requiresProperty
+
+▪ `Static` `Readonly` **requiresProperty**: [`SerializableObjectProperty`](SerializableObjectProperty.md)
+
+#### Inherited from
+
+[CardElement](CardElement.md).[requiresProperty](CardElement.md#requiresproperty)
+
+#### Defined in
+
+[card-object.ts:41](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L41)
+
+___
+
+### rulesProperty
+
+▪ `Static` `Readonly` **rulesProperty**: [`SerializableObjectCollectionProperty`](SerializableObjectCollectionProperty.md)
+
+#### Inherited from
+
+[CardElement](CardElement.md).[rulesProperty](CardElement.md#rulesproperty)
+
+#### Defined in
+
+[card-elements.ts:119](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L119)
+
+___
+
+### separatorProperty
+
+▪ `Static` `Readonly` **separatorProperty**: [`BoolProperty`](BoolProperty.md)
+
+#### Inherited from
+
+[CardElement](CardElement.md).[separatorProperty](CardElement.md#separatorproperty)
+
+#### Defined in
+
+[card-elements.ts:118](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L118)
+
+___
+
+### spacingProperty
+
+▪ `Static` `Readonly` **spacingProperty**: [`EnumProperty`](EnumProperty.md)<typeof [`Spacing`](../enums/Spacing.md)\>
+
+#### Inherited from
+
+[CardElement](CardElement.md).[spacingProperty](CardElement.md#spacingproperty)
+
+#### Defined in
+
+[card-elements.ts:133](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L133)
+
+___
+
+### typeNameProperty
+
+▪ `Static` `Readonly` **typeNameProperty**: [`StringProperty`](StringProperty.md)
+
+#### Inherited from
+
+[CardElement](CardElement.md).[typeNameProperty](CardElement.md#typenameproperty)
+
+#### Defined in
+
+[card-object.ts:31](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L31)
 
 ## Accessors
 
-### `Protected` allowCustomPadding
+### allowCustomPadding
 
-• **get allowCustomPadding**(): *boolean*
+• `Protected` `get` **allowCustomPadding**(): `boolean`
 
-*Inherited from [CardElement](cardelement.md).[allowCustomPadding](cardelement.md#protected-allowcustompadding)*
+#### Returns
 
-**Returns:** *boolean*
+`boolean`
 
-___
+#### Inherited from
 
-### `Protected` defaultStyle
+CardElement.allowCustomPadding
 
-• **get defaultStyle**(): *string*
+#### Defined in
 
-*Inherited from [CardElement](cardelement.md).[defaultStyle](cardelement.md#protected-defaultstyle)*
-
-**Returns:** *string*
+[card-elements.ts:414](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L414)
 
 ___
 
-###  hasVisibleSeparator
+### defaultStyle
 
-• **get hasVisibleSeparator**(): *boolean*
+• `Protected` `get` **defaultStyle**(): `string`
 
-*Inherited from [CardElement](cardelement.md).[hasVisibleSeparator](cardelement.md#hasvisibleseparator)*
+#### Returns
 
-**Returns:** *boolean*
+`string`
 
-___
+#### Inherited from
 
-###  hostConfig
+CardElement.defaultStyle
 
-• **get hostConfig**(): *[HostConfig](hostconfig.md)*
+#### Defined in
 
-*Inherited from [CardElement](cardelement.md).[hostConfig](cardelement.md#hostconfig)*
-
-*Overrides [CardObject](cardobject.md).[hostConfig](cardobject.md#hostconfig)*
-
-**Returns:** *[HostConfig](hostconfig.md)*
-
-• **set hostConfig**(`value`: [HostConfig](hostconfig.md)): *void*
-
-*Inherited from [CardElement](cardelement.md).[hostConfig](cardelement.md#hostconfig)*
-
-*Overrides [CardObject](cardobject.md).[hostConfig](cardobject.md#hostconfig)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`value` | [HostConfig](hostconfig.md) |
-
-**Returns:** *void*
+[card-elements.ts:422](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L422)
 
 ___
 
-###  index
+### hasVisibleSeparator
 
-• **get index**(): *number*
+• `get` **hasVisibleSeparator**(): `boolean`
 
-*Inherited from [CardElement](cardelement.md).[index](cardelement.md#index)*
+#### Returns
 
-**Returns:** *number*
+`boolean`
 
-___
+#### Inherited from
 
-### `Protected` inputControlContainerElement
+CardElement.hasVisibleSeparator
 
-• **get inputControlContainerElement**(): *HTMLElement*
+#### Defined in
 
-**Returns:** *HTMLElement*
-
-___
-
-###  isInline
-
-• **get isInline**(): *boolean*
-
-*Inherited from [CardElement](cardelement.md).[isInline](cardelement.md#isinline)*
-
-**Returns:** *boolean*
+[card-elements.ts:695](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L695)
 
 ___
 
-###  isInteractive
+### hostConfig
 
-• **get isInteractive**(): *boolean*
+• `get` **hostConfig**(): [`HostConfig`](HostConfig.md)
 
-*Overrides [CardElement](cardelement.md).[isInteractive](cardelement.md#isinteractive)*
+#### Returns
 
-**Returns:** *boolean*
+[`HostConfig`](HostConfig.md)
 
-___
+#### Inherited from
 
-### `Protected` isNullable
+CardElement.hostConfig
 
-• **get isNullable**(): *boolean*
+#### Defined in
 
-**Returns:** *boolean*
+[card-elements.ts:656](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L656)
 
-___
+• `set` **hostConfig**(`value`): `void`
 
-###  isStandalone
+#### Parameters
 
-• **get isStandalone**(): *boolean*
+| Name | Type |
+| :------ | :------ |
+| `value` | [`HostConfig`](HostConfig.md) |
 
-*Inherited from [CardElement](cardelement.md).[isStandalone](cardelement.md#isstandalone)*
+#### Returns
 
-**Returns:** *boolean*
+`void`
 
-___
+#### Inherited from
 
-###  isVisible
+CardElement.hostConfig
 
-• **get isVisible**(): *boolean*
+#### Defined in
 
-*Inherited from [CardElement](cardelement.md).[isVisible](cardelement.md#isvisible)*
-
-**Returns:** *boolean*
-
-• **set isVisible**(`value`: boolean): *void*
-
-*Inherited from [CardElement](cardelement.md).[isVisible](cardelement.md#isvisible)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`value` | boolean |
-
-**Returns:** *void*
+[card-elements.ts:670](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L670)
 
 ___
 
-###  lang
+### index
 
-• **get lang**(): *string | undefined*
+• `get` **index**(): `number`
 
-*Inherited from [CardElement](cardelement.md).[lang](cardelement.md#lang)*
+#### Returns
 
-**Returns:** *string | undefined*
+`number`
 
-• **set lang**(`value`: string | undefined): *void*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[lang](cardelement.md#lang)*
+CardElement.index
 
-**Parameters:**
+#### Defined in
 
-Name | Type |
------- | ------ |
-`value` | string &#124; undefined |
-
-**Returns:** *void*
+[card-elements.ts:674](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L674)
 
 ___
 
-###  parent
+### inputControlContainerElement
 
-• **get parent**(): *[CardElement](cardelement.md) | undefined*
+• `Protected` `get` **inputControlContainerElement**(): `HTMLElement`
 
-*Inherited from [CardElement](cardelement.md).[parent](cardelement.md#parent)*
+#### Returns
 
-*Overrides [CardObject](cardobject.md).[parent](cardobject.md#parent)*
+`HTMLElement`
 
-**Returns:** *[CardElement](cardelement.md) | undefined*
+#### Defined in
 
-___
-
-###  renderedElement
-
-• **get renderedElement**(): *HTMLElement | undefined*
-
-*Inherited from [CardObject](cardobject.md).[renderedElement](cardobject.md#renderedelement)*
-
-**Returns:** *HTMLElement | undefined*
+[card-elements.ts:2568](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2568)
 
 ___
 
-### `Protected` renderedInputControlElement
+### isInline
 
-• **get renderedInputControlElement**(): *HTMLElement | undefined*
+• `get` **isInline**(): `boolean`
 
-**Returns:** *HTMLElement | undefined*
+#### Returns
 
-___
+`boolean`
 
-###  requires
+#### Inherited from
 
-• **get requires**(): *[HostCapabilities](hostcapabilities.md)*
+CardElement.isInline
 
-*Inherited from [CardObject](cardobject.md).[requires](cardobject.md#requires)*
+#### Defined in
 
-**Returns:** *[HostCapabilities](hostcapabilities.md)*
-
-___
-
-###  separatorElement
-
-• **get separatorElement**(): *HTMLElement | undefined*
-
-*Inherited from [CardElement](cardelement.md).[separatorElement](cardelement.md#separatorelement)*
-
-**Returns:** *HTMLElement | undefined*
+[card-elements.ts:691](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L691)
 
 ___
 
-### `Protected` separatorOrientation
+### isInteractive
 
-• **get separatorOrientation**(): *[Orientation](../enums/orientation.md)*
+• `get` **isInteractive**(): `boolean`
 
-*Inherited from [CardElement](cardelement.md).[separatorOrientation](cardelement.md#protected-separatororientation)*
+#### Returns
 
-**Returns:** *[Orientation](../enums/orientation.md)*
+`boolean`
 
-___
+#### Overrides
 
-### `Protected` useDefaultSizing
+CardElement.isInteractive
 
-• **get useDefaultSizing**(): *boolean*
+#### Defined in
 
-*Inherited from [CardElement](cardelement.md).[useDefaultSizing](cardelement.md#protected-usedefaultsizing)*
-
-**Returns:** *boolean*
+[card-elements.ts:2744](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2744)
 
 ___
 
-###  value
+### isNullable
 
-• **get value**(): *any*
+• `Protected` `get` **isNullable**(): `boolean`
 
-**Returns:** *any*
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[card-elements.ts:2560](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2560)
+
+___
+
+### isStandalone
+
+• `get` **isStandalone**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+CardElement.isStandalone
+
+#### Defined in
+
+[card-elements.ts:687](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L687)
+
+___
+
+### isVisible
+
+• `get` **isVisible**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+CardElement.isVisible
+
+#### Defined in
+
+[card-elements.ts:172](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L172)
+
+• `set` **isVisible**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `boolean` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+CardElement.isVisible
+
+#### Defined in
+
+[card-elements.ts:177](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L177)
+
+___
+
+### lang
+
+• `get` **lang**(): `undefined` \| `string`
+
+#### Returns
+
+`undefined` \| `string`
+
+#### Inherited from
+
+CardElement.lang
+
+#### Defined in
+
+[card-elements.ts:151](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L151)
+
+• `set` **lang**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `undefined` \| `string` |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+CardElement.lang
+
+#### Defined in
+
+[card-elements.ts:168](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L168)
+
+___
+
+### parent
+
+• `get` **parent**(): `undefined` \| [`CardElement`](CardElement.md)
+
+#### Returns
+
+`undefined` \| [`CardElement`](CardElement.md)
+
+#### Inherited from
+
+CardElement.parent
+
+#### Defined in
+
+[card-elements.ts:708](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L708)
+
+___
+
+### renderedElement
+
+• `get` **renderedElement**(): `undefined` \| `HTMLElement`
+
+#### Returns
+
+`undefined` \| `HTMLElement`
+
+#### Inherited from
+
+CardElement.renderedElement
+
+#### Defined in
+
+[card-object.ts:142](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L142)
+
+___
+
+### renderedInputControlElement
+
+• `Protected` `get` **renderedInputControlElement**(): `undefined` \| `HTMLElement`
+
+#### Returns
+
+`undefined` \| `HTMLElement`
+
+#### Defined in
+
+[card-elements.ts:2564](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2564)
+
+___
+
+### requires
+
+• `get` **requires**(): `HostCapabilities`
+
+#### Returns
+
+`HostCapabilities`
+
+#### Inherited from
+
+CardElement.requires
+
+#### Defined in
+
+[card-object.ts:54](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L54)
+
+___
+
+### separatorElement
+
+• `get` **separatorElement**(): `undefined` \| `HTMLElement`
+
+#### Returns
+
+`undefined` \| `HTMLElement`
+
+#### Inherited from
+
+CardElement.separatorElement
+
+#### Defined in
+
+[card-elements.ts:704](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L704)
+
+___
+
+### separatorOrientation
+
+• `Protected` `get` **separatorOrientation**(): [`Orientation`](../enums/Orientation.md)
+
+#### Returns
+
+[`Orientation`](../enums/Orientation.md)
+
+#### Inherited from
+
+CardElement.separatorOrientation
+
+#### Defined in
+
+[card-elements.ts:418](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L418)
+
+___
+
+### useDefaultSizing
+
+• `Protected` `get` **useDefaultSizing**(): `boolean`
+
+#### Returns
+
+`boolean`
+
+#### Inherited from
+
+CardElement.useDefaultSizing
+
+#### Defined in
+
+[card-elements.ts:410](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L410)
+
+___
+
+### value
+
+• `Abstract` `get` **value**(): `any`
+
+#### Returns
+
+`any`
+
+#### Implementation of
+
+[IInput](../interfaces/IInput.md).[value](../interfaces/IInput.md#value)
+
+#### Defined in
+
+[card-elements.ts:2742](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2742)
 
 ## Methods
 
-### `Protected` adjustRenderedElementSize
+### adjustRenderedElementSize
 
-▸ **adjustRenderedElementSize**(`renderedElement`: HTMLElement): *void*
+▸ `Protected` **adjustRenderedElementSize**(`renderedElement`): `void`
 
-*Inherited from [CardElement](cardelement.md).[adjustRenderedElementSize](cardelement.md#protected-adjustrenderedelementsize)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `renderedElement` | `HTMLElement` |
 
-Name | Type |
------- | ------ |
-`renderedElement` | HTMLElement |
+#### Returns
 
-**Returns:** *void*
+`void`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[adjustRenderedElementSize](CardElement.md#adjustrenderedelementsize)
+
+#### Defined in
+
+[card-elements.ts:335](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L335)
+
 ___
 
-### `Protected` applyPadding
+### applyPadding
 
-▸ **applyPadding**(): *void*
+▸ `Protected` **applyPadding**(): `void`
 
-*Inherited from [CardElement](cardelement.md).[applyPadding](cardelement.md#protected-applypadding)*
+#### Returns
 
-**Returns:** *void*
+`void`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[applyPadding](CardElement.md#applypadding)
+
+#### Defined in
+
+[card-elements.ts:354](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L354)
+
 ___
+
+### asString
 
-###  asString
+▸ **asString**(): `undefined` \| `string`
 
-▸ **asString**(): *string | undefined*
+#### Returns
 
-*Inherited from [CardElement](cardelement.md).[asString](cardelement.md#asstring)*
+`undefined` \| `string`
 
-**Returns:** *string | undefined*
+#### Inherited from
 
+[CardElement](CardElement.md).[asString](CardElement.md#asstring)
+
+#### Defined in
+
+[card-elements.ts:432](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L432)
+
 ___
+
+### createPlaceholderElement
 
-### `Protected` createPlaceholderElement
+▸ `Protected` **createPlaceholderElement**(): `HTMLElement`
 
-▸ **createPlaceholderElement**(): *HTMLElement*
+#### Returns
 
-*Inherited from [CardElement](cardelement.md).[createPlaceholderElement](cardelement.md#protected-createplaceholderelement)*
+`HTMLElement`
 
-**Returns:** *HTMLElement*
+#### Inherited from
 
+[CardElement](CardElement.md).[createPlaceholderElement](CardElement.md#createplaceholderelement)
+
+#### Defined in
+
+[card-elements.ts:320](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L320)
+
 ___
+
+### focus
+
+▸ **focus**(): `void`
 
-###  focus
+#### Returns
 
-▸ **focus**(): *void*
+`void`
 
-**Returns:** *void*
+#### Defined in
 
+[card-elements.ts:2687](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2687)
+
 ___
+
+### getActionAt
+
+▸ **getActionAt**(`index`): `undefined` \| [`Action`](Action.md)
+
+#### Parameters
 
-###  getActionAt
+| Name | Type |
+| :------ | :------ |
+| `index` | `number` |
 
-▸ **getActionAt**(`index`: number): *[Action](action.md) | undefined*
+#### Returns
 
-*Inherited from [CardElement](cardelement.md).[getActionAt](cardelement.md#getactionat)*
+`undefined` \| [`Action`](Action.md)
 
-**Parameters:**
+#### Inherited from
 
-Name | Type |
------- | ------ |
-`index` | number |
+[CardElement](CardElement.md).[getActionAt](CardElement.md#getactionat)
 
-**Returns:** *[Action](action.md) | undefined*
+#### Defined in
 
+[card-elements.ts:511](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L511)
+
 ___
+
+### getActionById
+
+▸ **getActionById**(`id`): `undefined` \| [`Action`](Action.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `id` | `string` |
 
-###  getActionById
+#### Returns
 
-▸ **getActionById**(`id`: string): *[Action](action.md) | undefined*
+`undefined` \| [`Action`](Action.md)
 
-*Inherited from [CardElement](cardelement.md).[getActionById](cardelement.md#getactionbyid)*
+#### Inherited from
 
-**Parameters:**
+[CardElement](CardElement.md).[getActionById](CardElement.md#getactionbyid)
 
-Name | Type |
------- | ------ |
-`id` | string |
+#### Defined in
 
-**Returns:** *[Action](action.md) | undefined*
+[card-elements.ts:646](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L646)
 
 ___
 
-###  getActionCount
+### getActionCount
 
-▸ **getActionCount**(): *number*
+▸ **getActionCount**(): `number`
 
-*Inherited from [CardElement](cardelement.md).[getActionCount](cardelement.md#getactioncount)*
+#### Returns
 
-**Returns:** *number*
+`number`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[getActionCount](CardElement.md#getactioncount)
+
+#### Defined in
+
+[card-elements.ts:507](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L507)
+
 ___
+
+### getAllInputs
 
-###  getAllInputs
+▸ **getAllInputs**(`processActions?`): [`Input`](Input.md)[]
 
-▸ **getAllInputs**(`processActions`: boolean): *[Input](input.md)[]*
+#### Parameters
 
-*Overrides [CardElement](cardelement.md).[getAllInputs](cardelement.md#getallinputs)*
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `processActions` | `boolean` | `true` |
 
-**Parameters:**
+#### Returns
 
-Name | Type | Default |
------- | ------ | ------ |
-`processActions` | boolean | true |
+[`Input`](Input.md)[]
 
-**Returns:** *[Input](input.md)[]*
+#### Overrides
 
+[CardElement](CardElement.md).[getAllInputs](CardElement.md#getallinputs)
+
+#### Defined in
+
+[card-elements.ts:2738](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2738)
+
 ___
+
+### getAllLabelIds
+
+▸ `Protected` **getAllLabelIds**(): `string`[]
 
-### `Protected` getAllLabelIds
+#### Returns
 
-▸ **getAllLabelIds**(): *string[]*
+`string`[]
 
-**Returns:** *string[]*
+#### Defined in
 
+[card-elements.ts:2525](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2525)
+
 ___
+
+### getCustomProperty
+
+▸ **getCustomProperty**(`name`): `any`
+
+#### Parameters
 
-###  getCustomProperty
+| Name | Type |
+| :------ | :------ |
+| `name` | `string` |
 
-▸ **getCustomProperty**(`name`: string): *any*
+#### Returns
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[getCustomProperty](hostcapabilities.md#getcustomproperty)*
+`any`
 
-**Parameters:**
+#### Inherited from
 
-Name | Type |
------- | ------ |
-`name` | string |
+[CardElement](CardElement.md).[getCustomProperty](CardElement.md#getcustomproperty)
 
-**Returns:** *any*
+#### Defined in
 
+[serialization.ts:1040](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1040)
+
 ___
+
+### getDefaultPadding
+
+▸ `Protected` **getDefaultPadding**(): [`PaddingDefinition`](PaddingDefinition.md)
+
+#### Returns
+
+[`PaddingDefinition`](PaddingDefinition.md)
 
-### `Protected` getDefaultPadding
+#### Inherited from
 
-▸ **getDefaultPadding**(): *[PaddingDefinition](paddingdefinition.md)*
+[CardElement](CardElement.md).[getDefaultPadding](CardElement.md#getdefaultpadding)
 
-*Inherited from [CardElement](cardelement.md).[getDefaultPadding](cardelement.md#protected-getdefaultpadding)*
+#### Defined in
 
-**Returns:** *[PaddingDefinition](paddingdefinition.md)*
+[card-elements.ts:390](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L390)
 
 ___
 
-### `Protected` getDefaultSerializationContext
+### getDefaultSerializationContext
 
-▸ **getDefaultSerializationContext**(): *[BaseSerializationContext](baseserializationcontext.md)*
+▸ `Protected` **getDefaultSerializationContext**(): [`BaseSerializationContext`](BaseSerializationContext.md)
 
-*Inherited from [CardElement](cardelement.md).[getDefaultSerializationContext](cardelement.md#protected-getdefaultserializationcontext)*
+#### Returns
 
-*Overrides [HostCapabilities](hostcapabilities.md).[getDefaultSerializationContext](hostcapabilities.md#protected-getdefaultserializationcontext)*
+[`BaseSerializationContext`](BaseSerializationContext.md)
 
-**Returns:** *[BaseSerializationContext](baseserializationcontext.md)*
+#### Inherited from
 
+[CardElement](CardElement.md).[getDefaultSerializationContext](CardElement.md#getdefaultserializationcontext)
+
+#### Defined in
+
+[card-elements.ts:316](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L316)
+
 ___
+
+### getEffectivePadding
+
+▸ **getEffectivePadding**(): [`PaddingDefinition`](PaddingDefinition.md)
 
-###  getEffectivePadding
+#### Returns
 
-▸ **getEffectivePadding**(): *[PaddingDefinition](paddingdefinition.md)*
+[`PaddingDefinition`](PaddingDefinition.md)
 
-*Inherited from [CardElement](cardelement.md).[getEffectivePadding](cardelement.md#geteffectivepadding)*
+#### Inherited from
 
-**Returns:** *[PaddingDefinition](paddingdefinition.md)*
+[CardElement](CardElement.md).[getEffectivePadding](CardElement.md#geteffectivepadding)
 
+#### Defined in
+
+[card-elements.ts:650](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L650)
+
 ___
+
+### getEffectiveStyle
+
+▸ **getEffectiveStyle**(): `string`
+
+#### Returns
 
-###  getEffectiveStyle
+`string`
 
-▸ **getEffectiveStyle**(): *string*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[getEffectiveStyle](cardelement.md#geteffectivestyle)*
+[CardElement](CardElement.md).[getEffectiveStyle](CardElement.md#geteffectivestyle)
 
-**Returns:** *string*
+#### Defined in
 
+[card-elements.ts:440](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L440)
+
 ___
+
+### getEffectiveStyleDefinition
+
+▸ **getEffectiveStyleDefinition**(): [`ContainerStyleDefinition`](ContainerStyleDefinition.md)
+
+#### Returns
 
-###  getEffectiveStyleDefinition
+[`ContainerStyleDefinition`](ContainerStyleDefinition.md)
 
-▸ **getEffectiveStyleDefinition**(): *[ContainerStyleDefinition](containerstyledefinition.md)*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[getEffectiveStyleDefinition](cardelement.md#geteffectivestyledefinition)*
+[CardElement](CardElement.md).[getEffectiveStyleDefinition](CardElement.md#geteffectivestyledefinition)
 
-**Returns:** *[ContainerStyleDefinition](containerstyledefinition.md)*
+#### Defined in
 
+[card-elements.ts:448](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L448)
+
 ___
+
+### getElementById
+
+▸ **getElementById**(`id`): `undefined` \| [`CardElement`](CardElement.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `id` | `string` |
 
-###  getElementById
+#### Returns
 
-▸ **getElementById**(`id`: string): *[CardElement](cardelement.md) | undefined*
+`undefined` \| [`CardElement`](CardElement.md)
 
-*Inherited from [CardElement](cardelement.md).[getElementById](cardelement.md#getelementbyid)*
+#### Inherited from
 
-**Parameters:**
+[CardElement](CardElement.md).[getElementById](CardElement.md#getelementbyid)
 
-Name | Type |
------- | ------ |
-`id` | string |
+#### Defined in
 
-**Returns:** *[CardElement](cardelement.md) | undefined*
+[card-elements.ts:642](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L642)
 
 ___
 
-###  getForbiddenActionTypes
+### getForbiddenActionTypes
 
-▸ **getForbiddenActionTypes**(): *[ActionType](../README.md#actiontype)[]*
+▸ **getForbiddenActionTypes**(): [`ActionType`](../README.md#actiontype)[]
 
-*Inherited from [CardElement](cardelement.md).[getForbiddenActionTypes](cardelement.md#getforbiddenactiontypes)*
+#### Returns
 
-**Returns:** *[ActionType](../README.md#actiontype)[]*
+[`ActionType`](../README.md#actiontype)[]
 
+#### Inherited from
+
+[CardElement](CardElement.md).[getForbiddenActionTypes](CardElement.md#getforbiddenactiontypes)
+
+#### Defined in
+
+[card-elements.ts:452](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L452)
+
 ___
+
+### getHasBackground
 
-### `Protected` getHasBackground
+▸ `Protected` **getHasBackground**(): `boolean`
 
-▸ **getHasBackground**(): *boolean*
+#### Returns
 
-*Inherited from [CardElement](cardelement.md).[getHasBackground](cardelement.md#protected-gethasbackground)*
+`boolean`
 
-**Returns:** *boolean*
+#### Inherited from
 
+[CardElement](CardElement.md).[getHasBackground](CardElement.md#gethasbackground)
+
+#### Defined in
+
+[card-elements.ts:394](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L394)
+
 ___
+
+### getImmediateSurroundingPadding
+
+▸ **getImmediateSurroundingPadding**(`result`, `processTop?`, `processRight?`, `processBottom?`, `processLeft?`): `void`
 
-###  getImmediateSurroundingPadding
+#### Parameters
 
-▸ **getImmediateSurroundingPadding**(`result`: [PaddingDefinition](paddingdefinition.md), `processTop`: boolean, `processRight`: boolean, `processBottom`: boolean, `processLeft`: boolean): *void*
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `result` | [`PaddingDefinition`](PaddingDefinition.md) | `undefined` |
+| `processTop` | `boolean` | `true` |
+| `processRight` | `boolean` | `true` |
+| `processBottom` | `boolean` | `true` |
+| `processLeft` | `boolean` | `true` |
 
-*Inherited from [CardElement](cardelement.md).[getImmediateSurroundingPadding](cardelement.md#getimmediatesurroundingpadding)*
+#### Returns
 
-**Parameters:**
+`void`
 
-Name | Type | Default |
------- | ------ | ------ |
-`result` | [PaddingDefinition](paddingdefinition.md) | - |
-`processTop` | boolean | true |
-`processRight` | boolean | true |
-`processBottom` | boolean | true |
-`processLeft` | boolean | true |
+#### Inherited from
 
-**Returns:** *void*
+[CardElement](CardElement.md).[getImmediateSurroundingPadding](CardElement.md#getimmediatesurroundingpadding)
 
+#### Defined in
+
+[card-elements.ts:456](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L456)
+
 ___
+
+### getJsonTypeName
+
+▸ `Abstract` **getJsonTypeName**(): `string`
 
-### `Abstract` getJsonTypeName
+#### Returns
 
-▸ **getJsonTypeName**(): *string*
+`string`
 
-*Inherited from [CardObject](cardobject.md).[getJsonTypeName](cardobject.md#abstract-getjsontypename)*
+#### Inherited from
 
-**Returns:** *string*
+[CardElement](CardElement.md).[getJsonTypeName](CardElement.md#getjsontypename)
 
+#### Defined in
+
+[card-object.ts:68](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L68)
+
 ___
+
+### getPadding
+
+▸ `Protected` **getPadding**(): `undefined` \| [`PaddingDefinition`](PaddingDefinition.md)
+
+#### Returns
 
-### `Protected` getPadding
+`undefined` \| [`PaddingDefinition`](PaddingDefinition.md)
 
-▸ **getPadding**(): *[PaddingDefinition](paddingdefinition.md) | undefined*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[getPadding](cardelement.md#protected-getpadding)*
+[CardElement](CardElement.md).[getPadding](CardElement.md#getpadding)
 
-**Returns:** *[PaddingDefinition](paddingdefinition.md) | undefined*
+#### Defined in
 
+[card-elements.ts:398](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L398)
+
 ___
+
+### getParentContainer
+
+▸ **getParentContainer**(): `undefined` \| [`Container`](Container.md)
+
+#### Returns
 
-###  getParentContainer
+`undefined` \| [`Container`](Container.md)
 
-▸ **getParentContainer**(): *[Container](container.md) | undefined*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[getParentContainer](cardelement.md#getparentcontainer)*
+[CardElement](CardElement.md).[getParentContainer](CardElement.md#getparentcontainer)
 
-**Returns:** *[Container](container.md) | undefined*
+#### Defined in
 
+[card-elements.ts:620](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L620)
+
 ___
+
+### getResourceInformation
+
+▸ **getResourceInformation**(): [`IResourceInformation`](../interfaces/IResourceInformation.md)[]
+
+#### Returns
+
+[`IResourceInformation`](../interfaces/IResourceInformation.md)[]
 
-###  getResourceInformation
+#### Inherited from
 
-▸ **getResourceInformation**(): *[IResourceInformation](../interfaces/iresourceinformation.md)[]*
+[CardElement](CardElement.md).[getResourceInformation](CardElement.md#getresourceinformation)
 
-*Inherited from [CardElement](cardelement.md).[getResourceInformation](cardelement.md#getresourceinformation)*
+#### Defined in
 
-**Returns:** *[IResourceInformation](../interfaces/iresourceinformation.md)[]*
+[card-elements.ts:638](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L638)
 
 ___
 
-###  getRootElement
+### getRootElement
 
-▸ **getRootElement**(): *[CardElement](cardelement.md)*
+▸ **getRootElement**(): [`CardElement`](CardElement.md)
 
-*Inherited from [CardElement](cardelement.md).[getRootElement](cardelement.md#getrootelement)*
+#### Returns
 
-**Returns:** *[CardElement](cardelement.md)*
+[`CardElement`](CardElement.md)
 
+#### Inherited from
+
+[CardElement](CardElement.md).[getRootElement](CardElement.md#getrootelement)
+
+#### Defined in
+
+[card-elements.ts:616](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L616)
+
 ___
 
-###  getRootObject
+### getRootObject
 
-▸ **getRootObject**(): *[CardObject](cardobject.md)*
+▸ **getRootObject**(): [`CardObject`](CardObject.md)
 
-*Inherited from [CardObject](cardobject.md).[getRootObject](cardobject.md#getrootobject)*
+#### Returns
 
-**Returns:** *[CardObject](cardobject.md)*
+[`CardObject`](CardObject.md)
 
+#### Inherited from
+
+[CardElement](CardElement.md).[getRootObject](CardElement.md#getrootobject)
+
+#### Defined in
+
+[card-object.ts:102](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L102)
+
 ___
+
+### getSchema
 
-###  getSchema
+▸ **getSchema**(): [`SerializableObjectSchema`](SerializableObjectSchema.md)
 
-▸ **getSchema**(): *[SerializableObjectSchema](serializableobjectschema.md)*
+#### Returns
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[getSchema](hostcapabilities.md#getschema)*
+[`SerializableObjectSchema`](SerializableObjectSchema.md)
 
-**Returns:** *[SerializableObjectSchema](serializableobjectschema.md)*
+#### Inherited from
 
+[CardElement](CardElement.md).[getSchema](CardElement.md#getschema)
+
+#### Defined in
+
+[serialization.ts:1044](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1044)
+
 ___
+
+### getSchemaKey
+
+▸ `Protected` **getSchemaKey**(): `string`
 
-### `Protected` getSchemaKey
+#### Returns
 
-▸ **getSchemaKey**(): *string*
+`string`
 
-*Inherited from [CardObject](cardobject.md).[getSchemaKey](cardobject.md#protected-getschemakey)*
+#### Inherited from
 
-*Overrides [SerializableObject](serializableobject.md).[getSchemaKey](serializableobject.md#protected-abstract-getschemakey)*
+[CardElement](CardElement.md).[getSchemaKey](CardElement.md#getschemakey)
 
-**Returns:** *string*
+#### Defined in
 
+[card-object.ts:47](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L47)
+
 ___
+
+### getValue
+
+▸ `Protected` **getValue**(`property`): `any`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
 
-### `Protected` getValue
+#### Returns
 
-▸ **getValue**(`property`: [PropertyDefinition](propertydefinition.md)): *any*
+`any`
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[getValue](hostcapabilities.md#protected-getvalue)*
+#### Inherited from
 
-**Parameters:**
+[CardElement](CardElement.md).[getValue](CardElement.md#getvalue)
 
-Name | Type |
------- | ------ |
-`property` | [PropertyDefinition](propertydefinition.md) |
+#### Defined in
 
-**Returns:** *any*
+[serialization.ts:875](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L875)
 
 ___
 
-###  hasAllDefaultValues
+### hasAllDefaultValues
 
-▸ **hasAllDefaultValues**(): *boolean*
+▸ **hasAllDefaultValues**(): `boolean`
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[hasAllDefaultValues](hostcapabilities.md#hasalldefaultvalues)*
+#### Returns
 
-**Returns:** *boolean*
+`boolean`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[hasAllDefaultValues](CardElement.md#hasalldefaultvalues)
+
+#### Defined in
+
+[serialization.ts:1005](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1005)
+
 ___
 
-###  hasDefaultValue
+### hasDefaultValue
 
-▸ **hasDefaultValue**(`property`: [PropertyDefinition](propertydefinition.md)): *boolean*
+▸ **hasDefaultValue**(`property`): `boolean`
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[hasDefaultValue](hostcapabilities.md#hasdefaultvalue)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
 
-Name | Type |
------- | ------ |
-`property` | [PropertyDefinition](propertydefinition.md) |
+#### Returns
 
-**Returns:** *boolean*
+`boolean`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[hasDefaultValue](CardElement.md#hasdefaultvalue)
+
+#### Defined in
+
+[serialization.ts:1001](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1001)
+
 ___
+
+### indexOf
 
-###  indexOf
+▸ **indexOf**(`cardElement`): `number`
 
-▸ **indexOf**(`cardElement`: [CardElement](cardelement.md)): *number*
+#### Parameters
 
-*Inherited from [CardElement](cardelement.md).[indexOf](cardelement.md#indexof)*
+| Name | Type |
+| :------ | :------ |
+| `cardElement` | [`CardElement`](CardElement.md) |
 
-**Parameters:**
+#### Returns
 
-Name | Type |
------- | ------ |
-`cardElement` | [CardElement](cardelement.md) |
+`number`
 
-**Returns:** *number*
+#### Inherited from
 
+[CardElement](CardElement.md).[indexOf](CardElement.md#indexof)
+
+#### Defined in
+
+[card-elements.ts:554](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L554)
+
 ___
+
+### internalParse
+
+▸ `Protected` **internalParse**(`source`, `context`): `void`
 
-### `Protected` internalParse
+#### Parameters
 
-▸ **internalParse**(`source`: [PropertyBag](../README.md#propertybag), `context`: [BaseSerializationContext](baseserializationcontext.md)): *void*
+| Name | Type |
+| :------ | :------ |
+| `source` | [`PropertyBag`](../README.md#propertybag) |
+| `context` | [`BaseSerializationContext`](BaseSerializationContext.md) |
 
-*Inherited from [SerializableObject](serializableobject.md).[internalParse](serializableobject.md#protected-internalparse)*
+#### Returns
 
-**Parameters:**
+`void`
 
-Name | Type |
------- | ------ |
-`source` | [PropertyBag](../README.md#propertybag) |
-`context` | [BaseSerializationContext](baseserializationcontext.md) |
+#### Inherited from
 
-**Returns:** *void*
+[CardElement](CardElement.md).[internalParse](CardElement.md#internalparse)
 
+#### Defined in
+
+[serialization.ts:888](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L888)
+
 ___
+
+### internalRender
+
+▸ `Protected` `Abstract` **internalRender**(): `undefined` \| `HTMLElement`
+
+#### Returns
 
-### `Protected` `Abstract` internalRender
+`undefined` \| `HTMLElement`
 
-▸ **internalRender**(): *HTMLElement | undefined*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[internalRender](cardelement.md#protected-abstract-internalrender)*
+[CardElement](CardElement.md).[internalRender](CardElement.md#internalrender)
 
-**Returns:** *HTMLElement | undefined*
+#### Defined in
 
+[card-elements.ts:348](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L348)
+
 ___
+
+### internalToJSON
+
+▸ `Protected` **internalToJSON**(`target`, `context`): `void`
+
+#### Parameters
 
-### `Protected` internalToJSON
+| Name | Type |
+| :------ | :------ |
+| `target` | [`PropertyBag`](../README.md#propertybag) |
+| `context` | [`BaseSerializationContext`](BaseSerializationContext.md) |
 
-▸ **internalToJSON**(`target`: [PropertyBag](../README.md#propertybag), `context`: [BaseSerializationContext](baseserializationcontext.md)): *void*
+#### Returns
 
-*Inherited from [SerializableObject](serializableobject.md).[internalToJSON](serializableobject.md#protected-internaltojson)*
+`void`
 
-**Parameters:**
+#### Inherited from
 
-Name | Type |
------- | ------ |
-`target` | [PropertyBag](../README.md#propertybag) |
-`context` | [BaseSerializationContext](baseserializationcontext.md) |
+[CardElement](CardElement.md).[internalToJSON](CardElement.md#internaltojson)
 
-**Returns:** *void*
+#### Defined in
 
+[serialization.ts:927](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L927)
+
 ___
+
+### internalValidateProperties
+
+▸ **internalValidateProperties**(`context`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context` | [`ValidationResults`](ValidationResults.md) |
 
-###  internalValidateProperties
+#### Returns
 
-▸ **internalValidateProperties**(`context`: [ValidationResults](validationresults.md)): *void*
+`void`
 
-*Overrides [CardObject](cardobject.md).[internalValidateProperties](cardobject.md#internalvalidateproperties)*
+#### Overrides
 
-**Parameters:**
+[CardElement](CardElement.md).[internalValidateProperties](CardElement.md#internalvalidateproperties)
 
-Name | Type |
------- | ------ |
-`context` | [ValidationResults](validationresults.md) |
+#### Defined in
 
-**Returns:** *void*
+[card-elements.ts:2697](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2697)
 
 ___
 
-###  isAtTheVeryBottom
+### isAtTheVeryBottom
 
-▸ **isAtTheVeryBottom**(): *boolean*
+▸ **isAtTheVeryBottom**(): `boolean`
 
-*Inherited from [CardElement](cardelement.md).[isAtTheVeryBottom](cardelement.md#isattheverybottom)*
+#### Returns
 
-**Returns:** *boolean*
+`boolean`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[isAtTheVeryBottom](CardElement.md#isattheverybottom)
+
+#### Defined in
+
+[card-elements.ts:584](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L584)
+
 ___
+
+### isAtTheVeryLeft
 
-###  isAtTheVeryLeft
+▸ **isAtTheVeryLeft**(): `boolean`
 
-▸ **isAtTheVeryLeft**(): *boolean*
+#### Returns
 
-*Inherited from [CardElement](cardelement.md).[isAtTheVeryLeft](cardelement.md#isattheveryleft)*
+`boolean`
 
-**Returns:** *boolean*
+#### Inherited from
 
+[CardElement](CardElement.md).[isAtTheVeryLeft](CardElement.md#isattheveryleft)
+
+#### Defined in
+
+[card-elements.ts:572](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L572)
+
 ___
+
+### isAtTheVeryRight
+
+▸ **isAtTheVeryRight**(): `boolean`
 
-###  isAtTheVeryRight
+#### Returns
 
-▸ **isAtTheVeryRight**(): *boolean*
+`boolean`
 
-*Inherited from [CardElement](cardelement.md).[isAtTheVeryRight](cardelement.md#isattheveryright)*
+#### Inherited from
 
-**Returns:** *boolean*
+[CardElement](CardElement.md).[isAtTheVeryRight](CardElement.md#isattheveryright)
 
+#### Defined in
+
+[card-elements.ts:576](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L576)
+
 ___
+
+### isAtTheVeryTop
+
+▸ **isAtTheVeryTop**(): `boolean`
 
-###  isAtTheVeryTop
+#### Returns
 
-▸ **isAtTheVeryTop**(): *boolean*
+`boolean`
 
-*Inherited from [CardElement](cardelement.md).[isAtTheVeryTop](cardelement.md#isattheverytop)*
+#### Inherited from
 
-**Returns:** *boolean*
+[CardElement](CardElement.md).[isAtTheVeryTop](CardElement.md#isattheverytop)
 
+#### Defined in
+
+[card-elements.ts:580](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L580)
+
 ___
+
+### isBleeding
+
+▸ **isBleeding**(): `boolean`
+
+#### Returns
 
-###  isBleeding
+`boolean`
 
-▸ **isBleeding**(): *boolean*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[isBleeding](cardelement.md#isbleeding)*
+[CardElement](CardElement.md).[isBleeding](CardElement.md#isbleeding)
 
-**Returns:** *boolean*
+#### Defined in
 
+[card-elements.ts:436](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L436)
+
 ___
+
+### isBleedingAtBottom
+
+▸ **isBleedingAtBottom**(): `boolean`
+
+#### Returns
 
-###  isBleedingAtBottom
+`boolean`
 
-▸ **isBleedingAtBottom**(): *boolean*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[isBleedingAtBottom](cardelement.md#isbleedingatbottom)*
+[CardElement](CardElement.md).[isBleedingAtBottom](CardElement.md#isbleedingatbottom)
 
-**Returns:** *boolean*
+#### Defined in
 
+[card-elements.ts:592](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L592)
+
 ___
+
+### isBleedingAtTop
+
+▸ **isBleedingAtTop**(): `boolean`
+
+#### Returns
+
+`boolean`
 
-###  isBleedingAtTop
+#### Inherited from
 
-▸ **isBleedingAtTop**(): *boolean*
+[CardElement](CardElement.md).[isBleedingAtTop](CardElement.md#isbleedingattop)
 
-*Inherited from [CardElement](cardelement.md).[isBleedingAtTop](cardelement.md#isbleedingattop)*
+#### Defined in
 
-**Returns:** *boolean*
+[card-elements.ts:588](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L588)
 
 ___
 
-###  isBottomElement
+### isBottomElement
 
-▸ **isBottomElement**(`element`: [CardElement](cardelement.md)): *boolean*
+▸ **isBottomElement**(`element`): `boolean`
 
-*Inherited from [CardElement](cardelement.md).[isBottomElement](cardelement.md#isbottomelement)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `element` | [`CardElement`](CardElement.md) |
 
-Name | Type |
------- | ------ |
-`element` | [CardElement](cardelement.md) |
+#### Returns
 
-**Returns:** *boolean*
+`boolean`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[isBottomElement](CardElement.md#isbottomelement)
+
+#### Defined in
+
+[card-elements.ts:608](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L608)
+
 ___
 
-###  isDesignMode
+### isDesignMode
 
-▸ **isDesignMode**(): *boolean*
+▸ **isDesignMode**(): `boolean`
 
-*Inherited from [CardElement](cardelement.md).[isDesignMode](cardelement.md#isdesignmode)*
+#### Returns
 
-**Returns:** *boolean*
+`boolean`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[isDesignMode](CardElement.md#isdesignmode)
+
+#### Defined in
+
+[card-elements.ts:558](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L558)
+
 ___
+
+### isDisplayed
 
-### `Protected` isDisplayed
+▸ `Protected` **isDisplayed**(): `boolean`
 
-▸ **isDisplayed**(): *boolean*
+#### Returns
 
-*Inherited from [CardElement](cardelement.md).[isDisplayed](cardelement.md#protected-isdisplayed)*
+`boolean`
 
-**Returns:** *boolean*
+#### Inherited from
 
+[CardElement](CardElement.md).[isDisplayed](CardElement.md#isdisplayed)
+
+#### Defined in
+
+[card-elements.ts:344](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L344)
+
 ___
+
+### isFirstElement
+
+▸ **isFirstElement**(`element`): `boolean`
 
-###  isFirstElement
+#### Parameters
 
-▸ **isFirstElement**(`element`: [CardElement](cardelement.md)): *boolean*
+| Name | Type |
+| :------ | :------ |
+| `element` | [`CardElement`](CardElement.md) |
 
-*Inherited from [CardElement](cardelement.md).[isFirstElement](cardelement.md#isfirstelement)*
+#### Returns
 
-**Parameters:**
+`boolean`
 
-Name | Type |
------- | ------ |
-`element` | [CardElement](cardelement.md) |
+#### Inherited from
 
-**Returns:** *boolean*
+[CardElement](CardElement.md).[isFirstElement](CardElement.md#isfirstelement)
 
+#### Defined in
+
+[card-elements.ts:564](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L564)
+
 ___
+
+### isHiddenDueToOverflow
+
+▸ **isHiddenDueToOverflow**(): `boolean`
+
+#### Returns
 
-###  isHiddenDueToOverflow
+`boolean`
 
-▸ **isHiddenDueToOverflow**(): *boolean*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[isHiddenDueToOverflow](cardelement.md#ishiddenduetooverflow)*
+[CardElement](CardElement.md).[isHiddenDueToOverflow](CardElement.md#ishiddenduetooverflow)
 
-**Returns:** *boolean*
+#### Defined in
 
+[card-elements.ts:612](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L612)
+
 ___
+
+### isLastElement
+
+▸ **isLastElement**(`element`): `boolean`
+
+#### Parameters
 
-###  isLastElement
+| Name | Type |
+| :------ | :------ |
+| `element` | [`CardElement`](CardElement.md) |
 
-▸ **isLastElement**(`element`: [CardElement](cardelement.md)): *boolean*
+#### Returns
 
-*Inherited from [CardElement](cardelement.md).[isLastElement](cardelement.md#islastelement)*
+`boolean`
 
-**Parameters:**
+#### Inherited from
 
-Name | Type |
------- | ------ |
-`element` | [CardElement](cardelement.md) |
+[CardElement](CardElement.md).[isLastElement](CardElement.md#islastelement)
 
-**Returns:** *boolean*
+#### Defined in
 
+[card-elements.ts:568](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L568)
+
 ___
+
+### isLeftMostElement
+
+▸ **isLeftMostElement**(`element`): `boolean`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `element` | [`CardElement`](CardElement.md) |
 
-###  isLeftMostElement
+#### Returns
 
-▸ **isLeftMostElement**(`element`: [CardElement](cardelement.md)): *boolean*
+`boolean`
 
-*Inherited from [CardElement](cardelement.md).[isLeftMostElement](cardelement.md#isleftmostelement)*
+#### Inherited from
 
-**Parameters:**
+[CardElement](CardElement.md).[isLeftMostElement](CardElement.md#isleftmostelement)
 
-Name | Type |
------- | ------ |
-`element` | [CardElement](cardelement.md) |
+#### Defined in
 
-**Returns:** *boolean*
+[card-elements.ts:596](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L596)
 
 ___
 
-###  isRightMostElement
+### isRightMostElement
 
-▸ **isRightMostElement**(`element`: [CardElement](cardelement.md)): *boolean*
+▸ **isRightMostElement**(`element`): `boolean`
 
-*Inherited from [CardElement](cardelement.md).[isRightMostElement](cardelement.md#isrightmostelement)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `element` | [`CardElement`](CardElement.md) |
 
-Name | Type |
------- | ------ |
-`element` | [CardElement](cardelement.md) |
+#### Returns
 
-**Returns:** *boolean*
+`boolean`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[isRightMostElement](CardElement.md#isrightmostelement)
+
+#### Defined in
+
+[card-elements.ts:600](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L600)
+
 ___
+
+### isSet
 
-### `Abstract` isSet
+▸ `Abstract` **isSet**(): `boolean`
 
-▸ **isSet**(): *boolean*
+#### Returns
 
-**Returns:** *boolean*
+`boolean`
 
+#### Defined in
+
+[card-elements.ts:2685](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2685)
+
 ___
+
+### isTopElement
+
+▸ **isTopElement**(`element`): `boolean`
+
+#### Parameters
 
-###  isTopElement
+| Name | Type |
+| :------ | :------ |
+| `element` | [`CardElement`](CardElement.md) |
 
-▸ **isTopElement**(`element`: [CardElement](cardelement.md)): *boolean*
+#### Returns
 
-*Inherited from [CardElement](cardelement.md).[isTopElement](cardelement.md#istopelement)*
+`boolean`
 
-**Parameters:**
+#### Inherited from
 
-Name | Type |
------- | ------ |
-`element` | [CardElement](cardelement.md) |
+[CardElement](CardElement.md).[isTopElement](CardElement.md#istopelement)
 
-**Returns:** *boolean*
+#### Defined in
 
+[card-elements.ts:604](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L604)
+
 ___
+
+### isValid
+
+▸ **isValid**(): `boolean`
+
+#### Returns
 
-###  isValid
+`boolean`
 
-▸ **isValid**(): *boolean*
+#### Defined in
 
-**Returns:** *boolean*
+[card-elements.ts:2693](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2693)
 
 ___
 
-### `Protected` overrideInternalRender
+### overrideInternalRender
 
-▸ **overrideInternalRender**(): *HTMLElement | undefined*
+▸ `Protected` **overrideInternalRender**(): `undefined` \| `HTMLElement`
 
-*Overrides [CardElement](cardelement.md).[overrideInternalRender](cardelement.md#protected-overrideinternalrender)*
+#### Returns
 
-**Returns:** *HTMLElement | undefined*
+`undefined` \| `HTMLElement`
 
+#### Overrides
+
+[CardElement](CardElement.md).[overrideInternalRender](CardElement.md#overrideinternalrender)
+
+#### Defined in
+
+[card-elements.ts:2572](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2572)
+
 ___
+
+### parse
 
-###  parse
+▸ **parse**(`source`, `context?`): `void`
 
-▸ **parse**(`source`: any, `context?`: [SerializationContext](serializationcontext.md)): *void*
+#### Parameters
 
-*Inherited from [CardElement](cardelement.md).[parse](cardelement.md#parse)*
+| Name | Type |
+| :------ | :------ |
+| `source` | `any` |
+| `context?` | [`SerializationContext`](SerializationContext.md) |
 
-*Overrides [HostCapabilities](hostcapabilities.md).[parse](hostcapabilities.md#parse)*
+#### Returns
 
-**Parameters:**
+`void`
 
-Name | Type |
------- | ------ |
-`source` | any |
-`context?` | [SerializationContext](serializationcontext.md) |
+#### Inherited from
 
-**Returns:** *void*
+[CardElement](CardElement.md).[parse](CardElement.md#parse)
 
+#### Defined in
+
+[card-elements.ts:428](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L428)
+
 ___
+
+### populateSchema
+
+▸ `Protected` **populateSchema**(`schema`): `void`
+
+#### Parameters
 
-### `Protected` populateSchema
+| Name | Type |
+| :------ | :------ |
+| `schema` | [`SerializableObjectSchema`](SerializableObjectSchema.md) |
 
-▸ **populateSchema**(`schema`: [SerializableObjectSchema](serializableobjectschema.md)): *void*
+#### Returns
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[populateSchema](hostcapabilities.md#protected-populateschema)*
+`void`
 
-**Parameters:**
+#### Inherited from
 
-Name | Type |
------- | ------ |
-`schema` | [SerializableObjectSchema](serializableobjectschema.md) |
+[CardElement](CardElement.md).[populateSchema](CardElement.md#populateschema)
 
-**Returns:** *void*
+#### Defined in
 
+[serialization.ts:822](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L822)
+
 ___
+
+### preProcessPropertyValue
+
+▸ **preProcessPropertyValue**(`property`, `propertyValue?`): `any`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
+| `propertyValue?` | `any` |
 
-###  preProcessPropertyValue
+#### Returns
 
-▸ **preProcessPropertyValue**(`property`: [PropertyDefinition](propertydefinition.md), `propertyValue?`: any): *any*
+`any`
 
-*Inherited from [CardObject](cardobject.md).[preProcessPropertyValue](cardobject.md#preprocesspropertyvalue)*
+#### Inherited from
 
-**Parameters:**
+[CardElement](CardElement.md).[preProcessPropertyValue](CardElement.md#preprocesspropertyvalue)
 
-Name | Type |
------- | ------ |
-`property` | [PropertyDefinition](propertydefinition.md) |
-`propertyValue?` | any |
+#### Defined in
 
-**Returns:** *any*
+[card-object.ts:72](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L72)
 
 ___
 
-###  remove
+### remove
 
-▸ **remove**(): *boolean*
+▸ **remove**(): `boolean`
 
-*Inherited from [CardElement](cardelement.md).[remove](cardelement.md#remove)*
+#### Returns
 
-**Returns:** *boolean*
+`boolean`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[remove](CardElement.md#remove)
+
+#### Defined in
+
+[card-elements.ts:515](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L515)
+
 ___
 
-###  render
+### render
 
-▸ **render**(): *HTMLElement | undefined*
+▸ **render**(): `undefined` \| `HTMLElement`
 
-*Inherited from [CardElement](cardelement.md).[render](cardelement.md#render)*
+#### Returns
 
-**Returns:** *HTMLElement | undefined*
+`undefined` \| `HTMLElement`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[render](CardElement.md#render)
+
+#### Defined in
+
+[card-elements.ts:523](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L523)
+
 ___
+
+### resetDefaultValues
 
-###  resetDefaultValues
+▸ **resetDefaultValues**(): `void`
 
-▸ **resetDefaultValues**(): *void*
+#### Returns
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[resetDefaultValues](hostcapabilities.md#resetdefaultvalues)*
+`void`
 
-**Returns:** *void*
+#### Inherited from
 
+[CardElement](CardElement.md).[resetDefaultValues](CardElement.md#resetdefaultvalues)
+
+#### Defined in
+
+[serialization.ts:1019](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1019)
+
 ___
+
+### resetValidationFailureCue
 
-### `Protected` resetValidationFailureCue
+▸ `Protected` **resetValidationFailureCue**(): `void`
 
-▸ **resetValidationFailureCue**(): *void*
+#### Returns
 
-**Returns:** *void*
+`void`
 
+#### Defined in
+
+[card-elements.ts:2650](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2650)
+
 ___
+
+### setCustomProperty
+
+▸ **setCustomProperty**(`name`, `value`): `void`
+
+#### Parameters
 
-###  setCustomProperty
+| Name | Type |
+| :------ | :------ |
+| `name` | `string` |
+| `value` | `any` |
 
-▸ **setCustomProperty**(`name`: string, `value`: any): *void*
+#### Returns
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[setCustomProperty](hostcapabilities.md#setcustomproperty)*
+`void`
 
-**Parameters:**
+#### Inherited from
 
-Name | Type |
------- | ------ |
-`name` | string |
-`value` | any |
+[CardElement](CardElement.md).[setCustomProperty](CardElement.md#setcustomproperty)
 
-**Returns:** *void*
+#### Defined in
 
+[serialization.ts:1029](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L1029)
+
 ___
+
+### setPadding
+
+▸ `Protected` **setPadding**(`value`): `void`
+
+#### Parameters
 
-### `Protected` setPadding
+| Name | Type |
+| :------ | :------ |
+| `value` | `undefined` \| [`PaddingDefinition`](PaddingDefinition.md) |
 
-▸ **setPadding**(`value`: [PaddingDefinition](paddingdefinition.md) | undefined): *void*
+#### Returns
 
-*Inherited from [CardElement](cardelement.md).[setPadding](cardelement.md#protected-setpadding)*
+`void`
 
-**Parameters:**
+#### Inherited from
 
-Name | Type |
------- | ------ |
-`value` | [PaddingDefinition](paddingdefinition.md) &#124; undefined |
+[CardElement](CardElement.md).[setPadding](CardElement.md#setpadding)
 
-**Returns:** *void*
+#### Defined in
 
+[card-elements.ts:402](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L402)
+
 ___
+
+### setParent
+
+▸ **setParent**(`value`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `undefined` \| [`CardObject`](CardObject.md) |
 
-###  setParent
+#### Returns
 
-▸ **setParent**(`value`: [CardObject](cardobject.md) | undefined): *void*
+`void`
 
-*Inherited from [CardObject](cardobject.md).[setParent](cardobject.md#setparent)*
+#### Inherited from
 
-**Parameters:**
+[CardElement](CardElement.md).[setParent](CardElement.md#setparent)
 
-Name | Type |
------- | ------ |
-`value` | [CardObject](cardobject.md) &#124; undefined |
+#### Defined in
 
-**Returns:** *void*
+[card-object.ts:90](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L90)
 
 ___
 
-###  setShouldFallback
+### setShouldFallback
 
-▸ **setShouldFallback**(`value`: boolean): *void*
+▸ **setShouldFallback**(`value`): `void`
 
-*Inherited from [CardObject](cardobject.md).[setShouldFallback](cardobject.md#setshouldfallback)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `value` | `boolean` |
 
-Name | Type |
------- | ------ |
-`value` | boolean |
+#### Returns
 
-**Returns:** *void*
+`void`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[setShouldFallback](CardElement.md#setshouldfallback)
+
+#### Defined in
+
+[card-object.ts:94](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L94)
+
 ___
+
+### setValue
 
-### `Protected` setValue
+▸ `Protected` **setValue**(`property`, `value`): `void`
 
-▸ **setValue**(`property`: [PropertyDefinition](propertydefinition.md), `value`: any): *void*
+#### Parameters
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[setValue](hostcapabilities.md#protected-setvalue)*
+| Name | Type |
+| :------ | :------ |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
+| `value` | `any` |
 
-**Parameters:**
+#### Returns
 
-Name | Type |
------- | ------ |
-`property` | [PropertyDefinition](propertydefinition.md) |
-`value` | any |
+`void`
 
-**Returns:** *void*
+#### Inherited from
 
+[CardElement](CardElement.md).[setValue](CardElement.md#setvalue)
+
+#### Defined in
+
+[serialization.ts:879](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L879)
+
 ___
+
+### shouldFallback
+
+▸ **shouldFallback**(): `boolean`
 
-###  shouldFallback
+#### Returns
 
-▸ **shouldFallback**(): *boolean*
+`boolean`
 
-*Inherited from [CardObject](cardobject.md).[shouldFallback](cardobject.md#shouldfallback)*
+#### Inherited from
 
-**Returns:** *boolean*
+[CardElement](CardElement.md).[shouldFallback](CardElement.md#shouldfallback)
 
+#### Defined in
+
+[card-object.ts:98](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L98)
+
 ___
+
+### shouldSerialize
+
+▸ `Protected` **shouldSerialize**(`context`): `boolean`
 
-### `Protected` shouldSerialize
+#### Parameters
 
-▸ **shouldSerialize**(`context`: [SerializationContext](serializationcontext.md)): *boolean*
+| Name | Type |
+| :------ | :------ |
+| `context` | [`SerializationContext`](SerializationContext.md) |
 
-*Inherited from [CardElement](cardelement.md).[shouldSerialize](cardelement.md#protected-shouldserialize)*
+#### Returns
 
-*Overrides [HostCapabilities](hostcapabilities.md).[shouldSerialize](hostcapabilities.md#protected-shouldserialize)*
+`boolean`
 
-**Parameters:**
+#### Inherited from
 
-Name | Type |
------- | ------ |
-`context` | [SerializationContext](serializationcontext.md) |
+[CardElement](CardElement.md).[shouldSerialize](CardElement.md#shouldserialize)
 
-**Returns:** *boolean*
+#### Defined in
 
+[card-elements.ts:406](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L406)
+
 ___
+
+### showValidationErrorMessage
 
-### `Protected` showValidationErrorMessage
+▸ `Protected` **showValidationErrorMessage**(): `void`
 
-▸ **showValidationErrorMessage**(): *void*
+#### Returns
 
-**Returns:** *void*
+`void`
 
+#### Defined in
+
+[card-elements.ts:2664](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2664)
+
 ___
+
+### toJSON
 
-###  toJSON
+▸ **toJSON**(`context?`): `undefined` \| [`PropertyBag`](../README.md#propertybag)
 
-▸ **toJSON**(`context?`: [BaseSerializationContext](baseserializationcontext.md)): *[PropertyBag](../README.md#propertybag) | undefined*
+#### Parameters
 
-*Inherited from [HostCapabilities](hostcapabilities.md).[toJSON](hostcapabilities.md#tojson)*
+| Name | Type |
+| :------ | :------ |
+| `context?` | [`BaseSerializationContext`](BaseSerializationContext.md) |
 
-**Parameters:**
+#### Returns
 
-Name | Type |
------- | ------ |
-`context?` | [BaseSerializationContext](baseserializationcontext.md) |
+`undefined` \| [`PropertyBag`](../README.md#propertybag)
 
-**Returns:** *[PropertyBag](../README.md#propertybag) | undefined*
+#### Inherited from
 
+[CardElement](CardElement.md).[toJSON](CardElement.md#tojson)
+
+#### Defined in
+
+[serialization.ts:967](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L967)
+
 ___
+
+### truncateOverflow
+
+▸ `Protected` **truncateOverflow**(`maxHeight`): `boolean`
 
-### `Protected` truncateOverflow
+#### Parameters
 
-▸ **truncateOverflow**(`maxHeight`: number): *boolean*
+| Name | Type |
+| :------ | :------ |
+| `maxHeight` | `number` |
 
-*Inherited from [CardElement](cardelement.md).[truncateOverflow](cardelement.md#protected-truncateoverflow)*
+#### Returns
 
-**Parameters:**
+`boolean`
 
-Name | Type |
------- | ------ |
-`maxHeight` | number |
+#### Inherited from
 
-**Returns:** *boolean*
+[CardElement](CardElement.md).[truncateOverflow](CardElement.md#truncateoverflow)
 
+#### Defined in
+
+[card-elements.ts:378](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L378)
+
 ___
+
+### undoOverflowTruncation
+
+▸ `Protected` **undoOverflowTruncation**(): `void`
+
+#### Returns
 
-### `Protected` undoOverflowTruncation
+`void`
 
-▸ **undoOverflowTruncation**(): *void*
+#### Inherited from
 
-*Inherited from [CardElement](cardelement.md).[undoOverflowTruncation](cardelement.md#protected-undooverflowtruncation)*
+[CardElement](CardElement.md).[undoOverflowTruncation](CardElement.md#undooverflowtruncation)
 
-**Returns:** *void*
+#### Defined in
 
+[card-elements.ts:388](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L388)
+
 ___
+
+### updateInputControlAriaLabelledBy
+
+▸ `Protected` **updateInputControlAriaLabelledBy**(): `void`
+
+#### Returns
 
-### `Protected` updateInputControlAriaLabelledBy
+`void`
 
-▸ **updateInputControlAriaLabelledBy**(): *void*
+#### Defined in
 
-**Returns:** *void*
+[card-elements.ts:2539](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2539)
 
 ___
 
-###  updateLayout
+### updateLayout
 
-▸ **updateLayout**(`processChildren`: boolean): *void*
+▸ **updateLayout**(`processChildren?`): `void`
 
-*Inherited from [CardElement](cardelement.md).[updateLayout](cardelement.md#updatelayout)*
+#### Parameters
 
-**Parameters:**
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `processChildren` | `boolean` | `true` |
 
-Name | Type | Default |
------- | ------ | ------ |
-`processChildren` | boolean | true |
+#### Returns
 
-**Returns:** *void*
+`void`
 
+#### Inherited from
+
+[CardElement](CardElement.md).[updateLayout](CardElement.md#updatelayout)
+
+#### Defined in
+
+[card-elements.ts:549](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L549)
+
 ___
+
+### validateProperties
 
-###  validateProperties
+▸ **validateProperties**(): [`ValidationResults`](ValidationResults.md)
 
-▸ **validateProperties**(): *[ValidationResults](validationresults.md)*
+#### Returns
 
-*Inherited from [CardObject](cardobject.md).[validateProperties](cardobject.md#validateproperties)*
+[`ValidationResults`](ValidationResults.md)
 
-**Returns:** *[ValidationResults](validationresults.md)*
+#### Inherited from
 
+[CardElement](CardElement.md).[validateProperties](CardElement.md#validateproperties)
+
+#### Defined in
+
+[card-object.ts:130](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L130)
+
 ___
+
+### validateValue
+
+▸ **validateValue**(): `boolean`
 
-###  validateValue
+#### Returns
 
-▸ **validateValue**(): *boolean*
+`boolean`
 
-*Implementation of [IInput](../interfaces/iinput.md)*
+#### Implementation of
 
-**Returns:** *boolean*
+[IInput](../interfaces/IInput.md).[validateValue](../interfaces/IInput.md#validatevalue)
 
+#### Defined in
+
+[card-elements.ts:2724](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2724)
+
 ___
+
+### valueChanged
+
+▸ `Protected` **valueChanged**(): `void`
+
+#### Returns
 
-### `Protected` valueChanged
+`void`
 
-▸ **valueChanged**(): *void*
+#### Defined in
 
-**Returns:** *void*
+[card-elements.ts:2638](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L2638)

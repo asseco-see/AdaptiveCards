@@ -1,37 +1,39 @@
-[Adaptive Cards Javascript SDK](../README.md) › [AdaptiveCardConfig](adaptivecardconfig.md)
+[Adaptive Cards Javascript SDK](../README.md) / AdaptiveCardConfig
 
 # Class: AdaptiveCardConfig
 
-## Hierarchy
-
-* **AdaptiveCardConfig**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](adaptivecardconfig.md#constructor)
+- [constructor](AdaptiveCardConfig.md#constructor)
 
 ### Properties
 
-* [allowCustomStyle](adaptivecardconfig.md#allowcustomstyle)
+- [allowCustomStyle](AdaptiveCardConfig.md#allowcustomstyle)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new AdaptiveCardConfig**(`obj?`: any): *[AdaptiveCardConfig](adaptivecardconfig.md)*
+• **new AdaptiveCardConfig**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[AdaptiveCardConfig](adaptivecardconfig.md)*
+#### Defined in
+
+[host-config.ts:59](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L59)
 
 ## Properties
 
-###  allowCustomStyle
+### allowCustomStyle
 
-• **allowCustomStyle**: *boolean* = false
+• **allowCustomStyle**: `boolean` = `false`
+
+#### Defined in
+
+[host-config.ts:57](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L57)

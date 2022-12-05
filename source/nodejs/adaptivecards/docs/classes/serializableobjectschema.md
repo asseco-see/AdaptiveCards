@@ -1,81 +1,117 @@
-[Adaptive Cards Javascript SDK](../README.md) › [SerializableObjectSchema](serializableobjectschema.md)
+[Adaptive Cards Javascript SDK](../README.md) / SerializableObjectSchema
 
 # Class: SerializableObjectSchema
 
-## Hierarchy
+## Table of contents
 
-* **SerializableObjectSchema**
+### Constructors
 
-## Index
+- [constructor](SerializableObjectSchema.md#constructor)
 
 ### Methods
 
-* [add](serializableobjectschema.md#add)
-* [getCount](serializableobjectschema.md#getcount)
-* [getItemAt](serializableobjectschema.md#getitemat)
-* [indexOf](serializableobjectschema.md#indexof)
-* [remove](serializableobjectschema.md#remove)
+- [add](SerializableObjectSchema.md#add)
+- [getCount](SerializableObjectSchema.md#getcount)
+- [getItemAt](SerializableObjectSchema.md#getitemat)
+- [indexOf](SerializableObjectSchema.md#indexof)
+- [remove](SerializableObjectSchema.md#remove)
+
+## Constructors
+
+### constructor
+
+• **new SerializableObjectSchema**()
 
 ## Methods
 
-###  add
+### add
 
-▸ **add**(...`properties`: [PropertyDefinition](propertydefinition.md)[]): *void*
+▸ **add**(`...properties`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`...properties` | [PropertyDefinition](propertydefinition.md)[] |
+| Name | Type |
+| :------ | :------ |
+| `...properties` | [`PropertyDefinition`](PropertyDefinition.md)[] |
 
-**Returns:** *void*
+#### Returns
 
-___
+`void`
 
-###  getCount
+#### Defined in
 
-▸ **getCount**(): *number*
-
-**Returns:** *number*
+[serialization.ts:760](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L760)
 
 ___
 
-###  getItemAt
+### getCount
 
-▸ **getItemAt**(`index`: number): *[PropertyDefinition](propertydefinition.md)*
+▸ **getCount**(): `number`
 
-**Parameters:**
+#### Returns
 
-Name | Type |
------- | ------ |
-`index` | number |
+`number`
 
-**Returns:** *[PropertyDefinition](propertydefinition.md)*
+#### Defined in
 
-___
-
-###  indexOf
-
-▸ **indexOf**(`property`: [PropertyDefinition](propertydefinition.md)): *number*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`property` | [PropertyDefinition](propertydefinition.md) |
-
-**Returns:** *number*
+[serialization.ts:787](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L787)
 
 ___
 
-###  remove
+### getItemAt
 
-▸ **remove**(...`properties`: [PropertyDefinition](propertydefinition.md)[]): *void*
+▸ **getItemAt**(`index`): [`PropertyDefinition`](PropertyDefinition.md)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`...properties` | [PropertyDefinition](propertydefinition.md)[] |
+| Name | Type |
+| :------ | :------ |
+| `index` | `number` |
 
-**Returns:** *void*
+#### Returns
+
+[`PropertyDefinition`](PropertyDefinition.md)
+
+#### Defined in
+
+[serialization.ts:783](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L783)
+
+___
+
+### indexOf
+
+▸ **indexOf**(`property`): `number`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `property` | [`PropertyDefinition`](PropertyDefinition.md) |
+
+#### Returns
+
+`number`
+
+#### Defined in
+
+[serialization.ts:750](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L750)
+
+___
+
+### remove
+
+▸ **remove**(`...properties`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `...properties` | [`PropertyDefinition`](PropertyDefinition.md)[] |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[serialization.ts:768](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L768)

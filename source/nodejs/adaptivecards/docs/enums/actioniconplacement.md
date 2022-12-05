@@ -1,22 +1,30 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ActionIconPlacement](actioniconplacement.md)
+[Adaptive Cards Javascript SDK](../README.md) / ActionIconPlacement
 
 # Enumeration: ActionIconPlacement
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [AboveTitle](actioniconplacement.md#abovetitle)
-* [LeftOfTitle](actioniconplacement.md#leftoftitle)
+- [AboveTitle](ActionIconPlacement.md#abovetitle)
+- [LeftOfTitle](ActionIconPlacement.md#leftoftitle)
 
-## Enumeration members
+## Enumeration Members
 
-###  AboveTitle
+### AboveTitle
 
-• **AboveTitle**:
+• **AboveTitle** = ``1``
+
+#### Defined in
+
+[enums.ts:139](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L139)
 
 ___
 
-###  LeftOfTitle
+### LeftOfTitle
 
-• **LeftOfTitle**:
+• **LeftOfTitle** = ``0``
+
+#### Defined in
+
+[enums.ts:138](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L138)

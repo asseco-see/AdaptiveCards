@@ -1,6 +1,7 @@
 {
 	"name": "@asseco/adaptivecards-designer",
 	"version": "1.1.0",
+	"private": true,
 	"description": "Adaptive Card designer embeddable control",
 	"author": "AdaptiveCards",
 	"license": "MIT",
@@ -32,39 +33,33 @@
 		"lint": "eslint src/**/*.ts",
 		"iterate": "webpack --cache --mode=production --progress && npm run dts",
 		"release": "npm run build && webpack --mode=production && npm run dts",
-		"publish": "npm version $(head -n 1 ../../../.version) && npm publish --registry https://devops.see.asseco.com/DIGITAL/_packaging/Asseco/npm/registry/ --loglevel warn"
-	},
-	"dependencies": {
-		"@asseco/adaptive-ui-web": "11.2.0",
-		"@asseco/adaptive-ui-web-angular-elements": "11.2.0",
-		"adaptivecards-controls": "~0.9.0",
-		"clipboard": "^2.0.11"
+		"publish_package": "npm version $(head -n 1 ../../../.version) && npm publish --registry https://devops.see.asseco.com/DIGITAL/_packaging/Asseco/npm/registry/ --loglevel warn"
 	},
 	"peerDependencies": {
 		"adaptive-expressions": "^4.16.0",
 		"adaptivecards": "^2.1.0",
-		"adaptivecards-templating": "^1.1.0",
-		"monaco-editor": "^0.20.0"
+		"adaptivecards-templating": "^2.0.0",
+		"adaptivecards-controls": "^0.9.0",
+		"@asseco/adaptive-ui-web": "11.2.0",
+		"@asseco/adaptive-ui-web-angular-elements": "11.2.0",
+		"clipboard": "^2.0.11",
+		"monaco-editor": "^0.26.0"
 	},
-	"devDependencies": {
-		"@mcler/webpack-concat-plugin": "^4.1.5",
+	"dependencies": {
 		"@types/js-yaml": "^4.0.5",
-		"@typescript-eslint/eslint-plugin": "^3.4.0",
-		"@typescript-eslint/parser": "^3.4.0",
-		"adaptive-expressions": "^4.16.0",
-		"adaptivecards": "^2.10.0",
-		"adaptivecards-templating": "^1.1.0",
+		"@typescript-eslint/eslint-plugin": "^5.0.0",
+		"@typescript-eslint/parser": "^5.0.0",
 		"cpy-cli": "^4.1.0",
-		"dotenv-webpack": "^1.7.0",
+		"dotenv-webpack": "^8.0.0",
 		"dts-generator": "^3.0.0",
-		"eslint": "^7.3.1",
+		"eslint": "^8.14.0",
 		"html-webpack-plugin": "^5.5.0",
 		"js-yaml": "^4.0.0",
-		"monaco-editor": "^0.20.0",
 		"rimraf": "^3.0.2",
-		"typescript": "^3.9.5",
-		"webpack": "^5.72.1",
-		"webpack-cli": "^4.9.2",
-		"webpack-dev-server": "^4.9.0"
+		"@mcler/webpack-concat-plugin": "^5.0.0-alpha2",
+		"typescript": "^4.9.3",
+		"webpack": "^5.72.0",
+		"webpack-cli": "^5.0.0",
+		"webpack-dev-server": "^4.11.1"
 	}
 }

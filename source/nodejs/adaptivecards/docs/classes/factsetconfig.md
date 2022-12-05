@@ -1,51 +1,61 @@
-[Adaptive Cards Javascript SDK](../README.md) › [FactSetConfig](factsetconfig.md)
+[Adaptive Cards Javascript SDK](../README.md) / FactSetConfig
 
 # Class: FactSetConfig
 
-## Hierarchy
-
-* **FactSetConfig**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](factsetconfig.md#constructor)
+- [constructor](FactSetConfig.md#constructor)
 
 ### Properties
 
-* [spacing](factsetconfig.md#spacing)
-* [title](factsetconfig.md#readonly-title)
-* [value](factsetconfig.md#readonly-value)
+- [spacing](FactSetConfig.md#spacing)
+- [title](FactSetConfig.md#title)
+- [value](FactSetConfig.md#value)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new FactSetConfig**(`obj?`: any): *[FactSetConfig](factsetconfig.md)*
+• **new FactSetConfig**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[FactSetConfig](factsetconfig.md)*
+#### Defined in
+
+[host-config.ts:223](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L223)
 
 ## Properties
 
-###  spacing
+### spacing
 
-• **spacing**: *number* = 10
+• **spacing**: `number` = `10`
 
-___
+#### Defined in
 
-### `Readonly` title
-
-• **title**: *[FactTitleDefinition](facttitledefinition.md)* = new FactTitleDefinition()
+[host-config.ts:221](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L221)
 
 ___
 
-### `Readonly` value
+### title
 
-• **value**: *[FactTextDefinition](facttextdefinition.md)* = new FactTextDefinition()
+• `Readonly` **title**: [`FactTitleDefinition`](FactTitleDefinition.md)
+
+#### Defined in
+
+[host-config.ts:219](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L219)
+
+___
+
+### value
+
+• `Readonly` **value**: [`FactTextDefinition`](FactTextDefinition.md)
+
+#### Defined in
+
+[host-config.ts:220](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L220)

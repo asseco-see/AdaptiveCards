@@ -1,29 +1,41 @@
-[Adaptive Cards Javascript SDK](../README.md) › [VerticalAlignment](verticalalignment.md)
+[Adaptive Cards Javascript SDK](../README.md) / VerticalAlignment
 
 # Enumeration: VerticalAlignment
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Bottom](verticalalignment.md#bottom)
-* [Center](verticalalignment.md#center)
-* [Top](verticalalignment.md#top)
+- [Bottom](VerticalAlignment.md#bottom)
+- [Center](VerticalAlignment.md#center)
+- [Top](VerticalAlignment.md#top)
 
-## Enumeration members
+## Enumeration Members
 
-###  Bottom
+### Bottom
 
-• **Bottom**:
+• **Bottom** = ``2``
 
-___
+#### Defined in
 
-###  Center
-
-• **Center**:
+[enums.ts:105](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L105)
 
 ___
 
-###  Top
+### Center
 
-• **Top**:
+• **Center** = ``1``
+
+#### Defined in
+
+[enums.ts:104](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L104)
+
+___
+
+### Top
+
+• **Top** = ``0``
+
+#### Defined in
+
+[enums.ts:103](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L103)

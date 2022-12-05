@@ -1,61 +1,75 @@
-[Adaptive Cards Javascript SDK](../README.md) › [PaddingDefinition](paddingdefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / PaddingDefinition
 
 # Class: PaddingDefinition
 
-## Hierarchy
-
-* **PaddingDefinition**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](paddingdefinition.md#constructor)
+- [constructor](PaddingDefinition.md#constructor)
 
 ### Properties
 
-* [bottom](paddingdefinition.md#bottom)
-* [left](paddingdefinition.md#left)
-* [right](paddingdefinition.md#right)
-* [top](paddingdefinition.md#top)
+- [bottom](PaddingDefinition.md#bottom)
+- [left](PaddingDefinition.md#left)
+- [right](PaddingDefinition.md#right)
+- [top](PaddingDefinition.md#top)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new PaddingDefinition**(`top`: [Spacing](../enums/spacing.md), `right`: [Spacing](../enums/spacing.md), `bottom`: [Spacing](../enums/spacing.md), `left`: [Spacing](../enums/spacing.md)): *[PaddingDefinition](paddingdefinition.md)*
+• **new PaddingDefinition**(`top?`, `right?`, `bottom?`, `left?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type | Default |
------- | ------ | ------ |
-`top` | [Spacing](../enums/spacing.md) | Enums.Spacing.None |
-`right` | [Spacing](../enums/spacing.md) | Enums.Spacing.None |
-`bottom` | [Spacing](../enums/spacing.md) | Enums.Spacing.None |
-`left` | [Spacing](../enums/spacing.md) | Enums.Spacing.None |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `top` | [`Spacing`](../enums/Spacing.md) | `Enums.Spacing.None` |
+| `right` | [`Spacing`](../enums/Spacing.md) | `Enums.Spacing.None` |
+| `bottom` | [`Spacing`](../enums/Spacing.md) | `Enums.Spacing.None` |
+| `left` | [`Spacing`](../enums/Spacing.md) | `Enums.Spacing.None` |
 
-**Returns:** *[PaddingDefinition](paddingdefinition.md)*
+#### Defined in
+
+[shared.ts:164](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L164)
 
 ## Properties
 
-###  bottom
+### bottom
 
-• **bottom**: *[Spacing](../enums/spacing.md)* = Enums.Spacing.None
+• **bottom**: [`Spacing`](../enums/Spacing.md) = `Enums.Spacing.None`
 
-___
+#### Defined in
 
-###  left
-
-• **left**: *[Spacing](../enums/spacing.md)* = Enums.Spacing.None
+[shared.ts:161](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L161)
 
 ___
 
-###  right
+### left
 
-• **right**: *[Spacing](../enums/spacing.md)* = Enums.Spacing.None
+• **left**: [`Spacing`](../enums/Spacing.md) = `Enums.Spacing.None`
+
+#### Defined in
+
+[shared.ts:162](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L162)
 
 ___
 
-###  top
+### right
 
-• **top**: *[Spacing](../enums/spacing.md)* = Enums.Spacing.None
+• **right**: [`Spacing`](../enums/Spacing.md) = `Enums.Spacing.None`
+
+#### Defined in
+
+[shared.ts:160](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L160)
+
+___
+
+### top
+
+• **top**: [`Spacing`](../enums/Spacing.md) = `Enums.Spacing.None`
+
+#### Defined in
+
+[shared.ts:159](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L159)

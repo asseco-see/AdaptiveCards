@@ -1,54 +1,84 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ContainerStyle](containerstyle.md)
+[Adaptive Cards Javascript SDK](../README.md) / ContainerStyle
 
 # Class: ContainerStyle
 
-## Hierarchy
+## Table of contents
 
-* **ContainerStyle**
+### Constructors
 
-## Index
+- [constructor](ContainerStyle.md#constructor)
 
 ### Properties
 
-* [Accent](containerstyle.md#static-readonly-accent)
-* [Attention](containerstyle.md#static-readonly-attention)
-* [Default](containerstyle.md#static-readonly-default)
-* [Emphasis](containerstyle.md#static-readonly-emphasis)
-* [Good](containerstyle.md#static-readonly-good)
-* [Warning](containerstyle.md#static-readonly-warning)
+- [Accent](ContainerStyle.md#accent)
+- [Attention](ContainerStyle.md#attention)
+- [Default](ContainerStyle.md#default)
+- [Emphasis](ContainerStyle.md#emphasis)
+- [Good](ContainerStyle.md#good)
+- [Warning](ContainerStyle.md#warning)
+
+## Constructors
+
+### constructor
+
+• **new ContainerStyle**()
 
 ## Properties
 
-### `Static` `Readonly` Accent
+### Accent
 
-▪ **Accent**: *"accent"* = "accent"
+▪ `Static` `Readonly` **Accent**: ``"accent"``
 
-___
+#### Defined in
 
-### `Static` `Readonly` Attention
-
-▪ **Attention**: *"attention"* = "attention"
+[enums.ts:188](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L188)
 
 ___
 
-### `Static` `Readonly` Default
+### Attention
 
-▪ **Default**: *"default"* = "default"
+▪ `Static` `Readonly` **Attention**: ``"attention"``
 
-___
+#### Defined in
 
-### `Static` `Readonly` Emphasis
-
-▪ **Emphasis**: *"emphasis"* = "emphasis"
+[enums.ts:190](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L190)
 
 ___
 
-### `Static` `Readonly` Good
+### Default
 
-▪ **Good**: *"good"* = "good"
+▪ `Static` `Readonly` **Default**: ``"default"``
+
+#### Defined in
+
+[enums.ts:186](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L186)
 
 ___
 
-### `Static` `Readonly` Warning
+### Emphasis
 
-▪ **Warning**: *"warning"* = "warning"
+▪ `Static` `Readonly` **Emphasis**: ``"emphasis"``
+
+#### Defined in
+
+[enums.ts:187](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L187)
+
+___
+
+### Good
+
+▪ `Static` `Readonly` **Good**: ``"good"``
+
+#### Defined in
+
+[enums.ts:189](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L189)
+
+___
+
+### Warning
+
+▪ `Static` `Readonly` **Warning**: ``"warning"``
+
+#### Defined in
+
+[enums.ts:191](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L191)
