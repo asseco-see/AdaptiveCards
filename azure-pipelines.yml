@@ -39,7 +39,6 @@ steps:
       cp npm-asee-dp-robot /root/.npmrc
       cp /source/samples/HostConfig/*.json /source/source/nodejs/adaptivecards-designer/src/hostConfigs/
       cd source/nodejs
-      npm config set user 0
       npm install --unsafe-perm --no-progress --loglevel=warn
       npx lerna bootstrap
       npx lerna run build
