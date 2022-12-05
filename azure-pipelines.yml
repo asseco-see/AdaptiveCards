@@ -31,7 +31,8 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_install'
   inputs:
-    image: 'node:18-slim'
+    image: 'registry.see.asseco.com/platform/node:18-alpine'
+    dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
@@ -60,7 +61,8 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_NPM_publish_adaptivecards'
   inputs:
-    image: 'node:18-slim'
+    image: 'registry.see.asseco.com/platform/node:18-alpine'
+    dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
@@ -70,7 +72,8 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_NPM_publish_adaptivecards_designer'
   inputs:
-    image: 'node:18-slim'
+    image: 'registry.see.asseco.com/platform/node:18-alpine'
+    dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
