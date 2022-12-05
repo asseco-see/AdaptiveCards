@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[enums.ts:51](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L51)
+[enums.ts:51](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L51)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-[enums.ts:50](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L50)
+[enums.ts:50](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L50)
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 #### Defined in
 
-[enums.ts:52](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L52)
+[enums.ts:52](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L52)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[enums.ts:53](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L53)
+[enums.ts:53](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L53)
 
 ___
 
@@ -60,4 +60,4 @@ ___
 
 #### Defined in
 
-[enums.ts:54](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L54)
+[enums.ts:54](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L54)

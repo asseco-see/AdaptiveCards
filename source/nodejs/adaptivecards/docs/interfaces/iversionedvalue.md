@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[serialization.ts:435](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L435)
+[serialization.ts:435](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L435)
 
 ___
 
@@ -33,4 +33,4 @@ ___
 
 #### Defined in
 
-[serialization.ts:434](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L434)
+[serialization.ts:434](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L434)

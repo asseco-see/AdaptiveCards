@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[serialization.ts:111](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L111)
+[serialization.ts:111](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L111)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-[serialization.ts:106](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L106)
+[serialization.ts:106](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L106)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-[serialization.ts:107](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L107)
+[serialization.ts:107](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L107)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-[serialization.ts:108](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L108)
+[serialization.ts:108](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L108)
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 #### Defined in
 
-[serialization.ts:109](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L109)
+[serialization.ts:109](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L109)
 
 ___
 
@@ -81,4 +81,4 @@ ___
 
 #### Defined in
 
-[serialization.ts:110](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L110)
+[serialization.ts:110](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L110)

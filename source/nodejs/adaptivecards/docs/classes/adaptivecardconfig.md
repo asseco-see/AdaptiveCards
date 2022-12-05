@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[host-config.ts:59](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L59)
+[host-config.ts:59](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L59)
 
 ## Properties
 
@@ -36,4 +36,4 @@
 
 #### Defined in
 
-[host-config.ts:57](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L57)
+[host-config.ts:57](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L57)

@@ -38,4 +38,4 @@
 
 #### Defined in
 
-[card-elements.ts:5672](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L5672)
+[card-elements.ts:5672](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5672)

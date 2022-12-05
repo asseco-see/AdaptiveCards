@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[registry.ts:7](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L7)
+[registry.ts:7](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L7)
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 #### Defined in
 
-[registry.ts:8](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L8)
+[registry.ts:8](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L8)
 
 ___
 
@@ -48,4 +48,4 @@ ___
 
 #### Defined in
 
-[registry.ts:6](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L6)
+[registry.ts:6](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L6)

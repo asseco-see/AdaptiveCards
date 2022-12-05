@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[host-config.ts:473](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L473)
+[host-config.ts:473](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L473)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-[host-config.ts:476](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L476)
+[host-config.ts:476](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L476)
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 #### Defined in
 
-[host-config.ts:475](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L475)
+[host-config.ts:475](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L475)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[host-config.ts:474](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L474)
+[host-config.ts:474](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L474)
 
 ___
 
@@ -60,4 +60,4 @@ ___
 
 #### Defined in
 
-[host-config.ts:472](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L472)
+[host-config.ts:472](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L472)

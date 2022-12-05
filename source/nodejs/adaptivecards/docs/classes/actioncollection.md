@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[card-elements.ts:4950](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L4950)
+[card-elements.ts:4950](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4950)
 
 ## Properties
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[card-elements.ts:4948](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L4948)
+[card-elements.ts:4948](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4948)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:4947](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L4947)
+[card-elements.ts:4947](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4947)
 
 ## Accessors
 
@@ -80,7 +80,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:5274](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L5274)
+[card-elements.ts:5274](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5274)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:5270](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L5270)
+[card-elements.ts:5270](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5270)
 
 ## Methods
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:4954](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L4954)
+[card-elements.ts:4954](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4954)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:5193](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L5193)
+[card-elements.ts:5193](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5193)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:5240](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L5240)
+[card-elements.ts:5240](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5240)
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:4990](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L4990)
+[card-elements.ts:4990](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4990)
 
 ___
 
@@ -188,7 +188,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:5248](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L5248)
+[card-elements.ts:5248](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5248)
 
 ___
 
@@ -202,7 +202,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:5260](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L5260)
+[card-elements.ts:5260](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5260)
 
 ___
 
@@ -223,7 +223,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:4968](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L4968)
+[card-elements.ts:4968](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4968)
 
 ___
 
@@ -243,7 +243,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:5212](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L5212)
+[card-elements.ts:5212](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5212)
 
 ___
 
@@ -264,7 +264,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:5031](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L5031)
+[card-elements.ts:5031](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5031)
 
 ___
 
@@ -286,7 +286,7 @@ ___
 
 #### Defined in
 
-[card-elements.ts:4986](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L4986)
+[card-elements.ts:4986](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4986)
 
 ___
 
@@ -306,4 +306,4 @@ ___
 
 #### Defined in
 
-[card-elements.ts:5004](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L5004)
+[card-elements.ts:5004](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5004)

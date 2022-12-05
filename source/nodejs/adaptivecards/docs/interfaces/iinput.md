@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[shared.ts:57](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L57)
+[shared.ts:57](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L57)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-[shared.ts:58](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L58)
+[shared.ts:58](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L58)
 
 ## Methods
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[shared.ts:59](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L59)
+[shared.ts:59](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L59)

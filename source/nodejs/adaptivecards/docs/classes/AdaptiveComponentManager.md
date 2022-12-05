@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[components.ts:259](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/components.ts#L259)
+[components.ts:259](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/components.ts#L259)
 
 ___
 
@@ -61,4 +61,4 @@ ___
 
 #### Defined in
 
-[components.ts:268](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/components.ts#L268)
+[components.ts:268](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/components.ts#L268)

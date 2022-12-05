@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[custom-card-element-registry.ts:2](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/custom-card-element-registry.ts#L2)
+[custom-card-element-registry.ts:2](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/custom-card-element-registry.ts#L2)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[custom-card-element-registry.ts:3](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/custom-card-element-registry.ts#L3)
+[custom-card-element-registry.ts:3](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/custom-card-element-registry.ts#L3)
 
 ## Methods
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[custom-card-element-registry.ts:9](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/custom-card-element-registry.ts#L9)
+[custom-card-element-registry.ts:9](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/custom-card-element-registry.ts#L9)
 
 ___
 
@@ -83,4 +83,4 @@ ___
 
 #### Defined in
 
-[custom-card-element-registry.ts:5](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/custom-card-element-registry.ts#L5)
+[custom-card-element-registry.ts:5](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/custom-card-element-registry.ts#L5)

@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[card-elements.ts:7079](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L7079)
+[card-elements.ts:7079](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L7079)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[card-elements.ts:7080](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/card-elements.ts#L7080)
+[card-elements.ts:7080](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L7080)

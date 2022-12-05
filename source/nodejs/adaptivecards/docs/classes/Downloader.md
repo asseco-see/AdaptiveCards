@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[downloader.ts:22](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/downloader.ts#L22)
+[downloader.ts:22](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/downloader.ts#L22)
 
 ## Properties
 
@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[downloader.ts:19](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/downloader.ts#L19)
+[downloader.ts:19](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/downloader.ts#L19)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[downloader.ts:20](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/downloader.ts#L20)
+[downloader.ts:20](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/downloader.ts#L20)
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 #### Defined in
 
-[downloader.ts:22](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/downloader.ts#L22)
+[downloader.ts:22](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/downloader.ts#L22)
 
 ## Accessors
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[downloader.ts:52](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/downloader.ts#L52)
+[downloader.ts:52](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/downloader.ts#L52)
 
 ## Methods
 
@@ -122,4 +122,4 @@ ___
 
 #### Defined in
 
-[downloader.ts:24](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/downloader.ts#L24)
+[downloader.ts:24](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/downloader.ts#L24)

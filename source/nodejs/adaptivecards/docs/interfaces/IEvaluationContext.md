@@ -21,4 +21,4 @@ map to this field. Initially, $data also maps to $root.
 
 #### Defined in
 
-[template-engine.ts:251](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/template-engine.ts#L251)
+[template-engine.ts:251](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/template-engine.ts#L251)

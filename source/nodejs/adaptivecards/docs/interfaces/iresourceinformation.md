@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[shared.ts:216](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L216)
+[shared.ts:216](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L216)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[shared.ts:215](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L215)
+[shared.ts:215](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L215)

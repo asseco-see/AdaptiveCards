@@ -26,7 +26,7 @@
 
 ### add
 
-▸ **add**(...`properties`): `void`
+▸ **add**(`...properties`): `void`
 
 #### Parameters
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[serialization.ts:760](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L760)
+[serialization.ts:760](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L760)
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 #### Defined in
 
-[serialization.ts:787](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L787)
+[serialization.ts:787](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L787)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[serialization.ts:783](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L783)
+[serialization.ts:783](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L783)
 
 ___
 
@@ -94,13 +94,13 @@ ___
 
 #### Defined in
 
-[serialization.ts:750](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L750)
+[serialization.ts:750](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L750)
 
 ___
 
 ### remove
 
-▸ **remove**(...`properties`): `void`
+▸ **remove**(`...properties`): `void`
 
 #### Parameters
 
@@ -114,4 +114,4 @@ ___
 
 #### Defined in
 
-[serialization.ts:768](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/serialization.ts#L768)
+[serialization.ts:768](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L768)

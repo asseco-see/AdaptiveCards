@@ -37,7 +37,7 @@
 
 #### Defined in
 
-[host-config.ts:365](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L365)
+[host-config.ts:365](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L365)
 
 ## Properties
 
@@ -47,7 +47,7 @@
 
 #### Defined in
 
-[host-config.ts:337](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L337)
+[host-config.ts:337](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L337)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[host-config.ts:339](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L339)
+[host-config.ts:339](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L339)
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 #### Defined in
 
-[host-config.ts:351](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L351)
+[host-config.ts:351](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L351)
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-[host-config.ts:352](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L352)
+[host-config.ts:352](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L352)
 
 ## Accessors
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[host-config.ts:369](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L369)
+[host-config.ts:369](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L369)
 
 ## Methods
 
@@ -111,4 +111,4 @@ ___
 
 #### Defined in
 
-[host-config.ts:354](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/host-config.ts#L354)
+[host-config.ts:354](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L354)

@@ -32,7 +32,7 @@ in a loop.
 
 #### Defined in
 
-[template-engine.ts:428](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/template-engine.ts#L428)
+[template-engine.ts:428](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/template-engine.ts#L428)
 
 ## Methods
 
@@ -117,4 +117,4 @@ A value representing the expanded template. The type of that value
 
 #### Defined in
 
-[template-engine.ts:499](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/template-engine.ts#L499)
+[template-engine.ts:499](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/template-engine.ts#L499)

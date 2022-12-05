@@ -45,7 +45,7 @@ http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascrip
 
 #### Defined in
 
-[shared.ts:228](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L228)
+[shared.ts:228](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L228)
 
 ___
 
@@ -59,4 +59,4 @@ ___
 
 #### Defined in
 
-[shared.ts:240](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L240)
+[shared.ts:240](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L240)

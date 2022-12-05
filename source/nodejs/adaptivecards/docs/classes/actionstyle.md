@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[enums.ts:8](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L8)
+[enums.ts:8](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L8)
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 #### Defined in
 
-[enums.ts:10](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L10)
+[enums.ts:10](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L10)
 
 ___
 
@@ -48,4 +48,4 @@ ___
 
 #### Defined in
 
-[enums.ts:9](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/enums.ts#L9)
+[enums.ts:9](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L9)

@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[shared.ts:164](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L164)
+[shared.ts:164](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L164)
 
 ## Properties
 
@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[shared.ts:161](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L161)
+[shared.ts:161](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L161)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[shared.ts:162](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L162)
+[shared.ts:162](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L162)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[shared.ts:160](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L160)
+[shared.ts:160](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L160)
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 #### Defined in
 
-[shared.ts:159](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/shared.ts#L159)
+[shared.ts:159](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L159)

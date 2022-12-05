@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[registry.ts:18](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L18)
+[registry.ts:18](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L18)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[registry.ts:43](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L43)
+[registry.ts:43](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L43)
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 #### Defined in
 
-[registry.ts:14](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L14)
+[registry.ts:14](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L14)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[registry.ts:53](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L53)
+[registry.ts:53](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L53)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[registry.ts:49](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L49)
+[registry.ts:49](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L49)
 
 ___
 
@@ -145,7 +145,7 @@ ___
 
 #### Defined in
 
-[registry.ts:22](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L22)
+[registry.ts:22](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L22)
 
 ___
 
@@ -165,4 +165,4 @@ ___
 
 #### Defined in
 
-[registry.ts:39](https://github.com/asseco-see/AdaptiveCards/blob/d5d2c7b75/source/nodejs/adaptivecards/src/registry.ts#L39)
+[registry.ts:39](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L39)
