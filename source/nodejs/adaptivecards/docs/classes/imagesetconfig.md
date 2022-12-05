@@ -1,60 +1,73 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ImageSetConfig](imagesetconfig.md)
+[Adaptive Cards Javascript SDK](../README.md) / ImageSetConfig
 
 # Class: ImageSetConfig
 
-## Hierarchy
-
-* **ImageSetConfig**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](imagesetconfig.md#constructor)
+- [constructor](ImageSetConfig.md#constructor)
 
 ### Properties
 
-* [imageSize](imagesetconfig.md#imagesize)
-* [maxImageHeight](imagesetconfig.md#maximageheight)
+- [imageSize](ImageSetConfig.md#imagesize)
+- [maxImageHeight](ImageSetConfig.md#maximageheight)
 
 ### Methods
 
-* [toJSON](imagesetconfig.md#tojson)
+- [toJSON](ImageSetConfig.md#tojson)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new ImageSetConfig**(`obj?`: any): *[ImageSetConfig](imagesetconfig.md)*
+• **new ImageSetConfig**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[ImageSetConfig](imagesetconfig.md)*
+#### Defined in
+
+[host-config.ts:70](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L70)
 
 ## Properties
 
-###  imageSize
+### imageSize
 
-• **imageSize**: *[Size](../enums/size.md)* = Enums.Size.Medium
+• **imageSize**: [`Size`](../enums/Size.md) = `Enums.Size.Medium`
+
+#### Defined in
+
+[host-config.ts:67](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L67)
 
 ___
 
-###  maxImageHeight
+### maxImageHeight
 
-• **maxImageHeight**: *number* = 100
+• **maxImageHeight**: `number` = `100`
+
+#### Defined in
+
+[host-config.ts:68](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L68)
 
 ## Methods
 
-###  toJSON
+### toJSON
 
-▸ **toJSON**(): *object*
+▸ **toJSON**(): `Object`
 
-**Returns:** *object*
+#### Returns
 
-* **imageSize**: *string* = Enums.Size[this.imageSize]
+`Object`
 
-* **maxImageHeight**: *number* = this.maxImageHeight
+| Name | Type |
+| :------ | :------ |
+| `imageSize` | `string` |
+| `maxImageHeight` | `number` |
+
+#### Defined in
+
+[host-config.ts:77](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L77)

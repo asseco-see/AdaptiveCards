@@ -1,22 +1,30 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ImageStyle](imagestyle.md)
+[Adaptive Cards Javascript SDK](../README.md) / ImageStyle
 
 # Enumeration: ImageStyle
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Default](imagestyle.md#default)
-* [Person](imagestyle.md#person)
+- [Default](ImageStyle.md#default)
+- [Person](ImageStyle.md#person)
 
-## Enumeration members
+## Enumeration Members
 
-###  Default
+### Default
 
-• **Default**:
+• **Default** = ``0``
+
+#### Defined in
+
+[enums.ts:116](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L116)
 
 ___
 
-###  Person
+### Person
 
-• **Person**:
+• **Person** = ``1``
+
+#### Defined in
+
+[enums.ts:117](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L117)

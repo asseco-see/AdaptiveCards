@@ -1,225 +1,309 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ActionCollection](actioncollection.md)
+[Adaptive Cards Javascript SDK](../README.md) / ActionCollection
 
 # Class: ActionCollection
 
-## Hierarchy
-
-* **ActionCollection**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](actioncollection.md#constructor)
+- [constructor](ActionCollection.md#constructor)
 
 ### Properties
 
-* [buttons](actioncollection.md#buttons)
-* [items](actioncollection.md#items)
+- [buttons](ActionCollection.md#buttons)
+- [items](ActionCollection.md#items)
 
 ### Accessors
 
-* [expandedAction](actioncollection.md#expandedaction)
-* [renderedActionCount](actioncollection.md#renderedactioncount)
+- [expandedAction](ActionCollection.md#expandedaction)
+- [renderedActionCount](ActionCollection.md#renderedactioncount)
 
 ### Methods
 
-* [actionExecuted](actioncollection.md#actionexecuted)
-* [addAction](actioncollection.md#addaction)
-* [clear](actioncollection.md#clear)
-* [getActionById](actioncollection.md#getactionbyid)
-* [getAllInputs](actioncollection.md#getallinputs)
-* [getResourceInformation](actioncollection.md#getresourceinformation)
-* [parse](actioncollection.md#parse)
-* [removeAction](actioncollection.md#removeaction)
-* [render](actioncollection.md#render)
-* [toJSON](actioncollection.md#tojson)
-* [validateProperties](actioncollection.md#validateproperties)
+- [actionExecuted](ActionCollection.md#actionexecuted)
+- [addAction](ActionCollection.md#addaction)
+- [clear](ActionCollection.md#clear)
+- [getActionById](ActionCollection.md#getactionbyid)
+- [getAllInputs](ActionCollection.md#getallinputs)
+- [getResourceInformation](ActionCollection.md#getresourceinformation)
+- [parse](ActionCollection.md#parse)
+- [removeAction](ActionCollection.md#removeaction)
+- [render](ActionCollection.md#render)
+- [toJSON](ActionCollection.md#tojson)
+- [validateProperties](ActionCollection.md#validateproperties)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new ActionCollection**(`owner`: [CardElement](cardelement.md)): *[ActionCollection](actioncollection.md)*
+• **new ActionCollection**(`owner`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`owner` | [CardElement](cardelement.md) |
+| Name | Type |
+| :------ | :------ |
+| `owner` | [`CardElement`](CardElement.md) |
 
-**Returns:** *[ActionCollection](actioncollection.md)*
+#### Defined in
+
+[card-elements.ts:4950](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4950)
 
 ## Properties
 
-###  buttons
+### buttons
 
-• **buttons**: *[ActionButton](actionbutton.md)[]* = []
+• **buttons**: `ActionButton`[] = `[]`
+
+#### Defined in
+
+[card-elements.ts:4948](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4948)
 
 ___
 
-###  items
+### items
 
-• **items**: *[Action](action.md)[]* = []
+• **items**: [`Action`](Action.md)[] = `[]`
+
+#### Defined in
+
+[card-elements.ts:4947](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4947)
 
 ## Accessors
 
-###  expandedAction
+### expandedAction
 
-• **get expandedAction**(): *[ShowCardAction](showcardaction.md) | undefined*
+• `get` **expandedAction**(): `undefined` \| [`ShowCardAction`](ShowCardAction.md)
 
-**Returns:** *[ShowCardAction](showcardaction.md) | undefined*
+#### Returns
+
+`undefined` \| [`ShowCardAction`](ShowCardAction.md)
+
+#### Defined in
+
+[card-elements.ts:5274](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5274)
 
 ___
 
-###  renderedActionCount
+### renderedActionCount
 
-• **get renderedActionCount**(): *number*
+• `get` **renderedActionCount**(): `number`
 
-**Returns:** *number*
+#### Returns
+
+`number`
+
+#### Defined in
+
+[card-elements.ts:5270](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5270)
 
 ## Methods
 
-###  actionExecuted
+### actionExecuted
 
-▸ **actionExecuted**(`action`: [Action](action.md)): *void*
+▸ **actionExecuted**(`action`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`action` | [Action](action.md) |
+| Name | Type |
+| :------ | :------ |
+| `action` | [`Action`](Action.md) |
 
-**Returns:** *void*
+#### Returns
 
-___
+`void`
 
-###  addAction
+#### Defined in
 
-▸ **addAction**(`action`: [Action](action.md)): *void*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`action` | [Action](action.md) |
-
-**Returns:** *void*
+[card-elements.ts:4954](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4954)
 
 ___
 
-###  clear
+### addAction
 
-▸ **clear**(): *void*
+▸ **addAction**(`action`): `void`
 
-**Returns:** *void*
+#### Parameters
 
-___
+| Name | Type |
+| :------ | :------ |
+| `action` | [`Action`](Action.md) |
 
-###  getActionById
+#### Returns
 
-▸ **getActionById**(`id`: string): *[Action](action.md) | undefined*
+`void`
 
-**Parameters:**
+#### Defined in
 
-Name | Type |
------- | ------ |
-`id` | string |
-
-**Returns:** *[Action](action.md) | undefined*
+[card-elements.ts:5193](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5193)
 
 ___
 
-###  getAllInputs
+### clear
 
-▸ **getAllInputs**(`processActions`: boolean): *[Input](input.md)[]*
+▸ **clear**(): `void`
 
-**Parameters:**
+#### Returns
 
-Name | Type | Default |
------- | ------ | ------ |
-`processActions` | boolean | true |
+`void`
 
-**Returns:** *[Input](input.md)[]*
+#### Defined in
 
-___
-
-###  getResourceInformation
-
-▸ **getResourceInformation**(): *[IResourceInformation](../interfaces/iresourceinformation.md)[]*
-
-**Returns:** *[IResourceInformation](../interfaces/iresourceinformation.md)[]*
+[card-elements.ts:5240](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5240)
 
 ___
 
-###  parse
+### getActionById
 
-▸ **parse**(`source`: any, `context`: [SerializationContext](serializationcontext.md)): *void*
+▸ **getActionById**(`id`): `undefined` \| [`Action`](Action.md)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`source` | any |
-`context` | [SerializationContext](serializationcontext.md) |
+| Name | Type |
+| :------ | :------ |
+| `id` | `string` |
 
-**Returns:** *void*
+#### Returns
 
-___
+`undefined` \| [`Action`](Action.md)
 
-###  removeAction
+#### Defined in
 
-▸ **removeAction**(`action`: [Action](action.md)): *boolean*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`action` | [Action](action.md) |
-
-**Returns:** *boolean*
+[card-elements.ts:4990](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4990)
 
 ___
 
-###  render
+### getAllInputs
 
-▸ **render**(`orientation`: [Orientation](../enums/orientation.md), `isDesignMode`: boolean): *HTMLElement | undefined*
+▸ **getAllInputs**(`processActions?`): [`Input`](Input.md)[]
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`orientation` | [Orientation](../enums/orientation.md) |
-`isDesignMode` | boolean |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `processActions` | `boolean` | `true` |
 
-**Returns:** *HTMLElement | undefined*
+#### Returns
 
-___
+[`Input`](Input.md)[]
 
-###  toJSON
+#### Defined in
 
-▸ **toJSON**(`target`: [PropertyBag](../README.md#propertybag), `propertyName`: string, `context`: [SerializationContext](serializationcontext.md)): *any*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`target` | [PropertyBag](../README.md#propertybag) |
-`propertyName` | string |
-`context` | [SerializationContext](serializationcontext.md) |
-
-**Returns:** *any*
+[card-elements.ts:5248](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5248)
 
 ___
 
-###  validateProperties
+### getResourceInformation
 
-▸ **validateProperties**(`context`: [ValidationResults](validationresults.md)): *void*
+▸ **getResourceInformation**(): [`IResourceInformation`](../interfaces/IResourceInformation.md)[]
 
-**Parameters:**
+#### Returns
 
-Name | Type |
------- | ------ |
-`context` | [ValidationResults](validationresults.md) |
+[`IResourceInformation`](../interfaces/IResourceInformation.md)[]
 
-**Returns:** *void*
+#### Defined in
+
+[card-elements.ts:5260](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5260)
+
+___
+
+### parse
+
+▸ **parse**(`source`, `context`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `source` | `any` |
+| `context` | [`SerializationContext`](SerializationContext.md) |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[card-elements.ts:4968](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4968)
+
+___
+
+### removeAction
+
+▸ **removeAction**(`action`): `boolean`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `action` | [`Action`](Action.md) |
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[card-elements.ts:5212](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5212)
+
+___
+
+### render
+
+▸ **render**(`orientation`, `isDesignMode`): `undefined` \| `HTMLElement`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `orientation` | [`Orientation`](../enums/Orientation.md) |
+| `isDesignMode` | `boolean` |
+
+#### Returns
+
+`undefined` \| `HTMLElement`
+
+#### Defined in
+
+[card-elements.ts:5031](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5031)
+
+___
+
+### toJSON
+
+▸ **toJSON**(`target`, `propertyName`, `context`): `any`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `target` | [`PropertyBag`](../README.md#propertybag) |
+| `propertyName` | `string` |
+| `context` | [`SerializationContext`](SerializationContext.md) |
+
+#### Returns
+
+`any`
+
+#### Defined in
+
+[card-elements.ts:4986](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L4986)
+
+___
+
+### validateProperties
+
+▸ **validateProperties**(`context`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context` | [`ValidationResults`](ValidationResults.md) |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[card-elements.ts:5004](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L5004)

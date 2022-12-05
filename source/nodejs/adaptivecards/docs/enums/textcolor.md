@@ -1,57 +1,85 @@
-[Adaptive Cards Javascript SDK](../README.md) › [TextColor](textcolor.md)
+[Adaptive Cards Javascript SDK](../README.md) / TextColor
 
 # Enumeration: TextColor
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Accent](textcolor.md#accent)
-* [Attention](textcolor.md#attention)
-* [Dark](textcolor.md#dark)
-* [Default](textcolor.md#default)
-* [Good](textcolor.md#good)
-* [Light](textcolor.md#light)
-* [Warning](textcolor.md#warning)
+- [Accent](TextColor.md#accent)
+- [Attention](TextColor.md#attention)
+- [Dark](TextColor.md#dark)
+- [Default](TextColor.md#default)
+- [Good](TextColor.md#good)
+- [Light](TextColor.md#light)
+- [Warning](TextColor.md#warning)
 
-## Enumeration members
+## Enumeration Members
 
-###  Accent
+### Accent
 
-• **Accent**:
+• **Accent** = ``3``
 
-___
+#### Defined in
 
-###  Attention
-
-• **Attention**:
+[enums.ts:90](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L90)
 
 ___
 
-###  Dark
+### Attention
 
-• **Dark**:
+• **Attention** = ``6``
 
-___
+#### Defined in
 
-###  Default
-
-• **Default**:
+[enums.ts:93](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L93)
 
 ___
 
-###  Good
+### Dark
 
-• **Good**:
+• **Dark** = ``1``
 
-___
+#### Defined in
 
-###  Light
-
-• **Light**:
+[enums.ts:88](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L88)
 
 ___
 
-###  Warning
+### Default
 
-• **Warning**:
+• **Default** = ``0``
+
+#### Defined in
+
+[enums.ts:87](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L87)
+
+___
+
+### Good
+
+• **Good** = ``4``
+
+#### Defined in
+
+[enums.ts:91](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L91)
+
+___
+
+### Light
+
+• **Light** = ``2``
+
+#### Defined in
+
+[enums.ts:89](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L89)
+
+___
+
+### Warning
+
+• **Warning** = ``5``
+
+#### Defined in
+
+[enums.ts:92](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L92)

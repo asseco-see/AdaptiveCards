@@ -1,107 +1,159 @@
-[Adaptive Cards Javascript SDK](../README.md) › [IAdaptiveCard](iadaptivecard.md)
+[Adaptive Cards Javascript SDK](../README.md) / IAdaptiveCard
 
 # Interface: IAdaptiveCard
 
 ## Hierarchy
 
-* [ICardElement](icardelement.md)
+- [`ICardElement`](ICardElement.md)
 
-  ↳ **IAdaptiveCard**
+  ↳ **`IAdaptiveCard`**
 
-## Indexable
-
-* \[ **propName**: *string*\]: any
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [actions](iadaptivecard.md#optional-actions)
-* [backgroundImage](iadaptivecard.md#optional-backgroundimage)
-* [body](iadaptivecard.md#optional-body)
-* [height](iadaptivecard.md#optional-height)
-* [horizontalAlignment](iadaptivecard.md#optional-horizontalalignment)
-* [id](iadaptivecard.md#optional-id)
-* [separator](iadaptivecard.md#optional-separator)
-* [spacing](iadaptivecard.md#optional-spacing)
-* [speak](iadaptivecard.md#optional-speak)
-* [type](iadaptivecard.md#type)
-* [version](iadaptivecard.md#optional-version)
+- [actions](IAdaptiveCard.md#actions)
+- [backgroundImage](IAdaptiveCard.md#backgroundimage)
+- [body](IAdaptiveCard.md#body)
+- [height](IAdaptiveCard.md#height)
+- [horizontalAlignment](IAdaptiveCard.md#horizontalalignment)
+- [id](IAdaptiveCard.md#id)
+- [separator](IAdaptiveCard.md#separator)
+- [spacing](IAdaptiveCard.md#spacing)
+- [speak](IAdaptiveCard.md#speak)
+- [type](IAdaptiveCard.md#type)
+- [version](IAdaptiveCard.md#version)
 
 ## Properties
 
-### `Optional` actions
+### actions
 
-• **actions**? : *[ISubmitAction](isubmitaction.md) | [IOpenUrlAction](iopenurlaction.md) | [IShowCardAction](ishowcardaction.md)[]*
+• `Optional` **actions**: (`ISubmitAction` \| `IOpenUrlAction` \| `IShowCardAction`)[]
 
-___
+#### Defined in
 
-### `Optional` backgroundImage
-
-• **backgroundImage**? : *[IBackgroundImage](ibackgroundimage.md) | string*
+[schema.ts:170](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L170)
 
 ___
 
-### `Optional` body
+### backgroundImage
 
-• **body**? : *[ITextBlock](itextblock.md) | [IImage](iimage.md) | [IImageSet](iimageset.md) | [IFactSet](ifactset.md) | [IColumnSet](icolumnset.md) | [IContainer](icontainer.md)[]*
+• `Optional` **backgroundImage**: `string` \| `IBackgroundImage`
 
-___
+#### Defined in
 
-### `Optional` height
-
-• **height**? : *"auto" | "stretch"*
-
-*Inherited from [ICardElement](icardelement.md).[height](icardelement.md#optional-height)*
+[schema.ts:168](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L168)
 
 ___
 
-### `Optional` horizontalAlignment
+### body
 
-• **horizontalAlignment**? : *[HorizontalAlignment](../enums/horizontalalignment.md)*
+• `Optional` **body**: (`ITextBlock` \| `IContainer` \| `IColumnSet` \| `IFactSet` \| `IImage` \| `IImageSet`)[]
 
-*Inherited from [ICardElement](icardelement.md).[horizontalAlignment](icardelement.md#optional-horizontalalignment)*
+#### Defined in
 
-___
-
-### `Optional` id
-
-• **id**? : *undefined | string*
-
-*Inherited from [ICardElement](icardelement.md).[id](icardelement.md#optional-id)*
+[schema.ts:169](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L169)
 
 ___
 
-### `Optional` separator
+### height
 
-• **separator**? : *undefined | false | true*
+• `Optional` **height**: ``"auto"`` \| ``"stretch"``
 
-*Inherited from [ICardElement](icardelement.md).[separator](icardelement.md#optional-separator)*
+#### Inherited from
 
-___
+[ICardElement](ICardElement.md).[height](ICardElement.md#height)
 
-### `Optional` spacing
+#### Defined in
 
-• **spacing**? : *[Spacing](../enums/spacing.md)*
-
-*Inherited from [ICardElement](icardelement.md).[spacing](icardelement.md#optional-spacing)*
+[schema.ts:39](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L39)
 
 ___
 
-### `Optional` speak
+### horizontalAlignment
 
-• **speak**? : *undefined | string*
+• `Optional` **horizontalAlignment**: `HorizontalAlignment`
 
-*Overrides [ICardElement](icardelement.md).[speak](icardelement.md#optional-speak)*
+#### Inherited from
+
+[ICardElement](ICardElement.md).[horizontalAlignment](ICardElement.md#horizontalalignment)
+
+#### Defined in
+
+[schema.ts:36](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L36)
 
 ___
 
-###  type
+### id
 
-• **type**: *"AdaptiveCard"*
+• `Optional` **id**: `string`
+
+#### Inherited from
+
+[ICardElement](ICardElement.md).[id](ICardElement.md#id)
+
+#### Defined in
+
+[schema.ts:34](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L34)
 
 ___
 
-### `Optional` version
+### separator
 
-• **version**? : *[IVersion](iversion.md) | string*
+• `Optional` **separator**: `boolean`
+
+#### Inherited from
+
+[ICardElement](ICardElement.md).[separator](ICardElement.md#separator)
+
+#### Defined in
+
+[schema.ts:38](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L38)
+
+___
+
+### spacing
+
+• `Optional` **spacing**: `Spacing`
+
+#### Inherited from
+
+[ICardElement](ICardElement.md).[spacing](ICardElement.md#spacing)
+
+#### Defined in
+
+[schema.ts:37](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L37)
+
+___
+
+### speak
+
+• `Optional` **speak**: `string`
+
+#### Overrides
+
+[ICardElement](ICardElement.md).[speak](ICardElement.md#speak)
+
+#### Defined in
+
+[schema.ts:171](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L171)
+
+___
+
+### type
+
+• **type**: ``"AdaptiveCard"``
+
+#### Defined in
+
+[schema.ts:166](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L166)
+
+___
+
+### version
+
+• `Optional` **version**: `string` \| `IVersion`
+
+#### Defined in
+
+[schema.ts:167](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L167)

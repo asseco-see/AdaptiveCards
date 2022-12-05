@@ -1,116 +1,168 @@
-[Adaptive Cards Javascript SDK](../README.md) › [CardObjectRegistry](cardobjectregistry.md)
+[Adaptive Cards Javascript SDK](../README.md) / CardObjectRegistry
 
-# Class: CardObjectRegistry ‹**T**›
+# Class: CardObjectRegistry<T\>
 
 ## Type parameters
 
-▪ **T**: *[SerializableObject](serializableobject.md)*
+| Name | Type |
+| :------ | :------ |
+| `T` | extends [`SerializableObject`](SerializableObject.md) |
 
-## Hierarchy
+## Table of contents
 
-* **CardObjectRegistry**
+### Constructors
 
-## Index
+- [constructor](CardObjectRegistry.md#constructor)
 
 ### Methods
 
-* [clear](cardobjectregistry.md#clear)
-* [createInstance](cardobjectregistry.md#createinstance)
-* [findByName](cardobjectregistry.md#findbyname)
-* [getItemAt](cardobjectregistry.md#getitemat)
-* [getItemCount](cardobjectregistry.md#getitemcount)
-* [register](cardobjectregistry.md#register)
-* [unregister](cardobjectregistry.md#unregister)
+- [clear](CardObjectRegistry.md#clear)
+- [createInstance](CardObjectRegistry.md#createinstance)
+- [findByName](CardObjectRegistry.md#findbyname)
+- [getItemAt](CardObjectRegistry.md#getitemat)
+- [getItemCount](CardObjectRegistry.md#getitemcount)
+- [register](CardObjectRegistry.md#register)
+- [unregister](CardObjectRegistry.md#unregister)
+
+## Constructors
+
+### constructor
+
+• **new CardObjectRegistry**<`T`\>()
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends [`SerializableObject`](SerializableObject.md)<`T`\> |
 
 ## Methods
 
-###  clear
+### clear
 
-▸ **clear**(): *void*
+▸ **clear**(): `void`
 
-**Returns:** *void*
+#### Returns
 
-___
+`void`
 
-###  createInstance
+#### Defined in
 
-▸ **createInstance**(`typeName`: string, `targetVersion`: [Version](version.md)): *T | undefined*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`typeName` | string |
-`targetVersion` | [Version](version.md) |
-
-**Returns:** *T | undefined*
+[registry.ts:18](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L18)
 
 ___
 
-###  findByName
+### createInstance
 
-▸ **findByName**(`typeName`: string): *[ITypeRegistration](../interfaces/ityperegistration.md)‹T› | undefined*
+▸ **createInstance**(`typeName`, `targetVersion`): `undefined` \| `T`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`typeName` | string |
+| Name | Type |
+| :------ | :------ |
+| `typeName` | `string` |
+| `targetVersion` | [`Version`](Version.md) |
 
-**Returns:** *[ITypeRegistration](../interfaces/ityperegistration.md)‹T› | undefined*
+#### Returns
 
-___
+`undefined` \| `T`
 
-###  getItemAt
+#### Defined in
 
-▸ **getItemAt**(`index`: number): *[ITypeRegistration](../interfaces/ityperegistration.md)‹T›*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`index` | number |
-
-**Returns:** *[ITypeRegistration](../interfaces/ityperegistration.md)‹T›*
+[registry.ts:43](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L43)
 
 ___
 
-###  getItemCount
+### findByName
 
-▸ **getItemCount**(): *number*
+▸ **findByName**(`typeName`): `undefined` \| [`ITypeRegistration`](../interfaces/ITypeRegistration.md)<`T`\>
 
-**Returns:** *number*
+#### Parameters
 
-___
+| Name | Type |
+| :------ | :------ |
+| `typeName` | `string` |
 
-###  register
+#### Returns
 
-▸ **register**(`typeName`: string, `objectType`: object, `schemaVersion`: [Version](version.md)): *void*
+`undefined` \| [`ITypeRegistration`](../interfaces/ITypeRegistration.md)<`T`\>
 
-**Parameters:**
+#### Defined in
 
-▪ **typeName**: *string*
-
-▪ **objectType**: *object*
-
-Name | Type |
------- | ------ |
-`constructor` |  |
-
-▪`Default value`  **schemaVersion**: *[Version](version.md)*= Versions.v1_0
-
-**Returns:** *void*
+[registry.ts:14](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L14)
 
 ___
 
-###  unregister
+### getItemAt
 
-▸ **unregister**(`typeName`: string): *void*
+▸ **getItemAt**(`index`): [`ITypeRegistration`](../interfaces/ITypeRegistration.md)<`T`\>
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`typeName` | string |
+| Name | Type |
+| :------ | :------ |
+| `index` | `number` |
 
-**Returns:** *void*
+#### Returns
+
+[`ITypeRegistration`](../interfaces/ITypeRegistration.md)<`T`\>
+
+#### Defined in
+
+[registry.ts:53](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L53)
+
+___
+
+### getItemCount
+
+▸ **getItemCount**(): `number`
+
+#### Returns
+
+`number`
+
+#### Defined in
+
+[registry.ts:49](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L49)
+
+___
+
+### register
+
+▸ **register**(`typeName`, `objectType`, `schemaVersion?`): `void`
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `typeName` | `string` | `undefined` |
+| `objectType` | () => `T` | `undefined` |
+| `schemaVersion` | [`Version`](Version.md) | `Versions.v1_0` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[registry.ts:22](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L22)
+
+___
+
+### unregister
+
+▸ **unregister**(`typeName`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `typeName` | `string` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[registry.ts:39](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/registry.ts#L39)

@@ -1,102 +1,52 @@
-[Adaptive Cards Javascript SDK](../README.md) › [IInput](iinput.md)
+[Adaptive Cards Javascript SDK](../README.md) / IInput
 
 # Interface: IInput
 
-## Hierarchy
-
-* [ICardElement](icardelement.md)
-
-  ↳ **IInput**
-
 ## Implemented by
 
-* [ChipInput](../classes/chipinput.md)
-* [ChoiceSetInput](../classes/choicesetinput.md)
-* [DateInput](../classes/dateinput.md)
-* [Input](../classes/input.md)
-* [NumberInput](../classes/numberinput.md)
-* [TextInput](../classes/textinput.md)
-* [TimeInput](../classes/timeinput.md)
-* [ToggleInput](../classes/toggleinput.md)
+- [`Input`](../classes/Input.md)
 
-## Indexable
-
-* \[ **propName**: *string*\]: any
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [height](iinput.md#optional-height)
-* [horizontalAlignment](iinput.md#optional-horizontalalignment)
-* [id](iinput.md#optional-id)
-* [separator](iinput.md#optional-separator)
-* [spacing](iinput.md#optional-spacing)
-* [speak](iinput.md#optional-speak)
-* [value](iinput.md#optional-value)
+- [id](IInput.md#id)
+- [value](IInput.md#value)
 
 ### Methods
 
-* [validateValue](iinput.md#validatevalue)
+- [validateValue](IInput.md#validatevalue)
 
 ## Properties
 
-### `Optional` height
+### id
 
-• **height**? : *"auto" | "stretch"*
+• `Optional` **id**: `string`
 
-*Inherited from [ICardElement](icardelement.md).[height](icardelement.md#optional-height)*
+#### Defined in
 
-___
-
-### `Optional` horizontalAlignment
-
-• **horizontalAlignment**? : *[HorizontalAlignment](../enums/horizontalalignment.md)*
-
-*Inherited from [ICardElement](icardelement.md).[horizontalAlignment](icardelement.md#optional-horizontalalignment)*
+[shared.ts:57](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L57)
 
 ___
 
-### `Optional` id
+### value
 
-• **id**? : *string*
+• `Optional` **value**: `string`
 
-*Overrides [ICardElement](icardelement.md).[id](icardelement.md#optional-id)*
+#### Defined in
 
-___
-
-### `Optional` separator
-
-• **separator**? : *undefined | false | true*
-
-*Inherited from [ICardElement](icardelement.md).[separator](icardelement.md#optional-separator)*
-
-___
-
-### `Optional` spacing
-
-• **spacing**? : *[Spacing](../enums/spacing.md)*
-
-*Inherited from [ICardElement](icardelement.md).[spacing](icardelement.md#optional-spacing)*
-
-___
-
-### `Optional` speak
-
-• **speak**? : *undefined | string*
-
-*Inherited from [ICardElement](icardelement.md).[speak](icardelement.md#optional-speak)*
-
-___
-
-### `Optional` value
-
-• **value**? : *undefined | string*
+[shared.ts:58](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L58)
 
 ## Methods
 
-###  validateValue
+### validateValue
 
-▸ **validateValue**(): *boolean*
+▸ **validateValue**(): `boolean`
 
-**Returns:** *boolean*
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[shared.ts:59](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L59)

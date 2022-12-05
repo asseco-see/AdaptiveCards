@@ -1,111 +1,96 @@
-[Adaptive Cards Javascript SDK](../README.md) › [FontTypeDefinition](fonttypedefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / FontTypeDefinition
 
 # Class: FontTypeDefinition
 
-## Hierarchy
-
-* **FontTypeDefinition**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](fonttypedefinition.md#constructor)
+- [constructor](FontTypeDefinition.md#constructor)
 
 ### Properties
 
-* [fontFamily](fonttypedefinition.md#optional-fontfamily)
-* [monospace](fonttypedefinition.md#static-readonly-monospace)
+- [fontFamily](FontTypeDefinition.md#fontfamily)
+- [fontSizes](FontTypeDefinition.md#fontsizes)
+- [fontWeights](FontTypeDefinition.md#fontweights)
+- [monospace](FontTypeDefinition.md#monospace)
 
 ### Methods
 
-* [parse](fonttypedefinition.md#parse)
-
-### Object literals
-
-* [fontSizes](fonttypedefinition.md#fontsizes)
-* [fontWeights](fonttypedefinition.md#fontweights)
+- [parse](FontTypeDefinition.md#parse)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new FontTypeDefinition**(`fontFamily?`: undefined | string): *[FontTypeDefinition](fonttypedefinition.md)*
+• **new FontTypeDefinition**(`fontFamily?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`fontFamily?` | undefined &#124; string |
+| Name | Type |
+| :------ | :------ |
+| `fontFamily?` | `string` |
 
-**Returns:** *[FontTypeDefinition](fonttypedefinition.md)*
+#### Defined in
+
+[host-config.ts:504](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L504)
 
 ## Properties
 
-### `Optional` fontFamily
+### fontFamily
 
-• **fontFamily**? : *undefined | string* = "Segoe UI,Segoe,Segoe WP,Helvetica Neue,Helvetica,sans-serif"
+• `Optional` **fontFamily**: `string` = `"Segoe UI,Segoe,Segoe WP,Helvetica Neue,Helvetica,sans-serif"`
+
+#### Defined in
+
+[host-config.ts:488](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L488)
 
 ___
 
-### `Static` `Readonly` monospace
+### fontSizes
 
-▪ **monospace**: *[FontTypeDefinition](fonttypedefinition.md)‹›* = new FontTypeDefinition("'Courier New', Courier, monospace")
+• **fontSizes**: [`IFontSizeDefinitions`](../interfaces/IFontSizeDefinitions.md)
+
+#### Defined in
+
+[host-config.ts:490](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L490)
+
+___
+
+### fontWeights
+
+• **fontWeights**: [`IFontWeightDefinitions`](../interfaces/IFontWeightDefinitions.md)
+
+#### Defined in
+
+[host-config.ts:498](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L498)
+
+___
+
+### monospace
+
+▪ `Static` `Readonly` **monospace**: [`FontTypeDefinition`](FontTypeDefinition.md)
+
+#### Defined in
+
+[host-config.ts:486](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L486)
 
 ## Methods
 
-###  parse
+### parse
 
-▸ **parse**(`obj?`: any): *void*
+▸ **parse**(`obj?`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *void*
+#### Returns
 
-## Object literals
+`void`
 
-###  fontSizes
+#### Defined in
 
-### ▪ **fontSizes**: *object*
-
-###  default
-
-• **default**: *number* = 14
-
-###  extraLarge
-
-• **extraLarge**: *number* = 26
-
-###  large
-
-• **large**: *number* = 21
-
-###  medium
-
-• **medium**: *number* = 17
-
-###  small
-
-• **small**: *number* = 12
-
-___
-
-###  fontWeights
-
-### ▪ **fontWeights**: *object*
-
-###  bolder
-
-• **bolder**: *number* = 600
-
-###  default
-
-• **default**: *number* = 400
-
-###  lighter
-
-• **lighter**: *number* = 200
+[host-config.ts:510](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L510)

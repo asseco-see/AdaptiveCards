@@ -12,17 +12,17 @@ exports[`InputTextExtended renders int text multiline correctly 1`] = `
       style="width: 100%; min-width: 0px;"
     >
       <div
-        class="ms-TextField ms-TextField--multiline root-41"
+        class="ms-TextField ms-TextField--multiline root-110"
       >
         <div
           class="ms-TextField-wrapper"
         >
           <div
-            class="ms-TextField-fieldGroup fieldGroup-49"
+            class="ms-TextField-fieldGroup fieldGroup-121"
           >
             <textarea
               aria-invalid="false"
-              class="ms-TextField-field field-50"
+              class="ms-TextField-field field-122"
               id="input3"
               maxlength="500"
               placeholder="enter comment"
@@ -50,17 +50,17 @@ exports[`InputTextExtended renders int text single line correctly 1`] = `
       style="width: 100%; min-width: 0px;"
     >
       <div
-        class="ms-TextField root-41"
+        class="ms-TextField root-110"
       >
         <div
           class="ms-TextField-wrapper"
         >
           <div
-            class="ms-TextField-fieldGroup fieldGroup-42"
+            class="ms-TextField-fieldGroup fieldGroup-111"
           >
             <input
               aria-invalid="false"
-              class="ms-TextField-field field-43"
+              class="ms-TextField-field field-112"
               id="input3"
               maxlength="500"
               placeholder="enter comment"
@@ -87,17 +87,17 @@ exports[`InputTextExtended renders text box with inline action correctly 1`] = `
       style="width: 100%; min-width: 0px;"
     >
       <div
-        class="ms-TextField root-41"
+        class="ms-TextField root-110"
       >
         <div
           class="ms-TextField-wrapper"
         >
           <div
-            class="ms-TextField-fieldGroup fieldGroup-42"
+            class="ms-TextField-fieldGroup fieldGroup-111"
           >
             <input
               aria-invalid="false"
-              class="ms-TextField-field field-43"
+              class="ms-TextField-field field-112"
               id="input3"
               maxlength="500"
               placeholder="enter comment"

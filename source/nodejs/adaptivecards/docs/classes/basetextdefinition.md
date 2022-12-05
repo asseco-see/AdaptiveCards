@@ -1,83 +1,113 @@
-[Adaptive Cards Javascript SDK](../README.md) › [BaseTextDefinition](basetextdefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / BaseTextDefinition
 
 # Class: BaseTextDefinition
 
 ## Hierarchy
 
-* **BaseTextDefinition**
+- **`BaseTextDefinition`**
 
-  ↳ [RequiredInputLabelTextDefinition](requiredinputlabeltextdefinition.md)
+  ↳ [`RequiredInputLabelTextDefinition`](RequiredInputLabelTextDefinition.md)
 
-  ↳ [FactTextDefinition](facttextdefinition.md)
+  ↳ [`FactTextDefinition`](FactTextDefinition.md)
 
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](basetextdefinition.md#constructor)
+- [constructor](BaseTextDefinition.md#constructor)
 
 ### Properties
 
-* [color](basetextdefinition.md#color)
-* [isSubtle](basetextdefinition.md#issubtle)
-* [size](basetextdefinition.md#size)
-* [weight](basetextdefinition.md#weight)
+- [color](BaseTextDefinition.md#color)
+- [isSubtle](BaseTextDefinition.md#issubtle)
+- [size](BaseTextDefinition.md#size)
+- [weight](BaseTextDefinition.md#weight)
 
 ### Methods
 
-* [getDefaultWeight](basetextdefinition.md#getdefaultweight)
-* [toJSON](basetextdefinition.md#tojson)
+- [getDefaultWeight](BaseTextDefinition.md#getdefaultweight)
+- [toJSON](BaseTextDefinition.md#tojson)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new BaseTextDefinition**(`obj?`: any): *[BaseTextDefinition](basetextdefinition.md)*
+• **new BaseTextDefinition**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[BaseTextDefinition](basetextdefinition.md)*
+#### Defined in
+
+[host-config.ts:110](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L110)
 
 ## Properties
 
-###  color
+### color
 
-• **color**: *[TextColor](../enums/textcolor.md)* = Enums.TextColor.Default
+• **color**: [`TextColor`](../enums/TextColor.md) = `Enums.TextColor.Default`
 
-___
+#### Defined in
 
-###  isSubtle
-
-• **isSubtle**: *boolean* = false
+[host-config.ts:106](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L106)
 
 ___
 
-###  size
+### isSubtle
 
-• **size**: *[TextSize](../enums/textsize.md)* = Enums.TextSize.Default
+• **isSubtle**: `boolean` = `false`
+
+#### Defined in
+
+[host-config.ts:107](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L107)
 
 ___
 
-###  weight
+### size
 
-• **weight**: *[TextWeight](../enums/textweight.md)* = Enums.TextWeight.Default
+• **size**: [`TextSize`](../enums/TextSize.md) = `Enums.TextSize.Default`
+
+#### Defined in
+
+[host-config.ts:105](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L105)
+
+___
+
+### weight
+
+• **weight**: [`TextWeight`](../enums/TextWeight.md) = `Enums.TextWeight.Default`
+
+#### Defined in
+
+[host-config.ts:108](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L108)
 
 ## Methods
 
-###  getDefaultWeight
+### getDefaultWeight
 
-▸ **getDefaultWeight**(): *[TextWeight](../enums/textweight.md)*
+▸ **getDefaultWeight**(): [`TextWeight`](../enums/TextWeight.md)
 
-**Returns:** *[TextWeight](../enums/textweight.md)*
+#### Returns
+
+[`TextWeight`](../enums/TextWeight.md)
+
+#### Defined in
+
+[host-config.ts:119](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L119)
 
 ___
 
-###  toJSON
+### toJSON
 
-▸ **toJSON**(): *any*
+▸ **toJSON**(): `any`
 
-**Returns:** *any*
+#### Returns
+
+`any`
+
+#### Defined in
+
+[host-config.ts:123](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L123)

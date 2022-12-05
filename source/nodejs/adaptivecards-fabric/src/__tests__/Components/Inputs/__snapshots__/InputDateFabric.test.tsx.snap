@@ -12,25 +12,26 @@ exports[`InputDateExtended renders component correctly 1`] = `
       style="width: 100%; min-width: 0px;"
     >
       <div
-        class="ms-DatePicker root-40"
+        class="ms-DatePicker root-109"
         id="date"
       >
-        <div
-          aria-haspopup="true"
-        >
+        <div>
           <div
-            class="ms-TextField textField-45"
+            class="ms-TextField textField-116"
           >
             <div
               class="ms-TextField-wrapper"
             >
               <div
-                class="ms-TextField-fieldGroup fieldGroup-46"
+                class="ms-TextField-fieldGroup fieldGroup-117"
               >
                 <input
+                  aria-describedby="TextFieldDescription9"
                   aria-expanded="false"
+                  aria-haspopup="dialog"
                   aria-invalid="false"
-                  class="ms-TextField-field field-47"
+                  class="ms-TextField-field field-118"
+                  data-is-focusable="true"
                   id="date-label"
                   placeholder="Enter a date"
                   role="combobox"
@@ -39,13 +40,22 @@ exports[`InputDateExtended renders component correctly 1`] = `
                 />
                 <i
                   aria-hidden="true"
-                  class="ms-DatePicker-event--without-label msDatePickerDisabled icon-54"
+                  class="ms-DatePicker-event--without-label msDatePickerDisabled icon-129"
                   data-icon-name="Calendar"
                 >
                   
                 </i>
               </div>
             </div>
+            <span
+              id="TextFieldDescription9"
+            >
+              <div
+                aria-live="assertive"
+                class="statusMessage-112"
+              />
+              
+            </span>
           </div>
         </div>
       </div>

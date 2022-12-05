@@ -1,26 +1,30 @@
-[Adaptive Cards Javascript SDK](../README.md) › [IMarkdownProcessingResult](imarkdownprocessingresult.md)
+[Adaptive Cards Javascript SDK](../README.md) / IMarkdownProcessingResult
 
 # Interface: IMarkdownProcessingResult
 
-## Hierarchy
-
-* **IMarkdownProcessingResult**
-
-## Index
+## Table of contents
 
 ### Properties
 
-* [didProcess](imarkdownprocessingresult.md#didprocess)
-* [outputHtml](imarkdownprocessingresult.md#optional-outputhtml)
+- [didProcess](IMarkdownProcessingResult.md#didprocess)
+- [outputHtml](IMarkdownProcessingResult.md#outputhtml)
 
 ## Properties
 
-###  didProcess
+### didProcess
 
-• **didProcess**: *boolean*
+• **didProcess**: `boolean`
+
+#### Defined in
+
+[card-elements.ts:7079](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L7079)
 
 ___
 
-### `Optional` outputHtml
+### outputHtml
 
-• **outputHtml**? : *any*
+• `Optional` **outputHtml**: `any`
+
+#### Defined in
+
+[card-elements.ts:7080](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L7080)

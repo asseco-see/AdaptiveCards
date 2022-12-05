@@ -1,65 +1,81 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ColorDefinition](colordefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / ColorDefinition
 
 # Class: ColorDefinition
 
 ## Hierarchy
 
-* **ColorDefinition**
+- **`ColorDefinition`**
 
-  ↳ [TextColorDefinition](textcolordefinition.md)
+  ↳ [`TextColorDefinition`](TextColorDefinition.md)
 
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](colordefinition.md#constructor)
+- [constructor](ColorDefinition.md#constructor)
 
 ### Properties
 
-* [default](colordefinition.md#default)
-* [subtle](colordefinition.md#subtle)
+- [default](ColorDefinition.md#default)
+- [subtle](ColorDefinition.md#subtle)
 
 ### Methods
 
-* [parse](colordefinition.md#parse)
+- [parse](ColorDefinition.md#parse)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new ColorDefinition**(`defaultColor?`: undefined | string, `subtleColor?`: undefined | string): *[ColorDefinition](colordefinition.md)*
+• **new ColorDefinition**(`defaultColor?`, `subtleColor?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`defaultColor?` | undefined &#124; string |
-`subtleColor?` | undefined &#124; string |
+| Name | Type |
+| :------ | :------ |
+| `defaultColor?` | `string` |
+| `subtleColor?` | `string` |
 
-**Returns:** *[ColorDefinition](colordefinition.md)*
+#### Defined in
+
+[host-config.ts:26](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L26)
 
 ## Properties
 
-###  default
+### default
 
-• **default**: *string* = "#000000"
+• **default**: `string` = `"#000000"`
+
+#### Defined in
+
+[host-config.ts:23](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L23)
 
 ___
 
-###  subtle
+### subtle
 
-• **subtle**: *string* = "#666666"
+• **subtle**: `string` = `"#666666"`
+
+#### Defined in
+
+[host-config.ts:24](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L24)
 
 ## Methods
 
-###  parse
+### parse
 
-▸ **parse**(`obj?`: any): *void*
+▸ **parse**(`obj?`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *void*
+#### Returns
+
+`void`
+
+#### Defined in
+
+[host-config.ts:36](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L36)

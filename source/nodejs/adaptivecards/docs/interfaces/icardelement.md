@@ -1,76 +1,84 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ICardElement](icardelement.md)
+[Adaptive Cards Javascript SDK](../README.md) / ICardElement
 
 # Interface: ICardElement
 
 ## Hierarchy
 
-* **ICardElement**
+- **`ICardElement`**
 
-  ↳ [IInput](iinput.md)
-
-  ↳ [ITextBlock](itextblock.md)
-
-  ↳ [IContainer](icontainer.md)
-
-  ↳ [IColumn](icolumn.md)
-
-  ↳ [IColumnSet](icolumnset.md)
-
-  ↳ [IFactSet](ifactset.md)
-
-  ↳ [IImage](iimage.md)
-
-  ↳ [IImageSet](iimageset.md)
-
-  ↳ [IAdaptiveCard](iadaptivecard.md)
+  ↳ [`IAdaptiveCard`](IAdaptiveCard.md)
 
 ## Indexable
 
-* \[ **propName**: *string*\]: any
+▪ [propName: `string`]: `any`
 
-## Index
+## Table of contents
 
 ### Properties
 
-* [height](icardelement.md#optional-height)
-* [horizontalAlignment](icardelement.md#optional-horizontalalignment)
-* [id](icardelement.md#optional-id)
-* [separator](icardelement.md#optional-separator)
-* [spacing](icardelement.md#optional-spacing)
-* [speak](icardelement.md#optional-speak)
+- [height](ICardElement.md#height)
+- [horizontalAlignment](ICardElement.md#horizontalalignment)
+- [id](ICardElement.md#id)
+- [separator](ICardElement.md#separator)
+- [spacing](ICardElement.md#spacing)
+- [speak](ICardElement.md#speak)
 
 ## Properties
 
-### `Optional` height
+### height
 
-• **height**? : *"auto" | "stretch"*
+• `Optional` **height**: ``"auto"`` \| ``"stretch"``
 
-___
+#### Defined in
 
-### `Optional` horizontalAlignment
-
-• **horizontalAlignment**? : *[HorizontalAlignment](../enums/horizontalalignment.md)*
+[schema.ts:39](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L39)
 
 ___
 
-### `Optional` id
+### horizontalAlignment
 
-• **id**? : *undefined | string*
+• `Optional` **horizontalAlignment**: `HorizontalAlignment`
 
-___
+#### Defined in
 
-### `Optional` separator
-
-• **separator**? : *undefined | false | true*
+[schema.ts:36](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L36)
 
 ___
 
-### `Optional` spacing
+### id
 
-• **spacing**? : *[Spacing](../enums/spacing.md)*
+• `Optional` **id**: `string`
+
+#### Defined in
+
+[schema.ts:34](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L34)
 
 ___
 
-### `Optional` speak
+### separator
 
-• **speak**? : *undefined | string*
+• `Optional` **separator**: `boolean`
+
+#### Defined in
+
+[schema.ts:38](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L38)
+
+___
+
+### spacing
+
+• `Optional` **spacing**: `Spacing`
+
+#### Defined in
+
+[schema.ts:37](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L37)
+
+___
+
+### speak
+
+• `Optional` **speak**: `string`
+
+#### Defined in
+
+[schema.ts:35](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/schema.ts#L35)

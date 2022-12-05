@@ -28,10 +28,6 @@ export class OpenUrlActionFabric extends AC.OpenUrlAction {
 
     private internalRenderedElement: any;
 
-    get renderedElement(): HTMLElement {
-        return this.internalRenderedElement;
-    }
-
     public render(baseCssClass?: string) {
         let actionsConfig = this.parent.hostConfig.actions;
         const div = createActionDiv(this.title, this.iconUrl, baseCssClass, actionsConfig.iconPlacement, actionsConfig.iconSize);
@@ -42,10 +38,6 @@ export class OpenUrlActionFabric extends AC.OpenUrlAction {
 export class SubmitActionFabric extends AC.SubmitAction {
 
     private internalRenderedElement: HTMLElement;
-
-    get renderedElement(): HTMLElement {
-        return this.internalRenderedElement;
-    }
 
     public render(baseCssClass?: string): void {
         let actionsConfig = this.parent.hostConfig.actions;
@@ -58,10 +50,6 @@ export class ShowCardActionFabric extends AC.ShowCardAction {
 
     private internalRenderedElement: HTMLElement;
 
-    get renderedElement(): HTMLElement {
-        return this.internalRenderedElement;
-    }
-
     public render(baseCssClass?: string): void {
         let actionsConfig = this.parent.hostConfig.actions;
         const div = createActionDiv(this.title, this.iconUrl, baseCssClass, actionsConfig.iconPlacement, actionsConfig.iconSize);
@@ -72,10 +60,6 @@ export class ShowCardActionFabric extends AC.ShowCardAction {
 export class ToggleVisibilityActionFabric extends AC.ToggleVisibilityAction {
 
     private internalRenderedElement: HTMLElement;
-
-    get renderedElement(): HTMLElement {
-        return this.internalRenderedElement;
-    }
 
     public render(baseCssClass?: string): void {
         const div = Shared.getDiv();

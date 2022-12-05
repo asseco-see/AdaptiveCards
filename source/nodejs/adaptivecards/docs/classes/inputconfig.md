@@ -1,44 +1,50 @@
-[Adaptive Cards Javascript SDK](../README.md) › [InputConfig](inputconfig.md)
+[Adaptive Cards Javascript SDK](../README.md) / InputConfig
 
 # Class: InputConfig
 
-## Hierarchy
-
-* **InputConfig**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](inputconfig.md#constructor)
+- [constructor](InputConfig.md#constructor)
 
 ### Properties
 
-* [errorMessage](inputconfig.md#readonly-errormessage)
-* [label](inputconfig.md#readonly-label)
+- [errorMessage](InputConfig.md#errormessage)
+- [label](InputConfig.md#label)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new InputConfig**(`obj?`: any): *[InputConfig](inputconfig.md)*
+• **new InputConfig**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[InputConfig](inputconfig.md)*
+#### Defined in
+
+[host-config.ts:173](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L173)
 
 ## Properties
 
-### `Readonly` errorMessage
+### errorMessage
 
-• **errorMessage**: *[BaseTextDefinition](basetextdefinition.md)* = new BaseTextDefinition({ color: Enums.TextColor.Attention })
+• `Readonly` **errorMessage**: [`BaseTextDefinition`](BaseTextDefinition.md)
+
+#### Defined in
+
+[host-config.ts:171](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L171)
 
 ___
 
-### `Readonly` label
+### label
 
-• **label**: *[InputLabelConfig](inputlabelconfig.md)* = new InputLabelConfig()
+• `Readonly` **label**: [`InputLabelConfig`](InputLabelConfig.md)
+
+#### Defined in
+
+[host-config.ts:170](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L170)

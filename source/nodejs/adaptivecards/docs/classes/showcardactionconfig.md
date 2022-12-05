@@ -1,69 +1,85 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ShowCardActionConfig](showcardactionconfig.md)
+[Adaptive Cards Javascript SDK](../README.md) / ShowCardActionConfig
 
 # Class: ShowCardActionConfig
 
-## Hierarchy
-
-* **ShowCardActionConfig**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](showcardactionconfig.md#constructor)
+- [constructor](ShowCardActionConfig.md#constructor)
 
 ### Properties
 
-* [actionMode](showcardactionconfig.md#actionmode)
-* [inlineTopMargin](showcardactionconfig.md#inlinetopmargin)
-* [style](showcardactionconfig.md#optional-style)
+- [actionMode](ShowCardActionConfig.md#actionmode)
+- [inlineTopMargin](ShowCardActionConfig.md#inlinetopmargin)
+- [style](ShowCardActionConfig.md#style)
 
 ### Methods
 
-* [toJSON](showcardactionconfig.md#tojson)
+- [toJSON](ShowCardActionConfig.md#tojson)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new ShowCardActionConfig**(`obj?`: any): *[ShowCardActionConfig](showcardactionconfig.md)*
+• **new ShowCardActionConfig**(`obj?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-**Returns:** *[ShowCardActionConfig](showcardactionconfig.md)*
+#### Defined in
+
+[host-config.ts:237](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L237)
 
 ## Properties
 
-###  actionMode
+### actionMode
 
-• **actionMode**: *[ShowCardActionMode](../enums/showcardactionmode.md)* = Enums.ShowCardActionMode.Inline
+• **actionMode**: [`ShowCardActionMode`](../enums/ShowCardActionMode.md) = `Enums.ShowCardActionMode.Inline`
 
-___
+#### Defined in
 
-###  inlineTopMargin
-
-• **inlineTopMargin**: *number* = 16
+[host-config.ts:233](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L233)
 
 ___
 
-### `Optional` style
+### inlineTopMargin
 
-• **style**? : *undefined | string* = Enums.ContainerStyle.Emphasis
+• **inlineTopMargin**: `number` = `16`
+
+#### Defined in
+
+[host-config.ts:234](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L234)
+
+___
+
+### style
+
+• `Optional` **style**: `string` = `Enums.ContainerStyle.Emphasis`
+
+#### Defined in
+
+[host-config.ts:235](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L235)
 
 ## Methods
 
-###  toJSON
+### toJSON
 
-▸ **toJSON**(): *object*
+▸ **toJSON**(): `Object`
 
-**Returns:** *object*
+#### Returns
 
-* **actionMode**: *string* = Enums.ShowCardActionMode[this.actionMode]
+`Object`
 
-* **inlineTopMargin**: *number* = this.inlineTopMargin
+| Name | Type |
+| :------ | :------ |
+| `actionMode` | `string` |
+| `inlineTopMargin` | `number` |
+| `style` | `undefined` \| `string` |
 
-* **style**: *undefined | string* = this.style
+#### Defined in
+
+[host-config.ts:245](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L245)

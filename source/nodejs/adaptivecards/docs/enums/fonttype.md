@@ -1,22 +1,30 @@
-[Adaptive Cards Javascript SDK](../README.md) › [FontType](fonttype.md)
+[Adaptive Cards Javascript SDK](../README.md) / FontType
 
 # Enumeration: FontType
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Default](fonttype.md#default)
-* [Monospace](fonttype.md#monospace)
+- [Default](FontType.md#default)
+- [Monospace](FontType.md#monospace)
 
-## Enumeration members
+## Enumeration Members
 
-###  Default
+### Default
 
-• **Default**:
+• **Default** = ``0``
+
+#### Defined in
+
+[enums.ts:72](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L72)
 
 ___
 
-###  Monospace
+### Monospace
 
-• **Monospace**:
+• **Monospace** = ``1``
+
+#### Defined in
+
+[enums.ts:73](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L73)

@@ -1,158 +1,259 @@
-[Adaptive Cards Javascript SDK](../README.md) › [SerializableObjectCollectionProperty](serializableobjectcollectionproperty.md)
+[Adaptive Cards Javascript SDK](../README.md) / SerializableObjectCollectionProperty
 
 # Class: SerializableObjectCollectionProperty
 
 ## Hierarchy
 
-* [PropertyDefinition](propertydefinition.md)
+- [`PropertyDefinition`](PropertyDefinition.md)
 
-  ↳ **SerializableObjectCollectionProperty**
+  ↳ **`SerializableObjectCollectionProperty`**
 
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](serializableobjectcollectionproperty.md#constructor)
+- [constructor](SerializableObjectCollectionProperty.md#constructor)
 
 ### Properties
 
-* [defaultValue](serializableobjectcollectionproperty.md#optional-readonly-defaultvalue)
-* [isSerializationEnabled](serializableobjectcollectionproperty.md#isserializationenabled)
-* [name](serializableobjectcollectionproperty.md#readonly-name)
-* [objectType](serializableobjectcollectionproperty.md#readonly-objecttype)
-* [onGetInitialValue](serializableobjectcollectionproperty.md#optional-readonly-ongetinitialvalue)
-* [onItemAdded](serializableobjectcollectionproperty.md#optional-readonly-onitemadded)
-* [sequentialNumber](serializableobjectcollectionproperty.md#readonly-sequentialnumber)
-* [targetVersion](serializableobjectcollectionproperty.md#readonly-targetversion)
+- [defaultValue](SerializableObjectCollectionProperty.md#defaultvalue)
+- [isSerializationEnabled](SerializableObjectCollectionProperty.md#isserializationenabled)
+- [name](SerializableObjectCollectionProperty.md#name)
+- [objectType](SerializableObjectCollectionProperty.md#objecttype)
+- [onGetInitialValue](SerializableObjectCollectionProperty.md#ongetinitialvalue)
+- [onItemAdded](SerializableObjectCollectionProperty.md#onitemadded)
+- [sequentialNumber](SerializableObjectCollectionProperty.md#sequentialnumber)
+- [targetVersion](SerializableObjectCollectionProperty.md#targetversion)
 
 ### Methods
 
-* [getInternalName](serializableobjectcollectionproperty.md#getinternalname)
-* [parse](serializableobjectcollectionproperty.md#parse)
-* [toJSON](serializableobjectcollectionproperty.md#tojson)
+- [getInternalName](SerializableObjectCollectionProperty.md#getinternalname)
+- [parse](SerializableObjectCollectionProperty.md#parse)
+- [toJSON](SerializableObjectCollectionProperty.md#tojson)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new SerializableObjectCollectionProperty**(`targetVersion`: [Version](version.md), `name`: string, `objectType`: [SerializableObjectType](../README.md#serializableobjecttype), `onItemAdded?`: undefined | function): *[SerializableObjectCollectionProperty](serializableobjectcollectionproperty.md)*
+• **new SerializableObjectCollectionProperty**(`targetVersion`, `name`, `objectType`, `onItemAdded?`)
 
-*Overrides [PropertyDefinition](propertydefinition.md).[constructor](propertydefinition.md#constructor)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `targetVersion` | [`Version`](Version.md) |
+| `name` | `string` |
+| `objectType` | [`SerializableObjectType`](../README.md#serializableobjecttype) |
+| `onItemAdded?` | (`sender`: [`SerializableObject`](SerializableObject.md), `item`: [`SerializableObject`](SerializableObject.md)) => `void` |
 
-Name | Type |
------- | ------ |
-`targetVersion` | [Version](version.md) |
-`name` | string |
-`objectType` | [SerializableObjectType](../README.md#serializableobjecttype) |
-`onItemAdded?` | undefined &#124; function |
+#### Overrides
 
-**Returns:** *[SerializableObjectCollectionProperty](serializableobjectcollectionproperty.md)*
+[PropertyDefinition](PropertyDefinition.md).[constructor](PropertyDefinition.md#constructor)
+
+#### Defined in
+
+[serialization.ts:706](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L706)
 
 ## Properties
 
-### `Optional` `Readonly` defaultValue
+### defaultValue
 
-• **defaultValue**? : *any*
+• `Optional` `Readonly` **defaultValue**: `any`
 
-*Inherited from [PropertyDefinition](propertydefinition.md).[defaultValue](propertydefinition.md#optional-readonly-defaultvalue)*
+#### Inherited from
 
-___
+[PropertyDefinition](PropertyDefinition.md).[defaultValue](PropertyDefinition.md#defaultvalue)
 
-###  isSerializationEnabled
+#### Defined in
 
-• **isSerializationEnabled**: *boolean* = true
-
-*Inherited from [PropertyDefinition](propertydefinition.md).[isSerializationEnabled](propertydefinition.md#isserializationenabled)*
+[serialization.ts:295](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L295)
 
 ___
 
-### `Readonly` name
+### isSerializationEnabled
 
-• **name**: *string*
+• **isSerializationEnabled**: `boolean` = `true`
 
-*Overrides [PropertyDefinition](propertydefinition.md).[name](propertydefinition.md#readonly-name)*
+#### Inherited from
 
-___
+[PropertyDefinition](PropertyDefinition.md).[isSerializationEnabled](PropertyDefinition.md#isserializationenabled)
 
-### `Readonly` objectType
+#### Defined in
 
-• **objectType**: *[SerializableObjectType](../README.md#serializableobjecttype)*
-
-___
-
-### `Optional` `Readonly` onGetInitialValue
-
-• **onGetInitialValue**? : *undefined | function*
-
-*Inherited from [PropertyDefinition](propertydefinition.md).[onGetInitialValue](propertydefinition.md#optional-readonly-ongetinitialvalue)*
+[serialization.ts:290](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L290)
 
 ___
 
-### `Optional` `Readonly` onItemAdded
+### name
 
-• **onItemAdded**? : *undefined | function*
+• `Readonly` **name**: `string`
+
+#### Inherited from
+
+[PropertyDefinition](PropertyDefinition.md).[name](PropertyDefinition.md#name)
+
+#### Defined in
+
+[serialization.ts:708](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L708)
 
 ___
 
-### `Readonly` sequentialNumber
+### objectType
 
-• **sequentialNumber**: *number*
+• `Readonly` **objectType**: [`SerializableObjectType`](../README.md#serializableobjecttype)
 
-*Inherited from [PropertyDefinition](propertydefinition.md).[sequentialNumber](propertydefinition.md#readonly-sequentialnumber)*
+#### Defined in
+
+[serialization.ts:709](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L709)
 
 ___
 
-### `Readonly` targetVersion
+### onGetInitialValue
 
-• **targetVersion**: *[Version](version.md)*
+• `Optional` `Readonly` **onGetInitialValue**: (`sender`: [`SerializableObject`](SerializableObject.md)) => `any`
 
-*Overrides [PropertyDefinition](propertydefinition.md).[targetVersion](propertydefinition.md#readonly-targetversion)*
+#### Type declaration
+
+▸ (`sender`): `any`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `sender` | [`SerializableObject`](SerializableObject.md) |
+
+##### Returns
+
+`any`
+
+#### Inherited from
+
+[PropertyDefinition](PropertyDefinition.md).[onGetInitialValue](PropertyDefinition.md#ongetinitialvalue)
+
+#### Defined in
+
+[serialization.ts:296](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L296)
+
+___
+
+### onItemAdded
+
+• `Optional` `Readonly` **onItemAdded**: (`sender`: [`SerializableObject`](SerializableObject.md), `item`: [`SerializableObject`](SerializableObject.md)) => `void`
+
+#### Type declaration
+
+▸ (`sender`, `item`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `sender` | [`SerializableObject`](SerializableObject.md) |
+| `item` | [`SerializableObject`](SerializableObject.md) |
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+[serialization.ts:710](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L710)
+
+___
+
+### sequentialNumber
+
+• `Readonly` **sequentialNumber**: `number`
+
+#### Inherited from
+
+[PropertyDefinition](PropertyDefinition.md).[sequentialNumber](PropertyDefinition.md#sequentialnumber)
+
+#### Defined in
+
+[serialization.ts:288](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L288)
+
+___
+
+### targetVersion
+
+• `Readonly` **targetVersion**: [`Version`](Version.md)
+
+#### Inherited from
+
+[PropertyDefinition](PropertyDefinition.md).[targetVersion](PropertyDefinition.md#targetversion)
+
+#### Defined in
+
+[serialization.ts:707](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L707)
 
 ## Methods
 
-###  getInternalName
+### getInternalName
 
-▸ **getInternalName**(): *string*
+▸ **getInternalName**(): `string`
 
-*Inherited from [PropertyDefinition](propertydefinition.md).[getInternalName](propertydefinition.md#getinternalname)*
+#### Returns
 
-**Returns:** *string*
+`string`
 
-___
+#### Inherited from
 
-###  parse
+[PropertyDefinition](PropertyDefinition.md).[getInternalName](PropertyDefinition.md#getinternalname)
 
-▸ **parse**(`sender`: [SerializableObject](serializableobject.md), `source`: [PropertyBag](../README.md#propertybag), `context`: [BaseSerializationContext](baseserializationcontext.md)): *[SerializableObject](serializableobject.md)[] | undefined*
+#### Defined in
 
-*Overrides [PropertyDefinition](propertydefinition.md).[parse](propertydefinition.md#parse)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`sender` | [SerializableObject](serializableobject.md) |
-`source` | [PropertyBag](../README.md#propertybag) |
-`context` | [BaseSerializationContext](baseserializationcontext.md) |
-
-**Returns:** *[SerializableObject](serializableobject.md)[] | undefined*
+[serialization.ts:276](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L276)
 
 ___
 
-###  toJSON
+### parse
 
-▸ **toJSON**(`sender`: [SerializableObject](serializableobject.md), `target`: [PropertyBag](../README.md#propertybag), `value`: [SerializableObject](serializableobject.md)[] | undefined, `context`: [BaseSerializationContext](baseserializationcontext.md)): *void*
+▸ **parse**(`sender`, `source`, `context`): `undefined` \| [`SerializableObject`](SerializableObject.md)[]
 
-*Overrides [PropertyDefinition](propertydefinition.md).[toJSON](propertydefinition.md#tojson)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `sender` | [`SerializableObject`](SerializableObject.md) |
+| `source` | [`PropertyBag`](../README.md#propertybag) |
+| `context` | [`BaseSerializationContext`](BaseSerializationContext.md) |
 
-Name | Type |
------- | ------ |
-`sender` | [SerializableObject](serializableobject.md) |
-`target` | [PropertyBag](../README.md#propertybag) |
-`value` | [SerializableObject](serializableobject.md)[] &#124; undefined |
-`context` | [BaseSerializationContext](baseserializationcontext.md) |
+#### Returns
 
-**Returns:** *void*
+`undefined` \| [`SerializableObject`](SerializableObject.md)[]
+
+#### Overrides
+
+[PropertyDefinition](PropertyDefinition.md).[parse](PropertyDefinition.md#parse)
+
+#### Defined in
+
+[serialization.ts:681](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L681)
+
+___
+
+### toJSON
+
+▸ **toJSON**(`sender`, `target`, `value`, `context`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `sender` | [`SerializableObject`](SerializableObject.md) |
+| `target` | [`PropertyBag`](../README.md#propertybag) |
+| `value` | `undefined` \| [`SerializableObject`](SerializableObject.md)[] |
+| `context` | [`BaseSerializationContext`](BaseSerializationContext.md) |
+
+#### Returns
+
+`void`
+
+#### Overrides
+
+[PropertyDefinition](PropertyDefinition.md).[toJSON](PropertyDefinition.md#tojson)
+
+#### Defined in
+
+[serialization.ts:702](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L702)

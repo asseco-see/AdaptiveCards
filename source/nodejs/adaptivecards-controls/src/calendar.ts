@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as Utils from "./utils";
 import { Constants } from "./constants";
-import * as Enums from "./enums";
 import { InputControl } from "./inputcontrol";
 
 export class DayCell {

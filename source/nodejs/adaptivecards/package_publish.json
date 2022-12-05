@@ -1,0 +1,52 @@
+{
+	"name": "@asseco/adaptivecards",
+	"version": "2.1.0",
+	"description": "Adaptive Cards Javascript library for HTML Clients",
+	"author": "AdaptiveCards",
+	"license": "MIT",
+	"homepage": "https://adaptivecards.io",
+	"keywords": [
+		"adaptivecards",
+		"adaptive",
+		"cards",
+		"microsoft",
+		"bot"
+	],
+	"main": "lib/adaptivecards.js",
+	"types": "lib/adaptivecards.d.ts",
+	"files": [
+		"lib",
+		"dist",
+		"src"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git://git@github.com/microsoft/AdaptiveCards.git"
+	},
+	"scripts": {
+		"publish_package": "npm version $(head -n 1 ../../../.version) && npm publish --registry https://devops.see.asseco.com/DIGITAL/_packaging/Asseco/npm/registry/ --loglevel warn"
+	},
+	"jest": {
+		"rootDir": "src",
+		"transform": {
+			"^.+\\.tsx?$": "ts-jest"
+		},
+		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json"
+		]
+	},
+	"peerDependencies": {
+		"adaptive-expressions": "^4.9.2",
+		"typedoc": "^0.23.21",
+		"typedoc-plugin-markdown": "^3.13.6",
+		"@types/node": "^18.11.9",
+		"@types/jest": "^27.4.0",
+		"jest": "^27.5.0",
+		"concurrently": "^5.2.0"
+	}
+}

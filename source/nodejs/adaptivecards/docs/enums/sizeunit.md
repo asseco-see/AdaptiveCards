@@ -1,22 +1,30 @@
-[Adaptive Cards Javascript SDK](../README.md) › [SizeUnit](sizeunit.md)
+[Adaptive Cards Javascript SDK](../README.md) / SizeUnit
 
 # Enumeration: SizeUnit
 
-## Index
+## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
-* [Pixel](sizeunit.md#pixel)
-* [Weight](sizeunit.md#weight)
+- [Pixel](SizeUnit.md#pixel)
+- [Weight](SizeUnit.md#weight)
 
-## Enumeration members
+## Enumeration Members
 
-###  Pixel
+### Pixel
 
-• **Pixel**:
+• **Pixel** = ``1``
+
+#### Defined in
+
+[enums.ts:29](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L29)
 
 ___
 
-###  Weight
+### Weight
 
-• **Weight**:
+• **Weight** = ``0``
+
+#### Defined in
+
+[enums.ts:28](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L28)

@@ -33,7 +33,8 @@ module.exports = (env, argv) => {
 		module: {
 			rules: [{
 				test: /\.tsx?$/,
-				loader: "awesome-typescript-loader"
+				use: 'ts-loader',
+				exclude: /node_modules/,
 			},
 			{
 				test: /\.css$/,

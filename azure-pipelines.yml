@@ -31,9 +31,9 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_install'
   inputs:
-    image: 'registry.see.asseco.com/tools/node:14-slim'
-    secureFile: npm-asee-dp-robot
+    image: 'registry.see.asseco.com/tools/node:18'
     dockerRegistryEndpoint: harbor
+    secureFile: npm-asee-dp-robot
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
       cp /source/samples/HostConfig/*.json /source/source/nodejs/adaptivecards-designer/src/hostConfigs/
@@ -62,24 +62,28 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_NPM_publish_adaptivecards'
   inputs:
-    image: 'registry.see.asseco.com/tools/angular-module-builder:11.0'
+    image: 'registry.see.asseco.com/tools/node:18'
     dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
       cd source/nodejs/adaptivecards
-      npm run publish
+      mv package.json package_build.json
+      mv package_publish.json package.json
+      npm run publish_package --no-private
       
 - task: DockerAdvanced@0
   displayName: 'COMMIT_NPM_publish_adaptivecards_designer'
   inputs:
-    image: 'registry.see.asseco.com/tools/angular-module-builder:11.0'
+    image: 'registry.see.asseco.com/tools/node:18'
     dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
       cd source/nodejs/adaptivecards-designer
-      npm run publish
+      mv package.json package_build.json
+      mv package_publish.json package.json
+      npm run publish_package --no-private
 
 - task: DockerAdvanced@0
   displayName: 'COMMIT_publish'

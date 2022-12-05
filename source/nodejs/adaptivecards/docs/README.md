@@ -1,995 +1,750 @@
-[Adaptive Cards Javascript SDK](README.md)
+Adaptive Cards Javascript SDK
 
 # Adaptive Cards Javascript SDK
 
-## Index
+## Table of contents
 
 ### Enumerations
 
-* [ActionAlignment](enums/actionalignment.md)
-* [ActionButtonState](enums/actionbuttonstate.md)
-* [ActionIconPlacement](enums/actioniconplacement.md)
-* [ChipInputColorSchema](enums/chipinputcolorschema.md)
-* [ContainerFitStatus](enums/containerfitstatus.md)
-* [FillMode](enums/fillmode.md)
-* [FontType](enums/fonttype.md)
-* [HorizontalAlignment](enums/horizontalalignment.md)
-* [ImageSize](enums/imagesize.md)
-* [ImageStyle](enums/imagestyle.md)
-* [InputTextCheckDigitAlgorithm](enums/inputtextcheckdigitalgorithm.md)
-* [InputTextStyle](enums/inputtextstyle.md)
-* [Orientation](enums/orientation.md)
-* [ShowCardActionMode](enums/showcardactionmode.md)
-* [Size](enums/size.md)
-* [SizeUnit](enums/sizeunit.md)
-* [Spacing](enums/spacing.md)
-* [TextColor](enums/textcolor.md)
-* [TextSize](enums/textsize.md)
-* [TextWeight](enums/textweight.md)
-* [TypeErrorType](enums/typeerrortype.md)
-* [ValidationEvent](enums/validationevent.md)
-* [ValidationPhase](enums/validationphase.md)
-* [VerticalAlignment](enums/verticalalignment.md)
+- [ActionAlignment](enums/ActionAlignment.md)
+- [ActionIconPlacement](enums/ActionIconPlacement.md)
+- [AuthenticationType](enums/AuthenticationType.md)
+- [ChipInputColorSchema](enums/ChipInputColorSchema.md)
+- [ContainerFitStatus](enums/ContainerFitStatus.md)
+- [DataSetBindingType](enums/DataSetBindingType.md)
+- [DataSourceRestParamType](enums/DataSourceRestParamType.md)
+- [DataTableColumnFormat](enums/DataTableColumnFormat.md)
+- [FillMode](enums/FillMode.md)
+- [FontType](enums/FontType.md)
+- [HorizontalAlignment](enums/HorizontalAlignment.md)
+- [ImageSize](enums/ImageSize.md)
+- [ImageStyle](enums/ImageStyle.md)
+- [InputTextCheckDigitAlgorithm](enums/InputTextCheckDigitAlgorithm.md)
+- [InputTextStyle](enums/InputTextStyle.md)
+- [Orientation](enums/Orientation.md)
+- [RestMethod](enums/RestMethod.md)
+- [RuleActionType](enums/RuleActionType.md)
+- [RuleTrigger](enums/RuleTrigger.md)
+- [RuleType](enums/RuleType.md)
+- [ShowCardActionMode](enums/ShowCardActionMode.md)
+- [Size](enums/Size.md)
+- [SizeUnit](enums/SizeUnit.md)
+- [Spacing](enums/Spacing.md)
+- [TextColor](enums/TextColor.md)
+- [TextSize](enums/TextSize.md)
+- [TextWeight](enums/TextWeight.md)
+- [ValidationEvent](enums/ValidationEvent.md)
+- [ValidationPhase](enums/ValidationPhase.md)
+- [VerticalAlignment](enums/VerticalAlignment.md)
 
 ### Classes
 
-* [AbstractTextFormatter](classes/abstracttextformatter.md)
-* [Action](classes/action.md)
-* [ActionButton](classes/actionbutton.md)
-* [ActionCollection](classes/actioncollection.md)
-* [ActionProperty](classes/actionproperty.md)
-* [ActionSet](classes/actionset.md)
-* [ActionStyle](classes/actionstyle.md)
-* [ActionsConfig](classes/actionsconfig.md)
-* [AdaptiveCard](classes/adaptivecard.md)
-* [AdaptiveCardConfig](classes/adaptivecardconfig.md)
-* [BackgroundImage](classes/backgroundimage.md)
-* [BaseSerializationContext](classes/baseserializationcontext.md)
-* [BaseTextBlock](classes/basetextblock.md)
-* [BaseTextDefinition](classes/basetextdefinition.md)
-* [BoolProperty](classes/boolproperty.md)
-* [BuiltInContainerStyleDefinition](classes/builtincontainerstyledefinition.md)
-* [CardElement](classes/cardelement.md)
-* [CardElementContainer](classes/cardelementcontainer.md)
-* [CardObject](classes/cardobject.md)
-* [CardObjectRegistry](classes/cardobjectregistry.md)
-* [Chip](classes/chip.md)
-* [ChipInput](classes/chipinput.md)
-* [Choice](classes/choice.md)
-* [ChoiceSetInput](classes/choicesetinput.md)
-* [ColorDefinition](classes/colordefinition.md)
-* [ColorSetDefinition](classes/colorsetdefinition.md)
-* [Column](classes/column.md)
-* [ColumnSet](classes/columnset.md)
-* [Container](classes/container.md)
-* [ContainerStyle](classes/containerstyle.md)
-* [ContainerStyleDefinition](classes/containerstyledefinition.md)
-* [ContainerStyleSet](classes/containerstyleset.md)
-* [ContainerWithActions](classes/containerwithactions.md)
-* [CustomProperty](classes/customproperty.md)
-* [DateFormatter](classes/dateformatter.md)
-* [DateInput](classes/dateinput.md)
-* [EnumProperty](classes/enumproperty.md)
-* [Fact](classes/fact.md)
-* [FactSet](classes/factset.md)
-* [FactSetConfig](classes/factsetconfig.md)
-* [FactTextDefinition](classes/facttextdefinition.md)
-* [FactTitleDefinition](classes/facttitledefinition.md)
-* [FontTypeDefinition](classes/fonttypedefinition.md)
-* [FontTypeSet](classes/fonttypeset.md)
-* [GlobalRegistry](classes/globalregistry.md)
-* [GlobalSettings](classes/globalsettings.md)
-* [HostCapabilities](classes/hostcapabilities.md)
-* [HostConfig](classes/hostconfig.md)
-* [HttpAction](classes/httpaction.md)
-* [HttpHeader](classes/httpheader.md)
-* [Image](classes/image.md)
-* [ImageDimensionProperty](classes/imagedimensionproperty.md)
-* [ImageSet](classes/imageset.md)
-* [ImageSetConfig](classes/imagesetconfig.md)
-* [InlineAdaptiveCard](classes/inlineadaptivecard.md)
-* [Input](classes/input.md)
-* [InputConfig](classes/inputconfig.md)
-* [InputLabelConfig](classes/inputlabelconfig.md)
-* [Media](classes/media.md)
-* [MediaConfig](classes/mediaconfig.md)
-* [MediaSource](classes/mediasource.md)
-* [NumProperty](classes/numproperty.md)
-* [NumberInput](classes/numberinput.md)
-* [OpenUrlAction](classes/openurlaction.md)
-* [PaddingDefinition](classes/paddingdefinition.md)
-* [PixelSizeProperty](classes/pixelsizeproperty.md)
-* [PropertyDefinition](classes/propertydefinition.md)
-* [RequiredInputLabelTextDefinition](classes/requiredinputlabeltextdefinition.md)
-* [RichTextBlock](classes/richtextblock.md)
-* [SerializableObject](classes/serializableobject.md)
-* [SerializableObjectCollectionProperty](classes/serializableobjectcollectionproperty.md)
-* [SerializableObjectProperty](classes/serializableobjectproperty.md)
-* [SerializableObjectSchema](classes/serializableobjectschema.md)
-* [SerializationContext](classes/serializationcontext.md)
-* [ShowCardAction](classes/showcardaction.md)
-* [ShowCardActionConfig](classes/showcardactionconfig.md)
-* [SimpleSerializationContext](classes/simpleserializationcontext.md)
-* [SizeAndUnit](classes/sizeandunit.md)
-* [SpacingDefinition](classes/spacingdefinition.md)
-* [StringProperty](classes/stringproperty.md)
-* [StringWithSubstitutionProperty](classes/stringwithsubstitutionproperty.md)
-* [StringWithSubstitutions](classes/stringwithsubstitutions.md)
-* [Strings](classes/strings.md)
-* [StylableCardElementContainer](classes/stylablecardelementcontainer.md)
-* [SubmitAction](classes/submitaction.md)
-* [TextBlock](classes/textblock.md)
-* [TextColorDefinition](classes/textcolordefinition.md)
-* [TextInput](classes/textinput.md)
-* [TextRun](classes/textrun.md)
-* [TimeFormatter](classes/timeformatter.md)
-* [TimeInput](classes/timeinput.md)
-* [TimeProperty](classes/timeproperty.md)
-* [ToggleInput](classes/toggleinput.md)
-* [ToggleVisibilityAction](classes/togglevisibilityaction.md)
-* [UUID](classes/uuid.md)
-* [ValidationResults](classes/validationresults.md)
-* [ValueSetProperty](classes/valuesetproperty.md)
-* [Version](classes/version.md)
-* [Versions](classes/versions.md)
+- [Action](classes/Action.md)
+- [ActionCollection](classes/ActionCollection.md)
+- [ActionParam](classes/ActionParam.md)
+- [ActionProperty](classes/ActionProperty.md)
+- [ActionSet](classes/ActionSet.md)
+- [ActionStyle](classes/ActionStyle.md)
+- [ActionsConfig](classes/ActionsConfig.md)
+- [AdaptiveCard](classes/AdaptiveCard.md)
+- [AdaptiveCardConfig](classes/AdaptiveCardConfig.md)
+- [AdaptiveComponent](classes/AdaptiveComponent.md)
+- [AdaptiveComponentManager](classes/AdaptiveComponentManager.md)
+- [AvailableDataSource](classes/AvailableDataSource.md)
+- [BackgroundImage](classes/BackgroundImage.md)
+- [BaseSerializationContext](classes/BaseSerializationContext.md)
+- [BaseTextBlock](classes/BaseTextBlock.md)
+- [BaseTextDefinition](classes/BaseTextDefinition.md)
+- [BoolProperty](classes/BoolProperty.md)
+- [CardElement](classes/CardElement.md)
+- [CardElementContainer](classes/CardElementContainer.md)
+- [CardObject](classes/CardObject.md)
+- [CardObjectRegistry](classes/CardObjectRegistry.md)
+- [Choice](classes/Choice.md)
+- [ChoiceInputFilterType](classes/ChoiceInputFilterType.md)
+- [ChoiceInputStyle](classes/ChoiceInputStyle.md)
+- [ChoiceSetInput](classes/ChoiceSetInput.md)
+- [ColorDefinition](classes/ColorDefinition.md)
+- [ColorSetDefinition](classes/ColorSetDefinition.md)
+- [Column](classes/Column.md)
+- [ColumnSet](classes/ColumnSet.md)
+- [ComponentSchema](classes/ComponentSchema.md)
+- [Container](classes/Container.md)
+- [ContainerStyle](classes/ContainerStyle.md)
+- [ContainerStyleDefinition](classes/ContainerStyleDefinition.md)
+- [ContainerStyleSet](classes/ContainerStyleSet.md)
+- [ContainerWithActions](classes/ContainerWithActions.md)
+- [CustomCardElementRegistry](classes/CustomCardElementRegistry.md)
+- [CustomComponent](classes/CustomComponent.md)
+- [CustomProperty](classes/CustomProperty.md)
+- [DataSet](classes/DataSet.md)
+- [DataSource](classes/DataSource.md)
+- [DataSourceGraphQL](classes/DataSourceGraphQL.md)
+- [DataSourceRest](classes/DataSourceRest.md)
+- [DataSourceRestParam](classes/DataSourceRestParam.md)
+- [DateInput](classes/DateInput.md)
+- [DictionaryProperty](classes/DictionaryProperty.md)
+- [Downloader](classes/Downloader.md)
+- [EnumProperty](classes/EnumProperty.md)
+- [Fact](classes/Fact.md)
+- [FactSet](classes/FactSet.md)
+- [FactSetConfig](classes/FactSetConfig.md)
+- [FactTextDefinition](classes/FactTextDefinition.md)
+- [FactTitleDefinition](classes/FactTitleDefinition.md)
+- [FilterMode](classes/FilterMode.md)
+- [FontTypeDefinition](classes/FontTypeDefinition.md)
+- [FontTypeSet](classes/FontTypeSet.md)
+- [GenericAction](classes/GenericAction.md)
+- [GenericContainer](classes/GenericContainer.md)
+- [GenericInput](classes/GenericInput.md)
+- [GlobalRegistry](classes/GlobalRegistry.md)
+- [GlobalSettings](classes/GlobalSettings.md)
+- [HostConfig](classes/HostConfig.md)
+- [HttpAction](classes/HttpAction.md)
+- [HttpHeader](classes/HttpHeader.md)
+- [Image](classes/Image.md)
+- [ImageSet](classes/ImageSet.md)
+- [ImageSetConfig](classes/ImageSetConfig.md)
+- [Input](classes/Input.md)
+- [InputConfig](classes/InputConfig.md)
+- [InputLabelConfig](classes/InputLabelConfig.md)
+- [Media](classes/Media.md)
+- [MediaConfig](classes/MediaConfig.md)
+- [MediaSource](classes/MediaSource.md)
+- [NumProperty](classes/NumProperty.md)
+- [NumberInput](classes/NumberInput.md)
+- [NumberSchemaProperty](classes/NumberSchemaProperty.md)
+- [ObjectProperty](classes/ObjectProperty.md)
+- [OpenUrlAction](classes/OpenUrlAction.md)
+- [PaddingDefinition](classes/PaddingDefinition.md)
+- [ParseUtilities](classes/ParseUtilities.md)
+- [PixelSizeProperty](classes/PixelSizeProperty.md)
+- [PropertyDefinition](classes/PropertyDefinition.md)
+- [RequiredInputLabelTextDefinition](classes/RequiredInputLabelTextDefinition.md)
+- [RichTextBlock](classes/RichTextBlock.md)
+- [RuleParam](classes/RuleParam.md)
+- [SchemaPropertiesProperty](classes/SchemaPropertiesProperty.md)
+- [SchemaProperty](classes/SchemaProperty.md)
+- [SerializableElement](classes/SerializableElement.md)
+- [SerializableObject](classes/SerializableObject.md)
+- [SerializableObjectCollectionProperty](classes/SerializableObjectCollectionProperty.md)
+- [SerializableObjectProperty](classes/SerializableObjectProperty.md)
+- [SerializableObjectSchema](classes/SerializableObjectSchema.md)
+- [SerializationContext](classes/SerializationContext.md)
+- [ShowCardAction](classes/ShowCardAction.md)
+- [ShowCardActionConfig](classes/ShowCardActionConfig.md)
+- [SizeAndUnit](classes/SizeAndUnit.md)
+- [SpacingDefinition](classes/SpacingDefinition.md)
+- [StringProperty](classes/StringProperty.md)
+- [StringSchemaProperty](classes/StringSchemaProperty.md)
+- [StringWithSubstitutions](classes/StringWithSubstitutions.md)
+- [Strings](classes/Strings.md)
+- [StylableCardElementContainer](classes/StylableCardElementContainer.md)
+- [SubmitAction](classes/SubmitAction.md)
+- [Template](classes/Template.md)
+- [TextBlock](classes/TextBlock.md)
+- [TextColorDefinition](classes/TextColorDefinition.md)
+- [TextInput](classes/TextInput.md)
+- [TextRun](classes/TextRun.md)
+- [TimeInput](classes/TimeInput.md)
+- [TimeProperty](classes/TimeProperty.md)
+- [ToggleInput](classes/ToggleInput.md)
+- [ToggleVisibilityAction](classes/ToggleVisibilityAction.md)
+- [UUID](classes/UUID.md)
+- [ValidationResults](classes/ValidationResults.md)
+- [ValueSetProperty](classes/ValueSetProperty.md)
+- [Version](classes/Version.md)
+- [Versions](classes/Versions.md)
 
 ### Interfaces
 
-* [ChipData](interfaces/chipdata.md)
-* [IAction](interfaces/iaction.md)
-* [IAdaptiveCard](interfaces/iadaptivecard.md)
-* [IBackgroundImage](interfaces/ibackgroundimage.md)
-* [ICardElement](interfaces/icardelement.md)
-* [IChoice](interfaces/ichoice.md)
-* [IChoiceSetInput](interfaces/ichoicesetinput.md)
-* [IColumn](interfaces/icolumn.md)
-* [IColumnSet](interfaces/icolumnset.md)
-* [IContainer](interfaces/icontainer.md)
-* [IDateInput](interfaces/idateinput.md)
-* [IFact](interfaces/ifact.md)
-* [IFactSet](interfaces/ifactset.md)
-* [IFontSizeDefinitions](interfaces/ifontsizedefinitions.md)
-* [IFontWeightDefinitions](interfaces/ifontweightdefinitions.md)
-* [IImage](interfaces/iimage.md)
-* [IImageSet](interfaces/iimageset.md)
-* [IInput](interfaces/iinput.md)
-* [ILineHeightDefinitions](interfaces/ilineheightdefinitions.md)
-* [IMarkdownProcessingResult](interfaces/imarkdownprocessingresult.md)
-* [INumberInput](interfaces/inumberinput.md)
-* [IOpenUrlAction](interfaces/iopenurlaction.md)
-* [IResourceInformation](interfaces/iresourceinformation.md)
-* [ISeparationDefinition](interfaces/iseparationdefinition.md)
-* [IShowCardAction](interfaces/ishowcardaction.md)
-* [ISubmitAction](interfaces/isubmitaction.md)
-* [ITextBlock](interfaces/itextblock.md)
-* [ITextInput](interfaces/itextinput.md)
-* [ITimeInput](interfaces/itimeinput.md)
-* [IToggleInput](interfaces/itoggleinput.md)
-* [ITypeRegistration](interfaces/ityperegistration.md)
-* [IValidationEvent](interfaces/ivalidationevent.md)
-* [IVersion](interfaces/iversion.md)
-* [IVersionedValue](interfaces/iversionedvalue.md)
+- [IAdaptiveCard](interfaces/IAdaptiveCard.md)
+- [ICardElement](interfaces/ICardElement.md)
+- [IEvaluationContext](interfaces/IEvaluationContext.md)
+- [IFontSizeDefinitions](interfaces/IFontSizeDefinitions.md)
+- [IFontWeightDefinitions](interfaces/IFontWeightDefinitions.md)
+- [IInput](interfaces/IInput.md)
+- [ILineHeightDefinitions](interfaces/ILineHeightDefinitions.md)
+- [IMarkdownProcessingResult](interfaces/IMarkdownProcessingResult.md)
+- [IResourceInformation](interfaces/IResourceInformation.md)
+- [ISeparationDefinition](interfaces/ISeparationDefinition.md)
+- [ITypeRegistration](interfaces/ITypeRegistration.md)
+- [IValidationEvent](interfaces/IValidationEvent.md)
+- [IVersionedValue](interfaces/IVersionedValue.md)
 
-### Type aliases
+### Type Aliases
 
-* [ActionType](README.md#actiontype)
-* [CardElementHeight](README.md#cardelementheight)
-* [CardObjectType](README.md#cardobjecttype)
-* [ColumnWidth](README.md#columnwidth)
-* [Dictionary](README.md#dictionary)
-* [PropertyBag](README.md#propertybag)
-* [SerializableObjectType](README.md#serializableobjecttype)
-* [TargetVersion](README.md#targetversion)
+- [ActionType](README.md#actiontype)
+- [CardElementHeight](README.md#cardelementheight)
+- [CardObjectType](README.md#cardobjecttype)
+- [ColumnWidth](README.md#columnwidth)
+- [Dictionary](README.md#dictionary)
+- [PropertyBag](README.md#propertybag)
+- [SerializableObjectType](README.md#serializableobjecttype)
+- [TargetVersion](README.md#targetversion)
 
 ### Variables
 
-* [defaultHostConfig](README.md#const-defaulthostconfig)
-* [emoji_message](README.md#const-emoji_message)
+- [ContentTypes](README.md#contenttypes)
+- [DataSourceList](README.md#datasourcelist)
+- [defaultHostConfig](README.md#defaulthostconfig)
+- [genericList](README.md#genericlist)
 
 ### Functions
 
-* [appendChild](README.md#appendchild)
-* [findBreakableIndices](README.md#findbreakableindices)
-* [findNextCharacter](README.md#findnextcharacter)
-* [formatText](README.md#formattext)
-* [generateUniqueId](README.md#generateuniqueid)
-* [getEnumValueByName](README.md#getenumvaluebyname)
-* [getFitStatus](README.md#getfitstatus)
-* [isMobileOS](README.md#ismobileos)
-* [isVersionLessOrEqual](README.md#isversionlessorequal)
-* [parseBool](README.md#parsebool)
-* [parseEnum](README.md#parseenum)
-* [parseHostConfigEnum](README.md#parsehostconfigenum)
-* [parseNumber](README.md#parsenumber)
-* [parseString](README.md#parsestring)
-* [property](README.md#property)
-* [raiseAnchorClickedEvent](README.md#raiseanchorclickedevent)
-* [raiseElementVisibilityChangedEvent](README.md#raiseelementvisibilitychangedevent)
-* [raiseExecuteActionEvent](README.md#raiseexecuteactionevent)
-* [raiseImageLoadedEvent](README.md#raiseimageloadedevent)
-* [raiseInlineCardExpandedEvent](README.md#raiseinlinecardexpandedevent)
-* [raiseInputValueChangedEvent](README.md#raiseinputvaluechangedevent)
-* [renderSeparation](README.md#renderseparation)
-* [stringToCssColor](README.md#stringtocsscolor)
-* [truncate](README.md#truncate)
+- [appendChild](README.md#appendchild)
+- [generateUniqueId](README.md#generateuniqueid)
+- [getEnumValueByName](README.md#getenumvaluebyname)
+- [getFitStatus](README.md#getfitstatus)
+- [isMobileOS](README.md#ismobileos)
+- [isVersionLessOrEqual](README.md#isversionlessorequal)
+- [parseBool](README.md#parsebool)
+- [parseEnum](README.md#parseenum)
+- [parseInterpolatedString](README.md#parseinterpolatedstring)
+- [parseNumber](README.md#parsenumber)
+- [parseObject](README.md#parseobject)
+- [parseString](README.md#parsestring)
+- [property](README.md#property)
+- [renderSeparation](README.md#renderseparation)
+- [stringToCssColor](README.md#stringtocsscolor)
+- [truncate](README.md#truncate)
+- [tryEvaluateExpression](README.md#tryevaluateexpression)
 
-### Object literals
+## Type Aliases
 
-* [ContentTypes](README.md#const-contenttypes)
-* [simple_test_card](README.md#const-simple_test_card)
+### ActionType
 
-## Type aliases
+Ƭ **ActionType**: () => [`Action`](classes/Action.md)
 
-###  ActionType
+#### Type declaration
 
-Ƭ **ActionType**: *object*
+• **new ActionType**(): [`Action`](classes/Action.md)
 
-#### Type declaration:
+##### Returns
 
-* **new __type**(): *[Action](classes/action.md)*
+[`Action`](classes/Action.md)
+
+#### Defined in
+
+[card-elements.ts:3839](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L3839)
 
 ___
 
-###  CardElementHeight
+### CardElementHeight
 
-Ƭ **CardElementHeight**: *"auto" | "stretch"*
+Ƭ **CardElementHeight**: ``"auto"`` \| ``"stretch"``
 
-___
+#### Defined in
 
-###  CardObjectType
-
-Ƭ **CardObjectType**: *object*
-
-#### Type declaration:
-
-* **new __type**(): *[CardObject](classes/cardobject.md)*
+[card-elements.ts:23](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L23)
 
 ___
 
-###  ColumnWidth
+### CardObjectType
 
-Ƭ **ColumnWidth**: *[SizeAndUnit](classes/sizeandunit.md) | "auto" | "stretch"*
+Ƭ **CardObjectType**: () => [`CardObject`](classes/CardObject.md)
 
-___
+#### Type declaration
 
-###  Dictionary
+• **new CardObjectType**(): [`CardObject`](classes/CardObject.md)
 
-Ƭ **Dictionary**: *object*
+##### Returns
 
-#### Type declaration:
+[`CardObject`](classes/CardObject.md)
 
-* \[ **key**: *string*\]: T
+#### Defined in
 
-___
-
-###  PropertyBag
-
-Ƭ **PropertyBag**: *object*
-
-#### Type declaration:
-
-* \[ **propertyName**: *string*\]: any
+[card-object.ts:26](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-object.ts#L26)
 
 ___
 
-###  SerializableObjectType
+### ColumnWidth
 
-Ƭ **SerializableObjectType**: *object*
+Ƭ **ColumnWidth**: [`SizeAndUnit`](classes/SizeAndUnit.md) \| ``"auto"`` \| ``"stretch"``
 
-#### Type declaration:
+#### Defined in
 
-* **new __type**(): *[SerializableObject](classes/serializableobject.md)*
+[card-elements.ts:6261](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L6261)
 
 ___
 
-###  TargetVersion
+### Dictionary
 
-Ƭ **TargetVersion**: *[Version](classes/version.md) | "*"*
+Ƭ **Dictionary**<`T`\>: `Object`
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Index signature
+
+▪ [key: `string`]: `T`
+
+#### Defined in
+
+[shared.ts:64](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L64)
+
+___
+
+### PropertyBag
+
+Ƭ **PropertyBag**: `Object`
+
+#### Index signature
+
+▪ [propertyName: `string`]: `any`
+
+#### Defined in
+
+[shared.ts:62](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L62)
+
+___
+
+### SerializableObjectType
+
+Ƭ **SerializableObjectType**: () => [`SerializableObject`](classes/SerializableObject.md)
+
+#### Type declaration
+
+• **new SerializableObjectType**(): [`SerializableObject`](classes/SerializableObject.md)
+
+##### Returns
+
+[`SerializableObject`](classes/SerializableObject.md)
+
+#### Defined in
+
+[serialization.ts:641](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L641)
+
+___
+
+### TargetVersion
+
+Ƭ **TargetVersion**: [`Version`](classes/Version.md) \| ``"*"``
+
+#### Defined in
+
+[serialization.ts:103](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L103)
 
 ## Variables
 
-### `Const` defaultHostConfig
+### ContentTypes
 
-• **defaultHostConfig**: *[HostConfig](classes/hostconfig.md)* = new HostConfig(
-    {
-        supportsInteractivity: true,
-        spacing: {
-            small: 10,
-            default: 20,
-            medium: 30,
-            large: 40,
-            extraLarge: 50,
-            padding: 20
-        },
-        separator: {
-            lineThickness: 1,
-            lineColor: "#EEEEEE"
-        },
-        fontTypes: {
-            default: {
-                fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                fontSizes: {
-                    small: 12,
-                    default: 14,
-                    medium: 17,
-                    large: 21,
-                    extraLarge: 26
-                },
-                fontWeights: {
-                    lighter: 200,
-                    default: 400,
-                    bolder: 600
-                }
-            },
-            monospace: {
-                fontFamily: "'Courier New', Courier, monospace",
-                fontSizes: {
-                    small: 12,
-                    default: 14,
-                    medium: 17,
-                    large: 21,
-                    extraLarge: 26
-                },
-                fontWeights: {
-                    lighter: 200,
-                    default: 400,
-                    bolder: 600
-                }
-            }
-        },
-        imageSizes: {
-            small: 40,
-            medium: 80,
-            large: 160
-        },
-        containerStyles: {
-            default: {
-                backgroundColor: "#FFFFFF",
-                foregroundColors: {
-                    default: {
-                        default: "#333333",
-                        subtle: "#EE333333"
-                    },
-                    dark: {
-                        default: "#000000",
-                        subtle: "#66000000"
-                    },
-                    light: {
-                        default: "#FFFFFF",
-                        subtle: "#33000000"
-                    },
-                    accent: {
-                        default: "#2E89FC",
-                        subtle: "#882E89FC"
-                    },
-                    attention: {
-                        default: "#cc3300",
-                        subtle: "#DDcc3300"
-                    },
-                    good: {
-                        default: "#028A02",
-                        subtle: "#DD027502"
-                    },
-                    warning: {
-                        default: "#e69500",
-                        subtle: "#DDe69500"
-                    }
-                }
-            },
-            emphasis: {
-                backgroundColor: "#08000000",
-                foregroundColors: {
-                    default: {
-                        default: "#333333",
-                        subtle: "#EE333333"
-                    },
-                    dark: {
-                        default: "#000000",
-                        subtle: "#66000000"
-                    },
-                    light: {
-                        default: "#FFFFFF",
-                        subtle: "#33000000"
-                    },
-                    accent: {
-                        default: "#2E89FC",
-                        subtle: "#882E89FC"
-                    },
-                    attention: {
-                        default: "#cc3300",
-                        subtle: "#DDcc3300"
-                    },
-                    good: {
-                        default: "#028A02",
-                        subtle: "#DD027502"
-                    },
-                    warning: {
-                        default: "#e69500",
-                        subtle: "#DDe69500"
-                    }
-                }
-            },
-            accent: {
-                backgroundColor: "#C7DEF9",
-                foregroundColors: {
-                    default: {
-                        default: "#333333",
-                        subtle: "#EE333333"
-                    },
-                    dark: {
-                        default: "#000000",
-                        subtle: "#66000000"
-                    },
-                    light: {
-                        default: "#FFFFFF",
-                        subtle: "#33000000"
-                    },
-                    accent: {
-                        default: "#2E89FC",
-                        subtle: "#882E89FC"
-                    },
-                    attention: {
-                        default: "#cc3300",
-                        subtle: "#DDcc3300"
-                    },
-                    good: {
-                        default: "#028A02",
-                        subtle: "#DD027502"
-                    },
-                    warning: {
-                        default: "#e69500",
-                        subtle: "#DDe69500"
-                    }
-                }
-            },
-            good: {
-                backgroundColor: "#CCFFCC",
-                foregroundColors: {
-                    default: {
-                        default: "#333333",
-                        subtle: "#EE333333"
-                    },
-                    dark: {
-                        default: "#000000",
-                        subtle: "#66000000"
-                    },
-                    light: {
-                        default: "#FFFFFF",
-                        subtle: "#33000000"
-                    },
-                    accent: {
-                        default: "#2E89FC",
-                        subtle: "#882E89FC"
-                    },
-                    attention: {
-                        default: "#cc3300",
-                        subtle: "#DDcc3300"
-                    },
-                    good: {
-                        default: "#028A02",
-                        subtle: "#DD027502"
-                    },
-                    warning: {
-                        default: "#e69500",
-                        subtle: "#DDe69500"
-                    }
-                }
-            },
-            attention: {
-                backgroundColor: "#FFC5B2",
-                foregroundColors: {
-                    default: {
-                        default: "#333333",
-                        subtle: "#EE333333"
-                    },
-                    dark: {
-                        default: "#000000",
-                        subtle: "#66000000"
-                    },
-                    light: {
-                        default: "#FFFFFF",
-                        subtle: "#33000000"
-                    },
-                    accent: {
-                        default: "#2E89FC",
-                        subtle: "#882E89FC"
-                    },
-                    attention: {
-                        default: "#cc3300",
-                        subtle: "#DDcc3300"
-                    },
-                    good: {
-                        default: "#028A02",
-                        subtle: "#DD027502"
-                    },
-                    warning: {
-                        default: "#e69500",
-                        subtle: "#DDe69500"
-                    }
-                }
-            },
-            warning: {
-                backgroundColor: "#FFE2B2",
-                foregroundColors: {
-                    default: {
-                        default: "#333333",
-                        subtle: "#EE333333"
-                    },
-                    dark: {
-                        default: "#000000",
-                        subtle: "#66000000"
-                    },
-                    light: {
-                        default: "#FFFFFF",
-                        subtle: "#33000000"
-                    },
-                    accent: {
-                        default: "#2E89FC",
-                        subtle: "#882E89FC"
-                    },
-                    attention: {
-                        default: "#cc3300",
-                        subtle: "#DDcc3300"
-                    },
-                    good: {
-                        default: "#028A02",
-                        subtle: "#DD027502"
-                    },
-                    warning: {
-                        default: "#e69500",
-                        subtle: "#DDe69500"
-                    }
-                }
-            }
-        },
-        inputs: {
-            label: {
-                requiredInputs: {
-                    color: Enums.TextColor.Accent,
-                    size: Enums.TextSize.ExtraLarge,
-                    weight: Enums.TextWeight.Bolder,
-                    isSubtle: true,
-                    suffix: " (required)",
-                    suffixColor: Enums.TextColor.Good
-                },
-                optionalInputs: {
-                    color: Enums.TextColor.Warning,
-                    size: Enums.TextSize.Medium,
-                    weight: Enums.TextWeight.Lighter,
-                    isSubtle: false
-                }
-            },
-            errorMessage: {
-                color: Enums.TextColor.Accent,
-                size: Enums.TextSize.Small,
-                weight: Enums.TextWeight.Bolder
-            }
-        },
-        actions: {
-            maxActions: 5,
-            spacing: Enums.Spacing.Default,
-            buttonSpacing: 10,
-            showCard: {
-                actionMode: Enums.ShowCardActionMode.Inline,
-                inlineTopMargin: 16
-            },
-            actionsOrientation: Enums.Orientation.Horizontal,
-            actionAlignment: Enums.ActionAlignment.Left
-        },
-        adaptiveCard: {
-            allowCustomStyle: false
-        },
-        imageSet: {
-            imageSize: Enums.Size.Medium,
-            maxImageHeight: 100
-        },
-        factSet: {
-            title: {
-                color: Enums.TextColor.Default,
-                size: Enums.TextSize.Default,
-                isSubtle: false,
-                weight: Enums.TextWeight.Bolder,
-                wrap: true,
-                maxWidth: 150,
-            },
-            value: {
-                color: Enums.TextColor.Default,
-                size: Enums.TextSize.Default,
-                isSubtle: false,
-                weight: Enums.TextWeight.Default,
-                wrap: true,
-            },
-            spacing: 10
-        }
-    })
+• `Const` **ContentTypes**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `applicationJson` | `string` |
+| `applicationXWwwFormUrlencoded` | `string` |
+
+#### Defined in
+
+[shared.ts:45](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L45)
 
 ___
 
-### `Const` emoji_message
+### DataSourceList
 
-• **emoji_message**: *"Mix 🗣 emoji inside 🙌 text"* = "Mix 🗣 emoji inside 🙌 text"
+• `Const` **DataSourceList**: [`AvailableDataSource`](classes/AvailableDataSource.md)[]
+
+#### Defined in
+
+[card-elements.ts:3954](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L3954)
+
+___
+
+### defaultHostConfig
+
+• `Const` **defaultHostConfig**: [`HostConfig`](classes/HostConfig.md)
+
+#### Defined in
+
+[host-config.ts:717](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L717)
+
+___
+
+### genericList
+
+• `Const` **genericList**: `any`[] = `[]`
+
+#### Defined in
+
+[card-elements.ts:7436](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/card-elements.ts#L7436)
 
 ## Functions
 
-###  appendChild
+### appendChild
 
-▸ **appendChild**(`node`: Node, `child`: Node | undefined): *void*
+▸ **appendChild**(`node`, `child`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`node` | Node |
-`child` | Node &#124; undefined |
+| Name | Type |
+| :------ | :------ |
+| `node` | `Node` |
+| `child` | `undefined` \| `Node` |
 
-**Returns:** *void*
+#### Returns
 
-___
+`void`
 
-###  findBreakableIndices
+#### Defined in
 
-▸ **findBreakableIndices**(`html`: string): *number[]*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`html` | string |
-
-**Returns:** *number[]*
+[utils.ts:20](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L20)
 
 ___
 
-###  findNextCharacter
+### generateUniqueId
 
-▸ **findNextCharacter**(`html`: string, `currIdx`: number): *number*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`html` | string |
-`currIdx` | number |
-
-**Returns:** *number*
-
-___
-
-###  formatText
-
-▸ **formatText**(`lang`: string | undefined, `text`: string | undefined): *string | undefined*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`lang` | string &#124; undefined |
-`text` | string &#124; undefined |
-
-**Returns:** *string | undefined*
-
-___
-
-###  generateUniqueId
-
-▸ **generateUniqueId**(): *string*
+▸ **generateUniqueId**(): `string`
 
 Generate a UUID prepended with "__ac-"
 
-**Returns:** *string*
+#### Returns
+
+`string`
+
+#### Defined in
+
+[utils.ts:16](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L16)
 
 ___
 
-###  getEnumValueByName
+### getEnumValueByName
 
-▸ **getEnumValueByName**(`enumType`: object, `name`: string): *number | undefined*
+▸ **getEnumValueByName**(`enumType`, `name`): `number` \| `undefined`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`enumType` | object |
-`name` | string |
+| Name | Type |
+| :------ | :------ |
+| `enumType` | `Object` |
+| `name` | `string` |
 
-**Returns:** *number | undefined*
+#### Returns
 
-___
+`number` \| `undefined`
 
-###  getFitStatus
+#### Defined in
 
-▸ **getFitStatus**(`element`: HTMLElement, `containerEnd`: number): *[ContainerFitStatus](enums/containerfitstatus.md)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`element` | HTMLElement |
-`containerEnd` | number |
-
-**Returns:** *[ContainerFitStatus](enums/containerfitstatus.md)*
+[utils.ts:74](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L74)
 
 ___
 
-###  isMobileOS
+### getFitStatus
 
-▸ **isMobileOS**(): *boolean*
+▸ **getFitStatus**(`element`, `containerEnd`): [`ContainerFitStatus`](enums/ContainerFitStatus.md)
 
-**Returns:** *boolean*
+#### Parameters
 
-___
+| Name | Type |
+| :------ | :------ |
+| `element` | `HTMLElement` |
+| `containerEnd` | `number` |
 
-###  isVersionLessOrEqual
+#### Returns
 
-▸ **isVersionLessOrEqual**(`version`: [TargetVersion](README.md#targetversion), `targetVersion`: [TargetVersion](README.md#targetversion)): *boolean*
+[`ContainerFitStatus`](enums/ContainerFitStatus.md)
 
-**Parameters:**
+#### Defined in
 
-Name | Type |
------- | ------ |
-`version` | [TargetVersion](README.md#targetversion) |
-`targetVersion` | [TargetVersion](README.md#targetversion) |
-
-**Returns:** *boolean*
+[utils.ts:242](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L242)
 
 ___
 
-###  parseBool
+### isMobileOS
 
-▸ **parseBool**(`value`: any, `defaultValue?`: undefined | false | true): *boolean | undefined*
+▸ **isMobileOS**(): `boolean`
 
-**Parameters:**
+#### Returns
 
-Name | Type |
------- | ------ |
-`value` | any |
-`defaultValue?` | undefined &#124; false &#124; true |
+`boolean`
 
-**Returns:** *boolean | undefined*
+#### Defined in
 
-___
-
-###  parseEnum
-
-▸ **parseEnum**(`enumType`: object, `name`: string, `defaultValue?`: undefined | number): *number | undefined*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`enumType` | object |
-`name` | string |
-`defaultValue?` | undefined &#124; number |
-
-**Returns:** *number | undefined*
+[utils.ts:7](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L7)
 
 ___
 
-###  parseHostConfigEnum
+### isVersionLessOrEqual
 
-▸ **parseHostConfigEnum**(`targetEnum`: object, `value`: string | number, `defaultValue`: number): *number*
+▸ **isVersionLessOrEqual**(`version`, `targetVersion`): `boolean`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`targetEnum` | object |
-`value` | string &#124; number |
-`defaultValue` | number |
+| Name | Type |
+| :------ | :------ |
+| `version` | [`TargetVersion`](README.md#targetversion) |
+| `targetVersion` | [`TargetVersion`](README.md#targetversion) |
 
-**Returns:** *number*
+#### Returns
 
-___
+`boolean`
 
-###  parseNumber
+#### Defined in
 
-▸ **parseNumber**(`obj`: any, `defaultValue?`: undefined | number): *number | undefined*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`obj` | any |
-`defaultValue?` | undefined &#124; number |
-
-**Returns:** *number | undefined*
+[serialization.ts:114](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L114)
 
 ___
 
-###  parseString
+### parseBool
 
-▸ **parseString**(`obj`: any, `defaultValue?`: undefined | string): *string | undefined*
+▸ **parseBool**(`value`, `defaultValue?`): `any` \| `undefined`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`obj` | any |
-`defaultValue?` | undefined &#124; string |
+| Name | Type |
+| :------ | :------ |
+| `value` | `any` |
+| `defaultValue?` | `boolean` |
 
-**Returns:** *string | undefined*
+#### Returns
 
-___
+`any` \| `undefined`
 
-###  property
+#### Defined in
 
-▸ **property**(`property`: [PropertyDefinition](classes/propertydefinition.md)): *(Anonymous function)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`property` | [PropertyDefinition](classes/propertydefinition.md) |
-
-**Returns:** *(Anonymous function)*
+[utils.ts:34](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L34)
 
 ___
 
-###  raiseAnchorClickedEvent
+### parseEnum
 
-▸ **raiseAnchorClickedEvent**(`element`: [CardElement](classes/cardelement.md), `anchor`: HTMLAnchorElement): *boolean*
+▸ **parseEnum**(`enumType`, `name`, `defaultValue?`): `number` \| `undefined`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`element` | [CardElement](classes/cardelement.md) |
-`anchor` | HTMLAnchorElement |
+| Name | Type |
+| :------ | :------ |
+| `enumType` | `Object` |
+| `name` | `string` |
+| `defaultValue?` | `number` |
 
-**Returns:** *boolean*
+#### Returns
 
-___
+`number` \| `undefined`
 
-###  raiseElementVisibilityChangedEvent
+#### Defined in
 
-▸ **raiseElementVisibilityChangedEvent**(`element`: [CardElement](classes/cardelement.md), `shouldUpdateLayout`: boolean): *void*
-
-**Parameters:**
-
-Name | Type | Default |
------- | ------ | ------ |
-`element` | [CardElement](classes/cardelement.md) | - |
-`shouldUpdateLayout` | boolean | true |
-
-**Returns:** *void*
+[utils.ts:90](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L90)
 
 ___
 
-###  raiseExecuteActionEvent
+### parseInterpolatedString
 
-▸ **raiseExecuteActionEvent**(`action`: [Action](classes/action.md)): *void*
+▸ **parseInterpolatedString**(`interpolatedString`): `AEL.Expression` \| `string`
 
-**Parameters:**
+Parses an interpolated string into an Expression object ready to evaluate.
 
-Name | Type |
------- | ------ |
-`action` | [Action](classes/action.md) |
+#### Parameters
 
-**Returns:** *void*
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `interpolatedString` | `string` | The interpolated string to parse. Example: "Hello ${name}" |
 
-___
+#### Returns
 
-###  raiseImageLoadedEvent
+`AEL.Expression` \| `string`
 
-▸ **raiseImageLoadedEvent**(`image`: [Image](classes/image.md)): *void*
+An Expression object if the provided interpolated string contained at least one expression (e.g. "${expression}"); the original string otherwise.
 
-**Parameters:**
+#### Defined in
 
-Name | Type |
------- | ------ |
-`image` | [Image](classes/image.md) |
-
-**Returns:** *void*
+[template-engine.ts:81](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/template-engine.ts#L81)
 
 ___
 
-###  raiseInlineCardExpandedEvent
+### parseNumber
 
-▸ **raiseInlineCardExpandedEvent**(`action`: [ShowCardAction](classes/showcardaction.md), `isExpanded`: boolean): *void*
+▸ **parseNumber**(`obj`, `defaultValue?`): `number` \| `undefined`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`action` | [ShowCardAction](classes/showcardaction.md) |
-`isExpanded` | boolean |
+| Name | Type |
+| :------ | :------ |
+| `obj` | `any` |
+| `defaultValue?` | `number` |
 
-**Returns:** *void*
+#### Returns
 
-___
+`number` \| `undefined`
 
-###  raiseInputValueChangedEvent
+#### Defined in
 
-▸ **raiseInputValueChangedEvent**(`input`: [Input](classes/input.md)): *void*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`input` | [Input](classes/input.md) |
-
-**Returns:** *void*
+[utils.ts:30](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L30)
 
 ___
 
-###  renderSeparation
+### parseObject
 
-▸ **renderSeparation**(`hostConfig`: [HostConfig](classes/hostconfig.md), `separationDefinition`: [ISeparationDefinition](interfaces/iseparationdefinition.md), `orientation`: [Orientation](enums/orientation.md)): *HTMLElement | undefined*
+▸ **parseObject**(`value`, `defaultValue?`): `object` \| `undefined`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`hostConfig` | [HostConfig](classes/hostconfig.md) |
-`separationDefinition` | [ISeparationDefinition](interfaces/iseparationdefinition.md) |
-`orientation` | [Orientation](enums/orientation.md) |
+| Name | Type |
+| :------ | :------ |
+| `value` | `any` |
+| `defaultValue?` | `object` |
 
-**Returns:** *HTMLElement | undefined*
+#### Returns
 
-___
+`object` \| `undefined`
 
-###  stringToCssColor
+#### Defined in
 
-▸ **stringToCssColor**(`color`: string | undefined): *string | undefined*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`color` | string &#124; undefined |
-
-**Returns:** *string | undefined*
+[utils.ts:53](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L53)
 
 ___
 
-###  truncate
+### parseString
 
-▸ **truncate**(`element`: HTMLElement, `maxHeight`: number, `lineHeight?`: undefined | number): *void*
+▸ **parseString**(`obj`, `defaultValue?`): `string` \| `undefined`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`element` | HTMLElement |
-`maxHeight` | number |
-`lineHeight?` | undefined &#124; number |
+| Name | Type |
+| :------ | :------ |
+| `obj` | `any` |
+| `defaultValue?` | `string` |
 
-**Returns:** *void*
+#### Returns
 
-## Object literals
+`string` \| `undefined`
 
-### `Const` ContentTypes
+#### Defined in
 
-### ▪ **ContentTypes**: *object*
-
-###  applicationJson
-
-• **applicationJson**: *string* = "application/json"
-
-###  applicationXWwwFormUrlencoded
-
-• **applicationXWwwFormUrlencoded**: *string* = "application/x-www-form-urlencoded"
+[utils.ts:26](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L26)
 
 ___
 
-### `Const` simple_test_card
+### property
 
-### ▪ **simple_test_card**: *object*
+▸ **property**(`property`): (`target`: `any`, `propertyKey`: `string`) => `void`
 
-###  $schema
+#### Parameters
 
-• **$schema**: *string* = "http://adaptivecards.io/schemas/adaptive-card.json"
+| Name | Type |
+| :------ | :------ |
+| `property` | [`PropertyDefinition`](classes/PropertyDefinition.md) |
 
-###  body
+#### Returns
 
-• **body**: *object[]* = [{
-        "type": "TextBlock",
-        "text": emoji_message
-    }]
+`fn`
 
-###  type
+▸ (`target`, `propertyKey`): `void`
 
-• **type**: *string* = "AdaptiveCard"
+##### Parameters
 
-###  version
+| Name | Type |
+| :------ | :------ |
+| `target` | `any` |
+| `propertyKey` | `string` |
 
-• **version**: *string* = "1.0"
+##### Returns
+
+`void`
+
+#### Defined in
+
+[serialization.ts:794](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L794)
+
+___
+
+### renderSeparation
+
+▸ **renderSeparation**(`hostConfig`, `separationDefinition`, `orientation`): `HTMLElement` \| `undefined`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `hostConfig` | [`HostConfig`](classes/HostConfig.md) |
+| `separationDefinition` | [`ISeparationDefinition`](interfaces/ISeparationDefinition.md) |
+| `orientation` | [`Orientation`](enums/Orientation.md) |
+
+#### Returns
+
+`HTMLElement` \| `undefined`
+
+#### Defined in
+
+[utils.ts:100](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L100)
+
+___
+
+### stringToCssColor
+
+▸ **stringToCssColor**(`color`): `string` \| `undefined`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `color` | `undefined` \| `string` |
+
+#### Returns
+
+`string` \| `undefined`
+
+#### Defined in
+
+[utils.ts:139](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L139)
+
+___
+
+### truncate
+
+▸ **truncate**(`element`, `maxHeight`, `lineHeight?`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `element` | `HTMLElement` |
+| `maxHeight` | `number` |
+| `lineHeight?` | `number` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[utils.ts:157](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/utils.ts#L157)
+
+___
+
+### tryEvaluateExpression
+
+▸ **tryEvaluateExpression**(`expression`, `context`, `allowSubstitutions`): `Object`
+
+Tries to evaluate the provided expression using the provided context.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `expression` | `Expression` | The expression to evaluate. |
+| `context` | [`IEvaluationContext`](interfaces/IEvaluationContext.md) | The context (data) used to evaluate the expression. |
+| `allowSubstitutions` | `boolean` | Indicates if the expression evaluator should substitute undefined value with a default string or the value returned by the GlobalSettings.getUndefinedFieldValueSubstitutionString callback. |
+
+#### Returns
+
+`Object`
+
+An object representing the result of the evaluation. If the evaluation succeeded, the value property
+  contains the actual evaluation result, and the error property is undefined. If the evaluation fails, the error
+  property contains a message detailing the error that occurred.
+
+| Name | Type |
+| :------ | :------ |
+| `error?` | `string` |
+| `value` | `any` |
+
+#### Defined in
+
+[template-engine.ts:132](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/template-engine.ts#L132)

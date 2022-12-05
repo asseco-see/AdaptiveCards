@@ -1,61 +1,75 @@
-[Adaptive Cards Javascript SDK](../README.md) › [SpacingDefinition](spacingdefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / SpacingDefinition
 
 # Class: SpacingDefinition
 
-## Hierarchy
-
-* **SpacingDefinition**
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](spacingdefinition.md#constructor)
+- [constructor](SpacingDefinition.md#constructor)
 
 ### Properties
 
-* [bottom](spacingdefinition.md#bottom)
-* [left](spacingdefinition.md#left)
-* [right](spacingdefinition.md#right)
-* [top](spacingdefinition.md#top)
+- [bottom](SpacingDefinition.md#bottom)
+- [left](SpacingDefinition.md#left)
+- [right](SpacingDefinition.md#right)
+- [top](SpacingDefinition.md#top)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new SpacingDefinition**(`top`: number, `right`: number, `bottom`: number, `left`: number): *[SpacingDefinition](spacingdefinition.md)*
+• **new SpacingDefinition**(`top?`, `right?`, `bottom?`, `left?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type | Default |
------- | ------ | ------ |
-`top` | number | 0 |
-`right` | number | 0 |
-`bottom` | number | 0 |
-`left` | number | 0 |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `top` | `number` | `0` |
+| `right` | `number` | `0` |
+| `bottom` | `number` | `0` |
+| `left` | `number` | `0` |
 
-**Returns:** *[SpacingDefinition](spacingdefinition.md)*
+#### Defined in
+
+[shared.ts:147](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L147)
 
 ## Properties
 
-###  bottom
+### bottom
 
-• **bottom**: *number* = 0
+• **bottom**: `number` = `0`
 
-___
+#### Defined in
 
-###  left
-
-• **left**: *number* = 0
+[shared.ts:145](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L145)
 
 ___
 
-###  right
+### left
 
-• **right**: *number* = 0
+• **left**: `number` = `0`
+
+#### Defined in
+
+[shared.ts:142](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L142)
 
 ___
 
-###  top
+### right
 
-• **top**: *number* = 0
+• **right**: `number` = `0`
+
+#### Defined in
+
+[shared.ts:144](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L144)
+
+___
+
+### top
+
+• **top**: `number` = `0`
+
+#### Defined in
+
+[shared.ts:143](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/shared.ts#L143)

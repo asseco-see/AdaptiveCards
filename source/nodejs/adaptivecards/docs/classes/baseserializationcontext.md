@@ -1,194 +1,280 @@
-[Adaptive Cards Javascript SDK](../README.md) › [BaseSerializationContext](baseserializationcontext.md)
+[Adaptive Cards Javascript SDK](../README.md) / BaseSerializationContext
 
 # Class: BaseSerializationContext
 
 ## Hierarchy
 
-* **BaseSerializationContext**
+- **`BaseSerializationContext`**
 
-  ↳ [SimpleSerializationContext](simpleserializationcontext.md)
+  ↳ [`SerializationContext`](SerializationContext.md)
 
-  ↳ [SerializationContext](serializationcontext.md)
-
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](baseserializationcontext.md#constructor)
+- [constructor](BaseSerializationContext.md#constructor)
 
 ### Properties
 
-* [targetVersion](baseserializationcontext.md#targetversion)
-* [toJSONOriginalParam](baseserializationcontext.md#tojsonoriginalparam)
+- [targetVersion](BaseSerializationContext.md#targetversion)
+- [toJSONOriginalParam](BaseSerializationContext.md#tojsonoriginalparam)
 
 ### Accessors
 
-* [eventCount](baseserializationcontext.md#eventcount)
+- [eventCount](BaseSerializationContext.md#eventcount)
 
 ### Methods
 
-* [clearEvents](baseserializationcontext.md#clearevents)
-* [getEventAt](baseserializationcontext.md#geteventat)
-* [logEvent](baseserializationcontext.md#logevent)
-* [logParseEvent](baseserializationcontext.md#logparseevent)
-* [serializeArray](baseserializationcontext.md#serializearray)
-* [serializeEnum](baseserializationcontext.md#serializeenum)
-* [serializeNumber](baseserializationcontext.md#serializenumber)
-* [serializeValue](baseserializationcontext.md#serializevalue)
+- [clearEvents](BaseSerializationContext.md#clearevents)
+- [getEventAt](BaseSerializationContext.md#geteventat)
+- [logEvent](BaseSerializationContext.md#logevent)
+- [logParseEvent](BaseSerializationContext.md#logparseevent)
+- [serializeArray](BaseSerializationContext.md#serializearray)
+- [serializeEnum](BaseSerializationContext.md#serializeenum)
+- [serializeNumber](BaseSerializationContext.md#serializenumber)
+- [serializeObject](BaseSerializationContext.md#serializeobject)
+- [serializeValue](BaseSerializationContext.md#serializevalue)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new BaseSerializationContext**(`targetVersion`: [Version](version.md)): *[BaseSerializationContext](baseserializationcontext.md)*
+• **new BaseSerializationContext**(`targetVersion?`)
 
-**Parameters:**
+#### Parameters
 
-Name | Type | Default |
------- | ------ | ------ |
-`targetVersion` | [Version](version.md) | Versions.latest |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `targetVersion` | [`Version`](Version.md) | `Versions.latest` |
 
-**Returns:** *[BaseSerializationContext](baseserializationcontext.md)*
+#### Defined in
+
+[serialization.ts:264](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L264)
 
 ## Properties
 
-###  targetVersion
+### targetVersion
 
-• **targetVersion**: *[Version](version.md)*
+• **targetVersion**: [`Version`](Version.md) = `Versions.latest`
+
+#### Defined in
+
+[serialization.ts:264](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L264)
 
 ___
 
-###  toJSONOriginalParam
+### toJSONOriginalParam
 
-• **toJSONOriginalParam**: *any*
+• **toJSONOriginalParam**: `any`
+
+#### Defined in
+
+[serialization.ts:133](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L133)
 
 ## Accessors
 
-###  eventCount
+### eventCount
 
-• **get eventCount**(): *number*
+• `get` **eventCount**(): `number`
 
-**Returns:** *number*
+#### Returns
+
+`number`
+
+#### Defined in
+
+[serialization.ts:266](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L266)
 
 ## Methods
 
-###  clearEvents
+### clearEvents
 
-▸ **clearEvents**(): *void*
+▸ **clearEvents**(): `void`
 
-**Returns:** *void*
+#### Returns
 
-___
+`void`
 
-###  getEventAt
+#### Defined in
 
-▸ **getEventAt**(`index`: number): *[IValidationEvent](../interfaces/ivalidationevent.md)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`index` | number |
-
-**Returns:** *[IValidationEvent](../interfaces/ivalidationevent.md)*
+[serialization.ts:237](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L237)
 
 ___
 
-###  logEvent
+### getEventAt
 
-▸ **logEvent**(`source`: [SerializableObject](serializableobject.md) | undefined, `phase`: [ValidationPhase](../enums/validationphase.md), `event`: [ValidationEvent](../enums/validationevent.md), `message`: string): *void*
+▸ **getEventAt**(`index`): [`IValidationEvent`](../interfaces/IValidationEvent.md)
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`source` | [SerializableObject](serializableobject.md) &#124; undefined |
-`phase` | [ValidationPhase](../enums/validationphase.md) |
-`event` | [ValidationEvent](../enums/validationevent.md) |
-`message` | string |
+| Name | Type |
+| :------ | :------ |
+| `index` | `number` |
 
-**Returns:** *void*
+#### Returns
 
-___
+[`IValidationEvent`](../interfaces/IValidationEvent.md)
 
-###  logParseEvent
+#### Defined in
 
-▸ **logParseEvent**(`source`: [SerializableObject](serializableobject.md) | undefined, `event`: [ValidationEvent](../enums/validationevent.md), `message`: string): *void*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`source` | [SerializableObject](serializableobject.md) &#124; undefined |
-`event` | [ValidationEvent](../enums/validationevent.md) |
-`message` | string |
-
-**Returns:** *void*
+[serialization.ts:260](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L260)
 
 ___
 
-###  serializeArray
+### logEvent
 
-▸ **serializeArray**(`target`: object, `propertyName`: string, `propertyValue`: any[] | undefined): *void*
+▸ **logEvent**(`source`, `phase`, `event`, `message`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type |
------- | ------ |
-`target` | object |
-`propertyName` | string |
-`propertyValue` | any[] &#124; undefined |
+| Name | Type |
+| :------ | :------ |
+| `source` | `undefined` \| [`SerializableObject`](SerializableObject.md) |
+| `phase` | [`ValidationPhase`](../enums/ValidationPhase.md) |
+| `event` | [`ValidationEvent`](../enums/ValidationEvent.md) |
+| `message` | `string` |
 
-**Returns:** *void*
+#### Returns
 
-___
+`void`
 
-###  serializeEnum
+#### Defined in
 
-▸ **serializeEnum**(`enumType`: object, `target`: object, `propertyName`: string, `propertyValue`: number | undefined, `defaultValue`: number | undefined): *void*
-
-**Parameters:**
-
-Name | Type | Default |
------- | ------ | ------ |
-`enumType` | object | - |
-`target` | object | - |
-`propertyName` | string | - |
-`propertyValue` | number &#124; undefined | - |
-`defaultValue` | number &#124; undefined | undefined |
-
-**Returns:** *void*
+[serialization.ts:241](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L241)
 
 ___
 
-###  serializeNumber
+### logParseEvent
 
-▸ **serializeNumber**(`target`: object, `propertyName`: string, `propertyValue`: number | undefined, `defaultValue`: number | undefined): *void*
+▸ **logParseEvent**(`source`, `event`, `message`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type | Default |
------- | ------ | ------ |
-`target` | object | - |
-`propertyName` | string | - |
-`propertyValue` | number &#124; undefined | - |
-`defaultValue` | number &#124; undefined | undefined |
+| Name | Type |
+| :------ | :------ |
+| `source` | `undefined` \| [`SerializableObject`](SerializableObject.md) |
+| `event` | [`ValidationEvent`](../enums/ValidationEvent.md) |
+| `message` | `string` |
 
-**Returns:** *void*
+#### Returns
+
+`void`
+
+#### Defined in
+
+[serialization.ts:256](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L256)
 
 ___
 
-###  serializeValue
+### serializeArray
 
-▸ **serializeValue**(`target`: object, `propertyName`: string, `propertyValue`: any, `defaultValue`: any): *void*
+▸ **serializeArray**(`target`, `propertyName`, `propertyValue`): `void`
 
-**Parameters:**
+#### Parameters
 
-Name | Type | Default |
------- | ------ | ------ |
-`target` | object | - |
-`propertyName` | string | - |
-`propertyValue` | any | - |
-`defaultValue` | any | undefined |
+| Name | Type |
+| :------ | :------ |
+| `target` | `Object` |
+| `propertyName` | `string` |
+| `propertyValue` | `undefined` \| `any`[] |
 
-**Returns:** *void*
+#### Returns
+
+`void`
+
+#### Defined in
+
+[serialization.ts:182](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L182)
+
+___
+
+### serializeEnum
+
+▸ **serializeEnum**(`enumType`, `target`, `propertyName`, `propertyValue`, `defaultValue?`): `void`
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `enumType` | `Object` | `undefined` |
+| `target` | `Object` | `undefined` |
+| `propertyName` | `string` | `undefined` |
+| `propertyValue` | `undefined` \| `number` | `undefined` |
+| `defaultValue` | `undefined` \| `number` | `undefined` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[serialization.ts:155](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L155)
+
+___
+
+### serializeNumber
+
+▸ **serializeNumber**(`target`, `propertyName`, `propertyValue`, `defaultValue?`): `void`
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `target` | `Object` | `undefined` |
+| `propertyName` | `string` | `undefined` |
+| `propertyValue` | `undefined` \| `number` | `undefined` |
+| `defaultValue` | `undefined` \| `number` | `undefined` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[serialization.ts:146](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L146)
+
+___
+
+### serializeObject
+
+▸ **serializeObject**(`target`, `propertyName`, `propertyValue`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `target` | `Object` |
+| `propertyName` | `string` |
+| `propertyValue` | `undefined` \| [`SerializableObject`](SerializableObject.md) |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[serialization.ts:215](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L215)
+
+___
+
+### serializeValue
+
+▸ **serializeValue**(`target`, `propertyName`, `propertyValue`, `defaultValue?`, `forceDeleteIfNullOrDefault?`): `void`
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `target` | `Object` | `undefined` |
+| `propertyName` | `string` | `undefined` |
+| `propertyValue` | `any` | `undefined` |
+| `defaultValue` | `any` | `undefined` |
+| `forceDeleteIfNullOrDefault` | `boolean` | `false` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[serialization.ts:135](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/serialization.ts#L135)

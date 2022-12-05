@@ -30,7 +30,7 @@ abstract class AbstractTextFormatter {
 class DateFormatter extends AbstractTextFormatter {
     protected internalFormat(lang: string | undefined, matches: RegExpExecArray): string {
         let date = new Date(Date.parse(matches[1]));
-        let format = matches[2] != undefined ? matches[2].toLowerCase() : "compact";
+        let format: any = matches[2] != undefined ? matches[2].toLowerCase() : "compact";
 
         if (format != "compact") {
             return date.toLocaleDateString(lang, { day: "numeric", weekday: format, month: format, year: "numeric" });

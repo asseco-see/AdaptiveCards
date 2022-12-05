@@ -1,0 +1,29 @@
+{
+	"id": "open-url-mode",
+	"version": "0.1",
+	"elementPrefix": "",
+	"propertyPrefix": "asseco",
+	"supports": {
+		"javascript": "https://npmjs.com/package/adaptivecards-autocomplete"
+	},
+	"contributes": {
+		"definitions": {
+			"OpenUrlMode": {
+				"classType": "Enum",
+				"type": "OpenUrlMode",
+				"values": ["default", "download"]
+			},
+			"Action.OpenUrl": {
+				"properties": {
+					"mode": {
+						"type": "OpenUrlMode",
+						"description": "Action.OpenUrl mode.",
+						"version": "0.1",
+						"default": "default",
+						"required": false
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,113 +1,165 @@
-[Adaptive Cards Javascript SDK](../README.md) › [FactTitleDefinition](facttitledefinition.md)
+[Adaptive Cards Javascript SDK](../README.md) / FactTitleDefinition
 
 # Class: FactTitleDefinition
 
 ## Hierarchy
 
-  ↳ [FactTextDefinition](facttextdefinition.md)
+- [`FactTextDefinition`](FactTextDefinition.md)
 
-  ↳ **FactTitleDefinition**
+  ↳ **`FactTitleDefinition`**
 
-## Index
+## Table of contents
 
 ### Constructors
 
-* [constructor](facttitledefinition.md#constructor)
+- [constructor](FactTitleDefinition.md#constructor)
 
 ### Properties
 
-* [color](facttitledefinition.md#color)
-* [isSubtle](facttitledefinition.md#issubtle)
-* [maxWidth](facttitledefinition.md#optional-maxwidth)
-* [size](facttitledefinition.md#size)
-* [weight](facttitledefinition.md#weight)
-* [wrap](facttitledefinition.md#wrap)
+- [color](FactTitleDefinition.md#color)
+- [isSubtle](FactTitleDefinition.md#issubtle)
+- [maxWidth](FactTitleDefinition.md#maxwidth)
+- [size](FactTitleDefinition.md#size)
+- [weight](FactTitleDefinition.md#weight)
+- [wrap](FactTitleDefinition.md#wrap)
 
 ### Methods
 
-* [getDefaultWeight](facttitledefinition.md#getdefaultweight)
-* [toJSON](facttitledefinition.md#tojson)
+- [getDefaultWeight](FactTitleDefinition.md#getdefaultweight)
+- [toJSON](FactTitleDefinition.md#tojson)
 
 ## Constructors
 
-###  constructor
+### constructor
 
-\+ **new FactTitleDefinition**(`obj?`: any): *[FactTitleDefinition](facttitledefinition.md)*
+• **new FactTitleDefinition**(`obj?`)
 
-*Overrides [FactTextDefinition](facttextdefinition.md).[constructor](facttextdefinition.md#constructor)*
+#### Parameters
 
-**Parameters:**
+| Name | Type |
+| :------ | :------ |
+| `obj?` | `any` |
 
-Name | Type |
------- | ------ |
-`obj?` | any |
+#### Overrides
 
-**Returns:** *[FactTitleDefinition](facttitledefinition.md)*
+[FactTextDefinition](FactTextDefinition.md).[constructor](FactTextDefinition.md#constructor)
+
+#### Defined in
+
+[host-config.ts:204](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L204)
 
 ## Properties
 
-###  color
+### color
 
-• **color**: *[TextColor](../enums/textcolor.md)* = Enums.TextColor.Default
+• **color**: [`TextColor`](../enums/TextColor.md) = `Enums.TextColor.Default`
 
-*Inherited from [BaseTextDefinition](basetextdefinition.md).[color](basetextdefinition.md#color)*
+#### Inherited from
 
-___
+[FactTextDefinition](FactTextDefinition.md).[color](FactTextDefinition.md#color)
 
-###  isSubtle
+#### Defined in
 
-• **isSubtle**: *boolean* = false
-
-*Inherited from [BaseTextDefinition](basetextdefinition.md).[isSubtle](basetextdefinition.md#issubtle)*
+[host-config.ts:106](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L106)
 
 ___
 
-### `Optional` maxWidth
+### isSubtle
 
-• **maxWidth**? : *undefined | number* = 150
+• **isSubtle**: `boolean` = `false`
 
-___
+#### Inherited from
 
-###  size
+[FactTextDefinition](FactTextDefinition.md).[isSubtle](FactTextDefinition.md#issubtle)
 
-• **size**: *[TextSize](../enums/textsize.md)* = Enums.TextSize.Default
+#### Defined in
 
-*Inherited from [BaseTextDefinition](basetextdefinition.md).[size](basetextdefinition.md#size)*
-
-___
-
-###  weight
-
-• **weight**: *[TextWeight](../enums/textweight.md)* = Enums.TextWeight.Bolder
-
-*Overrides [BaseTextDefinition](basetextdefinition.md).[weight](basetextdefinition.md#weight)*
+[host-config.ts:107](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L107)
 
 ___
 
-###  wrap
+### maxWidth
 
-• **wrap**: *boolean* = true
+• `Optional` **maxWidth**: `number` = `150`
 
-*Inherited from [FactTextDefinition](facttextdefinition.md).[wrap](facttextdefinition.md#wrap)*
+#### Defined in
+
+[host-config.ts:201](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L201)
+
+___
+
+### size
+
+• **size**: [`TextSize`](../enums/TextSize.md) = `Enums.TextSize.Default`
+
+#### Inherited from
+
+[FactTextDefinition](FactTextDefinition.md).[size](FactTextDefinition.md#size)
+
+#### Defined in
+
+[host-config.ts:105](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L105)
+
+___
+
+### weight
+
+• **weight**: [`TextWeight`](../enums/TextWeight.md) = `Enums.TextWeight.Bolder`
+
+#### Overrides
+
+[FactTextDefinition](FactTextDefinition.md).[weight](FactTextDefinition.md#weight)
+
+#### Defined in
+
+[host-config.ts:202](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L202)
+
+___
+
+### wrap
+
+• **wrap**: `boolean` = `true`
+
+#### Inherited from
+
+[FactTextDefinition](FactTextDefinition.md).[wrap](FactTextDefinition.md#wrap)
+
+#### Defined in
+
+[host-config.ts:182](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L182)
 
 ## Methods
 
-###  getDefaultWeight
+### getDefaultWeight
 
-▸ **getDefaultWeight**(): *[TextWeight](../enums/textweight.md)*
+▸ **getDefaultWeight**(): [`TextWeight`](../enums/TextWeight.md)
 
-*Overrides [BaseTextDefinition](basetextdefinition.md).[getDefaultWeight](basetextdefinition.md#getdefaultweight)*
+#### Returns
 
-**Returns:** *[TextWeight](../enums/textweight.md)*
+[`TextWeight`](../enums/TextWeight.md)
+
+#### Overrides
+
+[FactTextDefinition](FactTextDefinition.md).[getDefaultWeight](FactTextDefinition.md#getdefaultweight)
+
+#### Defined in
+
+[host-config.ts:213](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L213)
 
 ___
 
-###  toJSON
+### toJSON
 
-▸ **toJSON**(): *any*
+▸ **toJSON**(): `any`
 
-*Inherited from [FactTextDefinition](facttextdefinition.md).[toJSON](facttextdefinition.md#tojson)*
+#### Returns
 
-*Overrides [BaseTextDefinition](basetextdefinition.md).[toJSON](basetextdefinition.md#tojson)*
+`any`
 
-**Returns:** *any*
+#### Inherited from
+
+[FactTextDefinition](FactTextDefinition.md).[toJSON](FactTextDefinition.md#tojson)
+
+#### Defined in
+
+[host-config.ts:192](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/host-config.ts#L192)

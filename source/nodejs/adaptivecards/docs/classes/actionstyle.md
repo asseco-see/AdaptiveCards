@@ -1,33 +1,51 @@
-[Adaptive Cards Javascript SDK](../README.md) › [ActionStyle](actionstyle.md)
+[Adaptive Cards Javascript SDK](../README.md) / ActionStyle
 
 # Class: ActionStyle
 
-## Hierarchy
+## Table of contents
 
-* **ActionStyle**
+### Constructors
 
-## Index
+- [constructor](ActionStyle.md#constructor)
 
 ### Properties
 
-* [Default](actionstyle.md#static-readonly-default)
-* [Destructive](actionstyle.md#static-readonly-destructive)
-* [Positive](actionstyle.md#static-readonly-positive)
+- [Default](ActionStyle.md#default)
+- [Destructive](ActionStyle.md#destructive)
+- [Positive](ActionStyle.md#positive)
+
+## Constructors
+
+### constructor
+
+• **new ActionStyle**()
 
 ## Properties
 
-### `Static` `Readonly` Default
+### Default
 
-▪ **Default**: *"default"* = "default"
+▪ `Static` `Readonly` **Default**: ``"default"``
 
-___
+#### Defined in
 
-### `Static` `Readonly` Destructive
-
-▪ **Destructive**: *"destructive"* = "destructive"
+[enums.ts:8](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L8)
 
 ___
 
-### `Static` `Readonly` Positive
+### Destructive
 
-▪ **Positive**: *"positive"* = "positive"
+▪ `Static` `Readonly` **Destructive**: ``"destructive"``
+
+#### Defined in
+
+[enums.ts:10](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L10)
+
+___
+
+### Positive
+
+▪ `Static` `Readonly` **Positive**: ``"positive"``
+
+#### Defined in
+
+[enums.ts:9](https://github.com/asseco-see/AdaptiveCards/blob/1f0afdc45/source/nodejs/adaptivecards/src/enums.ts#L9)
