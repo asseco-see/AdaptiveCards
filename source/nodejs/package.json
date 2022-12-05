@@ -28,8 +28,7 @@
 		"react-dom": "^16.8.6",
 		"rimraf": "^2.6.3",
 		"style-loader": "^0.23.1",
-		"ts-jest": "^27.1.4",
-		"typings-for-css-modules-loader": "^1.7.0"
+		"ts-jest": "^27.1.4"
 	},
 	"peerDependencies": {
 		"@typescript-eslint/eslint-plugin": "^5.0.0",
