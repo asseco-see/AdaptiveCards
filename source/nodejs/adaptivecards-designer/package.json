@@ -1,6 +1,7 @@
 {
 	"name": "@asseco/adaptivecards-designer",
 	"version": "1.1.0",
+	"private": true,
 	"description": "Adaptive Card designer embeddable control",
 	"author": "AdaptiveCards",
 	"license": "MIT",

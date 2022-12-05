@@ -68,7 +68,7 @@ steps:
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
       cd source/nodejs/adaptivecards
-      npm run publish_package
+      npm run publish_package --no-private
       
 - task: DockerAdvanced@0
   displayName: 'COMMIT_NPM_publish_adaptivecards_designer'
@@ -79,7 +79,7 @@ steps:
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
       cd source/nodejs/adaptivecards-designer
-      npm run publish_package
+      npm run publish_package --no-private
 
 - task: DockerAdvanced@0
   displayName: 'COMMIT_publish'
