@@ -35,7 +35,7 @@
 		"lint": "eslint src/*.ts",
 		"release": "npm run clean && concurrently \"npm:build\" \"webpack --mode=production\" \"npm:docs\" && concurrently \"npm:test\" \"npm:dts\"",
 		"docs": "npx typedoc",
-		"publish": "npm version $(head -n 1 ../../../.version) && npm publish --registry https://devops.see.asseco.com/DIGITAL/_packaging/Asseco/npm/registry/ --loglevel warn"
+		"publish_package": "npm version $(head -n 1 ../../../.version) && npm publish --registry https://devops.see.asseco.com/DIGITAL/_packaging/Asseco/npm/registry/ --loglevel warn"
 	},
 	"jest": {
 		"rootDir": "src",

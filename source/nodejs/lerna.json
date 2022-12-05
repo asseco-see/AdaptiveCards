@@ -8,7 +8,7 @@
 		"spec-generator/**"
 	],
 	"command": {
-		"publish": {
+		"publish_package": {
 			"ignoreChanges": [
 				"**/dist/**",
 				"**/lib/**",
