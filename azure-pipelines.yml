@@ -31,14 +31,14 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_install'
   inputs:
-    image: 'registry.see.asseco.com/platform/node:18-alpine'
+    image: 'registry.see.asseco.com/tools/node:18'
     dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
-    user: root
     commands: |
       cp npm-asee-dp-robot /root/.npmrc
       cp /source/samples/HostConfig/*.json /source/source/nodejs/adaptivecards-designer/src/hostConfigs/
       cd source/nodejs
+      npm config set user 0
       npm install --unsafe-perm --no-progress --loglevel=warn
       npx lerna bootstrap
       npx lerna run build
@@ -49,6 +49,7 @@ steps:
   displayName: 'COMMIT_generate_version'
   inputs:
     image: 'registry.see.asseco.com/tools/image-tagger'
+    dockerRegistryEndpoint: harbor
     envVars: |
       TAGGER_VERSION=v4
       GITHUB_TOKEN=$(githubToken)
@@ -61,7 +62,7 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_NPM_publish_adaptivecards'
   inputs:
-    image: 'registry.see.asseco.com/platform/node:18-alpine'
+    image: 'registry.see.asseco.com/tools/node:18'
     dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
     commands: |
@@ -72,7 +73,7 @@ steps:
 - task: DockerAdvanced@0
   displayName: 'COMMIT_NPM_publish_adaptivecards_designer'
   inputs:
-    image: 'registry.see.asseco.com/platform/node:18-alpine'
+    image: 'registry.see.asseco.com/tools/node:18'
     dockerRegistryEndpoint: harbor
     secureFile: npm-asee-dp-robot
     commands: |
