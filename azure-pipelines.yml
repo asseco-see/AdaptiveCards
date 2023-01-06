@@ -105,12 +105,15 @@ steps:
 
 - task: DockerAdvanced@0
   displayName: 'COMMIT_release_version'
+  continueOnError: true
   inputs:
     image: 'registry.see.asseco.com/tools/image-tagger'
     dockerRegistryEndpoint: harbor
     envVars: |
       TAGGER_VERSION=v4
       GITHUB_TOKEN=$(githubToken)
+      GITHUB_EMAIL=$(githubRobotEmail)
+      GITHUB_NAME=$(githubRobotName)
       NPM_ARTIFACTS=@asseco/adaptivecards:UI Kit;@asseco/adaptivecards-designer:UI Kit
       RELEASED_VERSION_API_URL=$(releasedVersionApiUrl)
       PUBLIC_DEVOPS_SERVER_URL=$(publicDevOpsServerUrl)
