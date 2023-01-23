@@ -109,11 +109,13 @@ steps:
   inputs:
     image: 'registry.see.asseco.com/tools/image-tagger'
     dockerRegistryEndpoint: harbor
+    secureFile: private.key
     envVars: |
       TAGGER_VERSION=v4
       GITHUB_TOKEN=$(githubToken)
       GITHUB_EMAIL=$(githubRobotEmail)
       GITHUB_NAME=$(githubRobotName)
+      GITHUB_PASSWORD=$(githubRobotPassword)
       NPM_ARTIFACTS=@asseco/adaptivecards:UI Kit;@asseco/adaptivecards-designer:UI Kit
       RELEASED_VERSION_API_URL=$(releasedVersionApiUrl)
       PUBLIC_DEVOPS_SERVER_URL=$(publicDevOpsServerUrl)
