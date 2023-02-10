@@ -32,6 +32,7 @@ hexo.extend.helper.register('code_and_card', function (jsonPath, templatePath = 
 		let templateUrl = url_for(`/payloads/${path.basename(templatePath)}`);
 		templateAttribute = `data-template-url="${templateUrl}"`;
 		dataAttribute = `data-data-url="${dataUrl}"`;
+		const fd = fs.openSync(dataPath, fs.O_RDONLY, 0o600);
 		div += `
 		<div class="w3-container w3-cell w3-mobile w3-rest code-snippet show-with-templating">
 			<div class="codeHeader">
@@ -40,7 +41,7 @@ hexo.extend.helper.register('code_and_card', function (jsonPath, templatePath = 
 					<span><i class="far fa-copy"></i> Copy</span>
 				</button>
 			</div>
-			<pre><code class="json w3-mobile code-short">${fs.readFileSync(dataPath)}</code></pre>
+			<pre><code class="json w3-mobile code-short">${fs.readFileSync(fd)}</code></pre>
 			<div class="codeHeader">
 				<span class="language">Template JSON</span>
 				<button aria-label="Copy Adaptive Card Template sample JSON" class="action copy-code">

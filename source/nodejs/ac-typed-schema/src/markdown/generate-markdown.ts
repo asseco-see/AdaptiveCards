@@ -280,10 +280,6 @@ function getPropertySummary(property: SchemaProperty, knownTypes, autoLink, elem
 	};
 }
 
-function replacePipes(type: string) {
-	return type.replace("|", ", ");
-}
-
 export function createPropertiesDetails(classDefinition: SchemaClass, headerLevel: number, knownTypes, autoLink, includeVersion: boolean, elementVersion: string) {
 	var md = '';
 
