@@ -1,0 +1,18 @@
+trigger: none
+pr:
+- main
+
+pool: 'Digital'
+
+variables:
+- group: common
+
+steps:
+
+- task: DockerAdvanced@0
+  displayName: 'Validation of stable dependency versions'
+  inputs: 
+    envVars: |
+        GITHUB_TOKEN=$(githubToken)  
+    image: 'registry.see.asseco.com/tools/stable-version-checker'
+    dockerRegistryEndpoint: harbor
