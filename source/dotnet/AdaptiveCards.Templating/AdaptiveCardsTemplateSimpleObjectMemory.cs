@@ -13,7 +13,7 @@ namespace AdaptiveCards.Templating
     /// </summary>
     public class AdaptiveCardsTemplateSimpleObjectMemory : IMemory 
     {
-        private SimpleObjectMemory simpleObjectMemory;
+        public SimpleObjectMemory simpleObjectMemory;
         /// <summary>
         /// Simple implementation of AEL.Memory.IMemory
         /// It serves as an entry points to additional customazation and optimazation

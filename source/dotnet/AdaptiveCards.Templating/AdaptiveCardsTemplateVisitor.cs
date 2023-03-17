@@ -11,8 +11,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
+using Microsoft.PowerFx;
+using Microsoft.PowerFx.Types;
+using Microsoft.PowerFx.Syntax;
 
 namespace AdaptiveCards.Templating
 {
@@ -645,6 +650,43 @@ namespace AdaptiveCards.Templating
             {
                 return "";
             }
+            bool fxError = false;
+            StringBuilder result = new StringBuilder();
+            if (unboundString.StartsWith("$"))
+            {
+                {
+                    var dataValue = (data as AdaptiveCardsTemplateSimpleObjectMemory)?.simpleObjectMemory.ToString();
+                    var parameters = (RecordValue)FormulaValue.FromJson(dataValue) ?? RecordValue.Empty();
+                    RecalcEngine _engine = new PowerFxScopeFactory().GetEngine();
+                    try
+                    {
+                        var checkResult = _engine.Check(unboundString.Substring(2, unboundString.Length - 3), parameters.Type, options: null);
+                        if (checkResult.IsSuccess)
+                        {
+                            var eval = checkResult.GetEvaluator();
+                            var evalResult = eval.Eval(parameters);
+                            var resultString = PowerFxHelper.ConvertToString(evalResult);
+                            if (!isTemplatedString)
+                            {
+                                resultString = resultString.Substring(1, resultString.Length - 2);
+                            }
+                            result.Append(resultString);
+                        }
+                        else
+                        {
+                            var errors = checkResult.Errors.FirstOrDefault();
+                            //result.Append(unboundString);
+                            fxError = true;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        //result.Append(unboundString);
+                        fxError = true;
+                    }
+                }
+                if (!fxError) return result.ToString();
+            }
 
             Expression exp;
             try
@@ -669,7 +711,7 @@ namespace AdaptiveCards.Templating
                 };
             }
 
-            StringBuilder result = new StringBuilder();
+
             var (value, error) = exp.TryEvaluate(data, options);
             if (error == null)
             {

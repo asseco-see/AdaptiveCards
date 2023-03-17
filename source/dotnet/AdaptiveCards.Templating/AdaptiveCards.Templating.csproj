@@ -15,6 +15,7 @@
     <PackageProjectUrl>https://github.com/microsoft/AdaptiveCards/issues/2448</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DefineConstants>$(DefineConstants);$(AdditionalConstants)</DefineConstants>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>$(MSBuildProjectDirectory)\docs\AdaptiveCardsTemplate.xml</DocumentationFile>
@@ -50,6 +51,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.PowerFx.Interpreter" Version="0.2.3-preview" />
+    <PackageReference Include="Microsoft.PowerFx.LanguageServerProtocol" Version="0.2.3-preview" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" NoWarn="NU1605" />
     <PackageReference Include="Vsxmd" Version="1.4.*">
       <PrivateAssets>all</PrivateAssets>
