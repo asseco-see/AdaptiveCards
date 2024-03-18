@@ -268,7 +268,7 @@ exports[`InputChoiceSet inputChoiceSetComboBox should be rendered correctly 1`] 
                 aria-hidden="true"
                 class="ms-Icon root-105 css-126 ms-Button-icon icon-120"
                 data-icon-name="ChevronDown"
-                style="font-family: \\"FabricMDL2Icons\\";"
+                style="font-family: "FabricMDL2Icons";"
               >
                 
               </i>
@@ -332,7 +332,7 @@ exports[`InputChoiceSet inputChoiceSetComboBoxMultiSelect should be rendered cor
                 aria-hidden="true"
                 class="ms-Icon root-105 css-126 ms-Button-icon icon-120"
                 data-icon-name="ChevronDown"
-                style="font-family: \\"FabricMDL2Icons\\";"
+                style="font-family: "FabricMDL2Icons";"
               >
                 
               </i>
