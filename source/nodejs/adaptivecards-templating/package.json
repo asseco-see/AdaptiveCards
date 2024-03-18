@@ -48,7 +48,7 @@
 	},
 	"peerDependencies": {
 		"adaptive-expressions": "^4.16.0",
-		"typedoc": "^0.23.21",
+		"typedoc": "^0.25.0",
 		"typedoc-plugin-markdown": "^3.13.6"
 	}
 }

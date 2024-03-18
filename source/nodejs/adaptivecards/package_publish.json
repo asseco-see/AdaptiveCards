@@ -42,7 +42,7 @@
 	},
 	"peerDependencies": {
 		"adaptive-expressions": "^4.9.2",
-		"typedoc": "^0.23.21",
+		"typedoc": "^0.25.0",
 		"typedoc-plugin-markdown": "^3.13.6",
 		"@types/node": "^18.11.9",
 		"@types/jest": "^29.5.0",
