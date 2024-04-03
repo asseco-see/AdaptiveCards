@@ -7,14 +7,14 @@ import * as ac from 'adaptivecards';
 import * as chalk from 'chalk';
 
 const argv = yargs.options({
-    v: { type: 'boolean', default: false, alias: "verbose"}
+    v: { type: 'boolean', default: false, alias: "verbose" }
 })
     .usage('Usage: $0 <file or path> [options]')
     .help('h')
     .alias('h', 'help')
     .argv;
 
-const verbose : boolean = argv.v;
+const verbose: boolean = argv.v;
 
 enum TestState {
     Skipped,
@@ -29,8 +29,8 @@ enum TestState {
 * @param {TestState} state - State to map to icon.
 * @return {string} string containing appropriate icon
 */
-function iconFromTestState(state: TestState) : string {
-    switch(state) {
+function iconFromTestState(state: TestState): string {
+    switch (state) {
         case TestState.Passed: {
             return "✔";
         }
@@ -49,9 +49,8 @@ function iconFromTestState(state: TestState) : string {
     }
 }
 
-class TestResult
-{
-    constructor(public filename: string, public result: TestState, public validationErrors?: ac.ValidationFailure[], public error? : Error) {
+class TestResult {
+    constructor(public filename: string, public result: TestState, public validationErrors?: ac.ValidationFailure[], public error?: Error) {
         if (error && result != TestState.Failed) {
             throw "invalid pass state";
         }
@@ -64,7 +63,7 @@ class TestResult
 * @param {string} fsitem - Path to test
 * @return {Promise<TestResult[]>} Promise for results
 */
-async function testFileOrDir(fsitem : string) : Promise<TestResult[]> {
+async function testFileOrDir(fsitem: string): Promise<TestResult[]> {
     return new Promise((resolve, reject) => {
         setImmediate(() => {
             // determine if fsitem is a dir or a file, and test accordingly
@@ -92,7 +91,7 @@ async function testFileOrDir(fsitem : string) : Promise<TestResult[]> {
 * @param {string} filename - File to test
 * @return {Promise<TestResult>} Promise for file's result
 */
-async function testFile(filename : string) : Promise<TestResult> {
+async function testFile(filename: string): Promise<TestResult> {
     return new Promise((resolve) => {
         setImmediate(() => {
             // only test files that end in .json
@@ -105,14 +104,14 @@ async function testFile(filename : string) : Promise<TestResult> {
 
             // load and test card
             fs.promises.readFile(filename).then((cardBuffer) => {
-                let cardJson = JSON.parse(cardBuffer.toString());
-                let testCard = new ac.AdaptiveCard();
+                const cardJson = JSON.parse(cardBuffer.toString());
+                const testCard = new ac.AdaptiveCard();
                 testCard.parse(cardJson);
-                let validateProperties = testCard.validateProperties();
+                const validateProperties = testCard.validateProperties();
                 return validateProperties.failures;
             }).then((validationErrors) => {
                 // determine pass state from warnings (errors are caught in .catch() below)
-                let testState : TestState;
+                let testState: TestState;
                 if (validationErrors.length === 0) {
                     testState = TestState.Passed;
                 } else {
@@ -131,19 +130,19 @@ async function testFile(filename : string) : Promise<TestResult> {
 * @param {string} dirname - Directory to test
 * @return {Promise<TestResult[]>} Promise for results
 */
-async function testDir(dirname : string) : Promise<TestResult[]> {
+async function testDir(dirname: string): Promise<TestResult[]> {
     return new Promise((resolve, reject) => {
         setImmediate(() => {
             if (verbose) console.log(chalk.grey(`Testing directory: ${dirname}`));
 
             // enumerate items in the supplied directory
             fs.promises.readdir(dirname).then((currDir) => {
-                let futureResults : Promise<TestResult[]>[] = [];
+                const futureResults: Promise<TestResult[]>[] = [];
 
                 // for every item in the current dir
                 currDir.forEach(item => {
                     // kick off test of item
-                    let currentItem = path.join(dirname, item);
+                    const currentItem = path.join(dirname, item);
                     if (verbose) console.log(chalk.grey(currentItem));
                     futureResults.push(testFileOrDir(path.normalize(currentItem)));
                 });
@@ -153,7 +152,7 @@ async function testDir(dirname : string) : Promise<TestResult[]> {
                 return Promise.all(futureResults);
             }).then((results) => {
                 // merge result sets
-                let finalResults : TestResult[] = [];
+                let finalResults: TestResult[] = [];
                 results.forEach((result) => {
                     finalResults = finalResults.concat(result);
                 });
@@ -169,20 +168,20 @@ async function testDir(dirname : string) : Promise<TestResult[]> {
 * Extracts work to do from commandline, then kicks off tests
 * @return {Promise<TestResult[]>} Promise for results
 */
-async function testItemsInArgv() : Promise<TestResult[]> {
+async function testItemsInArgv(): Promise<TestResult[]> {
     return new Promise(resolve => {
         setImmediate(() => {
-            let futureResults : Promise<TestResult[]>[] = [];
+            const futureResults: Promise<TestResult[]>[] = [];
 
             // iterate through paths passed on commandline
-            argv._.forEach(fileOrPath => {
+            argv._.forEach((fileOrPath: any) => {
                 // and then kick off tests for same
                 futureResults.push(testFileOrDir(fileOrPath));
             });
 
             // once all of the tests have completed, merge the results into a single array
             Promise.all(futureResults).then((results) => {
-                let finalResults : TestResult[] = [];
+                let finalResults: TestResult[] = [];
                 results.forEach((result) => {
                     finalResults = finalResults.concat(result);
                 });
@@ -194,8 +193,7 @@ async function testItemsInArgv() : Promise<TestResult[]> {
     });
 }
 
-async function main()
-{
+async function main() {
     return testItemsInArgv();
 }
 
@@ -205,7 +203,7 @@ main().then((testResults) => {
     }
 
     // testResultCount tracks count of results per result type
-    let testResultCount : number[] = [];
+    const testResultCount: number[] = [];
     for (let i = 0; i < TestState.__LENGTH; ++i) {
         testResultCount[i] = 0;
     }
@@ -215,11 +213,11 @@ main().then((testResults) => {
         return left.result - right.result;
     });
 
-    for (let testResult of testResults) {
+    for (const testResult of testResults) {
         // track result count
         testResultCount[testResult.result]++;
 
-        let fileString = `${iconFromTestState(testResult.result)} ${testResult.filename}`;
+        const fileString = `${iconFromTestState(testResult.result)} ${testResult.filename}`;
         if (testResult.result === TestState.Passed) {
             console.log(chalk.grey(fileString));
         } else {
