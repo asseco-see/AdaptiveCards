@@ -177,7 +177,7 @@ export function linkType(string, type, autoLink) {
 		var typeLink = '#' + REFERENCE + type.toLowerCase().replace(/ /g, '-');
 
 		if (autoLink === enums.autoLinkOption.aggressive) {
-			var regExp = new RegExp('([^`\.]|^)' + type + '([ \.]|$)');
+			var regExp = new RegExp('([^`.]|^)' + type + '([ .]|$)');
 			return string.replace(regExp, "$1" + getLinkMarkdown(styleCode(type), typeLink) + "$2");
 		} else {
 			var regExp = new RegExp('`' + type + '`');

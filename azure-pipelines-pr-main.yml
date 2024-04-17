@@ -1,0 +1,20 @@
+trigger: none
+pr:
+- main
+
+pool: 'Digital'
+
+variables:
+- group: common
+
+resources:
+  repositories:
+    - repository: templates
+      type: githubenterprise
+      name: asseco-see/pipeline-templates
+      ref: refs/heads/main
+      endpoint: github
+
+steps:
+
+- template: release-check/release-check.yml@templates
