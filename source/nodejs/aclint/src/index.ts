@@ -172,12 +172,12 @@ async function testDir(dirname : string) : Promise<TestResult[]> {
 async function testItemsInArgv() : Promise<TestResult[]> {
     return new Promise(resolve => {
         setImmediate(() => {
-            let futureResults : Promise<TestResult[]>[] = [];
+            const futureResults : Promise<TestResult[]>[] = [];
 
             // iterate through paths passed on commandline
             argv._.forEach(fileOrPath => {
                 // and then kick off tests for same
-                futureResults.push(testFileOrDir(fileOrPath));
+                futureResults.push(testFileOrDir(fileOrPath as string));
             });
 
             // once all of the tests have completed, merge the results into a single array
