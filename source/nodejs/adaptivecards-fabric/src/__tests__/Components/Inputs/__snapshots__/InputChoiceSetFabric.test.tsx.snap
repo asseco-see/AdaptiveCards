@@ -253,10 +253,8 @@ exports[`InputChoiceSet inputChoiceSetComboBox should be rendered correctly 1`] 
             value="Red"
           />
           <button
-            aria-hidden="true"
             class="ms-Button ms-Button--icon ms-ComboBox-CaretDown-button root-117"
             data-is-focusable="false"
-            role="presentation"
             tabindex="-1"
             type="button"
           >
@@ -268,7 +266,7 @@ exports[`InputChoiceSet inputChoiceSetComboBox should be rendered correctly 1`] 
                 aria-hidden="true"
                 class="ms-Icon root-105 css-126 ms-Button-icon icon-120"
                 data-icon-name="ChevronDown"
-                style="font-family: \\"FabricMDL2Icons\\";"
+                style="font-family: "FabricMDL2Icons";"
               >
                 
               </i>
@@ -317,10 +315,8 @@ exports[`InputChoiceSet inputChoiceSetComboBoxMultiSelect should be rendered cor
             value="Red"
           />
           <button
-            aria-hidden="true"
             class="ms-Button ms-Button--icon ms-ComboBox-CaretDown-button root-117"
             data-is-focusable="false"
-            role="presentation"
             tabindex="-1"
             type="button"
           >
@@ -332,7 +328,7 @@ exports[`InputChoiceSet inputChoiceSetComboBoxMultiSelect should be rendered cor
                 aria-hidden="true"
                 class="ms-Icon root-105 css-126 ms-Button-icon icon-120"
                 data-icon-name="ChevronDown"
-                style="font-family: \\"FabricMDL2Icons\\";"
+                style="font-family: "FabricMDL2Icons";"
               >
                 
               </i>
