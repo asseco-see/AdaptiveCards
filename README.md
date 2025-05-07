@@ -1,4 +1,7 @@
 # Adaptive Cards
+![Status: Archived](https://img.shields.io/badge/status-archived-lightgrey.svg)
+
+> 🗃️ **Status**: Archived – This repository is no longer actively maintained.
 
 ![logo](assets/adaptive-card-200.png)
 
